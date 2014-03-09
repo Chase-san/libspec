@@ -6,6 +6,7 @@ Supports the saves for GB (RG/RBY/GS), GBA (RSE/FRLG), DS (DPPt/HGSS), and DSi E
 
 For a total of 21 games spanning 16 years.
 
+<span style="color:red">__THIS LIBRARY IS UNFINISHED, EXPECT MASSIVE BREAKING CHANGES__</span>
 
 Building
 -------
