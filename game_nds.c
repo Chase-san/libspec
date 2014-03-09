@@ -74,10 +74,10 @@ typedef struct {
 
 
 static inline nds_footer_dppt_t *get_dppt_footer(void *ptr, size_t offset) {
-	return (nds_footer_dppt_t *)(ptr+offset);
+	return (nds_footer_dppt_t *)(ptr + offset);
 }
 static inline nds_footer_hgss_t *get_hgss_footer(void *ptr, size_t offset) {
-	return (nds_footer_hgss_t *)(ptr+offset);
+	return (nds_footer_hgss_t *)(ptr + offset);
 }
 
 static inline uint16_t nds_calc_dp_small_block_checksum(void *ptr) {

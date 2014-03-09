@@ -18,9 +18,11 @@ typedef enum {
 } dsi_savetype_t;
 
 enum {
-	DSI_SAVE_SIZE_512 = 0x80000
+	DSI_SAVE_SIZE = 0x80000
 };
 
 dsi_savetype_t dsi_detect_save_type(void *, size_t);
+
+void dsi_test(void *);
 
 #endif //__DSI_H__
