@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "prng.h"
+#include "pkm.h"
 #include "checksum.h"
 #include "game_gba.h"
 #include "game_nds.h"

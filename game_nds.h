@@ -38,16 +38,4 @@ void nds_fix_all_checksums(void *, nds_savetype_t, size_t);
 
 nds_savetype_t nds_detect_save_type(void *, size_t);
 
-//PKM
-enum {
-	NDS_PKM_SIZE = 136,
-	NDS_PARTY_PKM_SIZE = 236,
-};
-
-void nds_shuffle_pkm(void *);
-void nds_unshuffle_pkm(void *);
-void nds_crypt_pkm(void *);
-void nds_crypt_party_pkm(void *);
-
-
 #endif //__NDS_H__
