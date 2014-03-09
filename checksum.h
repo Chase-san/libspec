@@ -6,6 +6,6 @@
 
 uint16_t nds_crc16(void *, size_t);
 uint16_t nds_checksum(void *, size_t);
-uint16_t gba_checksum(void *, size_t);
+uint16_t gba_block_checksum(void *, size_t);
 
 #endif //__CHECKSUM_H__

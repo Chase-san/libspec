@@ -70,7 +70,7 @@ static inline gba_footer_t *get_block_footer(void*ptr) {
 }
 
 static inline uint16_t get_block_checksum(void*ptr) {
-	return gba_checksum(ptr, GBA_BLOCK_DATA_LENGTH);
+	return gba_block_checksum(ptr, GBA_BLOCK_DATA_LENGTH);
 }
 
 void gba_fix_checksum(void*ptr) {

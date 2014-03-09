@@ -57,7 +57,7 @@ uint16_t nds_checksum(void *ptr, size_t size) {
 	return sum;
 }
 
-uint16_t gba_checksum(void *ptr, size_t size) {
+uint16_t gba_block_checksum(void *ptr, size_t size) {
 	uint32_t sum = 0;
 	for(size_t i = 0; i < size; i += 4) {
 		sum += *(uint32_t *)(ptr + i);
