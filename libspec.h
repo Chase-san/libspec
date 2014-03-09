@@ -1,8 +1,6 @@
 #ifndef __LIBSPEC_H__
 #define __LIBSPEC_H__
 
-#include <stdlib.h>
-#include <stdint.h>
 #include "prng.h"
 #include "pkm.h"
 #include "checksum.h"
