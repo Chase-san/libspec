@@ -39,20 +39,28 @@ static const uint16_t t_crc16[256] = {
 
 uint16_t nds_crc16(void *ptr, size_t size) {
 	uint8_t t;
-	uint16_t r = 0xFFFF;
+	uint16_t sum = 0xFFFF;
 	uint8_t *data = (uint8_t *)ptr;
 	for(size_t i = 0; i < size; ++i) {
-		t = data[i] ^ (r >> 8);
-		r = t_crc16[t] ^ (r << 8);
+		t = data[i] ^ (sum >> 8);
+		sum = t_crc16[t] ^ (sum << 8);
 	}
-	return r;
+	return sum;
 }
 
 uint16_t nds_checksum(void *ptr, size_t size) {
-	uint16_t r = 0x0;
+	uint16_t sum = 0x0;
 	uint8_t *data = (uint8_t *)ptr;
 	for(size_t i = 0; i < size; ++i) {
-		r += data[i];
+		sum += data[i];
 	}
-	return r;
+	return sum;
+}
+
+uint16_t gba_checksum(void *ptr, size_t size) {
+	uint32_t sum = 0;
+	for(size_t i = 0; i < size; i += 4) {
+		sum += *(uint32_t *)(ptr + i);
+	}
+	return sum + (sum >> 16);
 }

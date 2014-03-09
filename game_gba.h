@@ -18,9 +18,12 @@ typedef enum {
 } gba_savetype_t;
 
 enum {
-	GBA_SAVE_SIZE_128 = 0x20000
+	GBA_SAVE_SECTION = 0xE000,
+	GBA_SAVE_SIZE = 0x20000
 };
 
 gba_savetype_t gba_detect_save_type(void *, size_t);
+
+void gba_test(void *);
 
 #endif //__GBA_H__
