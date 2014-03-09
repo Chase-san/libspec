@@ -24,6 +24,6 @@ enum {
 
 gba_savetype_t gba_detect_save_type(void *, size_t);
 
-void gba_fix_checksum(void*);
+void gba_fix_checksum(void *);
 
 #endif //__GBA_H__
