@@ -1,7 +1,6 @@
 libspec
 =======
-
-A pokemon save editing library in C.
+Library for Specialized Pokemon Editing in C
 
 Supports the saves for GB (RG/RBY/GS), GBA (RSE/FRLG), DS (DPPt/HGSS), and DSi Enhanced (BW/B2W2).
 
