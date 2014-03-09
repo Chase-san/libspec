@@ -25,17 +25,6 @@ void test_pkm_crypt() {
 	//compare it to fii.pkm
 	if(memcmp(fii, fii_crypt, NDS_PKM_SIZE)) {
 		printf("Decrypt Error!\n");
-		int err = 0;
-		//run through each and pick out error
-		for(int i = 0; i < NDS_PKM_SIZE; ++i) {
-			if(fii[i] != fii_crypt[i]) {
-				printf("%02X: %02X should be %02X\n", i, fii_crypt[i], fii[i]);
-				if(++err == 2) {
-					return;
-				}
-			}
-		}
-		return;
 	} else {
 		printf("Decrypt Okay!\n");
 	}
@@ -64,17 +53,6 @@ void test_party_pkm_crypt() {
 	//compare it to fii.pkm
 	if(memcmp(fii, fii_crypt, NDS_PKM_SIZE)) {
 		printf("Decrypt Error!\n");
-		int err = 0;
-		//run through each and pick out error
-		for(int i = 0; i < NDS_PKM_SIZE; ++i) {
-			if(fii[i] != fii_crypt[i]) {
-				printf("%02X: %02X should be %02X\n", i, fii_crypt[i], fii[i]);
-				if(++err == 2) {
-					return;
-				}
-			}
-		}
-		return;
 	} else {
 		printf("Decrypt Okay!\n");
 	}
