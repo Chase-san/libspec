@@ -37,15 +37,15 @@ static const uint16_t t_crc16[256] = {
 	0x6E17, 0x7E36, 0x4E55, 0x5E74, 0x2E93, 0x3EB2, 0x0ED1, 0x1EF0
 };
 
-uint16_t nds_crc16(void *ptr, size_t size) {
+uint16_t nds_crc16(void *ptr, size_t len) {
 	uint8_t t;
-	uint16_t sum = 0xFFFF;
-	uint8_t *data = (uint8_t *)ptr;
-	for(size_t i = 0; i < size; ++i) {
-		t = data[i] ^ (sum >> 8);
-		sum = t_crc16[t] ^ (sum << 8);
+	uint16_t r = 0xFFFF;
+	uint8_t *block = ptr;
+	for(uint32_t b = 0; b < len; ++b) {
+		t = block[b] ^ (r >> 8);
+		r = t_crc16[t] ^ (r << 8);
 	}
-	return sum;
+	return r;
 }
 
 uint16_t nds_checksum(void *ptr, size_t size) {

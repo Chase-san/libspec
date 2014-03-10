@@ -33,7 +33,7 @@ enum {
 
 	NDS_TYPE_DETECT_DP = NDS_DP_SMALL_BLOCK_FOOTER + 0x8,
 	NDS_TYPE_DETECT_PLAT = NDS_PLAT_SMALL_BLOCK_FOOTER + 0x8,
-	NDS_TYPE_DETECT_HGSS = NDS_HGSS_SMALL_BLOCK_FOOTER + 0x4,
+	NDS_TYPE_DETECT_HGSS = NDS_HGSS_SMALL_BLOCK_FOOTER + 0x4
 };
 
 #pragma pack(push, 1)
@@ -120,6 +120,8 @@ void nds_set_checksum(nds_save_t *save, nds_checksum_t *cs) {
 	}
 }
 
+#include <stdio.h>
+
 void nds_calc_save_checksum(void *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
 	switch(type) {
 		case NDS_TYPE_DP:
@@ -166,13 +168,16 @@ nds_savetype_t nds_detect_save_type(void *ptr, size_t size) {
 	if(size != NDS_SAVE_SIZE_256 && size != NDS_SAVE_SIZE_512) {
 		return NDS_TYPE_UNKNOWN;
 	}
-	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_DP) == NDS_DP_SMALL_BLOCK_FOOTER - NDS_DP_SMALL_BLOCK_START) {
+	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_DP) == NDS_DP_SMALL_BLOCK_FOOTER - NDS_DP_SMALL_BLOCK_START +
+			NDS_FOOTER_LENGTH) {
 		return NDS_TYPE_DP;
 	}
-	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_PLAT) == NDS_PLAT_SMALL_BLOCK_FOOTER - NDS_PLAT_SMALL_BLOCK_START) {
+	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_PLAT) == NDS_PLAT_SMALL_BLOCK_FOOTER - NDS_PLAT_SMALL_BLOCK_START +
+			NDS_FOOTER_LENGTH) {
 		return NDS_TYPE_PLAT;
 	}
-	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_HGSS) == NDS_HGSS_SMALL_BLOCK_FOOTER - NDS_HGSS_SMALL_BLOCK_START) {
+	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_HGSS) == NDS_HGSS_SMALL_BLOCK_FOOTER - NDS_HGSS_SMALL_BLOCK_START +
+			NDS_HGSS_FOOTER_LENGTH) {
 		return NDS_TYPE_HGSS;
 	}
 	return NDS_TYPE_UNKNOWN;
@@ -180,7 +185,7 @@ nds_savetype_t nds_detect_save_type(void *ptr, size_t size) {
 
 nds_save_t *nds_get_save(void *ptr, size_t size) {
 	nds_save_t *save = malloc(sizeof(nds_save_t));
-	save->type = nds_detect_save_type(ptr,size);
+	save->type = nds_detect_save_type(ptr, size);
 	save->data = ptr;
 	save->size = size;
 	return save;
