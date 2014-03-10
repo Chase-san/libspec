@@ -20,22 +20,27 @@ enum {
 	NDS_SAVE_SIZE_512 = 0x80000,
 };
 
-uint16_t nds_calc_small_block_checksum(void *, nds_savetype_t);
-uint16_t nds_calc_big_block_checksum(void *, nds_savetype_t);
+typedef struct {
+	uint16_t small;
+	uint16_t big;
+} nds_save_checksum_t;
 
-uint16_t nds_get_small_block_checksum(void *, nds_savetype_t);
-uint16_t nds_get_big_block_checksum(void *, nds_savetype_t);
+typedef struct {
+	nds_save_checksum_t save0;
+	nds_save_checksum_t save1;
+} nds_checksum_t;
 
-void nds_set_small_block_checksum(void *, nds_savetype_t, uint16_t);
-void nds_set_big_block_checksum(void *, nds_savetype_t, uint16_t);
+typedef struct {
+	void *data;
+	size_t size;
+	nds_savetype_t type;
+} nds_save_t;
 
-void nds_fix_small_block_checksum(void *, nds_savetype_t);
-void nds_fix_big_block_checksum(void *, nds_savetype_t);
+void nds_get_checksum(nds_save_t *, nds_checksum_t *);
+void nds_set_checksum(nds_save_t *, nds_checksum_t *);
+void nds_calc_checksum(nds_save_t *, nds_checksum_t *);
+void nds_fix_checksum(nds_save_t *);
 
-void nds_fix_small_and_big_block_checksum(void *, nds_savetype_t);
-
-void nds_fix_all_checksums(void *, nds_savetype_t, size_t);
-
-nds_savetype_t nds_detect_save_type(void *, size_t);
+nds_save_t *nds_get_save(void *, size_t);
 
 #endif //__NDS_H__

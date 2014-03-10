@@ -1,25 +1,29 @@
 #include "test.h"
 
 void test_nds_save_checksum_sub(void *sav) {
-	nds_savetype_t type = nds_detect_save_type(sav, NDS_SAVE_SIZE_512);
-	if(nds_calc_small_block_checksum(sav, type) != nds_get_small_block_checksum(sav, type)) {
+	nds_save_t *save = nds_get_save(sav, NDS_SAVE_SIZE_512);
+
+	nds_checksum_t get;
+	nds_get_checksum(save,&get);
+	nds_checksum_t calc;
+	nds_calc_checksum(save,&get);
+	
+	if(get.save0.small != calc.save0.small) {
 		printf("Save 0: Little Block Error!\n");
 	} else {
 		printf("Save 0: Little Block Okay!\n");
 	}
-	if(nds_calc_big_block_checksum(sav, type) != nds_get_big_block_checksum(sav, type)) {
+	if(get.save0.big != calc.save0.big) {
 		printf("Save 0: Big Block Error!\n");
 	} else {
 		printf("Save 0: Big Block Okay!\n");
 	}
-	if(nds_calc_small_block_checksum(sav + NDS_SAVE_OFFSET, type) != nds_get_small_block_checksum(sav + NDS_SAVE_OFFSET,
-			type)) {
+	if(get.save1.small != calc.save1.small) {
 		printf("Save 1: Little Block Error!\n");
 	} else {
 		printf("Save 1: Little Block Okay!\n");
 	}
-	if(nds_calc_big_block_checksum(sav + NDS_SAVE_OFFSET, type) != nds_get_big_block_checksum(sav + NDS_SAVE_OFFSET,
-			type)) {
+	if(get.save1.big != calc.save1.big) {
 		printf("Save 1: Big Block Error!\n");
 	} else {
 		printf("Save 1: Big Block Okay!\n");
