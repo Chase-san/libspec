@@ -39,5 +39,6 @@ Build Dependencies
 
 * GNU Make
 * CLANG/LLVM or GCC 4.7+
+* Little Endian compile target
 
 The source uses standard C11 syntax, so a non GCC/CLANG compiler should work with a different Makefile.
