@@ -47,8 +47,8 @@ static const uint16_t gba_to_codepage[256] = {
 enum {
 	GBA_SAVE_BLOCK_COUNT = 14,
 	GBA_BLOCK_LENGTH = 0x1000,
-	GBA_BLOCK_DATA_LENGTH = 0xFF0,
-	GBA_BLOCK_FOOTER_LENGTH = 0x10,
+	GBA_BLOCK_DATA_LENGTH = 0xF80,
+	GBA_BLOCK_FOOTER_LENGTH = 0xC,
 };
 
 gba_savetype_t gba_detect_save_type(void *ptr, size_t size) {
@@ -56,10 +56,10 @@ gba_savetype_t gba_detect_save_type(void *ptr, size_t size) {
 }
 
 #pragma pack(push, 1)
-//16 byte footer for every 0xFF0 data block
+//12 byte footer for every 0xFF0 data block
 typedef struct {
-	uint32_t padding;
-	uint16_t section_id;
+	uint8_t section_id;
+	uint8_t padding;
 	uint16_t checksum;
 	uint32_t mark; //usually 25 20 01 08
 	uint32_t save_index; //counts the number of times saved as well
@@ -67,7 +67,7 @@ typedef struct {
 #pragma pack(pop)
 
 static inline gba_footer_t *get_block_footer(void *ptr) {
-	return ptr + GBA_BLOCK_DATA_LENGTH;
+	return ptr + GBA_BLOCK_LENGTH - GBA_BLOCK_FOOTER_LENGTH;
 }
 
 static inline uint16_t get_block_checksum(void *ptr) {
