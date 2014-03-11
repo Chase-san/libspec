@@ -43,10 +43,10 @@ static inline const uint8_t *pkm_get_shuffle(void *ptr) {
  *
  * @param ptr The pointer to the pkm to shuffle
  */
-void pkm_shuffle(void *ptr) {
+void pkm_shuffle(pkm_t *pkm) {
 	//0,32,64,96 to shuffle[0 .. 3]
-	const uint8_t *shuffle = pkm_get_shuffle(ptr);
-	uint8_t *bptr = ptr + PKM_HEADER_SIZE_8;
+	const uint8_t *shuffle = pkm_get_shuffle(pkm);
+	uint8_t *bptr = ((uint8_t *)pkm) + PKM_HEADER_SIZE_8;
 	uint8_t *tmp = malloc(PKM_DATA_SIZE_8);
 	memcpy(tmp, bptr, PKM_DATA_SIZE_8);
 	memcpy(&bptr[shuffle[0]], &tmp[PKM_BLOCK0_START_8], PKM_BLOCK_SIZE);
@@ -56,10 +56,10 @@ void pkm_shuffle(void *ptr) {
 	free(tmp);
 }
 
-void pkm_unshuffle(void *ptr) {
+void pkm_unshuffle(pkm_t *pkm) {
 	//shuffle[0 .. 3] to 0,32,64,96
-	const uint8_t *shuffle = pkm_get_shuffle(ptr);
-	uint8_t *bptr = ptr + PKM_HEADER_SIZE_8;
+	const uint8_t *shuffle = pkm_get_shuffle(pkm);
+	uint8_t *bptr = ((uint8_t *)pkm) + PKM_HEADER_SIZE_8;
 	uint8_t *tmp = malloc(PKM_DATA_SIZE_8);
 	memcpy(tmp, bptr, PKM_DATA_SIZE_8);
 	memcpy(&bptr[PKM_BLOCK0_START_8], &tmp[shuffle[0]], PKM_BLOCK_SIZE);
@@ -69,17 +69,17 @@ void pkm_unshuffle(void *ptr) {
 	free(tmp);
 }
 
-void pkm_crypt(void *ptr) {
-	uint16_t *tptr = ptr;
+void pkm_crypt(pkm_t *pkm) {
+	uint16_t *tptr = (uint16_t *)pkm;
 	nds_prng_t prng = { tptr[PKM_CHECKSUM_OFFSET_16] };
 	for(size_t i = 0; i < PKM_DATA_SIZE_16; ++i) {
 		tptr[PKM_HEADER_SIZE_16 + i] ^= nds_prng_next(&prng);
 	}
 }
 
-void pkm_crypt_party(void *ptr) {
-	uint16_t *tptr = ptr;
-	nds_prng_t prng = { ((uint32_t *)ptr)[PKM_PID_START_32] };
+void pkm_crypt_party(pkm_t *pkm) {
+	uint16_t *tptr = (uint16_t *)pkm;
+	nds_prng_t prng = { ((uint32_t *)pkm)[PKM_PID_START_32] };
 	for(uint8_t i = 0; i < PKM_PARTY_DATA_SIZE_16; ++i) {
 		tptr[PKM_PARTY_DATA_START_16 + i] ^= nds_prng_next(&prng);
 	}

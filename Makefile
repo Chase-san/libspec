@@ -7,7 +7,7 @@ ifdef GCC
     AR := ar
 endif
 
-CFLAGS := -std=c11 -Wpointer-arith
+CFLAGS := -std=c11 -Wpointer-arith -fms-extensions
 LDFLAGS := -static-libgcc
 
 DEBUG_CFLAGS := -g3 -Wall

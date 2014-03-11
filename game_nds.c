@@ -58,10 +58,10 @@ typedef struct {
 #pragma pack(pop)
 
 static inline nds_footer_dppt_t *nds_get_dppt_footer(uint8_t *ptr, size_t footer_offset) {
-	return ptr + footer_offset;
+	return (nds_footer_dppt_t *)(ptr + footer_offset);
 }
 static inline nds_footer_hgss_t *nds_get_hgss_footer(uint8_t *ptr, size_t footer_offset) {
-	return ptr + footer_offset;
+	return (nds_footer_hgss_t *)(ptr + footer_offset);
 }
 
 void nds_get_save_checksum(uint8_t *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {

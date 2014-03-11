@@ -67,7 +67,7 @@ typedef struct {
 #pragma pack(pop)
 
 static inline gba_footer_t *get_block_footer(uint8_t *ptr) {
-	return ptr + GBA_BLOCK_LENGTH - GBA_BLOCK_FOOTER_LENGTH;
+	return (gba_footer_t *)(ptr + GBA_BLOCK_LENGTH - GBA_BLOCK_FOOTER_LENGTH);
 }
 
 static inline uint16_t get_block_checksum(uint8_t *ptr) {
@@ -88,5 +88,8 @@ void gba_fix_checksum(uint8_t *ptr) {
 }
 
 void gba_test(uint8_t *ptr) {
-	
+	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
+		size_t offset = i * GBA_BLOCK_LENGTH;
+
+	}
 }

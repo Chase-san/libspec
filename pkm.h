@@ -13,48 +13,6 @@ enum {
 };
 
 #pragma pack(push, 1)
-typedef struct { //0x8
-	uint32_t pid;
-	union {
-		struct {
-			uint8_t version : 4;
-			uint8_t sort : 4;
-			uint8_t : 5;
-			bool is_party_encrypted : 1;
-			bool is_encrypted : 1;
-			bool is_egg : 1;
-		};
-		uint16_t padding;
-	};
-	uint16_t checksum;
-} pkm_header_t;
-
-typedef struct { //0x8
-	bool circle : 1;
-	bool triangle : 1;
-	bool square : 1;
-	bool star : 1;
-	bool diamond : 1;
-	uint8_t : 2; //unused
-} pkm_marking_t;
-
-typedef struct {
-	uint8_t hp;
-	uint8_t atk;
-	uint8_t def;
-	uint8_t spd;
-	uint8_t satk;
-	uint8_t sdef;
-} pkm_effort_t;
-
-typedef struct {
-	uint8_t cool;
-	uint8_t beauty;
-	uint8_t cute;
-	uint8_t smart;
-	uint8_t tough;
-	uint8_t sheen;
-} pkm_contest_t;
 
 typedef struct { //0x2
 	//byte 1
@@ -113,35 +71,6 @@ typedef struct { //0x2
 	uint8_t : 4;
 } pkm_ribbon_unova_t;
 
-typedef struct { //0x32
-	uint16_t species;
-	uint16_t held_item;
-	uint16_t ot_id;
-	uint16_t ot_sid;
-	uint32_t exp;
-	uint8_t friendship;
-	uint8_t ability;
-	pkm_marking_t markings;
-	uint8_t country;
-	pkm_effort_t ev;
-	pkm_contest_t contest;
-	pkm_ribbon_sinnoh1_t ribbon_sinnoh1;
-	union {
-		pkm_ribbon_sinnoh2_t ribbon_sinnoh2;
-		pkm_ribbon_unova_t ribbon_unova;
-	};
-} pkm_blocka_t;
-
-typedef struct {
-	uint8_t hp : 5;
-	uint8_t atk : 5;
-	uint8_t def : 5;
-	uint8_t spd : 5;
-	uint8_t satk : 5;
-	uint8_t sdef : 5;
-	uint8_t : 2;
-} pkm_genes_t;
-
 typedef struct { //0x2
 	//byte 1
 	bool cool_normal : 1;
@@ -184,6 +113,110 @@ typedef struct { //0x2
 	bool world : 1;
 } pkm_ribbon_hoenn2_t;
 
+typedef struct { //0x2
+	//byte 1
+	bool cool_normal : 1;
+	bool cool_super : 1;
+	bool cool_hyper : 1;
+	bool cool_master : 1;
+	bool beauty_normal : 1;
+	bool beauty_super : 1;
+	bool beauty_hyper : 1;
+	bool beauty_master : 1;
+	//byte 2
+	bool cute_normal : 1;
+	bool cute_super : 1;
+	bool cute_hyper : 1;
+	bool cute_master : 1;
+	bool smart_normal : 1;
+	bool smart_super : 1;
+	bool smart_hyper : 1;
+	bool smart_master : 1;
+} pkm_ribbon_sinnoh3_t;
+
+typedef struct { //0x2
+	//byte 1
+	bool tough_normal : 1;
+	bool tough_super : 1;
+	bool tough_hyper : 1;
+	bool tough_master : 1;
+	bool : 4;
+	//byte 2
+	uint8_t : 8;
+} pkm_ribbon_sinnoh4_t;
+
+typedef struct { //0x8
+	uint32_t pid;
+	union {
+		struct {
+			uint8_t version : 4;
+			uint8_t sort : 4;
+			uint8_t : 5;
+			bool is_party_encrypted : 1;
+			bool is_encrypted : 1;
+			bool is_egg : 1;
+		};
+		uint16_t padding;
+	};
+	uint16_t checksum;
+} pkm_header_t;
+
+typedef struct { //0x8
+	bool circle : 1;
+	bool triangle : 1;
+	bool square : 1;
+	bool star : 1;
+	bool diamond : 1;
+	uint8_t : 2; //unused
+} pkm_marking_t;
+
+typedef struct {
+	uint8_t hp;
+	uint8_t atk;
+	uint8_t def;
+	uint8_t spd;
+	uint8_t satk;
+	uint8_t sdef;
+} pkm_effort_t;
+
+typedef struct {
+	uint8_t cool;
+	uint8_t beauty;
+	uint8_t cute;
+	uint8_t smart;
+	uint8_t tough;
+	uint8_t sheen;
+} pkm_contest_t;
+
+typedef struct { //0x32
+	uint16_t species;
+	uint16_t held_item;
+	uint16_t ot_id;
+	uint16_t ot_sid;
+	uint32_t exp;
+	uint8_t friendship;
+	uint8_t ability;
+	pkm_marking_t markings;
+	uint8_t country;
+	pkm_effort_t ev;
+	pkm_contest_t contest;
+	pkm_ribbon_sinnoh1_t ribbon_sinnoh1;
+	union {
+		pkm_ribbon_sinnoh2_t ribbon_sinnoh2;
+		pkm_ribbon_unova_t ribbon_unova;
+	};
+} pkm_blocka_t;
+
+typedef struct {
+	uint8_t hp : 5;
+	uint8_t atk : 5;
+	uint8_t def : 5;
+	uint8_t spd : 5;
+	uint8_t satk : 5;
+	uint8_t sdef : 5;
+	uint8_t : 2;
+} pkm_genes_t;
+
 typedef struct { //0x32
 	uint16_t move[4]; //8
 	uint8_t movePP[4]; //4
@@ -222,38 +255,6 @@ typedef struct { //0x32
 	uint16_t egg_loc_plat;
 	uint16_t met_loc_plat;
 } pkm_blockb_t;
-
-typedef struct { //0x2
-	//byte 1
-	bool cool_normal : 1;
-	bool cool_super : 1;
-	bool cool_hyper : 1;
-	bool cool_master : 1;
-	bool beauty_normal : 1;
-	bool beauty_super : 1;
-	bool beauty_hyper : 1;
-	bool beauty_master : 1;
-	//byte 2
-	bool cute_normal : 1;
-	bool cute_super : 1;
-	bool cute_hyper : 1;
-	bool cute_master : 1;
-	bool smart_normal : 1;
-	bool smart_super : 1;
-	bool smart_hyper : 1;
-	bool smart_master : 1;
-} pkm_ribbon_sinnoh3_t;
-
-typedef struct { //0x2
-	//byte 1
-	bool tough_normal : 1;
-	bool tough_super : 1;
-	bool tough_hyper : 1;
-	bool tough_master : 1;
-	bool : 4;
-	//byte 2
-	uint8_t : 8;
-} pkm_ribbon_sinnoh4_t;
 
 typedef struct { //0x32
 	union {
@@ -296,12 +297,14 @@ typedef struct { //0x32
 } pkm_blockd_t;
 
 typedef struct { //0x100
-	uint8_t sleep_turns : 3;
-	uint8_t is_poisoned : 1;
-	uint8_t is_burned : 1;
-	uint8_t is_frozen : 1;
-	uint8_t is_paralyzed : 1;
-	uint8_t is_toxic : 1;
+	struct { //0x1
+		uint8_t sleep_turns : 3;
+		bool is_poisoned : 1;
+		bool is_burned : 1;
+		bool is_frozen : 1;
+		bool is_paralyzed : 1;
+		bool is_toxic : 1;
+	};//status
 	uint8_t : 8;
 	uint16_t : 16;
 	uint8_t level;
@@ -332,9 +335,9 @@ typedef struct {
 } pkm_t;
 #pragma pack(pop)
 
-void pkm_shuffle(void *);
-void pkm_unshuffle(void *);
-void pkm_crypt(void *);
-void pkm_crypt_party(void *);
+void pkm_shuffle(pkm_t *);
+void pkm_unshuffle(pkm_t *);
+void pkm_crypt(pkm_t *);
+void pkm_crypt_party(pkm_t *);
 
 #endif //__PKM_H__

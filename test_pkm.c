@@ -3,8 +3,8 @@
 void test_pkm_crypt() {
 	printf("\nTesting PKM Crypt Against Pre-encrypted...\n");
 	//mainly for testing
-	uint8_t *fii = load_file("test/fii.pkm", PKM_LENGTH);
-	uint8_t *fii_crypt = load_file("test/fii_crypt.pkm", PKM_LENGTH);
+	pkm_t *fii = load_file("test/fii.pkm", PKM_LENGTH);
+	pkm_t *fii_crypt = load_file("test/fii_crypt.pkm", PKM_LENGTH);
 	//decrypt fii_crypt.pkm
 	pkm_crypt(fii_crypt);
 	pkm_unshuffle(fii_crypt);
@@ -31,8 +31,8 @@ void test_pkm_crypt() {
 void test_party_pkm_crypt() {
 	printf("\nTesting Party PKM Crypt Against Pre-encrypted...\n");
 	//mainly for testing
-	uint8_t *fii = load_file("test/fii_party.pkm", PKM_PARTY_LENGTH);
-	uint8_t *fii_crypt = load_file("test/fii_party_crypt.pkm", PKM_PARTY_LENGTH);
+	pkm_t *fii = load_file("test/fii_party.pkm", PKM_PARTY_LENGTH);
+	pkm_t *fii_crypt = load_file("test/fii_party_crypt.pkm", PKM_PARTY_LENGTH);
 	//decrypt fii_crypt.pkm
 	pkm_crypt_party(fii_crypt);
 	pkm_unshuffle(fii_crypt);
@@ -58,8 +58,8 @@ void test_party_pkm_crypt() {
 
 void test_pkm_self_crypt() {
 	printf("\nTesting PKM Crypt Against Itself...\n");
-	uint8_t *fii = load_file("test/fii.pkm", PKM_LENGTH);
-	uint8_t *fii_test = malloc(PKM_LENGTH);
+	pkm_t *fii = load_file("test/fii.pkm", PKM_LENGTH);
+	pkm_t *fii_test = malloc(PKM_LENGTH);
 	memcpy(fii_test, fii, PKM_LENGTH);
 	for(int i = 0; i < 10; ++i) {
 		//encrypt
@@ -81,8 +81,8 @@ void test_pkm_self_crypt() {
 
 void test_party_pkm_self_crypt() {
 	printf("\nTesting Party PKM Crypt Against Itself...\n");
-	uint8_t *fii = load_file("test/fii_party.pkm", PKM_PARTY_LENGTH);
-	uint8_t *fii_test = malloc(PKM_PARTY_LENGTH);
+	pkm_t *fii = load_file("test/fii_party.pkm", PKM_PARTY_LENGTH);
+	pkm_t *fii_test = malloc(PKM_PARTY_LENGTH);
 	memcpy(fii_test, fii, PKM_PARTY_LENGTH);
 	for(int i = 0; i < 10; ++i) {
 		//encrypt
