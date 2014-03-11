@@ -13,148 +13,6 @@ enum {
 };
 
 #pragma pack(push, 1)
-typedef struct { //0x2
-	//byte 1
-	uint8_t sinnoh_champ : 1;
-	uint8_t ability	 : 1;
-	uint8_t great_ability : 1;
-	uint8_t double_ability : 1;
-	uint8_t multi_ability : 1;
-	uint8_t pair_ability : 1;
-	uint8_t world_ability : 1;
-	uint8_t alert : 1;
-	//byte 2
-	uint8_t shock : 1;
-	uint8_t downcast : 1;
-	uint8_t careless : 1;
-	uint8_t relax : 1;
-	uint8_t snooze : 1;
-	uint8_t smile : 1;
-	uint8_t gorgeous : 1;
-	uint8_t royal : 1;
-} pkm_ribbon_sinnoh1_t;
-
-typedef struct { //0x2
-	//byte 1
-	uint8_t gorgeous_royal : 1;
-	uint8_t footprint : 1;
-	uint8_t record : 1;
-	uint8_t history : 1;
-	uint8_t legend : 1;
-	uint8_t red : 1;
-	uint8_t green : 1;
-	uint8_t blue : 1;
-	//byte 2
-	uint8_t festival : 1;
-	uint8_t carnival : 1;
-	uint8_t classic : 1;
-	uint8_t premier : 1;
-	uint8_t : 4;
-} pkm_ribbon_sinnoh2_t;
-
-typedef struct { //0x2
-	//byte 1
-	uint8_t cool_normal : 1;
-	uint8_t cool_super : 1;
-	uint8_t cool_hyper : 1;
-	uint8_t cool_master : 1;
-	uint8_t beauty_normal : 1;
-	uint8_t beauty_super : 1;
-	uint8_t beauty_hyper : 1;
-	uint8_t beauty_master : 1;
-	//byte 2
-	uint8_t cute_normal : 1;
-	uint8_t cute_super : 1;
-	uint8_t cute_hyper : 1;
-	uint8_t cute_master : 1;
-	uint8_t smart_normal : 1;
-	uint8_t smart_super : 1;
-	uint8_t smart_hyper : 1;
-	uint8_t smart_master : 1;
-} pkm_ribbon_sinnoh3_t;
-
-typedef struct { //0x2
-	//byte 1
-	uint8_t tough_normal : 1;
-	uint8_t tough_super : 1;
-	uint8_t tough_hyper : 1;
-	uint8_t tough_master : 1;
-	uint8_t : 4;
-	//byte 2
-	uint8_t : 8;
-} pkm_ribbon_sinnoh4_t;
-
-typedef struct { //0x2
-	//byte 1
-	uint8_t gorgeous_royal : 1;
-	uint8_t footprint : 1;
-	uint8_t record : 1;
-	uint8_t event : 1;
-	uint8_t legend : 1;
-	uint8_t world_champion : 1;
-	uint8_t birthday : 1;
-	uint8_t special : 1;
-	//byte 2
-	uint8_t souvenir : 1;
-	uint8_t wishing : 1;
-	uint8_t classic : 1;
-	uint8_t premier : 1;
-	uint8_t : 4;
-} pkm_ribbon_unova_t;
-
-typedef struct { //0x2
-	//byte 1
-	uint8_t cool_normal : 1;
-	uint8_t cool_super : 1;
-	uint8_t cool_hyper : 1;
-	uint8_t cool_master : 1;
-	uint8_t beauty_normal : 1;
-	uint8_t beauty_super : 1;
-	uint8_t beauty_hyper : 1;
-	uint8_t beauty_master : 1;
-	//byte 2
-	uint8_t cute_normal : 1;
-	uint8_t cute_super : 1;
-	uint8_t cute_hyper : 1;
-	uint8_t cute_master : 1;
-	uint8_t smart_normal : 1;
-	uint8_t smart_super : 1;
-	uint8_t smart_hyper : 1;
-	uint8_t smart_master : 1;
-} pkm_ribbon_hoenn1_t;
-
-typedef struct { //0x2
-	//byte 1
-	uint8_t tough_normal : 1;
-	uint8_t tough_super : 1;
-	uint8_t tough_hyper : 1;
-	uint8_t tough_master : 1;
-	uint8_t champion : 1;
-	uint8_t winning : 1;
-	uint8_t victory : 1;
-	uint8_t artist : 1;
-	//byte 2
-	uint8_t effort : 1;
-	uint8_t marine : 1;
-	uint8_t land : 1;
-	uint8_t sky : 1;
-	uint8_t country : 1;
-	uint8_t national : 1;
-	uint8_t earth : 1;
-	uint8_t world : 1;
-} pkm_ribbon_hoenn2_t;
-
-typedef struct { //0x3
-	uint8_t year; //since 2000
-	uint8_t month;
-	uint8_t day;
-} pkm_date_t;
-
-typedef struct { //0x1
-	uint8_t days : 4;
-	uint8_t strain : 4;
-} pkm_pokerus_t;
-
 typedef struct { //0x8
 	uint32_t pid;
 	union {
@@ -162,9 +20,9 @@ typedef struct { //0x8
 			uint8_t version : 4;
 			uint8_t sort : 4;
 			uint8_t : 5;
-			uint8_t party : 1;
-			uint8_t box : 1;
-			uint8_t egg : 1;
+			bool is_party_encrypted : 1;
+			bool is_encrypted : 1;
+			bool is_egg : 1;
 		};
 		uint16_t padding;
 	};
@@ -172,13 +30,88 @@ typedef struct { //0x8
 } pkm_header_t;
 
 typedef struct { //0x8
-	uint8_t circle : 1;
-	uint8_t triangle : 1;
-	uint8_t square : 1;
-	uint8_t star : 1;
-	uint8_t diamond : 1;
+	bool circle : 1;
+	bool triangle : 1;
+	bool square : 1;
+	bool star : 1;
+	bool diamond : 1;
 	uint8_t : 2; //unused
 } pkm_marking_t;
+
+typedef struct {
+	uint8_t hp;
+	uint8_t atk;
+	uint8_t def;
+	uint8_t spd;
+	uint8_t satk;
+	uint8_t sdef;
+} pkm_effort_t;
+
+typedef struct {
+	uint8_t cool;
+	uint8_t beauty;
+	uint8_t cute;
+	uint8_t smart;
+	uint8_t tough;
+	uint8_t sheen;
+} pkm_contest_t;
+
+typedef struct { //0x2
+	//byte 1
+	bool sinnoh_champ : 1;
+	bool ability	 : 1;
+	bool great_ability : 1;
+	bool double_ability : 1;
+	bool multi_ability : 1;
+	bool pair_ability : 1;
+	bool world_ability : 1;
+	bool alert : 1;
+	//byte 2
+	bool shock : 1;
+	bool downcast : 1;
+	bool careless : 1;
+	bool relax : 1;
+	bool snooze : 1;
+	bool smile : 1;
+	bool gorgeous : 1;
+	bool royal : 1;
+} pkm_ribbon_sinnoh1_t;
+
+typedef struct { //0x2
+	//byte 1
+	bool gorgeous_royal : 1;
+	bool footprint : 1;
+	bool record : 1;
+	bool history : 1;
+	bool legend : 1;
+	bool red : 1;
+	bool green : 1;
+	bool blue : 1;
+	//byte 2
+	bool festival : 1;
+	bool carnival : 1;
+	bool classic : 1;
+	bool premier : 1;
+	uint8_t : 4;
+} pkm_ribbon_sinnoh2_t;
+
+typedef struct { //0x2
+	//byte 1
+	bool gorgeous_royal : 1;
+	bool footprint : 1;
+	bool record : 1;
+	bool event : 1;
+	bool legend : 1;
+	bool world_champion : 1;
+	bool birthday : 1;
+	bool special : 1;
+	//byte 2
+	bool souvenir : 1;
+	bool wishing : 1;
+	bool classic : 1;
+	bool premier : 1;
+	uint8_t : 4;
+} pkm_ribbon_unova_t;
 
 typedef struct { //0x32
 	uint16_t species;
@@ -190,18 +123,8 @@ typedef struct { //0x32
 	uint8_t ability;
 	pkm_marking_t markings;
 	uint8_t country;
-	uint8_t ev_hp;
-	uint8_t ev_atk;
-	uint8_t ev_def;
-	uint8_t ev_spd;
-	uint8_t ev_satk;
-	uint8_t ev_sdef;
-	uint8_t contest_cool;
-	uint8_t contest_beauty;
-	uint8_t contest_cute;
-	uint8_t contest_smart;
-	uint8_t contest_tough;
-	uint8_t contest_sheen;
+	pkm_effort_t ev;
+	pkm_contest_t contest;
 	pkm_ribbon_sinnoh1_t ribbon_sinnoh1;
 	union {
 		pkm_ribbon_sinnoh2_t ribbon_sinnoh2;
@@ -209,42 +132,128 @@ typedef struct { //0x32
 	};
 } pkm_blocka_t;
 
+typedef struct {
+	uint8_t hp : 5;
+	uint8_t atk : 5;
+	uint8_t def : 5;
+	uint8_t spd : 5;
+	uint8_t satk : 5;
+	uint8_t sdef : 5;
+	uint8_t : 2;
+} pkm_genes_t;
+
+typedef struct { //0x2
+	//byte 1
+	bool cool_normal : 1;
+	bool cool_super : 1;
+	bool cool_hyper : 1;
+	bool cool_master : 1;
+	bool beauty_normal : 1;
+	bool beauty_super : 1;
+	bool beauty_hyper : 1;
+	bool beauty_master : 1;
+	//byte 2
+	bool cute_normal : 1;
+	bool cute_super : 1;
+	bool cute_hyper : 1;
+	bool cute_master : 1;
+	bool smart_normal : 1;
+	bool smart_super : 1;
+	bool smart_hyper : 1;
+	bool smart_master : 1;
+} pkm_ribbon_hoenn1_t;
+
+typedef struct { //0x2
+	//byte 1
+	bool tough_normal : 1;
+	bool tough_super : 1;
+	bool tough_hyper : 1;
+	bool tough_master : 1;
+	bool champion : 1;
+	bool winning : 1;
+	bool victory : 1;
+	bool artist : 1;
+	//byte 2
+	bool effort : 1;
+	bool marine : 1;
+	bool land : 1;
+	bool sky : 1;
+	bool country : 1;
+	bool national : 1;
+	bool earth : 1;
+	bool world : 1;
+} pkm_ribbon_hoenn2_t;
+
 typedef struct { //0x32
 	uint16_t move[4]; //8
 	uint8_t movePP[4]; //4
 	uint8_t movePPUP[4]; //4
-	uint8_t iv_hp : 5;
-	uint8_t iv_atk : 5;
-	uint8_t iv_def : 5;
-	uint8_t iv_spd : 5;
-	uint8_t iv_satk : 5;
-	uint8_t iv_sdef : 5;
-	uint8_t is_egg : 1;
-	uint8_t is_nicknamed : 1;
+	union {
+		pkm_genes_t iv;
+		struct {
+			uint32_t : 30;
+			bool is_egg : 1;
+			bool is_nicknamed : 1;
+		};
+	};
 	pkm_ribbon_hoenn1_t ribbon_hoenn1;
-	pkm_ribbon_hoenn1_t ribbon_hoenn2;
+	pkm_ribbon_hoenn2_t ribbon_hoenn2;
 
-	uint8_t is_fateful_encounter : 1;
-	uint8_t is_female : 1;
-	uint8_t is_genderless : 1;
+	bool is_fateful_encounter : 1;
+	bool is_female : 1;
+	bool is_genderless : 1;
 	uint8_t forme : 5; //25
 	union {
 		//shining leaf stuff
 		struct {
 			uint8_t : 2;
-			uint8_t has_crown : 1;
+			bool has_crown : 1;
 			uint8_t shining_leaf : 5;
 		};
 		//unova nature stuff
 		uint8_t nature;
 	};
-	uint8_t is_abil_dreamworld : 1;
-	uint8_t is_n_pokemon : 1;
-	uint8_t : 6;
+	struct {
+		bool is_abil_dreamworld : 1;
+		bool is_n_pokemon : 1;
+		uint8_t : 6;
+	};
 	uint8_t : 8;
 	uint16_t egg_loc_plat;
 	uint16_t met_loc_plat;
 } pkm_blockb_t;
+
+typedef struct { //0x2
+	//byte 1
+	bool cool_normal : 1;
+	bool cool_super : 1;
+	bool cool_hyper : 1;
+	bool cool_master : 1;
+	bool beauty_normal : 1;
+	bool beauty_super : 1;
+	bool beauty_hyper : 1;
+	bool beauty_master : 1;
+	//byte 2
+	bool cute_normal : 1;
+	bool cute_super : 1;
+	bool cute_hyper : 1;
+	bool cute_master : 1;
+	bool smart_normal : 1;
+	bool smart_super : 1;
+	bool smart_hyper : 1;
+	bool smart_master : 1;
+} pkm_ribbon_sinnoh3_t;
+
+typedef struct { //0x2
+	//byte 1
+	bool tough_normal : 1;
+	bool tough_super : 1;
+	bool tough_hyper : 1;
+	bool tough_master : 1;
+	bool : 4;
+	//byte 2
+	uint8_t : 8;
+} pkm_ribbon_sinnoh4_t;
 
 typedef struct { //0x32
 	union {
@@ -256,6 +265,17 @@ typedef struct { //0x32
 	pkm_ribbon_sinnoh4_t ribbon_sinnoh4; //28
 	uint32_t unknown; //32
 } pkm_blockc_t;
+
+typedef struct { //0x3
+	uint8_t year; //since 2000
+	uint8_t month;
+	uint8_t day;
+} pkm_date_t;
+
+typedef struct { //0x1
+	uint8_t days : 4;
+	uint8_t strain : 4;
+} pkm_pokerus_t;
 
 typedef struct { //0x32
 	union {
@@ -269,7 +289,7 @@ typedef struct { //0x32
 	pkm_pokerus_t pokerus;
 	uint8_t pokeball;
 	uint8_t leve_met : 7;
-	uint8_t is_ot_female : 1;
+	bool is_ot_female : 1;
 	uint8_t encounter_type;
 	uint8_t pokeball_hgss;
 	uint8_t : 8;
