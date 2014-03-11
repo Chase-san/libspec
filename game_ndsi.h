@@ -21,8 +21,8 @@ enum {
 	DSI_SAVE_SIZE = 0x80000
 };
 
-dsi_savetype_t dsi_detect_save_type(void *, size_t);
+dsi_savetype_t dsi_detect_save_type(uint8_t *, size_t);
 
-void dsi_test(void *);
+void dsi_test(uint8_t *);
 
 #endif //__DSI_H__

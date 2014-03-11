@@ -31,7 +31,7 @@ typedef struct {
 } nds_checksum_t;
 
 typedef struct {
-	void *data;
+	uint8_t *data;
 	size_t size;
 	nds_savetype_t type;
 } nds_save_t;
@@ -41,6 +41,6 @@ void nds_set_checksum(nds_save_t *, nds_checksum_t *);
 void nds_calc_checksum(nds_save_t *, nds_checksum_t *);
 void nds_fix_checksum(nds_save_t *);
 
-nds_save_t *nds_get_save(void *, size_t);
+nds_save_t *nds_get_save(uint8_t *, size_t);
 
 #endif //__NDS_H__

@@ -35,13 +35,17 @@ static const uint8_t t_shuffle[] = {
 };
 
 //You may be thinking, hey that isn't the shuffle mode, and you would be half right.
-static inline const uint8_t *get_shuffle(void *ptr) {
+static inline const uint8_t *pkm_get_shuffle(void *ptr) {
 	return &t_shuffle[(*(uint32_t *)ptr & PKM_SHUFFLE_MASK) >> PKM_SHUFFLE_SHIFT];
 }
 
+/**
+ *
+ * @param ptr The pointer to the pkm to shuffle
+ */
 void pkm_shuffle(void *ptr) {
 	//0,32,64,96 to shuffle[0 .. 3]
-	const uint8_t *shuffle = get_shuffle(ptr);
+	const uint8_t *shuffle = pkm_get_shuffle(ptr);
 	uint8_t *bptr = ptr + PKM_HEADER_SIZE_8;
 	uint8_t *tmp = malloc(PKM_DATA_SIZE_8);
 	memcpy(tmp, bptr, PKM_DATA_SIZE_8);
@@ -54,7 +58,7 @@ void pkm_shuffle(void *ptr) {
 
 void pkm_unshuffle(void *ptr) {
 	//shuffle[0 .. 3] to 0,32,64,96
-	const uint8_t *shuffle = get_shuffle(ptr);
+	const uint8_t *shuffle = pkm_get_shuffle(ptr);
 	uint8_t *bptr = ptr + PKM_HEADER_SIZE_8;
 	uint8_t *tmp = malloc(PKM_DATA_SIZE_8);
 	memcpy(tmp, bptr, PKM_DATA_SIZE_8);
@@ -75,11 +79,7 @@ void pkm_crypt(void *ptr) {
 
 void pkm_crypt_party(void *ptr) {
 	uint16_t *tptr = ptr;
-	nds_prng_t prng = { tptr[PKM_CHECKSUM_OFFSET_16] };
-	for(size_t i = 0; i < PKM_DATA_SIZE_16; ++i) {
-		tptr[PKM_HEADER_SIZE_16 + i] ^= nds_prng_next(&prng);
-	}
-	prng.seed = ((uint32_t *)ptr)[PKM_PID_START_32];
+	nds_prng_t prng = { ((uint32_t *)ptr)[PKM_PID_START_32] };
 	for(uint8_t i = 0; i < PKM_PARTY_DATA_SIZE_16; ++i) {
 		tptr[PKM_PARTY_DATA_START_16 + i] ^= nds_prng_next(&prng);
 	}

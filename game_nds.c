@@ -57,14 +57,14 @@ typedef struct {
 } nds_footer_hgss_t;
 #pragma pack(pop)
 
-static inline nds_footer_dppt_t *nds_get_dppt_footer(void *ptr, size_t footer_offset) {
+static inline nds_footer_dppt_t *nds_get_dppt_footer(uint8_t *ptr, size_t footer_offset) {
 	return ptr + footer_offset;
 }
-static inline nds_footer_hgss_t *nds_get_hgss_footer(void *ptr, size_t footer_offset) {
+static inline nds_footer_hgss_t *nds_get_hgss_footer(uint8_t *ptr, size_t footer_offset) {
 	return ptr + footer_offset;
 }
 
-void nds_get_save_checksum(void *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
+void nds_get_save_checksum(uint8_t *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
 	switch(type) {
 		case NDS_TYPE_DP:
 			scs->small = nds_get_dppt_footer(ptr, NDS_DP_SMALL_BLOCK_FOOTER)->checksum;
@@ -92,7 +92,7 @@ void nds_get_checksum(nds_save_t *save, nds_checksum_t *cs) {
 	}
 }
 
-void nds_set_save_checksum(void *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
+void nds_set_save_checksum(uint8_t *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
 	switch(type) {
 		case NDS_TYPE_DP:
 			nds_get_dppt_footer(ptr, NDS_DP_SMALL_BLOCK_FOOTER)->checksum = scs->small;
@@ -122,7 +122,7 @@ void nds_set_checksum(nds_save_t *save, nds_checksum_t *cs) {
 
 #include <stdio.h>
 
-void nds_calc_save_checksum(void *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
+void nds_calc_save_checksum(uint8_t *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
 	switch(type) {
 		case NDS_TYPE_DP:
 			scs->small = nds_crc16(ptr + NDS_DP_SMALL_BLOCK_START, NDS_DP_SMALL_BLOCK_FOOTER - NDS_DP_SMALL_BLOCK_START);
@@ -164,7 +164,7 @@ void nds_fix_checksum(nds_save_t *save) {
 	}
 }
 
-nds_savetype_t nds_detect_save_type(void *ptr, size_t size) {
+nds_savetype_t nds_detect_save_type(uint8_t *ptr, size_t size) {
 	if(size != NDS_SAVE_SIZE_256 && size != NDS_SAVE_SIZE_512) {
 		return NDS_TYPE_UNKNOWN;
 	}
@@ -183,7 +183,7 @@ nds_savetype_t nds_detect_save_type(void *ptr, size_t size) {
 	return NDS_TYPE_UNKNOWN;
 }
 
-nds_save_t *nds_get_save(void *ptr, size_t size) {
+nds_save_t *nds_get_save(uint8_t *ptr, size_t size) {
 	nds_save_t *save = malloc(sizeof(nds_save_t));
 	save->type = nds_detect_save_type(ptr, size);
 	save->data = ptr;

@@ -22,8 +22,10 @@ enum {
 	GBA_SAVE_SIZE = 0x20000
 };
 
-gba_savetype_t gba_detect_save_type(void *, size_t);
+gba_savetype_t gba_detect_save_type(uint8_t *, size_t);
 
-void gba_fix_checksum(void *);
+void gba_fix_checksum(uint8_t *);
+
+void gba_test(uint8_t *ptr);
 
 #endif //__GBA_H__

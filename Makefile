@@ -1,12 +1,13 @@
 # I like the pretty error messages clang gives
 CC := clang
-AR := ar
+AR := llvm-ar
 
 ifdef GCC
     CC := gcc
+    AR := ar
 endif
 
-CFLAGS := -std=c11
+CFLAGS := -std=c11 -Wpointer-arith
 LDFLAGS := -static-libgcc
 
 DEBUG_CFLAGS := -g3 -Wall

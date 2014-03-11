@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include "libspec.h"
 #include "test.h"

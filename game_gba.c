@@ -51,7 +51,7 @@ enum {
 	GBA_BLOCK_FOOTER_LENGTH = 0xC,
 };
 
-gba_savetype_t gba_detect_save_type(void *ptr, size_t size) {
+gba_savetype_t gba_detect_save_type(uint8_t *ptr, size_t size) {
 	return GBA_TYPE_UNKNOWN;
 }
 
@@ -66,15 +66,15 @@ typedef struct {
 } gba_footer_t;
 #pragma pack(pop)
 
-static inline gba_footer_t *get_block_footer(void *ptr) {
+static inline gba_footer_t *get_block_footer(uint8_t *ptr) {
 	return ptr + GBA_BLOCK_LENGTH - GBA_BLOCK_FOOTER_LENGTH;
 }
 
-static inline uint16_t get_block_checksum(void *ptr) {
+static inline uint16_t get_block_checksum(uint8_t *ptr) {
 	return gba_block_checksum(ptr, GBA_BLOCK_DATA_LENGTH);
 }
 
-void gba_fix_save_checksum(void *ptr) {
+void gba_fix_save_checksum(uint8_t *ptr) {
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
 		size_t offset = i * GBA_BLOCK_LENGTH;
 		gba_footer_t *footer = get_block_footer(ptr + offset);
@@ -82,7 +82,11 @@ void gba_fix_save_checksum(void *ptr) {
 	}
 }
 
-void gba_fix_checksum(void *ptr) {
+void gba_fix_checksum(uint8_t *ptr) {
 	gba_fix_save_checksum(ptr);
 	gba_fix_save_checksum(ptr + GBA_SAVE_SECTION);
+}
+
+void gba_test(uint8_t *ptr) {
+	
 }

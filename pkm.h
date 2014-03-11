@@ -1,6 +1,7 @@
 #ifndef __PKM_H__
 #define __PKM_H__
 
+#include "types.h"
 #include "prng.h"
 #include "checksum.h"
 
@@ -170,6 +171,15 @@ typedef struct { //0x8
 	uint16_t checksum;
 } pkm_header_t;
 
+typedef struct { //0x8
+	uint8_t circle : 1;
+	uint8_t triangle : 1;
+	uint8_t square : 1;
+	uint8_t star : 1;
+	uint8_t diamond : 1;
+	uint8_t : 2; //unused
+} pkm_marking_t;
+
 typedef struct { //0x32
 	uint16_t species;
 	uint16_t held_item;
@@ -178,7 +188,7 @@ typedef struct { //0x32
 	uint32_t exp;
 	uint8_t friendship;
 	uint8_t ability;
-	uint8_t markings;
+	pkm_marking_t markings;
 	uint8_t country;
 	uint8_t ev_hp;
 	uint8_t ev_atk;
@@ -238,8 +248,8 @@ typedef struct { //0x32
 
 typedef struct { //0x32
 	union {
-		uint16_t nickname[11];
-		uint8_t nickname_b[22];
+		char16_t nickname16[11];
+		char8_t nickname8[22];
 	};//22
 	uint16_t hometown; //24
 	pkm_ribbon_sinnoh3_t ribbon_sinnoh3; //26
@@ -249,8 +259,8 @@ typedef struct { //0x32
 
 typedef struct { //0x32
 	union {
-		uint16_t ot_name[8];
-		uint8_t ot_name_b[16];
+		char16_t ot_name16[8];
+		char8_t ot_name8[16];
 	};
 	pkm_date_t egg_met_date;
 	pkm_date_t met_date;
@@ -298,7 +308,6 @@ typedef struct {
 			pkm_blockd_t block_d;
 		};
 	};
-	//optional, this doesn't actually have to be filled with data, which is dangerous, but simple
 	pkm_party_t party;
 } pkm_t;
 #pragma pack(pop)
