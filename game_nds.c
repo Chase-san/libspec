@@ -16,6 +16,10 @@ enum {
 	NDS_PLAT_SMALL_BLOCK_START = 0x0,
 	NDS_HGSS_SMALL_BLOCK_START = 0x0,
 
+	NDS_DP_SMALL_BLOCK_LENGTH = 0xC100,
+	NDS_PLAT_SMALL_BLOCK_LENGTH = 0xCF2C,
+	NDS_HGSS_SMALL_BLOCK_LENGTH = 0xF628,
+
 	NDS_DP_SMALL_BLOCK_FOOTER = 0xC0EC,
 	NDS_PLAT_SMALL_BLOCK_FOOTER = 0xCF18,
 	NDS_HGSS_SMALL_BLOCK_FOOTER = 0xF618,
@@ -23,6 +27,10 @@ enum {
 	NDS_DP_BIG_BLOCK_START = 0xC100,
 	NDS_PLAT_BIG_BLOCK_START = 0xCF2C,
 	NDS_HGSS_BIG_BLOCK_START = 0xF700,
+
+	NDS_DP_BIG_BLOCK_LENGTH = 0x121E0,
+	NDS_PLAT_BIG_BLOCK_LENGTH = 0x121E4,
+	NDS_HGSS_BIG_BLOCK_LENGTH = 0x12310,
 
 	NDS_DP_BIG_BLOCK_FOOTER = 0x1E2CC,
 	NDS_PLAT_BIG_BLOCK_FOOTER = 0x1F0FC,
@@ -33,162 +41,197 @@ enum {
 
 	NDS_TYPE_DETECT_DP = NDS_DP_SMALL_BLOCK_FOOTER + 0x8,
 	NDS_TYPE_DETECT_PLAT = NDS_PLAT_SMALL_BLOCK_FOOTER + 0x8,
-	NDS_TYPE_DETECT_HGSS = NDS_HGSS_SMALL_BLOCK_FOOTER + 0x4
+	NDS_TYPE_DETECT_HGSS = NDS_HGSS_SMALL_BLOCK_FOOTER + 0x4,
+
+	NDS_SAVE_LENGTH = 0x40000
 };
 
 #pragma pack(push, 1)
 typedef struct {
-	uint32_t saveStorage;
-	uint32_t saveGeneral;
-	uint32_t blockSize;
-	uint32_t unknown0;
-	uint16_t unknown1;
+	uint32_t storage_id;
+	uint32_t general_id;
+	uint32_t block_size;
+	uint32_t runtime0;
+	uint16_t runtime1;
 	uint16_t checksum;
 } nds_footer_dppt_t;
-#pragma pack(pop)
 
-#pragma pack(push, 1)
 typedef struct {
-	uint32_t saveNum;
-	uint32_t blockSize;
-	uint32_t unknown0;
-	uint16_t unknown1;
+	uint32_t save_index;
+	uint32_t block_size;
+	uint32_t runtime0;
+	uint16_t runtime1;
 	uint16_t checksum;
 } nds_footer_hgss_t;
+
+typedef union {
+	nds_footer_dppt_t dppt;
+	nds_footer_hgss_t hgss;
+} nds_footer_t;
 #pragma pack(pop)
 
-static inline nds_footer_dppt_t *nds_get_dppt_footer(uint8_t *ptr, size_t footer_offset) {
-	return (nds_footer_dppt_t *)(ptr + footer_offset);
-}
-static inline nds_footer_hgss_t *nds_get_hgss_footer(uint8_t *ptr, size_t footer_offset) {
-	return (nds_footer_hgss_t *)(ptr + footer_offset);
-}
+typedef struct {
+	const uint8_t *small;
+	const uint8_t *big;
+	const nds_footer_t *small_footer;
+	const nds_footer_t *big_footer;
+} nds_block_ptr_t;
 
-void nds_get_save_checksum(uint8_t *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
-	switch(type) {
-		case NDS_TYPE_DP:
-			scs->small = nds_get_dppt_footer(ptr, NDS_DP_SMALL_BLOCK_FOOTER)->checksum;
-			scs->big = nds_get_dppt_footer(ptr, NDS_DP_BIG_BLOCK_FOOTER)->checksum;
-			break;
-		case NDS_TYPE_PLAT:
-			scs->small = nds_get_dppt_footer(ptr, NDS_PLAT_SMALL_BLOCK_FOOTER)->checksum;
-			scs->big = nds_get_dppt_footer(ptr, NDS_PLAT_BIG_BLOCK_FOOTER)->checksum;
-			break;
-		case NDS_TYPE_HGSS:
-			scs->small = nds_get_hgss_footer(ptr, NDS_HGSS_SMALL_BLOCK_FOOTER)->checksum;
-			scs->big = nds_get_hgss_footer(ptr, NDS_HGSS_BIG_BLOCK_FOOTER)->checksum;
-			break;
-		default:
-			break;
-	}
-}
+typedef struct {
+	nds_block_ptr_t block[2];
+	nds_savetype_t type;
+	size_t small;
+	size_t big;
+	size_t big_start;
+} nds_bdat_t; //block data
 
-void nds_get_checksum(nds_save_t *save, nds_checksum_t *cs) {
-	if(save->size == NDS_SAVE_SIZE_256 || save->size == NDS_SAVE_SIZE_512) {
-		nds_get_save_checksum(save->data, &cs->save0, save->type);
-	}
-	if(save->size == NDS_SAVE_SIZE_512) {
-		nds_get_save_checksum(save->data + NDS_SAVE_OFFSET, &cs->save1, save->type);
-	}
-}
+typedef struct {
+	uint8_t *small;
+	uint8_t *big;
+	nds_footer_t *small_footer;
+	nds_footer_t *big_footer;
+	size_t small_len;
+	size_t big_len;
+	size_t big_start;
+} nds_sdat_t; //save data
 
-void nds_set_save_checksum(uint8_t *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
-	switch(type) {
-		case NDS_TYPE_DP:
-			nds_get_dppt_footer(ptr, NDS_DP_SMALL_BLOCK_FOOTER)->checksum = scs->small;
-			nds_get_dppt_footer(ptr, NDS_DP_BIG_BLOCK_FOOTER)->checksum = scs->big;
-			break;
-		case NDS_TYPE_PLAT:
-			nds_get_dppt_footer(ptr, NDS_PLAT_SMALL_BLOCK_FOOTER)->checksum = scs->small;
-			nds_get_dppt_footer(ptr, NDS_PLAT_BIG_BLOCK_FOOTER)->checksum = scs->big;
-			break;
-		case NDS_TYPE_HGSS:
-			nds_get_hgss_footer(ptr, NDS_HGSS_SMALL_BLOCK_FOOTER)->checksum = scs->small;
-			nds_get_hgss_footer(ptr, NDS_HGSS_BIG_BLOCK_FOOTER)->checksum = scs->big;
-			break;
-		default:
-			break;
-	}
-}
+typedef struct {
+	uint16_t small;
+	uint16_t big;
+} nds_save_checksum_t;
 
-void nds_set_checksum(nds_save_t *save, nds_checksum_t *cs) {
-	if(save->size == NDS_SAVE_SIZE_256 || save->size == NDS_SAVE_SIZE_512) {
-		nds_set_save_checksum(save->data, &cs->save0, save->type);
-	}
-	if(save->size == NDS_SAVE_SIZE_512) {
-		nds_set_save_checksum(save->data + NDS_SAVE_OFFSET, &cs->save1, save->type);
-	}
-}
+typedef struct {
+	uint8_t small;
+	uint8_t big;
+} nds_save_index_t;
 
-#include <stdio.h>
-
-void nds_calc_save_checksum(uint8_t *ptr, nds_save_checksum_t *scs, nds_savetype_t type) {
-	switch(type) {
-		case NDS_TYPE_DP:
-			scs->small = nds_crc16(ptr + NDS_DP_SMALL_BLOCK_START, NDS_DP_SMALL_BLOCK_FOOTER - NDS_DP_SMALL_BLOCK_START);
-			scs->big = nds_crc16(ptr + NDS_DP_BIG_BLOCK_START, NDS_DP_BIG_BLOCK_FOOTER - NDS_DP_BIG_BLOCK_START);
-			break;
-		case NDS_TYPE_PLAT:
-			scs->small = nds_crc16(ptr + NDS_PLAT_SMALL_BLOCK_START, NDS_PLAT_SMALL_BLOCK_FOOTER - NDS_PLAT_SMALL_BLOCK_START);
-			scs->big = nds_crc16(ptr + NDS_PLAT_BIG_BLOCK_START, NDS_PLAT_BIG_BLOCK_FOOTER - NDS_PLAT_BIG_BLOCK_START);
-			break;
-		case NDS_TYPE_HGSS:
-			scs->small = nds_crc16(ptr + NDS_HGSS_SMALL_BLOCK_START, NDS_HGSS_SMALL_BLOCK_FOOTER - NDS_HGSS_SMALL_BLOCK_START);
-			scs->big = nds_crc16(ptr + NDS_HGSS_BIG_BLOCK_START, NDS_HGSS_BIG_BLOCK_FOOTER - NDS_HGSS_BIG_BLOCK_START);
-			break;
-		default:
-			break;
-	}
-}
-
-
-void nds_calc_checksum(nds_save_t *save, nds_checksum_t *cs) {
-	if(save->size == NDS_SAVE_SIZE_256 || save->size == NDS_SAVE_SIZE_512) {
-		nds_calc_save_checksum(save->data, &cs->save0, save->type);
-	}
-	if(save->size == NDS_SAVE_SIZE_512) {
-		nds_calc_save_checksum(save->data + NDS_SAVE_OFFSET, &cs->save1, save->type);
-	}
-}
-
-
-void nds_fix_checksum(nds_save_t *save) {
-	nds_save_checksum_t scs;
-	if(save->size == NDS_SAVE_SIZE_256 || save->size == NDS_SAVE_SIZE_512) {
-		nds_calc_save_checksum(save->data, &scs, save->type);
-		nds_set_save_checksum(save->data, &scs, save->type);
-	}
-	if(save->size == NDS_SAVE_SIZE_512) {
-		nds_calc_save_checksum(save->data + NDS_SAVE_OFFSET, &scs, save->type);
-		nds_set_save_checksum(save->data + NDS_SAVE_OFFSET, &scs, save->type);
-	}
-}
-
-nds_savetype_t nds_detect_save_type(uint8_t *ptr, size_t size) {
-	if(size != NDS_SAVE_SIZE_256 && size != NDS_SAVE_SIZE_512) {
-		return NDS_TYPE_UNKNOWN;
-	}
-	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_DP) == NDS_DP_SMALL_BLOCK_FOOTER - NDS_DP_SMALL_BLOCK_START +
-			NDS_FOOTER_LENGTH) {
+nds_savetype_t nds_detect_save_type(const uint8_t *ptr) {
+	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_DP) == NDS_DP_SMALL_BLOCK_LENGTH) {
 		return NDS_TYPE_DP;
 	}
-	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_PLAT) == NDS_PLAT_SMALL_BLOCK_FOOTER - NDS_PLAT_SMALL_BLOCK_START +
-			NDS_FOOTER_LENGTH) {
+	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_PLAT) == NDS_PLAT_SMALL_BLOCK_LENGTH) {
 		return NDS_TYPE_PLAT;
 	}
-	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_HGSS) == NDS_HGSS_SMALL_BLOCK_FOOTER - NDS_HGSS_SMALL_BLOCK_START +
-			NDS_HGSS_FOOTER_LENGTH) {
+	if(*(uint32_t *)(ptr + NDS_TYPE_DETECT_HGSS) == NDS_HGSS_SMALL_BLOCK_LENGTH) {
 		return NDS_TYPE_HGSS;
 	}
 	return NDS_TYPE_UNKNOWN;
 }
 
-nds_save_t *nds_get_save(uint8_t *ptr, size_t size) {
+nds_bdat_t nds_get_bdat(const uint8_t *ptr) {
+	nds_bdat_t bdat;
+	bdat.type = nds_detect_save_type(ptr);
+	bdat.block[0].small = ptr;
+	bdat.block[1].small = ptr + NDS_SAVE_LENGTH;
+	if(bdat.type == NDS_TYPE_DP) {
+		bdat.small = NDS_DP_SMALL_BLOCK_LENGTH;
+		bdat.big = NDS_DP_BIG_BLOCK_LENGTH;
+		bdat.big_start = NDS_DP_BIG_BLOCK_START;
+		bdat.block[0].small_footer = (const nds_footer_t *)(ptr + NDS_DP_SMALL_BLOCK_FOOTER);
+		bdat.block[0].big_footer = (const nds_footer_t *)(ptr + NDS_DP_BIG_BLOCK_FOOTER);
+	} else if(bdat.type == NDS_TYPE_PLAT) {
+		bdat.small = NDS_PLAT_SMALL_BLOCK_LENGTH;
+		bdat.big = NDS_PLAT_BIG_BLOCK_LENGTH;
+		bdat.big_start = NDS_PLAT_BIG_BLOCK_START;
+		bdat.block[0].small_footer = (const nds_footer_t *)(ptr + NDS_PLAT_SMALL_BLOCK_FOOTER);
+		bdat.block[0].big_footer = (const nds_footer_t *)(ptr + NDS_PLAT_BIG_BLOCK_FOOTER);
+	} else if(bdat.type == NDS_TYPE_HGSS) {
+		bdat.small = NDS_HGSS_SMALL_BLOCK_LENGTH;
+		bdat.big = NDS_HGSS_BIG_BLOCK_LENGTH;
+		bdat.big_start = NDS_HGSS_BIG_BLOCK_START;
+		bdat.block[0].small_footer = (const nds_footer_t *)(ptr + NDS_HGSS_SMALL_BLOCK_FOOTER);
+		bdat.block[0].big_footer = (const nds_footer_t *)(ptr + NDS_HGSS_BIG_BLOCK_FOOTER);
+	}
+	bdat.block[0].big = ptr + bdat.big;
+	bdat.block[1].big = bdat.block[1].small + bdat.big;
+	bdat.block[1].small_footer = bdat.block[0].small_footer + NDS_SAVE_LENGTH;
+	bdat.block[1].big_footer = bdat.block[0].big_footer + NDS_SAVE_LENGTH;
+	return bdat;
+}
+
+nds_sdat_t *nds_get_sdat(const nds_save_t *save, const nds_bdat_t bdat) {
+	nds_sdat_t *sdat = malloc(sizeof(nds_sdat_t));
+	sdat->big_len = bdat.big;
+	sdat->small_len = bdat.small;
+	sdat->big_start = bdat.big_start;
+	sdat->small = save->data;
+	sdat->big = save->data + bdat.big_start;
+	if(bdat.type == NDS_TYPE_DP) {
+		sdat->small_footer = (nds_footer_t *)save->data + NDS_DP_SMALL_BLOCK_FOOTER;
+		sdat->big_footer = (nds_footer_t *)save->data + NDS_DP_BIG_BLOCK_FOOTER;
+	} else if(bdat.type == NDS_TYPE_PLAT) {
+		sdat->small_footer = (nds_footer_t *)save->data + NDS_PLAT_SMALL_BLOCK_FOOTER;
+		sdat->big_footer = (nds_footer_t *)save->data + NDS_PLAT_BIG_BLOCK_FOOTER;
+	} else if(bdat.type == NDS_TYPE_HGSS) {
+		sdat->small_footer = (nds_footer_t *)save->data + NDS_HGSS_SMALL_BLOCK_FOOTER;
+		sdat->big_footer = (nds_footer_t *)save->data + NDS_HGSS_BIG_BLOCK_FOOTER;
+	}
+	return sdat;
+}
+
+nds_save_index_t nds_get_main_index(nds_bdat_t bdat) {
+	nds_save_index_t index;
+	if(bdat.type != NDS_TYPE_HGSS) {
+		//dp/plat
+		index.small = 0;
+		if(bdat.block[0].small_footer->dppt.general_id < bdat.block[1].small_footer->dppt.general_id) {
+			index.small = 1;
+		}
+		index.big = 0;
+		if(bdat.block[0].big_footer->dppt.storage_id == bdat.block[1].big_footer->dppt.storage_id) {
+			//check general block of big footers
+			if(bdat.block[0].big_footer->dppt.general_id < bdat.block[1].big_footer->dppt.general_id) {
+				index.big = 1;
+			}
+		} else if(bdat.block[0].big_footer->dppt.storage_id < bdat.block[1].big_footer->dppt.storage_id) {
+			index.big = 1;
+		}
+	} else {
+		//TODO hgss
+	}
+	return index;
+}
+
+
+nds_save_t *nds_read_save_internal(nds_bdat_t bdat, nds_save_index_t index) {
 	nds_save_t *save = malloc(sizeof(nds_save_t));
-	save->type = nds_detect_save_type(ptr, size);
-	save->data = ptr;
-	save->size = size;
+	save->type = bdat.type;
+	save->data = malloc(NDS_SAVE_LENGTH);
+	memcpy(save->data,bdat.block[index.small].small,bdat.small);
+	memcpy(save->data+bdat.big_start,bdat.block[index.big].big,bdat.big);
+	save->internal = nds_get_sdat(save,bdat);
 	return save;
+}
+
+nds_save_t *nds_read_main_save(const uint8_t *ptr) {
+	nds_bdat_t bdat = nds_get_bdat(ptr);
+	nds_save_index_t index = nds_get_main_index(bdat);
+	return nds_read_save_internal(bdat,index);
+}
+
+nds_save_t *nds_read_backup_save(const uint8_t *ptr) {
+	nds_bdat_t bdat = nds_get_bdat(ptr);
+	nds_save_index_t index = nds_get_main_index(bdat);
+	index.small ^= 1;
+	index.big ^= 1;
+	return nds_read_save_internal(bdat,index);
+}
+
+void nds_free_save(nds_save_t *save) {
+	free(save->internal);
+	free(save->data);
+	free(save);
+	save->internal = NULL;
+	save->data = NULL;
+	save = NULL;
+}
+
+void nds_write_main_save(uint8_t *ptr, const nds_save_t *sav) {
+
+}
+
+void nds_write_backup_save(uint8_t *ptr, const nds_save_t *sav) {
+
 }
 
 ///////////////////////////////////////////////////
@@ -205,3 +248,4 @@ enum {
 
 	NDS_SIGNATURE_SIZE = 0x600
 };
+
