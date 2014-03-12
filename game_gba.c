@@ -74,15 +74,15 @@ typedef struct {
 	uint32_t save_index;
 } gba_internal_save_t;
 
-static inline gba_footer_t *get_block_footer(uint8_t *ptr) {
+static inline gba_footer_t *get_block_footer(const uint8_t *ptr) {
 	return (gba_footer_t *)(ptr + GBA_BLOCK_LENGTH - GBA_BLOCK_FOOTER_LENGTH);
 }
 
-static inline uint16_t get_block_checksum(uint8_t *ptr) {
+static inline uint16_t get_block_checksum(const uint8_t *ptr) {
 	return gba_block_checksum(ptr, GBA_BLOCK_DATA_LENGTH);
 }
 
-size_t gba_get_save_offset(uint8_t* ptr) {
+size_t gba_get_save_offset(const uint8_t* ptr) {
 	gba_footer_t* a = get_block_footer(ptr);
 	gba_footer_t* b = get_block_footer(ptr+GBA_SAVE_SECTION);
 	//TODO check that the mark is correct for the backup save, block 3
@@ -92,7 +92,7 @@ size_t gba_get_save_offset(uint8_t* ptr) {
 	return GBA_SAVE_SECTION; //second save
 }
 
-size_t gba_get_backup_offset(uint8_t* ptr) {
+size_t gba_get_backup_offset(const uint8_t* ptr) {
 	gba_footer_t* a = get_block_footer(ptr);
 	gba_footer_t* b = get_block_footer(ptr+GBA_SAVE_SECTION);
 	//TODO check that the mark is correct for the backup save, block 3
@@ -116,7 +116,7 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 	memset(internal, 0, GBA_UNPACKED_LENGTH); //not sure if it is 0 or 0xFF
 
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
-		uint8_t *block_ptr = ptr + i * GBA_BLOCK_LENGTH;
+		const uint8_t *block_ptr = ptr + i * GBA_BLOCK_LENGTH;
 
 		//get footer
 		gba_footer_t *footer = get_block_footer(block_ptr);
