@@ -197,16 +197,16 @@ nds_save_t *nds_read_save_internal(nds_bdat_t bdat, nds_save_index_t index) {
 	nds_save_t *save = malloc(sizeof(nds_save_t));
 	save->type = bdat.type;
 	save->data = malloc(NDS_SAVE_LENGTH);
-	memcpy(save->data,bdat.block[index.small].small,bdat.small);
-	memcpy(save->data+bdat.big_start,bdat.block[index.big].big,bdat.big);
-	save->internal = nds_get_sdat(save,bdat);
+	memcpy(save->data, bdat.block[index.small].small, bdat.small);
+	memcpy(save->data + bdat.big_start, bdat.block[index.big].big, bdat.big);
+	save->internal = nds_get_sdat(save, bdat);
 	return save;
 }
 
 nds_save_t *nds_read_main_save(const uint8_t *ptr) {
 	nds_bdat_t bdat = nds_get_bdat(ptr);
 	nds_save_index_t index = nds_get_main_index(bdat);
-	return nds_read_save_internal(bdat,index);
+	return nds_read_save_internal(bdat, index);
 }
 
 nds_save_t *nds_read_backup_save(const uint8_t *ptr) {
@@ -214,7 +214,7 @@ nds_save_t *nds_read_backup_save(const uint8_t *ptr) {
 	nds_save_index_t index = nds_get_main_index(bdat);
 	index.small ^= 1;
 	index.big ^= 1;
-	return nds_read_save_internal(bdat,index);
+	return nds_read_save_internal(bdat, index);
 }
 
 void nds_free_save(nds_save_t *save) {
@@ -227,11 +227,9 @@ void nds_free_save(nds_save_t *save) {
 }
 
 void nds_write_main_save(uint8_t *ptr, const nds_save_t *sav) {
-
 }
 
 void nds_write_backup_save(uint8_t *ptr, const nds_save_t *sav) {
-
 }
 
 ///////////////////////////////////////////////////
