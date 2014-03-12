@@ -35,4 +35,6 @@ void gba_free_save(gba_save_t *);
 void gba_write_main_save(uint8_t *,const gba_save_t *);
 void gba_write_backup_save(uint8_t *,const gba_save_t *);
 
+void gba_text_to_utf16(char16_t *dst, char8_t *src, size_t size);
+
 #endif //__GBA_H__

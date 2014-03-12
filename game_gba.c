@@ -196,3 +196,9 @@ void gba_write_main_save(uint8_t *ptr, const gba_save_t *save) {
 void gba_write_backup_save(uint8_t *ptr, const gba_save_t *save) {
 	gba_write_save_internal(ptr + gba_get_backup_offset(ptr), save);
 }
+
+void gba_text_to_utf16(char16_t *dst, char8_t *src, size_t size) {
+	for(int i = 0; i < size; ++i) {
+		dst[i] = gba_to_codepage[src[i]];
+	}
+}

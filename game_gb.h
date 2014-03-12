@@ -11,6 +11,6 @@
 #ifndef __GB_H__
 #define __GB_H__
 
-
+void gb_text_to_utf16(char16_t *dst, char8_t *src, size_t size);
 
 #endif //__GB_H__
