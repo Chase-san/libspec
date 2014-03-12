@@ -257,10 +257,7 @@ typedef struct { //0x32
 } pkm_blockb_t;
 
 typedef struct { //0x32
-	union {
-		char16_t nickname16[11];
-		char8_t nickname8[22];
-	};//22
+	char16_t nickname[11];
 	uint16_t hometown; //24
 	pkm_ribbon_sinnoh3_t ribbon_sinnoh3; //26
 	pkm_ribbon_sinnoh4_t ribbon_sinnoh4; //28
@@ -279,18 +276,17 @@ typedef struct { //0x1
 } pkm_pokerus_t;
 
 typedef struct { //0x32
-	union {
-		char16_t ot_name16[8];
-		char8_t ot_name8[16];
-	};
+	char16_t ot_name[8];
 	pkm_date_t egg_met_date;
 	pkm_date_t met_date;
 	uint16_t egg_loc_dp;
 	uint16_t met_loc_dp;
 	pkm_pokerus_t pokerus;
 	uint8_t pokeball;
-	uint8_t leve_met : 7;
-	bool is_ot_female : 1;
+	struct {
+		uint8_t leve_met : 7;
+		bool is_ot_female : 1;
+	};
 	uint8_t encounter_type;
 	uint8_t pokeball_hgss;
 	uint8_t : 8;
