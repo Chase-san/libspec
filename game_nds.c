@@ -43,7 +43,7 @@ enum {
 	NDS_TYPE_DETECT_PLAT = NDS_PLAT_SMALL_BLOCK_FOOTER + 0x8,
 	NDS_TYPE_DETECT_HGSS = NDS_HGSS_SMALL_BLOCK_FOOTER + 0x4,
 
-	NDS_SAVE_LENGTH = 0x40000
+	NDS_ONESAVE_LENGTH = 0x40000
 };
 
 #pragma pack(push, 1)
@@ -122,7 +122,7 @@ nds_bdat_t nds_get_bdat(const uint8_t *ptr) {
 	nds_bdat_t bdat;
 	bdat.type = nds_detect_save_type(ptr);
 	bdat.block[0].small = ptr;
-	bdat.block[1].small = ptr + NDS_SAVE_LENGTH;
+	bdat.block[1].small = ptr + NDS_ONESAVE_LENGTH;
 	if(bdat.type == NDS_TYPE_DP) {
 		bdat.small = NDS_DP_SMALL_BLOCK_LENGTH;
 		bdat.big = NDS_DP_BIG_BLOCK_LENGTH;
@@ -144,8 +144,8 @@ nds_bdat_t nds_get_bdat(const uint8_t *ptr) {
 	}
 	bdat.block[0].big = ptr + bdat.big;
 	bdat.block[1].big = bdat.block[1].small + bdat.big;
-	bdat.block[1].small_footer = bdat.block[0].small_footer + NDS_SAVE_LENGTH;
-	bdat.block[1].big_footer = bdat.block[0].big_footer + NDS_SAVE_LENGTH;
+	bdat.block[1].small_footer = bdat.block[0].small_footer + NDS_ONESAVE_LENGTH;
+	bdat.block[1].big_footer = bdat.block[0].big_footer + NDS_ONESAVE_LENGTH;
 	return bdat;
 }
 
@@ -196,7 +196,7 @@ nds_save_index_t nds_get_main_index(nds_bdat_t bdat) {
 nds_save_t *nds_read_save_internal(nds_bdat_t bdat, nds_save_index_t index) {
 	nds_save_t *save = malloc(sizeof(nds_save_t));
 	save->type = bdat.type;
-	save->data = malloc(NDS_SAVE_LENGTH);
+	save->data = malloc(NDS_ONESAVE_LENGTH);
 	memcpy(save->data, bdat.block[index.small].small, bdat.small);
 	memcpy(save->data + bdat.big_start, bdat.block[index.big].big, bdat.big);
 	save->internal = nds_get_sdat(save, bdat);
@@ -224,6 +224,16 @@ void nds_free_save(nds_save_t *save) {
 	save->internal = NULL;
 	save->data = NULL;
 	save = NULL;
+}
+
+/**
+ * Creates a data block you should load your file into.
+ * @return pointer to the data block
+ */
+uint8_t *nds_create_data() {
+	uint8_t *data = malloc(NDS_SAVE_SIZE);
+	memset(data,0xFF,NDS_SAVE_SIZE);
+	return data;
 }
 
 void nds_write_main_save(uint8_t *ptr, const nds_save_t *sav) {

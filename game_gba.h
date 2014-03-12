@@ -32,8 +32,12 @@ gba_save_t *gba_read_main_save(const uint8_t *);
 gba_save_t *gba_read_backup_save(const uint8_t *);
 void gba_free_save(gba_save_t *);
 
+uint8_t *gba_create_data();
+
 void gba_write_main_save(uint8_t *, const gba_save_t *);
 void gba_write_backup_save(uint8_t *, const gba_save_t *);
+
+void gba_save_game(uint8_t *, gba_save_t *);
 
 void gba_text_to_utf16(char16_t *dst, char8_t *src, size_t size);
 

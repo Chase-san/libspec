@@ -180,12 +180,38 @@ void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 	}
 }
 
-void gba_write_main_save(uint8_t *ptr, const gba_save_t *save) {
-	gba_write_save_internal(ptr + gba_get_save_offset(ptr), save);
+void gba_write_main_save(uint8_t *dst, const gba_save_t *save) {
+	gba_write_save_internal(dst + gba_get_save_offset(dst), save);
 }
 
-void gba_write_backup_save(uint8_t *ptr, const gba_save_t *save) {
-	gba_write_save_internal(ptr + gba_get_backup_offset(ptr), save);
+void gba_write_backup_save(uint8_t *dst, const gba_save_t *save) {
+	gba_write_save_internal(dst + gba_get_backup_offset(dst), save);
+}
+
+/**
+ * Writes the save to the dst similar to how the game would do it.
+ * @param dst data file thing to point to
+ * @param save save to save to data
+ */
+void gba_save_game(uint8_t *dst, gba_save_t *save) {
+	gba_internal_save_t *internal = save->internal;
+	internal->save_index += 1;
+	for(int i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
+		internal->order[i] += 1;
+		if(internal->order[i] >= GBA_SAVE_BLOCK_COUNT)
+			internal->order[i] = 0;
+	}
+	gba_write_save_internal(dst + gba_get_backup_offset(dst), save);
+}
+
+/**
+ * Creates a data block you should load your file into.
+ * @return pointer to the data block
+ */
+uint8_t *gba_create_data() {
+	uint8_t *data = malloc(GBA_SAVE_SIZE);
+	memset(data,0x0,GBA_SAVE_SIZE);
+	return data;
 }
 
 void gba_text_to_utf16(char16_t *dst, char8_t *src, size_t size) {

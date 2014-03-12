@@ -14,6 +14,10 @@ typedef enum {
 	NDS_TYPE_UNKNOWN
 } nds_savetype_t;
 
+enum {
+	NDS_SAVE_SIZE = 0x80000
+};
+
 typedef struct {
 	uint8_t *data;
 	nds_savetype_t type;
@@ -23,6 +27,8 @@ typedef struct {
 nds_save_t *nds_read_main_save(const uint8_t *);
 nds_save_t *nds_read_backup_save(const uint8_t *);
 void nds_free_save(nds_save_t *);
+
+uint8_t *nds_create_data();
 
 void nds_write_main_save(uint8_t *, const nds_save_t *);
 void nds_write_backup_save(uint8_t *, const nds_save_t *);
