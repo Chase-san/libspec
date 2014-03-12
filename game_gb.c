@@ -9,6 +9,7 @@
 //Which makes working with them relatively easy
 
 #include <stdint.h>
+#include "types.h"
 #include "game_gb.h"
 
 //TODO find a better table, we need both english and japanese for this

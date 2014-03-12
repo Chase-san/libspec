@@ -5,6 +5,7 @@
 //Fire Red/Leaf Green
 
 #include <string.h>
+#include "types.h"
 #include "game_gba.h"
 #include "checksum.h"
 
@@ -108,12 +109,14 @@ size_t gba_get_backup_offset(const uint8_t* ptr) {
  * @return the save
  */
 gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
-	gba_internal_save_t *internal = malloc(sizeof(gba_internal_save_t));
 
-	uint8_t *unpacked = malloc(GBA_UNPACKED_LENGTH);
+	gba_save_t *save = malloc(sizeof(gba_save_t));
+	gba_internal_save_t *internal = save->internal = malloc(sizeof(gba_internal_save_t));
+	save->unpacked = malloc(GBA_UNPACKED_LENGTH);
+
 
 	internal->save_index = get_block_footer(ptr)->save_index;
-	memset(internal, 0, GBA_UNPACKED_LENGTH); //not sure if it is 0 or 0xFF
+	memset(save->unpacked, 0, GBA_UNPACKED_LENGTH); //not sure if it is 0 or 0xFF
 
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
 		const uint8_t *block_ptr = ptr + i * GBA_BLOCK_LENGTH;
@@ -123,13 +126,11 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 		internal->order[i] = footer->section_id;
 
 		//get ptr to unpack too
-		uint8_t *unpack_ptr = unpacked + footer->section_id * GBA_BLOCK_DATA_LENGTH;
-		memcpy(unpack_ptr, block_ptr, GBA_BLOCK_LENGTH);
+		uint8_t *unpack_ptr = save->unpacked + footer->section_id * GBA_BLOCK_DATA_LENGTH;
+		memcpy(unpack_ptr, block_ptr, GBA_BLOCK_DATA_LENGTH);
 	}
 
-	gba_save_t *save = malloc(sizeof(gba_save_t));
-	save->internal = internal;
-	save->unpacked = unpacked;
+
 	return save;
 }
 
@@ -157,7 +158,7 @@ gba_save_t *gba_read_backup_save(const uint8_t *ptr) {
  */
 void gba_free_save(gba_save_t *save) {
 	free(save->unpacked);
-	free(save->internal);
+	free((gba_internal_save_t *)save->internal);
 	free(save);
 }
 
