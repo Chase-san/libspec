@@ -51,6 +51,7 @@ enum {
 	GBA_BLOCK_LENGTH = 0x1000,
 	GBA_BLOCK_DATA_LENGTH = 0xF80,
 	GBA_BLOCK_FOOTER_LENGTH = 0xC,
+	GBA_BLOCK_FOOTER_MARK = 0x08012025,
 	GBA_UNPACKED_LENGTH = GBA_BLOCK_DATA_LENGTH * GBA_SAVE_BLOCK_COUNT
 };
 
@@ -81,17 +82,11 @@ static inline uint16_t get_block_checksum(uint8_t *ptr) {
 	return gba_block_checksum(ptr, GBA_BLOCK_DATA_LENGTH);
 }
 
-void gba_fix_save_checksum(uint8_t *ptr) {
-	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
-		size_t offset = i * GBA_BLOCK_LENGTH;
-		gba_footer_t *footer = get_block_footer(ptr + offset);
-		footer->checksum = get_block_checksum(ptr + offset);
-	}
-}
-
 size_t gba_get_save_offset(uint8_t* ptr) {
 	gba_footer_t* a = get_block_footer(ptr);
 	gba_footer_t* b = get_block_footer(ptr+GBA_SAVE_SECTION);
+	//TODO check that the mark is correct for the backup save, block 3
+	//as otherwise we only have one save!
 	if(a->save_index > b->save_index)
 		return 0;
 	return GBA_SAVE_SECTION; //second save
@@ -100,17 +95,19 @@ size_t gba_get_save_offset(uint8_t* ptr) {
 size_t gba_get_backup_offset(uint8_t* ptr) {
 	gba_footer_t* a = get_block_footer(ptr);
 	gba_footer_t* b = get_block_footer(ptr+GBA_SAVE_SECTION);
+	//TODO check that the mark is correct for the backup save, block 3
+	//as otherwise we only have one save!
 	if(a->save_index > b->save_index)
 		return GBA_SAVE_SECTION;
 	return 0;
 }
 
 /**
- * Unpacks the main save from the save
+ * Unpacks the save at the pointer to a gba_save_t
  * @param ptr pointer to the data
  * @return the save
  */
-gba_save_t *gba_read_save_internal(uint8_t *ptr) {
+gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 	gba_internal_save_t *internal = malloc(sizeof(gba_internal_save_t));
 
 	uint8_t *unpacked = malloc(GBA_UNPACKED_LENGTH);
@@ -136,16 +133,66 @@ gba_save_t *gba_read_save_internal(uint8_t *ptr) {
 	return save;
 }
 
-gba_save_t *gba_read_save(uint8_t *ptr) {
+/**
+ * Reads the main save from the given save pointer.
+ * @param ptr the pointer to read from
+ * @return the main save for this gba game
+ */
+gba_save_t *gba_read_save(const uint8_t *ptr) {
 	return gba_read_save_internal(ptr + gba_get_save_offset(ptr));
 }
 
-gba_save_t *gba_read_backup(uint8_t *ptr) {
+/**
+ * Reads the backup save from the given save pointer.
+ * @param ptr the pointer to read from
+ * @return the backup save for this gba game
+ */
+gba_save_t *gba_read_backup(const uint8_t *ptr) {
 	return gba_read_save_internal(ptr + gba_get_backup_offset(ptr));
 }
 
+/**
+ * Frees the save data made for the user.
+ * @param save the save to free
+ */
 void gba_free_save(gba_save_t *save) {
 	free(save->unpacked);
 	free(save->internal);
 	free(save);
+}
+
+/**
+ * Saves the save to the given pointer.
+ * @param ptr place to save the data
+ * @param save
+ */
+void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
+	//wipe whatever is there now
+	memset(ptr,0,GBA_SAVE_SECTION);
+
+	gba_internal_save_t* internal = save->internal;
+
+	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
+		//write data
+		uint8_t *dest_ptr = ptr + i * GBA_BLOCK_LENGTH;
+		uint8_t *src_ptr = save->unpacked + internal->order[i] * GBA_BLOCK_DATA_LENGTH;
+		memcpy(dest_ptr,src_ptr,GBA_BLOCK_DATA_LENGTH);
+
+		//write footer
+		gba_footer_t *footer = get_block_footer(dest_ptr);
+		footer->section_id = internal->order[i];
+		footer->mark = GBA_BLOCK_FOOTER_MARK;
+		footer->save_index = internal->save_index;
+
+		//calculate checksum
+		footer->checksum = get_block_checksum(dest_ptr);
+	}
+}
+
+void gba_write_save(uint8_t *ptr, const gba_save_t *save) {
+	gba_write_save_internal(ptr + gba_get_save_offset(ptr), save);
+}
+
+void gba_write_backup(uint8_t *ptr, const gba_save_t *save) {
+	gba_write_save_internal(ptr + gba_get_backup_offset(ptr), save);
 }
