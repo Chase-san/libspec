@@ -45,6 +45,15 @@ static const uint16_t gba_to_codepage[256] = {
 	0x0020, 0x0020, 0x0020, 0x2192, 0x0020, 0x0020, 0x000a, 0x0000,
 };
 
+enum {
+	GBA_SAVE_SECTION = 0xE000,
+	GBA_SAVE_BLOCK_COUNT = 14,
+	GBA_BLOCK_LENGTH = 0x1000,
+	GBA_BLOCK_DATA_LENGTH = 0xF80,
+	GBA_BLOCK_FOOTER_LENGTH = 0xC,
+	GBA_UNPACKED_LENGTH = GBA_BLOCK_DATA_LENGTH * GBA_SAVE_BLOCK_COUNT
+};
+
 gba_savetype_t gba_detect_save_type(uint8_t *ptr, size_t size) {
 	return GBA_TYPE_UNKNOWN;
 }
@@ -52,13 +61,17 @@ gba_savetype_t gba_detect_save_type(uint8_t *ptr, size_t size) {
 #pragma pack(push, 1)
 //12 byte footer for every 0xFF0 data block
 typedef struct {
-	uint8_t section_id;
-	uint8_t padding;
+	uint16_t section_id;
 	uint16_t checksum;
 	uint32_t mark; // 25 20 01 08
 	uint32_t save_index; //counts the number of times saved as well
 } gba_footer_t;
 #pragma pack(pop)
+
+typedef struct {
+	uint8_t order[GBA_SAVE_BLOCK_COUNT];
+	uint32_t save_index;
+} gba_internal_save_t;
 
 static inline gba_footer_t *get_block_footer(uint8_t *ptr) {
 	return (gba_footer_t *)(ptr + GBA_BLOCK_LENGTH - GBA_BLOCK_FOOTER_LENGTH);
@@ -76,21 +89,63 @@ void gba_fix_save_checksum(uint8_t *ptr) {
 	}
 }
 
-void gba_fix_checksum(uint8_t *ptr) {
-	gba_fix_save_checksum(ptr);
-	gba_fix_save_checksum(ptr + GBA_SAVE_SECTION);
+uint8_t gba_get_save_offset(uint8_t* ptr) {
+	gba_footer_t* a = get_block_footer(ptr);
+	gba_footer_t* b = get_block_footer(ptr+GBA_SAVE_SECTION);
+	if(a->save_index > b->save_index)
+		return 0;
+	return GBA_SAVE_SECTION; //second save
 }
 
-gba_save_t *gba_unpack(uint8_t *ptr) {
-	gba_save_t *save = malloc(GBA_UNPACKED_LENGTH);
-	save->save_index = get_block_footer(ptr)->save_index;
-	memset(save, 0, GBA_UNPACKED_LENGTH); //not sure if it is 0 or 0xFF
+uint8_t gba_get_backup_offset(uint8_t* ptr) {
+	gba_footer_t* a = get_block_footer(ptr);
+	gba_footer_t* b = get_block_footer(ptr+GBA_SAVE_SECTION);
+	if(a->save_index > b->save_index)
+		return GBA_SAVE_SECTION;
+	return 0;
+}
+
+/**
+ * Unpacks the main save from the save
+ * @param ptr pointer to the data
+ * @return the save
+ */
+gba_save_t *gba_read_save_internal(uint8_t *ptr) {
+	gba_internal_save_t *internal = malloc(sizeof(gba_internal_save_t));
+
+	uint8_t *unpacked = malloc(GBA_UNPACKED_LENGTH);
+
+	internal->save_index = get_block_footer(ptr)->save_index;
+	memset(internal, 0, GBA_UNPACKED_LENGTH); //not sure if it is 0 or 0xFF
+
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
-		size_t offset = i * GBA_BLOCK_LENGTH;
-		gba_footer_t *footer = get_block_footer(ptr + offset);
-		save->order[i] = footer->section_id;
-		size_t unpack_offset = footer->section_id * GBA_BLOCK_DATA_LENGTH;
-		memcpy(&save->data[unpack_offset], &ptr[offset], GBA_BLOCK_LENGTH);
+		uint8_t *block_ptr = ptr + i * GBA_BLOCK_LENGTH;
+
+		//get footer
+		gba_footer_t *footer = get_block_footer(block_ptr);
+		internal->order[i] = footer->section_id;
+
+		//get ptr to unpack too
+		uint8_t *unpack_ptr = unpacked + footer->section_id * GBA_BLOCK_DATA_LENGTH;
+		memcpy(unpack_ptr, block_ptr, GBA_BLOCK_LENGTH);
 	}
+
+	gba_save_t *save = malloc(sizeof(gba_save_t));
+	save->internal = internal;
+	save->unpacked = unpacked;
 	return save;
+}
+
+gba_save_t *gba_read_save(uint8_t *ptr) {
+	return gba_read_save_internal(ptr + gba_get_save_offset(ptr));
+}
+
+gba_save_t *gba_read_backup(uint8_t *ptr) {
+	return gba_read_save_internal(ptr + gba_get_backup_offset(ptr));
+}
+
+void gba_free_save(gba_save_t *save) {
+	free(save->unpacked);
+	free(save->internal);
+	free(save);
 }
