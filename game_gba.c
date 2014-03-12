@@ -4,6 +4,7 @@
 //Ruby/Sapphire/Emerald
 //Fire Red/Leaf Green
 
+#include <string.h>
 #include "game_gba.h"
 #include "checksum.h"
 
@@ -44,13 +45,6 @@ static const uint16_t gba_to_codepage[256] = {
 	0x0020, 0x0020, 0x0020, 0x2192, 0x0020, 0x0020, 0x000a, 0x0000,
 };
 
-enum {
-	GBA_SAVE_BLOCK_COUNT = 14,
-	GBA_BLOCK_LENGTH = 0x1000,
-	GBA_BLOCK_DATA_LENGTH = 0xF80,
-	GBA_BLOCK_FOOTER_LENGTH = 0xC,
-};
-
 gba_savetype_t gba_detect_save_type(uint8_t *ptr, size_t size) {
 	return GBA_TYPE_UNKNOWN;
 }
@@ -61,7 +55,7 @@ typedef struct {
 	uint8_t section_id;
 	uint8_t padding;
 	uint16_t checksum;
-	uint32_t mark; //usually 25 20 01 08
+	uint32_t mark; // 25 20 01 08
 	uint32_t save_index; //counts the number of times saved as well
 } gba_footer_t;
 #pragma pack(pop)
@@ -87,9 +81,16 @@ void gba_fix_checksum(uint8_t *ptr) {
 	gba_fix_save_checksum(ptr + GBA_SAVE_SECTION);
 }
 
-void gba_test(uint8_t *ptr) {
+gba_save_t *gba_unpack(uint8_t *ptr) {
+	gba_save_t *save = malloc(GBA_UNPACKED_LENGTH);
+	save->save_index = get_block_footer(ptr)->save_index;
+	memset(save,0,GBA_UNPACKED_LENGTH);//not sure if it is 0 or 0xFF
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
-		size_t offset = i * GBA_BLOCK_LENGTH;
-
+			size_t offset = i * GBA_BLOCK_LENGTH;
+			gba_footer_t *footer = get_block_footer(ptr + offset);
+			save->order[i] = footer->section_id;
+			size_t unpack_offset = footer->section_id * GBA_BLOCK_DATA_LENGTH;
+			memcpy(&save->data[unpack_offset], &ptr[offset], GBA_BLOCK_LENGTH);
 	}
+	return save;
 }

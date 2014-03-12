@@ -91,7 +91,7 @@ $(OBJ_PATH):
 	@mkdir $@
 
 .PHONY: all
-all: default
+all: clean default
 
 .PHONY: default
 default: debug
