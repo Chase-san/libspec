@@ -1,12 +1,14 @@
 #include <stdio.h>
 #include "libspec.h"
-#include "test.h"
+
+void *load_file(char *filename, size_t size) {
+	FILE *f = fopen(filename, "rb");
+	void *ptr = malloc(size);
+	fread(ptr, size, 1, f);
+	fclose(f);
+	return (uint8_t *)ptr;
+}
 
 int main() {
-	test_pkm_crypt();
-	test_party_pkm_crypt();
-	test_pkm_self_crypt();
-	test_party_pkm_self_crypt();
-	test_nds_save_checksum();
 	return 0;
 }
