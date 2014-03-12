@@ -60,7 +60,7 @@ gba_savetype_t gba_detect_save_type(uint8_t *ptr, size_t size) {
 }
 
 #pragma pack(push, 1)
-//12 byte footer for every 0xFF0 data block
+//12 byte footer for every data block
 typedef struct {
 	uint16_t section_id;
 	uint16_t checksum;
@@ -138,7 +138,7 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
  * @param ptr the pointer to read from
  * @return the main save for this gba game
  */
-gba_save_t *gba_read_save(const uint8_t *ptr) {
+gba_save_t *gba_read_main_save(const uint8_t *ptr) {
 	return gba_read_save_internal(ptr + gba_get_save_offset(ptr));
 }
 
@@ -147,7 +147,7 @@ gba_save_t *gba_read_save(const uint8_t *ptr) {
  * @param ptr the pointer to read from
  * @return the backup save for this gba game
  */
-gba_save_t *gba_read_backup(const uint8_t *ptr) {
+gba_save_t *gba_read_backup_save(const uint8_t *ptr) {
 	return gba_read_save_internal(ptr + gba_get_backup_offset(ptr));
 }
 
@@ -189,10 +189,10 @@ void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 	}
 }
 
-void gba_write_save(uint8_t *ptr, const gba_save_t *save) {
+void gba_write_main_save(uint8_t *ptr, const gba_save_t *save) {
 	gba_write_save_internal(ptr + gba_get_save_offset(ptr), save);
 }
 
-void gba_write_backup(uint8_t *ptr, const gba_save_t *save) {
+void gba_write_backup_save(uint8_t *ptr, const gba_save_t *save) {
 	gba_write_save_internal(ptr + gba_get_backup_offset(ptr), save);
 }
