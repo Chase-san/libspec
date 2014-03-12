@@ -84,13 +84,13 @@ void gba_fix_checksum(uint8_t *ptr) {
 gba_save_t *gba_unpack(uint8_t *ptr) {
 	gba_save_t *save = malloc(GBA_UNPACKED_LENGTH);
 	save->save_index = get_block_footer(ptr)->save_index;
-	memset(save,0,GBA_UNPACKED_LENGTH);//not sure if it is 0 or 0xFF
+	memset(save, 0, GBA_UNPACKED_LENGTH); //not sure if it is 0 or 0xFF
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
-			size_t offset = i * GBA_BLOCK_LENGTH;
-			gba_footer_t *footer = get_block_footer(ptr + offset);
-			save->order[i] = footer->section_id;
-			size_t unpack_offset = footer->section_id * GBA_BLOCK_DATA_LENGTH;
-			memcpy(&save->data[unpack_offset], &ptr[offset], GBA_BLOCK_LENGTH);
+		size_t offset = i * GBA_BLOCK_LENGTH;
+		gba_footer_t *footer = get_block_footer(ptr + offset);
+		save->order[i] = footer->section_id;
+		size_t unpack_offset = footer->section_id * GBA_BLOCK_DATA_LENGTH;
+		memcpy(&save->data[unpack_offset], &ptr[offset], GBA_BLOCK_LENGTH);
 	}
 	return save;
 }
