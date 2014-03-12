@@ -89,7 +89,7 @@ void gba_fix_save_checksum(uint8_t *ptr) {
 	}
 }
 
-uint8_t gba_get_save_offset(uint8_t* ptr) {
+size_t gba_get_save_offset(uint8_t* ptr) {
 	gba_footer_t* a = get_block_footer(ptr);
 	gba_footer_t* b = get_block_footer(ptr+GBA_SAVE_SECTION);
 	if(a->save_index > b->save_index)
@@ -97,7 +97,7 @@ uint8_t gba_get_save_offset(uint8_t* ptr) {
 	return GBA_SAVE_SECTION; //second save
 }
 
-uint8_t gba_get_backup_offset(uint8_t* ptr) {
+size_t gba_get_backup_offset(uint8_t* ptr) {
 	gba_footer_t* a = get_block_footer(ptr);
 	gba_footer_t* b = get_block_footer(ptr+GBA_SAVE_SECTION);
 	if(a->save_index > b->save_index)
