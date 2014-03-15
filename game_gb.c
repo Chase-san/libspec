@@ -64,8 +64,7 @@ enum {
 
 gb_save_t *gb_read_save(const uint8_t *ptr) {
 	gb_save_t *save = malloc(sizeof(gb_save_t));
-	uint8_t *tmp = malloc(sizeof(GB_SAVE_SIZE));
-	save->data = tmp;
+	save->data = malloc(GB_SAVE_SIZE);
 	memcpy(save->data, ptr, GB_SAVE_SIZE);
 	return save;
 }
@@ -82,7 +81,7 @@ uint8_t *gb_create_data() {
 }
 
 void gb_write_save(uint8_t *ptr, const gb_save_t *save) {
-	//calculate checksum, then write it to ptr
 	memcpy(ptr, save->data, GB_SAVE_SIZE);
+	//calculate checksum, then write it to where it goes in ptr
 	ptr[GB_CHECKSUM] = gb_checksum(ptr + GB_PROTECTED_START, GB_PROTECTED_LENGTH);
 }
