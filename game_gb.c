@@ -9,6 +9,8 @@
 //Which makes working with them relatively easy
 
 #include <stdint.h>
+#include <string.h>
+#include "checksum.h"
 #include "types.h"
 #include "game_gb.h"
 
@@ -52,4 +54,35 @@ void gb_text_to_utf16(char16_t *dst, char8_t *src, size_t size) {
 	for(int i = 0; i < size; ++i) {
 		dst[i] = gb_to_codepage[src[i]];
 	}
+}
+
+enum {
+	GB_PROTECTED_START = 0x2598,
+	GB_PROTECTED_LENGTH = 0xf8b,
+	GB_CHECKSUM = 0x3523
+};
+
+gb_save_t *gb_read_save(const uint8_t *ptr) {
+	gb_save_t *save = malloc(sizeof(gb_save_t));
+	uint8_t *tmp = malloc(sizeof(GB_SAVE_SIZE));
+	save->data = tmp;
+	memcpy(save->data, ptr, GB_SAVE_SIZE);
+	return save;
+}
+
+void gb_free_save(gb_save_t *sav) {
+	//SIGTRAP OCCURING HERE?
+	free(sav->data);
+	sav->data = NULL;
+	free(sav);
+}
+
+uint8_t *gb_create_data() {
+	return malloc(GB_SAVE_SIZE);
+}
+
+void gb_write_save(uint8_t *ptr, const gb_save_t *save) {
+	//calculate checksum, then write it to ptr
+	memcpy(ptr, save->data, GB_SAVE_SIZE);
+	ptr[GB_CHECKSUM] = gb_checksum(ptr + GB_PROTECTED_START, GB_PROTECTED_LENGTH);
 }
