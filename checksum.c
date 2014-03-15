@@ -62,3 +62,11 @@ uint16_t gba_block_checksum(const uint8_t *ptr, size_t size) {
 	}
 	return sum + (sum >> 16);
 }
+
+uint8_t gb_checksum(const uint8_t *ptr, size_t size) {
+	uint8_t sum = 0xFF;
+	for(size_t i = 0; i < size; ++i) {
+		sum -= *(ptr + i);
+	}
+	return sum;
+}
