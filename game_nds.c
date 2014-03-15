@@ -6,6 +6,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include "types.h"
 #include "game_nds.h"
 
 ///////////////////////////////////////////////////
@@ -144,8 +145,8 @@ nds_bdat_t nds_get_bdat(const uint8_t *ptr) {
 	}
 	bdat.block[0].big = ptr + bdat.big;
 	bdat.block[1].big = bdat.block[1].small + bdat.big;
-	bdat.block[1].small_footer = bdat.block[0].small_footer + NDS_ONESAVE_LENGTH;
-	bdat.block[1].big_footer = bdat.block[0].big_footer + NDS_ONESAVE_LENGTH;
+	bdat.block[1].small_footer = (const nds_footer_t *)(((uint8_t *)bdat.block[0].small_footer) + NDS_ONESAVE_LENGTH);
+	bdat.block[1].big_footer = (const nds_footer_t *)(((uint8_t *)bdat.block[0].big_footer) + NDS_ONESAVE_LENGTH);
 	return bdat;
 }
 
@@ -239,16 +240,16 @@ void nds_free_save(nds_save_t *save) {
  */
 uint8_t *nds_create_data() {
 	uint8_t *data = malloc(NDS_SAVE_SIZE);
-	memset(data,0xFF,NDS_SAVE_SIZE);
+	memset(data, 0xFF, NDS_SAVE_SIZE);
 	return data;
 }
 
 void nds_write_main_save(uint8_t *ptr, const nds_save_t *sav) {
 	nds_bdat_t bdat = nds_get_bdat(ptr);
 	nds_save_index_t index = nds_get_main_index(bdat);
-	nds_sdat_t* sdat = sav->internal;
-	memcpy(bdat.block[index.small].small,sdat->small,sdat->small_len);
-	memcpy(bdat.block[index.big].big,sdat->big,sdat->big_len);
+	nds_sdat_t *sdat = sav->internal;
+	memcpy((uint8_t *)bdat.block[index.small].small, sdat->small, sdat->small_len);
+	memcpy((uint8_t *)bdat.block[index.big].big, sdat->big, sdat->big_len);
 }
 
 void nds_write_backup_save(uint8_t *ptr, const nds_save_t *sav) {
@@ -256,10 +257,9 @@ void nds_write_backup_save(uint8_t *ptr, const nds_save_t *sav) {
 	nds_save_index_t index = nds_get_main_index(bdat);
 	index.small ^= 1;
 	index.big ^= 1;
-
-	nds_sdat_t* sdat = sav->internal;
-	memcpy(bdat.block[index.small].small,sdat->small,sdat->small_len);
-	memcpy(bdat.block[index.big].big,sdat->big,sdat->big_len);
+	nds_sdat_t *sdat = sav->internal;
+	memcpy((uint8_t *)bdat.block[index.small].small, sdat->small, sdat->small_len);
+	memcpy((uint8_t *)bdat.block[index.big].big, sdat->big, sdat->big_len);
 }
 
 ///////////////////////////////////////////////////

@@ -198,8 +198,9 @@ void gba_save_game(uint8_t *dst, gba_save_t *save) {
 	internal->save_index += 1;
 	for(int i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
 		internal->order[i] += 1;
-		if(internal->order[i] >= GBA_SAVE_BLOCK_COUNT)
+		if(internal->order[i] >= GBA_SAVE_BLOCK_COUNT) {
 			internal->order[i] = 0;
+		}
 	}
 	gba_write_save_internal(dst + gba_get_backup_offset(dst), save);
 }
@@ -210,7 +211,7 @@ void gba_save_game(uint8_t *dst, gba_save_t *save) {
  */
 uint8_t *gba_create_data() {
 	uint8_t *data = malloc(GBA_SAVE_SIZE);
-	memset(data,0x0,GBA_SAVE_SIZE);
+	memset(data, 0x0, GBA_SAVE_SIZE);
 	return data;
 }
 
