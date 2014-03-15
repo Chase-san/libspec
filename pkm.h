@@ -314,7 +314,7 @@ typedef struct { //0x100
 	uint8_t sdef;
 	uint8_t unknown[56];
 	uint8_t seal_loc[24];
-} pkm_party_t;
+} pkm_nds_party_t;
 
 typedef struct {
 	pkm_header_t header;
@@ -327,8 +327,12 @@ typedef struct {
 			pkm_blockd_t block_d;
 		};
 	};
-	pkm_party_t party;
 } pkm_t;
+
+typedef struct {
+	pkm_t pkm;
+	pkm_nds_party_t party;
+} pkm_nds_t;
 #pragma pack(pop)
 
 void pkm_shuffle(pkm_t *);
