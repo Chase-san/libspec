@@ -187,7 +187,14 @@ nds_save_index_t nds_get_main_index(nds_bdat_t bdat) {
 			index.big = 1;
 		}
 	} else {
-		//TODO hgss
+		index.small = 0;
+		if(bdat.block[0].small_footer->hgss.save_index < bdat.block[1].small_footer->hgss.save_index) {
+			index.small = 1;
+		}
+		index.big = 0;
+		if(bdat.block[0].big_footer->hgss.save_index < bdat.block[1].big_footer->hgss.save_index) {
+			index.big = 1;
+		}
 	}
 	return index;
 }
@@ -237,9 +244,22 @@ uint8_t *nds_create_data() {
 }
 
 void nds_write_main_save(uint8_t *ptr, const nds_save_t *sav) {
+	nds_bdat_t bdat = nds_get_bdat(ptr);
+	nds_save_index_t index = nds_get_main_index(bdat);
+	nds_sdat_t* sdat = sav->internal;
+	memcpy(bdat.block[index.small].small,sdat->small,sdat->small_len);
+	memcpy(bdat.block[index.big].big,sdat->big,sdat->big_len);
 }
 
 void nds_write_backup_save(uint8_t *ptr, const nds_save_t *sav) {
+	nds_bdat_t bdat = nds_get_bdat(ptr);
+	nds_save_index_t index = nds_get_main_index(bdat);
+	index.small ^= 1;
+	index.big ^= 1;
+
+	nds_sdat_t* sdat = sav->internal;
+	memcpy(bdat.block[index.small].small,sdat->small,sdat->small_len);
+	memcpy(bdat.block[index.big].big,sdat->big,sdat->big_len);
 }
 
 ///////////////////////////////////////////////////
