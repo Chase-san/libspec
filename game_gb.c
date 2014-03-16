@@ -54,9 +54,34 @@ static const uint16_t gb_to_codepage[] = {
 };
 
 enum {
-	GB_PROTECTED_START = 0x2598,
-	GB_PROTECTED_LENGTH = 0xf8b,
-	GB_CHECKSUM = 0x3523,
+	GB_RBY_PROTECTED_START = 0x2598,
+	GB_RBY_PROTECTED_LENGTH = 0xf8b,
+	GB_RBY_CHECKSUM = 0x3523,
+
+	GB_GS_PROTECTED_START = 0x2009,
+	GB_GS_PROTECTED_LENGTH = 0xd5f,
+	GB_GS_CHECKSUM = 0x2d69,
+
+	//gs secondary chunk is split into 5 sections
+	GB_GS_PROTECTED2_0_START = 0x15c7,
+	GB_GS_PROTECTED2_0_LENGTH = 0x226,
+	GB_GS_PROTECTED2_1_START = 0x3d96,
+	GB_GS_PROTECTED2_1_LENGTH = 0x1aa,
+	GB_GS_PROTECTED2_2_START = 0x0c6B,
+	GB_GS_PROTECTED2_2_LENGTH = 0x47d,
+	GB_GS_PROTECTED2_3_START = 0x7e39,
+	GB_GS_PROTECTED2_3_LENGTH = 0x34,
+	GB_GS_PROTECTED2_4_START = 0x10e8,
+	GB_GS_PROTECTED2_4_LENGTH = 0x4df,
+	GB_GS_CHECKSUM2 = 0x7E6D,
+
+	GB_C_PROTECTED_START = 0x2009,
+	GB_C_PROTECTED_LENGTH = 0xb7a,
+	GB_C_CHECKSUM = 0x2d0d,
+
+	GB_C_PROTECTED2_START = 0x1209,
+	GB_C_CHECKSUM2 = 0x1F0D,
+
 	GB_CODEPAGE_SIZE = 0x100
 };
 
@@ -86,9 +111,46 @@ void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size) {
 	}
 }
 
+//complex enough to need it's own function
+uint16_t gb_gs_secondary_checksum(const uint8_t *ptr) {
+	uint16_t sum = gb_gsc_checksum(ptr+GB_GS_PROTECTED2_0_START,GB_GS_PROTECTED2_0_LENGTH);
+	sum += gb_gsc_checksum(ptr+GB_GS_PROTECTED2_1_START,GB_GS_PROTECTED2_1_LENGTH);
+	sum += gb_gsc_checksum(ptr+GB_GS_PROTECTED2_2_START,GB_GS_PROTECTED2_2_LENGTH);
+	sum += gb_gsc_checksum(ptr+GB_GS_PROTECTED2_3_START,GB_GS_PROTECTED2_3_LENGTH);
+	sum += gb_gsc_checksum(ptr+GB_GS_PROTECTED2_4_START,GB_GS_PROTECTED2_4_LENGTH);
+	return sum;
+}
+
+gb_savetype_t gb_detect_type(const uint8_t *ptr) {
+	//we have to use checksums to detect type...
+	if(gb_rby_checksum(ptr + GB_RBY_PROTECTED_START, GB_RBY_PROTECTED_LENGTH)
+			== ptr[GB_RBY_CHECKSUM]) {
+		//if it isn't we can't load the save anyway, right?
+		return GB_TYPE_RBY;
+	}
+	if(gb_gsc_checksum(ptr + GB_GS_PROTECTED_START, GB_GS_PROTECTED_LENGTH)
+			== *(uint16_t*)&ptr[GB_GS_CHECKSUM]) {
+		return GB_TYPE_GS;
+	}
+	if(gb_gs_secondary_checksum(ptr) == *(uint16_t*)&ptr[GB_GS_CHECKSUM2]) {
+		return GB_TYPE_GS;
+	}
+	if(gb_gsc_checksum(ptr + GB_C_PROTECTED_START, GB_C_PROTECTED_LENGTH)
+			== *(uint16_t*)&ptr[GB_C_CHECKSUM]) {
+		return GB_TYPE_C;
+	}
+	if(gb_gsc_checksum(ptr + GB_C_PROTECTED2_START, GB_C_PROTECTED_LENGTH)
+			== *(uint16_t*)&ptr[GB_C_CHECKSUM2]) {
+		return GB_TYPE_C;
+	}
+
+	return GB_TYPE_UNKNOWN;
+}
 
 gb_save_t *gb_read_save(const uint8_t *ptr) {
 	gb_save_t *save = malloc(sizeof(gb_save_t));
+	save->type = gb_detect_type(ptr);
+	//TODO vary based on save type
 	save->data = malloc(GB_SAVE_SIZE);
 	memcpy(save->data, ptr, GB_SAVE_SIZE);
 	return save;
@@ -108,5 +170,5 @@ uint8_t *gb_create_data() {
 void gb_write_save(uint8_t *ptr, const gb_save_t *save) {
 	memcpy(ptr, save->data, GB_SAVE_SIZE);
 	//calculate checksum, then write it to where it goes in ptr
-	ptr[GB_CHECKSUM] = gb_checksum(ptr + GB_PROTECTED_START, GB_PROTECTED_LENGTH);
+	ptr[GB_RBY_CHECKSUM] = gb_rby_checksum(ptr + GB_RBY_PROTECTED_START, GB_RBY_PROTECTED_LENGTH);
 }
