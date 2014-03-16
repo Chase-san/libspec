@@ -21,7 +21,8 @@ typedef struct {
 	uint8_t *data;
 } gb_save_t;
 
-void gb_text_to_utf16(char16_t *dst, char8_t *src, size_t size);
+void gb_text_to_ucs2(char16_t *dst, char8_t *src, size_t size);
+void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size);
 
 gb_save_t *gb_read_save(const uint8_t *);
 void gb_free_save(gb_save_t *);

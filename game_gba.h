@@ -26,6 +26,9 @@ typedef struct {
 	void *internal;
 } gba_save_t;
 
+void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size);
+void ucs2_to_gba_text(char8_t *dst, char16_t *src, size_t size);
+
 gba_savetype_t gba_detect_save_type(uint8_t *, size_t);
 
 gba_save_t *gba_read_main_save(const uint8_t *);
@@ -38,7 +41,5 @@ void gba_write_main_save(uint8_t *, const gba_save_t *);
 void gba_write_backup_save(uint8_t *, const gba_save_t *);
 
 void gba_save_game(uint8_t *, gba_save_t *);
-
-void gba_text_to_utf16(char16_t *dst, char8_t *src, size_t size);
 
 #endif //__GBA_H__
