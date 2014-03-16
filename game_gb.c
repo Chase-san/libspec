@@ -169,6 +169,15 @@ uint8_t *gb_create_data() {
 
 void gb_write_save(uint8_t *ptr, const gb_save_t *save) {
 	memcpy(ptr, save->data, GB_SAVE_SIZE);
-	//calculate checksum, then write it to where it goes in ptr
-	ptr[GB_RBY_CHECKSUM] = gb_rby_checksum(ptr + GB_RBY_PROTECTED_START, GB_RBY_PROTECTED_LENGTH);
+	if(save->type == GB_TYPE_RBY) {
+		//calculate checksum, then write it to where it goes in ptr
+		ptr[GB_RBY_CHECKSUM] = gb_rby_checksum(ptr + GB_RBY_PROTECTED_START, GB_RBY_PROTECTED_LENGTH);
+	} else if(save->type == GB_TYPE_GS) {
+		*((uint16_t*)&ptr[GB_GS_CHECKSUM]) = gb_gsc_checksum(ptr + GB_GS_PROTECTED_START, GB_GS_PROTECTED_LENGTH);
+		*((uint16_t*)&ptr[GB_GS_CHECKSUM2]) = gb_gs_secondary_checksum(ptr);
+	} else if(save->type == GB_TYPE_C) {
+		*((uint16_t*)&ptr[GB_C_CHECKSUM]) = gb_gsc_checksum(ptr + GB_C_PROTECTED_START, GB_C_PROTECTED_LENGTH);
+		*((uint16_t*)&ptr[GB_C_CHECKSUM2]) = gb_gsc_checksum(ptr + GB_C_PROTECTED2_START, GB_C_PROTECTED_LENGTH);
+	}
+
 }
