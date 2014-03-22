@@ -5,6 +5,8 @@
 #include "prng.h"
 #include "checksum.h"
 
+/* PKM covers both generation 4 and 5 (nds/dsi), so it has it's own file. */
+
 //PKM
 enum {
 	PKM_LENGTH = 136,
@@ -167,7 +169,7 @@ typedef struct { //0x8
 	bool square : 1;
 	bool star : 1;
 	bool diamond : 1;
-	uint8_t : 2; //unused
+	uint8_t : 3; //unused
 } pkm_marking_t;
 
 typedef struct {
@@ -188,24 +190,7 @@ typedef struct {
 	uint8_t sheen;
 } pkm_contest_t;
 
-typedef struct { //0x32
-	uint16_t species;
-	uint16_t held_item;
-	uint16_t ot_id;
-	uint16_t ot_sid;
-	uint32_t exp;
-	uint8_t friendship;
-	uint8_t ability;
-	pkm_marking_t markings;
-	uint8_t country;
-	pkm_effort_t ev;
-	pkm_contest_t contest;
-	pkm_ribbon_sinnoh1_t ribbon_sinnoh1;
-	union {
-		pkm_ribbon_sinnoh2_t ribbon_sinnoh2;
-		pkm_ribbon_unova_t ribbon_unova;
-	};
-} pkm_blocka_t;
+//typedef  pkm_blocka_t;
 
 typedef struct {
 	uint8_t hp : 5;
@@ -217,52 +202,6 @@ typedef struct {
 	uint8_t : 2;
 } pkm_genes_t;
 
-typedef struct { //0x32
-	uint16_t move[4]; //8
-	uint8_t movePP[4]; //4
-	uint8_t movePPUP[4]; //4
-	union {
-		pkm_genes_t iv;
-		struct {
-			uint32_t : 30;
-			bool is_egg : 1;
-			bool is_nicknamed : 1;
-		};
-	};
-	pkm_ribbon_hoenn1_t ribbon_hoenn1;
-	pkm_ribbon_hoenn2_t ribbon_hoenn2;
-
-	bool is_fateful_encounter : 1;
-	bool is_female : 1;
-	bool is_genderless : 1;
-	uint8_t forme : 5; //25
-	union {
-		//shining leaf stuff
-		struct {
-			uint8_t : 2;
-			bool has_crown : 1;
-			uint8_t shining_leaf : 5;
-		};
-		//unova nature stuff
-		uint8_t nature;
-	};
-	struct {
-		bool is_abil_dreamworld : 1;
-		bool is_n_pokemon : 1;
-		uint8_t : 6;
-	};
-	uint8_t : 8;
-	uint16_t egg_loc_plat;
-	uint16_t met_loc_plat;
-} pkm_blockb_t;
-
-typedef struct { //0x32
-	char16_t nickname[11];
-	uint16_t hometown; //24
-	pkm_ribbon_sinnoh3_t ribbon_sinnoh3; //26
-	pkm_ribbon_sinnoh4_t ribbon_sinnoh4; //28
-	uint32_t unknown; //32
-} pkm_blockc_t;
 
 typedef struct { //0x3
 	uint8_t year; //since 2000
@@ -274,23 +213,6 @@ typedef struct { //0x1
 	uint8_t days : 4;
 	uint8_t strain : 4;
 } pkm_pokerus_t;
-
-typedef struct { //0x32
-	char16_t ot_name[8];
-	pkm_date_t egg_met_date;
-	pkm_date_t met_date;
-	uint16_t egg_loc_dp;
-	uint16_t met_loc_dp;
-	pkm_pokerus_t pokerus;
-	uint8_t pokeball;
-	struct {
-		uint8_t leve_met : 7;
-		bool is_ot_female : 1;
-	};
-	uint8_t encounter_type;
-	uint8_t pokeball_hgss;
-	uint8_t : 8;
-} pkm_blockd_t;
 
 typedef struct { //0x100
 	struct { //0x1
@@ -321,10 +243,92 @@ typedef struct {
 	union {
 		uint8_t block[4][PKM_BLOCK_SIZE];
 		struct {
-			pkm_blocka_t block_a;
-			pkm_blockb_t block_b;
-			pkm_blockc_t block_c;
-			pkm_blockd_t block_d;
+			/* Block A */
+			struct { //0x32
+				uint16_t species;
+				uint16_t held_item;
+				uint16_t ot_id;
+				uint16_t ot_sid;
+				uint32_t exp;
+				uint8_t friendship;
+				uint8_t ability;
+				pkm_marking_t markings;
+				uint8_t country;
+				pkm_effort_t ev;
+				pkm_contest_t contest;
+				pkm_ribbon_sinnoh1_t ribbon_sinnoh1;
+				union {
+					pkm_ribbon_sinnoh2_t ribbon_sinnoh2;
+					pkm_ribbon_unova_t ribbon_unova;
+				};
+			};
+
+			/* Block B */
+			struct { //0x32
+				uint16_t move[4]; //8
+				uint8_t move_pp[4]; //4
+				uint8_t move_pp_up[4]; //4
+				union {
+					pkm_genes_t iv;
+					struct {
+						uint32_t : 30;
+						bool is_egg : 1;
+						bool is_nicknamed : 1;
+					};
+				};
+				pkm_ribbon_hoenn1_t ribbon_hoenn1;
+				pkm_ribbon_hoenn2_t ribbon_hoenn2;
+
+				bool is_fateful_encounter : 1;
+				bool is_female : 1;
+				bool is_genderless : 1;
+				uint8_t forme : 5; //25
+				union {
+					//shining leaf stuff
+					struct {
+						uint8_t : 2;
+						bool has_crown : 1;
+						uint8_t shining_leaf : 5;
+					};
+					//unova nature stuff
+					uint8_t nature;
+				};
+				struct {
+					bool is_abil_dreamworld : 1;
+					bool is_n_pokemon : 1;
+					uint8_t : 6;
+				};
+				uint8_t : 8;
+				uint16_t egg_loc_plat;
+				uint16_t met_loc_plat;
+			};
+
+			/* Block C */
+			struct { //0x32
+				char16_t nickname[11];
+				uint16_t hometown; //24
+				pkm_ribbon_sinnoh3_t ribbon_sinnoh3; //26
+				pkm_ribbon_sinnoh4_t ribbon_sinnoh4; //28
+				uint32_t unknown; //32
+			};
+
+			/* Block D */
+			struct { //0x32
+				char16_t ot_name[8];
+				pkm_date_t egg_met_date;
+				pkm_date_t met_date;
+				uint16_t egg_loc_dp;
+				uint16_t met_loc_dp;
+				pkm_pokerus_t pokerus;
+				uint8_t pokeball;
+				struct {
+					uint8_t level_met : 7;
+					bool is_ot_female : 1;
+				};
+				uint8_t encounter_type;
+				uint8_t pokeball_hgss;
+				uint8_t : 8;
+			};
 		};
 	};
 } pkm_t;
@@ -338,6 +342,6 @@ typedef struct {
 void pkm_shuffle(pkm_t *);
 void pkm_unshuffle(pkm_t *);
 void pkm_crypt(pkm_t *);
-void pkm_crypt_party(pkm_t *);
+void pkm_crypt_nds_party(pkm_nds_t *);
 
 #endif //__PKM_H__

@@ -22,7 +22,7 @@ enum {
 	PKM_PID_START_32 = 0
 };
 
-//You might think, hey this looks nothing like my shuffle table, and you would be right.
+/* You might think, hey this looks nothing like my shuffle table, and you would be right. */
 static const uint8_t t_shuffle[] = {
 	0x00, 0x20, 0x40, 0x60, 0x00, 0x20, 0x60, 0x40, 0x00, 0x40, 0x20, 0x60, 0x00, 0x40, 0x60, 0x20,
 	0x00, 0x60, 0x20, 0x40, 0x00, 0x60, 0x40, 0x20, 0x20, 0x00, 0x40, 0x60, 0x20, 0x00, 0x60, 0x40,
@@ -34,15 +34,11 @@ static const uint8_t t_shuffle[] = {
 	0x00, 0x60, 0x20, 0x40, 0x00, 0x60, 0x40, 0x20, 0x20, 0x00, 0x40, 0x60, 0x20, 0x00, 0x60, 0x40
 };
 
-//You may be thinking, hey that isn't the shuffle mode, and you would be half right.
+/* You may be thinking, hey that isn't the shuffle mode, and you would be half right. */
 static inline const uint8_t *pkm_get_shuffle(void *ptr) {
 	return &t_shuffle[(*(uint32_t *)ptr & PKM_SHUFFLE_MASK) >> PKM_SHUFFLE_SHIFT];
 }
 
-/**
- *
- * @param ptr The pointer to the pkm to shuffle
- */
 void pkm_shuffle(pkm_t *pkm) {
 	//0,32,64,96 to shuffle[0 .. 3]
 	const uint8_t *shuffle = pkm_get_shuffle(pkm);
@@ -77,7 +73,7 @@ void pkm_crypt(pkm_t *pkm) {
 	}
 }
 
-void pkm_crypt_party(pkm_t *pkm) {
+void pkm_crypt_nds_party(pkm_nds_t *pkm) {
 	uint16_t *tptr = (uint16_t *)pkm;
 	nds_prng_t prng = { ((uint32_t *)pkm)[PKM_PID_START_32] };
 	for(uint8_t i = 0; i < PKM_PARTY_DATA_SIZE_16; ++i) {
