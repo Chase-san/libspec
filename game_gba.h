@@ -185,16 +185,16 @@ typedef struct { //80 bytes for box data
 				uint8_t met_loc;
 				struct {
 					uint8_t level_met : 7;
-					bool is_ot_female : 1;
 					uint8_t game : 4;
 					uint8_t pokeball : 4;
+					bool is_ot_female : 1;
 				};
 				union {
 					pk3_genes_t iv;
 					struct {
 						uint32_t : 30;
 						bool is_egg : 1;
-						bool ability_flag : 1;
+						bool ability : 1;
 					};
 				};
 				pk3_ribbon_t ribbon;
