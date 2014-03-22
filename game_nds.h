@@ -24,6 +24,9 @@ typedef struct {
 	void *internal;
 } nds_save_t;
 
+void nds_text_to_ucs2(char16_t *dst, char16_t *src, size_t size);
+void ucs2_to_nds_text(char16_t *dst, char16_t *src, size_t size);
+
 nds_save_t *nds_read_main_save(const uint8_t *);
 nds_save_t *nds_read_backup_save(const uint8_t *);
 void nds_free_save(nds_save_t *);
