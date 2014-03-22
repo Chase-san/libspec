@@ -234,3 +234,60 @@ uint8_t *gba_create_data() {
 	memset(data, 0x0, GBA_SAVE_SIZE);
 	return data;
 }
+
+enum {
+	PK3_SHUFFLE_MASK = 0x3E000,
+	PK3_SHUFFLE_SHIFT = 0xB,
+	PK3_HEADER_SIZE = 0x20,
+	PK3_DATA_SIZE = 0x30,
+	PK3_BLOCK0_START = 0x00,
+	PK3_BLOCK1_START = 0x0C,
+	PK3_BLOCK2_START = 0x18,
+	PK3_BLOCK3_START = 0x24
+};
+
+/* You might think, hey this looks nothing like my shuffle table, and you would be right. */
+static const uint8_t t_shuffle[] = {
+	0x00, 0x0C, 0x18, 0x24, 0x00, 0x0C, 0x24, 0x18, 0x00, 0x18, 0x0C, 0x24, 0x00, 0x18, 0x24, 0x0C,
+	0x00, 0x24, 0x0C, 0x18, 0x00, 0x24, 0x18, 0x0C, 0x0C, 0x00, 0x18, 0x24, 0x0C, 0x00, 0x24, 0x18,
+	0x0C, 0x18, 0x00, 0x24, 0x0C, 0x18, 0x24, 0x00, 0x0C, 0x24, 0x00, 0x18, 0x0C, 0x24, 0x18, 0x00,
+	0x18, 0x00, 0x0C, 0x24, 0x18, 0x00, 0x24, 0x0C, 0x18, 0x0C, 0x00, 0x24, 0x18, 0x0C, 0x24, 0x00,
+	0x18, 0x24, 0x00, 0x0C, 0x18, 0x24, 0x0C, 0x00, 0x24, 0x00, 0x0C, 0x18, 0x24, 0x00, 0x18, 0x0C,
+	0x24, 0x0C, 0x00, 0x18, 0x24, 0x0C, 0x18, 0x00, 0x24, 0x18, 0x00, 0x0C, 0x24, 0x18, 0x0C, 0x00,
+	0x00, 0x0C, 0x18, 0x24, 0x00, 0x0C, 0x24, 0x18, 0x00, 0x18, 0x0C, 0x24, 0x00, 0x18, 0x24, 0x0C,
+	0x00, 0x24, 0x0C, 0x18, 0x00, 0x24, 0x18, 0x0C, 0x0C, 0x00, 0x18, 0x24, 0x0C, 0x00, 0x24, 0x18
+};
+
+/* You may be thinking, hey that isn't the shuffle mode, and you would be half right. */
+static inline const uint8_t *pk3_get_shuffle(void *ptr) {
+	/* who the fuck uses modulus in this kind of algorithm anyway right? */
+	return &t_shuffle[(*(uint32_t *)ptr & PK3_SHUFFLE_MASK) >> PK3_SHUFFLE_SHIFT];
+}
+
+void pk3_shuffle(pk3_t *pkm) {
+	//0,12,24,36 to shuffle[0 .. 3]
+	const uint8_t *shuffle = pk3_get_shuffle(pkm);
+	//uint8_t *bptr = pkm->block; //NOTE: We could do this instead
+	uint8_t *bptr = ((uint8_t *)pkm) + PK3_HEADER_SIZE;
+	uint8_t *tmp = malloc(PK3_DATA_SIZE);
+	memcpy(tmp, bptr, PK3_DATA_SIZE);
+	memcpy(&bptr[shuffle[0]], &tmp[PK3_BLOCK0_START], PK3_BLOCK_SIZE);
+	memcpy(&bptr[shuffle[1]], &tmp[PK3_BLOCK1_START], PK3_BLOCK_SIZE);
+	memcpy(&bptr[shuffle[2]], &tmp[PK3_BLOCK2_START], PK3_BLOCK_SIZE);
+	memcpy(&bptr[shuffle[3]], &tmp[PK3_BLOCK3_START], PK3_BLOCK_SIZE);
+	free(tmp);
+}
+
+void pk3_unshuffle(pk3_t *pkm) {
+	//shuffle[0 .. 3] to 0,12,24,36
+	const uint8_t *shuffle = pk3_get_shuffle(pkm);
+	//uint8_t *bptr = pkm->block; //NOTE: We could do this instead
+	uint8_t *bptr = ((uint8_t *)pkm) + PK3_HEADER_SIZE;
+	uint8_t *tmp = malloc(PK3_DATA_SIZE);
+	memcpy(tmp, bptr, PK3_DATA_SIZE);
+	memcpy(&bptr[PK3_BLOCK0_START], &tmp[shuffle[0]], PK3_BLOCK_SIZE);
+	memcpy(&bptr[PK3_BLOCK1_START], &tmp[shuffle[1]], PK3_BLOCK_SIZE);
+	memcpy(&bptr[PK3_BLOCK2_START], &tmp[shuffle[2]], PK3_BLOCK_SIZE);
+	memcpy(&bptr[PK3_BLOCK3_START], &tmp[shuffle[3]], PK3_BLOCK_SIZE);
+	free(tmp);
+}
