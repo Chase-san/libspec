@@ -45,10 +45,10 @@ void pkm_shuffle(pkm_t *pkm) {
 	uint8_t *bptr = ((uint8_t *)pkm) + PKM_HEADER_SIZE_8;
 	uint8_t *tmp = malloc(PKM_DATA_SIZE_8);
 	memcpy(tmp, bptr, PKM_DATA_SIZE_8);
-	memcpy(&bptr[shuffle[0]], &tmp[PKM_BLOCK0_START_8], PKM_BLOCK_SIZE);
-	memcpy(&bptr[shuffle[1]], &tmp[PKM_BLOCK1_START_8], PKM_BLOCK_SIZE);
-	memcpy(&bptr[shuffle[2]], &tmp[PKM_BLOCK2_START_8], PKM_BLOCK_SIZE);
-	memcpy(&bptr[shuffle[3]], &tmp[PKM_BLOCK3_START_8], PKM_BLOCK_SIZE);
+	memcpy(&bptr[PKM_BLOCK0_START_8], &tmp[shuffle[0]], PKM_BLOCK_SIZE);
+	memcpy(&bptr[PKM_BLOCK1_START_8], &tmp[shuffle[1]], PKM_BLOCK_SIZE);
+	memcpy(&bptr[PKM_BLOCK2_START_8], &tmp[shuffle[2]], PKM_BLOCK_SIZE);
+	memcpy(&bptr[PKM_BLOCK3_START_8], &tmp[shuffle[3]], PKM_BLOCK_SIZE);
 	free(tmp);
 }
 
@@ -58,10 +58,10 @@ void pkm_unshuffle(pkm_t *pkm) {
 	uint8_t *bptr = ((uint8_t *)pkm) + PKM_HEADER_SIZE_8;
 	uint8_t *tmp = malloc(PKM_DATA_SIZE_8);
 	memcpy(tmp, bptr, PKM_DATA_SIZE_8);
-	memcpy(&bptr[PKM_BLOCK0_START_8], &tmp[shuffle[0]], PKM_BLOCK_SIZE);
-	memcpy(&bptr[PKM_BLOCK1_START_8], &tmp[shuffle[1]], PKM_BLOCK_SIZE);
-	memcpy(&bptr[PKM_BLOCK2_START_8], &tmp[shuffle[2]], PKM_BLOCK_SIZE);
-	memcpy(&bptr[PKM_BLOCK3_START_8], &tmp[shuffle[3]], PKM_BLOCK_SIZE);
+	memcpy(&bptr[shuffle[0]], &tmp[PKM_BLOCK0_START_8], PKM_BLOCK_SIZE);
+	memcpy(&bptr[shuffle[1]], &tmp[PKM_BLOCK1_START_8], PKM_BLOCK_SIZE);
+	memcpy(&bptr[shuffle[2]], &tmp[PKM_BLOCK2_START_8], PKM_BLOCK_SIZE);
+	memcpy(&bptr[shuffle[3]], &tmp[PKM_BLOCK3_START_8], PKM_BLOCK_SIZE);
 	free(tmp);
 }
 
