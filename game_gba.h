@@ -234,10 +234,30 @@ typedef struct {
 
 } pk3_party_t;
 
-//TODO party data
 #pragma pack(pop)
 
 void pk3_decrypt(pk3_t *);
 void pk3_encrypt(pk3_t *);
+
+//Actual Save Editing
+
+#pragma pack(push, 1)
+typedef struct {
+	pk3_t pokemon[30];
+} gba_box_t;
+
+typedef struct {
+	char8_t name[9];
+} gba_box_name_t;
+#pragma pack(pop)
+
+
+uint32_t * gba_party_size(gba_save_t *);
+pk3_party_t * gba_party_pk3(gba_save_t *, size_t);
+
+uint32_t * gba_current_box(gba_save_t *);
+gba_box_t *gba_box(gba_save_t *, size_t);
+gba_box_name_t *gba_box_name(gba_save_t *, size_t);
+uint8_t *gba_box_wallpaper(gba_save_t *, size_t);
 
 #endif //__GBA_H__

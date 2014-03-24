@@ -3,6 +3,7 @@
 
 #include "types.h"
 #include "prng.h"
+#include "checksum.h"
 
 /* PKM covers both generation 4 and 5 (nds/dsi), so it has it's own file. */
 
