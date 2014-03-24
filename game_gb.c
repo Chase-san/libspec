@@ -18,7 +18,7 @@
 /**
  * The PK and MN symbols use lower case pi and mu respectively.
  */
-static const uint16_t gb_to_codepage[] = {
+static const uint16_t GB_TO_CODEPAGE[] = {
 	0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,
 	0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,
 	0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff,
@@ -87,7 +87,7 @@ enum {
 
 void gb_text_to_ucs2(char16_t *dst, char8_t *src, size_t size) {
 	for(int i = 0; i < size; ++i) {
-		dst[i] = gb_to_codepage[src[i]];
+		dst[i] = GB_TO_CODEPAGE[src[i]];
 	}
 }
 
@@ -100,8 +100,8 @@ void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size) {
 		}
 		dst[i] = 0xE6; //question mark by default
 		for(int j = 0; j < GB_CODEPAGE_SIZE; ++j) {
-			if(gb_to_codepage[j] == src[i]) {
-				dst[i] = gb_to_codepage[j];
+			if(GB_TO_CODEPAGE[j] == src[i]) {
+				dst[i] = GB_TO_CODEPAGE[j];
 				if(!src[i]) {
 					ended = true;
 				}
