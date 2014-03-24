@@ -113,11 +113,11 @@ void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size) {
 
 //complex enough to need it's own function
 uint16_t gb_gs_secondary_checksum(const uint8_t *ptr) {
-	uint16_t sum = gb_gsc_checksum(ptr+GB_GS_PROTECTED2_0_START,GB_GS_PROTECTED2_0_LENGTH);
-	sum += gb_gsc_checksum(ptr+GB_GS_PROTECTED2_1_START,GB_GS_PROTECTED2_1_LENGTH);
-	sum += gb_gsc_checksum(ptr+GB_GS_PROTECTED2_2_START,GB_GS_PROTECTED2_2_LENGTH);
-	sum += gb_gsc_checksum(ptr+GB_GS_PROTECTED2_3_START,GB_GS_PROTECTED2_3_LENGTH);
-	sum += gb_gsc_checksum(ptr+GB_GS_PROTECTED2_4_START,GB_GS_PROTECTED2_4_LENGTH);
+	uint16_t sum = gb_gsc_checksum(ptr + GB_GS_PROTECTED2_0_START, GB_GS_PROTECTED2_0_LENGTH);
+	sum += gb_gsc_checksum(ptr + GB_GS_PROTECTED2_1_START, GB_GS_PROTECTED2_1_LENGTH);
+	sum += gb_gsc_checksum(ptr + GB_GS_PROTECTED2_2_START, GB_GS_PROTECTED2_2_LENGTH);
+	sum += gb_gsc_checksum(ptr + GB_GS_PROTECTED2_3_START, GB_GS_PROTECTED2_3_LENGTH);
+	sum += gb_gsc_checksum(ptr + GB_GS_PROTECTED2_4_START, GB_GS_PROTECTED2_4_LENGTH);
 	return sum;
 }
 
@@ -129,21 +129,20 @@ gb_savetype_t gb_detect_type(const uint8_t *ptr) {
 		return GB_TYPE_RBY;
 	}
 	if(gb_gsc_checksum(ptr + GB_GS_PROTECTED_START, GB_GS_PROTECTED_LENGTH)
-			== *(uint16_t*)&ptr[GB_GS_CHECKSUM]) {
+			== *(uint16_t *)&ptr[GB_GS_CHECKSUM]) {
 		return GB_TYPE_GS;
 	}
-	if(gb_gs_secondary_checksum(ptr) == *(uint16_t*)&ptr[GB_GS_CHECKSUM2]) {
+	if(gb_gs_secondary_checksum(ptr) == *(uint16_t *)&ptr[GB_GS_CHECKSUM2]) {
 		return GB_TYPE_GS;
 	}
 	if(gb_gsc_checksum(ptr + GB_C_PROTECTED_START, GB_C_PROTECTED_LENGTH)
-			== *(uint16_t*)&ptr[GB_C_CHECKSUM]) {
+			== *(uint16_t *)&ptr[GB_C_CHECKSUM]) {
 		return GB_TYPE_C;
 	}
 	if(gb_gsc_checksum(ptr + GB_C_PROTECTED2_START, GB_C_PROTECTED_LENGTH)
-			== *(uint16_t*)&ptr[GB_C_CHECKSUM2]) {
+			== *(uint16_t *)&ptr[GB_C_CHECKSUM2]) {
 		return GB_TYPE_C;
 	}
-
 	return GB_TYPE_UNKNOWN;
 }
 
@@ -173,11 +172,10 @@ void gb_write_save(uint8_t *ptr, const gb_save_t *save) {
 		//calculate checksum, then write it to where it goes in ptr
 		ptr[GB_RBY_CHECKSUM] = gb_rby_checksum(ptr + GB_RBY_PROTECTED_START, GB_RBY_PROTECTED_LENGTH);
 	} else if(save->type == GB_TYPE_GS) {
-		*((uint16_t*)&ptr[GB_GS_CHECKSUM]) = gb_gsc_checksum(ptr + GB_GS_PROTECTED_START, GB_GS_PROTECTED_LENGTH);
-		*((uint16_t*)&ptr[GB_GS_CHECKSUM2]) = gb_gs_secondary_checksum(ptr);
+		*((uint16_t *)&ptr[GB_GS_CHECKSUM]) = gb_gsc_checksum(ptr + GB_GS_PROTECTED_START, GB_GS_PROTECTED_LENGTH);
+		*((uint16_t *)&ptr[GB_GS_CHECKSUM2]) = gb_gs_secondary_checksum(ptr);
 	} else if(save->type == GB_TYPE_C) {
-		*((uint16_t*)&ptr[GB_C_CHECKSUM]) = gb_gsc_checksum(ptr + GB_C_PROTECTED_START, GB_C_PROTECTED_LENGTH);
-		*((uint16_t*)&ptr[GB_C_CHECKSUM2]) = gb_gsc_checksum(ptr + GB_C_PROTECTED2_START, GB_C_PROTECTED_LENGTH);
+		*((uint16_t *)&ptr[GB_C_CHECKSUM]) = gb_gsc_checksum(ptr + GB_C_PROTECTED_START, GB_C_PROTECTED_LENGTH);
+		*((uint16_t *)&ptr[GB_C_CHECKSUM2]) = gb_gsc_checksum(ptr + GB_C_PROTECTED2_START, GB_C_PROTECTED_LENGTH);
 	}
-
 }

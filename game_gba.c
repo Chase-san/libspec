@@ -99,8 +99,9 @@ static inline uint16_t get_block_checksum(const uint8_t *ptr) {
 
 bool gba_is_gba_save(const uint8_t *ptr) {
 	gba_footer_t *footer = get_block_footer(ptr);
-	if(footer->mark != GBA_BLOCK_FOOTER_MARK)
+	if(footer->mark != GBA_BLOCK_FOOTER_MARK) {
 		return false;
+	}
 	return true;
 }
 
@@ -149,28 +150,23 @@ gba_security_key_t gba_get_security_key(uint8_t *ptr) {
 gba_savetype_t gba_detect_save_type(gba_save_t *save) {
 	//Detecting GBA save type is a pain in the ass
 	//Currently using the security key to determine the save type is a crap shoot, since the key can be zero
-
 	//Ruby/Sapphire have a zero security key, the security feature was incomplete in this version
 	if(gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY_OFFSET).key == 0
-	&& gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY2_OFFSET).key == 0) {
+			&& gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY2_OFFSET).key == 0) {
 		return GBA_TYPE_RS;
 	}
-
 	//But it works fine in Emerald
 	if(gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY_OFFSET).key
-	== gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY2_OFFSET).key) {
+			== gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY2_OFFSET).key) {
 		return GBA_TYPE_E;
 	}
-
 	//FRLG has the keys in different locations, yay!
 	if(gba_get_security_key(save->unpacked + GBA_FRLG_SECURITY_KEY_OFFSET).key
-		== gba_get_security_key(save->unpacked + GBA_FRLG_SECURITY_KEY2_OFFSET).key) {
+			== gba_get_security_key(save->unpacked + GBA_FRLG_SECURITY_KEY2_OFFSET).key) {
 		return GBA_TYPE_FRLG;
 	}
-
 	//TODO base it off from pokemon encryption, so we can be more sure that we have the correct versions
 	//Also so we don't improperly detect a blank file as Ruby/Sapphire
-
 	return GBA_TYPE_UNKNOWN;
 }
 
@@ -181,7 +177,6 @@ gba_savetype_t gba_detect_save_type(gba_save_t *save) {
  */
 gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 	//check first footer ID
-
 	gba_save_t *save = malloc(sizeof(gba_save_t));
 	gba_internal_save_t *internal = save->internal = malloc(sizeof(gba_internal_save_t));
 	save->unpacked = malloc(GBA_UNPACKED_SIZE);
@@ -196,11 +191,8 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 		uint8_t *unpack_ptr = save->unpacked + footer->section_id * GBA_BLOCK_DATA_LENGTH;
 		memcpy(unpack_ptr, block_ptr, GBA_BLOCK_DATA_LENGTH);
 	}
-
 	//TODO decrypt sections using security key
-
 	save->type = gba_detect_save_type(save);
-
 	return save;
 }
 
@@ -210,8 +202,9 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
  * @return the main save for this gba game
  */
 gba_save_t *gba_read_main_save(const uint8_t *ptr) {
-	if(!gba_is_gba_save(ptr))
+	if(!gba_is_gba_save(ptr)) {
 		return NULL;
+	}
 	return gba_read_save_internal(ptr + gba_get_save_offset(ptr));
 }
 
@@ -221,8 +214,9 @@ gba_save_t *gba_read_main_save(const uint8_t *ptr) {
  * @return the backup save for this gba game
  */
 gba_save_t *gba_read_backup_save(const uint8_t *ptr) {
-	if(!gba_is_gba_save(ptr))
-			return NULL;
+	if(!gba_is_gba_save(ptr)) {
+		return NULL;
+	}
 	return gba_read_save_internal(ptr + gba_get_backup_offset(ptr));
 }
 
@@ -354,7 +348,7 @@ void pk3_unshuffle(pk3_t *pkm) {
 
 void pk3_crypt(pk3_t *pkm) {
 	uint32_t key = pkm->ot_fid ^ pkm->pid;
-	uint32_t *data = pkm->block;
+	uint32_t *data = (uint32_t *)pkm->block;
 	for(size_t i = 0; i < PK3_DATA_SIZE / 4; ++i) {
 		data[i] ^= key;
 	}

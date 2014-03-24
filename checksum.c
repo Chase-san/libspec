@@ -72,5 +72,5 @@ uint8_t gb_rby_checksum(const uint8_t *ptr, size_t size) {
 }
 
 uint16_t gb_gsc_checksum(const uint8_t *ptr, size_t size) {
-	return nds_checksum(ptr,size);
+	return nds_checksum(ptr, size);
 }
