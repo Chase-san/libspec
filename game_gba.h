@@ -45,8 +45,10 @@ void gba_save_game(uint8_t *, gba_save_t *);
 
 /* Generation 3 Pokemon Data Structure */
 
-enum {
-	PK3_BLOCK_SIZE = 0xC
+enum pk3_def {
+	PK3_BLOCK_SIZE = 0xC,
+	PK3_BOX_SIZE = 0x50,
+	PK3_PARTY_SIZE = 0x64
 };
 
 #pragma pack(push, 1)
@@ -243,6 +245,11 @@ void pk3_encrypt(pk3_t *);
 
 #pragma pack(push, 1)
 typedef struct {
+	uint32_t size;
+	pk3_party_t pokemon[6];
+} gba_party_t;
+
+typedef struct {
 	pk3_t pokemon[30];
 } gba_box_t;
 
@@ -251,9 +258,7 @@ typedef struct {
 } gba_box_name_t;
 #pragma pack(pop)
 
-
-uint32_t * gba_party_size(gba_save_t *);
-pk3_party_t * gba_party_pk3(gba_save_t *, size_t);
+gba_party_t * gba_party(gba_save_t *);
 
 uint32_t * gba_current_box(gba_save_t *);
 gba_box_t *gba_box(gba_save_t *, size_t);

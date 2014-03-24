@@ -289,16 +289,14 @@ uint8_t *gba_create_data() {
 	return data;
 }
 
-enum pk3_def {
+enum pk3_encryption {
 	PK3_SHUFFLE_MOD = 24,
 	PK3_SHUFFLE_SHIFT = 0x2,
 	PK3_DATA_SIZE = 0x30,
 	PK3_BLOCK0_START = 0x00,
 	PK3_BLOCK1_START = 0x0C,
 	PK3_BLOCK2_START = 0x18,
-	PK3_BLOCK3_START = 0x24,
-	PK3_BOX_SIZE = 0x50,
-	PK3_PARTY_SIZE = 0x64
+	PK3_BLOCK3_START = 0x24
 };
 
 /* You might think, hey this looks nothing like my shuffle table, and you would be right. */
@@ -362,46 +360,25 @@ void pk3_encrypt(pk3_t *pkm) {
 }
 
 enum gba_team_data {
-	GBA_RSE_TEAM_SIZE_OFFSET = GBA_BLOCK_DATA_LENGTH + 0x234,
-	GBA_FRLG_TEAM_SIZE_OFFSET = GBA_BLOCK_DATA_LENGTH + 0x034,
-	GBA_RSE_TEAM_OFFSET = GBA_BLOCK_DATA_LENGTH + 0x238,
-	GBA_FRLG_TEAM_OFFSET = GBA_BLOCK_DATA_LENGTH + 0x238,
+	GBA_TEAM_DATA_OFFSET = GBA_BLOCK_DATA_LENGTH,
+	GBA_RSE_TEAM_OFFSET = GBA_TEAM_DATA_OFFSET + 0x234,
+	GBA_FRLG_TEAM_OFFSET = GBA_TEAM_DATA_OFFSET + 0x034
 };
 
-/**
- * Returns the pointer to the saves party size number.
- * @param save the gba save
- * @return pointer to the party size number in the save
- */
-uint32_t * gba_party_size(gba_save_t *save) {
+gba_party_t * gba_party(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS || save->type == GBA_TYPE_E) {
-		return (uint32_t *)(save->unpacked + GBA_RSE_TEAM_SIZE_OFFSET);
+		return (gba_party_t *)(save->unpacked + GBA_RSE_TEAM_OFFSET);
 	}
 	if(save->type == GBA_TYPE_FRLG) {
-		return (uint32_t *)(save->unpacked + GBA_FRLG_TEAM_SIZE_OFFSET);
+		return (gba_party_t *)(save->unpacked + GBA_FRLG_TEAM_OFFSET);
 	}
 	return NULL;
-}
-
-/**
- * Gets the pointer to the given games party pokemon at the given index. It is returned raw from the save, encryption is not automatic.
- * @param save the gba save
- * @param index party pokemon's index, 0 to 5 inclusive.
- * @return party pk3 of the desired pokemon
- */
-pk3_party_t * gba_party_pk3(gba_save_t *save, size_t index) {
-	if(save->type == GBA_TYPE_RS || save->type == GBA_TYPE_E) {
-		return (pk3_party_t *)(save->unpacked + GBA_RSE_TEAM_OFFSET + index * PK3_PARTY_SIZE);
-	}
-	if(save->type == GBA_TYPE_FRLG) {
-		return (pk3_party_t *)(save->unpacked + GBA_FRLG_TEAM_OFFSET + index * PK3_PARTY_SIZE);
-	}
-	return NULL;
-}
+};
 
 enum gba_box_data {
 	GBA_BOX_DATA_OFFSET = GBA_BLOCK_DATA_LENGTH * 5,
-	GBA_CURRENT_BOX_OFFSET = GBA_BOX_DATA_OFFSET + 0,
+	GBA_CURRENT_BOX_OFFSET = GBA_BOX_DATA_OFFSET,
+	GBA_BOX_START = GBA_BOX_DATA_OFFSET + 4,
 	GBA_BOX_SIZE = PK3_BOX_SIZE * 30,
 	GBA_BOX_NAME_OFFSET = GBA_BOX_DATA_OFFSET + 0x8344,
 	GBA_BOX_NAME_SIZE = 9,
@@ -413,7 +390,7 @@ uint32_t *gba_current_box(gba_save_t *save) {
 }
 
 gba_box_t *gba_box(gba_save_t *save, size_t index) {
-	return (gba_box_t *)(save->unpacked + GBA_BOX_DATA_OFFSET + GBA_BOX_SIZE * index);
+	return (gba_box_t *)(save->unpacked + GBA_BOX_START +  GBA_BOX_SIZE * index);
 }
 
 gba_box_name_t *gba_box_name(gba_save_t *save, size_t index) {
