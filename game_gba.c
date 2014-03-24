@@ -202,13 +202,6 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 	save->type = gba_detect_save_type(save);
 
 	return save;
-
-	bad_save:
-	free(save->unpacked);
-	free(internal);
-	free(save);
-
-	return NULL;
 }
 
 /**
