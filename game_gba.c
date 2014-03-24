@@ -351,3 +351,11 @@ void pk3_unshuffle(pk3_t *pkm) {
 	memcpy(&bptr[PK3_BLOCK3_START], &tmp[shuffle[3]], PK3_BLOCK_SIZE);
 	free(tmp);
 }
+
+void pk3_crypt(pk3_t *pkm) {
+	uint32_t key = pkm->ot_fid ^ pkm->pid;
+	uint32_t *data = pkm->block;
+	for(size_t i = 0; i < PK3_DATA_SIZE / 4; ++i) {
+		data[i] ^= key;
+	}
+}

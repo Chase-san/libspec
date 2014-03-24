@@ -210,8 +210,17 @@ typedef struct {
 	pk3_t box;
 
 	struct pk3_party {
-		//TODO
-		uint32_t status;
+		union {
+			uint32_t status;
+			struct {
+				uint8_t status_sleep : 3;
+				bool status_poison : 1;
+				bool status_burn : 1;
+				bool status_freeze : 1;
+				bool status_paralysis : 1;
+				bool status_toxic : 1;
+			}; //status
+		};
 		uint8_t level;
 		uint8_t pokerus_time;
 		uint16_t hp;
@@ -231,8 +240,5 @@ typedef struct {
 void pk3_shuffle(pk3_t *);
 void pk3_unshuffle(pk3_t *);
 void pk3_crypt(pk3_t *);
-void pk3_crypt_party(pk3_party_t *);
-
-//TODO pk3 encryption
 
 #endif //__GBA_H__
