@@ -12,9 +12,9 @@
 
 //SAVE
 typedef enum {
+	DSI_TYPE_UNKNOWN,
 	DSI_TYPE_BW,
-	DSI_TYPE_B2W2,
-	DSI_TYPE_UNKNOWN
+	DSI_TYPE_B2W2
 } dsi_savetype_t;
 
 enum {

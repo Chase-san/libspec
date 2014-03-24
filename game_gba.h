@@ -12,10 +12,10 @@
 
 //SAVE
 typedef enum {
+	GBA_TYPE_UNKNOWN,
 	GBA_TYPE_RS,
 	GBA_TYPE_E,
-	GBA_TYPE_FRLG,
-	GBA_TYPE_UNKNOWN
+	GBA_TYPE_FRLG
 } gba_savetype_t;
 
 enum {

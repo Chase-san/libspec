@@ -8,10 +8,10 @@
 
 //SAVE
 typedef enum {
+	NDS_TYPE_UNKNOWN,
 	NDS_TYPE_DP,
 	NDS_TYPE_PLAT,
-	NDS_TYPE_HGSS,
-	NDS_TYPE_UNKNOWN
+	NDS_TYPE_HGSS
 } nds_savetype_t;
 
 enum {

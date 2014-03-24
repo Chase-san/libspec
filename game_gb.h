@@ -18,10 +18,10 @@ enum {
 };
 
 typedef enum {
+	GB_TYPE_UNKNOWN,
 	GB_TYPE_RBY,
 	GB_TYPE_GS,
-	GB_TYPE_C,
-	GB_TYPE_UNKNOWN
+	GB_TYPE_C
 } gb_savetype_t;
 
 typedef struct {
