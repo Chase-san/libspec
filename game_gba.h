@@ -237,8 +237,7 @@ typedef struct {
 //TODO party data
 #pragma pack(pop)
 
-void pk3_shuffle(pk3_t *);
-void pk3_unshuffle(pk3_t *);
-void pk3_crypt(pk3_t *);
+void pk3_decrypt(pk3_t *);
+void pk3_encrypt(pk3_t *);
 
 #endif //__GBA_H__

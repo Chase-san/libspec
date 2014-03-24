@@ -80,3 +80,14 @@ void pkm_crypt_nds_party(pkm_nds_t *pkm) {
 		tptr[PKM_PARTY_DATA_START_16 + i] ^= nds_prng_next(&prng);
 	}
 }
+
+void pkm_decrypt(pkm_t *pkm) {
+	pkm_crypt(pkm);
+	pkm_unshuffle(pkm);
+}
+
+void pkm_encrypt(pkm_t *pkm) {
+	pkm->header.checksum = pkm_checksum((uint8_t*)pkm->block, PKM_DATA_SIZE_8);
+	pkm_shuffle(pkm);
+	pkm_crypt(pkm);
+}

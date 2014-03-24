@@ -3,7 +3,6 @@
 
 #include "types.h"
 #include "prng.h"
-#include "checksum.h"
 
 /* PKM covers both generation 4 and 5 (nds/dsi), so it has it's own file. */
 
@@ -339,9 +338,8 @@ typedef struct {
 } pkm_nds_t;
 #pragma pack(pop)
 
-void pkm_shuffle(pkm_t *);
-void pkm_unshuffle(pkm_t *);
-void pkm_crypt(pkm_t *);
+void pkm_decrypt(pkm_t *);
+void pkm_encrypt(pkm_t *);
 void pkm_crypt_nds_party(pkm_nds_t *);
 
 #endif //__PKM_H__

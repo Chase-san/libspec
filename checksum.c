@@ -40,17 +40,17 @@ static const uint16_t t_crc16[256] = {
 uint16_t nds_crc16(const uint8_t *ptr, size_t size) {
 	uint8_t tmp;
 	uint16_t sum = 0xFFFF;
-	for(uint32_t b = 0; b < size; ++b) {
+	for(size_t b = 0; b < size; ++b) {
 		tmp = ptr[b] ^ (sum >> 8);
 		sum = t_crc16[tmp] ^ (sum << 8);
 	}
 	return sum;
 }
 
-uint16_t nds_checksum(const uint8_t *ptr, size_t size) {
+uint16_t pkm_checksum(const uint8_t *ptr, size_t size) {
 	uint16_t sum = 0x0;
-	for(size_t i = 0; i < size; ++i) {
-		sum += ptr[i];
+	for(size_t i = 0; i < size; i += 2) {
+		sum += *(uint16_t *)(ptr + i);
 	}
 	return sum;
 }
@@ -72,5 +72,13 @@ uint8_t gb_rby_checksum(const uint8_t *ptr, size_t size) {
 }
 
 uint16_t gb_gsc_checksum(const uint8_t *ptr, size_t size) {
-	return nds_checksum(ptr, size);
+	uint16_t sum = 0x0;
+	for(size_t i = 0; i < size; ++i) {
+		sum += ptr[i];
+	}
+	return sum;
+}
+
+uint16_t pk3_checksum(const uint8_t *ptr, size_t size) {
+	return pkm_checksum(ptr, size);
 }

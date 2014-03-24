@@ -347,3 +347,14 @@ void pk3_crypt(pk3_t *pkm) {
 		data[i] ^= key;
 	}
 }
+
+void pk3_decrypt(pk3_t *pkm) {
+	pk3_crypt(pkm);
+	pk3_unshuffle(pkm);
+}
+
+void pk3_encrypt(pk3_t *pkm) {
+	pkm->checksum = pk3_checksum((uint8_t *)pkm->block, PK3_DATA_SIZE);
+	pk3_shuffle(pkm);
+	pk3_crypt(pkm);
+}
