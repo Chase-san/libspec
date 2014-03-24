@@ -334,7 +334,7 @@ typedef struct {
 } pkm_t;
 
 typedef struct {
-	pkm_t pkm;
+	pkm_t box;
 	pkm_nds_party_t party;
 } pkm_nds_t;
 #pragma pack(pop)
