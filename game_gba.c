@@ -11,7 +11,7 @@
 
 //http://bulbapedia.bulbagarden.net/wiki/Save_data_structure_in_Generation_III
 
-static const uint16_t gba_to_codepage[] = {
+static const uint16_t GBA_TO_CODEPAGE[] = {
 	0x0020, 0x3042, 0x3044, 0x3046, 0x3048, 0x304a, 0x304b, 0x304d,
 	0x304f, 0x3051, 0x3053, 0x3055, 0x3057, 0x3059, 0x305b, 0x305d,
 	0x305f, 0x3061, 0x3064, 0x3066, 0x3068, 0x306a, 0x306b, 0x306c,
@@ -53,13 +53,12 @@ enum {
 	GBA_BLOCK_DATA_LENGTH = 0xF80,
 	GBA_BLOCK_FOOTER_LENGTH = 0xC,
 	GBA_BLOCK_FOOTER_MARK = 0x08012025,
-	GBA_UNPACKED_LENGTH = GBA_BLOCK_DATA_LENGTH * GBA_SAVE_BLOCK_COUNT,
 	GBA_CODEPAGE_SIZE = 0x100
 };
 
 void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size) {
 	for(int i = 0; i < size; ++i) {
-		dst[i] = gba_to_codepage[src[i]];
+		dst[i] = GBA_TO_CODEPAGE[src[i]];
 	}
 }
 
@@ -67,17 +66,12 @@ void ucs2_to_gba_text(char8_t *dst, char16_t *src, size_t size) {
 	for(int i = 0; i < size; ++i) {
 		dst[i] = 0xAC; //question mark
 		for(int j = 0; j < GBA_CODEPAGE_SIZE; ++j) {
-			if(gba_to_codepage[j] == src[i]) {
-				dst[i] = gba_to_codepage[j];
+			if(GBA_TO_CODEPAGE[j] == src[i]) {
+				dst[i] = GBA_TO_CODEPAGE[j];
 				break;
 			}
 		}
 	}
-}
-
-
-gba_savetype_t gba_detect_save_type(uint8_t *ptr, size_t size) {
-	return GBA_TYPE_UNKNOWN;
 }
 
 #pragma pack(push, 1)
@@ -125,6 +119,39 @@ size_t gba_get_backup_offset(const uint8_t *ptr) {
 	return 0;
 }
 
+enum {
+	GBA_GAME_CODE_OFFSET = 0xAC,
+	GBA_RSE_SECURITY_KEY_OFFSET = 0xAC,
+	GBA_RSE_SECURITY_KEY2_OFFSET = 0x1F4,
+	GBA_FRLG_SECURITY_KEY_OFFSET = 0xAF8,
+	GBA_FRLG_SECURITY_KEY2_OFFSET = 0xF20
+};
+
+gba_savetype_t gba_detect_save_type(gba_save_t *save) {
+	//Detecting GBA save type is a pain in the ass
+	//Currently using the security key to determine the save type is a crap shoot, since the key can be zero
+
+	//Ruby/Sapphire have a zero security key, the security feature was incomplete in this version
+	if(save->unpacked[GBA_RSE_SECURITY_KEY_OFFSET] == 0 && save->unpacked[GBA_RSE_SECURITY_KEY2_OFFSET] == 0) {
+		return GBA_TYPE_RS;
+	}
+
+	//But it works fine in Emerald
+	if(save->unpacked[GBA_RSE_SECURITY_KEY_OFFSET] == save->unpacked[GBA_RSE_SECURITY_KEY2_OFFSET]) {
+		return GBA_TYPE_E;
+	}
+
+	//FRLG has the keys in different locations, yay!
+	if(save->unpacked[GBA_FRLG_SECURITY_KEY_OFFSET] == save->unpacked[GBA_FRLG_SECURITY_KEY2_OFFSET]) {
+		return GBA_TYPE_FRLG;
+	}
+
+	//TODO base it off from pokemon encryption, so we can be more sure that we have the correct versions
+	//Also so we don't improperly detect a blank file as Ruby/Sapphire
+
+	return GBA_TYPE_UNKNOWN;
+}
+
 /**
  * Unpacks the save at the pointer to a gba_save_t
  * @param ptr pointer to the data
@@ -133,9 +160,9 @@ size_t gba_get_backup_offset(const uint8_t *ptr) {
 gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 	gba_save_t *save = malloc(sizeof(gba_save_t));
 	gba_internal_save_t *internal = save->internal = malloc(sizeof(gba_internal_save_t));
-	save->unpacked = malloc(GBA_UNPACKED_LENGTH);
+	save->unpacked = malloc(GBA_UNPACKED_SIZE);
 	internal->save_index = get_block_footer(ptr)->save_index;
-	memset(save->unpacked, 0, GBA_UNPACKED_LENGTH); //not sure if it is 0 or 0xFF
+	memset(save->unpacked, 0, GBA_UNPACKED_SIZE); //not sure if it is 0 or 0xFF
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
 		const uint8_t *block_ptr = ptr + i * GBA_BLOCK_LENGTH;
 		//get footer
@@ -145,6 +172,11 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 		uint8_t *unpack_ptr = save->unpacked + footer->section_id * GBA_BLOCK_DATA_LENGTH;
 		memcpy(unpack_ptr, block_ptr, GBA_BLOCK_DATA_LENGTH);
 	}
+
+	//TODO decrypt sections using security key
+
+	save->type = gba_detect_save_type(save);
+
 	return save;
 }
 

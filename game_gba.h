@@ -12,24 +12,25 @@
 
 //SAVE
 typedef enum {
-	GBA_TYPE_RSE,
+	GBA_TYPE_RS,
+	GBA_TYPE_E,
 	GBA_TYPE_FRLG,
 	GBA_TYPE_UNKNOWN
 } gba_savetype_t;
 
 enum {
-	GBA_SAVE_SIZE = 0x20000
+	GBA_SAVE_SIZE = 0x20000,
+	GBA_UNPACKED_SIZE = 0xD900
 };
 
 typedef struct {
 	uint8_t *unpacked;
+	gba_savetype_t type;
 	void *internal;
 } gba_save_t;
 
 void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size);
 void ucs2_to_gba_text(char8_t *dst, char16_t *src, size_t size);
-
-gba_savetype_t gba_detect_save_type(uint8_t *, size_t);
 
 gba_save_t *gba_read_main_save(const uint8_t *);
 gba_save_t *gba_read_backup_save(const uint8_t *);
@@ -201,13 +202,36 @@ typedef struct { //80 bytes for box data
 			};
 		};
 	};
+
+	/* party data */
 } pk3_t;
+
+typedef struct {
+	pk3_t box;
+
+	struct pk3_party {
+		//TODO
+		uint32_t status;
+		uint8_t level;
+		uint8_t pokerus_time;
+		uint16_t hp;
+		uint16_t max_hp;
+		uint16_t atk;
+		uint16_t def;
+		uint16_t spd;
+		uint16_t satk;
+		uint16_t sdef;
+	} party;
+
+} pk3_party_t;
 
 //TODO party data
 #pragma pack(pop)
 
 void pk3_shuffle(pk3_t *);
 void pk3_unshuffle(pk3_t *);
+void pk3_crypt(pk3_t *);
+void pk3_crypt_party(pk3_party_t *);
 
 //TODO pk3 encryption
 
