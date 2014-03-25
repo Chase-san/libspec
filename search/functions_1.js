@@ -1,0 +1,20 @@
+var searchData=
+[
+  ['gb_5fcalc_5fhp_5fstat',['gb_calc_hp_stat',['../stat_8h.html#ac6ee2e1cc245c0dac0e0558a166e99d8',1,'stat.c']]],
+  ['gb_5fcalc_5fstat',['gb_calc_stat',['../stat_8h.html#a48fcdb37aaa39d23f9bc7b8648870af6',1,'stat.c']]],
+  ['gb_5fgsc_5fchecksum',['gb_gsc_checksum',['../checksum_8h.html#a09e363b716252a3a8f577eca0956c72c',1,'checksum.c']]],
+  ['gb_5frby_5fchecksum',['gb_rby_checksum',['../checksum_8h.html#af77c3e826bb1ca29a173242c052fcf0e',1,'checksum.c']]],
+  ['gba_5fblock_5fchecksum',['gba_block_checksum',['../checksum_8h.html#a06217b9c5824cfeb30e1832ecc8b3637',1,'checksum.c']]],
+  ['gba_5fcalc_5fhp_5fstat',['gba_calc_hp_stat',['../stat_8h.html#a86a8cbdf54ef45b1c91d72d188a7da90',1,'stat.c']]],
+  ['gba_5fcalc_5fstat',['gba_calc_stat',['../stat_8h.html#a320ad5c985ca16f7d8a02f8d5d6ac632',1,'stat.c']]],
+  ['gba_5fcreate_5fdata',['gba_create_data',['../game__gba_8h.html#aa0e873b7dd0935e12c245962362f6881',1,'game_gba.c']]],
+  ['gba_5ffree_5fsave',['gba_free_save',['../game__gba_8h.html#a4328f428d807916307f163462703c711',1,'game_gba.c']]],
+  ['gba_5fget_5fparty',['gba_get_party',['../game__gba_8h.html#ae1698a2e628c8bb5ac3f355f2afca855',1,'game_gba.c']]],
+  ['gba_5fget_5fpc',['gba_get_pc',['../game__gba_8h.html#a7fb92736fa3417598cbe308eca6657c4',1,'game_gba.c']]],
+  ['gba_5fread_5fbackup_5fsave',['gba_read_backup_save',['../game__gba_8h.html#aa6c3e8f2c0dbca4ed9c91a214412f2d5',1,'game_gba.c']]],
+  ['gba_5fread_5fmain_5fsave',['gba_read_main_save',['../game__gba_8h.html#a7352589377ca637e15107062f7a1a294',1,'game_gba.c']]],
+  ['gba_5fsave_5fgame',['gba_save_game',['../game__gba_8h.html#a69531297a8683678fcebe61e1422c2bc',1,'game_gba.c']]],
+  ['gba_5ftext_5fto_5fucs2',['gba_text_to_ucs2',['../game__gba_8h.html#a61fa9a42b993ae3e5323ba00887524c6',1,'game_gba.c']]],
+  ['gba_5fwrite_5fbackup_5fsave',['gba_write_backup_save',['../game__gba_8h.html#a844ba8702dba29f1fa7558e8960e89a2',1,'game_gba.c']]],
+  ['gba_5fwrite_5fmain_5fsave',['gba_write_main_save',['../game__gba_8h.html#a6c5711486c123ea6d74d0fc1d0b3ea74',1,'game_gba.c']]]
+];
