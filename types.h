@@ -8,20 +8,23 @@
 
 #include <stdint.h>
 
+/* Don't define bool if it is already defined (standard in C++) */
+#ifndef __cplusplus
+
 /**
  * @brief A boolean value, defined ourselves since we have to be sure it is only 1 byte in size.
  */
 typedef uint8_t bool;
 
 /**
- * @brief Enum of boolean values
+ * @brief Enum of boolean values, enums play nicer with editors/debuggers
  */
 typedef enum {
 	true = 1,
 	false = 0,
-	TRUE = 1,
-	FALSE = 0
 } boolean_value_t;
+
+#endif
 
 /**
  * @brief Type used for 8 bit characters (gb, gba).
