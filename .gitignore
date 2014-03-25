@@ -1,0 +1,28 @@
+# Eclipse
+.cproject
+.project
+.settings/
+
+# DOXYGEN
+docs/
+
+# Folders
+obj/
+test/
+
+# Object files
+*.o
+
+# Makefile MMD
+*.d
+
+# Libraries
+*.lib
+*.a
+
+# Executables
+*.exe
+*.bat
+
+# Other
+ *.bak
