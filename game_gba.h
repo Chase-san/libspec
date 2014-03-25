@@ -48,7 +48,9 @@ void gba_save_game(uint8_t *, gba_save_t *);
 enum pk3_def {
 	PK3_BLOCK_SIZE = 0xC,
 	PK3_BOX_SIZE = 0x50,
-	PK3_PARTY_SIZE = 0x64
+	PK3_PARTY_SIZE = 0x64,
+	PK3_NICKNAME_LENGTH = 10,
+	PK3_OT_NAME_LENGTH = 7
 };
 
 #pragma pack(push, 1)
@@ -151,9 +153,9 @@ typedef struct { //80 bytes for box data
 				uint16_t ot_sid; //8
 			};
 		};
-		char8_t nickname[10]; //18
+		char8_t nickname[PK3_NICKNAME_LENGTH]; //18
 		uint16_t language; //20
-		char8_t ot_name[7]; //27
+		char8_t ot_name[PK3_OT_NAME_LENGTH]; //27
 		pk3_marking_t markings; //28
 		uint16_t checksum; //30
 		uint16_t unknown_0; //32
@@ -243,19 +245,26 @@ void pk3_encrypt(pk3_t *);
 
 //Actual Save Editing
 
+enum gba_pokemon_storage {
+	GBA_BOX_COUNT = 14,
+	GBA_POKEMON_IN_BOX = 30,
+	GBA_BOX_NAME_LENGTH = 9,
+	GBA_POKEMON_IN_PARTY = 6,
+};
+
 #pragma pack(push, 1)
 typedef struct {
 	uint32_t size;
-	pk3_party_t pokemon[6];
+	pk3_party_t pokemon[GBA_POKEMON_IN_PARTY];
 } gba_party_t;
 
 typedef struct {
 	uint32_t current_box;
 	struct {
-		pk3_t pokemon[30];
-	} box[14];
-	char8_t name[14][9];
-	uint8_t wallpaper[14];
+		pk3_t pokemon[GBA_POKEMON_IN_BOX];
+	} box[GBA_BOX_COUNT];
+	char8_t name[GBA_BOX_COUNT][GBA_BOX_NAME_LENGTH];
+	uint8_t wallpaper[GBA_BOX_COUNT];
 } gba_pc_t;
 
 #pragma pack(pop)
