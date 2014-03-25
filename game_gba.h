@@ -456,4 +456,38 @@ typedef struct {
 
 gba_storage_t *gba_get_storage(gba_save_t*);
 
+
+#pragma pack(push, 1)
+/**
+ * @brief GBA Time Played Structure
+ */
+typedef struct {
+	uint16_t hours; //2
+	uint8_t minutes; //3
+	uint8_t seconds; //4
+	uint8_t frames; //5
+} gba_time_t;
+
+/**
+ * @brief GBA Trainer Data Structure
+ */
+typedef struct {
+	char8_t name[7];
+	uint8_t : 8; //padding
+	uint8_t gender;
+	uint8_t : 8; //padding
+	union {
+		uint32_t fid;
+		struct {
+			uint16_t id;
+			uint16_t sid;
+		};
+	};
+	gba_time_t time_played;
+} gba_trainer_t;
+#pragma pack(pop)
+
+gba_trainer_t *gba_get_trainer(gba_save_t*);
+
+
 #endif //__GBA_H__

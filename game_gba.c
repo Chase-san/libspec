@@ -475,4 +475,6 @@ void gba_crypt_secure(gba_save_t *save) {
 	storage->money ^= key.key;
 }
 
-
+gba_trainer_t *gba_get_trainer(gba_save_t*save) {
+	return (gba_trainer_t *)save->data;
+}
