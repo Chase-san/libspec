@@ -435,10 +435,8 @@ gba_pc_t *gba_get_pc(gba_save_t *save) {
 }
 
 enum {
-	GBA_RSE_STORAGE_OFFSET = 0x490,
-	GBA_FRLG_STORAGE_OFFSET = 0x290,
-	GBA_E_ITEM_COUNT = 236,
-	GBA_RS_FRLG_ITEM_COUNT = 216
+	GBA_RSE_STORAGE_OFFSET = GBA_BLOCK_DATA_LENGTH + 0x490,
+	GBA_FRLG_STORAGE_OFFSET = GBA_BLOCK_DATA_LENGTH + 0x290,
 };
 
 gba_storage_t *gba_get_storage(gba_save_t *save) {
@@ -451,7 +449,6 @@ gba_storage_t *gba_get_storage(gba_save_t *save) {
 	return NULL;
 }
 
-
 void gba_crypt_secure(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS)
 		return;
@@ -463,14 +460,14 @@ void gba_crypt_secure(gba_save_t *save) {
 		key = gba_get_security_key(save->data + GBA_RSE_SECURITY_KEY_OFFSET);
 
 		//crypt item data, skip the PC data (not encrypted)
-		for(int i = 50; i < GBA_E_ITEM_COUNT; ++i) {
+		for(size_t i = 50; i < GBA_E_ITEM_COUNT; ++i) {
 			storage->e_items.all[i].amount ^= key.lower;
 		}
 	} else if(save->type == GBA_TYPE_FRLG) {
 		key = gba_get_security_key(save->data + GBA_FRLG_SECURITY_KEY_OFFSET);
 
 		//crypt item data, skip the PC data (not encrypted)
-		for(int i = 30; i < GBA_RS_FRLG_ITEM_COUNT; ++i) {
+		for(size_t i = 30; i < GBA_FRLG_ITEM_COUNT; ++i) {
 			storage->frlg_items.all[i].amount ^= key.lower;
 		}
 	}

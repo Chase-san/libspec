@@ -376,6 +376,12 @@ typedef struct {
 gba_party_t *gba_get_party(gba_save_t *);
 gba_pc_t *gba_get_pc(gba_save_t *);
 
+enum {
+	GBA_RS_ITEM_COUNT = 216,
+	GBA_E_ITEM_COUNT = 236,
+	GBA_FRLG_ITEM_COUNT = 216
+};
+
 #pragma pack(push, 1)
 /**
  * @brief GBA Item Slot Structure.
@@ -391,7 +397,7 @@ typedef struct {
  * @brief Ruby/Sapphire Item Storage
  */
 typedef struct { //216 items
-	gba_item_slot_t all[216];
+	gba_item_slot_t all[GBA_RS_ITEM_COUNT];
 	struct {
 		gba_item_slot_t pc[50];
 		gba_item_slot_t item[20];
@@ -406,7 +412,7 @@ typedef struct { //216 items
  * @brief Emerald Item Storage
  */
 typedef union { //236 items E
-	gba_item_slot_t all[236];
+	gba_item_slot_t all[GBA_E_ITEM_COUNT];
 	struct {
 		gba_item_slot_t pc[50];
 		gba_item_slot_t item[30];
@@ -421,7 +427,7 @@ typedef union { //236 items E
  * @brief Fire Red/Leaf Green Item Storage
  */
 typedef union { //216 items FRLG
-	gba_item_slot_t all[216];
+	gba_item_slot_t all[GBA_FRLG_ITEM_COUNT];
 	struct {
 		gba_item_slot_t pc[30];
 		gba_item_slot_t item[42];
@@ -440,6 +446,7 @@ typedef struct {
 	uint32_t : 32;
 	union {
 		gba_rs_storage_t rs_items;
+		//It's okay if a data structure goes beyond the end of the data, as long as they don't try and access it!
 		gba_e_storage_t e_items;
 		gba_frlg_storage_t frlg_items;
 	};
