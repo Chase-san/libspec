@@ -11,7 +11,9 @@
 enum {
 	PKM_LENGTH = 136,
 	PKM_PARTY_LENGTH = 236,
-	PKM_BLOCK_SIZE = 32
+	PKM_BLOCK_SIZE = 32,
+	PKM_NICKNAME_LENGTH = 11,
+	PKM_OT_NAME_LENGTH = 8
 };
 
 #pragma pack(push, 1)
@@ -305,7 +307,7 @@ typedef struct {
 
 			/* Block C */
 			struct { //0x32
-				char16_t nickname[11];
+				char16_t nickname[PKM_NICKNAME_LENGTH];
 				uint16_t hometown; //24
 				pkm_ribbon_sinnoh3_t ribbon_sinnoh3; //26
 				pkm_ribbon_sinnoh4_t ribbon_sinnoh4; //28
@@ -314,7 +316,7 @@ typedef struct {
 
 			/* Block D */
 			struct { //0x32
-				char16_t ot_name[8];
+				char16_t ot_name[PKM_OT_NAME_LENGTH];
 				pkm_date_t egg_met_date;
 				pkm_date_t met_date;
 				uint16_t egg_loc_dp;
