@@ -1,7 +1,8 @@
 /**
+ * The GBA games, Generation 3 games. These games include Ruby, Sapphire, Emerald, Fire Red and Leaf Green.
+ *
  * @file game_gba.h
- * @brief Containes structures and functions for editing gba pokemon save games.
- * The GBA games, better known as generation 3, or the gen 3 games. These games include Ruby, Sapphire, Emerald, Fire Red and Leaf Green.
+ * @brief Contains the structures and functions for editing GBA pokemon save games.
  */
 
 #ifndef __GBA_H__

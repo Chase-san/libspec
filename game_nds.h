@@ -1,3 +1,10 @@
+/**
+ * The NDS games, Generation 4 games. These games include Diamond, Pearl, Platinum, Heart Gold and Soul Silver.
+ *
+ * @file game_nds.h
+ * @brief Contains the structures and functions for editing NDS pokemon save games.
+ */
+
 #ifndef __NDS_H__
 #define __NDS_H__
 

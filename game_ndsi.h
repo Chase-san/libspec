@@ -1,8 +1,9 @@
-//Generation 5
-//The "DSi-enhanced" Pokemon Games.
-
-//Black/White
-//Black 2/White 2
+/**
+ * The DSi-enhanced games, Generation 5 games. These games include Black, White, Black 2 and White 2.
+ *
+ * @file game_ndsi.h
+ * @brief Contains the structures and functions for editing DSi-enhanced pokemon save games.
+ */
 
 #ifndef __DSI_H__
 #define __DSI_H__

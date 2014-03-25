@@ -1,3 +1,7 @@
+/**
+ * @file pkm.h
+ */
+
 #ifndef __PKM_H__
 #define __PKM_H__
 
@@ -9,11 +13,11 @@
 
 //PKM
 enum {
-	PKM_LENGTH = 136,
-	PKM_PARTY_LENGTH = 236,
-	PKM_BLOCK_SIZE = 32,
-	PKM_NICKNAME_LENGTH = 11,
-	PKM_OT_NAME_LENGTH = 8
+	PKM_LENGTH = 136,        //!< PKM_LENGTH
+	PKM_PARTY_LENGTH = 236,  //!< PKM_PARTY_LENGTH
+	PKM_BLOCK_SIZE = 32,     //!< PKM_BLOCK_SIZE
+	PKM_NICKNAME_LENGTH = 11,//!< PKM_NICKNAME_LENGTH
+	PKM_OT_NAME_LENGTH = 8   //!< PKM_OT_NAME_LENGTH
 };
 
 #pragma pack(push, 1)
