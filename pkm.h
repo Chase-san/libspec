@@ -249,7 +249,7 @@ typedef struct {
 	union {
 		uint8_t block[4][PKM_BLOCK_SIZE];
 		struct {
-			/* Block A */
+			/** @brief Block A */
 			struct { //0x32
 				uint16_t species;
 				uint16_t held_item;
@@ -269,7 +269,7 @@ typedef struct {
 				};
 			};
 
-			/* Block B */
+			/** @brief Block B */
 			struct { //0x32
 				uint16_t move[4]; //8
 				uint8_t move_pp[4]; //4
@@ -309,7 +309,7 @@ typedef struct {
 				uint16_t met_loc_plat;
 			};
 
-			/* Block C */
+			/** @brief Block C */
 			struct { //0x32
 				char16_t nickname[PKM_NICKNAME_LENGTH];
 				uint16_t hometown; //24
@@ -318,7 +318,7 @@ typedef struct {
 				uint32_t unknown; //32
 			};
 
-			/* Block D */
+			/** @brief Block D */
 			struct { //0x32
 				char16_t ot_name[PKM_OT_NAME_LENGTH];
 				pkm_date_t egg_met_date;

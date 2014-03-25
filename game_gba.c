@@ -9,7 +9,11 @@
 #include "game_gba.h"
 #include "checksum.h"
 
-//http://bulbapedia.bulbagarden.net/wiki/Save_data_structure_in_Generation_III
+
+// Prototypes
+void gba_crypt_secure(gba_save_t *);
+
+// End Prototypes
 
 static const uint16_t GBA_TO_CODEPAGE[] = {
 	0x0020, 0x3042, 0x3044, 0x3046, 0x3048, 0x304a, 0x304b, 0x304d,
@@ -203,8 +207,11 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 		uint8_t *unpack_ptr = save->data + footer->section_id * GBA_BLOCK_DATA_LENGTH;
 		memcpy(unpack_ptr, block_ptr, GBA_BLOCK_DATA_LENGTH);
 	}
-	//TODO decrypt sections using security key
 	save->type = gba_detect_save_type(save);
+
+	//Decrypt data that needs to be
+	gba_crypt_secure(save);
+
 	return save;
 }
 
@@ -246,6 +253,10 @@ void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 	//wipe whatever is there now
 	memset(ptr, 0, GBA_SAVE_SECTION);
 	gba_internal_save_t *internal = save->internal;
+
+	//Encrypt data that needs to be
+	gba_crypt_secure((gba_save_t *)save);
+
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
 		//write data
 		uint8_t *dest_ptr = ptr + i * GBA_BLOCK_LENGTH;
@@ -259,6 +270,11 @@ void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 		//calculate checksum
 		footer->checksum = get_block_checksum(dest_ptr);
 	}
+
+	//Decrypt the data again! Since they might make more edits and such.
+	gba_crypt_secure((gba_save_t *)save);
+
+	//See... we didn't change anything <.< >.>
 }
 
 /**
@@ -416,6 +432,50 @@ enum gba_box_data {
  */
 gba_pc_t *gba_get_pc(gba_save_t *save) {
 	return (gba_pc_t *)(save->data + GBA_BOX_DATA_OFFSET);
+}
+
+enum {
+	GBA_RSE_STORAGE_OFFSET = 0x490,
+	GBA_FRLG_STORAGE_OFFSET = 0x290,
+	GBA_E_ITEM_COUNT = 236,
+	GBA_RS_FRLG_ITEM_COUNT = 216
+};
+
+gba_storage_t *gba_get_storage(gba_save_t *save) {
+	if(save->type == GBA_TYPE_RS || save->type == GBA_TYPE_E) {
+		return (gba_storage_t *)(save->data + GBA_RSE_STORAGE_OFFSET);
+	}
+	if(save->type == GBA_TYPE_FRLG) {
+		return (gba_storage_t *)(save->data + GBA_FRLG_STORAGE_OFFSET);
+	}
+	return NULL;
+}
+
+
+void gba_crypt_secure(gba_save_t *save) {
+	if(save->type == GBA_TYPE_RS)
+		return;
+
+	gba_storage_t *storage = gba_get_storage(save);
+	gba_security_key_t key;
+
+	if(save->type == GBA_TYPE_E) {
+		key = gba_get_security_key(save->data + GBA_RSE_SECURITY_KEY_OFFSET);
+
+		//crypt item data, skip the PC data (not encrypted)
+		for(int i = 50; i < GBA_E_ITEM_COUNT; ++i) {
+			storage->e_items.all[i].amount ^= key.lower;
+		}
+	} else if(save->type == GBA_TYPE_FRLG) {
+		key = gba_get_security_key(save->data + GBA_FRLG_SECURITY_KEY_OFFSET);
+
+		//crypt item data, skip the PC data (not encrypted)
+		for(int i = 30; i < GBA_RS_FRLG_ITEM_COUNT; ++i) {
+			storage->frlg_items.all[i].amount ^= key.lower;
+		}
+	}
+
+	storage->money ^= key.key;
 }
 
 

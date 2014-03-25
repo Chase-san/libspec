@@ -190,65 +190,94 @@ typedef struct { //0x2
  * @brief A GBA pokemon's box data. 80 bytes in size.
  */
 typedef struct { //80 bytes for box data
-	/* Header */
+	/** @brief Header */
 	struct { //32 bytes
+		/** Personality Value */
 		uint32_t pid; //4
 		union {
+			/** Original Trainer Full ID */
 			uint32_t ot_fid; //full id
 			struct {
+				/** Original Trainer ID */
 				uint16_t ot_id; //6
+				/** Original Trainer Secret ID */
 				uint16_t ot_sid; //8
 			};
 		};
+		/** Pokemon's Nickname */
 		char8_t nickname[PK3_NICKNAME_LENGTH]; //18
+		/** Original Language */
 		uint16_t language; //20
+		/** Original Trainer's Name */
 		char8_t ot_name[PK3_OT_NAME_LENGTH]; //27
+		/** Pokemon's Markings */
 		pk3_marking_t markings; //28
+		/** Checksum of all 4 blocks */
 		uint16_t checksum; //30
-		uint16_t unknown_0; //32
+		uint16_t : 16; //32
 	};
 
 	/* data */
 	union { //48 bytes
+		/** Raw Block Access */
 		uint8_t block[4][PK3_BLOCK_SIZE];
 		struct {
-			/* Block A */
+			/** @brief Block A */
 			struct {
+				/** Pokemon Species */
 				uint16_t species;
+				/** Held Item ID */
 				uint16_t held_item;
+				/** Experience Points */
 				uint32_t exp;
+				/** Pokemon Move PPUPs */
 				pk3_pp_up_t pp_up;
+				/** Friendship Value / Steps to Hatch */
 				uint8_t friendship;
-				uint16_t unknown_1;
+				uint16_t : 16;
 			};
-			/* Block B */
+			/** @brief Block B */
 			struct {
+				/** Move ID (4) */
 				uint16_t move[4];
+				/** Move PP Remaining (4) */
 				uint8_t move_pp[4];
 			};
-			/* Block C */
+			/** @brief Block C */
 			struct {
+				/** Effort Values */
 				pk3_effort_t ev;
+				/** Contest Stats */
 				pk3_contest_t contest;
 			};
-			/* Block D */
+			/** @brief Block D */
 			struct {
+				/** Poke'R US Virus */
 				pk3_pokerus_t pokerus;
+				/** Location Met */
 				uint8_t met_loc;
 				struct {
+					/** Level Met At */
 					uint8_t level_met : 7;
+					/** Original Game ID */
 					uint8_t game : 4;
+					/** Pokeball Caught In */
 					uint8_t pokeball : 4;
+					/** Original Trainer's Gender */
 					bool is_ot_female : 1;
 				};
 				union {
+					/** Pokemon's Individual Values */
 					pk3_genes_t iv;
 					struct {
 						uint32_t : 30;
+						/** Is this pokemon an Egg? */
 						bool is_egg : 1;
+						/** Which of the two possible abilities does this pokemon have? */
 						bool ability : 1;
 					};
 				};
+				/** Pokemon's Ribbons */
 				pk3_ribbon_t ribbon;
 			};
 		};
@@ -357,7 +386,67 @@ typedef struct {
 	/** The total number of that item. */
 	uint16_t amount;
 } gba_item_slot_t;
+
+/**
+ * @brief Ruby/Sapphire Item Storage
+ */
+typedef struct { //216 items
+	gba_item_slot_t all[216];
+	struct {
+		gba_item_slot_t pc[50];
+		gba_item_slot_t item[20];
+		gba_item_slot_t keyitem[20];
+		gba_item_slot_t ball[16];
+		gba_item_slot_t tmhm[64];
+		gba_item_slot_t berry[46];
+	};
+} gba_rs_storage_t;
+
+/**
+ * @brief Emerald Item Storage
+ */
+typedef union { //236 items E
+	gba_item_slot_t all[236];
+	struct {
+		gba_item_slot_t pc[50];
+		gba_item_slot_t item[30];
+		gba_item_slot_t keyitem[30];
+		gba_item_slot_t ball[16];
+		gba_item_slot_t tmhm[64];
+		gba_item_slot_t berry[46];
+	};
+} gba_e_storage_t;
+
+/**
+ * @brief Fire Red/Leaf Green Item Storage
+ */
+typedef union { //216 items FRLG
+	gba_item_slot_t all[216];
+	struct {
+		gba_item_slot_t pc[30];
+		gba_item_slot_t item[42];
+		gba_item_slot_t keyitem[30];
+		gba_item_slot_t ball[13];
+		gba_item_slot_t tmhm[58];
+		gba_item_slot_t berry[43];
+	};
+} gba_frlg_storage_t;
+
+/**
+ * Combined Item Storage
+ */
+typedef struct {
+	uint32_t money;
+	uint32_t : 32;
+	union {
+		gba_rs_storage_t rs_items;
+		gba_e_storage_t e_items;
+		gba_frlg_storage_t frlg_items;
+	};
+} gba_storage_t;
+
 #pragma pack(pop)
 
+gba_storage_t *gba_get_storage(gba_save_t*);
 
 #endif //__GBA_H__
