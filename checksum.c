@@ -37,6 +37,13 @@ static const uint16_t t_crc16[256] = {
 	0x6E17, 0x7E36, 0x4E55, 0x5E74, 0x2E93, 0x3EB2, 0x0ED1, 0x1EF0
 };
 
+/**
+ * This is used by NDS saves for calculating block checksums.
+ * @brief Calculates the CRC-16-IBM of the given data.
+ * @param ptr The pointer to the start of the data.
+ * @param size The length of the data.
+ * @return The CRC-16-IBM value.
+ */
 uint16_t nds_crc16(const uint8_t *ptr, size_t size) {
 	uint8_t tmp;
 	uint16_t sum = 0xFFFF;
@@ -47,6 +54,13 @@ uint16_t nds_crc16(const uint8_t *ptr, size_t size) {
 	return sum;
 }
 
+/**
+ * This is used in the PKM data structures to calculate the checksum of the encrypted blocks.
+ * @brief Calculates a simple 16-bit checksum of the given data.
+ * @param ptr The pointer to the start of the data.
+ * @param size The length of the data.
+ * @return The 16-bit checksum of the given data.
+ */
 uint16_t pkm_checksum(const uint8_t *ptr, size_t size) {
 	uint16_t sum = 0x0;
 	for(size_t i = 0; i < size; i += 2) {
@@ -55,6 +69,13 @@ uint16_t pkm_checksum(const uint8_t *ptr, size_t size) {
 	return sum;
 }
 
+/**
+ * This is used by the GBA to calculate block checksums.
+ * @brief Calculates a 16-bit block checksum of the given data.
+ * @param ptr The pointer to the start of the data.
+ * @param size The length of the data.
+ * @return The 16-bit block checksum of the given data.
+ */
 uint16_t gba_block_checksum(const uint8_t *ptr, size_t size) {
 	uint32_t sum = 0;
 	for(size_t i = 0; i < size; i += 4) {
@@ -63,6 +84,13 @@ uint16_t gba_block_checksum(const uint8_t *ptr, size_t size) {
 	return sum + (sum >> 16);
 }
 
+/**
+ * This is used by Pokemon Red, Blue, and Yellow to calculate block checksums.
+ * @brief Calculates the 8-bit GB block checksum of the given data.
+ * @param ptr The pointer to the start of the data.
+ * @param size The length of the data.
+ * @return The 8-bit block checksum of the given data.
+ */
 uint8_t gb_rby_checksum(const uint8_t *ptr, size_t size) {
 	uint8_t sum = 0xFF;
 	for(size_t i = 0; i < size; ++i) {
@@ -71,6 +99,13 @@ uint8_t gb_rby_checksum(const uint8_t *ptr, size_t size) {
 	return sum;
 }
 
+/**
+ * This is used by Pokemon Gold, Silver, and Crystal to calculate block checksums.
+ * @brief Calculates the 16-bit GB block checksum of the given data.
+ * @param ptr The pointer to the start of the data.
+ * @param size The length of the data.
+ * @return The 16-bit block checksum of the given data.
+ */
 uint16_t gb_gsc_checksum(const uint8_t *ptr, size_t size) {
 	uint16_t sum = 0x0;
 	for(size_t i = 0; i < size; ++i) {
@@ -79,6 +114,13 @@ uint16_t gb_gsc_checksum(const uint8_t *ptr, size_t size) {
 	return sum;
 }
 
+/**
+ * This is simply a copy of pkm_checksum(), it is used in the PK3 data structures to calculate the checksum of the encrypted blocks.
+ * @brief Calculates a simple 16-bit checksum of the given data.
+ * @param ptr The pointer to the start of the data.
+ * @param size The length of the data.
+ * @return The 16-bit checksum of the given data
+ */
 uint16_t pk3_checksum(const uint8_t *ptr, size_t size) {
 	return pkm_checksum(ptr, size);
 }

@@ -18,7 +18,7 @@ static inline uint16_t gb_calc_base_stat(uint8_t level, uint8_t base_stat, uint8
 
 // non-HP: (((Base + IV) * 2 + ceil(Sqrt(stat exp)) / 4) * Level) / 100 + 5
 /**
- * Used to calculate a non-HP stat for a pokemon from generation 1 or 2.
+ * @brief Used to calculate a non-HP stat for a pokemon from generation 1 or 2.
  * @param level The pokemon's level.
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
@@ -31,7 +31,7 @@ uint16_t gb_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint16_t sta
 
 // HP: (((Base + IV) * 2 + ceil(Sqrt(stat exp)) / 4) * Level) / 100 + Level + 10
 /**
- * Used to calculate the HP stat for a pokemon from generation 1 or 2.
+ * @brief Used to calculate the HP stat for a pokemon from generation 1 or 2.
  * @param level The pokemon's level.
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
@@ -48,7 +48,7 @@ static inline uint16_t gba_calc_base_stat(uint8_t level, uint8_t base_stat, uint
 
 //; non-HP (((base_stat * 2) + iv + (ev / 4)) * level) / 100 + 5
 /**
- * Used to calculate a non-HP stat for a pokemon from generation 3.
+ * @brief Used to calculate a non-HP stat for a pokemon from generation 3.
  * @param level The pokemon's level.
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
@@ -69,7 +69,7 @@ uint16_t gba_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev,
 
 //; HP (((base_stat * 2) + iv + (ev / 4)) * level) / 100 + level + 10
 /**
- * Used to calculate the HP stat for a pokemon from generation 3.
+ * @brief Used to calculate the HP stat for a pokemon from generation 3.
  * @param level The pokemon's level.
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
@@ -81,7 +81,7 @@ uint16_t gba_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t 
 }
 
 /**
- * Used to calculate a non-HP stat for a pokemon from generation 4.
+ * @brief Used to calculate a non-HP stat for a pokemon from generation 4.
  * @param level The pokemon's level.
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
@@ -94,7 +94,7 @@ uint16_t nds_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev,
 }
 
 /**
- * Used to calculate the HP stat for a pokemon from generation 4.
+ * @brief Used to calculate the HP stat for a pokemon from generation 4.
  * @param level The pokemon's level.
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
@@ -106,7 +106,7 @@ uint16_t nds_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t 
 }
 
 /**
- * Used to calculate a non-HP stat for a pokemon from generation 5.
+ * @brief Used to calculate a non-HP stat for a pokemon from generation 5.
  * @param level The pokemon's level.
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
@@ -119,7 +119,7 @@ uint16_t dsi_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev,
 }
 
 /**
- * Used to calculate the HP stat for a pokemon from generation 5.
+ * @brief Used to calculate the HP stat for a pokemon from generation 5.
  * @param level The pokemon's level.
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.

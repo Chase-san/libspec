@@ -1,3 +1,8 @@
+/**
+ * @file checksum.h
+ * @brief Containes functions for calculation of checksums.
+ */
+
 #ifndef __CHECKSUM_H__
 #define __CHECKSUM_H__
 

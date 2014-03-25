@@ -9,7 +9,7 @@
 #include <stdint.h>
 
 /**
- * Defines the prng seed value.
+ * @brief Defines a prng seed value.
  */
 typedef uint32_t prng_seed_t;
 

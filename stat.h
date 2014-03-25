@@ -9,7 +9,7 @@
 #include "types.h"
 
 /**
- * Enum to tell the stat functions if a nature is beneficial or otherwise.
+ * @brief Enum to tell the stat functions if a nature is beneficial or otherwise.
  */
 typedef enum {
 	/** A neutral nature for the given stat. */

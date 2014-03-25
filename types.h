@@ -9,12 +9,12 @@
 #include <stdint.h>
 
 /**
- * A boolean value, defined ourselves since we have to be sure it is only 1 byte in size.
+ * @brief A boolean value, defined ourselves since we have to be sure it is only 1 byte in size.
  */
 typedef uint8_t bool;
 
 /**
- * Enum of boolean values
+ * @brief Enum of boolean values
  */
 typedef enum {
 	true = 1,
@@ -24,11 +24,11 @@ typedef enum {
 } boolean_value_t;
 
 /**
- * Type used for 8 bit characters (gb,gba).
+ * @brief Type used for 8 bit characters (gb, gba).
  */
 typedef uint8_t char8_t;
 /**
- * Type used for 16 bit characters (nds,dsi).
+ * @brief Type used for 16 bit characters (nds, dsi).
  */
 typedef uint16_t char16_t;
 

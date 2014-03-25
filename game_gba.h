@@ -1,8 +1,8 @@
-//Generation 3
-//The GBA Games
-
-//Ruby/Sapphire/Emerald
-//Fire Red/Leaf Green
+/**
+ * @file game_gba.h
+ * @brief Containes structures and functions for editing gba pokemon save games.
+ * The GBA games, better known as generation 3, or the gen 3 games. These games include Ruby, Sapphire, Emerald, Fire Red and Leaf Green.
+ */
 
 #ifndef __GBA_H__
 #define __GBA_H__
@@ -10,22 +10,36 @@
 #include <stdlib.h>
 #include <stdint.h>
 
-//SAVE
+/**
+ * @brief Enum containing the different gba game types.
+ */
 typedef enum {
+	/** An unknown GBA game, no functions will work on this save type. */
 	GBA_TYPE_UNKNOWN,
+	/** Pokemon Ruby and Pokemon Sapphire */
 	GBA_TYPE_RS,
+	/** Pokemon Emerald */
 	GBA_TYPE_E,
+	/** Pokemon Fire Red and Pokemon Leaf Green */
 	GBA_TYPE_FRLG
 } gba_savetype_t;
 
 enum {
+	/** The size in bytes of the GBA save we expect. */
 	GBA_SAVE_SIZE = 0x20000,
+	/** The unpacked size of a GBA save slot. */
 	GBA_UNPACKED_SIZE = 0xD900
 };
 
+/**
+ * @brief A structure used for handling gba save types.
+ */
 typedef struct {
-	uint8_t *unpacked;
+	/** @brief The unpacked data for this save. Will always be GBA_UNPACKED_SIZE in length. */
+	uint8_t *data;
+	/** @brief The savetype of the save. */
 	gba_savetype_t type;
+	/** @brief Internal data used by the library. */
 	void *internal;
 } gba_save_t;
 

@@ -151,18 +151,18 @@ gba_savetype_t gba_detect_save_type(gba_save_t *save) {
 	//Detecting GBA save type is a pain in the ass
 	//Currently using the security key to determine the save type is a crap shoot, since the key can be zero
 	//Ruby/Sapphire have a zero security key, the security feature was incomplete in this version
-	if(gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY_OFFSET).key == 0
-			&& gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY2_OFFSET).key == 0) {
+	if(gba_get_security_key(save->data + GBA_RSE_SECURITY_KEY_OFFSET).key == 0
+			&& gba_get_security_key(save->data + GBA_RSE_SECURITY_KEY2_OFFSET).key == 0) {
 		return GBA_TYPE_RS;
 	}
 	//But it works fine in Emerald
-	if(gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY_OFFSET).key
-			== gba_get_security_key(save->unpacked + GBA_RSE_SECURITY_KEY2_OFFSET).key) {
+	if(gba_get_security_key(save->data + GBA_RSE_SECURITY_KEY_OFFSET).key
+			== gba_get_security_key(save->data + GBA_RSE_SECURITY_KEY2_OFFSET).key) {
 		return GBA_TYPE_E;
 	}
 	//FRLG has the keys in different locations, yay!
-	if(gba_get_security_key(save->unpacked + GBA_FRLG_SECURITY_KEY_OFFSET).key
-			== gba_get_security_key(save->unpacked + GBA_FRLG_SECURITY_KEY2_OFFSET).key) {
+	if(gba_get_security_key(save->data + GBA_FRLG_SECURITY_KEY_OFFSET).key
+			== gba_get_security_key(save->data + GBA_FRLG_SECURITY_KEY2_OFFSET).key) {
 		return GBA_TYPE_FRLG;
 	}
 	//TODO base it off from pokemon encryption, so we can be more sure that we have the correct versions
@@ -179,16 +179,16 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 	//check first footer ID
 	gba_save_t *save = malloc(sizeof(gba_save_t));
 	gba_internal_save_t *internal = save->internal = malloc(sizeof(gba_internal_save_t));
-	save->unpacked = malloc(GBA_UNPACKED_SIZE);
+	save->data = malloc(GBA_UNPACKED_SIZE);
 	internal->save_index = get_block_footer(ptr)->save_index;
-	memset(save->unpacked, 0, GBA_UNPACKED_SIZE); //not sure if it is 0 or 0xFF
+	memset(save->data, 0, GBA_UNPACKED_SIZE); //not sure if it is 0 or 0xFF
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
 		const uint8_t *block_ptr = ptr + i * GBA_BLOCK_LENGTH;
 		//get footer
 		gba_footer_t *footer = get_block_footer(block_ptr);
 		internal->order[i] = footer->section_id;
 		//get ptr to unpack too
-		uint8_t *unpack_ptr = save->unpacked + footer->section_id * GBA_BLOCK_DATA_LENGTH;
+		uint8_t *unpack_ptr = save->data + footer->section_id * GBA_BLOCK_DATA_LENGTH;
 		memcpy(unpack_ptr, block_ptr, GBA_BLOCK_DATA_LENGTH);
 	}
 	//TODO decrypt sections using security key
@@ -225,7 +225,7 @@ gba_save_t *gba_read_backup_save(const uint8_t *ptr) {
  * @param save the save to free
  */
 void gba_free_save(gba_save_t *save) {
-	free(save->unpacked);
+	free(save->data);
 	free((gba_internal_save_t *)save->internal);
 	free(save);
 }
@@ -242,7 +242,7 @@ void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
 		//write data
 		uint8_t *dest_ptr = ptr + i * GBA_BLOCK_LENGTH;
-		uint8_t *src_ptr = save->unpacked + internal->order[i] * GBA_BLOCK_DATA_LENGTH;
+		uint8_t *src_ptr = save->data + internal->order[i] * GBA_BLOCK_DATA_LENGTH;
 		memcpy(dest_ptr, src_ptr, GBA_BLOCK_DATA_LENGTH);
 		//write footer
 		gba_footer_t *footer = get_block_footer(dest_ptr);
@@ -367,10 +367,10 @@ enum gba_team_data {
 
 gba_party_t *gba_get_party(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS || save->type == GBA_TYPE_E) {
-		return (gba_party_t *)(save->unpacked + GBA_RSE_TEAM_OFFSET);
+		return (gba_party_t *)(save->data + GBA_RSE_TEAM_OFFSET);
 	}
 	if(save->type == GBA_TYPE_FRLG) {
-		return (gba_party_t *)(save->unpacked + GBA_FRLG_TEAM_OFFSET);
+		return (gba_party_t *)(save->data + GBA_FRLG_TEAM_OFFSET);
 	}
 	return NULL;
 };
@@ -380,7 +380,7 @@ enum gba_box_data {
 };
 
 gba_pc_t *gba_get_pc(gba_save_t *save) {
-	return (gba_pc_t *)(save->unpacked + GBA_BOX_DATA_OFFSET);
+	return (gba_pc_t *)(save->data + GBA_BOX_DATA_OFFSET);
 }
 
 

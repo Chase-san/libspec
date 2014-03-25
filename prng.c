@@ -11,7 +11,7 @@ enum {
 };
 
 /**
- * Decrements the seed to the next seed value.
+ * @brief Decrements the seed to the next seed value.
  * @param seed The PRNG seed value.
  */
 void prng_prev_seed(prng_seed_t *seed) {
@@ -19,7 +19,7 @@ void prng_prev_seed(prng_seed_t *seed) {
 }
 
 /**
- * Increments the seed to the next seed value.
+ * @brief Increments the seed to the next seed value.
  * @param seed The PRNG seed value.
  */
 void prng_next_seed(prng_seed_t *seed) {
@@ -27,7 +27,7 @@ void prng_next_seed(prng_seed_t *seed) {
 }
 
 /**
- * Decrements the seed value, and gets the previous value from the PRNG.
+ * @brief Decrements the seed value, and gets the previous value from the PRNG.
  * @param seed The PRNG seed value.
  * @return The generated psuedo-random number.
  */
@@ -37,7 +37,7 @@ uint16_t prng_prev(prng_seed_t *seed) {
 }
 
 /**
- * Increments the seed value, and gets the next value from the PRNG.
+ * @brief Increments the seed value, and gets the next value from the PRNG.
  * @param seed The PRNG seed value.
  * @return The generated psuedo-random number.
  */
@@ -47,7 +47,7 @@ uint16_t prng_next(prng_seed_t *seed) {
 }
 
 /**
- * Gets the value for the current seed of the PRNG.
+ * @brief Gets the value for the current seed of the PRNG.
  * @param seed The PRNG seed value.
  * @return The psuedo-random number.
  */
