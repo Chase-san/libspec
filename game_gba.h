@@ -462,10 +462,10 @@ gba_storage_t *gba_get_storage(gba_save_t*);
  * @brief GBA Time Played Structure
  */
 typedef struct {
-	uint16_t hours; //2
-	uint8_t minutes; //3
-	uint8_t seconds; //4
-	uint8_t frames; //5
+	uint16_t hours;
+	uint8_t minutes;
+	uint8_t seconds;
+	uint8_t frames; //about 1/60 of a second
 } gba_time_t;
 
 /**
