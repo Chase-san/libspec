@@ -3,6 +3,9 @@
 .project
 .settings/
 
+# DOXYGEN
+docs/
+
 # Folders
 obj/
 test/
@@ -20,3 +23,6 @@ test/
 # Executables
 *.exe
 *.bat
+
+# Other
+ *.bak

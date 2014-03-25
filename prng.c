@@ -10,24 +10,47 @@ enum {
 	PRNG_WIDTH = 0x10
 };
 
-void nds_prng_prev_seed(nds_prng_t *prng) {
-	prng->seed = ((prng->seed - PRNG_OFFSET) * PRNG_INVERSE) & PRNG_MASK;
+/**
+ * Decrements the seed to the next seed value.
+ * @param seed The PRNG seed value.
+ */
+void prng_prev_seed(prng_seed_t *seed) {
+	*seed = ((*seed - PRNG_OFFSET) * PRNG_INVERSE) & PRNG_MASK;
 }
 
-void nds_prng_next_seed(nds_prng_t *prng) {
-	prng->seed = ((prng->seed * PRNG_MUTATOR) + PRNG_OFFSET) & PRNG_MASK;
+/**
+ * Increments the seed to the next seed value.
+ * @param seed The PRNG seed value.
+ */
+void prng_next_seed(prng_seed_t *seed) {
+	*seed = ((*seed * PRNG_MUTATOR) + PRNG_OFFSET) & PRNG_MASK;
 }
 
-uint16_t nds_prng_prev(nds_prng_t *prng) {
-	nds_prng_prev_seed(prng);
-	return (uint16_t)(prng->seed >> PRNG_WIDTH);
+/**
+ * Decrements the seed value, and gets the previous value from the PRNG.
+ * @param seed The PRNG seed value.
+ * @return The generated psuedo-random number.
+ */
+uint16_t prng_prev(prng_seed_t *seed) {
+	prng_prev_seed(seed);
+	return (uint16_t)(*seed >> PRNG_WIDTH);
 }
 
-uint16_t nds_prng_next(nds_prng_t *prng) {
-	nds_prng_next_seed(prng);
-	return (uint16_t)(prng->seed >> PRNG_WIDTH);
+/**
+ * Increments the seed value, and gets the next value from the PRNG.
+ * @param seed The PRNG seed value.
+ * @return The generated psuedo-random number.
+ */
+uint16_t prng_next(prng_seed_t *seed) {
+	prng_next_seed(seed);
+	return (uint16_t)(*seed >> PRNG_WIDTH);
 }
 
-uint16_t nds_prng_current(nds_prng_t *prng) {
-	return (uint16_t)(prng->seed >> PRNG_WIDTH);
+/**
+ * Gets the value for the current seed of the PRNG.
+ * @param seed The PRNG seed value.
+ * @return The psuedo-random number.
+ */
+uint16_t prng_current(prng_seed_t *seed) {
+	return (uint16_t)(*seed >> PRNG_WIDTH);
 }

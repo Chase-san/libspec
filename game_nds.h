@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include "prng.h"
 #include "checksum.h"
+#include "pkm.h"
 
 //SAVE
 typedef enum {
@@ -35,5 +36,8 @@ uint8_t *nds_create_data();
 
 void nds_write_main_save(uint8_t *, const nds_save_t *);
 void nds_write_backup_save(uint8_t *, const nds_save_t *);
+
+/* Pokemon editing */
+
 
 #endif //__NDS_H__

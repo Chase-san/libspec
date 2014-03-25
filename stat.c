@@ -1,12 +1,4 @@
-/*
- * stat.c
- *
- *  Created on: Mar 25, 2014
- *      Author: Chase
- */
-
 #include "stat.h"
-
 
 //calculate GB STATS
 static inline uint8_t gb_calc_ev(uint16_t stat_exp) {
@@ -25,11 +17,27 @@ static inline uint16_t gb_calc_base_stat(uint8_t level, uint8_t base_stat, uint8
 }
 
 // non-HP: (((Base + IV) * 2 + ceil(Sqrt(stat exp)) / 4) * Level) / 100 + 5
+/**
+ * Used to calculate a non-HP stat for a pokemon from generation 1 or 2.
+ * @param level The pokemon's level.
+ * @param base_stat The base stat we are claculating.
+ * @param iv The pokemon's iv for the given stat.
+ * @param stat_exp The pokemon's stat experience.
+ * @return The value for the pokemons stat.
+ */
 uint16_t gb_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint16_t stat_exp) {
 	return gb_calc_base_stat(level, base_stat, iv, stat_exp) + 5;
 }
 
 // HP: (((Base + IV) * 2 + ceil(Sqrt(stat exp)) / 4) * Level) / 100 + Level + 10
+/**
+ * Used to calculate the HP stat for a pokemon from generation 1 or 2.
+ * @param level The pokemon's level.
+ * @param base_stat The base stat we are claculating.
+ * @param iv The pokemon's iv for the given stat.
+ * @param stat_exp The pokemon's stat experience.
+ * @return The value for the pokemons stat.
+ */
 uint16_t gb_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint16_t stat_exp) {
 	return gb_calc_base_stat(level, base_stat, iv, stat_exp) + level + 10;
 }
@@ -39,6 +47,15 @@ static inline uint16_t gba_calc_base_stat(uint8_t level, uint8_t base_stat, uint
 }
 
 //; non-HP (((base_stat * 2) + iv + (ev / 4)) * level) / 100 + 5
+/**
+ * Used to calculate a non-HP stat for a pokemon from generation 3.
+ * @param level The pokemon's level.
+ * @param base_stat The base stat we are claculating.
+ * @param iv The pokemon's iv for the given stat.
+ * @param ev The pokemon's effort value for the given stat.
+ * @param nature The pokemon's nature as it relates to the given stat.
+ * @return The value for the pokemons stat.
+ */
 uint16_t gba_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_nature_t nature) {
 	uint32_t stat = gba_calc_base_stat(level, base_stat, iv, ev) + 5;
 	if(nature == STAT_NATURE_POSITIVE) {
@@ -51,22 +68,64 @@ uint16_t gba_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev,
 }
 
 //; HP (((base_stat * 2) + iv + (ev / 4)) * level) / 100 + level + 10
+/**
+ * Used to calculate the HP stat for a pokemon from generation 3.
+ * @param level The pokemon's level.
+ * @param base_stat The base stat we are claculating.
+ * @param iv The pokemon's iv for the given stat.
+ * @param ev The pokemon's effort value for the given stat.
+ * @return The value for the pokemons stat.
+ */
 uint16_t gba_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev) {
 	return gba_calc_base_stat(level, base_stat, iv, ev) + level + 10;
 }
 
+/**
+ * Used to calculate a non-HP stat for a pokemon from generation 4.
+ * @param level The pokemon's level.
+ * @param base_stat The base stat we are claculating.
+ * @param iv The pokemon's iv for the given stat.
+ * @param ev The pokemon's effort value for the given stat.
+ * @param nature The pokemon's nature as it relates to the given stat.
+ * @return The value for the pokemons stat.
+ */
 uint16_t nds_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_nature_t nature) {
 	return gba_calc_stat(level, base_stat, iv, ev, nature);
 }
 
+/**
+ * Used to calculate the HP stat for a pokemon from generation 4.
+ * @param level The pokemon's level.
+ * @param base_stat The base stat we are claculating.
+ * @param iv The pokemon's iv for the given stat.
+ * @param ev The pokemon's effort value for the given stat.
+ * @return The value for the pokemons stat.
+ */
 uint16_t nds_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev) {
 	return gba_calc_hp_stat(level, base_stat, iv, ev);
 }
 
+/**
+ * Used to calculate a non-HP stat for a pokemon from generation 5.
+ * @param level The pokemon's level.
+ * @param base_stat The base stat we are claculating.
+ * @param iv The pokemon's iv for the given stat.
+ * @param ev The pokemon's effort value for the given stat.
+ * @param nature The pokemon's nature as it relates to the given stat.
+ * @return The value for the pokemons stat.
+ */
 uint16_t dsi_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_nature_t nature) {
 	return gba_calc_stat(level, base_stat, iv, ev, nature);
 }
 
+/**
+ * Used to calculate the HP stat for a pokemon from generation 5.
+ * @param level The pokemon's level.
+ * @param base_stat The base stat we are claculating.
+ * @param iv The pokemon's iv for the given stat.
+ * @param ev The pokemon's effort value for the given stat.
+ * @return The value for the pokemons stat.
+ */
 uint16_t dsi_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev) {
 	return gba_calc_hp_stat(level, base_stat, iv, ev);
 }

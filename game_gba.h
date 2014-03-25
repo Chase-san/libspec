@@ -213,7 +213,7 @@ typedef struct { //80 bytes for box data
 typedef struct {
 	pk3_t box;
 
-	struct pk3_party {
+	struct {
 		union {
 			uint32_t status;
 			struct {

@@ -67,17 +67,17 @@ void pkm_unshuffle(pkm_t *pkm) {
 
 void pkm_crypt(pkm_t *pkm) {
 	uint16_t *tptr = (uint16_t *)pkm;
-	nds_prng_t prng = { tptr[PKM_CHECKSUM_OFFSET_16] };
+	prng_seed_t seed = tptr[PKM_CHECKSUM_OFFSET_16];
 	for(size_t i = 0; i < PKM_DATA_SIZE_16; ++i) {
-		tptr[PKM_HEADER_SIZE_16 + i] ^= nds_prng_next(&prng);
+		tptr[PKM_HEADER_SIZE_16 + i] ^= prng_next(&seed);
 	}
 }
 
 void pkm_crypt_nds_party(pkm_nds_t *pkm) {
 	uint16_t *tptr = (uint16_t *)pkm;
-	nds_prng_t prng = { ((uint32_t *)pkm)[PKM_PID_START_32] };
+	prng_seed_t seed = ((uint32_t *)pkm)[PKM_PID_START_32];
 	for(uint8_t i = 0; i < PKM_PARTY_DATA_SIZE_16; ++i) {
-		tptr[PKM_PARTY_DATA_START_16 + i] ^= nds_prng_next(&prng);
+		tptr[PKM_PARTY_DATA_START_16 + i] ^= prng_next(&seed);
 	}
 }
 
