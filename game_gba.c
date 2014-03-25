@@ -365,7 +365,7 @@ enum gba_team_data {
 	GBA_FRLG_TEAM_OFFSET = GBA_TEAM_DATA_OFFSET + 0x034
 };
 
-gba_party_t *gba_party(gba_save_t *save) {
+gba_party_t *gba_get_party(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS || save->type == GBA_TYPE_E) {
 		return (gba_party_t *)(save->unpacked + GBA_RSE_TEAM_OFFSET);
 	}
@@ -376,27 +376,9 @@ gba_party_t *gba_party(gba_save_t *save) {
 };
 
 enum gba_box_data {
-	GBA_BOX_DATA_OFFSET = GBA_BLOCK_DATA_LENGTH * 5,
-	GBA_CURRENT_BOX_OFFSET = GBA_BOX_DATA_OFFSET,
-	GBA_BOX_START = GBA_BOX_DATA_OFFSET + 4,
-	GBA_BOX_SIZE = PK3_BOX_SIZE * 30,
-	GBA_BOX_NAME_OFFSET = GBA_BOX_DATA_OFFSET + 0x8344,
-	GBA_BOX_NAME_SIZE = 9,
-	GBA_BOX_WALLPAPER_OFFSET = GBA_BOX_DATA_OFFSET + 0x83C2
+	GBA_BOX_DATA_OFFSET = GBA_BLOCK_DATA_LENGTH * 5
 };
 
-uint32_t *gba_current_box(gba_save_t *save) {
-	return (uint32_t *)(save->unpacked + GBA_CURRENT_BOX_OFFSET);
-}
-
-gba_box_t *gba_box(gba_save_t *save, size_t index) {
-	return (gba_box_t *)(save->unpacked + GBA_BOX_START +  GBA_BOX_SIZE * index);
-}
-
-gba_box_name_t *gba_box_name(gba_save_t *save, size_t index) {
-	return (gba_box_name_t *)(save->unpacked + GBA_BOX_NAME_OFFSET + GBA_BOX_NAME_SIZE * index);
-}
-
-uint8_t *gba_box_wallpaper(gba_save_t *save, size_t index) {
-	return save->unpacked + GBA_BOX_WALLPAPER_OFFSET + index;
+gba_pc_t *gba_get_pc(gba_save_t *save) {
+	return (gba_pc_t *)(save->unpacked + GBA_BOX_DATA_OFFSET);
 }

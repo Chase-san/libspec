@@ -250,19 +250,25 @@ typedef struct {
 } gba_party_t;
 
 typedef struct {
-	pk3_t pokemon[30];
-} gba_box_t;
+	uint32_t current_box;
+	struct {
+		pk3_t pokemon[30];
+	} box[14];
+	char8_t name[14][9];
+	uint8_t wallpaper[14];
+} gba_pc_t;
 
-typedef struct {
-	char8_t name[9];
-} gba_box_name_t;
 #pragma pack(pop)
 
-gba_party_t *gba_party(gba_save_t *);
+gba_party_t *gba_get_party(gba_save_t *);
+gba_pc_t *gba_get_pc(gba_save_t *);
 
-uint32_t *gba_current_box(gba_save_t *);
-gba_box_t *gba_box(gba_save_t *, size_t);
-gba_box_name_t *gba_box_name(gba_save_t *, size_t);
-uint8_t *gba_box_wallpaper(gba_save_t *, size_t);
+#pragma pack(push, 1)
+typedef struct {
+	uint16_t index;
+	uint16_t amount;
+} gba_item_t;
+#pragma pack(pop)
+
 
 #endif //__GBA_H__

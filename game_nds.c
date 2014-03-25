@@ -351,13 +351,13 @@ typedef struct {
 } nds_bptr_t;
 
 typedef struct {
-	const nds_block_data_t index;
+	nds_block_data_t index;
 	nds_savetype_t type;
 	nds_bptr_t block[2];
 } nds_bdat_t;
 
 typedef struct {
-	const nds_block_data_t index;
+	nds_block_data_t index;
 	nds_bptr_t block;
 } nds_sdat_t;
 
@@ -376,10 +376,10 @@ nds_savetype_t nds_detect_save_type(const uint8_t *ptr) {
 
 static inline nds_bptr_t nds_get_bptr(const uint8_t *ptr, const nds_block_data_t index) {
 	nds_bptr_t bptr;
-	bptr.small = ptr + index.small_start;
-	bptr.small_footer = ptr + index.small_footer_start;
-	bptr.big = ptr + index.big_start;
-	bptr.big_footer = ptr + index.big_footer_start;
+	bptr.small = (uint8_t *)ptr + index.small_start;
+	bptr.small_footer = (nds_footer_t *)(ptr + index.small_footer_start);
+	bptr.big = (uint8_t *)ptr + index.big_start;
+	bptr.big_footer = (nds_footer_t *)(ptr + index.big_footer_start);
 	return bptr;
 }
 
@@ -447,13 +447,13 @@ nds_save_t *nds_read_save_internal(nds_bdat_t bdat, nds_save_index_t index) {
 
 nds_save_t *nds_read_main_save(const uint8_t *ptr) {
 	nds_bdat_t bdat = nds_get_bdat(ptr);
-	nds_save_index_t index = nds_get_main_index(bdat);
+	nds_save_index_t index = nds_get_main_save_index(bdat);
 	return nds_read_save_internal(bdat, index);
 }
 
 nds_save_t *nds_read_backup_save(const uint8_t *ptr) {
 	nds_bdat_t bdat = nds_get_bdat(ptr);
-	nds_save_index_t index = nds_get_main_index(bdat);
+	nds_save_index_t index = nds_get_main_save_index(bdat);
 	index.small ^= 1;
 	index.big ^= 1;
 	return nds_read_save_internal(bdat, index);
@@ -479,7 +479,7 @@ uint8_t *nds_create_data() {
 
 void nds_write_main_save(uint8_t *ptr, const nds_save_t *sav) {
 	nds_bdat_t bdat = nds_get_bdat(ptr);
-	nds_save_index_t index = nds_get_main_index(bdat);
+	nds_save_index_t index = nds_get_main_save_index(bdat);
 	nds_sdat_t *sdat = sav->internal;
 
 	memcpy((uint8_t *)bdat.block[index.small].small, sdat->block.small, sdat->index.small_size);
@@ -488,7 +488,7 @@ void nds_write_main_save(uint8_t *ptr, const nds_save_t *sav) {
 
 void nds_write_backup_save(uint8_t *ptr, const nds_save_t *sav) {
 	nds_bdat_t bdat = nds_get_bdat(ptr);
-	nds_save_index_t index = nds_get_main_index(bdat);
+	nds_save_index_t index = nds_get_main_save_index(bdat);
 	index.small ^= 1;
 	index.big ^= 1;
 	nds_sdat_t *sdat = sav->internal;
