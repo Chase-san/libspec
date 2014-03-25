@@ -56,12 +56,24 @@ enum gba_checksum {
 	GBA_CODEPAGE_SIZE = 0x100
 };
 
+/**
+ * @brief Converts GBA encoded text into UCS2 encoded text.
+ * @param dst Pointer to destination.
+ * @param src Pointer to source.
+ * @param size Number of bytes to convert.
+ */
 void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size) {
 	for(int i = 0; i < size; ++i) {
 		dst[i] = GBA_TO_CODEPAGE[src[i]];
 	}
 }
 
+/**
+ * @brief Converts UCS2 encoded text into GBA encoded text.
+ * @param dst Pointer to destination.
+ * @param src Pointer to source.
+ * @param size Number of bytes to convert.
+ */
 void ucs2_to_gba_text(char8_t *dst, char16_t *src, size_t size) {
 	for(int i = 0; i < size; ++i) {
 		dst[i] = 0xAC; //question mark
@@ -110,10 +122,10 @@ size_t gba_get_save_offset(const uint8_t *ptr) {
 	gba_footer_t *b = get_block_footer(ptr + GBA_SAVE_SECTION);
 	//TODO check that the mark is correct for the backup save, block 3
 	//as otherwise we only have one save!
-	if(a->save_index > b->save_index) {
-		return 0;
+	if(b->save_index > a->save_index) {
+		return GBA_SAVE_SECTION; //second save
 	}
-	return GBA_SAVE_SECTION; //second save
+	return 0;
 }
 
 size_t gba_get_backup_offset(const uint8_t *ptr) {
@@ -197,9 +209,9 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 }
 
 /**
- * Reads the main save from the given save pointer.
- * @param ptr the pointer to read from
- * @return the main save for this gba game
+ * @brief Reads the main save from the given save pointer.
+ * @param ptr The pointer to read from.
+ * @return The main save for this GBA game.
  */
 gba_save_t *gba_read_main_save(const uint8_t *ptr) {
 	if(!gba_is_gba_save(ptr)) {
@@ -209,9 +221,9 @@ gba_save_t *gba_read_main_save(const uint8_t *ptr) {
 }
 
 /**
- * Reads the backup save from the given save pointer.
- * @param ptr the pointer to read from
- * @return the backup save for this gba game
+ * @brief Reads the backup save from the given save pointer.
+ * @param ptr The pointer to read from.
+ * @return The backup save for this GBA game.
  */
 gba_save_t *gba_read_backup_save(const uint8_t *ptr) {
 	if(!gba_is_gba_save(ptr)) {
@@ -221,8 +233,8 @@ gba_save_t *gba_read_backup_save(const uint8_t *ptr) {
 }
 
 /**
- * Frees the save data made for the user.
- * @param save the save to free
+ * @brief Frees the gba save made for the user.
+ * @param save The pointer to the save to free.
  */
 void gba_free_save(gba_save_t *save) {
 	free(save->data);
@@ -230,11 +242,6 @@ void gba_free_save(gba_save_t *save) {
 	free(save);
 }
 
-/**
- * Saves the save to the given pointer.
- * @param ptr place to save the data
- * @param save
- */
 void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 	//wipe whatever is there now
 	memset(ptr, 0, GBA_SAVE_SECTION);
@@ -254,17 +261,27 @@ void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 	}
 }
 
+/**
+ * @brief Writes the save to the main slot of the given dst file.
+ * @param dst The pointer to the destination data block. Which should be at least GBA_SAVE_SIZE bytes long.
+ * @param save The save to write to the main save area.
+ */
 void gba_write_main_save(uint8_t *dst, const gba_save_t *save) {
 	gba_write_save_internal(dst + gba_get_save_offset(dst), save);
 }
 
+/**
+ * @brief Writes the save to the backup slot of the given dst file.
+ * @param dst The pointer to the destination data block. Which should be at least GBA_SAVE_SIZE bytes long.
+ * @param save The save to write to the backup save area.
+ */
 void gba_write_backup_save(uint8_t *dst, const gba_save_t *save) {
 	gba_write_save_internal(dst + gba_get_backup_offset(dst), save);
 }
 
 /**
- * Writes the save to the dst similar to how the game would do it.
- * @param dst data file thing to point to
+ * @brief Writes the save to the dst similar to how the game would do it.
+ * @param dst The pointer to the destination data block. Which should be at least GBA_SAVE_SIZE bytes long.
  * @param save save to save to data
  */
 void gba_save_game(uint8_t *dst, gba_save_t *save) {
@@ -280,8 +297,8 @@ void gba_save_game(uint8_t *dst, gba_save_t *save) {
 }
 
 /**
- * Creates a data block you should load your file into.
- * @return pointer to the data block
+ * @brief Creates a data block of exactly GBA_SAVE_SIZE bytes in size, for loading save data into. You should free this data with free().
+ * @return The pointer to the created data block.
  */
 uint8_t *gba_create_data() {
 	uint8_t *data = malloc(GBA_SAVE_SIZE);
@@ -348,15 +365,23 @@ void pk3_crypt(pk3_t *pkm) {
 	}
 }
 
-void pk3_decrypt(pk3_t *pkm) {
-	pk3_crypt(pkm);
-	pk3_unshuffle(pkm);
+/**
+ * @brief Decrypts the given PK3 structure.
+ * @param pkm The PK3 to be decrypted.
+ */
+void pk3_decrypt(pk3_t *pk3) {
+	pk3_crypt(pk3);
+	pk3_unshuffle(pk3);
 }
 
-void pk3_encrypt(pk3_t *pkm) {
-	pkm->checksum = pk3_checksum((uint8_t *)pkm->block, PK3_DATA_SIZE);
-	pk3_shuffle(pkm);
-	pk3_crypt(pkm);
+/**
+ * @brief Encrypts the given PK3 structure.
+ * @param pk3 The PK3 to be encrypted.
+ */
+void pk3_encrypt(pk3_t *pk3) {
+	pk3->checksum = pk3_checksum((uint8_t *)pk3->block, PK3_DATA_SIZE);
+	pk3_shuffle(pk3);
+	pk3_crypt(pk3);
 }
 
 enum gba_team_data {
@@ -365,6 +390,11 @@ enum gba_team_data {
 	GBA_FRLG_TEAM_OFFSET = GBA_TEAM_DATA_OFFSET + 0x034
 };
 
+/**
+ * @brief Calculates the pointer to the saves party data.
+ * @param save The save to get the party data of.
+ * @return Pointer to the saves party data.
+ */
 gba_party_t *gba_get_party(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS || save->type == GBA_TYPE_E) {
 		return (gba_party_t *)(save->data + GBA_RSE_TEAM_OFFSET);
@@ -379,6 +409,11 @@ enum gba_box_data {
 	GBA_BOX_DATA_OFFSET = GBA_BLOCK_DATA_LENGTH * 5
 };
 
+/**
+ * @brief Calculates the pointer to the saves pc data.
+ * @param save The save to get the pc data of.
+ * @return Pointer to the saves pc data.
+ */
 gba_pc_t *gba_get_pc(gba_save_t *save) {
 	return (gba_pc_t *)(save->data + GBA_BOX_DATA_OFFSET);
 }
