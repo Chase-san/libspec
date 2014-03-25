@@ -87,7 +87,7 @@ void pkm_decrypt(pkm_t *pkm) {
 }
 
 void pkm_encrypt(pkm_t *pkm) {
-	pkm->header.checksum = pkm_checksum((uint8_t*)pkm->block, PKM_DATA_SIZE_8);
+	pkm->header.checksum = pkm_checksum((uint8_t *)pkm->block, PKM_DATA_SIZE_8);
 	pkm_shuffle(pkm);
 	pkm_crypt(pkm);
 }

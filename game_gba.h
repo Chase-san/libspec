@@ -258,9 +258,9 @@ typedef struct {
 } gba_box_name_t;
 #pragma pack(pop)
 
-gba_party_t * gba_party(gba_save_t *);
+gba_party_t *gba_party(gba_save_t *);
 
-uint32_t * gba_current_box(gba_save_t *);
+uint32_t *gba_current_box(gba_save_t *);
 gba_box_t *gba_box(gba_save_t *, size_t);
 gba_box_name_t *gba_box_name(gba_save_t *, size_t);
 uint8_t *gba_box_wallpaper(gba_save_t *, size_t);

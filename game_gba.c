@@ -365,7 +365,7 @@ enum gba_team_data {
 	GBA_FRLG_TEAM_OFFSET = GBA_TEAM_DATA_OFFSET + 0x034
 };
 
-gba_party_t * gba_party(gba_save_t *save) {
+gba_party_t *gba_party(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS || save->type == GBA_TYPE_E) {
 		return (gba_party_t *)(save->unpacked + GBA_RSE_TEAM_OFFSET);
 	}
