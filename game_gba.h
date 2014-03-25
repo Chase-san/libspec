@@ -59,15 +59,26 @@ void gba_save_game(uint8_t *, gba_save_t *);
 
 /* Generation 3 Pokemon Data Structure */
 
+/**
+ * @brief Defines constants related to the GBA pokemon structure.
+ */
 enum pk3_def {
+	/** @brief The size of an individual block in the pokemon structure. */
 	PK3_BLOCK_SIZE = 0xC,
+	/** @brief The size of the pk3_t structure, the box storage structure. */
 	PK3_BOX_SIZE = 0x50,
+	/** @brief The size of the pk3_party_t structure, the party storage structure. */
 	PK3_PARTY_SIZE = 0x64,
+	/** @brief The length of a pokemons nickname. */
 	PK3_NICKNAME_LENGTH = 10,
+	/** @brief The length of a pokemon's original trainers name. */
 	PK3_OT_NAME_LENGTH = 7
 };
 
 #pragma pack(push, 1)
+/**
+ * @brief The pokemon's markings that you see in the party or box. Used for searching.
+ */
 typedef struct { //0x8
 	bool circle : 1;
 	bool square : 1;
@@ -76,6 +87,9 @@ typedef struct { //0x8
 	uint8_t : 4; //unused
 } pk3_marking_t;
 
+/**
+ * @brief The pokemon's effort values.
+ */
 typedef struct {
 	uint8_t hp;
 	uint8_t atk;
@@ -85,6 +99,9 @@ typedef struct {
 	uint8_t sdef;
 } pk3_effort_t;
 
+/**
+ * @brief The pokemon's contest stats.
+ */
 typedef struct {
 	uint8_t cool;
 	uint8_t beauty;
@@ -94,11 +111,17 @@ typedef struct {
 	uint8_t sheen;
 } pk3_contest_t;
 
+/**
+ * @brief The pokemon's pokerus infection/strain.
+ */
 typedef struct {
 	uint8_t days : 4;
 	uint8_t strain : 4;
 } pk3_pokerus_t;
 
+/**
+ * @brief The ppup of each move of the pokemon.
+ */
 typedef struct {
 	uint8_t move_0 : 2;
 	uint8_t move_1 : 2;//4
@@ -106,6 +129,9 @@ typedef struct {
 	uint8_t move_3 : 2;//8
 } pk3_pp_up_t;
 
+/**
+ * @brief The pokemon's individual values. It's unchangable genes.
+ */
 typedef struct {
 	uint8_t hp : 5;
 	uint8_t atk : 5;
@@ -117,6 +143,9 @@ typedef struct {
 } pk3_genes_t;
 
 //pulled from pkm, may not be accurate
+/**
+ * @brief The pokemon's ribbon data.
+ */
 typedef struct { //0x2
 	//byte 1
 	bool cool_normal : 1;
@@ -156,6 +185,9 @@ typedef struct { //0x2
 	bool world : 1;
 } pk3_ribbon_t;
 
+/**
+ * @brief A GBA pokemon's box data. 80 bytes in size.
+ */
 typedef struct { //80 bytes for box data
 	/* Header */
 	struct { //32 bytes
@@ -220,10 +252,11 @@ typedef struct { //80 bytes for box data
 			};
 		};
 	};
-
-	/* party data */
 } pk3_t;
 
+/**
+ * @brief A GBA pokemon's box and party data. 100 bytes in size.
+ */
 typedef struct {
 	pk3_t box;
 
@@ -258,26 +291,53 @@ void pk3_decrypt(pk3_t *);
 void pk3_encrypt(pk3_t *);
 
 //Actual Save Editing
-
+/**
+ * @brief Defines constants related to GBA pokemon storage.
+ */
 enum gba_pokemon_storage {
+	/** The number of boxes in the PC. */
 	GBA_BOX_COUNT = 14,
+	/** The number of pokemon in a box. */
 	GBA_POKEMON_IN_BOX = 30,
+	/** The length of a pc box's name. */
 	GBA_BOX_NAME_LENGTH = 9,
+	/** The number of pokemon you can have in your party. */
 	GBA_POKEMON_IN_PARTY = 6,
 };
 
 #pragma pack(push, 1)
+/**
+ * @brief GBA Party Structure.
+ */
 typedef struct {
+	/** @brief The number of pokemon currently in the party. */
 	uint32_t size;
+	/** @brief The individual pokemon in the party. */
 	pk3_party_t pokemon[GBA_POKEMON_IN_PARTY];
 } gba_party_t;
 
+/**
+ * @brief GBA PC Box Structure.
+ */
 typedef struct {
+	/** @brief The individual pokemon in the box. Indexed visually from Left to Right and Top to Bottom. */
+	pk3_t pokemon[GBA_POKEMON_IN_BOX];
+} gba_pc_box_t;
+
+/**
+ * @brief GBA PC Pokemon Storage Structure.
+ */
+typedef struct {
+	/**
+	 * This defines what box pokemon will go into when captured with a full party as well as the box you start on when accessing the PC.
+	 * @brief The index of the currently active box, starting at 0.
+	 */
 	uint32_t current_box;
-	struct {
-		pk3_t pokemon[GBA_POKEMON_IN_BOX];
-	} box[GBA_BOX_COUNT];
+	/** @brief The individual boxes in the PC. */
+	gba_pc_box_t box[GBA_BOX_COUNT];
+	/** @brief The names of each box in the PC. */
 	char8_t name[GBA_BOX_COUNT][GBA_BOX_NAME_LENGTH];
+	/** @brief The wallpaper index for each box of the PC. */
 	uint8_t wallpaper[GBA_BOX_COUNT];
 } gba_pc_t;
 
@@ -287,10 +347,15 @@ gba_party_t *gba_get_party(gba_save_t *);
 gba_pc_t *gba_get_pc(gba_save_t *);
 
 #pragma pack(push, 1)
+/**
+ * @brief GBA Item Slot Structure.
+ */
 typedef struct {
+	/** The item index in this slot. */
 	uint16_t index;
+	/** The total number of that item. */
 	uint16_t amount;
-} gba_item_t;
+} gba_item_slot_t;
 #pragma pack(pop)
 
 
