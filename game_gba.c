@@ -475,6 +475,12 @@ void gba_crypt_secure(gba_save_t *save) {
 	storage->money ^= key.key;
 }
 
+/**
+ * @brief Calculates the pointer to the saves trainer data.
+ * @param save The save to get the trainer data of.
+ * @return Pointer to the saves trainer data.
+ */
 gba_trainer_t *gba_get_trainer(gba_save_t*save) {
+	//OMG THIS IS SO HARD WHAAAA! (I should probably goto bed)
 	return (gba_trainer_t *)save->data;
 }
