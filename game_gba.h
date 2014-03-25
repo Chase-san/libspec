@@ -489,5 +489,6 @@ typedef struct {
 
 gba_trainer_t *gba_get_trainer(gba_save_t*);
 
+//TODO rival name, badges, pokedex, day care pokemon (then GBA is done :D)
 
 #endif //__GBA_H__
