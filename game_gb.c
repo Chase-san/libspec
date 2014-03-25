@@ -112,29 +112,17 @@ void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size) {
 }
 
 //calculate GB STATS
-static const uint16_t GB_STAT_EXP_TABLE[64] = {
-	0x000A,0x0032,0x007A,0x00E2,0x016A,0x0212,0x02DA,0x03C2,
-	0x04CA,0x05F2,0x073A,0x08A2,0x0A2A,0x0BD2,0x0D9A,0x0F82,
-	0x118A,0x13B2,0x15FA,0x1862,0x1AEA,0x1D92,0x205A,0x2342,
-	0x264A,0x2972,0x2CBA,0x3022,0x33AA,0x3752,0x3B1A,0x3F02,
-	0x430A,0x4732,0x4B7A,0x4FE2,0x546A,0x5912,0x5DDA,0x62C2,
-	0x67CA,0x6CF2,0x723A,0x77A2,0x7D2A,0x82D2,0x889A,0x8E82,
-	0x948A,0x9AB2,0xA0FA,0xA762,0xADEA,0xB492,0xBB5A,0xC242,
-	0xC94A,0xD072,0xD7BA,0xDF22,0xE6AA,0xEE52,0xF61A,0xFE02,
-};
-
-static inline uint8_t gb_stat_exp(uint16_t stat_exp) {
-	uint8_t i = 0;
-	if(stat_exp > GB_STAT_EXP_TABLE[63])
+static inline uint8_t gb_calc_ev(uint16_t stat_exp) {
+	if(stat_exp >= 0xfe02)
 		return 64;
-	while(stat_exp > GB_STAT_EXP_TABLE[i]) {
-		++i;
-	}
-	return i;
+	uint8_t b = 0;
+	while(b*b < stat_exp)
+		++b;
+	return b >> 2;
 }
 
 static inline uint8_t gb_calc_base_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint16_t stat_exp) {
-	return ((base_stat + iv) * 2 + gb_stat_exp(stat_exp)) * level / 100;
+	return ((base_stat + iv) * 2 + gb_calc_ev(stat_exp)) * level / 100;
 }
 
 uint8_t gb_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint16_t stat_exp) {
