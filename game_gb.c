@@ -111,29 +111,6 @@ void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size) {
 	}
 }
 
-//calculate GB STATS
-static inline uint8_t gb_calc_ev(uint16_t stat_exp) {
-	if(stat_exp >= 0xfe02)
-		return 64;
-	uint8_t b = 0;
-	while(b*b < stat_exp)
-		++b;
-	return b >> 2;
-}
-
-static inline uint8_t gb_calc_base_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint16_t stat_exp) {
-	return ((base_stat + iv) * 2 + gb_calc_ev(stat_exp)) * level / 100;
-}
-
-uint8_t gb_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint16_t stat_exp) {
-	return gb_calc_base_stat(level,base_stat,iv,stat_exp) + 5;
-}
-
-uint8_t gb_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint16_t stat_exp) {
-	return gb_calc_base_stat(level,base_stat,iv,stat_exp) + level + 10;
-}
-
-
 //complex enough to need it's own function
 uint16_t gb_gs_secondary_checksum(const uint8_t *ptr) {
 	uint16_t sum = gb_gsc_checksum(ptr + GB_GS_PROTECTED2_0_START, GB_GS_PROTECTED2_0_LENGTH);

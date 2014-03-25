@@ -481,7 +481,6 @@ void nds_write_main_save(uint8_t *ptr, const nds_save_t *sav) {
 	nds_bdat_t bdat = nds_get_bdat(ptr);
 	nds_save_index_t index = nds_get_main_save_index(bdat);
 	nds_sdat_t *sdat = sav->internal;
-
 	memcpy((uint8_t *)bdat.block[index.small].small, sdat->block.small, sdat->index.small_size);
 	memcpy((uint8_t *)bdat.block[index.big].big, sdat->block.big, sdat->index.big_size);
 }
