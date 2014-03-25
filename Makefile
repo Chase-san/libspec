@@ -10,7 +10,7 @@ endif
 CFLAGS := -std=c11 -Wpointer-arith -fms-extensions
 LDFLAGS := -static-libgcc
 
-DEBUG_CFLAGS := -g3 -Wall
+DEBUG_CFLAGS := -g3 -O0 -Wall
 DEBUG_LDFLAGS :=
 
 RELEASE_CFLAGS := -g0 -O3
