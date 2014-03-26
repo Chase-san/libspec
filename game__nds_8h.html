@@ -105,9 +105,6 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a458e651af6690959efa2afb96be7d609"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>NDS_SAVE_SIZE</b> = 0x80000
- }</td></tr>
-<tr class="separator:a458e651af6690959efa2afb96be7d609"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afb43c3475e6839607014105982e29c19"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>nds_savetype_t</b> { <br/>
 &#160;&#160;<b>NDS_TYPE_UNKNOWN</b>, 
 <br/>
@@ -119,32 +116,35 @@ Enumerations</h2></td></tr>
 <br/>
  }</td></tr>
 <tr class="separator:afb43c3475e6839607014105982e29c19"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afccd240f973cf154952fb917c9209719"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom">{ <b>NDS_SAVE_SIZE</b> = 0x80000
+ }</td></tr>
+<tr class="separator:afccd240f973cf154952fb917c9209719"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac8890a2b8bb479408f5c65eda146fe87"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__nds_8h.html#ac8890a2b8bb479408f5c65eda146fe87">nds_create_data</a> ()</td></tr>
-<tr class="separator:ac8890a2b8bb479408f5c65eda146fe87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a92c380afefc9cf91db347973605f0e13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92c380afefc9cf91db347973605f0e13"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>nds_free_save</b> (<a class="el" href="structnds__save__t.html">nds_save_t</a> *)</td></tr>
-<tr class="separator:a92c380afefc9cf91db347973605f0e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8d767e3c71cf423fb82b85898401e663"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d767e3c71cf423fb82b85898401e663"></a>
-<a class="el" href="structnds__save__t.html">nds_save_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>nds_read_backup_save</b> (const uint8_t *)</td></tr>
-<tr class="separator:a8d767e3c71cf423fb82b85898401e663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa4bb058208033cba32f1a0227c1a8fe7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4bb058208033cba32f1a0227c1a8fe7"></a>
-<a class="el" href="structnds__save__t.html">nds_save_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>nds_read_main_save</b> (const uint8_t *)</td></tr>
-<tr class="separator:aa4bb058208033cba32f1a0227c1a8fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9feea37ea21c51163fa8b201d620a1ef"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9feea37ea21c51163fa8b201d620a1ef"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>nds_text_to_ucs2</b> (<a class="el" href="types_8h.html#ad02c3b3b3f2abf8ae27b87d98e6f6328">char16_t</a> *dst, <a class="el" href="types_8h.html#ad02c3b3b3f2abf8ae27b87d98e6f6328">char16_t</a> *src, size_t size)</td></tr>
 <tr class="separator:a9feea37ea21c51163fa8b201d620a1ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acad39c1cc9e1c80d4e648ee9a406886e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acad39c1cc9e1c80d4e648ee9a406886e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>nds_write_backup_save</b> (uint8_t *, const <a class="el" href="structnds__save__t.html">nds_save_t</a> *)</td></tr>
-<tr class="separator:acad39c1cc9e1c80d4e648ee9a406886e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3dc7037612861a0f0e0756b59bd42a2e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3dc7037612861a0f0e0756b59bd42a2e"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>nds_write_main_save</b> (uint8_t *, const <a class="el" href="structnds__save__t.html">nds_save_t</a> *)</td></tr>
-<tr class="separator:a3dc7037612861a0f0e0756b59bd42a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c4cb872a6e92f65665c4f94e6042de7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1c4cb872a6e92f65665c4f94e6042de7"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>ucs2_to_nds_text</b> (<a class="el" href="types_8h.html#ad02c3b3b3f2abf8ae27b87d98e6f6328">char16_t</a> *dst, <a class="el" href="types_8h.html#ad02c3b3b3f2abf8ae27b87d98e6f6328">char16_t</a> *src, size_t size)</td></tr>
 <tr class="separator:a1c4cb872a6e92f65665c4f94e6042de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4bb058208033cba32f1a0227c1a8fe7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa4bb058208033cba32f1a0227c1a8fe7"></a>
+<a class="el" href="structnds__save__t.html">nds_save_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>nds_read_main_save</b> (const uint8_t *)</td></tr>
+<tr class="separator:aa4bb058208033cba32f1a0227c1a8fe7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d767e3c71cf423fb82b85898401e663"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8d767e3c71cf423fb82b85898401e663"></a>
+<a class="el" href="structnds__save__t.html">nds_save_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>nds_read_backup_save</b> (const uint8_t *)</td></tr>
+<tr class="separator:a8d767e3c71cf423fb82b85898401e663"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92c380afefc9cf91db347973605f0e13"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92c380afefc9cf91db347973605f0e13"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>nds_free_save</b> (<a class="el" href="structnds__save__t.html">nds_save_t</a> *)</td></tr>
+<tr class="separator:a92c380afefc9cf91db347973605f0e13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8890a2b8bb479408f5c65eda146fe87"><td class="memItemLeft" align="right" valign="top">uint8_t *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="game__nds_8h.html#ac8890a2b8bb479408f5c65eda146fe87">nds_create_data</a> ()</td></tr>
+<tr class="separator:ac8890a2b8bb479408f5c65eda146fe87"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3dc7037612861a0f0e0756b59bd42a2e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3dc7037612861a0f0e0756b59bd42a2e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>nds_write_main_save</b> (uint8_t *, const <a class="el" href="structnds__save__t.html">nds_save_t</a> *)</td></tr>
+<tr class="separator:a3dc7037612861a0f0e0756b59bd42a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad39c1cc9e1c80d4e648ee9a406886e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acad39c1cc9e1c80d4e648ee9a406886e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>nds_write_backup_save</b> (uint8_t *, const <a class="el" href="structnds__save__t.html">nds_save_t</a> *)</td></tr>
+<tr class="separator:acad39c1cc9e1c80d4e648ee9a406886e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains the structures and functions for editing NDS pokemon save games. </p>
@@ -170,7 +170,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>ucs2_to_nds_text</b> 
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Mar 25 2014 05:42:26 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 26 2014 01:06:15 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

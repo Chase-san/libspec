@@ -7,11 +7,11 @@
 
 var indexSectionsWithContent =
 {
-  0: "abcdgilnpstuw",
+  0: "abcdefghilmnoprstuw",
   1: "gnp",
   2: "cgpst",
   3: "dgnpu",
-  4: "abcdinpstw",
+  4: "abcdefghilmnoprstw",
   5: "bcp",
   6: "bgps",
   7: "gps",

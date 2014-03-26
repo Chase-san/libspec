@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['name',['name',['../structgba__pc__t.html#a1047b4bf653712cba3d326de526ced2b',1,'gba_pc_t']]]
+  ['friendship',['friendship',['../structpk3__t.html#a8cab8f0acbffd33a3269fc30677e6db4',1,'pk3_t']]]
 ];

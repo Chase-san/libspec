@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['size',['size',['../structgba__party__t.html#a1da46e16fca9fe33384acb13ebdb97aa',1,'gba_party_t']]],
-  ['stat_2eh',['stat.h',['../stat_8h.html',1,'']]],
-  ['stat_5fnature_5fnegative',['STAT_NATURE_NEGATIVE',['../stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3bacf170bccd391884363beb28e87be95b3',1,'stat.h']]],
-  ['stat_5fnature_5fnone',['STAT_NATURE_NONE',['../stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3ba72105c8d0552900f3cab16e766ab9ff1',1,'stat.h']]],
-  ['stat_5fnature_5fpositive',['STAT_NATURE_POSITIVE',['../stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3ba8840bdff921f9a33f29ed63167b4fa3e',1,'stat.h']]],
-  ['stat_5fnature_5ft',['stat_nature_t',['../stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b',1,'stat.h']]]
+  ['libspec_20is_20a_20pokemon_20save_20editing_20library_20written_20in_20c_2e',['LibSPEC is a pokemon save editing library written in C.',['../index.html',1,'']]],
+  ['language',['language',['../structpk3__t.html#ae7152eaebf2d1336e2691214e40f1731',1,'pk3_t']]],
+  ['level_5fmet',['level_met',['../structpk3__t.html#a0d61d3fb724cf85256408a77c5f43857',1,'pk3_t']]],
+  ['libspec',['libSPEC',['../md__r_e_a_d_m_e.html',1,'']]]
 ];
