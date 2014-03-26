@@ -454,7 +454,7 @@ typedef struct {
 
 #pragma pack(pop)
 
-gba_storage_t *gba_get_storage(gba_save_t*);
+gba_storage_t *gba_get_storage(gba_save_t *);
 
 
 #pragma pack(push, 1)
@@ -487,8 +487,20 @@ typedef struct {
 } gba_trainer_t;
 #pragma pack(pop)
 
-gba_trainer_t *gba_get_trainer(gba_save_t*);
+gba_trainer_t *gba_get_trainer(gba_save_t *);
 
-//TODO rival name, badges, pokedex, day care pokemon (then GBA is done :D)
+//bool gba_pokedex_get(gba_save_t *);
+//void gba_pokedex_set(gba_save_t *, bool);
+
+bool gba_pokedex_get_national(gba_save_t *);
+void gba_pokedex_set_national(gba_save_t *, bool);
+
+bool gba_pokedex_get_owned(gba_save_t *, size_t);
+void gba_pokedex_set_owned(gba_save_t *, size_t, bool);
+
+bool gba_pokedex_get_seen(gba_save_t *, size_t);
+void gba_pokedex_set_seen(gba_save_t *, size_t, bool);
+
+//TODO rival name, badges, day care pokemon (then GBA is done :D)
 
 #endif //__GBA_H__

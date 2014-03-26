@@ -208,10 +208,8 @@ gba_save_t *gba_read_save_internal(const uint8_t *ptr) {
 		memcpy(unpack_ptr, block_ptr, GBA_BLOCK_DATA_LENGTH);
 	}
 	save->type = gba_detect_save_type(save);
-
 	//Decrypt data that needs to be
 	gba_crypt_secure(save);
-
 	return save;
 }
 
@@ -253,10 +251,8 @@ void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 	//wipe whatever is there now
 	memset(ptr, 0, GBA_SAVE_SECTION);
 	gba_internal_save_t *internal = save->internal;
-
 	//Encrypt data that needs to be
 	gba_crypt_secure((gba_save_t *)save);
-
 	for(size_t i = 0; i < GBA_SAVE_BLOCK_COUNT; ++i) {
 		//write data
 		uint8_t *dest_ptr = ptr + i * GBA_BLOCK_LENGTH;
@@ -270,10 +266,8 @@ void gba_write_save_internal(uint8_t *ptr, const gba_save_t *save) {
 		//calculate checksum
 		footer->checksum = get_block_checksum(dest_ptr);
 	}
-
 	//Decrypt the data again! Since they might make more edits and such.
 	gba_crypt_secure((gba_save_t *)save);
-
 	//See... we didn't change anything <.< >.>
 }
 
@@ -450,28 +444,24 @@ gba_storage_t *gba_get_storage(gba_save_t *save) {
 }
 
 void gba_crypt_secure(gba_save_t *save) {
-	if(save->type == GBA_TYPE_RS)
+	if(save->type == GBA_TYPE_RS) {
 		return;
-
+	}
 	gba_storage_t *storage = gba_get_storage(save);
 	gba_security_key_t key;
-
 	if(save->type == GBA_TYPE_E) {
 		key = gba_get_security_key(save->data + GBA_RSE_SECURITY_KEY_OFFSET);
-
 		//crypt item data, skip the PC data (not encrypted)
 		for(size_t i = 50; i < GBA_E_ITEM_COUNT; ++i) {
 			storage->e_items.all[i].amount ^= key.lower;
 		}
 	} else if(save->type == GBA_TYPE_FRLG) {
 		key = gba_get_security_key(save->data + GBA_FRLG_SECURITY_KEY_OFFSET);
-
 		//crypt item data, skip the PC data (not encrypted)
 		for(size_t i = 30; i < GBA_FRLG_ITEM_COUNT; ++i) {
 			storage->frlg_items.all[i].amount ^= key.lower;
 		}
 	}
-
 	storage->money ^= key.key;
 }
 
@@ -480,7 +470,123 @@ void gba_crypt_secure(gba_save_t *save) {
  * @param save The save to get the trainer data of.
  * @return Pointer to the saves trainer data.
  */
-gba_trainer_t *gba_get_trainer(gba_save_t*save) {
+gba_trainer_t *gba_get_trainer(gba_save_t *save) {
 	//OMG THIS IS SO HARD WHAAAA! (I should probably goto bed)
 	return (gba_trainer_t *)save->data;
+}
+
+enum {
+	GBA_RS_NATIONAL_POKEDEX_A = 0x19,
+	GBA_RS_NATIONAL_POKEDEX_B = GBA_BLOCK_DATA_LENGTH * 2 + 0x3A6,
+	GBA_RS_NATIONAL_POKEDEX_C = GBA_BLOCK_DATA_LENGTH * 2 + 0x44C,
+	GBA_E_NATIONAL_POKEDEX_A = 0x19,
+	GBA_E_NATIONAL_POKEDEX_B = GBA_BLOCK_DATA_LENGTH * 2 + 0x402,
+	GBA_E_NATIONAL_POKEDEX_C = GBA_BLOCK_DATA_LENGTH * 2 + 0x4A8,
+	GBA_FRLG_NATIONAL_POKEDEX_A = 0x1B,
+	GBA_FRLG_NATIONAL_POKEDEX_B = GBA_BLOCK_DATA_LENGTH * 2 + 0x68,
+	GBA_FRLG_NATIONAL_POKEDEX_C = GBA_BLOCK_DATA_LENGTH * 2 + 0x11C,
+
+	GBA_POKEDEX_OWNED = 0x28,
+	GBA_POKEDEX_SEEN_A = 0x5C,
+	GBA_RS_POKEDEX_SEEN_B = GBA_BLOCK_DATA_LENGTH + 0x938,
+	GBA_RS_POKEDEX_SEEN_C = GBA_BLOCK_DATA_LENGTH * 4 + 0xC0C,
+	GBA_E_POKEDEX_SEEN_B = GBA_BLOCK_DATA_LENGTH + 0x988,
+	GBA_E_POKEDEX_SEEN_C = GBA_BLOCK_DATA_LENGTH * 4 + 0xCA4,
+	GBA_FRLG_POKEDEX_SEEN_B = GBA_BLOCK_DATA_LENGTH + 0x5F8,
+	GBA_FRLG_POKEDEX_SEEN_C = GBA_BLOCK_DATA_LENGTH * 4 + 0xB98,
+};
+
+//not sure how to do this yet
+bool gba_pokedex_get(gba_save_t *save) {
+	return false;
+}
+
+//not sure how to do this yet
+void gba_pokedex_set(gba_save_t *save, bool has) {
+}
+
+bool gba_pokedex_get_national(gba_save_t *save) {
+	if(save->type == GBA_TYPE_RS) {
+		if(*(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_A) == 0xDA01
+				&& (*(save->data + GBA_RS_NATIONAL_POKEDEX_B) & 0x40) == 0x40
+				&& *(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_C) == 0x302) {
+			return true;
+		}
+	} else if(save->type == GBA_TYPE_E) {
+		if(*(uint16_t *)(save->data + GBA_E_NATIONAL_POKEDEX_A) == 0xDA01
+				&& (*(save->data + GBA_E_NATIONAL_POKEDEX_B) & 0x40) == 0x40
+				&& *(uint16_t *)(save->data + GBA_E_NATIONAL_POKEDEX_C) == 0x302) {
+			return true;
+		}
+	} else if(save->type == GBA_TYPE_FRLG) {
+		if(*(save->data + GBA_FRLG_NATIONAL_POKEDEX_A) == 0xB9
+				&& (*(save->data + GBA_FRLG_NATIONAL_POKEDEX_B) & 0x1) == 0x1
+				&& *(uint16_t *)(save->data + GBA_FRLG_NATIONAL_POKEDEX_C) == 0x6258) {
+			return true;
+		}
+	}
+	return false;
+}
+
+void gba_pokedex_set_national(gba_save_t *save, bool has) {
+	if(save->type == GBA_TYPE_RS) {
+		*(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_A) = 0xDA01 * has;
+		*(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_C) = 0x302 * has;
+		if(has) {
+			*(save->data + GBA_RS_NATIONAL_POKEDEX_B) |= 0x40;
+		} else {
+			*(save->data + GBA_RS_NATIONAL_POKEDEX_B) &= ~0x40;
+		}
+	} else if(save->type == GBA_TYPE_E) {
+		*(uint16_t *)(save->data + GBA_E_NATIONAL_POKEDEX_A) = 0xDA01 * has;
+		*(uint16_t *)(save->data + GBA_E_NATIONAL_POKEDEX_C) = 0x302 * has;
+		if(has) {
+			*(save->data + GBA_E_NATIONAL_POKEDEX_B) |= 0x40;
+		} else {
+			*(save->data + GBA_E_NATIONAL_POKEDEX_B) &= ~0x40;
+		}
+	} else if(save->type == GBA_TYPE_FRLG) {
+		*(save->data + GBA_FRLG_NATIONAL_POKEDEX_A) = 0xB9 * has;
+		*(uint16_t *)(save->data + GBA_FRLG_NATIONAL_POKEDEX_C) = 0x6258 * has;
+		if(has) {
+			*(save->data + GBA_FRLG_NATIONAL_POKEDEX_B) |= 0x1;
+		} else {
+			*(save->data + GBA_FRLG_NATIONAL_POKEDEX_B) &= ~0x1;
+		}
+	}
+}
+
+bool gba_pokedex_get_owned(gba_save_t *save, size_t index) {
+	return ((save->data + GBA_POKEDEX_OWNED)[index >> 3] >> (index & 7)) & 1;
+}
+
+static inline void gba_dex_set(uint8_t *ptr, size_t index, bool set) {
+	if(set) { //set
+		ptr[index >> 3] |= 1 << (index & 7);
+	} else {
+		ptr[index >> 3] &= ~(1 << (index & 7));
+	}
+}
+
+void gba_pokedex_set_owned(gba_save_t *save, size_t index, bool owned) {
+	gba_dex_set(save->data + GBA_POKEDEX_OWNED, index, owned);
+}
+
+bool gba_pokedex_get_seen(gba_save_t *save, size_t index) {
+	//just use the first here, all the data 'should' be the same
+	return ((save->data + GBA_POKEDEX_SEEN_A)[index >> 3] >> (index & 7)) & 1;
+}
+
+void gba_pokedex_set_seen(gba_save_t *save, size_t index, bool seen) {
+	gba_dex_set(save->data + GBA_POKEDEX_SEEN_A, index, seen);
+	if(save->type == GBA_TYPE_RS) {
+		gba_dex_set(save->data + GBA_RS_POKEDEX_SEEN_B, index, seen);
+		gba_dex_set(save->data + GBA_RS_POKEDEX_SEEN_C, index, seen);
+	} else if(save->type == GBA_TYPE_E) {
+		gba_dex_set(save->data + GBA_E_POKEDEX_SEEN_B, index, seen);
+		gba_dex_set(save->data + GBA_E_POKEDEX_SEEN_C, index, seen);
+	} else if(save->type == GBA_TYPE_FRLG) {
+		gba_dex_set(save->data + GBA_FRLG_POKEDEX_SEEN_B, index, seen);
+		gba_dex_set(save->data + GBA_FRLG_POKEDEX_SEEN_C, index, seen);
+	}
 }
