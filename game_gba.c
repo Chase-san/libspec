@@ -505,6 +505,11 @@ bool gba_pokedex_get(gba_save_t *save) {
 void gba_pokedex_set(gba_save_t *save, bool has) {
 }
 
+/**
+ * @brief Determines the national pokedex is owned.
+ * @param save The save to check.
+ * @return true if national pokedex is owned, false otherwise.
+ */
 bool gba_pokedex_get_national(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS) {
 		if(*(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_A) == 0xDA01
@@ -528,6 +533,11 @@ bool gba_pokedex_get_national(gba_save_t *save) {
 	return false;
 }
 
+/**
+ * @brief Sets if the national pokedex is owned.
+ * @param save The save to set.
+ * @param has true to set it, false to remove it.
+ */
 void gba_pokedex_set_national(gba_save_t *save, bool has) {
 	if(save->type == GBA_TYPE_RS) {
 		*(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_A) = 0xDA01 * has;
@@ -556,6 +566,12 @@ void gba_pokedex_set_national(gba_save_t *save, bool has) {
 	}
 }
 
+/**
+ * @brief Determines if the given pokemon is owned.
+ * @param save The save to check.
+ * @param index The pokemons national index number (starting from 0)
+ * @return true if owned, false if not owned.
+ */
 bool gba_pokedex_get_owned(gba_save_t *save, size_t index) {
 	return ((save->data + GBA_POKEDEX_OWNED)[index >> 3] >> (index & 7)) & 1;
 }
@@ -568,15 +584,33 @@ static inline void gba_dex_set(uint8_t *ptr, size_t index, bool set) {
 	}
 }
 
+/**
+ * Sets if the given pokemon is owned.
+ * @param save The save to set.
+ * @param index The pokemons national index number (starting from 0)
+ * @param owned true to set it, false to remove it.
+ */
 void gba_pokedex_set_owned(gba_save_t *save, size_t index, bool owned) {
 	gba_dex_set(save->data + GBA_POKEDEX_OWNED, index, owned);
 }
 
+/**
+ * @brief Determines if the given pokemon has been seen.
+ * @param save The save to check.
+ * @param index The pokemons national index number (starting from 0)
+ * @return true if seen, false if not seen.
+ */
 bool gba_pokedex_get_seen(gba_save_t *save, size_t index) {
 	//just use the first here, all the data 'should' be the same
 	return ((save->data + GBA_POKEDEX_SEEN_A)[index >> 3] >> (index & 7)) & 1;
 }
 
+/**
+ * @brief Sets if the given pokemon is seen.
+ * @param save The save to set.
+ * @param index The pokemons national index number (starting from 0)
+ * @param owned true to set it, false to remove it.
+ */
 void gba_pokedex_set_seen(gba_save_t *save, size_t index, bool seen) {
 	gba_dex_set(save->data + GBA_POKEDEX_SEEN_A, index, seen);
 	if(save->type == GBA_TYPE_RS) {
