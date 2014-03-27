@@ -66,9 +66,9 @@ void gba_save_game(uint8_t *, gba_save_t *);
 enum pk3_def {
 	/** @brief The size of an individual block in the pokemon structure. */
 	PK3_BLOCK_SIZE = 0xC,
-	/** @brief The size of the pk3_t structure, the box storage structure. */
+	/** @brief The size of the pk3_box_t structure, the box storage structure. */
 	PK3_BOX_SIZE = 0x50,
-	/** @brief The size of the pk3_party_t structure, the party storage structure. */
+	/** @brief The size of the pk3_t structure, the party storage structure. */
 	PK3_PARTY_SIZE = 0x64,
 	/** @brief The length of a pokemons nickname. */
 	PK3_NICKNAME_LENGTH = 10,
@@ -282,43 +282,48 @@ typedef struct { //80 bytes for box data
 			};
 		};
 	};
-} pk3_t;
+} pk3_box_t;
+
+typedef struct {
+	uint16_t hp;
+	uint16_t max_hp;
+	uint16_t atk;
+	uint16_t def;
+	uint16_t spd;
+	uint16_t satk;
+	uint16_t sdef;
+} pk3_stats_t;
+
+typedef struct {
+	/** @brief Turns of sleep status remaining */
+	uint8_t status_sleep : 3;
+	bool status_poison : 1;
+	bool status_burn : 1;
+	bool status_freeze : 1;
+	bool status_paralysis : 1;
+	bool status_toxic : 1;
+} pk3_status_t;
+
+typedef struct {
+	pk3_status_t status;
+	uint32_t : 24; //padding?
+	uint8_t level;
+	uint8_t pokerus_time;
+	pk3_stats_t stats;
+} pk3_party_t;
 
 /**
  * @brief A GBA pokemon's box and party data. 100 bytes in size.
  */
 typedef struct {
-	pk3_t box;
-
-	struct {
-		union {
-			uint32_t status;
-			struct {
-				uint8_t status_sleep : 3;
-				bool status_poison : 1;
-				bool status_burn : 1;
-				bool status_freeze : 1;
-				bool status_paralysis : 1;
-				bool status_toxic : 1;
-			}; //status
-		};
-		uint8_t level;
-		uint8_t pokerus_time;
-		uint16_t hp;
-		uint16_t max_hp;
-		uint16_t atk;
-		uint16_t def;
-		uint16_t spd;
-		uint16_t satk;
-		uint16_t sdef;
-	} party;
-
-} pk3_party_t;
+	pk3_box_t box;
+	pk3_party_t party;
+} pk3_t;
 
 #pragma pack(pop)
 
-void pk3_decrypt(pk3_t *);
-void pk3_encrypt(pk3_t *);
+void pk3_decrypt(pk3_box_t *);
+void pk3_encrypt(pk3_box_t *);
 
 //Actual Save Editing
 /**
@@ -343,7 +348,7 @@ typedef struct {
 	/** @brief The number of pokemon currently in the party. */
 	uint32_t size;
 	/** @brief The individual pokemon in the party. */
-	pk3_party_t pokemon[GBA_POKEMON_IN_PARTY];
+	pk3_t pokemon[GBA_POKEMON_IN_PARTY];
 } gba_party_t;
 
 /**
@@ -351,7 +356,7 @@ typedef struct {
  */
 typedef struct {
 	/** @brief The individual pokemon in the box. Indexed visually from Left to Right and Top to Bottom. */
-	pk3_t pokemon[GBA_POKEMON_IN_BOX];
+	pk3_box_t pokemon[GBA_POKEMON_IN_BOX];
 } gba_pc_box_t;
 
 /**

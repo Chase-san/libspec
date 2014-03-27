@@ -9,27 +9,72 @@
 #include "types.h"
 
 /**
+ * @brief List of natures by index.
+ */
+typedef enum {
+	NATURE_HARDY = 0,
+	NATURE_LONELY = 1,
+	NATURE_BRAVE = 2,
+	NATURE_ADAMANT = 3,
+	NATURE_NAUGHTY = 4,
+	NATURE_BOLD = 5,
+	NATURE_DOCILE = 6,
+	NATURE_RELAXED = 7,
+	NATURE_IMPISH = 8,
+	NATURE_LAX = 9,
+	NATURE_TIMID = 10,
+	NATURE_HASTY = 11,
+	NATURE_SERIOUS = 12,
+	NATURE_JOLLY = 13,
+	NATURE_NAIVE = 14,
+	NATURE_MODEST = 15,
+	NATURE_MILD = 16,
+	NATURE_QUIET = 17,
+	NATURE_BASHFUL = 18,
+	NATURE_RASH = 19,
+	NATURE_CALM = 20,
+	NATURE_GENTLE = 21,
+	NATURE_SASSY = 22,
+	NATURE_CAREFUL = 23,
+	NATURE_QUIRKY = 24
+} stat_nature_t;
+
+/**
+ * List of stats by index.
+ */
+typedef enum {
+	STAT_HP = 0,
+	STAT_ATTAK = 1,
+	STAT_DEFENSE = 2,
+	STAT_SPEED = 3,
+	STAT_SP_ATTACK = 4,
+	STAT_SP_DEFENSE = 5,
+} stat_stat_t;
+
+/**
  * @brief Enum to tell the stat functions if a nature is beneficial or otherwise.
  */
 typedef enum {
-	/** A neutral nature for the given stat. */
-	STAT_NATURE_NONE = 0,
-	/** A beneficial nature for the given stat. */
-	STAT_NATURE_POSITIVE = 1,
-	/** A harmful nature for the given stat. */
-	STAT_NATURE_NEGATIVE = 2
-} stat_nature_t;
+	/** A neutral bonus for the given stat. */
+	STAT_BONUS_NONE,
+	/** A beneficial bonus for the given stat. */
+	STAT_BONUS_POSITIVE,
+	/** A harmful bonus for the given stat. */
+	STAT_BONUS_NEGATIVE
+} stat_bonus_t;
+
+stat_bonus_t stat_get_bonus(stat_nature_t,stat_stat_t);
 
 uint16_t gb_calc_stat(uint8_t, uint8_t, uint8_t, uint16_t);
 uint16_t gb_calc_hp_stat(uint8_t, uint8_t, uint8_t, uint16_t);
 
-uint16_t gba_calc_stat(uint8_t, uint8_t, uint8_t, uint8_t, stat_nature_t);
+uint16_t gba_calc_stat(uint8_t, uint8_t, uint8_t, uint8_t, stat_bonus_t);
 uint16_t gba_calc_hp_stat(uint8_t, uint8_t, uint8_t, uint8_t);
 
-uint16_t nds_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_nature_t);
+uint16_t nds_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_bonus_t);
 uint16_t nds_calc_hp_stat(uint8_t, uint8_t, uint8_t, uint8_t);
 
-uint16_t dsi_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_nature_t);
+uint16_t dsi_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_bonus_t);
 uint16_t dsi_calc_hp_stat(uint8_t, uint8_t, uint8_t, uint8_t);
 
 #endif /* STAT_H_ */

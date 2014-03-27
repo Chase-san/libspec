@@ -337,11 +337,11 @@ static const uint8_t t_shuffle[] = {
 };
 
 /* You may be thinking, hey that isn't the shuffle mode, and you would be half right. */
-static inline const uint8_t *pk3_get_shuffle(pk3_t *pkm) {
+static inline const uint8_t *pk3_get_shuffle(pk3_box_t *pkm) {
 	return &t_shuffle[(pkm->pid % PK3_SHUFFLE_MOD) << PK3_SHUFFLE_SHIFT];
 }
 
-void pk3_shuffle(pk3_t *pkm) {
+void pk3_shuffle(pk3_box_t *pkm) {
 	//0,12,24,36 to shuffle[0 .. 3]
 	const uint8_t *shuffle = pk3_get_shuffle(pkm);
 	uint8_t *bptr = (uint8_t *)pkm->block;
@@ -354,7 +354,7 @@ void pk3_shuffle(pk3_t *pkm) {
 	free(tmp);
 }
 
-void pk3_unshuffle(pk3_t *pkm) {
+void pk3_unshuffle(pk3_box_t *pkm) {
 	//shuffle[0 .. 3] to 0,12,24,36
 	const uint8_t *shuffle = pk3_get_shuffle(pkm);
 	uint8_t *bptr = (uint8_t *)pkm->block;
@@ -367,7 +367,7 @@ void pk3_unshuffle(pk3_t *pkm) {
 	free(tmp);
 }
 
-void pk3_crypt(pk3_t *pkm) {
+void pk3_crypt(pk3_box_t *pkm) {
 	uint32_t key = pkm->ot_fid ^ pkm->pid;
 	uint32_t *data = (uint32_t *)pkm->block;
 	for(size_t i = 0; i < PK3_DATA_SIZE / 4; ++i) {
@@ -379,7 +379,7 @@ void pk3_crypt(pk3_t *pkm) {
  * @brief Decrypts the given PK3 structure.
  * @param pkm The PK3 to be decrypted.
  */
-void pk3_decrypt(pk3_t *pk3) {
+void pk3_decrypt(pk3_box_t *pk3) {
 	pk3_crypt(pk3);
 	pk3_unshuffle(pk3);
 }
@@ -388,7 +388,7 @@ void pk3_decrypt(pk3_t *pk3) {
  * @brief Encrypts the given PK3 structure.
  * @param pk3 The PK3 to be encrypted.
  */
-void pk3_encrypt(pk3_t *pk3) {
+void pk3_encrypt(pk3_box_t *pk3) {
 	pk3->checksum = pk3_checksum((uint8_t *)pk3->block, PK3_DATA_SIZE);
 	pk3_shuffle(pk3);
 	pk3_crypt(pk3);

@@ -3,6 +3,7 @@
 
 #include "prng.h"
 #include "pkm.h"
+#include "stat.h"
 #include "checksum.h"
 #include "game_gb.h"
 #include "game_gba.h"

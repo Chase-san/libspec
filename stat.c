@@ -1,5 +1,37 @@
 #include "stat.h"
 
+static const stat_bonus_t STAT_NATURE_BONUS[25][6] = {
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE},
+	{STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE},
+	{STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE},
+	{STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_POSITIVE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE,STAT_BONUS_NEGATIVE},
+	{STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_NONE,STAT_BONUS_POSITIVE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NEGATIVE,STAT_BONUS_POSITIVE},
+	{STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE,STAT_BONUS_NONE},
+};
+
+stat_bonus_t stat_get_bonus(stat_nature_t nature, stat_stat_t stat) {
+	return STAT_NATURE_BONUS[nature][stat];
+}
+
 //calculate GB STATS
 static inline uint8_t gb_calc_ev(uint16_t stat_exp) {
 	if(stat_exp >= 0xfe02) {
@@ -53,16 +85,16 @@ static inline uint16_t gba_calc_base_stat(uint8_t level, uint8_t base_stat, uint
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
  * @param ev The pokemon's effort value for the given stat.
- * @param nature The pokemon's nature as it relates to the given stat.
+ * @param bonus The bonus from nature for the given stat.
  * @return The value for the pokemons stat.
  */
-uint16_t gba_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_nature_t nature) {
+uint16_t gba_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_bonus_t bonus) {
 	uint32_t stat = gba_calc_base_stat(level, base_stat, iv, ev) + 5;
-	if(nature == STAT_NATURE_POSITIVE) {
-		return stat * 90 / 100;
-	}
-	if(nature == STAT_NATURE_NEGATIVE) {
+	if(bonus == STAT_BONUS_POSITIVE) {
 		return stat * 110 / 100;
+	}
+	if(bonus == STAT_BONUS_NEGATIVE) {
+		return stat * 90 / 100;
 	}
 	return stat;
 }
@@ -86,11 +118,11 @@ uint16_t gba_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t 
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
  * @param ev The pokemon's effort value for the given stat.
- * @param nature The pokemon's nature as it relates to the given stat.
+ * @param bonus The bonus from nature for the given stat.
  * @return The value for the pokemons stat.
  */
-uint16_t nds_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_nature_t nature) {
-	return gba_calc_stat(level, base_stat, iv, ev, nature);
+uint16_t nds_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_bonus_t bonus) {
+	return gba_calc_stat(level, base_stat, iv, ev, bonus);
 }
 
 /**
@@ -111,11 +143,11 @@ uint16_t nds_calc_hp_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t 
  * @param base_stat The base stat we are claculating.
  * @param iv The pokemon's iv for the given stat.
  * @param ev The pokemon's effort value for the given stat.
- * @param nature The pokemon's nature as it relates to the given stat.
+ * @param bonus The bonus from nature for the given stat.
  * @return The value for the pokemons stat.
  */
-uint16_t dsi_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_nature_t nature) {
-	return gba_calc_stat(level, base_stat, iv, ev, nature);
+uint16_t dsi_calc_stat(uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, stat_bonus_t bonus) {
+	return gba_calc_stat(level, base_stat, iv, ev, bonus);
 }
 
 /**
