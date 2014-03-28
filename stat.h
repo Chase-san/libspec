@@ -63,7 +63,25 @@ typedef enum {
 	STAT_BONUS_NEGATIVE
 } stat_bonus_t;
 
+extern const uint32_t STAT_TOTAL_EXP_ERRATIC[100];
+extern const uint32_t STAT_TOTAL_EXP_FAST[100];
+extern const uint32_t STAT_TOTAL_EXP_MEDIUM_FAST[100];
+extern const uint32_t STAT_TOTAL_EXP_MEDIUM_SLOW[100];
+extern const uint32_t STAT_TOTAL_EXP_SLOW[100];
+extern const uint32_t STAT_TOTAL_EXP_FLUCTUATING[100];
+
+typedef enum {
+	STAT_GROWTH_RATE_ERRATIC = 0,
+	STAT_GROWTH_RATE_FAST = 1,
+	STAT_GROWTH_RATE_MEDIUM_FAST = 2,
+	STAT_GROWTH_RATE_MEDIUM_SLOW = 3,
+	STAT_GROWTH_RATE_SLOW = 4,
+	STAT_GROWTH_RATE_FLUCTUATING = 5
+} stat_growth_rate_t;
+
 stat_bonus_t stat_get_bonus(stat_nature_t,stat_stat_t);
+stat_nature_t stat_get_nature(uint32_t pid);
+uint8_t stat_get_level(stat_growth_rate_t, uint32_t exp);
 
 uint16_t gb_calc_stat(uint8_t, uint8_t, uint8_t, uint16_t);
 uint16_t gb_calc_hp_stat(uint8_t, uint8_t, uint8_t, uint16_t);
