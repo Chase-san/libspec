@@ -72,6 +72,8 @@ void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size) {
 	}
 }
 
+#include <stdio.h>
+
 /**
  * @brief Converts UCS2 encoded text into GBA encoded text.
  * @param dst Pointer to destination.
@@ -81,9 +83,10 @@ void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size) {
 void ucs2_to_gba_text(char8_t *dst, char16_t *src, size_t size) {
 	for(int i = 0; i < size; ++i) {
 		dst[i] = 0xAC; //question mark
+		
 		for(int j = 0; j < GBA_CODEPAGE_SIZE; ++j) {
 			if(GBA_TO_CODEPAGE[j] == src[i]) {
-				dst[i] = GBA_TO_CODEPAGE[j];
+				dst[i] = j;
 				break;
 			}
 		}
