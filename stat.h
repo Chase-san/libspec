@@ -79,7 +79,7 @@ typedef enum {
 	STAT_GROWTH_RATE_FLUCTUATING = 5
 } stat_growth_rate_t;
 
-stat_bonus_t stat_get_bonus(stat_nature_t,stat_stat_t);
+stat_bonus_t stat_get_bonus(stat_nature_t, stat_stat_t);
 stat_nature_t stat_get_nature(uint32_t pid);
 uint8_t stat_get_level(stat_growth_rate_t, uint32_t exp);
 
