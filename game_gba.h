@@ -336,8 +336,6 @@ enum gba_pokemon_storage {
 	GBA_POKEMON_IN_BOX = 30,
 	/** The length of a pc box's name. */
 	GBA_BOX_NAME_LENGTH = 9,
-	/** The number of pokemon you can have in your party. */
-	GBA_POKEMON_IN_PARTY = 6,
 };
 
 #pragma pack(push, 1)
@@ -348,7 +346,7 @@ typedef struct {
 	/** @brief The number of pokemon currently in the party. */
 	uint32_t size;
 	/** @brief The individual pokemon in the party. */
-	pk3_t pokemon[GBA_POKEMON_IN_PARTY];
+	pk3_t pokemon[POKEMON_IN_PARTY];
 } gba_party_t;
 
 /**

@@ -44,7 +44,21 @@ uint8_t *nds_create_data();
 void nds_write_main_save(uint8_t *, const nds_save_t *);
 void nds_write_backup_save(uint8_t *, const nds_save_t *);
 
-/* Pokemon editing */
+#pragma pack(push, 1)
+
+/**
+ * @brief NDS Party Structure.
+ */
+typedef struct {
+	/** @brief The number of pokemon currently in the party. */
+	uint32_t size;
+	/** @brief The individual pokemon in the party. */
+	pkm_nds_t pokemon[POKEMON_IN_PARTY];
+} nds_party_t;
+
+#pragma pack(pop)
+
+nds_party_t *nds_get_party(nds_save_t *);
 
 
 #endif //__NDS_H__

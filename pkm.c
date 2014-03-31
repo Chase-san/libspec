@@ -39,7 +39,7 @@ static inline const uint8_t *pkm_get_shuffle(void *ptr) {
 	return &t_shuffle[(*(uint32_t *)ptr & PKM_SHUFFLE_MASK) >> PKM_SHUFFLE_SHIFT];
 }
 
-void pkm_shuffle(pkm_t *pkm) {
+void pkm_shuffle(pkm_box_t *pkm) {
 	//0,32,64,96 to shuffle[0 .. 3]
 	const uint8_t *shuffle = pkm_get_shuffle(pkm);
 	uint8_t *bptr = ((uint8_t *)pkm) + PKM_HEADER_SIZE_8;
@@ -52,7 +52,7 @@ void pkm_shuffle(pkm_t *pkm) {
 	free(tmp);
 }
 
-void pkm_unshuffle(pkm_t *pkm) {
+void pkm_unshuffle(pkm_box_t *pkm) {
 	//shuffle[0 .. 3] to 0,32,64,96
 	const uint8_t *shuffle = pkm_get_shuffle(pkm);
 	uint8_t *bptr = ((uint8_t *)pkm) + PKM_HEADER_SIZE_8;
@@ -65,7 +65,7 @@ void pkm_unshuffle(pkm_t *pkm) {
 	free(tmp);
 }
 
-void pkm_crypt(pkm_t *pkm) {
+void pkm_crypt(pkm_box_t *pkm) {
 	uint16_t *tptr = (uint16_t *)pkm;
 	prng_seed_t seed = tptr[PKM_CHECKSUM_OFFSET_16];
 	for(size_t i = 0; i < PKM_DATA_SIZE_16; ++i) {
@@ -81,12 +81,12 @@ void pkm_crypt_nds_party(pkm_nds_t *pkm) {
 	}
 }
 
-void pkm_decrypt(pkm_t *pkm) {
+void pkm_decrypt(pkm_box_t *pkm) {
 	pkm_crypt(pkm);
 	pkm_unshuffle(pkm);
 }
 
-void pkm_encrypt(pkm_t *pkm) {
+void pkm_encrypt(pkm_box_t *pkm) {
 	pkm->header.checksum = pkm_checksum((uint8_t *)pkm->block, PKM_DATA_SIZE_8);
 	pkm_shuffle(pkm);
 	pkm_crypt(pkm);

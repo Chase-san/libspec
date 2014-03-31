@@ -337,16 +337,16 @@ typedef struct {
 			};
 		};
 	};
-} pkm_t;
+} pkm_box_t;
 
 typedef struct {
-	pkm_t box;
+	pkm_box_t box;
 	pkm_nds_party_t party;
 } pkm_nds_t;
 #pragma pack(pop)
 
-void pkm_decrypt(pkm_t *);
-void pkm_encrypt(pkm_t *);
+void pkm_decrypt(pkm_box_t *);
+void pkm_encrypt(pkm_box_t *);
 void pkm_crypt_nds_party(pkm_nds_t *);
 
 #endif //__PKM_H__
