@@ -63,11 +63,34 @@ typedef enum {
 	STAT_BONUS_NEGATIVE
 } stat_bonus_t;
 
+/**
+ * @brief Erratic Experience Table, indexed 0 to 99 for levels 1 to 100.
+ */
 extern const uint32_t STAT_TOTAL_EXP_ERRATIC[100];
+
+/**
+ * @brief Fast Experience Table, indexed 0 to 99 for levels 1 to 100.
+ */
 extern const uint32_t STAT_TOTAL_EXP_FAST[100];
+
+/**
+ * @brief Medium Fast Experience Table, indexed 0 to 99 for levels 1 to 100.
+ */
 extern const uint32_t STAT_TOTAL_EXP_MEDIUM_FAST[100];
+
+/**
+ * @brief Medium Slow Experience Table, indexed 0 to 99 for levels 1 to 100.
+ */
 extern const uint32_t STAT_TOTAL_EXP_MEDIUM_SLOW[100];
+
+/**
+ * @brief Slow Experience Table, indexed 0 to 99 for levels 1 to 100.
+ */
 extern const uint32_t STAT_TOTAL_EXP_SLOW[100];
+
+/**
+ * @brief Fluctuating Experience Table, indexed 0 to 99 for levels 1 to 100.
+ */
 extern const uint32_t STAT_TOTAL_EXP_FLUCTUATING[100];
 
 typedef enum {
