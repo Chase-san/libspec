@@ -500,9 +500,9 @@ nds_party_t *nds_get_party(nds_save_t *save) {
 
 	nds_party_t *party = NULL;
 	if(save->type == NDS_TYPE_DP || save->type == NDS_TYPE_HGSS) {
-		party = sdat->block->small + NDS_DP_HGSS_PARTY_START;
+		party = (nds_party_t *)(sdat->block.small + NDS_DP_HGSS_PARTY_START);
 	} else if(save->type == NDS_TYPE_PLAT) {
-		party = sdat->block->small + NDS_PLAT_PARTY_START;
+		party = (nds_party_t *)(sdat->block.small + NDS_PLAT_PARTY_START);
 	}
 
 	return party;

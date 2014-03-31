@@ -220,30 +220,6 @@ typedef struct { //0x1
 	uint8_t strain : 4;
 } pkm_pokerus_t;
 
-typedef struct { //0x100
-	struct { //0x1
-		uint8_t sleep_turns : 3;
-		bool is_poisoned : 1;
-		bool is_burned : 1;
-		bool is_frozen : 1;
-		bool is_paralyzed : 1;
-		bool is_toxic : 1;
-	};//status
-	uint8_t : 8;
-	uint16_t : 16;
-	uint8_t level;
-	uint8_t capsule;
-	uint8_t hp;
-	uint8_t maxhp;
-	uint8_t atk;
-	uint8_t def;
-	uint8_t spd;
-	uint8_t satk;
-	uint8_t sdef;
-	uint8_t unknown[56];
-	uint8_t seal_loc[24];
-} pkm_nds_party_t;
-
 typedef struct {
 	pkm_header_t header;
 	union {
@@ -338,6 +314,29 @@ typedef struct {
 		};
 	};
 } pkm_box_t;
+
+typedef struct { //0x100
+	struct { //0x1
+		uint8_t sleep_turns : 3;
+		bool is_poisoned : 1;
+		bool is_burned : 1;
+		bool is_frozen : 1;
+		bool is_paralyzed : 1;
+		bool is_toxic : 1;
+	};//status
+	uint32_t : 24;
+	uint8_t level;
+	uint8_t capsule;
+	uint8_t hp;
+	uint8_t maxhp;
+	uint8_t atk;
+	uint8_t def;
+	uint8_t spd;
+	uint8_t satk;
+	uint8_t sdef;
+	uint8_t unknown[56];
+	uint8_t seal_loc[24];
+} pkm_nds_party_t;
 
 typedef struct {
 	pkm_box_t box;
