@@ -44,26 +44,12 @@ typedef struct {
 	void *internal;
 } gba_save_t;
 
-void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size);
-void ucs2_to_gba_text(char8_t *dst, char16_t *src, size_t size);
-
-gba_save_t *gba_read_main_save(const uint8_t *);
-gba_save_t *gba_read_backup_save(const uint8_t *);
-void gba_free_save(gba_save_t *);
-
-uint8_t *gba_create_data();
-
-void gba_write_main_save(uint8_t *, const gba_save_t *);
-void gba_write_backup_save(uint8_t *, const gba_save_t *);
-
-void gba_save_game(uint8_t *, gba_save_t *);
-
 /* Generation 3 Pokemon Data Structure */
 
 /**
  * @brief Defines constants related to the GBA pokemon structure.
  */
-enum pk3_def {
+enum {
 	/** @brief The size of an individual block in the pokemon structure. */
 	PK3_BLOCK_SIZE = 0xC,
 	/** @brief The size of the pk3_box_t structure, the box storage structure. */
@@ -76,6 +62,26 @@ enum pk3_def {
 	PK3_OT_NAME_LENGTH = 7
 };
 
+/**
+ * @brief Defines constants related to GBA pokemon storage.
+ */
+enum {
+	/** The number of boxes in the PC. */
+	GBA_BOX_COUNT = 14,
+	/** The number of pokemon in a box. */
+	GBA_POKEMON_IN_BOX = 30,
+	/** The length of a pc box's name. */
+	GBA_BOX_NAME_LENGTH = 9,
+};
+
+enum {
+	GBA_RS_ITEM_COUNT = 216,
+	GBA_E_ITEM_COUNT = 236,
+	GBA_FRLG_ITEM_COUNT = 216
+};
+
+
+// packed structs
 #pragma pack(push, 1)
 /**
  * @brief The pokemon's markings that you see in the party or box. Used for searching.
@@ -320,25 +326,6 @@ typedef struct {
 	pk3_party_t party;
 } pk3_t;
 
-#pragma pack(pop)
-
-void pk3_decrypt(pk3_box_t *);
-void pk3_encrypt(pk3_box_t *);
-
-//Actual Save Editing
-/**
- * @brief Defines constants related to GBA pokemon storage.
- */
-enum gba_pokemon_storage {
-	/** The number of boxes in the PC. */
-	GBA_BOX_COUNT = 14,
-	/** The number of pokemon in a box. */
-	GBA_POKEMON_IN_BOX = 30,
-	/** The length of a pc box's name. */
-	GBA_BOX_NAME_LENGTH = 9,
-};
-
-#pragma pack(push, 1)
 /**
  * @brief GBA Party Structure.
  */
@@ -374,18 +361,6 @@ typedef struct {
 	uint8_t wallpaper[GBA_BOX_COUNT];
 } gba_pc_t;
 
-#pragma pack(pop)
-
-gba_party_t *gba_get_party(gba_save_t *);
-gba_pc_t *gba_get_pc(gba_save_t *);
-
-enum {
-	GBA_RS_ITEM_COUNT = 216,
-	GBA_E_ITEM_COUNT = 236,
-	GBA_FRLG_ITEM_COUNT = 216
-};
-
-#pragma pack(push, 1)
 /**
  * @brief GBA Item Slot Structure.
  */
@@ -455,12 +430,6 @@ typedef struct {
 	};
 } gba_storage_t;
 
-#pragma pack(pop)
-
-gba_storage_t *gba_get_storage(gba_save_t *);
-
-
-#pragma pack(push, 1)
 /**
  * @brief GBA Time Played Structure
  */
@@ -490,20 +459,41 @@ typedef struct {
 } gba_trainer_t;
 #pragma pack(pop)
 
-gba_trainer_t *gba_get_trainer(gba_save_t *);
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-//bool gba_pokedex_get(gba_save_t *);
-//void gba_pokedex_set(gba_save_t *, bool);
+void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size);
+void ucs2_to_gba_text(char8_t *dst, char16_t *src, size_t size);
+
+gba_save_t *gba_read_main_save(const uint8_t *);
+gba_save_t *gba_read_backup_save(const uint8_t *);
+void gba_write_main_save(uint8_t *, const gba_save_t *);
+void gba_write_backup_save(uint8_t *, const gba_save_t *);
+void gba_save_game(uint8_t *, gba_save_t *);
+
+void gba_free_save(gba_save_t *);
+uint8_t *gba_create_data();
+
+void pk3_decrypt(pk3_box_t *);
+void pk3_encrypt(pk3_box_t *);
+
+gba_storage_t *gba_get_storage(gba_save_t *);
+gba_trainer_t *gba_get_trainer(gba_save_t *);
+gba_party_t *gba_get_party(gba_save_t *);
+gba_pc_t *gba_get_pc(gba_save_t *);
 
 bool gba_pokedex_get_national(gba_save_t *);
 void gba_pokedex_set_national(gba_save_t *, bool);
-
 bool gba_pokedex_get_owned(gba_save_t *, size_t);
 void gba_pokedex_set_owned(gba_save_t *, size_t, bool);
-
 bool gba_pokedex_get_seen(gba_save_t *, size_t);
 void gba_pokedex_set_seen(gba_save_t *, size_t, bool);
 
 //TODO rival name, badges, day care pokemon (then GBA is done :D)
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //__GBA_H__

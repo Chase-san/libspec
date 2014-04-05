@@ -22,8 +22,16 @@ enum {
 	DSI_SAVE_SIZE = 0x80000
 };
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 dsi_savetype_t dsi_detect_save_type(uint8_t *, size_t);
 
 void dsi_test(uint8_t *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //__DSI_H__

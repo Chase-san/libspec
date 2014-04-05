@@ -13,10 +13,18 @@
  */
 typedef uint32_t prng_seed_t;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void prng_prev_seed(prng_seed_t *);
 void prng_next_seed(prng_seed_t *);
 uint16_t prng_prev(prng_seed_t *);
 uint16_t prng_next(prng_seed_t *);
 uint16_t prng_current(prng_seed_t *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //__PRNG_H__

@@ -26,6 +26,10 @@ typedef struct {
 	gb_savetype_t type;
 } gb_save_t;
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void gb_text_to_ucs2(char16_t *dst, char8_t *src, size_t size);
 void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size);
 
@@ -36,5 +40,8 @@ uint8_t *gb_create_data();
 
 void gb_write_save(uint8_t *, const gb_save_t *);
 
+#ifdef __cplusplus
+}
+#endif
 
 #endif //__GB_H__

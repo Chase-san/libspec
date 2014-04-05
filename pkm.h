@@ -344,8 +344,16 @@ typedef struct {
 } pkm_nds_t;
 #pragma pack(pop)
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void pkm_decrypt(pkm_box_t *);
 void pkm_encrypt(pkm_box_t *);
 void pkm_crypt_nds_party(pkm_nds_t *);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif //__PKM_H__
