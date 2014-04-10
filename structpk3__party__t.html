@@ -38,7 +38,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -87,84 +86,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">pk3_party_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>A GBA pokemon's box and party data. 100 bytes in size.  
- <a href="structpk3__party__t.html#details">More...</a></p>
-
-<p><code>#include &lt;game_gba.h&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a4e7c435093c9ce5c9cfa7be0d49e1162"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e7c435093c9ce5c9cfa7be0d49e1162"></a>
-<a class="el" href="structpk3__t.html">pk3_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>box</b></td></tr>
-<tr class="separator:a4e7c435093c9ce5c9cfa7be0d49e1162"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5436686f220eccbc3bfe0ebce19f3f8c"><td class="memItemLeft" ><a class="anchor" id="a5436686f220eccbc3bfe0ebce19f3f8c"></a>
-struct {</td></tr>
-<tr class="memitem:ad9a088ee75d8a345a80c35bed551e9e2"><td class="memItemLeft" ><a class="anchor" id="ad9a088ee75d8a345a80c35bed551e9e2"></a>
-&#160;&#160;&#160;union {</td></tr>
-<tr class="memitem:aeeabafe98f2bb1ce185994983e49f7d0"><td class="memItemLeft" ><a class="anchor" id="a7dd6b7da5a245d21a0cd76ab851970a4"></a>
-&#160;&#160;&#160;&#160;&#160;&#160;uint32_t&#160;&#160;&#160;<b>status</b></td></tr>
-<tr class="separator:aeeabafe98f2bb1ce185994983e49f7d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19cd224a3fb75fb782cef6e164d0ab3f"><td class="memItemLeft" ><a class="anchor" id="a19cd224a3fb75fb782cef6e164d0ab3f"></a>
-&#160;&#160;&#160;&#160;&#160;&#160;struct {</td></tr>
-<tr class="memitem:ae5f10c7b47ddca725aa487c59b1506ee"><td class="memItemLeft" ><a class="anchor" id="a835cfbdb9e1c08cebdd0666d2a1de589"></a>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<b>status_sleep</b>: 3</td></tr>
-<tr class="separator:ae5f10c7b47ddca725aa487c59b1506ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a061d7d4c3691355555efb7448adab1e6"><td class="memItemLeft" ><a class="anchor" id="aa1903989374d929d2f42d5da4df9a2ef"></a>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="types_8h.html#a0ecf26b576b9a54eca656b9be7ba6a06">bool</a>&#160;&#160;&#160;<b>status_poison</b>: 1</td></tr>
-<tr class="separator:a061d7d4c3691355555efb7448adab1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e5fd2096502560efd71468b0d433c46"><td class="memItemLeft" ><a class="anchor" id="a1faf6f4c2baae05c9865175682a27c68"></a>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="types_8h.html#a0ecf26b576b9a54eca656b9be7ba6a06">bool</a>&#160;&#160;&#160;<b>status_burn</b>: 1</td></tr>
-<tr class="separator:a1e5fd2096502560efd71468b0d433c46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac7ea7e6192bfe5798be195c09552458c"><td class="memItemLeft" ><a class="anchor" id="ae23e78ca9686ec822813882c694ad81d"></a>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="types_8h.html#a0ecf26b576b9a54eca656b9be7ba6a06">bool</a>&#160;&#160;&#160;<b>status_freeze</b>: 1</td></tr>
-<tr class="separator:ac7ea7e6192bfe5798be195c09552458c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73f58a0d81fbaf93d2c4899bf8228870"><td class="memItemLeft" ><a class="anchor" id="a89449583f82807168c355834e99d934c"></a>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="types_8h.html#a0ecf26b576b9a54eca656b9be7ba6a06">bool</a>&#160;&#160;&#160;<b>status_paralysis</b>: 1</td></tr>
-<tr class="separator:a73f58a0d81fbaf93d2c4899bf8228870"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abedecee9a483ec59c6becdbb4fed00e8"><td class="memItemLeft" ><a class="anchor" id="a46d294a08de5d01b7d27e9ec2b2a3a52"></a>
-&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;<a class="el" href="types_8h.html#a0ecf26b576b9a54eca656b9be7ba6a06">bool</a>&#160;&#160;&#160;<b>status_toxic</b>: 1</td></tr>
-<tr class="separator:abedecee9a483ec59c6becdbb4fed00e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19cd224a3fb75fb782cef6e164d0ab3f"><td class="memItemLeft" valign="top">&#160;&#160;&#160;&#160;&#160;&#160;}&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
-<tr class="separator:a19cd224a3fb75fb782cef6e164d0ab3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad9a088ee75d8a345a80c35bed551e9e2"><td class="memItemLeft" valign="top">&#160;&#160;&#160;}&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
-<tr class="separator:ad9a088ee75d8a345a80c35bed551e9e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e6bd122f1c6ed67159bdbf36e9b1abf"><td class="memItemLeft" ><a class="anchor" id="ad6de72e9c5c1884f40cd3400e36589a4"></a>
-&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<b>level</b></td></tr>
-<tr class="separator:a9e6bd122f1c6ed67159bdbf36e9b1abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a1f932bfbe620ab45503d7b3cdfc657"><td class="memItemLeft" ><a class="anchor" id="a6947b32fa2f9c8bd088b3e3cd8e46ee9"></a>
-&#160;&#160;&#160;uint8_t&#160;&#160;&#160;<b>pokerus_time</b></td></tr>
-<tr class="separator:a1a1f932bfbe620ab45503d7b3cdfc657"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af1f4d66626e584eca48ea58ef28ad3ea"><td class="memItemLeft" ><a class="anchor" id="a99ed5e1aa285a2b7cf9e6780168a0f9c"></a>
-&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<b>hp</b></td></tr>
-<tr class="separator:af1f4d66626e584eca48ea58ef28ad3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae45f133ed34d39247512ff97d34c9f93"><td class="memItemLeft" ><a class="anchor" id="a73f5844e840f7e45dd506aced562b9a7"></a>
-&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<b>max_hp</b></td></tr>
-<tr class="separator:ae45f133ed34d39247512ff97d34c9f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a95c3e8bf6e265ff16441c8d6f66a7870"><td class="memItemLeft" ><a class="anchor" id="a5392c90402c6f9891452bf0bde693309"></a>
-&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<b>atk</b></td></tr>
-<tr class="separator:a95c3e8bf6e265ff16441c8d6f66a7870"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f5b5bff6a45cc5bfae4d4f6c27208f5"><td class="memItemLeft" ><a class="anchor" id="ae7e852be24fc537e941e639e15b22948"></a>
-&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<b>def</b></td></tr>
-<tr class="separator:a5f5b5bff6a45cc5bfae4d4f6c27208f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f4bcf2b74e7f1adab586d56b1b121b1"><td class="memItemLeft" ><a class="anchor" id="a28f417b41362ed46c32d8a97f86a0cb9"></a>
-&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<b>spd</b></td></tr>
-<tr class="separator:a6f4bcf2b74e7f1adab586d56b1b121b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad7021246de011c4efef956834247a92c"><td class="memItemLeft" ><a class="anchor" id="a44b32fed52b1fc6e7de15ef7396d7d85"></a>
-&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<b>satk</b></td></tr>
-<tr class="separator:ad7021246de011c4efef956834247a92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa14f0043e8bdd009cd3be60c1f14dedc"><td class="memItemLeft" ><a class="anchor" id="a337bbdb63d65a101b9b6840e0494c405"></a>
-&#160;&#160;&#160;uint16_t&#160;&#160;&#160;<b>sdef</b></td></tr>
-<tr class="separator:aa14f0043e8bdd009cd3be60c1f14dedc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5436686f220eccbc3bfe0ebce19f3f8c"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><b>party</b></td></tr>
-<tr class="separator:a5436686f220eccbc3bfe0ebce19f3f8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11cb0b8baa73f7c574bac31a4e8de374"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a11cb0b8baa73f7c574bac31a4e8de374"></a>
+<a class="el" href="structpk3__status__t.html">pk3_status_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>status</b></td></tr>
+<tr class="separator:a11cb0b8baa73f7c574bac31a4e8de374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2864a90da762c8e056444e850b1672b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2864a90da762c8e056444e850b1672b9"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><b>__pad0__</b>: 24</td></tr>
+<tr class="separator:a2864a90da762c8e056444e850b1672b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6de72e9c5c1884f40cd3400e36589a4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad6de72e9c5c1884f40cd3400e36589a4"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>level</b></td></tr>
+<tr class="separator:ad6de72e9c5c1884f40cd3400e36589a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6947b32fa2f9c8bd088b3e3cd8e46ee9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6947b32fa2f9c8bd088b3e3cd8e46ee9"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>pokerus_time</b></td></tr>
+<tr class="separator:a6947b32fa2f9c8bd088b3e3cd8e46ee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25bfb8edaa025b50d3e91c139f16602e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a25bfb8edaa025b50d3e91c139f16602e"></a>
+<a class="el" href="structpk3__stats__t.html">pk3_stats_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stats</b></td></tr>
+<tr class="separator:a25bfb8edaa025b50d3e91c139f16602e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>A GBA pokemon's box and party data. 100 bytes in size. </p>
-</div></div><!-- contents -->
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 26 2014 01:06:15 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 10 2014 11:35:30 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

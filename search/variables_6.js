@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['game',['game',['../structpk3__t.html#a138732859fdebf97a0d33bf742e6afc4',1,'pk3_t']]]
+  ['game',['game',['../structpk3__box__t.html#a8a15526bf74e73bed0dedb4275919f75',1,'pk3_box_t']]]
 ];

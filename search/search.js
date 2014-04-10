@@ -13,9 +13,9 @@ var indexSectionsWithContent =
   3: "dgnpu",
   4: "abcdefghilmnoprstw",
   5: "bcp",
-  6: "bgps",
+  6: "bgs",
   7: "gps",
-  8: "cgl"
+  8: "l"
 };
 
 var indexSectionNames =

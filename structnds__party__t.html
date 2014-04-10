@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>libSPEC: Goals</title>
+<title>libSPEC: nds_party_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,8 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,6 +58,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,38 +80,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">Goals </div>  </div>
+<div class="title">nds_party_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>The goals of libspec.</p>
-<p>In order of importance, these only apply to the games if they are applicable. You can't change the background of a PC box in generation 1 for example.</p>
-<ul>
-<li>Ability to fix the checksum of pokemon saves.</li>
-<li>Ability to extract/inject pokemon from pokemon saves.</li>
-<li>Ability to edit general trainer information from pokemon saves.<ul>
-<li>Trainer Name</li>
-<li>Rival Name</li>
-<li>Badges</li>
-<li>Money</li>
-</ul>
-</li>
-<li>Ability to edit the pokemon from pokemon saves.</li>
-<li>Ability to edit items from pokemon saves.</li>
-<li>Ability to edit the pokedex data from pokemon saves.<ul>
-<li>Seen</li>
-<li>Forms Seen</li>
-<li>Caught</li>
-<li>Pokedex's acquired (Regional, National, etc).</li>
-</ul>
-</li>
-<li>Ability to edit box names/backgrounds from pokemon saves.</li>
-<li>Ability to inject/edit signatures and other images from pokemon saves. </li>
-</ul>
+
+<p>NDS Party Structure.  
+ <a href="structnds__party__t.html#details">More...</a></p>
+
+<p><code>#include &lt;game_nds.h&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:aa696e5b0cb5c6131795cc8b13337529c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa696e5b0cb5c6131795cc8b13337529c"></a>
+uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnds__party__t.html#aa696e5b0cb5c6131795cc8b13337529c">size</a></td></tr>
+<tr class="memdesc:aa696e5b0cb5c6131795cc8b13337529c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The number of pokemon currently in the party. <br/></td></tr>
+<tr class="separator:aa696e5b0cb5c6131795cc8b13337529c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5aca5250e76a38552e6d9662ed3b1708"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5aca5250e76a38552e6d9662ed3b1708"></a>
+<a class="el" href="structpkm__nds__t.html">pkm_nds_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnds__party__t.html#a5aca5250e76a38552e6d9662ed3b1708">pokemon</a> [POKEMON_IN_PARTY]</td></tr>
+<tr class="memdesc:a5aca5250e76a38552e6d9662ed3b1708"><td class="mdescLeft">&#160;</td><td class="mdescRight">The individual pokemon in the party. <br/></td></tr>
+<tr class="separator:a5aca5250e76a38552e6d9662ed3b1708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>NDS Party Structure. </p>
 </div></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 26 2014 01:06:15 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 10 2014 11:35:30 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

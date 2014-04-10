@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['friendship',['friendship',['../structpk3__t.html#a8cab8f0acbffd33a3269fc30677e6db4',1,'pk3_t']]]
+  ['friendship',['friendship',['../structpk3__box__t.html#a8706525e64f97353b2a332c25640a400',1,'pk3_box_t']]]
 ];

@@ -6,7 +6,7 @@ var searchData=
   ['gb_5frby_5fchecksum',['gb_rby_checksum',['../checksum_8h.html#af77c3e826bb1ca29a173242c052fcf0e',1,'checksum.c']]],
   ['gba_5fblock_5fchecksum',['gba_block_checksum',['../checksum_8h.html#a06217b9c5824cfeb30e1832ecc8b3637',1,'checksum.c']]],
   ['gba_5fcalc_5fhp_5fstat',['gba_calc_hp_stat',['../stat_8h.html#a86a8cbdf54ef45b1c91d72d188a7da90',1,'stat.c']]],
-  ['gba_5fcalc_5fstat',['gba_calc_stat',['../stat_8h.html#a320ad5c985ca16f7d8a02f8d5d6ac632',1,'stat.c']]],
+  ['gba_5fcalc_5fstat',['gba_calc_stat',['../stat_8h.html#aa2e4d02913428e1946c9630f224ba34f',1,'stat.c']]],
   ['gba_5fcreate_5fdata',['gba_create_data',['../game__gba_8h.html#aa0e873b7dd0935e12c245962362f6881',1,'game_gba.c']]],
   ['gba_5ffree_5fsave',['gba_free_save',['../game__gba_8h.html#a4328f428d807916307f163462703c711',1,'game_gba.c']]],
   ['gba_5fget_5fparty',['gba_get_party',['../game__gba_8h.html#ae1698a2e628c8bb5ac3f355f2afca855',1,'game_gba.c']]],

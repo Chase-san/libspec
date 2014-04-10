@@ -38,7 +38,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -79,11 +78,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
 </div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">stat.h File Reference</div>  </div>
 </div><!--header-->
@@ -96,66 +100,199 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:aceee8fb91a769dbb7dd6a00287ba1c3b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a> { <br/>
-&#160;&#160;<a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3ba72105c8d0552900f3cab16e766ab9ff1">STAT_NATURE_NONE</a> = 0, 
+&#160;&#160;<b>NATURE_HARDY</b> = 0, 
 <br/>
-&#160;&#160;<a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3ba8840bdff921f9a33f29ed63167b4fa3e">STAT_NATURE_POSITIVE</a> = 1, 
+&#160;&#160;<b>NATURE_LONELY</b> = 1, 
 <br/>
-&#160;&#160;<a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3bacf170bccd391884363beb28e87be95b3">STAT_NATURE_NEGATIVE</a> = 2
+&#160;&#160;<b>NATURE_BRAVE</b> = 2, 
+<br/>
+&#160;&#160;<b>NATURE_ADAMANT</b> = 3, 
+<br/>
+&#160;&#160;<b>NATURE_NAUGHTY</b> = 4, 
+<br/>
+&#160;&#160;<b>NATURE_BOLD</b> = 5, 
+<br/>
+&#160;&#160;<b>NATURE_DOCILE</b> = 6, 
+<br/>
+&#160;&#160;<b>NATURE_RELAXED</b> = 7, 
+<br/>
+&#160;&#160;<b>NATURE_IMPISH</b> = 8, 
+<br/>
+&#160;&#160;<b>NATURE_LAX</b> = 9, 
+<br/>
+&#160;&#160;<b>NATURE_TIMID</b> = 10, 
+<br/>
+&#160;&#160;<b>NATURE_HASTY</b> = 11, 
+<br/>
+&#160;&#160;<b>NATURE_SERIOUS</b> = 12, 
+<br/>
+&#160;&#160;<b>NATURE_JOLLY</b> = 13, 
+<br/>
+&#160;&#160;<b>NATURE_NAIVE</b> = 14, 
+<br/>
+&#160;&#160;<b>NATURE_MODEST</b> = 15, 
+<br/>
+&#160;&#160;<b>NATURE_MILD</b> = 16, 
+<br/>
+&#160;&#160;<b>NATURE_QUIET</b> = 17, 
+<br/>
+&#160;&#160;<b>NATURE_BASHFUL</b> = 18, 
+<br/>
+&#160;&#160;<b>NATURE_RASH</b> = 19, 
+<br/>
+&#160;&#160;<b>NATURE_CALM</b> = 20, 
+<br/>
+&#160;&#160;<b>NATURE_GENTLE</b> = 21, 
+<br/>
+&#160;&#160;<b>NATURE_SASSY</b> = 22, 
+<br/>
+&#160;&#160;<b>NATURE_CAREFUL</b> = 23, 
+<br/>
+&#160;&#160;<b>NATURE_QUIRKY</b> = 24
 <br/>
  }</td></tr>
-<tr class="memdesc:aceee8fb91a769dbb7dd6a00287ba1c3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum to tell the stat functions if a nature is beneficial or otherwise.  <a href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">More...</a><br/></td></tr>
+<tr class="memdesc:aceee8fb91a769dbb7dd6a00287ba1c3b"><td class="mdescLeft">&#160;</td><td class="mdescRight">List of natures by index. <br/></td></tr>
 <tr class="separator:aceee8fb91a769dbb7dd6a00287ba1c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc36fbac1930661009142dc610700c8a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#adc36fbac1930661009142dc610700c8a">stat_stat_t</a> { <br/>
+&#160;&#160;<b>STAT_HP</b> = 0, 
+<br/>
+&#160;&#160;<b>STAT_ATTAK</b> = 1, 
+<br/>
+&#160;&#160;<b>STAT_DEFENSE</b> = 2, 
+<br/>
+&#160;&#160;<b>STAT_SPEED</b> = 3, 
+<br/>
+&#160;&#160;<b>STAT_SP_ATTACK</b> = 4, 
+<br/>
+&#160;&#160;<b>STAT_SP_DEFENSE</b> = 5
+<br/>
+ }</td></tr>
+<tr class="separator:adc36fbac1930661009142dc610700c8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d6902a62cb6da22b31514ccec3bf606"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a> { <br/>
+&#160;&#160;<a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606ab5de12f60b36c797cca59f4cfa02b875">STAT_BONUS_NONE</a>, 
+<br/>
+&#160;&#160;<a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606ac2ddcd531677443eb6596f03ad2cede8">STAT_BONUS_POSITIVE</a>, 
+<br/>
+&#160;&#160;<a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606a3777621179d727f22a79179a079cbdd8">STAT_BONUS_NEGATIVE</a>
+<br/>
+ }</td></tr>
+<tr class="memdesc:a3d6902a62cb6da22b31514ccec3bf606"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enum to tell the stat functions if a nature is beneficial or otherwise.  <a href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">More...</a><br/></td></tr>
+<tr class="separator:a3d6902a62cb6da22b31514ccec3bf606"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6ce64c2661b693eea9553a5898fd536"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><b>stat_growth_rate_t</b> { <br/>
+&#160;&#160;<b>STAT_GROWTH_RATE_ERRATIC</b> = 0, 
+<br/>
+&#160;&#160;<b>STAT_GROWTH_RATE_FAST</b> = 1, 
+<br/>
+&#160;&#160;<b>STAT_GROWTH_RATE_MEDIUM_FAST</b> = 2, 
+<br/>
+&#160;&#160;<b>STAT_GROWTH_RATE_MEDIUM_SLOW</b> = 3, 
+<br/>
+&#160;&#160;<b>STAT_GROWTH_RATE_SLOW</b> = 4, 
+<br/>
+&#160;&#160;<b>STAT_GROWTH_RATE_FLUCTUATING</b> = 5
+<br/>
+ }</td></tr>
+<tr class="separator:ac6ce64c2661b693eea9553a5898fd536"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
+<tr class="memitem:a9d239579b3e5dd91ea8729374e15c092"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d239579b3e5dd91ea8729374e15c092"></a>
+<a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stat_get_bonus</b> (<a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a>, <a class="el" href="stat_8h.html#adc36fbac1930661009142dc610700c8a">stat_stat_t</a>)</td></tr>
+<tr class="separator:a9d239579b3e5dd91ea8729374e15c092"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54de6ae8c998fe510a5cbb200395f9be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a54de6ae8c998fe510a5cbb200395f9be"></a>
+<a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a>&#160;</td><td class="memItemRight" valign="bottom"><b>stat_get_nature</b> (uint32_t pid)</td></tr>
+<tr class="separator:a54de6ae8c998fe510a5cbb200395f9be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1bea8f811166b063f8cdf1a44609b06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac1bea8f811166b063f8cdf1a44609b06"></a>
+uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>stat_get_level</b> (stat_growth_rate_t, uint32_t exp)</td></tr>
+<tr class="separator:ac1bea8f811166b063f8cdf1a44609b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a48fcdb37aaa39d23f9bc7b8648870af6"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a48fcdb37aaa39d23f9bc7b8648870af6">gb_calc_stat</a> (uint8_t, uint8_t, uint8_t, uint16_t)</td></tr>
 <tr class="memdesc:a48fcdb37aaa39d23f9bc7b8648870af6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate a non-HP stat for a pokemon from generation 1 or 2.  <a href="#a48fcdb37aaa39d23f9bc7b8648870af6">More...</a><br/></td></tr>
 <tr class="separator:a48fcdb37aaa39d23f9bc7b8648870af6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6ee2e1cc245c0dac0e0558a166e99d8"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ac6ee2e1cc245c0dac0e0558a166e99d8">gb_calc_hp_stat</a> (uint8_t, uint8_t, uint8_t, uint16_t)</td></tr>
 <tr class="memdesc:ac6ee2e1cc245c0dac0e0558a166e99d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate the HP stat for a pokemon from generation 1 or 2.  <a href="#ac6ee2e1cc245c0dac0e0558a166e99d8">More...</a><br/></td></tr>
 <tr class="separator:ac6ee2e1cc245c0dac0e0558a166e99d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a320ad5c985ca16f7d8a02f8d5d6ac632"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a320ad5c985ca16f7d8a02f8d5d6ac632">gba_calc_stat</a> (uint8_t, uint8_t, uint8_t, uint8_t, <a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a>)</td></tr>
-<tr class="memdesc:a320ad5c985ca16f7d8a02f8d5d6ac632"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate a non-HP stat for a pokemon from generation 3.  <a href="#a320ad5c985ca16f7d8a02f8d5d6ac632">More...</a><br/></td></tr>
-<tr class="separator:a320ad5c985ca16f7d8a02f8d5d6ac632"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2e4d02913428e1946c9630f224ba34f"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aa2e4d02913428e1946c9630f224ba34f">gba_calc_stat</a> (uint8_t, uint8_t, uint8_t, uint8_t, <a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a>)</td></tr>
+<tr class="memdesc:aa2e4d02913428e1946c9630f224ba34f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate a non-HP stat for a pokemon from generation 3.  <a href="#aa2e4d02913428e1946c9630f224ba34f">More...</a><br/></td></tr>
+<tr class="separator:aa2e4d02913428e1946c9630f224ba34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a86a8cbdf54ef45b1c91d72d188a7da90"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a86a8cbdf54ef45b1c91d72d188a7da90">gba_calc_hp_stat</a> (uint8_t, uint8_t, uint8_t, uint8_t)</td></tr>
 <tr class="memdesc:a86a8cbdf54ef45b1c91d72d188a7da90"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate the HP stat for a pokemon from generation 3.  <a href="#a86a8cbdf54ef45b1c91d72d188a7da90">More...</a><br/></td></tr>
 <tr class="separator:a86a8cbdf54ef45b1c91d72d188a7da90"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fa4f6ffb79d9684ec08eb360c913055"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a3fa4f6ffb79d9684ec08eb360c913055">nds_calc_stat</a> (uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, <a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a>)</td></tr>
-<tr class="memdesc:a3fa4f6ffb79d9684ec08eb360c913055"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate a non-HP stat for a pokemon from generation 4.  <a href="#a3fa4f6ffb79d9684ec08eb360c913055">More...</a><br/></td></tr>
-<tr class="separator:a3fa4f6ffb79d9684ec08eb360c913055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6114ec0329343a31d0091edcb0d84da8"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a6114ec0329343a31d0091edcb0d84da8">nds_calc_stat</a> (uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, <a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a>)</td></tr>
+<tr class="memdesc:a6114ec0329343a31d0091edcb0d84da8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate a non-HP stat for a pokemon from generation 4.  <a href="#a6114ec0329343a31d0091edcb0d84da8">More...</a><br/></td></tr>
+<tr class="separator:a6114ec0329343a31d0091edcb0d84da8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1987a5c39175d487eb18e6aa5a6a35eb"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a1987a5c39175d487eb18e6aa5a6a35eb">nds_calc_hp_stat</a> (uint8_t, uint8_t, uint8_t, uint8_t)</td></tr>
 <tr class="memdesc:a1987a5c39175d487eb18e6aa5a6a35eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate the HP stat for a pokemon from generation 4.  <a href="#a1987a5c39175d487eb18e6aa5a6a35eb">More...</a><br/></td></tr>
 <tr class="separator:a1987a5c39175d487eb18e6aa5a6a35eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d006bc9c27a9675357b16e661fd3d7a"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a4d006bc9c27a9675357b16e661fd3d7a">dsi_calc_stat</a> (uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, <a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a>)</td></tr>
-<tr class="memdesc:a4d006bc9c27a9675357b16e661fd3d7a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate a non-HP stat for a pokemon from generation 5.  <a href="#a4d006bc9c27a9675357b16e661fd3d7a">More...</a><br/></td></tr>
-<tr class="separator:a4d006bc9c27a9675357b16e661fd3d7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31af2a9a836ec3f3865d6c518678a5d7"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a31af2a9a836ec3f3865d6c518678a5d7">dsi_calc_stat</a> (uint8_t level, uint8_t base_stat, uint8_t iv, uint8_t ev, <a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a>)</td></tr>
+<tr class="memdesc:a31af2a9a836ec3f3865d6c518678a5d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate a non-HP stat for a pokemon from generation 5.  <a href="#a31af2a9a836ec3f3865d6c518678a5d7">More...</a><br/></td></tr>
+<tr class="separator:a31af2a9a836ec3f3865d6c518678a5d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4061b152b3dc2bb198529648d913cc6d"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a4061b152b3dc2bb198529648d913cc6d">dsi_calc_hp_stat</a> (uint8_t, uint8_t, uint8_t, uint8_t)</td></tr>
 <tr class="memdesc:a4061b152b3dc2bb198529648d913cc6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to calculate the HP stat for a pokemon from generation 5.  <a href="#a4061b152b3dc2bb198529648d913cc6d">More...</a><br/></td></tr>
 <tr class="separator:a4061b152b3dc2bb198529648d913cc6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a8a5eee45b3c47d5b1661072efe82ad39"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a5eee45b3c47d5b1661072efe82ad39"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a8a5eee45b3c47d5b1661072efe82ad39">STAT_TOTAL_EXP_ERRATIC</a> [100]</td></tr>
+<tr class="memdesc:a8a5eee45b3c47d5b1661072efe82ad39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Erratic Experience Table, indexed 0 to 99 for levels 1 to 100. <br/></td></tr>
+<tr class="separator:a8a5eee45b3c47d5b1661072efe82ad39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ff7c3d98895785fb1d9d91a4475dd0b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2ff7c3d98895785fb1d9d91a4475dd0b"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a2ff7c3d98895785fb1d9d91a4475dd0b">STAT_TOTAL_EXP_FAST</a> [100]</td></tr>
+<tr class="memdesc:a2ff7c3d98895785fb1d9d91a4475dd0b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fast Experience Table, indexed 0 to 99 for levels 1 to 100. <br/></td></tr>
+<tr class="separator:a2ff7c3d98895785fb1d9d91a4475dd0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85390078cf961032121a5699ca73aed5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a85390078cf961032121a5699ca73aed5"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a85390078cf961032121a5699ca73aed5">STAT_TOTAL_EXP_MEDIUM_FAST</a> [100]</td></tr>
+<tr class="memdesc:a85390078cf961032121a5699ca73aed5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Medium Fast Experience Table, indexed 0 to 99 for levels 1 to 100. <br/></td></tr>
+<tr class="separator:a85390078cf961032121a5699ca73aed5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdc643b8c70d3364b7c62296f6fe0670"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="acdc643b8c70d3364b7c62296f6fe0670"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#acdc643b8c70d3364b7c62296f6fe0670">STAT_TOTAL_EXP_MEDIUM_SLOW</a> [100]</td></tr>
+<tr class="memdesc:acdc643b8c70d3364b7c62296f6fe0670"><td class="mdescLeft">&#160;</td><td class="mdescRight">Medium Slow Experience Table, indexed 0 to 99 for levels 1 to 100. <br/></td></tr>
+<tr class="separator:acdc643b8c70d3364b7c62296f6fe0670"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d20dc16b3232235e227fb335dabbd6c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5d20dc16b3232235e227fb335dabbd6c"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a5d20dc16b3232235e227fb335dabbd6c">STAT_TOTAL_EXP_SLOW</a> [100]</td></tr>
+<tr class="memdesc:a5d20dc16b3232235e227fb335dabbd6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slow Experience Table, indexed 0 to 99 for levels 1 to 100. <br/></td></tr>
+<tr class="separator:a5d20dc16b3232235e227fb335dabbd6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92adf4eede3683cd1503d72494d22d35"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92adf4eede3683cd1503d72494d22d35"></a>
+const uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a92adf4eede3683cd1503d72494d22d35">STAT_TOTAL_EXP_FLUCTUATING</a> [100]</td></tr>
+<tr class="memdesc:a92adf4eede3683cd1503d72494d22d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fluctuating Experience Table, indexed 0 to 99 for levels 1 to 100. <br/></td></tr>
+<tr class="separator:a92adf4eede3683cd1503d72494d22d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Contains functions for calculating the stats of pokemon. </p>
 </div><h2 class="groupheader">Enumeration Type Documentation</h2>
-<a class="anchor" id="aceee8fb91a769dbb7dd6a00287ba1c3b"></a>
+<a class="anchor" id="adc36fbac1930661009142dc610700c8a"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">enum <a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a></td>
+          <td class="memname">enum <a class="el" href="stat_8h.html#adc36fbac1930661009142dc610700c8a">stat_stat_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>List of stats by index. </p>
+
+</div>
+</div>
+<a class="anchor" id="a3d6902a62cb6da22b31514ccec3bf606"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Enum to tell the stat functions if a nature is beneficial or otherwise. </p>
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="aceee8fb91a769dbb7dd6a00287ba1c3ba72105c8d0552900f3cab16e766ab9ff1"></a>STAT_NATURE_NONE</em>&#160;</td><td class="fielddoc">
-<p>A neutral nature for the given stat. </p>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="a3d6902a62cb6da22b31514ccec3bf606ab5de12f60b36c797cca59f4cfa02b875"></a>STAT_BONUS_NONE</em>&#160;</td><td class="fielddoc">
+<p>A neutral bonus for the given stat. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="aceee8fb91a769dbb7dd6a00287ba1c3ba8840bdff921f9a33f29ed63167b4fa3e"></a>STAT_NATURE_POSITIVE</em>&#160;</td><td class="fielddoc">
-<p>A beneficial nature for the given stat. </p>
+<tr><td class="fieldname"><em><a class="anchor" id="a3d6902a62cb6da22b31514ccec3bf606ac2ddcd531677443eb6596f03ad2cede8"></a>STAT_BONUS_POSITIVE</em>&#160;</td><td class="fielddoc">
+<p>A beneficial bonus for the given stat. </p>
 </td></tr>
-<tr><td class="fieldname"><em><a class="anchor" id="aceee8fb91a769dbb7dd6a00287ba1c3bacf170bccd391884363beb28e87be95b3"></a>STAT_NATURE_NEGATIVE</em>&#160;</td><td class="fielddoc">
-<p>A harmful nature for the given stat. </p>
+<tr><td class="fieldname"><em><a class="anchor" id="a3d6902a62cb6da22b31514ccec3bf606a3777621179d727f22a79179a079cbdd8"></a>STAT_BONUS_NEGATIVE</em>&#160;</td><td class="fielddoc">
+<p>A harmful bonus for the given stat. </p>
 </td></tr>
 </table>
 
@@ -262,7 +399,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a320ad5c985ca16f7d8a02f8d5d6ac632"></a>
+<a class="anchor" id="aa2e4d02913428e1946c9630f224ba34f"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -293,8 +430,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a>&#160;</td>
-          <td class="paramname"><em>nature</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a>&#160;</td>
+          <td class="paramname"><em>bonus</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -311,7 +448,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">base_stat</td><td>The base stat we are claculating. </td></tr>
     <tr><td class="paramname">iv</td><td>The pokemon's iv for the given stat. </td></tr>
     <tr><td class="paramname">ev</td><td>The pokemon's effort value for the given stat. </td></tr>
-    <tr><td class="paramname">nature</td><td>The pokemon's nature as it relates to the given stat. </td></tr>
+    <tr><td class="paramname">bonus</td><td>The bonus from nature for the given stat. </td></tr>
   </table>
   </dd>
 </dl>
@@ -369,7 +506,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a3fa4f6ffb79d9684ec08eb360c913055"></a>
+<a class="anchor" id="a6114ec0329343a31d0091edcb0d84da8"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -400,8 +537,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a>&#160;</td>
-          <td class="paramname"><em>nature</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a>&#160;</td>
+          <td class="paramname"><em>bonus</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -418,7 +555,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">base_stat</td><td>The base stat we are claculating. </td></tr>
     <tr><td class="paramname">iv</td><td>The pokemon's iv for the given stat. </td></tr>
     <tr><td class="paramname">ev</td><td>The pokemon's effort value for the given stat. </td></tr>
-    <tr><td class="paramname">nature</td><td>The pokemon's nature as it relates to the given stat. </td></tr>
+    <tr><td class="paramname">bonus</td><td>The bonus from nature for the given stat. </td></tr>
   </table>
   </dd>
 </dl>
@@ -476,7 +613,7 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a4d006bc9c27a9675357b16e661fd3d7a"></a>
+<a class="anchor" id="a31af2a9a836ec3f3865d6c518678a5d7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -507,8 +644,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3b">stat_nature_t</a>&#160;</td>
-          <td class="paramname"><em>nature</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606">stat_bonus_t</a>&#160;</td>
+          <td class="paramname"><em>bonus</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -525,7 +662,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">base_stat</td><td>The base stat we are claculating. </td></tr>
     <tr><td class="paramname">iv</td><td>The pokemon's iv for the given stat. </td></tr>
     <tr><td class="paramname">ev</td><td>The pokemon's effort value for the given stat. </td></tr>
-    <tr><td class="paramname">nature</td><td>The pokemon's nature as it relates to the given stat. </td></tr>
+    <tr><td class="paramname">bonus</td><td>The bonus from nature for the given stat. </td></tr>
   </table>
   </dd>
 </dl>
@@ -586,7 +723,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 26 2014 01:06:15 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 10 2014 11:35:30 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

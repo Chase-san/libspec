@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['pk3_5fbox_5ft',['pk3_box_t',['../structpk3__box__t.html',1,'']]],
   ['pk3_5fcontest_5ft',['pk3_contest_t',['../structpk3__contest__t.html',1,'']]],
   ['pk3_5feffort_5ft',['pk3_effort_t',['../structpk3__effort__t.html',1,'']]],
   ['pk3_5fgenes_5ft',['pk3_genes_t',['../structpk3__genes__t.html',1,'']]],
@@ -8,7 +9,10 @@ var searchData=
   ['pk3_5fpokerus_5ft',['pk3_pokerus_t',['../structpk3__pokerus__t.html',1,'']]],
   ['pk3_5fpp_5fup_5ft',['pk3_pp_up_t',['../structpk3__pp__up__t.html',1,'']]],
   ['pk3_5fribbon_5ft',['pk3_ribbon_t',['../structpk3__ribbon__t.html',1,'']]],
+  ['pk3_5fstats_5ft',['pk3_stats_t',['../structpk3__stats__t.html',1,'']]],
+  ['pk3_5fstatus_5ft',['pk3_status_t',['../structpk3__status__t.html',1,'']]],
   ['pk3_5ft',['pk3_t',['../structpk3__t.html',1,'']]],
+  ['pkm_5fbox_5ft',['pkm_box_t',['../structpkm__box__t.html',1,'']]],
   ['pkm_5fcontest_5ft',['pkm_contest_t',['../structpkm__contest__t.html',1,'']]],
   ['pkm_5fdate_5ft',['pkm_date_t',['../structpkm__date__t.html',1,'']]],
   ['pkm_5feffort_5ft',['pkm_effort_t',['../structpkm__effort__t.html',1,'']]],
@@ -24,6 +28,5 @@ var searchData=
   ['pkm_5fribbon_5fsinnoh2_5ft',['pkm_ribbon_sinnoh2_t',['../structpkm__ribbon__sinnoh2__t.html',1,'']]],
   ['pkm_5fribbon_5fsinnoh3_5ft',['pkm_ribbon_sinnoh3_t',['../structpkm__ribbon__sinnoh3__t.html',1,'']]],
   ['pkm_5fribbon_5fsinnoh4_5ft',['pkm_ribbon_sinnoh4_t',['../structpkm__ribbon__sinnoh4__t.html',1,'']]],
-  ['pkm_5fribbon_5funova_5ft',['pkm_ribbon_unova_t',['../structpkm__ribbon__unova__t.html',1,'']]],
-  ['pkm_5ft',['pkm_t',['../structpkm__t.html',1,'']]]
+  ['pkm_5fribbon_5funova_5ft',['pkm_ribbon_unova_t',['../structpkm__ribbon__unova__t.html',1,'']]]
 ];

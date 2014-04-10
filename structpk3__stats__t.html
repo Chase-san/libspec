@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>libSPEC: Contributing</title>
+<title>libSPEC: pk3_stats_t Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -38,8 +38,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
-      <li class="current"><a href="pages.html"><span>Related&#160;Pages</span></a></li>
-      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
         <div id="MSearchBox" class="MSearchBoxInactive">
@@ -59,6 +58,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       </li>
     </ul>
   </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Data&#160;Structures</span></a></li>
+      <li><a href="functions.html"><span>Data&#160;Fields</span></a></li>
+    </ul>
+  </div>
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -75,28 +80,41 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
   <div class="headertitle">
-<div class="title">Contributing </div>  </div>
+<div class="title">pk3_stats_t Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p>To contribute to libSPEC there are a few requirements, keep in mind it is a C library.</p>
-<h2>Code Style </h2>
-<ul>
-<li>All code must be written in C11 (or lower).</li>
-<li>Pragmas must be compatible with CLANG and GCC. MSVC compatibility is a bonus, but is not required.</li>
-<li>Naming Convention: libSPEC uses the underscore naming convention.<ul>
-<li>Your functions should have the following syntax <code>noun_verb_adjective()</code>, so <code>pkm_crypt_party()</code> would crypt the party pkm data.</li>
-<li>Your types should be suffixed with _t, such as <code>type_t</code>.</li>
-</ul>
-</li>
-<li>The only acceptable warnings are unused structs or top level data, but only with intention to use them later.</li>
-<li>All files are to use spaces for indentation, spaces are unacceptable and will be formatted away.</li>
-<li>All code must used the attached bracket style, meaning brackets are attached to the function, enum, struct or statement that defines them. </li>
-</ul>
-</div></div><!-- contents -->
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:abfba50951ae16d7b9c830c7acc7e3e3e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="abfba50951ae16d7b9c830c7acc7e3e3e"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>hp</b></td></tr>
+<tr class="separator:abfba50951ae16d7b9c830c7acc7e3e3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a483c8d6213d13e92f89dcb88580b9118"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a483c8d6213d13e92f89dcb88580b9118"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>max_hp</b></td></tr>
+<tr class="separator:a483c8d6213d13e92f89dcb88580b9118"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab34b56d0cfc7e8ec7d643fb0a53b66fb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab34b56d0cfc7e8ec7d643fb0a53b66fb"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>atk</b></td></tr>
+<tr class="separator:ab34b56d0cfc7e8ec7d643fb0a53b66fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50e75ff3df70f7f565617023a1f051f6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a50e75ff3df70f7f565617023a1f051f6"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>def</b></td></tr>
+<tr class="separator:a50e75ff3df70f7f565617023a1f051f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a063baf909f5d652f16de37cdb2d2e6ed"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a063baf909f5d652f16de37cdb2d2e6ed"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>spd</b></td></tr>
+<tr class="separator:a063baf909f5d652f16de37cdb2d2e6ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fc1e3a0581ecb14af1b4ffcb9a926b1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fc1e3a0581ecb14af1b4ffcb9a926b1"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>satk</b></td></tr>
+<tr class="separator:a0fc1e3a0581ecb14af1b4ffcb9a926b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65877a5e55194911abc240f65e7f26be"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a65877a5e55194911abc240f65e7f26be"></a>
+uint16_t&#160;</td><td class="memItemRight" valign="bottom"><b>sdef</b></td></tr>
+<tr class="separator:a65877a5e55194911abc240f65e7f26be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 26 2014 01:06:15 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 10 2014 11:35:30 for libSPEC by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

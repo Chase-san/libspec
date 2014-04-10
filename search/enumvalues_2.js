@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['stat_5fnature_5fnegative',['STAT_NATURE_NEGATIVE',['../stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3bacf170bccd391884363beb28e87be95b3',1,'stat.h']]],
-  ['stat_5fnature_5fnone',['STAT_NATURE_NONE',['../stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3ba72105c8d0552900f3cab16e766ab9ff1',1,'stat.h']]],
-  ['stat_5fnature_5fpositive',['STAT_NATURE_POSITIVE',['../stat_8h.html#aceee8fb91a769dbb7dd6a00287ba1c3ba8840bdff921f9a33f29ed63167b4fa3e',1,'stat.h']]]
+  ['stat_5fbonus_5fnegative',['STAT_BONUS_NEGATIVE',['../stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606a3777621179d727f22a79179a079cbdd8',1,'stat.h']]],
+  ['stat_5fbonus_5fnone',['STAT_BONUS_NONE',['../stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606ab5de12f60b36c797cca59f4cfa02b875',1,'stat.h']]],
+  ['stat_5fbonus_5fpositive',['STAT_BONUS_POSITIVE',['../stat_8h.html#a3d6902a62cb6da22b31514ccec3bf606ac2ddcd531677443eb6596f03ad2cede8',1,'stat.h']]]
 ];
