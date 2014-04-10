@@ -1,118 +1,100 @@
-# I like the pretty error messages clang gives
-CC := clang
-AR := llvm-ar
+#-------------------------------------------------------------------------------
+# TARGET is the name of the output file
+# BUILD is the directory where object files & intermediate files will be placed
+# RELEASE is where the binary files will be placed
+# SOURCES is a list of directories containing source code
+# INCLUDES is a list of directories containing extra header files
+#-------------------------------------------------------------------------------
 
-ifdef GCC
-    CC := gcc
-    AR := ar
-endif
+TARGET		:=	libspec
+BUILD		:=	obj
+RELEASE     :=  lib
+SOURCES		:=	src
+INCLUDES	:=	include build 
 
-CFLAGS := -std=c11 -Wpointer-arith -fms-extensions
-LDFLAGS := -static-libgcc
+#-------------------------------------------------------------------------------
+# options for code generation
+#-------------------------------------------------------------------------------
 
-DEBUG_CFLAGS := -g3 -O0 -Wall
-DEBUG_LDFLAGS :=
+# This project really isn't large enough to have a seperate debug lib
+DEBUG	    := -g
+WARNING     := -Wall -Wpointer-arith -Wwrite-strings -Wuninitialized
+CFLAGS	    := $(DEBUG) -O2 -std=c11 $(WARNING)
+LDFLAGS     := -static-libgcc
 
-RELEASE_CFLAGS := -g0 -O3
-RELEASE_LDFLAGS := -s
+#-------------------------------------------------------------------------------
+# no real need to edit anything past this point unless you need to add 
+# additional rules for different file extensions
+#-------------------------------------------------------------------------------
+CFLAGS	+=	$(INCLUDE)
 
-NONLIBSRCS := main.c $(wildcard test*.c)
+ifneq ($(BUILD),$(notdir $(CURDIR)))
+ 
+export OUTPUT	:=	$(CURDIR)/$(RELEASE)/$(TARGET)
+export VPATH	:=	$(foreach dir,$(SOURCES),$(CURDIR)/$(dir))
+export CC		:=	clang
+export AR		:=	llvm-ar
+export OBJCOPY	:=	objcopy
 
-OBJ_PATH := obj
-PROJECT_NAME := spec
+#-------------------------------------------------------------------------------
+# use CXX for linking C++ projects, CC for standard C
+#-------------------------------------------------------------------------------
 
-##############################
-# The rest is automagic
-SRCS := $(wildcard *.c)
-LIBSRCS := $(filter-out $(NONLIBSRCS),$(SRCS))
+CFILES		    := $(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
+export OFILES	:= $(CFILES:.c=.o)
+export INCLUDE	:= $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
+                   -I$(CURDIR)/$(BUILD)
+ 
+.PHONY: $(BUILD) clean rebuild default
+ 
+#-------------------------------------------------------------------------------
 
-##############################
-# DEBUG STUFF
-DEBUG_ARTIFACT = $(PROJECT_NAME)_d.exe
-DEBUG_STATIC_LIB = lib$(PROJECT_NAME)_d.a
-DEBUG_OBJS = $(SRCS:%.c=$(OBJ_PATH)/%_d.o)
-DEBUG_LIBOBJS = $(LIBSRCS:%.c=$(OBJ_PATH)/%_d.o)
-DEBUG_DEPS = $(SRCS:%.c=$(OBJ_PATH)/%_d.d)
+$(BUILD):
+	@[ -d $(CURDIR)/$(RELEASE) ] || mkdir -p $(CURDIR)/$(RELEASE)
+	@[ -d $@ ] || mkdir -p $@
+	@make --no-print-directory -C $(BUILD) -f $(CURDIR)/Makefile
+ 
+#-------------------------------------------------------------------------------
 
-$(OBJ_PATH)/%_d.o: %.c
-	@echo Compiling debug $<
-	@$(CC) -c $(CFLAGS) $(DEBUG_CFLAGS) -MMD -o $@ $<
-	
-$(DEBUG_ARTIFACT): $(OBJ_PATH) $(DEBUG_OBJS)
-	@echo Building $@
-	@$(CC) $(DEBUG_OBJS) $(LDFLAGS) $(DEBUG_LDFLAGS) -o $@
-
-$(DEBUG_STATIC_LIB): $(OBJ_PATH) $(DEBUG_LIBOBJS)
-	@echo Packing $@
-	@$(AR) rcs $@ $(DEBUG_LIBOBJS)
-
-.PHONY: debug
-debug: $(DEBUG_ARTIFACT)
-
-.PHONY: dlib
-dlib: debug_lib
-
-.PHONY: debug_lib
-debug_lib: $(DEBUG_STATIC_LIB)
-
-##############################
-# RELEASE STUFF
-RELEASE_ARTIFACT = $(PROJECT_NAME).exe
-RELEASE_STATIC_LIB = lib$(PROJECT_NAME).a
-RELEASE_OBJS = $(SRCS:%.c=$(OBJ_PATH)/%.o)
-RELEASE_LIBOBJS = $(LIBSRCS:%.c=$(OBJ_PATH)/%.o)
-RELEASE_DEPS = $(SRCS:%.c=$(OBJ_PATH)/%.d)
-
-$(OBJ_PATH)/%.o: %.c
-	@echo Compiling $<
-	@$(CC) -c $(CFLAGS) $(RELEASE_CFLAGS) -MMD -o $@ $<
-	
-$(RELEASE_ARTIFACT): $(OBJ_PATH) $(RELEASE_OBJS)
-	@echo Building $@
-	@$(CC) $(RELEASE_OBJS) $(LDFLAGS) $(RELEASE_LDFLAGS) -o $@
-
-$(RELEASE_STATIC_LIB): $(OBJ_PATH) $(RELEASE_LIBOBJS)
-	@echo Packing $@
-	@$(AR) rcs $@ $(RELEASE_LIBOBJS)
-
-.PHONY: release
-release: $(RELEASE_ARTIFACT)
-
-.PHONY: rlib
-rlib: release_lib
-
-.PHONY: release_lib
-release_lib: $(RELEASE_STATIC_LIB)
-
-##############################
-# DEFAULT
-
-$(OBJ_PATH):
-	@mkdir $@
-
-.PHONY: all
-all: clean default
-
-.PHONY: default
-default: debug
-
-.PHONY: lib
-lib: debug_lib
-
-.PHONY: clean
 clean:
-	@echo Cleaning up.
-	@rm -rf $(DEBUG_OBJS) $(RELEASE_OBJS)
-	@rm -rf $(DEBUG_LIBOBJS) $(RELEASE_LIBOBJS)
-	@rm -rf $(DEBUG_STATIC_LIB) $(RELEASE_STATIC_LIB)
-	@rm -rf $(DEBUG_ARTIFACT) $(RELEASE_ARTIFACT)
-	@rm -rf $(DEBUG_DEPS) $(RELEASE_DEPS)
-	@rm -rf $(OBJ_PATH)
+	@echo Cleaning... $(TARGET)
+	@rm -rf $(BUILD) $(RELEASE)
+ 
+rebuild: clean $(BUILD)
 
-.PHONY: style
-style:
-	@echo Styling all source and header files.
-	@astyle -A2 -T -p -U -xe -k3 -W3 -j -n -S -Y -xC120  $(SRCS) $(wildcard *.h)
+#-------------------------------------------------------------------------------
 
--include $(RELEASE_DEPS)
--include $(DEBUG_DEPS)
+else
+ 
+DEPENDS	:= $(OFILES:.o=.d)
+ 
+#-------------------------------------------------------------------------------
+# main targets
+#-------------------------------------------------------------------------------
+
+default : $(OUTPUT).a
+
+$(OUTPUT).a : $(OFILES)
+	@echo Building static library
+	@$(AR) rcs $@ $?
+	@echo Building dynamic library
+	@$(CC) -shared -o $(OUTPUT).dll $(LDFLAGS) -Wl,--out-implib,$(OUTPUT)_dll.a
+ 
+#-------------------------------------------------------------------------------
+# Compile Targets for C/C++
+#-------------------------------------------------------------------------------
+ 
+#-------------------------------------------------------------------------------
+%.o : %.cpp
+	@echo Compiling $(notdir $<)
+	@$(CXX) -MMD -MF $*.d -MP $(CFLAGS) -c $< -o $*.o
+
+#-------------------------------------------------------------------------------
+%.o : %.c
+	@echo Compiling $(notdir $<)
+	@$(CC) -MMD -MF $*.d -MP $(CFLAGS) -c $< -o $*.o
+
+-include $(DEPENDS) 
+#-------------------------------------------------------------------------------
+endif
+#-------------------------------------------------------------------------------

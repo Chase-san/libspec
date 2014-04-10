@@ -13,21 +13,7 @@ libSPEC now has [documentation](http://chase-san.github.io/libspec/)!
 Building
 -------
 
-To build the spec.exe, the testing exe, use
-
-`make`
-
-To build libspec_d.a, use
-
-`make lib`
-
-To build libspec.a, use
-
-`make rlib`
-
-To build with GCC rather then CLANG, define GCC on the make line.
-
-`make GCC=1`
+To build the library, you can simply type `make` and both the static and dynamic libraries will be generated in the lib directory.
 
 Build Dependencies
 -------
