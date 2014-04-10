@@ -11,6 +11,7 @@
 /* Don't define bool if it is already defined (standard in C++) */
 #ifndef __cplusplus
 
+#ifndef SWIG
 /**
  * @brief A boolean value, defined ourselves since we have to be sure it is only 1 byte in size.
  */
@@ -19,10 +20,11 @@ typedef uint8_t bool;
 /**
  * @brief Enum of boolean values, enums play nicer with editors/debuggers
  */
-typedef enum {
+enum {
 	true = 1,
 	false = 0,
-} boolean_value_t;
+};
+#endif
 
 #endif
 

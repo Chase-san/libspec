@@ -36,6 +36,11 @@ export CC		:=	clang
 export AR		:=	llvm-ar
 export OBJCOPY	:=	objcopy
 
+ifdef GCC
+  export CC		:=	gcc
+  export AR		:=	ar
+endif
+
 #-------------------------------------------------------------------------------
 # use CXX for linking C++ projects, CC for standard C
 #-------------------------------------------------------------------------------
@@ -44,8 +49,8 @@ CFILES		    := $(foreach dir,$(SOURCES),$(notdir $(wildcard $(dir)/*.c)))
 export OFILES	:= $(CFILES:.c=.o)
 export INCLUDE	:= $(foreach dir,$(INCLUDES),-I$(CURDIR)/$(dir)) \
                    -I$(CURDIR)/$(BUILD)
- 
-.PHONY: $(BUILD) clean rebuild default
+
+.PHONY: $(BUILD) clean rebuild default shared
  
 #-------------------------------------------------------------------------------
 
@@ -56,7 +61,7 @@ $(BUILD):
  
 #-------------------------------------------------------------------------------
 
-clean:
+clean: swigclean
 	@echo Cleaning... $(TARGET)
 	@rm -rf $(BUILD) $(RELEASE)
  
@@ -66,19 +71,31 @@ rebuild: clean $(BUILD)
 
 else
  
+UNAME   := $(shell uname)
 DEPENDS	:= $(OFILES:.o=.d)
+
+ifeq ($(UNAME), Linux)
+# A linux guy would be really helpful here
+  SHARED  := $(OUTPUT).so
+  CFLAGS  += -fPIC
+else
+  SHARED  := $(OUTPUT).dll
+  LDFLAGS += -Wl,--add-stdcall-alias,--out-implib,$(OUTPUT).dll.a
+endif
  
 #-------------------------------------------------------------------------------
 # main targets
 #-------------------------------------------------------------------------------
 
-default : $(OUTPUT).a
+default : $(OUTPUT).a $(SHARED)
 
 $(OUTPUT).a : $(OFILES)
 	@echo Building static library
 	@$(AR) rcs $@ $?
-	@echo Building dynamic library
-	@$(CC) -shared -o $(OUTPUT).dll $(LDFLAGS) -Wl,--out-implib,$(OUTPUT)_dll.a
+
+$(SHARED) : $(OFILES)
+	@echo Building shared library
+	@$(CC) -shared $(LDFLAGS) -o $@ $?
  
 #-------------------------------------------------------------------------------
 # Compile Targets for C/C++
@@ -98,3 +115,16 @@ $(OUTPUT).a : $(OFILES)
 #-------------------------------------------------------------------------------
 endif
 #-------------------------------------------------------------------------------
+# SWIG is for those who really want to use this in other languages,
+#   call "make swig", before calling "make" to generate
+#-------------------------------------------------------------------------------
+ifndef LANG
+LANG := csharp
+endif
+.PHONY: swigclean swig
+swigclean:
+	@rm -rf $(LANG) src/libspec_wrap.c
+swig: swigclean
+	@echo Generating $(LANG) SWIG
+	@mkdir -p $(LANG)
+	@swig -o src/libspec_wrap.c -$(LANG) -outdir $(LANG) include/libspec.i
