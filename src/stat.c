@@ -1,3 +1,4 @@
+#include <stdlib.h>
 #include "stat.h"
 
 const uint32_t STAT_TOTAL_EXP_ERRATIC[100] = { 0, 15, 52, 122, 237, 406, 637,
@@ -109,7 +110,7 @@ stat_nature_t stat_get_nature(uint32_t pid) {
 }
 
 uint8_t stat_get_level(stat_growth_rate_t growth_rate, uint32_t exp) {
-	const uint32_t *exp_table;
+	const uint32_t *exp_table = STAT_TOTAL_EXP_FAST;
 	switch(growth_rate) {
 		case STAT_GROWTH_RATE_ERRATIC:
 			exp_table = STAT_TOTAL_EXP_ERRATIC;
