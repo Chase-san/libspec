@@ -19,8 +19,18 @@ INCLUDES	:=	include build
 # This project really isn't large enough to have a seperate debug lib
 DEBUG	    := -g
 WARNING     := -Wall -Wpointer-arith -Wwrite-strings -Wuninitialized
-CFLAGS	    := $(DEBUG) -O2 -std=c11 $(WARNING)
+CFLAGS	    := -std=c11 $(WARNING)
 LDFLAGS     := -static-libgcc
+
+ifdef SMALL
+  CFLAGS  += -Os
+  NODEBUG := 1
+else
+  CFLAGS  += -O2
+endif
+ifndef NODEBUG
+  CFLAGS  += $(DEBUG)
+endif
 
 #-------------------------------------------------------------------------------
 # no real need to edit anything past this point unless you need to add 
@@ -87,7 +97,13 @@ endif
 # main targets
 #-------------------------------------------------------------------------------
 
+ifdef SMALL
 default : $(OUTPUT).a $(SHARED)
+	@echo "Stripping Libraries"
+	@strip --strip-all ../$(RELEASE)/*
+else
+default : $(OUTPUT).a $(SHARED)
+endif
 
 $(OUTPUT).a : $(OFILES)
 	@echo Building static library

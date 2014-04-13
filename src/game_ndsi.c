@@ -62,22 +62,3 @@ dsi_savetype_t dsi_detect_save_type(uint8_t *ptr, size_t size) {
 	//TODO
 	return DSI_TYPE_UNKNOWN;
 }
-
-//////////////////////////////////////////
-// TESTING
-
-#include <stdio.h>
-
-void dsi_test(uint8_t *ptr) {
-	//get a block and check things
-	//now do it for each box, :3
-	for(int i = 0; i < DSI_BOX_COUNT; ++i) {
-		dsi_block_t block = dsi_get_block(ptr, DSI_BOX_START + DSI_BOX_BLOCK_LENGTH * i, DSI_BOX_LENGTH);
-		uint16_t checksum = block.footer->checksum;
-		uint16_t calc_checksum = nds_crc16(ptr + DSI_BOX_START + DSI_BOX_BLOCK_LENGTH * i, DSI_BOX_LENGTH);
-		printf("Box %02d : %04X %04X\n", i, checksum, calc_checksum);
-	}
-	uint16_t checksum = *(uint16_t *)(ptr + 0x25FA2);
-	uint16_t calc_checksum = nds_crc16(ptr + DSI_CHECKSUM_BLOCK_START, DSI_CHECKSUM_BLOCK_LENGTH);
-	printf("Checksum Block : %04X %04X\n", checksum, calc_checksum);
-}

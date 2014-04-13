@@ -28,8 +28,6 @@ extern "C" {
 
 dsi_savetype_t dsi_detect_save_type(uint8_t *, size_t);
 
-void dsi_test(uint8_t *);
-
 #ifdef __cplusplus
 }
 #endif
