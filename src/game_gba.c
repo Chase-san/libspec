@@ -9,7 +9,6 @@
 #include "game_gba.h"
 #include "checksum.h"
 
-
 // Prototypes
 void gba_crypt_secure(gba_save_t *);
 
@@ -435,36 +434,105 @@ enum {
 	GBA_FRLG_STORAGE_OFFSET = GBA_BLOCK_DATA_LENGTH + 0x290,
 };
 
-gba_storage_t *gba_get_storage(gba_save_t *save) {
+uint8_t *gba_get_storage_ptr(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS || save->type == GBA_TYPE_E) {
-		return (gba_storage_t *)(save->data + GBA_RSE_STORAGE_OFFSET);
+		return save->data + GBA_RSE_STORAGE_OFFSET;
 	}
 	if(save->type == GBA_TYPE_FRLG) {
-		return (gba_storage_t *)(save->data + GBA_FRLG_STORAGE_OFFSET);
+		return save->data + GBA_FRLG_STORAGE_OFFSET;
 	}
 	return NULL;
 }
+
+uint32_t gba_get_money(gba_save_t *save) {
+	if(save->type == GBA_TYPE_UNKNOWN) {
+		return 0;
+	}
+	return *(uint32_t *)gba_get_storage_ptr(save);
+}
+
+void gba_set_money(gba_save_t *save, uint32_t money) {
+	if(save->type == GBA_TYPE_UNKNOWN) {
+		return;
+	}
+	*(uint32_t *)gba_get_storage_ptr(save) = money;
+}
+
+gba_item_slot_t *gba_get_item(gba_save_t *save, size_t index) {
+	if(save->type == GBA_TYPE_UNKNOWN) {
+		return NULL;
+	}
+	return (gba_item_slot_t *)(gba_get_storage_ptr(save) + index * 4 + 8);
+}
+
+static const uint8_t gba_pocket_offsets[3][6] = {
+	{0,50,70,90,106,170},
+	{0,50,80,110,126,190},
+	{0,30,72,102,115,173},
+};
+
+size_t gba_get_pocket_offset(gba_save_t *save, gba_item_pocket_t pocket) {
+	if(save->type == GBA_TYPE_RS) {
+		return gba_pocket_offsets[0][pocket];
+	} else if(save->type == GBA_TYPE_E) {
+		return gba_pocket_offsets[1][pocket];
+	} else if(save->type == GBA_TYPE_FRLG) {
+		return gba_pocket_offsets[2][pocket];
+	}
+	return 0;
+}
+
+gba_item_slot_t *gba_get_pocket_item(gba_save_t *save, gba_item_pocket_t pocket, size_t index) {
+	if(save->type == GBA_TYPE_UNKNOWN) {
+		return NULL;
+	}
+	return gba_get_item(save, gba_get_pocket_offset(save,pocket) + index);
+}
+
+static const uint8_t gba_pocket_sizes[3][6] = {
+	{50,20,20,16,64,46},
+	{50,30,30,16,64,46},
+	{30,42,30,13,58,43},
+};
+
+size_t gba_get_pocket_size(gba_save_t *save, gba_item_pocket_t pocket) {
+	if(save->type == GBA_TYPE_RS) {
+		return gba_pocket_sizes[0][pocket];
+	} else if(save->type == GBA_TYPE_E) {
+		return gba_pocket_sizes[1][pocket];
+	} else if(save->type == GBA_TYPE_FRLG) {
+		return gba_pocket_sizes[2][pocket];
+	}
+	return 0;
+}
+
 
 void gba_crypt_secure(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS) {
 		return;
 	}
-	gba_storage_t *storage = gba_get_storage(save);
 	gba_security_key_t key;
+	key.key = 0;
+
+	uint8_t *ptr = save->data;
 	if(save->type == GBA_TYPE_E) {
 		key = gba_get_security_key(save->data + GBA_RSE_SECURITY_KEY_OFFSET);
+		ptr += GBA_RSE_STORAGE_OFFSET;
 		//crypt item data, skip the PC data (not encrypted)
 		for(size_t i = 50; i < GBA_E_ITEM_COUNT; ++i) {
-			storage->e_items.all[i].amount ^= key.lower;
+			gba_item_slot_t *slot = gba_get_item(save, i);
+			slot->amount ^= key.lower;
 		}
 	} else if(save->type == GBA_TYPE_FRLG) {
 		key = gba_get_security_key(save->data + GBA_FRLG_SECURITY_KEY_OFFSET);
+		ptr += GBA_FRLG_STORAGE_OFFSET;
 		//crypt item data, skip the PC data (not encrypted)
 		for(size_t i = 30; i < GBA_FRLG_ITEM_COUNT; ++i) {
-			storage->frlg_items.all[i].amount ^= key.lower;
+			gba_item_slot_t *slot = gba_get_item(save, i);
+			slot->amount ^= key.lower;
 		}
 	}
-	storage->money ^= key.key;
+	*(uint32_t *)ptr ^= key.key;
 }
 
 /**
@@ -505,6 +573,7 @@ uint8_t gba_pokedex_get(gba_save_t *save) {
 
 //not sure how to do this yet
 void gba_pokedex_set(gba_save_t *save, uint8_t has) {
+
 }
 
 /**

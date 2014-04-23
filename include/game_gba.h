@@ -11,6 +11,10 @@
 #include <stdlib.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 /**
  * @brief Enum containing the different gba game types.
  */
@@ -79,8 +83,20 @@ enum {
 enum {
 	GBA_RS_ITEM_COUNT = 216,
 	GBA_E_ITEM_COUNT = 236,
-	GBA_FRLG_ITEM_COUNT = 216
+	GBA_FRLG_ITEM_COUNT = 216,
 };
+
+/**
+ * @brief Defines the gba item pockets.
+ */
+typedef enum {
+	GBA_ITEM_POCKET_PC = 0,
+	GBA_ITEM_POCKET_ITEM = 1,
+	GBA_ITEM_POCKET_KEYITEM = 2,
+	GBA_ITEM_POCKET_BALL = 3,
+	GBA_ITEM_POCKET_HMTM = 4,
+	GBA_ITEM_POCKET_BERRY = 5
+} gba_item_pocket_t;
 
 
 // packed structs
@@ -293,16 +309,6 @@ typedef struct { //80 bytes for box data
 } pk3_box_t;
 
 typedef struct {
-	uint16_t hp;
-	uint16_t max_hp;
-	uint16_t atk;
-	uint16_t def;
-	uint16_t spd;
-	uint16_t satk;
-	uint16_t sdef;
-} pk3_stats_t;
-
-typedef struct {
 	/** @brief Turns of sleep status remaining */
 	uint8_t status_sleep : 3;
 	uint8_t status_poison : 1;
@@ -311,6 +317,16 @@ typedef struct {
 	uint8_t status_paralysis : 1;
 	uint8_t status_toxic : 1;
 } pk3_status_t;
+
+typedef struct {
+	uint16_t hp;
+	uint16_t max_hp;
+	uint16_t atk;
+	uint16_t def;
+	uint16_t spd;
+	uint16_t satk;
+	uint16_t sdef;
+} pk3_stats_t;
 
 typedef struct {
 	pk3_status_t status;
@@ -373,64 +389,6 @@ typedef struct {
 	uint16_t amount;
 } gba_item_slot_t;
 
-/**
- * @brief Ruby/Sapphire Item Storage
- */
-typedef struct { //216 items
-	gba_item_slot_t all[GBA_RS_ITEM_COUNT];
-	struct {
-		gba_item_slot_t pc[50];
-		gba_item_slot_t item[20];
-		gba_item_slot_t keyitem[20];
-		gba_item_slot_t ball[16];
-		gba_item_slot_t tmhm[64];
-		gba_item_slot_t berry[46];
-	};
-} gba_rs_storage_t;
-
-/**
- * @brief Emerald Item Storage
- */
-typedef union { //236 items E
-	gba_item_slot_t all[GBA_E_ITEM_COUNT];
-	struct {
-		gba_item_slot_t pc[50];
-		gba_item_slot_t item[30];
-		gba_item_slot_t keyitem[30];
-		gba_item_slot_t ball[16];
-		gba_item_slot_t tmhm[64];
-		gba_item_slot_t berry[46];
-	};
-} gba_e_storage_t;
-
-/**
- * @brief Fire Red/Leaf Green Item Storage
- */
-typedef union { //216 items FRLG
-	gba_item_slot_t all[GBA_FRLG_ITEM_COUNT];
-	struct {
-		gba_item_slot_t pc[30];
-		gba_item_slot_t item[42];
-		gba_item_slot_t keyitem[30];
-		gba_item_slot_t ball[13];
-		gba_item_slot_t tmhm[58];
-		gba_item_slot_t berry[43];
-	};
-} gba_frlg_storage_t;
-
-/**
- * Combined Item Storage
- */
-typedef struct {
-	uint32_t money;
-	uint32_t : 32;
-	union {
-		gba_rs_storage_t rs_items;
-		//It's okay if a data structure goes beyond the end of the data, as long as they don't try and access it!
-		gba_e_storage_t e_items;
-		gba_frlg_storage_t frlg_items;
-	};
-} gba_storage_t;
 
 /**
  * @brief GBA Time Played Structure
@@ -461,10 +419,6 @@ typedef struct {
 } gba_trainer_t;
 #pragma pack(pop)
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 void gba_text_to_ucs2(char16_t *dst, char8_t *src, size_t size);
 void ucs2_to_gba_text(char8_t *dst, char16_t *src, size_t size);
 
@@ -480,7 +434,14 @@ uint8_t *gba_create_data();
 void pk3_decrypt(pk3_box_t *);
 void pk3_encrypt(pk3_box_t *);
 
-gba_storage_t *gba_get_storage(gba_save_t *);
+uint32_t gba_get_money(gba_save_t *);
+void gba_set_money(gba_save_t *, uint32_t);
+
+gba_item_slot_t *gba_get_item(gba_save_t *, size_t);
+gba_item_slot_t *gba_get_pocket_item(gba_save_t *, gba_item_pocket_t, size_t);
+size_t gba_get_pocket_offset(gba_save_t *, gba_item_pocket_t);
+size_t gba_get_pocket_size(gba_save_t *, gba_item_pocket_t);
+
 gba_trainer_t *gba_get_trainer(gba_save_t *);
 gba_party_t *gba_get_party(gba_save_t *);
 gba_pc_t *gba_get_pc(gba_save_t *);
