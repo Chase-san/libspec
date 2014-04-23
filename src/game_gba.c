@@ -115,12 +115,12 @@ static inline uint16_t get_block_checksum(const uint8_t *ptr) {
 	return gba_block_checksum(ptr, GBA_BLOCK_DATA_LENGTH);
 }
 
-bool gba_is_gba_save(const uint8_t *ptr) {
+uint8_t gba_is_gba_save(const uint8_t *ptr) {
 	gba_footer_t *footer = get_block_footer(ptr);
 	if(footer->mark != GBA_BLOCK_FOOTER_MARK) {
-		return false;
+		return 0;
 	}
-	return true;
+	return 1;
 }
 
 size_t gba_get_save_offset(const uint8_t *ptr) {
@@ -499,12 +499,12 @@ enum {
 };
 
 //not sure how to do this yet
-bool gba_pokedex_get(gba_save_t *save) {
-	return false;
+uint8_t gba_pokedex_get(gba_save_t *save) {
+	return 0;
 }
 
 //not sure how to do this yet
-void gba_pokedex_set(gba_save_t *save, bool has) {
+void gba_pokedex_set(gba_save_t *save, uint8_t has) {
 }
 
 /**
@@ -512,27 +512,27 @@ void gba_pokedex_set(gba_save_t *save, bool has) {
  * @param save The save to check.
  * @return true if national pokedex is owned, false otherwise.
  */
-bool gba_pokedex_get_national(gba_save_t *save) {
+uint8_t gba_pokedex_get_national(gba_save_t *save) {
 	if(save->type == GBA_TYPE_RS) {
 		if(*(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_A) == 0xDA01
 				&& (*(save->data + GBA_RS_NATIONAL_POKEDEX_B) & 0x40) == 0x40
 				&& *(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_C) == 0x302) {
-			return true;
+			return 1;
 		}
 	} else if(save->type == GBA_TYPE_E) {
 		if(*(uint16_t *)(save->data + GBA_E_NATIONAL_POKEDEX_A) == 0xDA01
 				&& (*(save->data + GBA_E_NATIONAL_POKEDEX_B) & 0x40) == 0x40
 				&& *(uint16_t *)(save->data + GBA_E_NATIONAL_POKEDEX_C) == 0x302) {
-			return true;
+			return 1;
 		}
 	} else if(save->type == GBA_TYPE_FRLG) {
 		if(*(save->data + GBA_FRLG_NATIONAL_POKEDEX_A) == 0xB9
 				&& (*(save->data + GBA_FRLG_NATIONAL_POKEDEX_B) & 0x1) == 0x1
 				&& *(uint16_t *)(save->data + GBA_FRLG_NATIONAL_POKEDEX_C) == 0x6258) {
-			return true;
+			return 1;
 		}
 	}
-	return false;
+	return 0;
 }
 
 /**
@@ -540,7 +540,7 @@ bool gba_pokedex_get_national(gba_save_t *save) {
  * @param save The save to set.
  * @param has true to set it, false to remove it.
  */
-void gba_pokedex_set_national(gba_save_t *save, bool has) {
+void gba_pokedex_set_national(gba_save_t *save, uint8_t has) {
 	if(save->type == GBA_TYPE_RS) {
 		*(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_A) = 0xDA01 * has;
 		*(uint16_t *)(save->data + GBA_RS_NATIONAL_POKEDEX_C) = 0x302 * has;
@@ -574,11 +574,11 @@ void gba_pokedex_set_national(gba_save_t *save, bool has) {
  * @param index The pokemons national index number (starting from 0)
  * @return true if owned, false if not owned.
  */
-bool gba_pokedex_get_owned(gba_save_t *save, size_t index) {
+uint8_t gba_pokedex_get_owned(gba_save_t *save, size_t index) {
 	return ((save->data + GBA_POKEDEX_OWNED)[index >> 3] >> (index & 7)) & 1;
 }
 
-static inline void gba_dex_set(uint8_t *ptr, size_t index, bool set) {
+static inline void gba_dex_set(uint8_t *ptr, size_t index, uint8_t set) {
 	if(set) { //set
 		ptr[index >> 3] |= 1 << (index & 7);
 	} else {
@@ -592,7 +592,7 @@ static inline void gba_dex_set(uint8_t *ptr, size_t index, bool set) {
  * @param index The pokemons national index number (starting from 0)
  * @param owned true to set it, false to remove it.
  */
-void gba_pokedex_set_owned(gba_save_t *save, size_t index, bool owned) {
+void gba_pokedex_set_owned(gba_save_t *save, size_t index, uint8_t owned) {
 	gba_dex_set(save->data + GBA_POKEDEX_OWNED, index, owned);
 }
 
@@ -602,7 +602,7 @@ void gba_pokedex_set_owned(gba_save_t *save, size_t index, bool owned) {
  * @param index The pokemons national index number (starting from 0)
  * @return true if seen, false if not seen.
  */
-bool gba_pokedex_get_seen(gba_save_t *save, size_t index) {
+uint8_t gba_pokedex_get_seen(gba_save_t *save, size_t index) {
 	//just use the first here, all the data 'should' be the same
 	return ((save->data + GBA_POKEDEX_SEEN_A)[index >> 3] >> (index & 7)) & 1;
 }
@@ -613,7 +613,7 @@ bool gba_pokedex_get_seen(gba_save_t *save, size_t index) {
  * @param index The pokemons national index number (starting from 0)
  * @param owned true to set it, false to remove it.
  */
-void gba_pokedex_set_seen(gba_save_t *save, size_t index, bool seen) {
+void gba_pokedex_set_seen(gba_save_t *save, size_t index, uint8_t seen) {
 	gba_dex_set(save->data + GBA_POKEDEX_SEEN_A, index, seen);
 	if(save->type == GBA_TYPE_RS) {
 		gba_dex_set(save->data + GBA_RS_POKEDEX_SEEN_B, index, seen);

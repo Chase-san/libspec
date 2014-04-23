@@ -510,3 +510,17 @@ nds_party_t *nds_get_party(nds_save_t *save) {
 	return party;
 }
 
+size_t nds_box_offset(nds_savetype_t type, size_t index) {
+	if(type == NDS_TYPE_HGSS) {
+		return NDS_POKEMON_IN_BOX * index * PKM_LENGTH + index * 16;
+	}
+	return NDS_POKEMON_IN_BOX * index * PKM_LENGTH + 4;
+}
+
+nds_box_t *nds_get_box(nds_save_t *save, size_t index) {
+	if(index >= 18) {
+		return NULL;
+	}
+	nds_sdat_t *sdat = save->internal;
+	return (nds_box_t *)(sdat->block.big + nds_box_offset(save->type, index));
+}

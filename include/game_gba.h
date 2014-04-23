@@ -41,7 +41,9 @@ typedef struct {
 	/** @brief The savetype of the save. */
 	gba_savetype_t type;
 	/** @brief Internal data used by the library. */
+#ifndef SWIG
 	void *internal;
+#endif
 } gba_save_t;
 
 /* Generation 3 Pokemon Data Structure */
@@ -87,10 +89,10 @@ enum {
  * @brief The pokemon's markings that you see in the party or box. Used for searching.
  */
 typedef struct { //0x8
-	bool circle : 1;
-	bool square : 1;
-	bool triangle : 1;
-	bool heart : 1;
+	uint8_t circle : 1;
+	uint8_t square : 1;
+	uint8_t triangle : 1;
+	uint8_t heart : 1;
 	uint8_t : 4; //unused
 } pk3_marking_t;
 
@@ -155,41 +157,41 @@ typedef struct {
  */
 typedef struct { //0x2
 	//byte 1
-	bool cool_normal : 1;
-	bool cool_super : 1;
-	bool cool_hyper : 1;
-	bool cool_master : 1;
-	bool beauty_normal : 1;
-	bool beauty_super : 1;
-	bool beauty_hyper : 1;
-	bool beauty_master : 1;
+	uint8_t cool_normal : 1;
+	uint8_t cool_super : 1;
+	uint8_t cool_hyper : 1;
+	uint8_t cool_master : 1;
+	uint8_t beauty_normal : 1;
+	uint8_t beauty_super : 1;
+	uint8_t beauty_hyper : 1;
+	uint8_t beauty_master : 1;
 	//byte 2
-	bool cute_normal : 1;
-	bool cute_super : 1;
-	bool cute_hyper : 1;
-	bool cute_master : 1;
-	bool smart_normal : 1;
-	bool smart_super : 1;
-	bool smart_hyper : 1;
-	bool smart_master : 1;
+	uint8_t cute_normal : 1;
+	uint8_t cute_super : 1;
+	uint8_t cute_hyper : 1;
+	uint8_t cute_master : 1;
+	uint8_t smart_normal : 1;
+	uint8_t smart_super : 1;
+	uint8_t smart_hyper : 1;
+	uint8_t smart_master : 1;
 	//byte 3
-	bool tough_normal : 1;
-	bool tough_super : 1;
-	bool tough_hyper : 1;
-	bool tough_master : 1;
-	bool champion : 1;
-	bool winning : 1;
-	bool victory : 1;
-	bool artist : 1;
+	uint8_t tough_normal : 1;
+	uint8_t tough_super : 1;
+	uint8_t tough_hyper : 1;
+	uint8_t tough_master : 1;
+	uint8_t champion : 1;
+	uint8_t winning : 1;
+	uint8_t victory : 1;
+	uint8_t artist : 1;
 	//byte 4
-	bool effort : 1;
-	bool marine : 1;
-	bool land : 1;
-	bool sky : 1;
-	bool country : 1;
-	bool national : 1;
-	bool earth : 1;
-	bool world : 1;
+	uint8_t effort : 1;
+	uint8_t marine : 1;
+	uint8_t land : 1;
+	uint8_t sky : 1;
+	uint8_t country : 1;
+	uint8_t national : 1;
+	uint8_t earth : 1;
+	uint8_t world : 1;
 } pk3_ribbon_t;
 
 /**
@@ -270,7 +272,7 @@ typedef struct { //80 bytes for box data
 					/** Pokeball Caught In */
 					uint8_t pokeball : 4;
 					/** Original Trainer's Gender */
-					bool is_ot_female : 1;
+					uint8_t is_ot_female : 1;
 				};
 				union {
 					/** Pokemon's Individual Values */
@@ -278,9 +280,9 @@ typedef struct { //80 bytes for box data
 					struct {
 						uint32_t : 30;
 						/** Is this pokemon an Egg? */
-						bool is_egg : 1;
+						uint8_t is_egg : 1;
 						/** Which of the two possible abilities does this pokemon have? */
-						bool ability : 1;
+						uint8_t ability : 1;
 					};
 				};
 				/** Pokemon's Ribbons */
@@ -303,11 +305,11 @@ typedef struct {
 typedef struct {
 	/** @brief Turns of sleep status remaining */
 	uint8_t status_sleep : 3;
-	bool status_poison : 1;
-	bool status_burn : 1;
-	bool status_freeze : 1;
-	bool status_paralysis : 1;
-	bool status_toxic : 1;
+	uint8_t status_poison : 1;
+	uint8_t status_burn : 1;
+	uint8_t status_freeze : 1;
+	uint8_t status_paralysis : 1;
+	uint8_t status_toxic : 1;
 } pk3_status_t;
 
 typedef struct {
@@ -483,12 +485,12 @@ gba_trainer_t *gba_get_trainer(gba_save_t *);
 gba_party_t *gba_get_party(gba_save_t *);
 gba_pc_t *gba_get_pc(gba_save_t *);
 
-bool gba_pokedex_get_national(gba_save_t *);
-void gba_pokedex_set_national(gba_save_t *, bool);
-bool gba_pokedex_get_owned(gba_save_t *, size_t);
-void gba_pokedex_set_owned(gba_save_t *, size_t, bool);
-bool gba_pokedex_get_seen(gba_save_t *, size_t);
-void gba_pokedex_set_seen(gba_save_t *, size_t, bool);
+uint8_t gba_pokedex_get_national(gba_save_t *);
+void gba_pokedex_set_national(gba_save_t *, uint8_t);
+uint8_t gba_pokedex_get_owned(gba_save_t *, size_t);
+void gba_pokedex_set_owned(gba_save_t *, size_t, uint8_t);
+uint8_t gba_pokedex_get_seen(gba_save_t *, size_t);
+void gba_pokedex_set_seen(gba_save_t *, size_t, uint8_t);
 
 //TODO rival name, badges, day care pokemon (then GBA is done :D)
 

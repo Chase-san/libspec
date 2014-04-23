@@ -92,7 +92,7 @@ void gb_text_to_ucs2(char16_t *dst, char8_t *src, size_t size) {
 }
 
 void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size) {
-	bool ended = false;
+	uint8_t ended = 0;
 	for(int i = 0; i < size; ++i) {
 		//go through the table and find the matching symbol for src[i]
 		if(ended) {
@@ -103,7 +103,7 @@ void ucs2_to_gb_text(char8_t *dst, char16_t *src, size_t size) {
 			if(GB_TO_CODEPAGE[j] == src[i]) {
 				dst[i] = GB_TO_CODEPAGE[j];
 				if(!src[i]) {
-					ended = true;
+					ended = 1;
 				}
 				break;
 			}
