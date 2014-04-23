@@ -71,7 +71,7 @@ $(BUILD):
  
 #-------------------------------------------------------------------------------
 
-clean: swigclean
+clean:
 	@echo Cleaning... $(TARGET)
 	@rm -rf $(BUILD) $(RELEASE)
  
@@ -130,17 +130,3 @@ $(SHARED) : $(OFILES)
 -include $(DEPENDS) 
 #-------------------------------------------------------------------------------
 endif
-#-------------------------------------------------------------------------------
-# SWIG is for those who really want to use this in other languages,
-#   call "make swig", before calling "make" to generate
-#-------------------------------------------------------------------------------
-ifndef LANG
-LANG := csharp
-endif
-.PHONY: swigclean swig
-swigclean:
-	@rm -rf $(LANG) src/libspec_wrap.c
-swig: swigclean
-	@echo Generating $(LANG) SWIG
-	@mkdir -p $(LANG)
-	@swig -o src/libspec_wrap.c -$(LANG) -outdir $(LANG) include/libspec.i
