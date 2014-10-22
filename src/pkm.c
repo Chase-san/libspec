@@ -1,6 +1,6 @@
+#include "pkm.h"
 #include <stdlib.h>
 #include <string.h>
-#include "pkm.h"
 
 //Magic numbers, what magic numbers?
 enum {

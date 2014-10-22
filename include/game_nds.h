@@ -8,11 +8,11 @@
 #ifndef __NDS_H__
 #define __NDS_H__
 
-#include <stdlib.h>
-#include <stdint.h>
 #include "prng.h"
 #include "checksum.h"
 #include "pkm.h"
+#include <stdlib.h>
+#include <stdint.h>
 
 //SAVE
 typedef enum {
@@ -72,10 +72,13 @@ uint8_t *nds_create_data();
 void nds_write_main_save(uint8_t *, const nds_save_t *);
 void nds_write_backup_save(uint8_t *, const nds_save_t *);
 
+//trainer (name, badges, money, rival name
 nds_party_t *nds_get_party(nds_save_t *);
 nds_box_t *nds_get_box(nds_save_t *, size_t);
 
-
+//items
+//pokedex
+//day care
 
 #ifdef __cplusplus
 }

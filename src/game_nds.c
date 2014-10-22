@@ -4,10 +4,10 @@
 //Diamond/Pearl/Platinum
 //Heart Gold/Soul Silver
 
-#include <stdlib.h>
-#include <string.h>
 #include "types.h"
 #include "game_nds.h"
+#include <stdlib.h>
+#include <string.h>
 
 static const uint16_t NDS_TO_CODEPAGE[485] = { //0x0000,
 	0x0000, 0x3000, 0x3041, 0x3042, 0x3043, 0x3044, 0x3045, 0x3046, 0x3047, 0x3048, 0x3049, 0x304A, 0x304B, 0x304C, 0x304D, 0x304E,
@@ -454,6 +454,7 @@ void nds_free_save(nds_save_t *save) {
 	save->data = NULL;
 	save = NULL;
 }
+
 /**
  * Creates a data block you should load your file into.
  * @return pointer to the data block

@@ -4,10 +4,10 @@
 //Ruby/Sapphire/Emerald
 //Fire Red/Leaf Green
 
-#include <string.h>
 #include "types.h"
 #include "game_gba.h"
 #include "checksum.h"
+#include <string.h>
 
 // Prototypes
 void gba_crypt_secure(gba_save_t *);

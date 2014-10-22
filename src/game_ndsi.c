@@ -4,9 +4,9 @@
 //Black/White
 //Black 2/White 2
 
-#include <string.h>
 #include "game_ndsi.h"
 #include "checksum.h"
+#include <string.h>
 
 //B2W2 save is split up into blocks
 //each block has a length and a checksum following immediately after it

@@ -1,5 +1,5 @@
-#include <stdlib.h>
 #include "stat.h"
+#include <stdlib.h>
 
 const uint32_t STAT_TOTAL_EXP_ERRATIC[100] = { 0, 15, 52, 122, 237, 406, 637,
 		942, 1326, 1800, 2369, 3041, 3822, 4719, 5737, 6881, 8155, 9564, 11111,

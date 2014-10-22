@@ -8,11 +8,11 @@
 //Unlike later games, the GB games have no encryption or checksums
 //Which makes working with them relatively easy
 
-#include <stdint.h>
-#include <string.h>
 #include "checksum.h"
 #include "types.h"
 #include "game_gb.h"
+#include <stdint.h>
+#include <string.h>
 
 //TODO find a better table, we need both english and japanese for this
 /**
