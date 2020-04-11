@@ -46,7 +46,7 @@ export CC		:=	clang
 export AR		:=	llvm-ar
 export OBJCOPY	:=	objcopy
 
-ifdef GCC
+ifeq ($(CXX),g++)
   export CC		:=	gcc
   export AR		:=	ar
 endif
