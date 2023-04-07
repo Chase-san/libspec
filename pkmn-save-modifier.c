@@ -7,7 +7,7 @@ clang -std=c99 -D_POSIX_C_SOURCE=200809L -D_PKMN_SAVE_MODIFIER_STANDALONE -Wall 
 cling -l ./lib/libspec.so -l ./pkmn-save-modifier.c
 
 // Example interactive usage via Cling:
-$ cling -l ./lib/libspec.so -l ./lib/pkmn-save-modifier.c
+$ cling -l ./lib/libspec.so -l ./pkmn-save-modifier.c
 [cling]$ save_open("/home/user/.config/retroarch/saves/Pokemon - FireRed Version (USA).srm")
 (int) 0
 [cling]$ pokemon_list x = list_init(_save)
