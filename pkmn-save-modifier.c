@@ -600,7 +600,7 @@ MOVES(XX)
 };
 struct { int16_t id; char const *name; int8_t pp; } const moves[] = {
 #define XX(id, token, name, pp) { id, name, pp },
-{ 0, NULL, 0},
+{ 0, "--", 0},
 MOVES(XX)
 #undef XX
 };
@@ -1434,13 +1434,20 @@ bool pokemon_slot_empty(pk3_box_t *const p) {
 	assert(p);
 	return 0 == p->species; // TODO: Better way to check?
 }
+void pokemon_set_move(pk3_box_t *p, uint8_t index, uint16_t move) {
+	assert(p);
+	assert(index >= 1);
+	assert(index <= numberof(p->move));
+	assert(move < numberof(moves));
+	// TODO: Take into account the pp_up field?
+	p->move[index-1] = move; p->move_pp[index-1] = moves[move].pp;
+}
 void pokemon_moveset(pk3_box_t *p, uint16_t m1, uint16_t m2, uint16_t m3, uint16_t m4) {
 	assert(p);
-	// TODO: Take into account the pp_up field?
-	p->move[0] = m1; p->move_pp[0] = moves[m1].pp;
-	p->move[1] = m2; p->move_pp[1] = moves[m2].pp;
-	p->move[2] = m3; p->move_pp[2] = moves[m3].pp;
-	p->move[3] = m4; p->move_pp[3] = moves[m4].pp;
+	pokemon_set_move(p, 1, m1);
+	pokemon_set_move(p, 2, m2);
+	pokemon_set_move(p, 3, m3);
+	pokemon_set_move(p, 4, m4);
 }
 
 bool genes_equal(pk3_genes_t a, pk3_genes_t b) {
@@ -1520,6 +1527,9 @@ void pokemon_init(pk3_box_t *p, uint32_t genes, uint16_t id, char const *name, c
 	p->is_egg = 0;
 	p->ability = 0;
 	p->ribbon = (pk3_ribbon_t){};
+
+	pk3_encrypt(p); // This has the effect of computing the checksum. Might help?
+	pk3_decrypt(p);
 }
 void pokemon_clear(pk3_box_t *p) {
 	memset(p, 0, sizeof(*p));
@@ -1833,6 +1843,13 @@ void fprint_pokemon_summary(FILE *out, pk3_t *full, pk3_box_t *in_box) {
 		name, pokemon_is_female(&p->box) ? 'F' : 'M', p->party.level,
 		p->party.stats.hp, p->party.stats.max_hp,
 		p->box.held_item ? items[p->box.held_item].name : "");
+
+	fprintf(out, "Moves\n");
+	for(uint8_t i = 0; i < 4; i++) {
+		fprintf(out, "  %u: %-15s PP:%d/%d\n",
+			i+1, moves[p->box.move[i]].name,
+			(int)p->box.move_pp[i], (int)moves[p->box.move[i]].pp);
+	}
 }
 void fprint_items(FILE *out, gba_save_t *save) {
 	assert(save);
