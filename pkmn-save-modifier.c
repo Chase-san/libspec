@@ -1785,12 +1785,12 @@ void fprint_party(FILE *out, gba_party_t *party) {
 	fprintf(out, "Party\n");
 	for(uint32_t i = 0; i < party->size; i++) {
 		pk3_t *const p = &party->pokemon[i];
-		char16_t name1[sizeof(p->box.nickname)] = {};
-		gba_text_to_ucs2(name1, p->box.nickname, sizeof(p->box.nickname));
-		char name2[sizeof(p->box.nickname)*3] = {};
-		utf8_from_ucs2(name2, name1, sizeof(p->box.nickname));
-		fprintf(out, "  %d: %-10s %c lv.%d %d/%d %s\n",
-			i+1, name2, pokemon_is_female(&p->box) ? 'F' : 'M', p->party.level,
+		char16_t tmp[sizeof(p->box.nickname)] = {};
+		char name[sizeof(p->box.nickname)*3] = {};
+		gba_text_to_ucs2(tmp, p->box.nickname, sizeof(p->box.nickname));
+		utf8_from_ucs2(name, tmp, sizeof(p->box.nickname));
+		fprintf(out, "  %d: %-10s (%c) lv.%d HP:%d/%d %s\n",
+			i+1, name, pokemon_is_female(&p->box) ? 'F' : 'M', p->party.level,
 			p->party.stats.hp, p->party.stats.max_hp,
 			p->box.held_item ? items[p->box.held_item].name : "");
 	}
@@ -1813,6 +1813,26 @@ void fprint_boxes(FILE *out, gba_save_t *save) {
 		pc_empty = false;
 	}
 	if(pc_empty) fprintf(out, "  (none)\n");
+}
+void fprint_pokemon_summary(FILE *out, pk3_t *full, pk3_box_t *in_box) {
+	pk3_t storage[1];
+	pk3_t *p = NULL;
+	if(full) {
+		p = full;
+	} else {
+		p = storage;
+		memcpy(&p->box, in_box, sizeof(*in_box)); // TODO: Kind of ugly.
+		pokemon_in_party_init(p);
+	}
+
+	char16_t tmp[sizeof(p->box.nickname)] = {};
+	char name[sizeof(p->box.nickname)*3] = {};
+	gba_text_to_ucs2(tmp, p->box.nickname, sizeof(p->box.nickname));
+	utf8_from_ucs2(name, tmp, sizeof(p->box.nickname));
+	fprintf(out, "%s (%c), lv.%d HP:%d/%d %s\n", // TODO: Improve this format.
+		name, pokemon_is_female(&p->box) ? 'F' : 'M', p->party.level,
+		p->party.stats.hp, p->party.stats.max_hp,
+		p->box.held_item ? items[p->box.held_item].name : "");
 }
 void fprint_items(FILE *out, gba_save_t *save) {
 	assert(save);
