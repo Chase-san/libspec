@@ -234,6 +234,8 @@ rows.map(function(row) {
 	var gen = cols[7].textContent.replace(/^\s+|\s+$/g, "");
 	if("I" != gen && "II" != gen && "III" != gen) return null;
 	if("REST" == token) pp = 10; // Mistake in wiki
+	if("LEECH_LIFE" == token) pp = 15; // Mistake in wiki
+	if("THRASH" == token) pp = 20; // Mistake in wiki
 	return "\tXX("+id+", "+token+", \""+name+"\", "+pp+")";
 }).filter(function(row) { return !!row; }).join(" \\\n")+"\n";
 */
@@ -274,7 +276,7 @@ rows.map(function(row) {
 	XX(34, BODY_SLAM, "Body Slam", 15) \
 	XX(35, WRAP, "Wrap", 20) \
 	XX(36, TAKE_DOWN, "Take Down", 20) \
-	XX(37, THRASH, "Thrash", 10) \
+	XX(37, THRASH, "Thrash", 20) \
 	XX(38, DOUBLE_EDGE, "Double-Edge", 15) \
 	XX(39, TAIL_WHIP, "Tail Whip", 30) \
 	XX(40, POISON_STING, "Poison Sting", 35) \
@@ -378,7 +380,7 @@ rows.map(function(row) {
 	XX(138, DREAM_EATER, "Dream Eater", 15) \
 	XX(139, POISON_GAS, "Poison Gas", 40) \
 	XX(140, BARRAGE, "Barrage", 20) \
-	XX(141, LEECH_LIFE, "Leech Life", 10) \
+	XX(141, LEECH_LIFE, "Leech Life", 15) \
 	XX(142, LOVELY_KISS, "Lovely Kiss", 10) \
 	XX(143, SKY_ATTACK, "Sky Attack", 5) \
 	XX(144, TRANSFORM, "Transform", 10) \
