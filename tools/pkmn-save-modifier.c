@@ -20,9 +20,9 @@ $ cling -l ./lib/libspec.so -l ./pkmn-save-modifier.c
 */
 
 #define MMAP_OPEN_IMPL
-#include "mmap_open.h"
-#include "include/libspec.h"
-#include "include/pokemon_data.h"
+#include "../mmap_open.h"
+#include "../include/libspec.h"
+#include "../include/pokemon_data.h"
 
 #include <assert.h>
 #include <math.h>
