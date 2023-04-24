@@ -1484,18 +1484,21 @@ void trainer_init(gba_trainer_t *t, char const *name, char gender, uint16_t id, 
 	t->sid = sid;
 	t->time_played = (gba_time_t){0, 0, 0, 0};
 }
+void pokemon_init_v2(pk3_box_t *p, gba_trainer_t const *ot, uint32_t pid, uint32_t iv, uint16_t sid, char const *name, uint8_t level);
 void pokemon_init(pk3_box_t *p, uint32_t genes, uint16_t id, char const *name, char gender, uint32_t nature, uint8_t level, gba_trainer_t const *ot) {
+	pokemon_init_v2(p, ot, nature, genes, id, name, level);
+}
+void pokemon_init_v2(pk3_box_t *p, gba_trainer_t const *ot, uint32_t pid, uint32_t iv, uint16_t sid, char const *name, uint8_t level) {
 	assert(p);
 //	memset(p, 0, sizeof(*p));
 
-	(void)gender; // TODO: Generate an appropriate pid.
-	p->pid = nature; // TODO: This should be a random number with certain properties.
+	p->pid = pid;
 
 	p->ot_id = ot->id;
 	p->ot_sid = ot->sid;
 
 	char16_t tmp[sizeof(p->nickname)] = {};
-	ucs2_from_utf8(tmp, name ? name : species[id].nameCaps, sizeof(p->nickname));
+	ucs2_from_utf8(tmp, name ? name : species[sid].nameCaps, sizeof(p->nickname));
 	ucs2_to_gba_text(p->nickname, tmp, sizeof(p->nickname));
 	p->language = ENGLISH;
 
@@ -1507,7 +1510,7 @@ void pokemon_init(pk3_box_t *p, uint32_t genes, uint16_t id, char const *name, c
 	p->markings = (pk3_marking_t){0, 0, 0, 0};
 	p->checksum = 0;
 
-	p->species = id;
+	p->species = sid;
 	p->held_item = 0;
 	p->exp = (level*level*level)+50; // TODO: Expose API for this. Handle growth rates.
 	p->pp_up = (pk3_pp_up_t){0, 0, 0, 0};
@@ -1525,7 +1528,7 @@ void pokemon_init(pk3_box_t *p, uint32_t genes, uint16_t id, char const *name, c
 	p->pokeball = POKE_BALL_CAUGHT;
 	p->is_ot_female = !!ot->is_female;
 
-	p->iv = genes_from_uint32(genes);
+	p->iv = genes_from_uint32(iv);
 	p->is_egg = 0;
 	p->ability = 0;
 	p->ribbon = (pk3_ribbon_t){};
