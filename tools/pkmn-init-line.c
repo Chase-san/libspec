@@ -32,6 +32,6 @@ int main(int argc, char *argv[]) {
 	gba_trainer_t ot[1];
 	trainer_init(ot, "TEST", 'M', 0, 0);
 	pk3_box_t p[1];
-	pokemon_init_v2(p, ot, pid, iv, 1, nickname, level);
+	pokemon_init_v2(p, ot, pid, iv, 1, nickname, level); // TODO: Look up species ID...
 	fprint_pokemon_summary(stdout, NULL, p);
 }
