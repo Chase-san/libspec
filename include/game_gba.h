@@ -231,7 +231,13 @@ typedef struct { //80 bytes for box data
 		/** Pokemon's Nickname */
 		char8_t nickname[PK3_NICKNAME_LENGTH]; //18
 		/** Original Language */
-		uint16_t language; //20
+		uint8_t language; //19
+		struct {
+			uint8_t is_bad_egg : 1;
+			uint8_t has_species : 1;
+			uint8_t use_egg_name : 1;
+			uint8_t : 5;
+		}; //20
 		/** Original Trainer's Name */
 		char8_t ot_name[PK3_OT_NAME_LENGTH]; //27
 		/** Pokemon's Markings */
@@ -406,7 +412,10 @@ typedef struct {
 typedef struct {
 	char8_t name[7];
 	uint8_t : 8; //padding
-	uint8_t gender;
+	union {
+		uint8_t is_female;
+		uint8_t gender; // Ambiguous.
+	};
 	uint8_t : 8; //padding
 	union {
 		uint32_t fid;

@@ -16,7 +16,9 @@ typedef uint8_t char8_t;
 /**
  * @brief Type used for 16 bit characters (nds, dsi).
  */
+#ifndef __cplusplus
 typedef uint16_t char16_t;
+#endif
 
 /** Global Definitions */
 enum {
