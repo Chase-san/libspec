@@ -1,4 +1,4 @@
-# Gen 3 items: pret's item tables (pokeruby, pokeemerald, pokefirered) and English names, by way of libxpe.
+# Gen 3 items: pret's item tables (pokeruby, pokeemerald, pokefirered) and English names.
 # A pocket of '-' means that game type does not have the item. Important items are the ones the PC refuses.
 item	name	ruby_sapphire	emerald	firered_leafgreen	is_important
 1	MASTER BALL	poke_balls	poke_balls	poke_balls	no
