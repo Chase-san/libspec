@@ -1,0 +1,6 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+*.md text eol=crlf
+*.c text eol=lf
+*.h text eol=lf

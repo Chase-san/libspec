@@ -1,0 +1,312 @@
+# Gen 3 items: pret's item tables (pokeruby, pokeemerald, pokefirered) and English names, by way of libxpe.
+# A pocket of '-' means that game type does not have the item. Important items are the ones the PC refuses.
+item	name	ruby_sapphire	emerald	firered_leafgreen	is_important
+1	MASTER BALL	poke_balls	poke_balls	poke_balls	no
+2	ULTRA BALL	poke_balls	poke_balls	poke_balls	no
+3	GREAT BALL	poke_balls	poke_balls	poke_balls	no
+4	POKé BALL	poke_balls	poke_balls	poke_balls	no
+5	SAFARI BALL	poke_balls	poke_balls	poke_balls	no
+6	NET BALL	poke_balls	poke_balls	poke_balls	no
+7	DIVE BALL	poke_balls	poke_balls	poke_balls	no
+8	NEST BALL	poke_balls	poke_balls	poke_balls	no
+9	REPEAT BALL	poke_balls	poke_balls	poke_balls	no
+10	TIMER BALL	poke_balls	poke_balls	poke_balls	no
+11	LUXURY BALL	poke_balls	poke_balls	poke_balls	no
+12	PREMIER BALL	poke_balls	poke_balls	poke_balls	no
+13	POTION	items	items	items	no
+14	ANTIDOTE	items	items	items	no
+15	BURN HEAL	items	items	items	no
+16	ICE HEAL	items	items	items	no
+17	AWAKENING	items	items	items	no
+18	PARLYZ HEAL	items	items	items	no
+19	FULL RESTORE	items	items	items	no
+20	MAX POTION	items	items	items	no
+21	HYPER POTION	items	items	items	no
+22	SUPER POTION	items	items	items	no
+23	FULL HEAL	items	items	items	no
+24	REVIVE	items	items	items	no
+25	MAX REVIVE	items	items	items	no
+26	FRESH WATER	items	items	items	no
+27	SODA POP	items	items	items	no
+28	LEMONADE	items	items	items	no
+29	MOOMOO MILK	items	items	items	no
+30	ENERGYPOWDER	items	items	items	no
+31	ENERGY ROOT	items	items	items	no
+32	HEAL POWDER	items	items	items	no
+33	REVIVAL HERB	items	items	items	no
+34	ETHER	items	items	items	no
+35	MAX ETHER	items	items	items	no
+36	ELIXIR	items	items	items	no
+37	MAX ELIXIR	items	items	items	no
+38	LAVA COOKIE	items	items	items	no
+39	BLUE FLUTE	items	items	items	no
+40	YELLOW FLUTE	items	items	items	no
+41	RED FLUTE	items	items	items	no
+42	BLACK FLUTE	items	items	items	no
+43	WHITE FLUTE	items	items	items	no
+44	BERRY JUICE	items	items	items	no
+45	SACRED ASH	items	items	items	no
+46	SHOAL SALT	items	items	items	no
+47	SHOAL SHELL	items	items	items	no
+48	RED SHARD	items	items	items	no
+49	BLUE SHARD	items	items	items	no
+50	YELLOW SHARD	items	items	items	no
+51	GREEN SHARD	items	items	items	no
+63	HP UP	items	items	items	no
+64	PROTEIN	items	items	items	no
+65	IRON	items	items	items	no
+66	CARBOS	items	items	items	no
+67	CALCIUM	items	items	items	no
+68	RARE CANDY	items	items	items	no
+69	PP UP	items	items	items	no
+70	ZINC	items	items	items	no
+71	PP MAX	items	items	items	no
+73	GUARD SPEC.	items	items	items	no
+74	DIRE HIT	items	items	items	no
+75	X ATTACK	items	items	items	no
+76	X DEFEND	items	items	items	no
+77	X SPEED	items	items	items	no
+78	X ACCURACY	items	items	items	no
+79	X SPECIAL	items	items	items	no
+80	POKé DOLL	items	items	items	no
+81	FLUFFY TAIL	items	items	items	no
+83	SUPER REPEL	items	items	items	no
+84	MAX REPEL	items	items	items	no
+85	ESCAPE ROPE	items	items	items	no
+86	REPEL	items	items	items	no
+93	SUN STONE	items	items	items	no
+94	MOON STONE	items	items	items	no
+95	FIRE STONE	items	items	items	no
+96	THUNDERSTONE	items	items	items	no
+97	WATER STONE	items	items	items	no
+98	LEAF STONE	items	items	items	no
+103	TINYMUSHROOM	items	items	items	no
+104	BIG MUSHROOM	items	items	items	no
+106	PEARL	items	items	items	no
+107	BIG PEARL	items	items	items	no
+108	STARDUST	items	items	items	no
+109	STAR PIECE	items	items	items	no
+110	NUGGET	items	items	items	no
+111	HEART SCALE	items	items	items	no
+121	ORANGE MAIL	items	items	items	no
+122	HARBOR MAIL	items	items	items	no
+123	GLITTER MAIL	items	items	items	no
+124	MECH MAIL	items	items	items	no
+125	WOOD MAIL	items	items	items	no
+126	WAVE MAIL	items	items	items	no
+127	BEAD MAIL	items	items	items	no
+128	SHADOW MAIL	items	items	items	no
+129	TROPIC MAIL	items	items	items	no
+130	DREAM MAIL	items	items	items	no
+131	FAB MAIL	items	items	items	no
+132	RETRO MAIL	items	items	items	no
+133	CHERI BERRY	berries	berries	berries	no
+134	CHESTO BERRY	berries	berries	berries	no
+135	PECHA BERRY	berries	berries	berries	no
+136	RAWST BERRY	berries	berries	berries	no
+137	ASPEAR BERRY	berries	berries	berries	no
+138	LEPPA BERRY	berries	berries	berries	no
+139	ORAN BERRY	berries	berries	berries	no
+140	PERSIM BERRY	berries	berries	berries	no
+141	LUM BERRY	berries	berries	berries	no
+142	SITRUS BERRY	berries	berries	berries	no
+143	FIGY BERRY	berries	berries	berries	no
+144	WIKI BERRY	berries	berries	berries	no
+145	MAGO BERRY	berries	berries	berries	no
+146	AGUAV BERRY	berries	berries	berries	no
+147	IAPAPA BERRY	berries	berries	berries	no
+148	RAZZ BERRY	berries	berries	berries	no
+149	BLUK BERRY	berries	berries	berries	no
+150	NANAB BERRY	berries	berries	berries	no
+151	WEPEAR BERRY	berries	berries	berries	no
+152	PINAP BERRY	berries	berries	berries	no
+153	POMEG BERRY	berries	berries	berries	no
+154	KELPSY BERRY	berries	berries	berries	no
+155	QUALOT BERRY	berries	berries	berries	no
+156	HONDEW BERRY	berries	berries	berries	no
+157	GREPA BERRY	berries	berries	berries	no
+158	TAMATO BERRY	berries	berries	berries	no
+159	CORNN BERRY	berries	berries	berries	no
+160	MAGOST BERRY	berries	berries	berries	no
+161	RABUTA BERRY	berries	berries	berries	no
+162	NOMEL BERRY	berries	berries	berries	no
+163	SPELON BERRY	berries	berries	berries	no
+164	PAMTRE BERRY	berries	berries	berries	no
+165	WATMEL BERRY	berries	berries	berries	no
+166	DURIN BERRY	berries	berries	berries	no
+167	BELUE BERRY	berries	berries	berries	no
+168	LIECHI BERRY	berries	berries	berries	no
+169	GANLON BERRY	berries	berries	berries	no
+170	SALAC BERRY	berries	berries	berries	no
+171	PETAYA BERRY	berries	berries	berries	no
+172	APICOT BERRY	berries	berries	berries	no
+173	LANSAT BERRY	berries	berries	berries	no
+174	STARF BERRY	berries	berries	berries	no
+175	ENIGMA BERRY	berries	berries	berries	no
+179	BRIGHTPOWDER	items	items	items	no
+180	WHITE HERB	items	items	items	no
+181	MACHO BRACE	items	items	items	no
+182	EXP. SHARE	items	items	items	no
+183	QUICK CLAW	items	items	items	no
+184	SOOTHE BELL	items	items	items	no
+185	MENTAL HERB	items	items	items	no
+186	CHOICE BAND	items	items	items	no
+187	KING’S ROCK	items	items	items	no
+188	SILVERPOWDER	items	items	items	no
+189	AMULET COIN	items	items	items	no
+190	CLEANSE TAG	items	items	items	no
+191	SOUL DEW	items	items	items	no
+192	DEEPSEATOOTH	items	items	items	no
+193	DEEPSEASCALE	items	items	items	no
+194	SMOKE BALL	items	items	items	no
+195	EVERSTONE	items	items	items	no
+196	FOCUS BAND	items	items	items	no
+197	LUCKY EGG	items	items	items	no
+198	SCOPE LENS	items	items	items	no
+199	METAL COAT	items	items	items	no
+200	LEFTOVERS	items	items	items	no
+201	DRAGON SCALE	items	items	items	no
+202	LIGHT BALL	items	items	items	no
+203	SOFT SAND	items	items	items	no
+204	HARD STONE	items	items	items	no
+205	MIRACLE SEED	items	items	items	no
+206	BLACKGLASSES	items	items	items	no
+207	BLACK BELT	items	items	items	no
+208	MAGNET	items	items	items	no
+209	MYSTIC WATER	items	items	items	no
+210	SHARP BEAK	items	items	items	no
+211	POISON BARB	items	items	items	no
+212	NEVERMELTICE	items	items	items	no
+213	SPELL TAG	items	items	items	no
+214	TWISTEDSPOON	items	items	items	no
+215	CHARCOAL	items	items	items	no
+216	DRAGON FANG	items	items	items	no
+217	SILK SCARF	items	items	items	no
+218	UP-GRADE	items	items	items	no
+219	SHELL BELL	items	items	items	no
+220	SEA INCENSE	items	items	items	no
+221	LAX INCENSE	items	items	items	no
+222	LUCKY PUNCH	items	items	items	no
+223	METAL POWDER	items	items	items	no
+224	THICK CLUB	items	items	items	no
+225	STICK	items	items	items	no
+254	RED SCARF	items	items	items	no
+255	BLUE SCARF	items	items	items	no
+256	PINK SCARF	items	items	items	no
+257	GREEN SCARF	items	items	items	no
+258	YELLOW SCARF	items	items	items	no
+259	MACH BIKE	key_items	key_items	key_items	yes
+260	COIN CASE	key_items	key_items	key_items	yes
+261	ITEMFINDER	key_items	key_items	key_items	yes
+262	OLD ROD	key_items	key_items	key_items	yes
+263	GOOD ROD	key_items	key_items	key_items	yes
+264	SUPER ROD	key_items	key_items	key_items	yes
+265	S.S. TICKET	key_items	key_items	key_items	yes
+266	CONTEST PASS	key_items	key_items	key_items	yes
+268	WAILMER PAIL	key_items	key_items	key_items	yes
+269	DEVON GOODS	key_items	key_items	key_items	yes
+270	SOOT SACK	key_items	key_items	key_items	yes
+271	BASEMENT KEY	key_items	key_items	key_items	yes
+272	ACRO BIKE	key_items	key_items	key_items	yes
+273	POKéBLOCK CASE	key_items	key_items	key_items	yes
+274	LETTER	key_items	key_items	key_items	yes
+275	EON TICKET	key_items	key_items	key_items	yes
+276	RED ORB	key_items	key_items	key_items	yes
+277	BLUE ORB	key_items	key_items	key_items	yes
+278	SCANNER	key_items	key_items	key_items	yes
+279	GO-GOGGLES	key_items	key_items	key_items	yes
+280	METEORITE	key_items	key_items	key_items	yes
+281	RM. 1 KEY	key_items	key_items	key_items	yes
+282	RM. 2 KEY	key_items	key_items	key_items	yes
+283	RM. 4 KEY	key_items	key_items	key_items	yes
+284	RM. 6 KEY	key_items	key_items	key_items	yes
+285	STORAGE KEY	key_items	key_items	key_items	yes
+286	ROOT FOSSIL	key_items	key_items	key_items	yes
+287	CLAW FOSSIL	key_items	key_items	key_items	yes
+288	DEVON SCOPE	key_items	key_items	key_items	yes
+289	TM01	tms_hms	tms_hms	tms_hms	no
+290	TM02	tms_hms	tms_hms	tms_hms	no
+291	TM03	tms_hms	tms_hms	tms_hms	no
+292	TM04	tms_hms	tms_hms	tms_hms	no
+293	TM05	tms_hms	tms_hms	tms_hms	no
+294	TM06	tms_hms	tms_hms	tms_hms	no
+295	TM07	tms_hms	tms_hms	tms_hms	no
+296	TM08	tms_hms	tms_hms	tms_hms	no
+297	TM09	tms_hms	tms_hms	tms_hms	no
+298	TM10	tms_hms	tms_hms	tms_hms	no
+299	TM11	tms_hms	tms_hms	tms_hms	no
+300	TM12	tms_hms	tms_hms	tms_hms	no
+301	TM13	tms_hms	tms_hms	tms_hms	no
+302	TM14	tms_hms	tms_hms	tms_hms	no
+303	TM15	tms_hms	tms_hms	tms_hms	no
+304	TM16	tms_hms	tms_hms	tms_hms	no
+305	TM17	tms_hms	tms_hms	tms_hms	no
+306	TM18	tms_hms	tms_hms	tms_hms	no
+307	TM19	tms_hms	tms_hms	tms_hms	no
+308	TM20	tms_hms	tms_hms	tms_hms	no
+309	TM21	tms_hms	tms_hms	tms_hms	no
+310	TM22	tms_hms	tms_hms	tms_hms	no
+311	TM23	tms_hms	tms_hms	tms_hms	no
+312	TM24	tms_hms	tms_hms	tms_hms	no
+313	TM25	tms_hms	tms_hms	tms_hms	no
+314	TM26	tms_hms	tms_hms	tms_hms	no
+315	TM27	tms_hms	tms_hms	tms_hms	no
+316	TM28	tms_hms	tms_hms	tms_hms	no
+317	TM29	tms_hms	tms_hms	tms_hms	no
+318	TM30	tms_hms	tms_hms	tms_hms	no
+319	TM31	tms_hms	tms_hms	tms_hms	no
+320	TM32	tms_hms	tms_hms	tms_hms	no
+321	TM33	tms_hms	tms_hms	tms_hms	no
+322	TM34	tms_hms	tms_hms	tms_hms	no
+323	TM35	tms_hms	tms_hms	tms_hms	no
+324	TM36	tms_hms	tms_hms	tms_hms	no
+325	TM37	tms_hms	tms_hms	tms_hms	no
+326	TM38	tms_hms	tms_hms	tms_hms	no
+327	TM39	tms_hms	tms_hms	tms_hms	no
+328	TM40	tms_hms	tms_hms	tms_hms	no
+329	TM41	tms_hms	tms_hms	tms_hms	no
+330	TM42	tms_hms	tms_hms	tms_hms	no
+331	TM43	tms_hms	tms_hms	tms_hms	no
+332	TM44	tms_hms	tms_hms	tms_hms	no
+333	TM45	tms_hms	tms_hms	tms_hms	no
+334	TM46	tms_hms	tms_hms	tms_hms	no
+335	TM47	tms_hms	tms_hms	tms_hms	no
+336	TM48	tms_hms	tms_hms	tms_hms	no
+337	TM49	tms_hms	tms_hms	tms_hms	no
+338	TM50	tms_hms	tms_hms	tms_hms	no
+339	HM01	tms_hms	tms_hms	tms_hms	yes
+340	HM02	tms_hms	tms_hms	tms_hms	yes
+341	HM03	tms_hms	tms_hms	tms_hms	yes
+342	HM04	tms_hms	tms_hms	tms_hms	yes
+343	HM05	tms_hms	tms_hms	tms_hms	yes
+344	HM06	tms_hms	tms_hms	tms_hms	yes
+345	HM07	tms_hms	tms_hms	tms_hms	yes
+346	HM08	tms_hms	tms_hms	tms_hms	yes
+349	OAK’S PARCEL	-	key_items	key_items	yes
+350	POKé FLUTE	-	key_items	key_items	yes
+351	SECRET KEY	-	key_items	key_items	yes
+352	BIKE VOUCHER	-	key_items	key_items	yes
+353	GOLD TEETH	-	key_items	key_items	yes
+354	OLD AMBER	-	key_items	key_items	yes
+355	CARD KEY	-	key_items	key_items	yes
+356	LIFT KEY	-	key_items	key_items	yes
+357	HELIX FOSSIL	-	key_items	key_items	yes
+358	DOME FOSSIL	-	key_items	key_items	yes
+359	SILPH SCOPE	-	key_items	key_items	yes
+360	BICYCLE	-	key_items	key_items	yes
+361	TOWN MAP	-	key_items	key_items	yes
+362	VS SEEKER	-	key_items	key_items	yes
+363	FAME CHECKER	-	key_items	key_items	yes
+364	TM CASE	-	key_items	key_items	yes
+365	BERRY POUCH	-	key_items	key_items	yes
+366	TEACHY TV	-	key_items	key_items	yes
+367	TRI-PASS	-	key_items	key_items	yes
+368	RAINBOW PASS	-	key_items	key_items	yes
+369	TEA	-	key_items	key_items	yes
+370	MYSTICTICKET	-	key_items	key_items	yes
+371	AURORATICKET	-	key_items	key_items	yes
+372	POWDER JAR	-	key_items	key_items	yes
+373	RUBY	-	key_items	key_items	yes
+374	SAPPHIRE	-	key_items	key_items	yes
+375	MAGMA EMBLEM	-	key_items	-	yes
+376	OLD SEA MAP	-	key_items	-	yes
