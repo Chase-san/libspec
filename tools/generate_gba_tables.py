@@ -30,11 +30,11 @@ def growth_rate_enum(name):
 def species_national_body(species):
     lines = ["const uint16_t spec_gba_national_of_species[SPEC_GBA_SPECIES_INDEX_COUNT] = {"]
     for row in species:
-        lines.append(f"    [{row['index']}] = {row['national']}, // {row['name']}")
+        lines.append(f"    [{row['index']}] = {row['national']},")
     lines.append("};\n")
     lines.append("const uint16_t spec_gba_species_of_national[SPEC_GBA_NATIONAL_COUNT] = {")
     for row in sorted(species, key=lambda row: int(row["national"])):
-        lines.append(f"    [{row['national']}] = {row['index']}, // {row['name']}")
+        lines.append(f"    [{row['national']}] = {row['index']},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 
@@ -45,7 +45,7 @@ def species_data_body(species):
         stats = ", ".join(row[column] for column in STAT_COLUMNS)
         growth_rate = growth_rate_enum(row["growth_rate"])
         gender_ratio = row["gender_ratio"]
-        lines.append(f"    [{row['index']}] = {{{{{stats}}}, {growth_rate}, {gender_ratio}}}, // {row['name']}")
+        lines.append(f"    [{row['index']}] = {{{{{stats}}}, {growth_rate}, {gender_ratio}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 

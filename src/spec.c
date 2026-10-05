@@ -23,6 +23,8 @@ const char *spec_error_string(spec_error_t error) {
             return "item not in this game";
         case SPEC_ERROR_WRONG_POCKET:
             return "item in the wrong pocket";
+        case SPEC_ERROR_UNKNOWN_NAME:
+            return "no known name for that language";
     }
     return "unknown error";
 }

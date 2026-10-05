@@ -4,6 +4,7 @@ usage: generate_spec_tables.py DATA_DIRECTORY OUTPUT_DIRECTORY
 """
 
 import sys
+import unicodedata
 from pathlib import Path
 
 LANGUAGE_COLUMNS = ["japanese", "english", "french", "italian", "german", "spanish", "korean"]
@@ -27,12 +28,30 @@ def c_string(text):
     return '"' + text.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def species_names_body(species_names):
-    lines = ["const char *const spec_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT] = {"]
+def without_accents(text):
+    return "".join(ch for ch in unicodedata.normalize("NFD", text) if unicodedata.category(ch) != "Mn")
+
+
+# As Gen 3 and 4 store them: Latin names in upper case, and French ones without accents.
+def upper_case_name(name, language):
+    if language in ("japanese", "korean"):
+        return name
+    if language == "french":
+        return unicodedata.normalize("NFC", without_accents(name.upper()))
+    return name.upper()
+
+
+# As Gen 5 stores them: Farfetch'd with a plain apostrophe.
+def gen5_name(name, language):
+    return name.replace("\u2019", "'")
+
+
+def species_names_body(species_names, table_name, name_of):
+    lines = [f"const char *const {table_name}[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT] = {{"]
     for language in LANGUAGE_COLUMNS:
         lines.append(f"    [SPEC_LANGUAGE_{language.upper()}] = {{")
         for row in species_names:
-            lines.append(f"        [{row['national']}] = {c_string(row[language])},")
+            lines.append(f"        [{row['national']}] = {c_string(name_of(row[language], language))},")
         lines.append("    },")
     lines.append("};")
     return "\n".join(lines) + "\n"
@@ -89,7 +108,10 @@ def main():
     output_directory = Path(sys.argv[2])
     output_directory.mkdir(parents=True, exist_ok=True)
     species_names = read_tsv(data_directory / "species_names.tsv")
-    write_c_file(output_directory / "species_names.c", "data/species_names.tsv", species_names_body(species_names))
+    names = species_names_body(species_names, "spec_species_names", lambda name, language: name)
+    names += "\n" + species_names_body(species_names, "spec_upper_case_species_names", upper_case_name)
+    names += "\n" + species_names_body(species_names, "spec_gen5_species_names", gen5_name)
+    write_c_file(output_directory / "species_names.c", "data/species_names.tsv", names)
     write_c_file(output_directory / "experience.c", "pret's growth-rate formulas", experience_body())
 
 

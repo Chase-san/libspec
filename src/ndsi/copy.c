@@ -55,7 +55,7 @@ static bool is_copy_valid(const uint8_t *copy, const spec_ndsi_layout_t *layout)
     return true;
 }
 
-// The game's own rule is unknown; this one agrees with "newest wins" but after a cut-off write.
+// TODO: Find the game's own rule; this one agrees with "newest wins" but after a cut-off write.
 bool spec_ndsi_find_loaded_copy(size_t *copy_offset, const uint8_t *data,
                                 const spec_ndsi_layout_t *layout) {
     if (is_copy_valid(&data[0], layout)) {

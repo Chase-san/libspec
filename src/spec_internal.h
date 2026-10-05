@@ -13,6 +13,10 @@
 spec_error_t spec_fail(spec_error_t error, const char *message);
 spec_error_t spec_locate_error(spec_error_location_t location, uint32_t index0, uint32_t index1);
 
+// As Gen 3 and 4 store the names, then as Gen 5 does; nullptr when the language has none.
+const char8_t *spec_upper_case_species_name(uint16_t national_number, spec_language_t language);
+const char8_t *spec_gen5_species_name(uint16_t national_number, spec_language_t language);
+
 uint16_t spec_read_u16_le(const uint8_t *bytes);
 uint32_t spec_read_u32_le(const uint8_t *bytes);
 void spec_write_u16_le(uint8_t *bytes, uint16_t value);

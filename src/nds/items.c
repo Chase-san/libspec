@@ -147,7 +147,7 @@ void spec_nds_encode_items(uint8_t *general, const spec_nds_layout_t *layout,
     }
 }
 
-// Only English: pret builds the US games alone.
+// TODO: Item names for other languages; pret builds the US games alone.
 const char *spec_nds_item_name(uint16_t item, spec_language_t language) {
     const spec_nds_item_data_t *item_data = item_data_of(item);
     if (item_data == nullptr || language != SPEC_LANGUAGE_ENGLISH) {

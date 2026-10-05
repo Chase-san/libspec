@@ -15,6 +15,7 @@ enum [[nodiscard]] spec_error {
     SPEC_ERROR_NAME_TOO_LONG,
     SPEC_ERROR_INVALID_ITEM,
     SPEC_ERROR_WRONG_POCKET,
+    SPEC_ERROR_UNKNOWN_NAME,
 };
 typedef enum spec_error spec_error_t;
 
@@ -179,6 +180,13 @@ enum spec_iv_method : uint8_t {
     SPEC_IV_METHOD_SKIP_BETWEEN, // aka method 4
 };
 typedef enum spec_iv_method spec_iv_method_t;
+
+// How Gen 4 and 5 write a nickname; every Gen 3 naming screen writes it the same way.
+enum spec_naming : uint8_t {
+    SPEC_NAMING_CAUGHT_OR_HATCHED, // written over the old name
+    SPEC_NAMING_NAME_RATER,        // the field naming screen: the Name Rater and gifts
+};
+typedef enum spec_naming spec_naming_t;
 
 const char *spec_error_string(spec_error_t error);
 spec_error_data_t spec_last_error(void);

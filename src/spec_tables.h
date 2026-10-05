@@ -23,7 +23,11 @@ enum spec_growth_rate : uint8_t {
 };
 typedef enum spec_growth_rate spec_growth_rate_t;
 
+// As the 3DS games store them, then as Gen 3 and 4 do, then as Gen 5 does.
 extern const char *const spec_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
+extern const char
+    *const spec_upper_case_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
+extern const char *const spec_gen5_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
 
 extern const uint32_t spec_experience[SPEC_GROWTH_RATE_COUNT][SPEC_LEVEL_COUNT];
 

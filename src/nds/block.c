@@ -6,6 +6,7 @@
 #include "spec_internal.h"
 
 constexpr size_t PARTITION_COUNT = 2;
+// TODO: Check the block magic on a Korean cart.
 constexpr uint32_t BLOCK_MAGIC = 0x20060623;
 
 // Counted back from the block's end, where both footer kinds keep them.

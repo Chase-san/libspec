@@ -11,6 +11,7 @@ constexpr uint16_t FULL_WIDTH_FEMALE = 0x00EF;
 constexpr uint16_t HALF_WIDTH_MALE = 0x01BB;
 constexpr uint16_t HALF_WIDTH_FEMALE = 0x01BC;
 
+// TODO: Check the codes of the first 15 Korean syllables on a Korean cart.
 static char32_t code_point_of(uint16_t code) {
     if (code >= SPEC_NDS_CHARMAP_SIZE || spec_nds_charmap[code] == 0) {
         return SPEC_REPLACEMENT_CHARACTER;

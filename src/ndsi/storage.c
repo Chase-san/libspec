@@ -8,6 +8,7 @@
 #include "spec_internal.h"
 
 // The byte after the records does not follow the party count, so it stays as the game wrote it.
+// TODO: Determine what that byte holds.
 constexpr size_t PARTY_COUNT_OFFSET = 0x4;
 constexpr size_t PARTY_RECORDS_OFFSET = 0x8;
 

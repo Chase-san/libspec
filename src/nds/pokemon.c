@@ -101,6 +101,9 @@ constexpr unsigned TOXIC_TURNS_BIT_COUNT = 4;
 constexpr uint16_t SHEDINJA = 292;
 constexpr uint16_t FIRST_MAIL_ITEM = 137;
 constexpr uint16_t LAST_MAIL_ITEM = 148;
+// Gen 4 names an egg in the game's language; only the English name is on record.
+constexpr char8_t ENGLISH_EGG_NICKNAME[] = u8"Egg";
+constexpr uint16_t END_OF_TEXT = 0xFFFF;
 constexpr uint16_t FARAWAY_PLACE = 3002;
 
 static bool get_flag(uint32_t word, unsigned bit) {
@@ -593,9 +596,100 @@ spec_error_t spec_nds_pokemon_get_name(const spec_nds_pokemon_t *pokemon,
     return spec_nds_text_to_utf8(name, pokemon->nickname, SPEC_NDS_NICKNAME_SIZE);
 }
 
-spec_error_t spec_nds_pokemon_set_name(spec_nds_pokemon_t *pokemon, const char8_t *name) {
-    return spec_nds_text_from_utf8(pokemon->nickname, SPEC_NDS_NICKNAME_SIZE, name,
-                                   pokemon->language);
+static spec_error_t write_zero_padded_nickname(spec_nds_pokemon_t *pokemon, const char8_t *name) {
+    uint16_t nickname[SPEC_NDS_NICKNAME_SIZE] = {};
+    spec_error_t error =
+        spec_nds_text_from_utf8(nickname, SPEC_NDS_NICKNAME_SIZE, name, pokemon->language);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    memcpy(pokemon->nickname, nickname, sizeof nickname);
+    return SPEC_OK;
+}
+
+// The games set the flag by comparing the new name with the species name.
+static bool is_species_name(const spec_nds_pokemon_t *pokemon) {
+    const char8_t *name = spec_upper_case_species_name(pokemon->species, pokemon->language);
+    uint16_t species_name[SPEC_NDS_NICKNAME_SIZE];
+    if (name == nullptr
+        || spec_nds_text_from_utf8(species_name, SPEC_NDS_NICKNAME_SIZE, name, pokemon->language)
+               != SPEC_OK) {
+        return false;
+    }
+    for (size_t index = 0; index < SPEC_NDS_NICKNAME_SIZE; ++index) {
+        if (pokemon->nickname[index] != species_name[index]) {
+            return false;
+        }
+        if (species_name[index] == END_OF_TEXT) {
+            return true;
+        }
+    }
+    return true;
+}
+
+// The field naming screen copies its whole buffer, whose units after the name are uninitialized
+// memory; zeros stand in for them (pret NamingScreen_Exit, MON_DATA_NICKNAME_AND_FLAG).
+spec_error_t spec_nds_pokemon_set_nickname(spec_nds_pokemon_t *pokemon, const char8_t *nickname,
+                                           spec_naming_t naming) {
+    if (pokemon->is_egg || pokemon->is_bad_egg) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the games never name an egg");
+    }
+    // TODO: Check the Japanese nickname length.
+    spec_error_t error = SPEC_OK;
+    switch (naming) {
+        case SPEC_NAMING_CAUGHT_OR_HATCHED:
+            // TODO: Verify there are no other trash bytes.
+            error = spec_nds_text_from_utf8(pokemon->nickname, SPEC_NDS_NICKNAME_SIZE, nickname,
+                                            pokemon->language);
+            break;
+        case SPEC_NAMING_NAME_RATER:
+            // TODO: Check trash bytes on Gen 4 rename.
+            error = write_zero_padded_nickname(pokemon, nickname);
+            break;
+        default:
+            return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "naming is not a known way");
+    }
+    if (error != SPEC_OK) {
+        return error;
+    }
+    pokemon->is_nicknamed = !is_species_name(pokemon);
+    return SPEC_OK;
+}
+
+// The game writes an egg's name over the old one, keeping what follows its terminator.
+static spec_error_t write_egg_nickname(spec_nds_pokemon_t *pokemon) {
+    // TODO: Determine egg names for languages other than English.
+    spec_error_t error = spec_nds_text_from_utf8(pokemon->nickname, SPEC_NDS_NICKNAME_SIZE,
+                                                 ENGLISH_EGG_NICKNAME, pokemon->language);
+    if (error == SPEC_OK) {
+        pokemon->is_nicknamed = false;
+    }
+    return error;
+}
+
+// A new Pokémon's name: zeros after the terminator.
+static spec_error_t write_species_nickname(spec_nds_pokemon_t *pokemon) {
+    const char8_t *name = spec_upper_case_species_name(pokemon->species, pokemon->language);
+    if (name == nullptr) {
+        // This should never happen.
+        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the species has no name in that language");
+    }
+    spec_error_t error = write_zero_padded_nickname(pokemon, name);
+    if (error == SPEC_OK) {
+        pokemon->is_nicknamed = false;
+    }
+    return error;
+}
+
+// As the games name a Pokémon; they show a Bad Egg's name without storing one.
+spec_error_t spec_nds_pokemon_remove_nickname(spec_nds_pokemon_t *pokemon) {
+    if (pokemon->is_bad_egg) {
+        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the games store no name for a Bad Egg");
+    }
+    if (pokemon->is_egg) {
+        return write_egg_nickname(pokemon);
+    }
+    return write_species_nickname(pokemon);
 }
 
 // The game's PC refuses Pokémon holding mail.

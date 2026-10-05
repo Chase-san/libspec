@@ -285,7 +285,8 @@ spec_error_t spec_gba_write_pokemon(uint8_t *raw, size_t raw_size,
 spec_error_t spec_gba_pokemon_calculate_stats(spec_gba_pokemon_t *pokemon);
 spec_error_t spec_gba_pokemon_get_name(const spec_gba_pokemon_t *pokemon,
                                        char8_t name[static SPEC_GBA_TEXT_BUFFER_SIZE]);
-spec_error_t spec_gba_pokemon_set_name(spec_gba_pokemon_t *pokemon, const char8_t *name);
+spec_error_t spec_gba_pokemon_set_nickname(spec_gba_pokemon_t *pokemon, const char8_t *nickname);
+spec_error_t spec_gba_pokemon_remove_nickname(spec_gba_pokemon_t *pokemon);
 bool spec_gba_is_safe_to_box(const spec_gba_pokemon_t *pokemon);
 
 uint16_t spec_gba_species_to_national(uint16_t species);

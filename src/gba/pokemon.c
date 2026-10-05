@@ -84,6 +84,8 @@ constexpr uint16_t SHEDINJA = 303;
 constexpr uint16_t FIRST_MAIL_ITEM = 121;
 constexpr uint16_t LAST_MAIL_ITEM = 132;
 constexpr uint8_t NO_MAIL = 0xFF;
+// Every Gen 3 game names an egg in Japanese.
+constexpr char8_t EGG_NICKNAME[] = u8"タマゴ";
 
 static bool get_flag(uint32_t word, unsigned bit) {
     return spec_get_bits(word, bit, 1) != 0;
@@ -469,7 +471,31 @@ spec_error_t spec_gba_pokemon_get_name(const spec_gba_pokemon_t *pokemon,
                                  pokemon->language);
 }
 
-spec_error_t spec_gba_pokemon_set_name(spec_gba_pokemon_t *pokemon, const char8_t *name) {
+// As every naming screen writes it: the name, then 0xFF to the end (pret SaveInputText).
+spec_error_t spec_gba_pokemon_set_nickname(spec_gba_pokemon_t *pokemon, const char8_t *nickname) {
+    if (pokemon->is_egg || pokemon->is_bad_egg) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the games never name an egg");
+    }
+    // TODO: Check the Japanese nickname length.
+    return spec_gba_text_from_utf8(pokemon->nickname, SPEC_GBA_NICKNAME_SIZE, nickname,
+                                   pokemon->language);
+}
+
+// As the game names a Pokémon; the games show a Bad Egg's name without storing one.
+spec_error_t spec_gba_pokemon_remove_nickname(spec_gba_pokemon_t *pokemon) {
+    if (pokemon->is_bad_egg) {
+        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the games store no name for a Bad Egg");
+    }
+    if (pokemon->is_egg) {
+        return spec_gba_text_from_utf8(pokemon->nickname, SPEC_GBA_NICKNAME_SIZE, EGG_NICKNAME,
+                                       SPEC_LANGUAGE_JAPANESE);
+    }
+    const char8_t *name = spec_upper_case_species_name(
+        spec_gba_species_to_national(pokemon->species), pokemon->language);
+    if (name == nullptr) {
+        // This should never happen.
+        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the species has no name in that language");
+    }
     return spec_gba_text_from_utf8(pokemon->nickname, SPEC_GBA_NICKNAME_SIZE, name,
                                    pokemon->language);
 }

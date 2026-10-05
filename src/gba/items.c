@@ -171,6 +171,7 @@ void spec_gba_encode_items(uint8_t *data, const spec_gba_slot_t *slot,
     }
 }
 
+// TODO: Item names for other languages; pret has only the English and German builds.
 const char *spec_gba_item_name(uint16_t item, spec_language_t language) {
     const spec_gba_item_data_t *item_data = item_data_of(item);
     if (item_data == nullptr) {

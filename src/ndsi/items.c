@@ -132,7 +132,7 @@ void spec_ndsi_encode_items(uint8_t *copy, const spec_ndsi_layout_t *layout,
     }
 }
 
-// Only English: the US carts are the source.
+// TODO: Item names for other languages; the US carts are the only source so far.
 const char *spec_ndsi_item_name(uint16_t item, spec_language_t language) {
     const spec_ndsi_item_data_t *item_data = item_data_of(item);
     if (item_data == nullptr || language != SPEC_LANGUAGE_ENGLISH) {

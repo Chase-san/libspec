@@ -36,13 +36,13 @@ def species_data_body(species):
         if row["form"] != "0":
             continue
         growth_rate = "SPEC_GROWTH_RATE_" + row["growth_rate"].upper()
-        lines.append(f"    [{row['national']}] = {{{{{stats_of(row)}}}, {growth_rate}, {row['gender_ratio']}}}, // {row['name']}")
+        lines.append(f"    [{row['national']}] = {{{{{stats_of(row)}}}, {growth_rate}, {row['gender_ratio']}}},")
     lines.append("};\n")
     lines.append("const spec_ndsi_form_data_t spec_ndsi_form_data[SPEC_NDSI_FORM_DATA_COUNT] = {")
     for row in species:
         if row["form"] == "0":
             continue
-        lines.append(f"    {{{row['national']}, {row['form']}, {{{stats_of(row)}}}}}, // {row['name']}")
+        lines.append(f"    {{{row['national']}, {row['form']}, {{{stats_of(row)}}}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 

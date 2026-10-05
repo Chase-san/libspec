@@ -12,6 +12,7 @@ constexpr size_t LANGUAGE_OFFSET = 0x05;
 constexpr size_t VERSION_OFFSET = 0x06;
 constexpr size_t TYPE_OFFSET = 0x07;
 constexpr size_t AUTHOR_NAME_OFFSET = 0x08;
+// TODO: Determine what Gen 5 does with the icon words.
 constexpr size_t ICONS_OFFSET = 0x18;
 constexpr size_t SENTENCES_OFFSET = 0x20;
 constexpr size_t SENTENCE_SIZE = 8;

@@ -118,6 +118,11 @@ install(FILES src/gba/gba.h DESTINATION include/spec/gba)
 install(FILES src/nds/nds.h DESTINATION include/spec/nds)
 install(FILES src/ndsi/ndsi.h DESTINATION include/spec/ndsi)
 
+enable_testing()
+add_executable(names_test tests/names_test.c)
+target_link_libraries(names_test PRIVATE spec)
+add_test(NAME names_test COMMAND names_test)
+
 if(SPEC_GBA_TEST_SAVES)
     enable_testing()
     add_executable(gba_round_trip tests/gba_round_trip.c)
