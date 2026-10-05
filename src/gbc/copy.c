@@ -40,14 +40,14 @@ bool spec_gbc_has_save(const uint8_t *data, const spec_gbc_layout_t *layout) {
     return is_primary_marked || is_backup_marked;
 }
 
+bool spec_gbc_is_backup_valid(const uint8_t *data, const spec_gbc_layout_t *layout) {
+    return sum_backup(data, layout) == spec_read_u16_le(&data[layout->backup_checksum_offset]);
+}
+
 // As VerifyChecksum, which loading then trusts alone.
 bool spec_gbc_is_primary_valid(const uint8_t *data, const spec_gbc_layout_t *layout) {
     uint16_t sum = sum_bytes(&data[SPEC_GBC_GAME_DATA_OFFSET], layout->game_data_size);
     return sum == spec_read_u16_le(&data[layout->checksum_offset]);
-}
-
-bool spec_gbc_is_backup_valid(const uint8_t *data, const spec_gbc_layout_t *layout) {
-    return sum_backup(data, layout) == spec_read_u16_le(&data[layout->backup_checksum_offset]);
 }
 
 // As loading the backup does, which then saves it over the primary.

@@ -32,34 +32,7 @@ constexpr size_t SPEC_NDSI_TEXT_MAX_SIZE = SPEC_NDSI_BOX_NAME_SIZE;
 // Up to 3 UTF-8 bytes per character, plus NUL.
 constexpr size_t SPEC_NDSI_TEXT_BUFFER_SIZE = SPEC_NDSI_TEXT_MAX_SIZE * 3 + 1;
 
-typedef spec_nds_contest_category_t spec_ndsi_contest_category_t;
-
-// In the games' pocket order; Poké Balls go in the Items pocket.
-enum spec_ndsi_pocket {
-    SPEC_NDSI_POCKET_ITEMS,
-    SPEC_NDSI_POCKET_MEDICINE,
-    SPEC_NDSI_POCKET_TMS_HMS,
-    SPEC_NDSI_POCKET_BERRIES,
-    SPEC_NDSI_POCKET_KEY_ITEMS,
-    SPEC_NDSI_POCKET_COUNT,
-};
-typedef enum spec_ndsi_pocket spec_ndsi_pocket_t;
-
-typedef spec_nds_marking_t spec_ndsi_marking_t;
-typedef spec_nds_sinnoh_ribbon_t spec_ndsi_sinnoh_ribbon_t;
-typedef spec_nds_hoenn_ribbon_t spec_ndsi_hoenn_ribbon_t;
-typedef spec_nds_super_contest_ribbon_t spec_ndsi_super_contest_ribbon_t;
-
-enum spec_ndsi_pokedex_look : uint8_t {
-    SPEC_NDSI_POKEDEX_LOOK_MALE = 1 << 0,
-    SPEC_NDSI_POKEDEX_LOOK_FEMALE = 1 << 1,
-    SPEC_NDSI_POKEDEX_LOOK_SHINY_MALE = 1 << 2,
-    SPEC_NDSI_POKEDEX_LOOK_SHINY_FEMALE = 1 << 3,
-};
-typedef enum spec_ndsi_pokedex_look spec_ndsi_pokedex_look_t;
-
-// nature is the pid's, which Pokémon from Gen 3 and 4 keep; Gen 5 stores its own.
-typedef spec_nds_personality_t spec_ndsi_personality_t;
+// The player
 
 // The same shape as Gen 4's, but the name is UTF-16.
 struct spec_ndsi_trainer {
@@ -70,12 +43,10 @@ struct spec_ndsi_trainer {
 };
 typedef struct spec_ndsi_trainer spec_ndsi_trainer_t;
 
-typedef spec_nds_date_t spec_ndsi_date_t;
-typedef spec_nds_origin_t spec_ndsi_origin_t;
-typedef spec_nds_move_t spec_ndsi_move_t;
-typedef spec_nds_contest_t spec_ndsi_contest_t;
-typedef spec_nds_pokerus_t spec_ndsi_pokerus_t;
-typedef spec_nds_status_t spec_ndsi_status_t;
+typedef spec_nds_play_time_t spec_ndsi_play_time_t;
+
+// Mail
+
 typedef spec_nds_mail_sentence_t spec_ndsi_mail_sentence_t;
 
 // A type of 0xFF is no mail. The icon words are kept as stored; Gen 5's use of them is unknown.
@@ -89,6 +60,19 @@ struct spec_ndsi_mail {
 };
 typedef struct spec_ndsi_mail spec_ndsi_mail_t;
 
+// Pokémon
+
+// nature is the pid's, which Pokémon from Gen 3 and 4 keep; Gen 5 stores its own.
+typedef spec_nds_personality_t spec_ndsi_personality_t;
+
+typedef spec_nds_date_t spec_ndsi_date_t;
+typedef spec_nds_origin_t spec_ndsi_origin_t;
+typedef spec_nds_move_t spec_ndsi_move_t;
+typedef spec_nds_contest_category_t spec_ndsi_contest_category_t;
+typedef spec_nds_contest_t spec_ndsi_contest_t;
+typedef spec_nds_pokerus_t spec_ndsi_pokerus_t;
+typedef spec_nds_status_t spec_ndsi_status_t;
+
 // Zero for boxed Pokémon; filled in when written to the party.
 struct spec_ndsi_party_data {
     spec_ndsi_status_t status;
@@ -98,6 +82,11 @@ struct spec_ndsi_party_data {
     spec_ndsi_mail_t mail;
 };
 typedef struct spec_ndsi_party_data spec_ndsi_party_data_t;
+
+typedef spec_nds_marking_t spec_ndsi_marking_t;
+typedef spec_nds_sinnoh_ribbon_t spec_ndsi_sinnoh_ribbon_t;
+typedef spec_nds_hoenn_ribbon_t spec_ndsi_hoenn_ribbon_t;
+typedef spec_nds_super_contest_ribbon_t spec_ndsi_super_contest_ribbon_t;
 
 // Names are UTF-16; species is the National Dex number.
 struct spec_ndsi_pokemon {
@@ -139,7 +128,15 @@ struct spec_ndsi_pokemon {
 };
 typedef struct spec_ndsi_pokemon spec_ndsi_pokemon_t;
 
-typedef spec_nds_play_time_t spec_ndsi_play_time_t;
+// The Pokédex
+
+enum spec_ndsi_pokedex_look : uint8_t {
+    SPEC_NDSI_POKEDEX_LOOK_MALE = 1 << 0,
+    SPEC_NDSI_POKEDEX_LOOK_FEMALE = 1 << 1,
+    SPEC_NDSI_POKEDEX_LOOK_SHINY_MALE = 1 << 2,
+    SPEC_NDSI_POKEDEX_LOOK_SHINY_FEMALE = 1 << 3,
+};
+typedef enum spec_ndsi_pokedex_look spec_ndsi_pokedex_look_t;
 
 // The looks are spec_ndsi_pokedex_look_t flags. A seen species displays one of its seen looks;
 // a caught species must be seen.
@@ -150,6 +147,8 @@ struct spec_ndsi_pokedex {
     uint8_t displayed_look[SPEC_NDSI_POKEDEX_SIZE];
 };
 typedef struct spec_ndsi_pokedex spec_ndsi_pokedex_t;
+
+// Storage
 
 struct spec_ndsi_box {
     uint16_t name[SPEC_NDSI_BOX_NAME_SIZE];
@@ -170,7 +169,22 @@ struct spec_ndsi_daycare {
 };
 typedef struct spec_ndsi_daycare spec_ndsi_daycare_t;
 
+// Items
+
+// In the games' pocket order; Poké Balls go in the Items pocket.
+enum spec_ndsi_pocket {
+    SPEC_NDSI_POCKET_ITEMS,
+    SPEC_NDSI_POCKET_MEDICINE,
+    SPEC_NDSI_POCKET_TMS_HMS,
+    SPEC_NDSI_POCKET_BERRIES,
+    SPEC_NDSI_POCKET_KEY_ITEMS,
+    SPEC_NDSI_POCKET_COUNT,
+};
+typedef enum spec_ndsi_pocket spec_ndsi_pocket_t;
+
 typedef spec_item_slot_t spec_ndsi_item_slot_t;
+
+// The save
 
 // Writing condenses pockets; a slot with no item or zero quantity is empty.
 struct spec_ndsi_save {
@@ -191,36 +205,61 @@ struct spec_ndsi_save {
 };
 typedef struct spec_ndsi_save spec_ndsi_save_t;
 
+// Save functions
+
 spec_error_t spec_ndsi_read_save(spec_ndsi_save_t *save,
                                  const uint8_t data[static SPEC_NDSI_SAVE_SIZE]);
 spec_error_t spec_ndsi_write_save(const spec_ndsi_save_t *save,
                                   uint8_t data[static SPEC_NDSI_SAVE_SIZE]);
+
+// What writing checks, without writing.
+spec_error_t spec_ndsi_check_save(const spec_ndsi_save_t *save);
+
+// Pokémon functions
 
 // raw is the encrypted record as the save stores it.
 spec_error_t spec_ndsi_read_pokemon(spec_ndsi_pokemon_t *pokemon, const uint8_t *raw,
                                     size_t raw_size);
 spec_error_t spec_ndsi_write_pokemon(uint8_t *raw, size_t raw_size,
                                      const spec_ndsi_pokemon_t *pokemon);
-spec_error_t spec_ndsi_pokemon_calculate_stats(spec_ndsi_pokemon_t *pokemon);
+
+// The level its experience gives, which boxed records do not store.
+uint8_t spec_ndsi_pokemon_get_level(const spec_ndsi_pokemon_t *pokemon);
 spec_error_t spec_ndsi_pokemon_get_name(const spec_ndsi_pokemon_t *pokemon,
                                         char8_t name[static SPEC_NDSI_TEXT_BUFFER_SIZE]);
+bool spec_ndsi_pokemon_is_safe_to_box(const spec_ndsi_pokemon_t *pokemon);
+
+spec_error_t spec_ndsi_pokemon_calculate_stats(spec_ndsi_pokemon_t *pokemon);
+spec_error_t spec_ndsi_pokemon_remove_nickname(spec_ndsi_pokemon_t *pokemon);
+spec_error_t spec_ndsi_pokemon_set_level(spec_ndsi_pokemon_t *pokemon, uint8_t level);
 spec_error_t spec_ndsi_pokemon_set_nickname(spec_ndsi_pokemon_t *pokemon, const char8_t *nickname,
                                             spec_naming_t naming);
-spec_error_t spec_ndsi_pokemon_remove_nickname(spec_ndsi_pokemon_t *pokemon);
-bool spec_ndsi_is_safe_to_box(const spec_ndsi_pokemon_t *pokemon);
+
+// Personality functions
 
 spec_ndsi_personality_t spec_ndsi_decode_personality(spec_pid_t pid, uint16_t species,
                                                      const spec_ndsi_trainer_t *trainer);
 
-const char *spec_ndsi_item_name(uint16_t item, spec_language_t language);
+// Mail functions
+
+// Blank mail; the game also stamps its own language and version, which this leaves 0.
+void spec_ndsi_init_mail(spec_ndsi_mail_t *mail);
+
+// Item functions
+
+spec_error_t spec_ndsi_check_item_placement(spec_game_type_t type, spec_ndsi_pocket_t pocket,
+                                            uint16_t item);
 spec_error_t spec_ndsi_get_pocket_for_item(spec_ndsi_pocket_t *pocket, spec_game_type_t type,
                                            uint16_t item);
+const char *spec_ndsi_item_name(uint16_t item, spec_language_t language);
 size_t spec_ndsi_pocket_capacity(spec_game_type_t type, spec_ndsi_pocket_t pocket);
 size_t spec_ndsi_pocket_item_count(const spec_ndsi_save_t *save, spec_ndsi_pocket_t pocket);
 
-spec_error_t spec_ndsi_text_to_utf8(char8_t utf8[static SPEC_NDSI_TEXT_BUFFER_SIZE],
-                                    const uint16_t *text, size_t text_size);
+// Text functions
+
 spec_error_t spec_ndsi_text_from_utf8(uint16_t *text, size_t text_size, const char8_t *utf8,
                                       spec_language_t language);
+spec_error_t spec_ndsi_text_to_utf8(char8_t utf8[static SPEC_NDSI_TEXT_BUFFER_SIZE],
+                                    const uint16_t *text, size_t text_size);
 
 #endif

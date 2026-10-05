@@ -39,48 +39,40 @@ constexpr unsigned MAX_STAT_EXPERIENCE_ROOT = 255;
 constexpr uint8_t PERIOD = 0xE8;
 constexpr uint8_t DECIMAL_POINT = 0xF2;
 
-static bool get_flag(uint32_t word, unsigned bit) {
-    return spec_get_bits(word, bit, 1) != 0;
+static const spec_gb_species_data_t *species_data_of(const spec_gb_pokemon_t *pokemon) {
+    if (spec_gb_species_to_national(pokemon->species) == 0) {
+        return nullptr;
+    }
+    return &spec_gb_species_data[pokemon->species];
 }
 
-static uint32_t set_flag(uint32_t word, unsigned bit, bool is_set) {
-    return spec_set_bits(word, bit, 1, is_set);
+// The HP DV comes from the others, since dvs[SPEC_GB_STAT_HP] is ignored on write.
+static void set_level_and_stats(spec_gb_pokemon_t *pokemon,
+                                const spec_gb_species_data_t *species_data) {
+    uint8_t level = spec_gb_level_for_experience(species_data->growth_rate, pokemon->experience);
+    pokemon->party_data.level = level;
+    for (size_t stat = 0; stat < SPEC_GB_STAT_COUNT; ++stat) {
+        uint8_t dv = stat == SPEC_GB_STAT_HP ? spec_gb_hp_dv(pokemon->dvs) : pokemon->dvs[stat];
+        pokemon->party_data.stats[stat] =
+            spec_gb_calculate_stat(species_data->base_stats[stat], dv,
+                                   pokemon->stat_experience[stat], level, stat == SPEC_GB_STAT_HP);
+    }
 }
 
-// The HP DV is the low bits of the others, Attack's highest.
-static uint8_t hp_dv_of(const uint8_t dvs[static SPEC_GB_STAT_COUNT]) {
-    return (uint8_t)((dvs[SPEC_GB_STAT_ATTACK] & 1) << 3 | (dvs[SPEC_GB_STAT_DEFENSE] & 1) << 2
-                     | (dvs[SPEC_GB_STAT_SPEED] & 1) << 1 | (dvs[SPEC_GB_STAT_SPECIAL] & 1));
-}
-
-static void decode_dvs(uint8_t dvs[static SPEC_GB_STAT_COUNT], const uint8_t *bytes) {
+void spec_gb_decode_dvs(uint8_t dvs[static SPEC_GB_STAT_COUNT], const uint8_t *bytes) {
     dvs[SPEC_GB_STAT_ATTACK] = (uint8_t)spec_get_bits(bytes[0], DV_BIT_COUNT, DV_BIT_COUNT);
     dvs[SPEC_GB_STAT_DEFENSE] = (uint8_t)spec_get_bits(bytes[0], 0, DV_BIT_COUNT);
     dvs[SPEC_GB_STAT_SPEED] = (uint8_t)spec_get_bits(bytes[1], DV_BIT_COUNT, DV_BIT_COUNT);
     dvs[SPEC_GB_STAT_SPECIAL] = (uint8_t)spec_get_bits(bytes[1], 0, DV_BIT_COUNT);
-    dvs[SPEC_GB_STAT_HP] = hp_dv_of(dvs);
+    dvs[SPEC_GB_STAT_HP] = spec_gb_hp_dv(dvs);
 }
 
-static void encode_dvs(uint8_t *bytes, const uint8_t dvs[static SPEC_GB_STAT_COUNT]) {
-    bytes[0] = (uint8_t)(dvs[SPEC_GB_STAT_ATTACK] << DV_BIT_COUNT | dvs[SPEC_GB_STAT_DEFENSE]);
-    bytes[1] = (uint8_t)(dvs[SPEC_GB_STAT_SPEED] << DV_BIT_COUNT | dvs[SPEC_GB_STAT_SPECIAL]);
-}
-
-static void decode_moves(spec_gb_move_t moves[static SPEC_GB_MOVE_COUNT], const uint8_t *record) {
+void spec_gb_decode_moves(spec_gb_move_t moves[static SPEC_GB_MOVE_COUNT], const uint8_t *ids,
+                          const uint8_t *pp_bytes) {
     for (size_t move = 0; move < SPEC_GB_MOVE_COUNT; ++move) {
-        uint8_t pp = record[PP_OFFSET + move];
-        moves[move].id = record[MOVES_OFFSET + move];
-        moves[move].pp = (uint8_t)spec_get_bits(pp, 0, PP_BIT_COUNT);
-        moves[move].pp_ups = (uint8_t)spec_get_bits(pp, PP_BIT_COUNT, PP_UP_BIT_COUNT);
-    }
-}
-
-static void encode_moves(uint8_t *record, const spec_gb_move_t moves[static SPEC_GB_MOVE_COUNT]) {
-    for (size_t move = 0; move < SPEC_GB_MOVE_COUNT; ++move) {
-        uint32_t pp =
-            spec_set_bits(moves[move].pp, PP_BIT_COUNT, PP_UP_BIT_COUNT, moves[move].pp_ups);
-        record[MOVES_OFFSET + move] = moves[move].id;
-        record[PP_OFFSET + move] = (uint8_t)pp;
+        moves[move].id = ids[move];
+        moves[move].pp = (uint8_t)spec_get_bits(pp_bytes[move], 0, PP_BIT_COUNT);
+        moves[move].pp_ups = (uint8_t)spec_get_bits(pp_bytes[move], PP_BIT_COUNT, PP_UP_BIT_COUNT);
     }
 }
 
@@ -88,6 +80,49 @@ static void decode_party_data(spec_gb_party_data_t *party_data, const uint8_t *r
     party_data->level = record[LEVEL_OFFSET];
     for (size_t stat = 0; stat < SPEC_GB_STAT_COUNT; ++stat) {
         party_data->stats[stat] = spec_read_u16_be(&record[STATS_OFFSET + stat * 2]);
+    }
+}
+
+void spec_gb_decode_pokemon(spec_gb_pokemon_t *pokemon, const uint8_t *record, size_t record_size) {
+    pokemon->species = record[SPECIES_OFFSET];
+    pokemon->current_hp = spec_read_u16_be(&record[CURRENT_HP_OFFSET]);
+    pokemon->box_level = record[BOX_LEVEL_OFFSET];
+    spec_gb_decode_status(&pokemon->status, record[STATUS_OFFSET]);
+    memcpy(pokemon->types, &record[TYPES_OFFSET], SPEC_GB_TYPE_COUNT);
+    pokemon->catch_rate = record[CATCH_RATE_OFFSET];
+    spec_gb_decode_moves(pokemon->moves, &record[MOVES_OFFSET], &record[PP_OFFSET]);
+    pokemon->trainer.id = spec_read_u16_be(&record[TRAINER_ID_OFFSET]);
+    pokemon->experience = spec_read_u24_be(&record[EXPERIENCE_OFFSET]);
+    for (size_t stat = 0; stat < SPEC_GB_STAT_COUNT; ++stat) {
+        pokemon->stat_experience[stat] =
+            spec_read_u16_be(&record[STAT_EXPERIENCE_OFFSET + stat * 2]);
+    }
+    spec_gb_decode_dvs(pokemon->dvs, &record[DVS_OFFSET]);
+    pokemon->party_data = (spec_gb_party_data_t){};
+    if (record_size == SPEC_GB_PARTY_RECORD_SIZE) {
+        decode_party_data(&pokemon->party_data, record);
+    }
+}
+
+void spec_gb_decode_status(spec_gb_status_t *status, uint8_t byte) {
+    status->sleep_turns = (uint8_t)spec_get_bits(byte, SLEEP_TURNS_BIT, SLEEP_TURNS_BIT_COUNT);
+    status->is_poisoned = spec_get_flag(byte, POISONED_BIT);
+    status->is_burned = spec_get_flag(byte, BURNED_BIT);
+    status->is_frozen = spec_get_flag(byte, FROZEN_BIT);
+    status->is_paralyzed = spec_get_flag(byte, PARALYZED_BIT);
+}
+
+void spec_gb_encode_dvs(uint8_t *bytes, const uint8_t dvs[static SPEC_GB_STAT_COUNT]) {
+    bytes[0] = (uint8_t)(dvs[SPEC_GB_STAT_ATTACK] << DV_BIT_COUNT | dvs[SPEC_GB_STAT_DEFENSE]);
+    bytes[1] = (uint8_t)(dvs[SPEC_GB_STAT_SPEED] << DV_BIT_COUNT | dvs[SPEC_GB_STAT_SPECIAL]);
+}
+
+void spec_gb_encode_moves(uint8_t *ids, uint8_t *pp_bytes,
+                          const spec_gb_move_t moves[static SPEC_GB_MOVE_COUNT]) {
+    for (size_t move = 0; move < SPEC_GB_MOVE_COUNT; ++move) {
+        ids[move] = moves[move].id;
+        pp_bytes[move] = (uint8_t)spec_set_bits(moves[move].pp, PP_BIT_COUNT, PP_UP_BIT_COUNT,
+                                                moves[move].pp_ups);
     }
 }
 
@@ -121,45 +156,6 @@ static const char *unencodable_field_of(const spec_gb_pokemon_t *pokemon) {
     return nullptr;
 }
 
-void spec_gb_decode_status(spec_gb_status_t *status, uint8_t byte) {
-    status->sleep_turns = (uint8_t)spec_get_bits(byte, SLEEP_TURNS_BIT, SLEEP_TURNS_BIT_COUNT);
-    status->is_poisoned = get_flag(byte, POISONED_BIT);
-    status->is_burned = get_flag(byte, BURNED_BIT);
-    status->is_frozen = get_flag(byte, FROZEN_BIT);
-    status->is_paralyzed = get_flag(byte, PARALYZED_BIT);
-}
-
-uint8_t spec_gb_encode_status(const spec_gb_status_t *status) {
-    uint32_t byte = 0;
-    byte = spec_set_bits(byte, SLEEP_TURNS_BIT, SLEEP_TURNS_BIT_COUNT, status->sleep_turns);
-    byte = set_flag(byte, POISONED_BIT, status->is_poisoned);
-    byte = set_flag(byte, BURNED_BIT, status->is_burned);
-    byte = set_flag(byte, FROZEN_BIT, status->is_frozen);
-    byte = set_flag(byte, PARALYZED_BIT, status->is_paralyzed);
-    return (uint8_t)byte;
-}
-
-void spec_gb_decode_pokemon(spec_gb_pokemon_t *pokemon, const uint8_t *record, size_t record_size) {
-    pokemon->species = record[SPECIES_OFFSET];
-    pokemon->current_hp = spec_read_u16_be(&record[CURRENT_HP_OFFSET]);
-    pokemon->box_level = record[BOX_LEVEL_OFFSET];
-    spec_gb_decode_status(&pokemon->status, record[STATUS_OFFSET]);
-    memcpy(pokemon->types, &record[TYPES_OFFSET], SPEC_GB_TYPE_COUNT);
-    pokemon->catch_rate = record[CATCH_RATE_OFFSET];
-    decode_moves(pokemon->moves, record);
-    pokemon->trainer.id = spec_read_u16_be(&record[TRAINER_ID_OFFSET]);
-    pokemon->experience = spec_read_u24_be(&record[EXPERIENCE_OFFSET]);
-    for (size_t stat = 0; stat < SPEC_GB_STAT_COUNT; ++stat) {
-        pokemon->stat_experience[stat] =
-            spec_read_u16_be(&record[STAT_EXPERIENCE_OFFSET + stat * 2]);
-    }
-    decode_dvs(pokemon->dvs, &record[DVS_OFFSET]);
-    pokemon->party_data = (spec_gb_party_data_t){};
-    if (record_size == SPEC_GB_PARTY_RECORD_SIZE) {
-        decode_party_data(&pokemon->party_data, record);
-    }
-}
-
 spec_error_t spec_gb_encode_pokemon(uint8_t *record, size_t record_size,
                                     const spec_gb_pokemon_t *pokemon) {
     const char *unencodable_field = unencodable_field_of(pokemon);
@@ -173,22 +169,27 @@ spec_error_t spec_gb_encode_pokemon(uint8_t *record, size_t record_size,
     plain[STATUS_OFFSET] = spec_gb_encode_status(&pokemon->status);
     memcpy(&plain[TYPES_OFFSET], pokemon->types, SPEC_GB_TYPE_COUNT);
     plain[CATCH_RATE_OFFSET] = pokemon->catch_rate;
-    encode_moves(plain, pokemon->moves);
+    spec_gb_encode_moves(&plain[MOVES_OFFSET], &plain[PP_OFFSET], pokemon->moves);
     spec_write_u16_be(&plain[TRAINER_ID_OFFSET], pokemon->trainer.id);
     spec_write_u24_be(&plain[EXPERIENCE_OFFSET], pokemon->experience);
     for (size_t stat = 0; stat < SPEC_GB_STAT_COUNT; ++stat) {
         spec_write_u16_be(&plain[STAT_EXPERIENCE_OFFSET + stat * 2],
                           pokemon->stat_experience[stat]);
     }
-    encode_dvs(&plain[DVS_OFFSET], pokemon->dvs);
+    spec_gb_encode_dvs(&plain[DVS_OFFSET], pokemon->dvs);
     encode_party_data(plain, &pokemon->party_data);
     memcpy(record, plain, record_size);
     return SPEC_OK;
 }
 
-uint8_t spec_gb_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience) {
-    uint8_t level = spec_level_for_experience(growth_rate, experience);
-    return level == 0 ? 1 : level;
+uint8_t spec_gb_encode_status(const spec_gb_status_t *status) {
+    uint32_t byte = 0;
+    byte = spec_set_bits(byte, SLEEP_TURNS_BIT, SLEEP_TURNS_BIT_COUNT, status->sleep_turns);
+    byte = spec_set_flag(byte, POISONED_BIT, status->is_poisoned);
+    byte = spec_set_flag(byte, BURNED_BIT, status->is_burned);
+    byte = spec_set_flag(byte, FROZEN_BIT, status->is_frozen);
+    byte = spec_set_flag(byte, PARALYZED_BIT, status->is_paralyzed);
+    return (uint8_t)byte;
 }
 
 // The smallest root whose square reaches the stat experience, counted up to 255.
@@ -207,39 +208,15 @@ uint16_t spec_gb_calculate_stat(uint8_t base_stat, uint8_t dv, uint16_t stat_exp
     return (uint16_t)(value > MAX_STAT_VALUE ? MAX_STAT_VALUE : value);
 }
 
-static const spec_gb_species_data_t *species_data_of(const spec_gb_pokemon_t *pokemon) {
-    if (spec_gb_species_to_national(pokemon->species) == 0) {
-        return nullptr;
-    }
-    return &spec_gb_species_data[pokemon->species];
+// The HP DV is the low bits of the others, Attack's highest.
+uint8_t spec_gb_hp_dv(const uint8_t dvs[static SPEC_GB_STAT_COUNT]) {
+    return (uint8_t)((dvs[SPEC_GB_STAT_ATTACK] & 1) << 3 | (dvs[SPEC_GB_STAT_DEFENSE] & 1) << 2
+                     | (dvs[SPEC_GB_STAT_SPEED] & 1) << 1 | (dvs[SPEC_GB_STAT_SPECIAL] & 1));
 }
 
-// The HP DV comes from the others, since dvs[SPEC_GB_STAT_HP] is ignored on write.
-static void set_level_and_stats(spec_gb_pokemon_t *pokemon,
-                                const spec_gb_species_data_t *species_data) {
-    uint8_t level = spec_gb_level_for_experience(species_data->growth_rate, pokemon->experience);
-    pokemon->party_data.level = level;
-    for (size_t stat = 0; stat < SPEC_GB_STAT_COUNT; ++stat) {
-        uint8_t dv = stat == SPEC_GB_STAT_HP ? hp_dv_of(pokemon->dvs) : pokemon->dvs[stat];
-        pokemon->party_data.stats[stat] =
-            spec_gb_calculate_stat(species_data->base_stats[stat], dv,
-                                   pokemon->stat_experience[stat], level, stat == SPEC_GB_STAT_HP);
-    }
-}
-
-// A level-up adds the max HP's gain to the current HP; a fainted Pokémon stays fainted.
-spec_error_t spec_gb_pokemon_calculate_stats(spec_gb_pokemon_t *pokemon) {
-    const spec_gb_species_data_t *species_data = species_data_of(pokemon);
-    if (species_data == nullptr) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
-    }
-    uint16_t old_max_hp = pokemon->party_data.stats[SPEC_GB_STAT_HP];
-    set_level_and_stats(pokemon, species_data);
-    uint16_t new_max_hp = pokemon->party_data.stats[SPEC_GB_STAT_HP];
-    if (pokemon->current_hp != 0 || old_max_hp == 0) {
-        pokemon->current_hp = (uint16_t)(pokemon->current_hp + new_max_hp - old_max_hp);
-    }
-    return SPEC_OK;
+uint8_t spec_gb_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience) {
+    uint8_t level = spec_level_for_experience(growth_rate, experience);
+    return level == 0 ? 1 : level;
 }
 
 // As withdrawing does: the level from the experience, then the stats; the HP stays.
@@ -257,6 +234,45 @@ spec_error_t spec_gb_pokemon_get_name(const spec_gb_pokemon_t *pokemon,
                                       char8_t name[static SPEC_GB_TEXT_BUFFER_SIZE],
                                       spec_language_t language) {
     return spec_gb_text_to_utf8(name, pokemon->nickname, spec_gb_name_size(language), language);
+}
+
+// A level-up adds the max HP's gain to the current HP; a fainted Pokémon stays fainted.
+spec_error_t spec_gb_pokemon_calculate_stats(spec_gb_pokemon_t *pokemon) {
+    const spec_gb_species_data_t *species_data = species_data_of(pokemon);
+    if (species_data == nullptr) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
+    }
+    uint16_t old_max_hp = pokemon->party_data.stats[SPEC_GB_STAT_HP];
+    set_level_and_stats(pokemon, species_data);
+    uint16_t new_max_hp = pokemon->party_data.stats[SPEC_GB_STAT_HP];
+    if (pokemon->current_hp != 0 || old_max_hp == 0) {
+        pokemon->current_hp = (uint16_t)(pokemon->current_hp + new_max_hp - old_max_hp);
+    }
+    return SPEC_OK;
+}
+
+// As the game names a new Pokémon: its species name, padded with terminators.
+spec_error_t spec_gb_pokemon_remove_nickname(spec_gb_pokemon_t *pokemon, spec_language_t language) {
+    const char8_t *name =
+        spec_game_boy_species_name(spec_gb_species_to_national(pokemon->species), language);
+    if (name == nullptr) {
+        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the species has no name in that language");
+    }
+    return spec_gb_text_from_utf8(pokemon->nickname, spec_gb_name_size(language), name, language);
+}
+
+// The level's least experience, as a Rare Candy leaves it, and the level boxes show.
+spec_error_t spec_gb_pokemon_set_level(spec_gb_pokemon_t *pokemon, uint8_t level) {
+    const spec_gb_species_data_t *species_data = species_data_of(pokemon);
+    if (species_data == nullptr) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
+    }
+    if (level == 0 || level >= SPEC_LEVEL_COUNT) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "level is not 1 to 100");
+    }
+    pokemon->experience = spec_experience[species_data->growth_rate][level];
+    pokemon->box_level = level;
+    return spec_gb_pokemon_calculate_stats(pokemon);
 }
 
 // The naming keyboard types '.' as the decimal point, where species names use the period.
@@ -285,26 +301,16 @@ spec_error_t spec_gb_pokemon_set_nickname(spec_gb_pokemon_t *pokemon, const char
     return SPEC_OK;
 }
 
-// As the game names a new Pokémon: its species name, padded with terminators.
-spec_error_t spec_gb_pokemon_remove_nickname(spec_gb_pokemon_t *pokemon, spec_language_t language) {
-    const char8_t *name =
-        spec_game_boy_species_name(spec_gb_species_to_national(pokemon->species), language);
-    if (name == nullptr) {
-        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the species has no name in that language");
-    }
-    return spec_gb_text_from_utf8(pokemon->nickname, spec_gb_name_size(language), name, language);
-}
-
-uint16_t spec_gb_species_to_national(uint8_t species) {
-    if (species >= SPEC_GB_SPECIES_INDEX_COUNT) {
-        return 0;
-    }
-    return spec_gb_national_of_species[species];
-}
-
-uint8_t spec_gb_species_from_national(uint16_t national_number) {
+spec_gb_species_t spec_gb_species_from_national(uint16_t national_number) {
     if (national_number >= SPEC_GB_POKEDEX_SIZE) {
         return 0;
     }
     return spec_gb_species_of_national[national_number];
+}
+
+uint16_t spec_gb_species_to_national(spec_gb_species_t species) {
+    if (species >= SPEC_GB_SPECIES_INDEX_COUNT) {
+        return 0;
+    }
+    return spec_gb_national_of_species[species];
 }

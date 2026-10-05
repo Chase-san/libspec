@@ -5,11 +5,6 @@
 #include "spec.h"
 #include "spec_internal.h"
 
-// The games clear the item when its quantity reaches zero.
-bool spec_is_item_slot_empty(const spec_item_slot_t *item_slot) {
-    return item_slot->item == 0 || item_slot->quantity == 0;
-}
-
 size_t spec_count_filled_slots(const spec_item_slot_t *item_slots, size_t slot_count) {
     size_t filled_slot_count = 0;
     for (size_t index = 0; index < slot_count; ++index) {
@@ -18,6 +13,11 @@ size_t spec_count_filled_slots(const spec_item_slot_t *item_slots, size_t slot_c
         }
     }
     return filled_slot_count;
+}
+
+// The games clear the item when its quantity reaches zero.
+bool spec_is_item_slot_empty(const spec_item_slot_t *item_slot) {
+    return item_slot->item == 0 || item_slot->quantity == 0;
 }
 
 // As the games condense a pocket: the filled slots keep their order, and empty ones follow.

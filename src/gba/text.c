@@ -22,11 +22,12 @@ static const uint16_t *charmap_of(spec_language_t language) {
     }
 }
 
-static char32_t code_point_of(const uint16_t *charmap, uint8_t byte) {
-    if (byte >= SPEC_GBA_CHARMAP_SIZE || charmap[byte] == 0) {
-        return SPEC_REPLACEMENT_CHARACTER;
+void spec_gba_write_slot_name(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                              const uint8_t *name, size_t name_size) {
+    spec_gba_write_slot_bytes(data, slot, offset, name, name_size);
+    if (memchr(name, END_OF_TEXT, name_size) == nullptr) {
+        spec_gba_write_slot_u8(data, slot, offset + name_size, END_OF_TEXT);
     }
-    return charmap[byte];
 }
 
 static bool find_byte(const uint16_t *charmap, char32_t code_point, uint8_t *byte) {
@@ -41,22 +42,6 @@ static bool find_byte(const uint16_t *charmap, char32_t code_point, uint8_t *byt
         }
     }
     return false;
-}
-
-spec_error_t spec_gba_text_to_utf8(char8_t utf8[static SPEC_GBA_TEXT_BUFFER_SIZE],
-                                   const uint8_t *text, size_t text_size,
-                                   spec_language_t language) {
-    if (text_size > SPEC_GBA_TEXT_MAX_SIZE) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
-                         "text_size is larger than any Gen 3 text field");
-    }
-    const uint16_t *charmap = charmap_of(language);
-    size_t length = 0;
-    for (size_t index = 0; index < text_size && text[index] != END_OF_TEXT; ++index) {
-        length += spec_utf8_write(&utf8[length], code_point_of(charmap, text[index]));
-    }
-    utf8[length] = '\0';
-    return SPEC_OK;
 }
 
 spec_error_t spec_gba_text_from_utf8(uint8_t *text, size_t text_size, const char8_t *utf8,
@@ -92,10 +77,25 @@ spec_error_t spec_gba_text_from_utf8(uint8_t *text, size_t text_size, const char
     return SPEC_OK;
 }
 
-void spec_gba_write_slot_name(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                              const uint8_t *name, size_t name_size) {
-    spec_gba_write_slot_bytes(data, slot, offset, name, name_size);
-    if (memchr(name, END_OF_TEXT, name_size) == nullptr) {
-        spec_gba_write_slot_u8(data, slot, offset + name_size, END_OF_TEXT);
+static char32_t code_point_of(const uint16_t *charmap, uint8_t byte) {
+    if (byte >= SPEC_GBA_CHARMAP_SIZE || charmap[byte] == 0) {
+        return SPEC_REPLACEMENT_CHARACTER;
     }
+    return charmap[byte];
+}
+
+spec_error_t spec_gba_text_to_utf8(char8_t utf8[static SPEC_GBA_TEXT_BUFFER_SIZE],
+                                   const uint8_t *text, size_t text_size,
+                                   spec_language_t language) {
+    if (text_size > SPEC_GBA_TEXT_MAX_SIZE) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
+                         "text_size is larger than any Gen 3 text field");
+    }
+    const uint16_t *charmap = charmap_of(language);
+    size_t length = 0;
+    for (size_t index = 0; index < text_size && text[index] != END_OF_TEXT; ++index) {
+        length += spec_utf8_write(&utf8[length], code_point_of(charmap, text[index]));
+    }
+    utf8[length] = '\0';
+    return SPEC_OK;
 }

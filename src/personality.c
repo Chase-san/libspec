@@ -18,14 +18,6 @@ static uint32_t next_state(uint32_t state) {
     return state * RNG_MULTIPLIER + RNG_INCREMENT;
 }
 
-static void ivs_from_random(uint8_t ivs[static SPEC_STAT_COUNT], uint16_t first_random,
-                            uint16_t second_random) {
-    for (unsigned stat = 0; stat < 3; ++stat) {
-        ivs[stat] = (uint8_t)spec_get_bits(first_random, stat * IV_BIT_COUNT, IV_BIT_COUNT);
-        ivs[stat + 3] = (uint8_t)spec_get_bits(second_random, stat * IV_BIT_COUNT, IV_BIT_COUNT);
-    }
-}
-
 // States after drawing the PID as CreateBoxMon does, low half first.
 static size_t find_pid_states(spec_pid_t pid, uint32_t states[static SPEC_EXPECTED_IV_SETS_MAX]) {
     size_t state_count = 0;
@@ -39,9 +31,12 @@ static size_t find_pid_states(spec_pid_t pid, uint32_t states[static SPEC_EXPECT
     return state_count;
 }
 
-static bool is_drawing_method(spec_iv_method_t method) {
-    return method == SPEC_IV_METHOD_STRAIGHT || method == SPEC_IV_METHOD_SKIP_BEFORE
-           || method == SPEC_IV_METHOD_SKIP_BETWEEN;
+static void ivs_from_random(uint8_t ivs[static SPEC_STAT_COUNT], uint16_t first_random,
+                            uint16_t second_random) {
+    for (unsigned stat = 0; stat < 3; ++stat) {
+        ivs[stat] = (uint8_t)spec_get_bits(first_random, stat * IV_BIT_COUNT, IV_BIT_COUNT);
+        ivs[stat + 3] = (uint8_t)spec_get_bits(second_random, stat * IV_BIT_COUNT, IV_BIT_COUNT);
+    }
 }
 
 static void draw_ivs(uint8_t ivs[static SPEC_STAT_COUNT], uint32_t pid_high_state,
@@ -80,6 +75,24 @@ bool spec_is_shiny(spec_pid_t pid, uint16_t trainer_id, uint16_t secret_id) {
     return shiny_value < SHINY_ODDS;
 }
 
+static bool is_drawing_method(spec_iv_method_t method) {
+    return method == SPEC_IV_METHOD_STRAIGHT || method == SPEC_IV_METHOD_SKIP_BEFORE
+           || method == SPEC_IV_METHOD_SKIP_BETWEEN;
+}
+
+size_t spec_find_expected_ivs(spec_pid_t pid, spec_iv_method_t method,
+                              uint8_t iv_sets[static SPEC_EXPECTED_IV_SETS_MAX][SPEC_STAT_COUNT]) {
+    if (!is_drawing_method(method)) {
+        return 0;
+    }
+    uint32_t states[SPEC_EXPECTED_IV_SETS_MAX];
+    size_t state_count = find_pid_states(pid, states);
+    for (size_t state = 0; state < state_count; ++state) {
+        draw_ivs(iv_sets[state], states[state], method);
+    }
+    return state_count;
+}
+
 spec_iv_method_t spec_find_iv_method(spec_pid_t pid, const uint8_t ivs[static SPEC_STAT_COUNT]) {
     constexpr spec_iv_method_t METHODS[] = {
         SPEC_IV_METHOD_STRAIGHT,
@@ -98,23 +111,6 @@ spec_iv_method_t spec_find_iv_method(spec_pid_t pid, const uint8_t ivs[static SP
         }
     }
     return SPEC_IV_METHOD_NONE;
-}
-
-size_t spec_find_expected_ivs(spec_pid_t pid, spec_iv_method_t method,
-                              uint8_t iv_sets[static SPEC_EXPECTED_IV_SETS_MAX][SPEC_STAT_COUNT]) {
-    if (!is_drawing_method(method)) {
-        return 0;
-    }
-    uint32_t states[SPEC_EXPECTED_IV_SETS_MAX];
-    size_t state_count = find_pid_states(pid, states);
-    for (size_t state = 0; state < state_count; ++state) {
-        draw_ivs(iv_sets[state], states[state], method);
-    }
-    return state_count;
-}
-
-void spec_pid_next(spec_pid_t *pid) {
-    *pid = next_state(*pid);
 }
 
 uint16_t spec_random(uint32_t *seed) {

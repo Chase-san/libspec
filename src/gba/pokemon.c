@@ -87,14 +87,6 @@ constexpr uint8_t NO_MAIL = 0xFF;
 // Every Gen 3 game names an egg in Japanese.
 constexpr char8_t EGG_NICKNAME[] = u8"タマゴ";
 
-static bool get_flag(uint32_t word, unsigned bit) {
-    return spec_get_bits(word, bit, 1) != 0;
-}
-
-static uint32_t set_flag(uint32_t word, unsigned bit, bool is_set) {
-    return spec_set_bits(word, bit, 1, is_set);
-}
-
 static void xor_substructs(uint8_t *record) {
     uint32_t key = spec_read_u32_le(&record[PERSONALITY_OFFSET])
                    ^ spec_read_u32_le(&record[TRAINER_ID_OFFSET]);
@@ -108,6 +100,51 @@ static size_t substruct_order_of(const uint8_t *record) {
     return spec_read_u32_le(&record[PERSONALITY_OFFSET]);
 }
 
+static bool is_record_size(size_t raw_size) {
+    return raw_size == SPEC_GBA_BOX_RECORD_SIZE || raw_size == SPEC_GBA_PARTY_RECORD_SIZE;
+}
+
+static uint16_t stat_of(const spec_gba_pokemon_t *pokemon,
+                        const spec_gba_species_data_t *species_data, spec_stat_t stat,
+                        uint8_t level) {
+    if (stat == SPEC_STAT_HP && pokemon->species == SHEDINJA) {
+        return 1;
+    }
+    // The nature comes from the pid, since personality.nature is ignored on write.
+    spec_nature_t nature = (spec_nature_t)(pokemon->personality.pid % SPEC_NATURE_COUNT);
+    return spec_calculate_stat(stat, species_data->base_stats[stat], pokemon->ivs[stat],
+                               pokemon->evs[stat], level, nature);
+}
+
+static uint16_t current_hp_after(const spec_gba_pokemon_t *pokemon, uint16_t old_max_hp,
+                                 uint16_t new_max_hp) {
+    // As CalculateMonStats.
+    bool is_fainted = pokemon->party_data.current_hp == 0 && old_max_hp != 0;
+    if (is_fainted) {
+        return 0;
+    }
+    if (pokemon->species == SHEDINJA) {
+        return 1;
+    }
+    if (pokemon->party_data.current_hp == 0) {
+        return new_max_hp;
+    }
+    return (uint16_t)(pokemon->party_data.current_hp + new_max_hp - old_max_hp);
+}
+
+static void calculate_stats(spec_gba_pokemon_t *pokemon,
+                            const spec_gba_species_data_t *species_data) {
+    uint8_t level = spec_level_for_experience(species_data->growth_rate, pokemon->experience);
+    uint16_t old_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
+    uint16_t new_max_hp = stat_of(pokemon, species_data, SPEC_STAT_HP, level);
+    pokemon->party_data.current_hp = current_hp_after(pokemon, old_max_hp, new_max_hp);
+    pokemon->party_data.level = level;
+    pokemon->party_data.stats[SPEC_STAT_HP] = new_max_hp;
+    for (spec_stat_t stat = SPEC_STAT_ATTACK; stat < SPEC_STAT_COUNT; ++stat) {
+        pokemon->party_data.stats[stat] = stat_of(pokemon, species_data, stat, level);
+    }
+}
+
 // hasSpecies and the egg-name bit are derived on write.
 static void decode_header(spec_gba_pokemon_t *pokemon, const uint8_t *plain) {
     uint8_t flags = plain[FLAGS_OFFSET];
@@ -116,8 +153,8 @@ static void decode_header(spec_gba_pokemon_t *pokemon, const uint8_t *plain) {
     pokemon->trainer.secret_id = spec_read_u16_le(&plain[SECRET_ID_OFFSET]);
     memcpy(pokemon->nickname, &plain[NICKNAME_OFFSET], SPEC_GBA_NICKNAME_SIZE);
     pokemon->language = (spec_language_t)plain[LANGUAGE_OFFSET];
-    pokemon->is_bad_egg = get_flag(flags, BAD_EGG_BIT);
-    pokemon->is_box_rs_blocked = get_flag(flags, BOX_RS_BLOCKED_BIT);
+    pokemon->is_bad_egg = spec_get_flag(flags, BAD_EGG_BIT);
+    pokemon->is_box_rs_blocked = spec_get_flag(flags, BOX_RS_BLOCKED_BIT);
     memcpy(pokemon->trainer.name, &plain[TRAINER_NAME_OFFSET], SPEC_GBA_TRAINER_NAME_SIZE);
     pokemon->markings = (uint8_t)spec_get_bits(plain[MARKINGS_OFFSET], 0, MARKINGS_BIT_COUNT);
 }
@@ -158,27 +195,27 @@ static void decode_misc(spec_gba_pokemon_t *pokemon, const uint8_t *plain) {
     pokemon->origin.met_level = (uint8_t)spec_get_bits(origin, MET_LEVEL_BIT, MET_LEVEL_BIT_COUNT);
     pokemon->origin.version = (spec_version_t)spec_get_bits(origin, VERSION_BIT, VERSION_BIT_COUNT);
     pokemon->origin.ball = (spec_ball_t)spec_get_bits(origin, BALL_BIT, BALL_BIT_COUNT);
-    pokemon->trainer.is_female = get_flag(origin, TRAINER_FEMALE_BIT);
+    pokemon->trainer.is_female = spec_get_flag(origin, TRAINER_FEMALE_BIT);
     for (unsigned stat = 0; stat < SPEC_STAT_COUNT; ++stat) {
         pokemon->ivs[stat] = (uint8_t)spec_get_bits(ivs, stat * IV_BIT_COUNT, IV_BIT_COUNT);
     }
-    pokemon->is_egg = get_flag(ivs, IS_EGG_BIT);
+    pokemon->is_egg = spec_get_flag(ivs, IS_EGG_BIT);
     pokemon->ability_number = (uint8_t)spec_get_bits(ivs, ABILITY_NUMBER_BIT, 1);
     for (unsigned category = 0; category < SPEC_GBA_CONTEST_CATEGORY_COUNT; ++category) {
         pokemon->contest.ranks[category] = (spec_gba_contest_rank_t)spec_get_bits(
             ribbons, category * CONTEST_RANK_BIT_COUNT, CONTEST_RANK_BIT_COUNT);
     }
     pokemon->ribbons = (uint16_t)spec_get_bits(ribbons, RIBBONS_BIT, RIBBONS_BIT_COUNT);
-    pokemon->is_fateful_encounter = get_flag(ribbons, FATEFUL_ENCOUNTER_BIT);
+    pokemon->is_fateful_encounter = spec_get_flag(ribbons, FATEFUL_ENCOUNTER_BIT);
 }
 
 static void decode_status(spec_gba_status_t *status, uint32_t word) {
     status->sleep_turns = (uint8_t)spec_get_bits(word, SLEEP_TURNS_BIT, SLEEP_TURNS_BIT_COUNT);
-    status->is_poisoned = get_flag(word, POISONED_BIT);
-    status->is_burned = get_flag(word, BURNED_BIT);
-    status->is_frozen = get_flag(word, FROZEN_BIT);
-    status->is_paralyzed = get_flag(word, PARALYZED_BIT);
-    status->is_badly_poisoned = get_flag(word, BADLY_POISONED_BIT);
+    status->is_poisoned = spec_get_flag(word, POISONED_BIT);
+    status->is_burned = spec_get_flag(word, BURNED_BIT);
+    status->is_frozen = spec_get_flag(word, FROZEN_BIT);
+    status->is_paralyzed = spec_get_flag(word, PARALYZED_BIT);
+    status->is_badly_poisoned = spec_get_flag(word, BADLY_POISONED_BIT);
     status->toxic_turns = (uint8_t)spec_get_bits(word, TOXIC_TURNS_BIT, TOXIC_TURNS_BIT_COUNT);
 }
 
@@ -189,6 +226,34 @@ static void decode_party_data(spec_gba_party_data_t *party_data, const uint8_t *
     party_data->current_hp = spec_read_u16_le(&plain[CURRENT_HP_OFFSET]);
     for (size_t stat = 0; stat < SPEC_STAT_COUNT; ++stat) {
         party_data->stats[stat] = spec_read_u16_le(&plain[STATS_OFFSET + stat * 2]);
+    }
+}
+
+void spec_gba_decode_pokemon(spec_gba_pokemon_t *pokemon, const uint8_t *record,
+                             size_t record_size) {
+    uint8_t plain[SPEC_GBA_PARTY_RECORD_SIZE] = {};
+    memcpy(plain, record, record_size);
+    xor_substructs(plain);
+    spec_unshuffle_blocks(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCT_SIZE, substruct_order_of(plain));
+    *pokemon = (spec_gba_pokemon_t){};
+    decode_header(pokemon, plain);
+    decode_growth(pokemon, plain);
+    decode_attacks(pokemon, plain);
+    decode_condition(pokemon, plain);
+    decode_misc(pokemon, plain);
+    if (record_size == SPEC_GBA_PARTY_RECORD_SIZE) {
+        decode_party_data(&pokemon->party_data, plain);
+    }
+    // A failed checksum reads as a Bad Egg, as in the game.
+    if (spec_sum_u16(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCTS_SIZE)
+        != spec_read_u16_le(&plain[CHECKSUM_OFFSET])) {
+        pokemon->is_bad_egg = true;
+        pokemon->is_egg = true;
+    }
+    if (pokemon->species != 0) {
+        pokemon->personality = spec_gba_decode_personality(pokemon->personality.pid,
+                                                           pokemon->species, &pokemon->trainer);
+        pokemon->iv_method = spec_find_iv_method(pokemon->personality.pid, pokemon->ivs);
     }
 }
 
@@ -243,10 +308,10 @@ static const char *unencodable_field_of(const spec_gba_pokemon_t *pokemon) {
 
 static void encode_header(uint8_t *plain, const spec_gba_pokemon_t *pokemon) {
     uint32_t flags = 0;
-    flags = set_flag(flags, BAD_EGG_BIT, pokemon->is_bad_egg);
-    flags = set_flag(flags, HAS_SPECIES_BIT, pokemon->species != 0);
-    flags = set_flag(flags, EGG_NAME_BIT, pokemon->is_egg);
-    flags = set_flag(flags, BOX_RS_BLOCKED_BIT, pokemon->is_box_rs_blocked);
+    flags = spec_set_flag(flags, BAD_EGG_BIT, pokemon->is_bad_egg);
+    flags = spec_set_flag(flags, HAS_SPECIES_BIT, pokemon->species != 0);
+    flags = spec_set_flag(flags, EGG_NAME_BIT, pokemon->is_egg);
+    flags = spec_set_flag(flags, BOX_RS_BLOCKED_BIT, pokemon->is_box_rs_blocked);
     spec_write_u32_le(&plain[PERSONALITY_OFFSET], pokemon->personality.pid);
     spec_write_u16_le(&plain[TRAINER_ID_OFFSET], pokemon->trainer.id);
     spec_write_u16_le(&plain[SECRET_ID_OFFSET], pokemon->trainer.secret_id);
@@ -292,12 +357,12 @@ static void encode_misc(uint8_t *plain, const spec_gba_pokemon_t *pokemon) {
     origin = spec_set_bits(origin, MET_LEVEL_BIT, MET_LEVEL_BIT_COUNT, pokemon->origin.met_level);
     origin = spec_set_bits(origin, VERSION_BIT, VERSION_BIT_COUNT, pokemon->origin.version);
     origin = spec_set_bits(origin, BALL_BIT, BALL_BIT_COUNT, pokemon->origin.ball);
-    origin = set_flag(origin, TRAINER_FEMALE_BIT, pokemon->trainer.is_female);
+    origin = spec_set_flag(origin, TRAINER_FEMALE_BIT, pokemon->trainer.is_female);
     uint32_t ivs = 0;
     for (unsigned stat = 0; stat < SPEC_STAT_COUNT; ++stat) {
         ivs = spec_set_bits(ivs, stat * IV_BIT_COUNT, IV_BIT_COUNT, pokemon->ivs[stat]);
     }
-    ivs = set_flag(ivs, IS_EGG_BIT, pokemon->is_egg);
+    ivs = spec_set_flag(ivs, IS_EGG_BIT, pokemon->is_egg);
     ivs = spec_set_bits(ivs, ABILITY_NUMBER_BIT, 1, pokemon->ability_number);
     uint32_t ribbons = 0;
     for (unsigned category = 0; category < SPEC_GBA_CONTEST_CATEGORY_COUNT; ++category) {
@@ -305,7 +370,7 @@ static void encode_misc(uint8_t *plain, const spec_gba_pokemon_t *pokemon) {
                                 pokemon->contest.ranks[category]);
     }
     ribbons = spec_set_bits(ribbons, RIBBONS_BIT, RIBBONS_BIT_COUNT, pokemon->ribbons);
-    ribbons = set_flag(ribbons, FATEFUL_ENCOUNTER_BIT, pokemon->is_fateful_encounter);
+    ribbons = spec_set_flag(ribbons, FATEFUL_ENCOUNTER_BIT, pokemon->is_fateful_encounter);
     plain[POKERUS_OFFSET] = (uint8_t)pokerus;
     plain[MET_LOCATION_OFFSET] = pokemon->origin.met_location;
     spec_write_u16_le(&plain[ORIGIN_OFFSET], (uint16_t)origin);
@@ -316,11 +381,11 @@ static void encode_misc(uint8_t *plain, const spec_gba_pokemon_t *pokemon) {
 static uint32_t encode_status(const spec_gba_status_t *status) {
     uint32_t word = 0;
     word = spec_set_bits(word, SLEEP_TURNS_BIT, SLEEP_TURNS_BIT_COUNT, status->sleep_turns);
-    word = set_flag(word, POISONED_BIT, status->is_poisoned);
-    word = set_flag(word, BURNED_BIT, status->is_burned);
-    word = set_flag(word, FROZEN_BIT, status->is_frozen);
-    word = set_flag(word, PARALYZED_BIT, status->is_paralyzed);
-    word = set_flag(word, BADLY_POISONED_BIT, status->is_badly_poisoned);
+    word = spec_set_flag(word, POISONED_BIT, status->is_poisoned);
+    word = spec_set_flag(word, BURNED_BIT, status->is_burned);
+    word = spec_set_flag(word, FROZEN_BIT, status->is_frozen);
+    word = spec_set_flag(word, PARALYZED_BIT, status->is_paralyzed);
+    word = spec_set_flag(word, BADLY_POISONED_BIT, status->is_badly_poisoned);
     word = spec_set_bits(word, TOXIC_TURNS_BIT, TOXIC_TURNS_BIT_COUNT, status->toxic_turns);
     return word;
 }
@@ -332,34 +397,6 @@ static void encode_party_data(uint8_t *plain, const spec_gba_party_data_t *party
     spec_write_u16_le(&plain[CURRENT_HP_OFFSET], party_data->current_hp);
     for (size_t stat = 0; stat < SPEC_STAT_COUNT; ++stat) {
         spec_write_u16_le(&plain[STATS_OFFSET + stat * 2], party_data->stats[stat]);
-    }
-}
-
-void spec_gba_decode_pokemon(spec_gba_pokemon_t *pokemon, const uint8_t *record,
-                             size_t record_size) {
-    uint8_t plain[SPEC_GBA_PARTY_RECORD_SIZE] = {};
-    memcpy(plain, record, record_size);
-    xor_substructs(plain);
-    spec_unshuffle_blocks(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCT_SIZE, substruct_order_of(plain));
-    *pokemon = (spec_gba_pokemon_t){};
-    decode_header(pokemon, plain);
-    decode_growth(pokemon, plain);
-    decode_attacks(pokemon, plain);
-    decode_condition(pokemon, plain);
-    decode_misc(pokemon, plain);
-    if (record_size == SPEC_GBA_PARTY_RECORD_SIZE) {
-        decode_party_data(&pokemon->party_data, plain);
-    }
-    // A failed checksum reads as a Bad Egg, as in the game.
-    if (spec_sum_u16(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCTS_SIZE)
-        != spec_read_u16_le(&plain[CHECKSUM_OFFSET])) {
-        pokemon->is_bad_egg = true;
-        pokemon->is_egg = true;
-    }
-    if (pokemon->species != 0) {
-        pokemon->personality = spec_gba_decode_personality(pokemon->personality.pid,
-                                                           pokemon->species, &pokemon->trainer);
-        pokemon->iv_method = spec_find_iv_method(pokemon->personality.pid, pokemon->ivs);
     }
 }
 
@@ -384,8 +421,15 @@ spec_error_t spec_gba_encode_pokemon(uint8_t *record, size_t record_size,
     return SPEC_OK;
 }
 
-static bool is_record_size(size_t raw_size) {
-    return raw_size == SPEC_GBA_BOX_RECORD_SIZE || raw_size == SPEC_GBA_PARTY_RECORD_SIZE;
+void spec_gba_fill_party_data(spec_gba_pokemon_t *pokemon) {
+    bool has_party_data =
+        pokemon->party_data.level != 0 || pokemon->party_data.stats[SPEC_STAT_HP] != 0;
+    bool has_species_data = spec_gba_species_to_national(pokemon->species) != 0;
+    if (has_party_data || !has_species_data) {
+        return;
+    }
+    pokemon->party_data = (spec_gba_party_data_t){.mail_id = NO_MAIL};
+    calculate_stats(pokemon, &spec_gba_species_data[pokemon->species]);
 }
 
 spec_error_t spec_gba_read_pokemon(spec_gba_pokemon_t *pokemon, const uint8_t *raw,
@@ -405,64 +449,12 @@ spec_error_t spec_gba_write_pokemon(uint8_t *raw, size_t raw_size,
     return spec_gba_encode_pokemon(raw, raw_size, pokemon);
 }
 
-static uint16_t stat_of(const spec_gba_pokemon_t *pokemon,
-                        const spec_gba_species_data_t *species_data, spec_stat_t stat,
-                        uint8_t level) {
-    if (stat == SPEC_STAT_HP && pokemon->species == SHEDINJA) {
-        return 1;
-    }
-    // The nature comes from the pid, since personality.nature is ignored on write.
-    spec_nature_t nature = (spec_nature_t)(pokemon->personality.pid % SPEC_NATURE_COUNT);
-    return spec_calculate_stat(stat, species_data->base_stats[stat], pokemon->ivs[stat],
-                               pokemon->evs[stat], level, nature);
-}
-
-static uint16_t current_hp_after(const spec_gba_pokemon_t *pokemon, uint16_t old_max_hp,
-                                 uint16_t new_max_hp) {
-    // As CalculateMonStats.
-    bool is_fainted = pokemon->party_data.current_hp == 0 && old_max_hp != 0;
-    if (is_fainted) {
+uint8_t spec_gba_pokemon_get_level(const spec_gba_pokemon_t *pokemon) {
+    if (spec_gba_species_to_national(pokemon->species) == 0) {
         return 0;
     }
-    if (pokemon->species == SHEDINJA) {
-        return 1;
-    }
-    if (pokemon->party_data.current_hp == 0) {
-        return new_max_hp;
-    }
-    return (uint16_t)(pokemon->party_data.current_hp + new_max_hp - old_max_hp);
-}
-
-static void calculate_stats(spec_gba_pokemon_t *pokemon,
-                            const spec_gba_species_data_t *species_data) {
-    uint8_t level = spec_level_for_experience(species_data->growth_rate, pokemon->experience);
-    uint16_t old_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
-    uint16_t new_max_hp = stat_of(pokemon, species_data, SPEC_STAT_HP, level);
-    pokemon->party_data.current_hp = current_hp_after(pokemon, old_max_hp, new_max_hp);
-    pokemon->party_data.level = level;
-    pokemon->party_data.stats[SPEC_STAT_HP] = new_max_hp;
-    for (spec_stat_t stat = SPEC_STAT_ATTACK; stat < SPEC_STAT_COUNT; ++stat) {
-        pokemon->party_data.stats[stat] = stat_of(pokemon, species_data, stat, level);
-    }
-}
-
-spec_error_t spec_gba_pokemon_calculate_stats(spec_gba_pokemon_t *pokemon) {
-    if (spec_gba_species_to_national(pokemon->species) == 0) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
-    }
-    calculate_stats(pokemon, &spec_gba_species_data[pokemon->species]);
-    return SPEC_OK;
-}
-
-void spec_gba_fill_party_data(spec_gba_pokemon_t *pokemon) {
-    bool has_party_data =
-        pokemon->party_data.level != 0 || pokemon->party_data.stats[SPEC_STAT_HP] != 0;
-    bool has_species_data = spec_gba_species_to_national(pokemon->species) != 0;
-    if (has_party_data || !has_species_data) {
-        return;
-    }
-    pokemon->party_data = (spec_gba_party_data_t){.mail_id = NO_MAIL};
-    calculate_stats(pokemon, &spec_gba_species_data[pokemon->species]);
+    return spec_level_for_experience(spec_gba_species_data[pokemon->species].growth_rate,
+                                     pokemon->experience);
 }
 
 spec_error_t spec_gba_pokemon_get_name(const spec_gba_pokemon_t *pokemon,
@@ -471,14 +463,19 @@ spec_error_t spec_gba_pokemon_get_name(const spec_gba_pokemon_t *pokemon,
                                  pokemon->language);
 }
 
-// As every naming screen writes it: the name, then 0xFF to the end (pret SaveInputText).
-spec_error_t spec_gba_pokemon_set_nickname(spec_gba_pokemon_t *pokemon, const char8_t *nickname) {
-    if (pokemon->is_egg || pokemon->is_bad_egg) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the games never name an egg");
+// The game's PC refuses Pokémon holding mail.
+bool spec_gba_pokemon_is_safe_to_box(const spec_gba_pokemon_t *pokemon) {
+    bool is_holding_mail =
+        pokemon->held_item >= FIRST_MAIL_ITEM && pokemon->held_item <= LAST_MAIL_ITEM;
+    return !is_holding_mail;
+}
+
+spec_error_t spec_gba_pokemon_calculate_stats(spec_gba_pokemon_t *pokemon) {
+    if (spec_gba_species_to_national(pokemon->species) == 0) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
     }
-    // TODO: Check the Japanese nickname length.
-    return spec_gba_text_from_utf8(pokemon->nickname, SPEC_GBA_NICKNAME_SIZE, nickname,
-                                   pokemon->language);
+    calculate_stats(pokemon, &spec_gba_species_data[pokemon->species]);
+    return SPEC_OK;
 }
 
 // As the game names a Pokémon; the games show a Bad Egg's name without storing one.
@@ -500,23 +497,40 @@ spec_error_t spec_gba_pokemon_remove_nickname(spec_gba_pokemon_t *pokemon) {
                                    pokemon->language);
 }
 
-// The game's PC refuses Pokémon holding mail.
-bool spec_gba_is_safe_to_box(const spec_gba_pokemon_t *pokemon) {
-    bool is_holding_mail =
-        pokemon->held_item >= FIRST_MAIL_ITEM && pokemon->held_item <= LAST_MAIL_ITEM;
-    return !is_holding_mail;
-}
-
-uint16_t spec_gba_species_to_national(uint16_t species) {
-    if (species >= SPEC_GBA_SPECIES_INDEX_COUNT) {
-        return 0;
+// The level's least experience, as a Rare Candy leaves it.
+spec_error_t spec_gba_pokemon_set_level(spec_gba_pokemon_t *pokemon, uint8_t level) {
+    if (spec_gba_species_to_national(pokemon->species) == 0) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
     }
-    return spec_gba_national_of_species[species];
+    if (level == 0 || level >= SPEC_LEVEL_COUNT) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "level is not 1 to 100");
+    }
+    const spec_gba_species_data_t *species_data = &spec_gba_species_data[pokemon->species];
+    pokemon->experience = spec_experience[species_data->growth_rate][level];
+    calculate_stats(pokemon, species_data);
+    return SPEC_OK;
 }
 
-uint16_t spec_gba_species_from_national(uint16_t national_number) {
+// As every naming screen writes it: the name, then 0xFF to the end (pret SaveInputText).
+spec_error_t spec_gba_pokemon_set_nickname(spec_gba_pokemon_t *pokemon, const char8_t *nickname) {
+    if (pokemon->is_egg || pokemon->is_bad_egg) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the games never name an egg");
+    }
+    // TODO: Check the Japanese nickname length.
+    return spec_gba_text_from_utf8(pokemon->nickname, SPEC_GBA_NICKNAME_SIZE, nickname,
+                                   pokemon->language);
+}
+
+spec_gba_species_t spec_gba_species_from_national(uint16_t national_number) {
     if (national_number >= SPEC_GBA_NATIONAL_COUNT) {
         return 0;
     }
     return spec_gba_species_of_national[national_number];
+}
+
+uint16_t spec_gba_species_to_national(spec_gba_species_t species) {
+    if (species >= SPEC_GBA_SPECIES_INDEX_COUNT) {
+        return 0;
+    }
+    return spec_gba_national_of_species[species];
 }

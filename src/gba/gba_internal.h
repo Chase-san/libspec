@@ -79,75 +79,97 @@ struct spec_gba_layout {
 };
 typedef struct spec_gba_layout spec_gba_layout_t;
 
-struct spec_gba_slot {
+struct spec_gba_save_slot {
     size_t first_sector;
     uint8_t position_of_section[SPEC_GBA_SECTION_COUNT];
     uint32_t counter;
 };
-typedef struct spec_gba_slot spec_gba_slot_t;
+typedef struct spec_gba_save_slot spec_gba_save_slot_t;
+
+// Layout functions
 
 const spec_gba_layout_t *spec_gba_get_layout(spec_game_type_t type);
 
-bool spec_gba_find_active_slot(spec_gba_slot_t *active, const uint8_t *data,
-                               const uint16_t section_sizes[static SPEC_GBA_SECTION_COUNT]);
-spec_gba_slot_t spec_gba_copy_to_next_slot(uint8_t *data, const spec_gba_slot_t *active);
-void spec_gba_stamp_slot(uint8_t *data, const spec_gba_slot_t *slot,
-                         const uint16_t section_sizes[static SPEC_GBA_SECTION_COUNT]);
-void spec_gba_read_slot_bytes(uint8_t *bytes, const uint8_t *data, const spec_gba_slot_t *slot,
-                              size_t offset, size_t size);
-void spec_gba_write_slot_bytes(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                               const uint8_t *bytes, size_t size);
-uint8_t spec_gba_read_slot_u8(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset);
-uint16_t spec_gba_read_slot_u16(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset);
-uint32_t spec_gba_read_slot_u32(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset);
-void spec_gba_write_slot_u8(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                            uint8_t value);
-void spec_gba_write_slot_u16(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                             uint16_t value);
-void spec_gba_write_slot_u32(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                             uint32_t value);
-bool spec_gba_read_slot_flag(const uint8_t *data, const spec_gba_slot_t *slot, size_t flags_offset,
-                             uint16_t flag);
-void spec_gba_write_slot_flag(uint8_t *data, const spec_gba_slot_t *slot, size_t flags_offset,
-                              uint16_t flag, bool is_set);
+// Save slot functions
 
-uint32_t spec_gba_read_security_key(const uint8_t *data, const spec_gba_slot_t *slot,
-                                    const spec_gba_layout_t *layout);
-void spec_gba_decode_player(spec_gba_save_t *save, const uint8_t *data, const spec_gba_slot_t *slot,
-                            const spec_gba_layout_t *layout);
-spec_error_t spec_gba_check_player(const spec_gba_save_t *save, const spec_gba_layout_t *layout);
-void spec_gba_encode_player(uint8_t *data, const spec_gba_slot_t *slot,
+void spec_gba_read_slot_bytes(uint8_t *bytes, const uint8_t *data, const spec_gba_save_slot_t *slot,
+                              size_t offset, size_t size);
+bool spec_gba_read_slot_flag(const uint8_t *data, const spec_gba_save_slot_t *slot,
+                             size_t flags_offset, uint16_t flag);
+uint16_t spec_gba_read_slot_u16(const uint8_t *data, const spec_gba_save_slot_t *slot,
+                                size_t offset);
+uint32_t spec_gba_read_slot_u32(const uint8_t *data, const spec_gba_save_slot_t *slot,
+                                size_t offset);
+uint8_t spec_gba_read_slot_u8(const uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset);
+void spec_gba_write_slot_bytes(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                               const uint8_t *bytes, size_t size);
+void spec_gba_write_slot_flag(uint8_t *data, const spec_gba_save_slot_t *slot, size_t flags_offset,
+                              uint16_t flag, bool is_set);
+void spec_gba_write_slot_u16(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                             uint16_t value);
+void spec_gba_write_slot_u32(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                             uint32_t value);
+void spec_gba_write_slot_u8(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                            uint8_t value);
+
+bool spec_gba_find_active_slot(spec_gba_save_slot_t *active, const uint8_t *data,
+                               const uint16_t section_sizes[static SPEC_GBA_SECTION_COUNT]);
+
+spec_gba_save_slot_t spec_gba_copy_to_next_slot(uint8_t *data, const spec_gba_save_slot_t *active);
+void spec_gba_stamp_slot(uint8_t *data, const spec_gba_save_slot_t *slot,
+                         const uint16_t section_sizes[static SPEC_GBA_SECTION_COUNT]);
+
+// Player functions
+
+void spec_gba_decode_player(spec_gba_save_t *save, const uint8_t *data,
+                            const spec_gba_save_slot_t *slot, const spec_gba_layout_t *layout);
+void spec_gba_encode_player(uint8_t *data, const spec_gba_save_slot_t *slot,
                             const spec_gba_layout_t *layout, const spec_gba_save_t *save);
 
+spec_error_t spec_gba_check_player(const spec_gba_save_t *save, const spec_gba_layout_t *layout);
+uint32_t spec_gba_read_security_key(const uint8_t *data, const spec_gba_save_slot_t *slot,
+                                    const spec_gba_layout_t *layout);
+
+// Pokédex functions
+
 void spec_gba_decode_pokedex(spec_gba_pokedex_t *pokedex, const uint8_t *data,
-                             const spec_gba_slot_t *slot, const spec_gba_layout_t *layout);
-void spec_gba_encode_pokedex(uint8_t *data, const spec_gba_slot_t *slot,
+                             const spec_gba_save_slot_t *slot, const spec_gba_layout_t *layout);
+void spec_gba_encode_pokedex(uint8_t *data, const spec_gba_save_slot_t *slot,
                              const spec_gba_layout_t *layout, const spec_gba_pokedex_t *pokedex);
 
+// Storage functions
+
 void spec_gba_decode_storage(spec_gba_save_t *save, const uint8_t *data,
-                             const spec_gba_slot_t *slot, const spec_gba_layout_t *layout);
-spec_error_t spec_gba_check_storage(const spec_gba_save_t *save, const spec_gba_layout_t *layout);
-void spec_gba_encode_storage(uint8_t *data, const spec_gba_slot_t *slot,
+                             const spec_gba_save_slot_t *slot, const spec_gba_layout_t *layout);
+void spec_gba_encode_storage(uint8_t *data, const spec_gba_save_slot_t *slot,
                              const spec_gba_layout_t *layout, const spec_gba_save_t *save);
+
+spec_error_t spec_gba_check_storage(const spec_gba_save_t *save, const spec_gba_layout_t *layout);
+
+// Pokémon functions
 
 // Records are encrypted, as stored.
 void spec_gba_decode_pokemon(spec_gba_pokemon_t *pokemon, const uint8_t *record,
                              size_t record_size);
 spec_error_t spec_gba_encode_pokemon(uint8_t *record, size_t record_size,
                                      const spec_gba_pokemon_t *pokemon);
+
 void spec_gba_fill_party_data(spec_gba_pokemon_t *pokemon);
 
-spec_error_t spec_gba_check_item_placement(spec_game_type_t type, spec_gba_pocket_t pocket,
-                                           uint16_t item);
-void spec_gba_decode_items(spec_gba_save_t *save, const uint8_t *data, const spec_gba_slot_t *slot,
-                           const spec_gba_layout_t *layout);
-spec_error_t spec_gba_check_items(const spec_gba_save_t *save, const spec_gba_layout_t *layout);
-void spec_gba_encode_items(uint8_t *data, const spec_gba_slot_t *slot,
+// Item functions
+
+void spec_gba_decode_items(spec_gba_save_t *save, const uint8_t *data,
+                           const spec_gba_save_slot_t *slot, const spec_gba_layout_t *layout);
+void spec_gba_encode_items(uint8_t *data, const spec_gba_save_slot_t *slot,
                            const spec_gba_layout_t *layout, const spec_gba_save_t *save);
+
+spec_error_t spec_gba_check_items(const spec_gba_save_t *save, const spec_gba_layout_t *layout);
+
+// Text functions
 
 // A name that fills its field gets its terminator in the byte after it, as the naming screen
 // writes it; otherwise that byte is left as the game wrote it.
-void spec_gba_write_slot_name(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
+void spec_gba_write_slot_name(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
                               const uint8_t *name, size_t name_size);
 
 #endif

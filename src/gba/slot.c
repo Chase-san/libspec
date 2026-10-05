@@ -21,7 +21,7 @@ struct piece {
 };
 typedef struct piece piece_t;
 
-static size_t sector_offset_of(const spec_gba_slot_t *slot, size_t section_id) {
+static size_t sector_offset_of(const spec_gba_save_slot_t *slot, size_t section_id) {
     return (slot->first_sector + slot->position_of_section[section_id]) * SECTOR_SIZE;
 }
 
@@ -31,6 +31,88 @@ static uint16_t sector_checksum_of(const uint8_t *sector, size_t section_size) {
         sum += spec_read_u32_le(&sector[offset]);
     }
     return (uint16_t)((sum >> 16) + sum);
+}
+
+static piece_t piece_at(const spec_gba_save_slot_t *slot, size_t offset, size_t size_left) {
+    size_t section_id = offset / SPEC_GBA_SECTION_DATA_SIZE;
+    size_t offset_in_section = offset % SPEC_GBA_SECTION_DATA_SIZE;
+    size_t room_in_section = SPEC_GBA_SECTION_DATA_SIZE - offset_in_section;
+    return (piece_t){
+        .data_offset = sector_offset_of(slot, section_id) + offset_in_section,
+        .size = size_left < room_in_section ? size_left : room_in_section,
+    };
+}
+
+void spec_gba_read_slot_bytes(uint8_t *bytes, const uint8_t *data, const spec_gba_save_slot_t *slot,
+                              size_t offset, size_t size) {
+    for (size_t copied = 0; copied < size;) {
+        piece_t piece = piece_at(slot, offset + copied, size - copied);
+        memcpy(&bytes[copied], &data[piece.data_offset], piece.size);
+        copied += piece.size;
+    }
+}
+
+bool spec_gba_read_slot_flag(const uint8_t *data, const spec_gba_save_slot_t *slot,
+                             size_t flags_offset, uint16_t flag) {
+    uint8_t flag_byte = spec_gba_read_slot_u8(data, slot, flags_offset + flag / 8);
+    return spec_get_bits(flag_byte, flag % 8, 1) != 0;
+}
+
+uint16_t spec_gba_read_slot_u16(const uint8_t *data, const spec_gba_save_slot_t *slot,
+                                size_t offset) {
+    uint8_t bytes[2];
+    spec_gba_read_slot_bytes(bytes, data, slot, offset, sizeof bytes);
+    return spec_read_u16_le(bytes);
+}
+
+uint32_t spec_gba_read_slot_u32(const uint8_t *data, const spec_gba_save_slot_t *slot,
+                                size_t offset) {
+    uint8_t bytes[4];
+    spec_gba_read_slot_bytes(bytes, data, slot, offset, sizeof bytes);
+    return spec_read_u32_le(bytes);
+}
+
+uint8_t spec_gba_read_slot_u8(const uint8_t *data, const spec_gba_save_slot_t *slot,
+                              size_t offset) {
+    uint8_t value = 0;
+    spec_gba_read_slot_bytes(&value, data, slot, offset, 1);
+    return value;
+}
+
+void spec_gba_write_slot_bytes(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                               const uint8_t *bytes, size_t size) {
+    for (size_t copied = 0; copied < size;) {
+        piece_t piece = piece_at(slot, offset + copied, size - copied);
+        memcpy(&data[piece.data_offset], &bytes[copied], piece.size);
+        copied += piece.size;
+    }
+}
+
+void spec_gba_write_slot_flag(uint8_t *data, const spec_gba_save_slot_t *slot, size_t flags_offset,
+                              uint16_t flag, bool is_set) {
+    size_t flag_byte_offset = flags_offset + flag / 8;
+    uint8_t flag_byte = spec_gba_read_slot_u8(data, slot, flag_byte_offset);
+    spec_gba_write_slot_u8(data, slot, flag_byte_offset,
+                           (uint8_t)spec_set_bits(flag_byte, flag % 8, 1, is_set));
+}
+
+void spec_gba_write_slot_u16(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                             uint16_t value) {
+    uint8_t bytes[2];
+    spec_write_u16_le(bytes, value);
+    spec_gba_write_slot_bytes(data, slot, offset, bytes, sizeof bytes);
+}
+
+void spec_gba_write_slot_u32(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                             uint32_t value) {
+    uint8_t bytes[4];
+    spec_write_u32_le(bytes, value);
+    spec_gba_write_slot_bytes(data, slot, offset, bytes, sizeof bytes);
+}
+
+void spec_gba_write_slot_u8(uint8_t *data, const spec_gba_save_slot_t *slot, size_t offset,
+                            uint8_t value) {
+    spec_gba_write_slot_bytes(data, slot, offset, &value, 1);
 }
 
 static bool is_sector_valid(const uint8_t *sector, const uint16_t *section_sizes) {
@@ -44,7 +126,7 @@ static bool is_sector_valid(const uint8_t *sector, const uint16_t *section_sizes
 }
 
 // True when all fourteen sections are present and valid.
-static bool read_slot(spec_gba_slot_t *slot, const uint8_t *data, size_t slot_index,
+static bool read_slot(spec_gba_save_slot_t *slot, const uint8_t *data, size_t slot_index,
                       const uint16_t *section_sizes) {
     uint16_t found_sections = 0;
     slot->first_sector = slot_index * SPEC_GBA_SECTION_COUNT;
@@ -70,20 +152,10 @@ static uint32_t newer_counter(uint32_t first_counter, uint32_t second_counter) {
     return first_counter > second_counter ? first_counter : second_counter;
 }
 
-static piece_t piece_at(const spec_gba_slot_t *slot, size_t offset, size_t size_left) {
-    size_t section_id = offset / SPEC_GBA_SECTION_DATA_SIZE;
-    size_t offset_in_section = offset % SPEC_GBA_SECTION_DATA_SIZE;
-    size_t room_in_section = SPEC_GBA_SECTION_DATA_SIZE - offset_in_section;
-    return (piece_t){
-        .data_offset = sector_offset_of(slot, section_id) + offset_in_section,
-        .size = size_left < room_in_section ? size_left : room_in_section,
-    };
-}
-
 // As GetSaveValidStatus: the newer counter wins, and slot counter % 2 is loaded.
-bool spec_gba_find_active_slot(spec_gba_slot_t *active, const uint8_t *data,
+bool spec_gba_find_active_slot(spec_gba_save_slot_t *active, const uint8_t *data,
                                const uint16_t section_sizes[static SPEC_GBA_SECTION_COUNT]) {
-    spec_gba_slot_t slots[SLOT_COUNT] = {};
+    spec_gba_save_slot_t slots[SLOT_COUNT] = {};
     bool is_whole[SLOT_COUNT] = {};
     for (size_t slot_index = 0; slot_index < SLOT_COUNT; ++slot_index) {
         is_whole[slot_index] = read_slot(&slots[slot_index], data, slot_index, section_sizes);
@@ -108,8 +180,8 @@ bool spec_gba_find_active_slot(spec_gba_slot_t *active, const uint8_t *data,
 }
 
 // As the game saves: the other slot, rotated one sector, counter + 1.
-spec_gba_slot_t spec_gba_copy_to_next_slot(uint8_t *data, const spec_gba_slot_t *active) {
-    spec_gba_slot_t next = {
+spec_gba_save_slot_t spec_gba_copy_to_next_slot(uint8_t *data, const spec_gba_save_slot_t *active) {
+    spec_gba_save_slot_t next = {
         .first_sector = ((active->counter + 1) % SLOT_COUNT) * SPEC_GBA_SECTION_COUNT,
         .counter = active->counter + 1,
     };
@@ -123,7 +195,7 @@ spec_gba_slot_t spec_gba_copy_to_next_slot(uint8_t *data, const spec_gba_slot_t 
     return next;
 }
 
-void spec_gba_stamp_slot(uint8_t *data, const spec_gba_slot_t *slot,
+void spec_gba_stamp_slot(uint8_t *data, const spec_gba_save_slot_t *slot,
                          const uint16_t section_sizes[static SPEC_GBA_SECTION_COUNT]) {
     for (size_t section_id = 0; section_id < SPEC_GBA_SECTION_COUNT; ++section_id) {
         uint8_t *sector = &data[sector_offset_of(slot, section_id)];
@@ -131,73 +203,4 @@ void spec_gba_stamp_slot(uint8_t *data, const spec_gba_slot_t *slot,
         spec_write_u16_le(&sector[CHECKSUM_OFFSET],
                           sector_checksum_of(sector, section_sizes[section_id]));
     }
-}
-
-void spec_gba_read_slot_bytes(uint8_t *bytes, const uint8_t *data, const spec_gba_slot_t *slot,
-                              size_t offset, size_t size) {
-    for (size_t copied = 0; copied < size;) {
-        piece_t piece = piece_at(slot, offset + copied, size - copied);
-        memcpy(&bytes[copied], &data[piece.data_offset], piece.size);
-        copied += piece.size;
-    }
-}
-
-void spec_gba_write_slot_bytes(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                               const uint8_t *bytes, size_t size) {
-    for (size_t copied = 0; copied < size;) {
-        piece_t piece = piece_at(slot, offset + copied, size - copied);
-        memcpy(&data[piece.data_offset], &bytes[copied], piece.size);
-        copied += piece.size;
-    }
-}
-
-uint8_t spec_gba_read_slot_u8(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset) {
-    uint8_t value = 0;
-    spec_gba_read_slot_bytes(&value, data, slot, offset, 1);
-    return value;
-}
-
-uint16_t spec_gba_read_slot_u16(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset) {
-    uint8_t bytes[2];
-    spec_gba_read_slot_bytes(bytes, data, slot, offset, sizeof bytes);
-    return spec_read_u16_le(bytes);
-}
-
-uint32_t spec_gba_read_slot_u32(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset) {
-    uint8_t bytes[4];
-    spec_gba_read_slot_bytes(bytes, data, slot, offset, sizeof bytes);
-    return spec_read_u32_le(bytes);
-}
-
-void spec_gba_write_slot_u8(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                            uint8_t value) {
-    spec_gba_write_slot_bytes(data, slot, offset, &value, 1);
-}
-
-void spec_gba_write_slot_u16(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                             uint16_t value) {
-    uint8_t bytes[2];
-    spec_write_u16_le(bytes, value);
-    spec_gba_write_slot_bytes(data, slot, offset, bytes, sizeof bytes);
-}
-
-void spec_gba_write_slot_u32(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
-                             uint32_t value) {
-    uint8_t bytes[4];
-    spec_write_u32_le(bytes, value);
-    spec_gba_write_slot_bytes(data, slot, offset, bytes, sizeof bytes);
-}
-
-bool spec_gba_read_slot_flag(const uint8_t *data, const spec_gba_slot_t *slot, size_t flags_offset,
-                             uint16_t flag) {
-    uint8_t flag_byte = spec_gba_read_slot_u8(data, slot, flags_offset + flag / 8);
-    return spec_get_bits(flag_byte, flag % 8, 1) != 0;
-}
-
-void spec_gba_write_slot_flag(uint8_t *data, const spec_gba_slot_t *slot, size_t flags_offset,
-                              uint16_t flag, bool is_set) {
-    size_t flag_byte_offset = flags_offset + flag / 8;
-    uint8_t flag_byte = spec_gba_read_slot_u8(data, slot, flag_byte_offset);
-    spec_gba_write_slot_u8(data, slot, flag_byte_offset,
-                           (uint8_t)spec_set_bits(flag_byte, flag % 8, 1, is_set));
 }

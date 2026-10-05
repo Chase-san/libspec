@@ -10,7 +10,7 @@ constexpr spec_game_type_t TYPES[] = {
     SPEC_GAME_TYPE_BLACK2_WHITE2,
 };
 
-static spec_error_t check_save(const spec_ndsi_save_t *save, const spec_ndsi_layout_t *layout) {
+static spec_error_t check_parts(const spec_ndsi_save_t *save, const spec_ndsi_layout_t *layout) {
     spec_error_t error = spec_ndsi_check_player(save, layout);
     if (error != SPEC_OK) {
         return error;
@@ -56,7 +56,7 @@ spec_error_t spec_ndsi_write_save(const spec_ndsi_save_t *save,
     if (!spec_ndsi_find_loaded_copy(&loaded_offset, data, layout)) {
         return spec_fail(SPEC_ERROR_INVALID_SAVE, "the save's game would not load it");
     }
-    spec_error_t error = check_save(save, layout);
+    spec_error_t error = check_parts(save, layout);
     if (error != SPEC_OK) {
         return error;
     }
@@ -69,4 +69,12 @@ spec_error_t spec_ndsi_write_save(const spec_ndsi_save_t *save,
     spec_ndsi_stamp_copy(data, next_offset, loaded_offset, layout);
     spec_ndsi_mirror_copy(data, next_offset, loaded_offset, layout);
     return SPEC_OK;
+}
+
+spec_error_t spec_ndsi_check_save(const spec_ndsi_save_t *save) {
+    const spec_ndsi_layout_t *layout = spec_ndsi_get_layout(save->type);
+    if (layout == nullptr) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "type is not an NDSi game type");
+    }
+    return check_parts(save, layout);
 }

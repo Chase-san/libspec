@@ -26,29 +26,17 @@ static size_t item_slot_offset(size_t index) {
     return FIRST_ITEM_SLOT_OFFSET + index * ITEM_SLOT_SIZE;
 }
 
-// Either pocket takes any item.
-static spec_error_t check_pocket(const spec_gb_item_slot_t *item_slots, spec_gb_pocket_t pocket) {
-    size_t filled_slot_count = 0;
-    for (size_t index = 0; index < SPEC_GB_POCKET_MAX_CAPACITY; ++index) {
-        if (spec_is_item_slot_empty(&item_slots[index])) {
-            continue;
+void spec_gb_decode_items(spec_gb_save_t *save, const uint8_t *data,
+                          const spec_gb_layout_t *layout) {
+    for (size_t pocket = 0; pocket < SPEC_GB_POCKET_COUNT; ++pocket) {
+        const uint8_t *bytes = &data[pocket_offset(layout, (spec_gb_pocket_t)pocket)];
+        for (size_t index = 0; index < bytes[0] && index < POCKET_CAPACITIES[pocket]; ++index) {
+            save->items[pocket][index] = (spec_gb_item_slot_t){
+                .item = bytes[item_slot_offset(index)],
+                .quantity = bytes[item_slot_offset(index) + ITEM_QUANTITY_OFFSET],
+            };
         }
-        if (filled_slot_count == POCKET_CAPACITIES[pocket]) {
-            (void)spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
-                            "the pocket holds more items than the game allows");
-            return spec_locate_error(SPEC_ERROR_LOCATION_ITEMS, pocket, (uint32_t)index);
-        }
-        if (!is_item(item_slots[index].item)) {
-            (void)spec_fail(SPEC_ERROR_INVALID_ITEM, "the item is not in this game");
-            return spec_locate_error(SPEC_ERROR_LOCATION_ITEMS, pocket, (uint32_t)index);
-        }
-        if (item_slots[index].quantity > UINT8_MAX) {
-            (void)spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the quantity does not fit in a byte");
-            return spec_locate_error(SPEC_ERROR_LOCATION_ITEMS, pocket, (uint32_t)index);
-        }
-        ++filled_slot_count;
     }
-    return SPEC_OK;
 }
 
 // A count, the slots, then a terminator; the game leaves what follows.
@@ -64,17 +52,34 @@ static void encode_pocket(uint8_t *bytes, const spec_gb_item_slot_t *item_slots)
     bytes[item_slot_offset(count)] = SPEC_GB_END_OF_LIST;
 }
 
-void spec_gb_decode_items(spec_gb_save_t *save, const uint8_t *data,
-                          const spec_gb_layout_t *layout) {
+void spec_gb_encode_items(uint8_t *data, const spec_gb_layout_t *layout,
+                          const spec_gb_save_t *save) {
     for (size_t pocket = 0; pocket < SPEC_GB_POCKET_COUNT; ++pocket) {
-        const uint8_t *bytes = &data[pocket_offset(layout, (spec_gb_pocket_t)pocket)];
-        for (size_t index = 0; index < bytes[0] && index < POCKET_CAPACITIES[pocket]; ++index) {
-            save->items[pocket][index] = (spec_gb_item_slot_t){
-                .item = bytes[item_slot_offset(index)],
-                .quantity = bytes[item_slot_offset(index) + ITEM_QUANTITY_OFFSET],
-            };
-        }
+        encode_pocket(&data[pocket_offset(layout, (spec_gb_pocket_t)pocket)], save->items[pocket]);
     }
+}
+
+static spec_error_t check_pocket(const spec_gb_item_slot_t *item_slots, spec_gb_pocket_t pocket) {
+    size_t filled_slot_count = 0;
+    for (size_t index = 0; index < SPEC_GB_POCKET_MAX_CAPACITY; ++index) {
+        if (spec_is_item_slot_empty(&item_slots[index])) {
+            continue;
+        }
+        if (filled_slot_count == POCKET_CAPACITIES[pocket]) {
+            (void)spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
+                            "the pocket holds more items than the game allows");
+            return spec_locate_error(SPEC_ERROR_LOCATION_ITEMS, pocket, (uint32_t)index);
+        }
+        if (spec_gb_check_item_placement(pocket, item_slots[index].item) != SPEC_OK) {
+            return spec_locate_error(SPEC_ERROR_LOCATION_ITEMS, pocket, (uint32_t)index);
+        }
+        if (item_slots[index].quantity > UINT8_MAX) {
+            (void)spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the quantity does not fit in a byte");
+            return spec_locate_error(SPEC_ERROR_LOCATION_ITEMS, pocket, (uint32_t)index);
+        }
+        ++filled_slot_count;
+    }
+    return SPEC_OK;
 }
 
 spec_error_t spec_gb_check_items(const spec_gb_save_t *save) {
@@ -87,11 +92,15 @@ spec_error_t spec_gb_check_items(const spec_gb_save_t *save) {
     return SPEC_OK;
 }
 
-void spec_gb_encode_items(uint8_t *data, const spec_gb_layout_t *layout,
-                          const spec_gb_save_t *save) {
-    for (size_t pocket = 0; pocket < SPEC_GB_POCKET_COUNT; ++pocket) {
-        encode_pocket(&data[pocket_offset(layout, (spec_gb_pocket_t)pocket)], save->items[pocket]);
+// Either pocket takes any item.
+spec_error_t spec_gb_check_item_placement(spec_gb_pocket_t pocket, uint16_t item) {
+    if (pocket >= SPEC_GB_POCKET_COUNT) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "pocket is not a Gen 1 pocket");
     }
+    if (item != 0 && !is_item(item)) {
+        return spec_fail(SPEC_ERROR_INVALID_ITEM, "the item is not in this game");
+    }
+    return SPEC_OK;
 }
 
 // TODO: Item names for other languages; pret's localized builds have them.

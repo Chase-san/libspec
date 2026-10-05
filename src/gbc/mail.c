@@ -10,15 +10,6 @@ constexpr size_t MESSAGE_OFFSET = 0;
 constexpr size_t AUTHOR_OFFSET = MESSAGE_OFFSET + SPEC_GBC_MAIL_MESSAGE_SIZE;
 constexpr size_t MAILBOX_CAPACITY = 10;
 
-static bool is_all_zero(const uint8_t *bytes, size_t size) {
-    for (size_t index = 0; index < size; ++index) {
-        if (bytes[index] != 0) {
-            return false;
-        }
-    }
-    return true;
-}
-
 // Japanese mail has no nationality, so its author ID follows the author.
 static size_t author_id_offset(const spec_gbc_layout_t *layout) {
     size_t nationality_size = layout->has_mail_nationality ? SPEC_GBC_MAIL_NATIONALITY_SIZE : 0;
@@ -29,8 +20,8 @@ static size_t species_offset(const spec_gbc_layout_t *layout) {
     return author_id_offset(layout) + 2;
 }
 
-static size_t mailbox_size(const spec_gbc_layout_t *layout) {
-    return 1 + MAILBOX_CAPACITY * layout->mail_size;
+static bool is_holding_mail(const spec_gbc_save_t *save, size_t index) {
+    return index < save->party_count && spec_gbc_is_mail(save->party[index].held_item);
 }
 
 static void decode_mail(spec_gbc_mail_t *mail, const uint8_t *bytes,
@@ -47,17 +38,19 @@ static void decode_mail(spec_gbc_mail_t *mail, const uint8_t *bytes,
     mail->type = bytes[species_offset(layout) + 1];
 }
 
-spec_error_t spec_gbc_check_mail(const spec_gbc_mail_t *mail, const spec_gbc_layout_t *layout) {
-    size_t unused_author_size = SPEC_GBC_MAIL_AUTHOR_SIZE - layout->mail_author_size;
-    if (!is_all_zero(&mail->author_name[layout->mail_author_size], unused_author_size)) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
-                         "mail's author_name is longer than this game's");
+// As RestorePartyMonMail: loading takes the backup.
+void spec_gbc_decode_party_mail(spec_gbc_save_t *save, const uint8_t *data,
+                                const spec_gbc_layout_t *layout) {
+    for (size_t index = 0; index < SPEC_GBC_PARTY_CAPACITY; ++index) {
+        if (is_holding_mail(save, index)) {
+            size_t offset = layout->party_mail_backup_offset + index * layout->mail_size;
+            decode_mail(&save->party[index].party_data.mail, &data[offset], layout);
+        }
     }
-    if (!layout->has_mail_nationality
-        && !is_all_zero(mail->nationality, SPEC_GBC_MAIL_NATIONALITY_SIZE)) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "this game's mail has no nationality");
-    }
-    return SPEC_OK;
+}
+
+static size_t mailbox_size(const spec_gbc_layout_t *layout) {
+    return 1 + MAILBOX_CAPACITY * layout->mail_size;
 }
 
 static void encode_mail(uint8_t *bytes, const spec_gbc_layout_t *layout,
@@ -71,21 +64,6 @@ static void encode_mail(uint8_t *bytes, const spec_gbc_layout_t *layout,
     spec_write_u16_be(&bytes[author_id_offset(layout)], mail->author_id);
     bytes[species_offset(layout)] = mail->species;
     bytes[species_offset(layout) + 1] = mail->type;
-}
-
-static bool is_holding_mail(const spec_gbc_save_t *save, size_t index) {
-    return index < save->party_count && spec_gbc_is_mail(save->party[index].held_item);
-}
-
-// As RestorePartyMonMail: loading takes the backup.
-void spec_gbc_decode_party_mail(spec_gbc_save_t *save, const uint8_t *data,
-                                const spec_gbc_layout_t *layout) {
-    for (size_t index = 0; index < SPEC_GBC_PARTY_CAPACITY; ++index) {
-        if (is_holding_mail(save, index)) {
-            size_t offset = layout->party_mail_backup_offset + index * layout->mail_size;
-            decode_mail(&save->party[index].party_data.mail, &data[offset], layout);
-        }
-    }
 }
 
 // Loading restores the mail from the backup and saving backs it up again; between the two, the
@@ -105,4 +83,17 @@ void spec_gbc_encode_party_mail(uint8_t *data, const spec_gbc_layout_t *layout,
                         mail);
         }
     }
+}
+
+spec_error_t spec_gbc_check_mail(const spec_gbc_mail_t *mail, const spec_gbc_layout_t *layout) {
+    size_t unused_author_size = SPEC_GBC_MAIL_AUTHOR_SIZE - layout->mail_author_size;
+    if (!spec_is_all_zero(&mail->author_name[layout->mail_author_size], unused_author_size)) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
+                         "mail's author_name is longer than this game's");
+    }
+    if (!layout->has_mail_nationality
+        && !spec_is_all_zero(mail->nationality, SPEC_GBC_MAIL_NATIONALITY_SIZE)) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "this game's mail has no nationality");
+    }
+    return SPEC_OK;
 }

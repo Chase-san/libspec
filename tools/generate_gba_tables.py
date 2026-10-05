@@ -32,7 +32,7 @@ def species_national_body(species):
     for row in species:
         lines.append(f"    [{row['index']}] = {row['national']},")
     lines.append("};\n")
-    lines.append("const uint16_t spec_gba_species_of_national[SPEC_GBA_NATIONAL_COUNT] = {")
+    lines.append("const spec_gba_species_t spec_gba_species_of_national[SPEC_GBA_NATIONAL_COUNT] = {")
     for row in sorted(species, key=lambda row: int(row["national"])):
         lines.append(f"    [{row['national']}] = {row['index']},")
     lines.append("};")

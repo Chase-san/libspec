@@ -16,6 +16,14 @@ constexpr uint8_t STORED_POSITIONS[ORDER_COUNT][BLOCK_COUNT] = {
     {1, 2, 3, 0}, {1, 3, 2, 0}, {2, 1, 3, 0}, {3, 1, 2, 0}, {2, 3, 1, 0}, {3, 2, 1, 0},
 };
 
+uint16_t spec_sum_u16(const uint8_t *bytes, size_t size) {
+    uint16_t sum = 0;
+    for (size_t offset = 0; offset < size; offset += 2) {
+        sum = (uint16_t)(sum + spec_read_u16_le(&bytes[offset]));
+    }
+    return sum;
+}
+
 void spec_shuffle_blocks(uint8_t *blocks, size_t block_size, size_t order) {
     const uint8_t *positions = STORED_POSITIONS[order % ORDER_COUNT];
     uint8_t in_order[BLOCK_COUNT * BLOCK_MAX_SIZE];
@@ -40,12 +48,4 @@ void spec_xor_with_random_stream(uint8_t *bytes, size_t size, uint32_t seed) {
         uint16_t mask = spec_random(&seed);
         spec_write_u16_le(&bytes[offset], (uint16_t)(spec_read_u16_le(&bytes[offset]) ^ mask));
     }
-}
-
-uint16_t spec_sum_u16(const uint8_t *bytes, size_t size) {
-    uint16_t sum = 0;
-    for (size_t offset = 0; offset < size; offset += 2) {
-        sum = (uint16_t)(sum + spec_read_u16_le(&bytes[offset]));
-    }
-    return sum;
 }

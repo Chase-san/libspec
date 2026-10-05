@@ -70,50 +70,73 @@ struct spec_gbc_layout {
 };
 typedef struct spec_gbc_layout spec_gbc_layout_t;
 
+// Layout functions
+
 const spec_gbc_layout_t *spec_gbc_get_layout(spec_game_type_t type, spec_language_t language);
 
+// Copy functions
+
 bool spec_gbc_has_save(const uint8_t *data, const spec_gbc_layout_t *layout);
-bool spec_gbc_is_primary_valid(const uint8_t *data, const spec_gbc_layout_t *layout);
 bool spec_gbc_is_backup_valid(const uint8_t *data, const spec_gbc_layout_t *layout);
+bool spec_gbc_is_primary_valid(const uint8_t *data, const spec_gbc_layout_t *layout);
+
 void spec_gbc_restore_primary(uint8_t *data, const spec_gbc_layout_t *layout);
 void spec_gbc_stamp_copies(uint8_t *data, const spec_gbc_layout_t *layout);
 
+// Player functions
+
 void spec_gbc_decode_player(spec_gbc_save_t *save, const uint8_t *data,
                             const spec_gbc_layout_t *layout);
-spec_error_t spec_gbc_check_player(const spec_gbc_save_t *save, const spec_gbc_layout_t *layout);
 void spec_gbc_encode_player(uint8_t *data, const spec_gbc_layout_t *layout,
                             const spec_gbc_save_t *save);
 
+spec_error_t spec_gbc_check_player(const spec_gbc_save_t *save, const spec_gbc_layout_t *layout);
+
+// Pokédex functions
+
 void spec_gbc_decode_pokedex(spec_gbc_pokedex_t *pokedex, const uint8_t *data,
                              const spec_gbc_layout_t *layout);
-spec_error_t spec_gbc_check_pokedex(const spec_gbc_pokedex_t *pokedex);
 void spec_gbc_encode_pokedex(uint8_t *data, const spec_gbc_layout_t *layout,
                              const spec_gbc_pokedex_t *pokedex);
 
+spec_error_t spec_gbc_check_pokedex(const spec_gbc_pokedex_t *pokedex);
+
+// Storage functions
+
 void spec_gbc_decode_storage(spec_gbc_save_t *save, const uint8_t *data,
                              const spec_gbc_layout_t *layout);
-spec_error_t spec_gbc_check_storage(const spec_gbc_save_t *save, const spec_gbc_layout_t *layout);
 void spec_gbc_encode_storage(uint8_t *data, const spec_gbc_layout_t *layout,
                              const spec_gbc_save_t *save);
+
+spec_error_t spec_gbc_check_storage(const spec_gbc_save_t *save, const spec_gbc_layout_t *layout);
+
+// Pokémon functions
 
 // Names live beside the record, so decoding leaves them, and is_egg, as they were.
 void spec_gbc_decode_pokemon(spec_gbc_pokemon_t *pokemon, const uint8_t *record,
                              size_t record_size);
 spec_error_t spec_gbc_encode_pokemon(uint8_t *record, size_t record_size,
                                      const spec_gbc_pokemon_t *pokemon);
+
 void spec_gbc_fill_party_data(spec_gbc_pokemon_t *pokemon);
 
-spec_error_t spec_gbc_check_mail(const spec_gbc_mail_t *mail, const spec_gbc_layout_t *layout);
+// Mail functions
+
 void spec_gbc_decode_party_mail(spec_gbc_save_t *save, const uint8_t *data,
                                 const spec_gbc_layout_t *layout);
 void spec_gbc_encode_party_mail(uint8_t *data, const spec_gbc_layout_t *layout,
                                 const spec_gbc_save_t *save);
 
-bool spec_gbc_is_mail(uint16_t item);
+spec_error_t spec_gbc_check_mail(const spec_gbc_mail_t *mail, const spec_gbc_layout_t *layout);
+
+// Item functions
+
 void spec_gbc_decode_items(spec_gbc_save_t *save, const uint8_t *data,
                            const spec_gbc_layout_t *layout);
-spec_error_t spec_gbc_check_items(const spec_gbc_save_t *save);
 void spec_gbc_encode_items(uint8_t *data, const spec_gbc_layout_t *layout,
                            const spec_gbc_save_t *save);
+
+spec_error_t spec_gbc_check_items(const spec_gbc_save_t *save);
+bool spec_gbc_is_mail(uint16_t item);
 
 #endif

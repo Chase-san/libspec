@@ -94,17 +94,72 @@ constexpr uint16_t LAST_MAIL_ITEM = 148;
 constexpr char8_t ENGLISH_EGG_NICKNAME[] = u8"Egg";
 constexpr uint16_t END_OF_TEXT = 0xFFFF;
 
-static bool get_flag(uint32_t word, unsigned bit) {
-    return spec_get_bits(word, bit, 1) != 0;
-}
-
-static uint32_t set_flag(uint32_t word, unsigned bit, bool is_set) {
-    return spec_set_bits(word, bit, 1, is_set);
-}
-
 // As the game orders the blocks: ((personality >> 13) & 31) % 24.
 static size_t block_order_of(const uint8_t *record) {
     return (spec_read_u32_le(&record[PERSONALITY_OFFSET]) >> 13) & 31;
+}
+
+static bool is_record_size(size_t raw_size) {
+    return raw_size == SPEC_NDSI_BOX_RECORD_SIZE || raw_size == SPEC_NDSI_PARTY_RECORD_SIZE;
+}
+
+static bool has_species_data(uint16_t species) {
+    return species != 0 && species < SPEC_NDSI_SPECIES_COUNT;
+}
+
+static const uint8_t *base_stats_of(uint16_t species, uint8_t form) {
+    for (size_t index = 0; index < SPEC_NDSI_FORM_DATA_COUNT; ++index) {
+        const spec_ndsi_form_data_t *form_data = &spec_ndsi_form_data[index];
+        if (form_data->species == species && form_data->form == form) {
+            return form_data->base_stats;
+        }
+    }
+    return spec_ndsi_species_data[species].base_stats;
+}
+
+static uint16_t stat_of(const spec_ndsi_pokemon_t *pokemon, const uint8_t *base_stats,
+                        spec_stat_t stat, uint8_t level) {
+    if (stat == SPEC_STAT_HP && pokemon->species == SHEDINJA) {
+        return 1;
+    }
+    return spec_calculate_stat(stat, base_stats[stat], pokemon->ivs[stat], pokemon->evs[stat],
+                               level, pokemon->nature);
+}
+
+static void calculate_stats(spec_ndsi_pokemon_t *pokemon) {
+    const spec_ndsi_species_data_t *species_data = &spec_ndsi_species_data[pokemon->species];
+    const uint8_t *base_stats = base_stats_of(pokemon->species, pokemon->form);
+    uint8_t level = spec_level_for_experience(species_data->growth_rate, pokemon->experience);
+    uint16_t old_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
+    uint16_t new_max_hp = stat_of(pokemon, base_stats, SPEC_STAT_HP, level);
+    pokemon->party_data.current_hp = spec_nds_current_hp_after(
+        pokemon->party_data.current_hp, old_max_hp, new_max_hp, pokemon->species == SHEDINJA);
+    pokemon->party_data.level = level;
+    pokemon->party_data.stats[SPEC_STAT_HP] = new_max_hp;
+    for (spec_stat_t stat = SPEC_STAT_ATTACK; stat < SPEC_STAT_COUNT; ++stat) {
+        pokemon->party_data.stats[stat] = stat_of(pokemon, base_stats, stat, level);
+    }
+}
+
+static spec_error_t check_stat_inputs(const spec_ndsi_pokemon_t *pokemon) {
+    if (!has_species_data(pokemon->species)) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
+    }
+    if (pokemon->nature >= SPEC_NATURE_COUNT) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "nature is not one of the 25");
+    }
+    return SPEC_OK;
+}
+
+static spec_error_t write_zero_padded_nickname(spec_ndsi_pokemon_t *pokemon, const char8_t *name) {
+    uint16_t nickname[SPEC_NDSI_NICKNAME_SIZE] = {};
+    spec_error_t error =
+        spec_ndsi_text_from_utf8(nickname, SPEC_NDSI_NICKNAME_SIZE, name, pokemon->language);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    memcpy(pokemon->nickname, nickname, sizeof nickname);
+    return SPEC_OK;
 }
 
 // Only Pokémon from Gen 3 and 4 drew their IVs right after their pid.
@@ -112,23 +167,9 @@ static bool is_from_gen3_or_gen4(spec_version_t version) {
     return version < SPEC_VERSION_WHITE;
 }
 
-static spec_ndsi_date_t date_at(const uint8_t *plain, size_t offset) {
-    return (spec_ndsi_date_t){
-        .year = plain[offset],
-        .month = plain[offset + 1],
-        .day = plain[offset + 2],
-    };
-}
-
-static void write_date(uint8_t *plain, size_t offset, const spec_ndsi_date_t *date) {
-    plain[offset] = date->year;
-    plain[offset + 1] = date->month;
-    plain[offset + 2] = date->day;
-}
-
 static void decode_header(spec_ndsi_pokemon_t *pokemon, const uint8_t *plain) {
     pokemon->personality.pid = spec_read_u32_le(&plain[PERSONALITY_OFFSET]);
-    pokemon->is_bad_egg = get_flag(spec_read_u16_le(&plain[FLAGS_OFFSET]), BAD_EGG_BIT);
+    pokemon->is_bad_egg = spec_get_flag(spec_read_u16_le(&plain[FLAGS_OFFSET]), BAD_EGG_BIT);
 }
 
 static void decode_block_a(spec_ndsi_pokemon_t *pokemon, const uint8_t *plain) {
@@ -159,14 +200,14 @@ static void decode_block_b(spec_ndsi_pokemon_t *pokemon, const uint8_t *plain) {
     for (unsigned stat = 0; stat < SPEC_STAT_COUNT; ++stat) {
         pokemon->ivs[stat] = (uint8_t)spec_get_bits(ivs, stat * IV_BIT_COUNT, IV_BIT_COUNT);
     }
-    pokemon->is_egg = get_flag(ivs, IS_EGG_BIT);
-    pokemon->is_nicknamed = get_flag(ivs, IS_NICKNAMED_BIT);
+    pokemon->is_egg = spec_get_flag(ivs, IS_EGG_BIT);
+    pokemon->is_nicknamed = spec_get_flag(ivs, IS_NICKNAMED_BIT);
     pokemon->hoenn_ribbons = spec_read_u32_le(&plain[HOENN_RIBBONS_OFFSET]);
-    pokemon->is_fateful_encounter = get_flag(plain[FORM_OFFSET], FATEFUL_ENCOUNTER_BIT);
+    pokemon->is_fateful_encounter = spec_get_flag(plain[FORM_OFFSET], FATEFUL_ENCOUNTER_BIT);
     pokemon->form = (uint8_t)spec_get_bits(plain[FORM_OFFSET], FORM_BIT, FORM_BIT_COUNT);
     pokemon->nature = (spec_nature_t)plain[NATURE_OFFSET];
-    pokemon->has_hidden_ability = get_flag(plain[GEN5_FLAGS_OFFSET], HIDDEN_ABILITY_BIT);
-    pokemon->is_n_pokemon = get_flag(plain[GEN5_FLAGS_OFFSET], N_POKEMON_BIT);
+    pokemon->has_hidden_ability = spec_get_flag(plain[GEN5_FLAGS_OFFSET], HIDDEN_ABILITY_BIT);
+    pokemon->is_n_pokemon = spec_get_flag(plain[GEN5_FLAGS_OFFSET], N_POKEMON_BIT);
 }
 
 static void decode_block_c(spec_ndsi_pokemon_t *pokemon, const uint8_t *plain) {
@@ -178,12 +219,20 @@ static void decode_block_c(spec_ndsi_pokemon_t *pokemon, const uint8_t *plain) {
 static void decode_block_d(spec_ndsi_pokemon_t *pokemon, const uint8_t *plain) {
     spec_nds_read_text(pokemon->trainer.name, &plain[TRAINER_NAME_OFFSET],
                        SPEC_NDSI_TRAINER_NAME_SIZE);
-    pokemon->trainer.is_female = get_flag(plain[MET_LEVEL_OFFSET], TRAINER_FEMALE_BIT);
+    pokemon->trainer.is_female = spec_get_flag(plain[MET_LEVEL_OFFSET], TRAINER_FEMALE_BIT);
     pokemon->pokerus.strain =
         (uint8_t)spec_get_bits(plain[POKERUS_OFFSET], POKERUS_STRAIN_BIT, POKERUS_BIT_COUNT);
     pokemon->pokerus.days =
         (uint8_t)spec_get_bits(plain[POKERUS_OFFSET], POKERUS_DAYS_BIT, POKERUS_BIT_COUNT);
     pokemon->pokestar_fame = plain[POKESTAR_FAME_OFFSET];
+}
+
+static spec_ndsi_date_t date_at(const uint8_t *plain, size_t offset) {
+    return (spec_ndsi_date_t){
+        .year = plain[offset],
+        .month = plain[offset + 1],
+        .day = plain[offset + 2],
+    };
 }
 
 // The origin spreads over blocks C and D.
@@ -206,6 +255,39 @@ static void decode_party_data(spec_ndsi_party_data_t *party_data, const uint8_t 
         party_data->stats[stat] = spec_read_u16_le(&plain[STATS_OFFSET + stat * 2]);
     }
     spec_ndsi_decode_mail(&party_data->mail, &plain[MAIL_OFFSET]);
+}
+
+void spec_ndsi_decode_pokemon(spec_ndsi_pokemon_t *pokemon, const uint8_t *record,
+                              size_t record_size) {
+    uint8_t plain[SPEC_NDSI_PARTY_RECORD_SIZE] = {};
+    memcpy(plain, record, record_size);
+    uint16_t stored_checksum = spec_read_u16_le(&plain[CHECKSUM_OFFSET]);
+    spec_xor_with_random_stream(&plain[BLOCKS_OFFSET], BLOCKS_SIZE, stored_checksum);
+    spec_xor_with_random_stream(&plain[PARTY_DATA_OFFSET], PARTY_DATA_SIZE,
+                                spec_read_u32_le(&plain[PERSONALITY_OFFSET]));
+    spec_unshuffle_blocks(&plain[BLOCKS_OFFSET], BLOCK_SIZE, block_order_of(plain));
+    *pokemon = (spec_ndsi_pokemon_t){};
+    decode_header(pokemon, plain);
+    decode_block_a(pokemon, plain);
+    decode_block_b(pokemon, plain);
+    decode_block_c(pokemon, plain);
+    decode_block_d(pokemon, plain);
+    decode_origin(&pokemon->origin, plain);
+    if (record_size == SPEC_NDSI_PARTY_RECORD_SIZE) {
+        decode_party_data(&pokemon->party_data, plain);
+    }
+    // A failed checksum reads as a Bad Egg, as in Gen 4.
+    if (spec_sum_u16(&plain[BLOCKS_OFFSET], BLOCKS_SIZE) != stored_checksum) {
+        pokemon->is_bad_egg = true;
+        pokemon->is_egg = true;
+    }
+    if (pokemon->species != 0) {
+        pokemon->personality = spec_ndsi_decode_personality(pokemon->personality.pid,
+                                                            pokemon->species, &pokemon->trainer);
+    }
+    if (pokemon->species != 0 && is_from_gen3_or_gen4(pokemon->origin.version)) {
+        pokemon->iv_method = spec_find_iv_method(pokemon->personality.pid, pokemon->ivs);
+    }
 }
 
 static const char *unencodable_field_of(const spec_ndsi_pokemon_t *pokemon) {
@@ -247,7 +329,7 @@ static const char *unencodable_field_of(const spec_ndsi_pokemon_t *pokemon) {
 static void encode_header(uint8_t *plain, const spec_ndsi_pokemon_t *pokemon) {
     spec_write_u32_le(&plain[PERSONALITY_OFFSET], pokemon->personality.pid);
     spec_write_u16_le(&plain[FLAGS_OFFSET],
-                      (uint16_t)set_flag(0, BAD_EGG_BIT, pokemon->is_bad_egg));
+                      (uint16_t)spec_set_flag(0, BAD_EGG_BIT, pokemon->is_bad_egg));
 }
 
 static void encode_block_a(uint8_t *plain, const spec_ndsi_pokemon_t *pokemon) {
@@ -286,15 +368,15 @@ static void encode_block_b(uint8_t *plain, const spec_ndsi_pokemon_t *pokemon) {
     for (unsigned stat = 0; stat < SPEC_STAT_COUNT; ++stat) {
         ivs = spec_set_bits(ivs, stat * IV_BIT_COUNT, IV_BIT_COUNT, pokemon->ivs[stat]);
     }
-    ivs = set_flag(ivs, IS_EGG_BIT, pokemon->is_egg);
-    ivs = set_flag(ivs, IS_NICKNAMED_BIT, pokemon->is_nicknamed);
+    ivs = spec_set_flag(ivs, IS_EGG_BIT, pokemon->is_egg);
+    ivs = spec_set_flag(ivs, IS_NICKNAMED_BIT, pokemon->is_nicknamed);
     uint32_t form_byte = 0;
-    form_byte = set_flag(form_byte, FATEFUL_ENCOUNTER_BIT, pokemon->is_fateful_encounter);
+    form_byte = spec_set_flag(form_byte, FATEFUL_ENCOUNTER_BIT, pokemon->is_fateful_encounter);
     form_byte = spec_set_bits(form_byte, GENDER_BIT, GENDER_BIT_COUNT, stored_gender_of(pokemon));
     form_byte = spec_set_bits(form_byte, FORM_BIT, FORM_BIT_COUNT, pokemon->form);
     uint32_t gen5_flags = 0;
-    gen5_flags = set_flag(gen5_flags, HIDDEN_ABILITY_BIT, pokemon->has_hidden_ability);
-    gen5_flags = set_flag(gen5_flags, N_POKEMON_BIT, pokemon->is_n_pokemon);
+    gen5_flags = spec_set_flag(gen5_flags, HIDDEN_ABILITY_BIT, pokemon->has_hidden_ability);
+    gen5_flags = spec_set_flag(gen5_flags, N_POKEMON_BIT, pokemon->is_n_pokemon);
     spec_write_u32_le(&plain[IVS_OFFSET], ivs);
     spec_write_u32_le(&plain[HOENN_RIBBONS_OFFSET], pokemon->hoenn_ribbons);
     plain[FORM_OFFSET] = (uint8_t)form_byte;
@@ -318,12 +400,18 @@ static void encode_block_d(uint8_t *plain, const spec_ndsi_pokemon_t *pokemon) {
     plain[POKESTAR_FAME_OFFSET] = pokemon->pokestar_fame;
 }
 
+static void write_date(uint8_t *plain, size_t offset, const spec_ndsi_date_t *date) {
+    plain[offset] = date->year;
+    plain[offset + 1] = date->month;
+    plain[offset + 2] = date->day;
+}
+
 static void encode_origin(uint8_t *plain, const spec_ndsi_pokemon_t *pokemon) {
     const spec_ndsi_origin_t *origin = &pokemon->origin;
     plain[VERSION_OFFSET] = origin->version;
     plain[BALL_OFFSET] = origin->ball;
     uint32_t met_level = origin->met_level;
-    met_level = set_flag(met_level, TRAINER_FEMALE_BIT, pokemon->trainer.is_female);
+    met_level = spec_set_flag(met_level, TRAINER_FEMALE_BIT, pokemon->trainer.is_female);
     plain[MET_LEVEL_OFFSET] = (uint8_t)met_level;
     spec_write_u16_le(&plain[MET_LOCATION_OFFSET], origin->met_location);
     write_date(plain, MET_DATE_OFFSET, &origin->met_date);
@@ -340,39 +428,6 @@ static void encode_party_data(uint8_t *plain, const spec_ndsi_party_data_t *part
         spec_write_u16_le(&plain[STATS_OFFSET + stat * 2], party_data->stats[stat]);
     }
     spec_ndsi_encode_mail(&plain[MAIL_OFFSET], &party_data->mail);
-}
-
-void spec_ndsi_decode_pokemon(spec_ndsi_pokemon_t *pokemon, const uint8_t *record,
-                              size_t record_size) {
-    uint8_t plain[SPEC_NDSI_PARTY_RECORD_SIZE] = {};
-    memcpy(plain, record, record_size);
-    uint16_t stored_checksum = spec_read_u16_le(&plain[CHECKSUM_OFFSET]);
-    spec_xor_with_random_stream(&plain[BLOCKS_OFFSET], BLOCKS_SIZE, stored_checksum);
-    spec_xor_with_random_stream(&plain[PARTY_DATA_OFFSET], PARTY_DATA_SIZE,
-                                spec_read_u32_le(&plain[PERSONALITY_OFFSET]));
-    spec_unshuffle_blocks(&plain[BLOCKS_OFFSET], BLOCK_SIZE, block_order_of(plain));
-    *pokemon = (spec_ndsi_pokemon_t){};
-    decode_header(pokemon, plain);
-    decode_block_a(pokemon, plain);
-    decode_block_b(pokemon, plain);
-    decode_block_c(pokemon, plain);
-    decode_block_d(pokemon, plain);
-    decode_origin(&pokemon->origin, plain);
-    if (record_size == SPEC_NDSI_PARTY_RECORD_SIZE) {
-        decode_party_data(&pokemon->party_data, plain);
-    }
-    // A failed checksum reads as a Bad Egg, as in Gen 4.
-    if (spec_sum_u16(&plain[BLOCKS_OFFSET], BLOCKS_SIZE) != stored_checksum) {
-        pokemon->is_bad_egg = true;
-        pokemon->is_egg = true;
-    }
-    if (pokemon->species != 0) {
-        pokemon->personality = spec_ndsi_decode_personality(pokemon->personality.pid,
-                                                            pokemon->species, &pokemon->trainer);
-    }
-    if (pokemon->species != 0 && is_from_gen3_or_gen4(pokemon->origin.version)) {
-        pokemon->iv_method = spec_find_iv_method(pokemon->personality.pid, pokemon->ivs);
-    }
 }
 
 spec_error_t spec_ndsi_encode_pokemon(uint8_t *record, size_t record_size,
@@ -399,8 +454,17 @@ spec_error_t spec_ndsi_encode_pokemon(uint8_t *record, size_t record_size,
     return SPEC_OK;
 }
 
-static bool is_record_size(size_t raw_size) {
-    return raw_size == SPEC_NDSI_BOX_RECORD_SIZE || raw_size == SPEC_NDSI_PARTY_RECORD_SIZE;
+// As Gen 4's Pokemon_FromBoxPokemon.
+void spec_ndsi_fill_party_data(spec_ndsi_pokemon_t *pokemon) {
+    bool has_party_data =
+        pokemon->party_data.level != 0 || pokemon->party_data.stats[SPEC_STAT_HP] != 0;
+    if (has_party_data || !has_species_data(pokemon->species)
+        || pokemon->nature >= SPEC_NATURE_COUNT) {
+        return;
+    }
+    pokemon->party_data = (spec_ndsi_party_data_t){};
+    spec_ndsi_init_mail(&pokemon->party_data.mail);
+    calculate_stats(pokemon);
 }
 
 spec_error_t spec_ndsi_read_pokemon(spec_ndsi_pokemon_t *pokemon, const uint8_t *raw,
@@ -420,65 +484,12 @@ spec_error_t spec_ndsi_write_pokemon(uint8_t *raw, size_t raw_size,
     return spec_ndsi_encode_pokemon(raw, raw_size, pokemon);
 }
 
-static bool has_species_data(uint16_t species) {
-    return species != 0 && species < SPEC_NDSI_SPECIES_COUNT;
-}
-
-static const uint8_t *base_stats_of(uint16_t species, uint8_t form) {
-    for (size_t index = 0; index < SPEC_NDSI_FORM_DATA_COUNT; ++index) {
-        const spec_ndsi_form_data_t *form_data = &spec_ndsi_form_data[index];
-        if (form_data->species == species && form_data->form == form) {
-            return form_data->base_stats;
-        }
-    }
-    return spec_ndsi_species_data[species].base_stats;
-}
-
-static uint16_t stat_of(const spec_ndsi_pokemon_t *pokemon, const uint8_t *base_stats,
-                        spec_stat_t stat, uint8_t level) {
-    if (stat == SPEC_STAT_HP && pokemon->species == SHEDINJA) {
-        return 1;
-    }
-    return spec_calculate_stat(stat, base_stats[stat], pokemon->ivs[stat], pokemon->evs[stat],
-                               level, pokemon->nature);
-}
-
-static void calculate_stats(spec_ndsi_pokemon_t *pokemon) {
-    const spec_ndsi_species_data_t *species_data = &spec_ndsi_species_data[pokemon->species];
-    const uint8_t *base_stats = base_stats_of(pokemon->species, pokemon->form);
-    uint8_t level = spec_level_for_experience(species_data->growth_rate, pokemon->experience);
-    uint16_t old_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
-    uint16_t new_max_hp = stat_of(pokemon, base_stats, SPEC_STAT_HP, level);
-    pokemon->party_data.current_hp = spec_nds_current_hp_after(
-        pokemon->party_data.current_hp, old_max_hp, new_max_hp, pokemon->species == SHEDINJA);
-    pokemon->party_data.level = level;
-    pokemon->party_data.stats[SPEC_STAT_HP] = new_max_hp;
-    for (spec_stat_t stat = SPEC_STAT_ATTACK; stat < SPEC_STAT_COUNT; ++stat) {
-        pokemon->party_data.stats[stat] = stat_of(pokemon, base_stats, stat, level);
-    }
-}
-
-spec_error_t spec_ndsi_pokemon_calculate_stats(spec_ndsi_pokemon_t *pokemon) {
+uint8_t spec_ndsi_pokemon_get_level(const spec_ndsi_pokemon_t *pokemon) {
     if (!has_species_data(pokemon->species)) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
+        return 0;
     }
-    if (pokemon->nature >= SPEC_NATURE_COUNT) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "nature is not one of the 25");
-    }
-    calculate_stats(pokemon);
-    return SPEC_OK;
-}
-
-// As Gen 4's Pokemon_FromBoxPokemon.
-void spec_ndsi_fill_party_data(spec_ndsi_pokemon_t *pokemon) {
-    bool has_party_data =
-        pokemon->party_data.level != 0 || pokemon->party_data.stats[SPEC_STAT_HP] != 0;
-    if (has_party_data || !has_species_data(pokemon->species)
-        || pokemon->nature >= SPEC_NATURE_COUNT) {
-        return;
-    }
-    pokemon->party_data = (spec_ndsi_party_data_t){.mail = spec_ndsi_no_mail()};
-    calculate_stats(pokemon);
+    return spec_level_for_experience(spec_ndsi_species_data[pokemon->species].growth_rate,
+                                     pokemon->experience);
 }
 
 spec_error_t spec_ndsi_pokemon_get_name(const spec_ndsi_pokemon_t *pokemon,
@@ -486,14 +497,71 @@ spec_error_t spec_ndsi_pokemon_get_name(const spec_ndsi_pokemon_t *pokemon,
     return spec_ndsi_text_to_utf8(name, pokemon->nickname, SPEC_NDSI_NICKNAME_SIZE);
 }
 
-static spec_error_t write_zero_padded_nickname(spec_ndsi_pokemon_t *pokemon, const char8_t *name) {
-    uint16_t nickname[SPEC_NDSI_NICKNAME_SIZE] = {};
-    spec_error_t error =
-        spec_ndsi_text_from_utf8(nickname, SPEC_NDSI_NICKNAME_SIZE, name, pokemon->language);
+// The game's PC refuses Pokémon holding mail.
+bool spec_ndsi_pokemon_is_safe_to_box(const spec_ndsi_pokemon_t *pokemon) {
+    bool is_holding_mail =
+        pokemon->held_item >= FIRST_MAIL_ITEM && pokemon->held_item <= LAST_MAIL_ITEM;
+    return !is_holding_mail;
+}
+
+spec_error_t spec_ndsi_pokemon_calculate_stats(spec_ndsi_pokemon_t *pokemon) {
+    spec_error_t error = check_stat_inputs(pokemon);
     if (error != SPEC_OK) {
         return error;
     }
-    memcpy(pokemon->nickname, nickname, sizeof nickname);
+    calculate_stats(pokemon);
+    return SPEC_OK;
+}
+
+// The game writes an egg's name over the old one, keeping what follows its terminator.
+static spec_error_t write_egg_nickname(spec_ndsi_pokemon_t *pokemon) {
+    // TODO: Determine egg names for languages other than English.
+    spec_error_t error = spec_ndsi_text_from_utf8(pokemon->nickname, SPEC_NDSI_NICKNAME_SIZE,
+                                                  ENGLISH_EGG_NICKNAME, pokemon->language);
+    if (error == SPEC_OK) {
+        pokemon->is_nicknamed = false;
+    }
+    return error;
+}
+
+// A new Pokémon's name: zeros after the terminator, and one more terminator in the last unit.
+static spec_error_t write_species_nickname(spec_ndsi_pokemon_t *pokemon) {
+    const char8_t *name = spec_gen5_species_name(pokemon->species, pokemon->language);
+    if (name == nullptr) {
+        // This should never happen.
+        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the species has no name in that language");
+    }
+    spec_error_t error = write_zero_padded_nickname(pokemon, name);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    pokemon->nickname[SPEC_NDSI_NICKNAME_SIZE - 1] = END_OF_TEXT;
+    pokemon->is_nicknamed = false;
+    return SPEC_OK;
+}
+
+// As the games name a Pokémon; they show a Bad Egg's name without storing one.
+spec_error_t spec_ndsi_pokemon_remove_nickname(spec_ndsi_pokemon_t *pokemon) {
+    if (pokemon->is_bad_egg) {
+        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the games store no name for a Bad Egg");
+    }
+    if (pokemon->is_egg) {
+        return write_egg_nickname(pokemon);
+    }
+    return write_species_nickname(pokemon);
+}
+
+spec_error_t spec_ndsi_pokemon_set_level(spec_ndsi_pokemon_t *pokemon, uint8_t level) {
+    spec_error_t error = check_stat_inputs(pokemon);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    if (level == 0 || level >= SPEC_LEVEL_COUNT) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "level is not 1 to 100");
+    }
+    spec_growth_rate_t growth_rate = spec_ndsi_species_data[pokemon->species].growth_rate;
+    pokemon->experience = spec_experience[growth_rate][level];
+    calculate_stats(pokemon);
     return SPEC_OK;
 }
 
@@ -543,49 +611,4 @@ spec_error_t spec_ndsi_pokemon_set_nickname(spec_ndsi_pokemon_t *pokemon, const 
     }
     pokemon->is_nicknamed = !is_species_name(pokemon);
     return SPEC_OK;
-}
-
-// The game writes an egg's name over the old one, keeping what follows its terminator.
-static spec_error_t write_egg_nickname(spec_ndsi_pokemon_t *pokemon) {
-    // TODO: Determine egg names for languages other than English.
-    spec_error_t error = spec_ndsi_text_from_utf8(pokemon->nickname, SPEC_NDSI_NICKNAME_SIZE,
-                                                  ENGLISH_EGG_NICKNAME, pokemon->language);
-    if (error == SPEC_OK) {
-        pokemon->is_nicknamed = false;
-    }
-    return error;
-}
-
-// A new Pokémon's name: zeros after the terminator, and one more terminator in the last unit.
-static spec_error_t write_species_nickname(spec_ndsi_pokemon_t *pokemon) {
-    const char8_t *name = spec_gen5_species_name(pokemon->species, pokemon->language);
-    if (name == nullptr) {
-        // This should never happen.
-        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the species has no name in that language");
-    }
-    spec_error_t error = write_zero_padded_nickname(pokemon, name);
-    if (error != SPEC_OK) {
-        return error;
-    }
-    pokemon->nickname[SPEC_NDSI_NICKNAME_SIZE - 1] = END_OF_TEXT;
-    pokemon->is_nicknamed = false;
-    return SPEC_OK;
-}
-
-// As the games name a Pokémon; they show a Bad Egg's name without storing one.
-spec_error_t spec_ndsi_pokemon_remove_nickname(spec_ndsi_pokemon_t *pokemon) {
-    if (pokemon->is_bad_egg) {
-        return spec_fail(SPEC_ERROR_UNKNOWN_NAME, "the games store no name for a Bad Egg");
-    }
-    if (pokemon->is_egg) {
-        return write_egg_nickname(pokemon);
-    }
-    return write_species_nickname(pokemon);
-}
-
-// The game's PC refuses Pokémon holding mail.
-bool spec_ndsi_is_safe_to_box(const spec_ndsi_pokemon_t *pokemon) {
-    bool is_holding_mail =
-        pokemon->held_item >= FIRST_MAIL_ITEM && pokemon->held_item <= LAST_MAIL_ITEM;
-    return !is_holding_mail;
 }

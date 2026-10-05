@@ -6,7 +6,7 @@
 
 constexpr unsigned UNOWN_FORM_COUNT = 28;
 
-static spec_gender_t gender_of(spec_pid_t pid, uint16_t species) {
+static spec_gender_t gender_of(spec_pid_t pid, spec_gba_species_t species) {
     if (spec_gba_species_to_national(species) == 0) {
         return SPEC_GENDER_GENDERLESS;
     }
@@ -20,7 +20,7 @@ static uint8_t unown_form_of(spec_pid_t pid) {
     return (uint8_t)(form_bits % UNOWN_FORM_COUNT);
 }
 
-spec_gba_personality_t spec_gba_decode_personality(spec_pid_t pid, uint16_t species,
+spec_gba_personality_t spec_gba_decode_personality(spec_pid_t pid, spec_gba_species_t species,
                                                    const spec_gba_trainer_t *trainer) {
     spec_gba_personality_t personality = {
         .pid = pid,

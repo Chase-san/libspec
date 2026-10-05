@@ -11,7 +11,7 @@ constexpr spec_game_type_t TYPES[] = {
     SPEC_GAME_TYPE_HEARTGOLD_SOULSILVER,
 };
 
-static spec_error_t check_save(const spec_nds_save_t *save, const spec_nds_layout_t *layout) {
+static spec_error_t check_parts(const spec_nds_save_t *save, const spec_nds_layout_t *layout) {
     spec_error_t error = spec_nds_check_player(save, layout);
     if (error != SPEC_OK) {
         return error;
@@ -31,7 +31,7 @@ spec_error_t spec_nds_read_save(spec_nds_save_t *save,
                                 const uint8_t data[static SPEC_NDS_SAVE_SIZE]) {
     for (size_t index = 0; index < sizeof TYPES / sizeof TYPES[0]; ++index) {
         const spec_nds_layout_t *layout = spec_nds_get_layout(TYPES[index]);
-        spec_nds_blocks_t loaded;
+        spec_nds_block_pair_t loaded;
         if (!spec_nds_find_loaded_blocks(&loaded, data, layout)) {
             continue;
         }
@@ -54,15 +54,15 @@ spec_error_t spec_nds_write_save(const spec_nds_save_t *save,
     if (layout == nullptr) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "type is not an NDS game type");
     }
-    spec_nds_blocks_t loaded;
+    spec_nds_block_pair_t loaded;
     if (!spec_nds_find_loaded_blocks(&loaded, data, layout)) {
         return spec_fail(SPEC_ERROR_INVALID_SAVE, "the save's game would not load it");
     }
-    spec_error_t error = check_save(save, layout);
+    spec_error_t error = check_parts(save, layout);
     if (error != SPEC_OK) {
         return error;
     }
-    spec_nds_blocks_t next = spec_nds_copy_to_next_blocks(data, &loaded, layout);
+    spec_nds_block_pair_t next = spec_nds_copy_to_next_blocks(data, &loaded, layout);
     uint8_t *general = &data[next.general_offset];
     uint8_t *storage = &data[next.storage_offset];
     spec_nds_encode_player(general, layout, save);
@@ -74,4 +74,12 @@ spec_error_t spec_nds_write_save(const spec_nds_save_t *save,
     }
     spec_nds_stamp_blocks(data, &next, layout);
     return SPEC_OK;
+}
+
+spec_error_t spec_nds_check_save(const spec_nds_save_t *save) {
+    const spec_nds_layout_t *layout = spec_nds_get_layout(save->type);
+    if (layout == nullptr) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "type is not an NDS game type");
+    }
+    return check_parts(save, layout);
 }

@@ -5,6 +5,22 @@
 
 static thread_local spec_error_data_t last_error;
 
+spec_error_t spec_fail(spec_error_t error, const char *message) {
+    last_error = (spec_error_data_t){
+        .message = message,
+        .error = error,
+        .location = SPEC_ERROR_LOCATION_NONE,
+    };
+    return error;
+}
+
+spec_error_t spec_locate_error(spec_error_location_t location, uint32_t index0, uint32_t index1) {
+    last_error.location = location;
+    last_error.index0 = index0;
+    last_error.index1 = index1;
+    return last_error.error;
+}
+
 const char *spec_error_string(spec_error_t error) {
     switch (error) {
         case SPEC_OK:
@@ -31,20 +47,4 @@ const char *spec_error_string(spec_error_t error) {
 
 spec_error_data_t spec_last_error(void) {
     return last_error;
-}
-
-spec_error_t spec_fail(spec_error_t error, const char *message) {
-    last_error = (spec_error_data_t){
-        .message = message,
-        .error = error,
-        .location = SPEC_ERROR_LOCATION_NONE,
-    };
-    return error;
-}
-
-spec_error_t spec_locate_error(spec_error_location_t location, uint32_t index0, uint32_t index1) {
-    last_error.location = location;
-    last_error.index0 = index0;
-    last_error.index1 = index1;
-    return last_error.error;
 }

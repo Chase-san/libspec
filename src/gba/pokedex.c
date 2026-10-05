@@ -8,7 +8,7 @@ constexpr size_t POKEDEX_FLAGS_SIZE = 0x34;
 constexpr uint8_t POKEDEX_MODE_NATIONAL = 1;
 constexpr uint8_t POKEDEX_ORDER_FIRST = 0;
 
-static bool is_national_dex_enabled(const uint8_t *data, const spec_gba_slot_t *slot,
+static bool is_national_dex_enabled(const uint8_t *data, const spec_gba_save_slot_t *slot,
                                     const spec_gba_layout_t *layout) {
     const spec_gba_national_dex_layout_t *national_dex = &layout->national_dex;
     return spec_gba_read_slot_u8(data, slot, national_dex->magic_offset) == national_dex->magic
@@ -17,8 +17,35 @@ static bool is_national_dex_enabled(const uint8_t *data, const spec_gba_slot_t *
            && spec_gba_read_slot_flag(data, slot, layout->flags_offset, national_dex->flag);
 }
 
+// As GetSetPokedexFlag: seen needs all three copies.
+void spec_gba_decode_pokedex(spec_gba_pokedex_t *pokedex, const uint8_t *data,
+                             const spec_gba_save_slot_t *slot, const spec_gba_layout_t *layout) {
+    uint8_t caught[POKEDEX_FLAGS_SIZE];
+    uint8_t seen[SPEC_GBA_POKEDEX_SEEN_COPY_COUNT][POKEDEX_FLAGS_SIZE];
+    spec_gba_read_slot_bytes(caught, data, slot, layout->pokedex_caught_offset, sizeof caught);
+    for (size_t copy = 0; copy < SPEC_GBA_POKEDEX_SEEN_COPY_COUNT; ++copy) {
+        spec_gba_read_slot_bytes(seen[copy], data, slot, layout->pokedex_seen_offsets[copy],
+                                 sizeof seen[copy]);
+    }
+    for (size_t national_number = 1; national_number < SPEC_GBA_POKEDEX_SIZE; ++national_number) {
+        bool is_seen = spec_get_array_flag(seen[0], national_number - 1)
+                       && spec_get_array_flag(seen[1], national_number - 1)
+                       && spec_get_array_flag(seen[2], national_number - 1);
+        pokedex->is_seen[national_number] = is_seen;
+        pokedex->is_caught[national_number] =
+            is_seen && spec_get_array_flag(caught, national_number - 1);
+    }
+    pokedex->is_obtained =
+        spec_gba_read_slot_flag(data, slot, layout->flags_offset, layout->pokedex_flag);
+    pokedex->has_national_dex = is_national_dex_enabled(data, slot, layout);
+    pokedex->unown_personality =
+        spec_gba_read_slot_u32(data, slot, layout->unown_personality_offset);
+    pokedex->spinda_personality =
+        spec_gba_read_slot_u32(data, slot, layout->spinda_personality_offset);
+}
+
 // As EnableNationalPokedex and DisableNationalPokedex.
-static void set_national_dex(uint8_t *data, const spec_gba_slot_t *slot,
+static void set_national_dex(uint8_t *data, const spec_gba_save_slot_t *slot,
                              const spec_gba_layout_t *layout, bool is_enabled) {
     const spec_gba_national_dex_layout_t *national_dex = &layout->national_dex;
     spec_gba_write_slot_u8(data, slot, national_dex->magic_offset,
@@ -32,52 +59,17 @@ static void set_national_dex(uint8_t *data, const spec_gba_slot_t *slot,
     }
 }
 
-static bool is_pokedex_bit_set(const uint8_t *flags, size_t national_number) {
-    return spec_get_bits(flags[(national_number - 1) / 8], (national_number - 1) % 8, 1) != 0;
-}
-
-static void set_pokedex_bit(uint8_t *flags, size_t national_number) {
-    flags[(national_number - 1) / 8] |= (uint8_t)(1 << ((national_number - 1) % 8));
-}
-
-// As GetSetPokedexFlag: seen needs all three copies.
-void spec_gba_decode_pokedex(spec_gba_pokedex_t *pokedex, const uint8_t *data,
-                             const spec_gba_slot_t *slot, const spec_gba_layout_t *layout) {
-    uint8_t caught[POKEDEX_FLAGS_SIZE];
-    uint8_t seen[SPEC_GBA_POKEDEX_SEEN_COPY_COUNT][POKEDEX_FLAGS_SIZE];
-    spec_gba_read_slot_bytes(caught, data, slot, layout->pokedex_caught_offset, sizeof caught);
-    for (size_t copy = 0; copy < SPEC_GBA_POKEDEX_SEEN_COPY_COUNT; ++copy) {
-        spec_gba_read_slot_bytes(seen[copy], data, slot, layout->pokedex_seen_offsets[copy],
-                                 sizeof seen[copy]);
-    }
-    for (size_t national_number = 1; national_number < SPEC_GBA_POKEDEX_SIZE; ++national_number) {
-        bool is_seen = is_pokedex_bit_set(seen[0], national_number)
-                       && is_pokedex_bit_set(seen[1], national_number)
-                       && is_pokedex_bit_set(seen[2], national_number);
-        pokedex->is_seen[national_number] = is_seen;
-        pokedex->is_caught[national_number] =
-            is_seen && is_pokedex_bit_set(caught, national_number);
-    }
-    pokedex->is_obtained =
-        spec_gba_read_slot_flag(data, slot, layout->flags_offset, layout->pokedex_flag);
-    pokedex->has_national_dex = is_national_dex_enabled(data, slot, layout);
-    pokedex->unown_personality =
-        spec_gba_read_slot_u32(data, slot, layout->unown_personality_offset);
-    pokedex->spinda_personality =
-        spec_gba_read_slot_u32(data, slot, layout->spinda_personality_offset);
-}
-
 // Enabling resets the Pokédex mode, so only a change is written.
-void spec_gba_encode_pokedex(uint8_t *data, const spec_gba_slot_t *slot,
+void spec_gba_encode_pokedex(uint8_t *data, const spec_gba_save_slot_t *slot,
                              const spec_gba_layout_t *layout, const spec_gba_pokedex_t *pokedex) {
     uint8_t caught[POKEDEX_FLAGS_SIZE] = {};
     uint8_t seen[POKEDEX_FLAGS_SIZE] = {};
     for (size_t national_number = 1; national_number < SPEC_GBA_POKEDEX_SIZE; ++national_number) {
         if (pokedex->is_caught[national_number]) {
-            set_pokedex_bit(caught, national_number);
+            spec_set_array_flag(caught, national_number - 1, true);
         }
         if (pokedex->is_seen[national_number] || pokedex->is_caught[national_number]) {
-            set_pokedex_bit(seen, national_number);
+            spec_set_array_flag(seen, national_number - 1, true);
         }
     }
     spec_gba_write_slot_bytes(data, slot, layout->pokedex_caught_offset, caught, sizeof caught);

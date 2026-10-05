@@ -1,4 +1,4 @@
-// NDS internals: save layouts, block selection and the codecs save.c runs.
+// Gen 4 internals: save layouts, block selection and the codecs save.c runs.
 
 #ifndef SPEC_NDS_INTERNAL_H
 #define SPEC_NDS_INTERNAL_H
@@ -62,69 +62,101 @@ struct spec_nds_layout {
 typedef struct spec_nds_layout spec_nds_layout_t;
 
 // Absolute offsets of the copies the game loads, or writes next.
-struct spec_nds_blocks {
+struct spec_nds_block_pair {
     size_t general_offset;
     size_t storage_offset;
     uint32_t save_counter;
     uint32_t general_counter;
     uint32_t storage_counter;
 };
-typedef struct spec_nds_blocks spec_nds_blocks_t;
+typedef struct spec_nds_block_pair spec_nds_block_pair_t;
+
+// Layout functions
 
 const spec_nds_layout_t *spec_nds_get_layout(spec_game_type_t type);
 
-bool spec_nds_find_loaded_blocks(spec_nds_blocks_t *loaded, const uint8_t *data,
+// Block functions
+
+bool spec_nds_find_loaded_blocks(spec_nds_block_pair_t *loaded, const uint8_t *data,
                                  const spec_nds_layout_t *layout);
-spec_nds_blocks_t spec_nds_copy_to_next_blocks(uint8_t *data, const spec_nds_blocks_t *loaded,
-                                               const spec_nds_layout_t *layout);
-void spec_nds_stamp_blocks(uint8_t *data, const spec_nds_blocks_t *blocks,
+
+spec_nds_block_pair_t spec_nds_copy_to_next_blocks(uint8_t *data,
+                                                   const spec_nds_block_pair_t *loaded,
+                                                   const spec_nds_layout_t *layout);
+void spec_nds_stamp_blocks(uint8_t *data, const spec_nds_block_pair_t *blocks,
                            const spec_nds_layout_t *layout);
+
+// Player functions
 
 void spec_nds_decode_player(spec_nds_save_t *save, const uint8_t *general,
                             const spec_nds_layout_t *layout);
-spec_error_t spec_nds_check_player(const spec_nds_save_t *save, const spec_nds_layout_t *layout);
 void spec_nds_encode_player(uint8_t *general, const spec_nds_layout_t *layout,
                             const spec_nds_save_t *save);
 
+spec_error_t spec_nds_check_player(const spec_nds_save_t *save, const spec_nds_layout_t *layout);
+
+// Pokédex functions
+
 void spec_nds_decode_pokedex(spec_nds_pokedex_t *pokedex, const uint8_t *general,
                              const spec_nds_layout_t *layout);
-spec_error_t spec_nds_check_pokedex(const spec_nds_pokedex_t *pokedex,
-                                    const spec_nds_layout_t *layout);
 void spec_nds_encode_pokedex(uint8_t *general, const spec_nds_layout_t *layout,
                              const spec_nds_pokedex_t *pokedex);
 
+spec_error_t spec_nds_check_pokedex(const spec_nds_pokedex_t *pokedex,
+                                    const spec_nds_layout_t *layout);
+
+// Storage functions
+
 void spec_nds_decode_storage(spec_nds_save_t *save, const uint8_t *general, const uint8_t *storage,
                              const spec_nds_layout_t *layout);
-spec_error_t spec_nds_check_storage(const spec_nds_save_t *save, const spec_nds_layout_t *layout);
 void spec_nds_encode_storage(uint8_t *general, uint8_t *storage, const spec_nds_layout_t *layout,
                              const spec_nds_save_t *save);
+
+spec_error_t spec_nds_check_storage(const spec_nds_save_t *save, const spec_nds_layout_t *layout);
+
 // As the game's next save writes only flagged boxes to the other partition.
 void spec_nds_flag_changed_boxes(uint8_t *storage, const uint8_t *other_storage,
                                  const spec_nds_layout_t *layout);
 
-void spec_nds_decode_status(spec_nds_status_t *status, uint32_t word);
-uint32_t spec_nds_encode_status(const spec_nds_status_t *status);
+// Pokémon functions
+
 // Records are encrypted, as stored.
 void spec_nds_decode_pokemon(spec_nds_pokemon_t *pokemon, const uint8_t *record,
                              size_t record_size);
+void spec_nds_decode_status(spec_nds_status_t *status, uint32_t word);
 spec_error_t spec_nds_encode_pokemon(uint8_t *record, size_t record_size,
                                      const spec_nds_pokemon_t *pokemon);
+uint32_t spec_nds_encode_status(const spec_nds_status_t *status);
+
 uint16_t spec_nds_current_hp_after(uint16_t current_hp, uint16_t old_max_hp, uint16_t new_max_hp,
                                    bool is_shedinja);
+
 void spec_nds_fill_party_data(spec_nds_pokemon_t *pokemon);
 
-void spec_nds_decode_mail(spec_nds_mail_t *mail, const uint8_t *bytes);
-const char *spec_nds_unencodable_mail_field_of(const spec_nds_mail_t *mail);
-void spec_nds_encode_mail(uint8_t *bytes, const spec_nds_mail_t *mail);
-spec_nds_mail_t spec_nds_no_mail(void);
+// Mail functions
 
-spec_error_t spec_nds_check_item_placement(spec_game_type_t type, spec_nds_pocket_t pocket,
-                                           uint16_t item);
+void spec_nds_decode_mail(spec_nds_mail_t *mail, const uint8_t *bytes);
+// Gen 5 mail shares the sentence format.
+void spec_nds_decode_mail_sentences(
+    spec_nds_mail_sentence_t sentences[static SPEC_NDS_MAIL_SENTENCE_COUNT], const uint8_t *bytes);
+void spec_nds_encode_mail(uint8_t *bytes, const spec_nds_mail_t *mail);
+void spec_nds_encode_mail_sentences(
+    uint8_t *bytes, const spec_nds_mail_sentence_t sentences[static SPEC_NDS_MAIL_SENTENCE_COUNT]);
+void spec_nds_init_mail_sentences(
+    spec_nds_mail_sentence_t sentences[static SPEC_NDS_MAIL_SENTENCE_COUNT]);
+
+const char *spec_nds_unencodable_mail_field_of(const spec_nds_mail_t *mail);
+
+// Item functions
+
 void spec_nds_decode_items(spec_nds_save_t *save, const uint8_t *general,
                            const spec_nds_layout_t *layout);
-spec_error_t spec_nds_check_items(const spec_nds_save_t *save, const spec_nds_layout_t *layout);
 void spec_nds_encode_items(uint8_t *general, const spec_nds_layout_t *layout,
                            const spec_nds_save_t *save);
+
+spec_error_t spec_nds_check_items(const spec_nds_save_t *save, const spec_nds_layout_t *layout);
+
+// Text functions
 
 void spec_nds_read_text(uint16_t *text, const uint8_t *bytes, size_t text_size);
 void spec_nds_write_text(uint8_t *bytes, const uint16_t *text, size_t text_size);

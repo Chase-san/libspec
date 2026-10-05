@@ -23,10 +23,6 @@ static size_t table_size_of(const spec_ndsi_layout_t *layout) {
     return (layout->block_count + 1) * 2;
 }
 
-static size_t other_copy_offset(size_t copy_offset, const spec_ndsi_layout_t *layout) {
-    return copy_offset == 0 ? layout->copy_size : 0;
-}
-
 static bool is_block_valid(const uint8_t *copy, size_t block_index,
                            const spec_ndsi_layout_t *layout) {
     const spec_ndsi_block_t *block = &layout->blocks[block_index];
@@ -69,11 +65,21 @@ bool spec_ndsi_find_loaded_copy(size_t *copy_offset, const uint8_t *data,
     return false;
 }
 
+static size_t other_copy_offset(size_t copy_offset, const spec_ndsi_layout_t *layout) {
+    return copy_offset == 0 ? layout->copy_size : 0;
+}
+
 size_t spec_ndsi_copy_to_other(uint8_t *data, size_t loaded_offset,
                                const spec_ndsi_layout_t *layout) {
     size_t other_offset = other_copy_offset(loaded_offset, layout);
     memcpy(&data[other_offset], &data[loaded_offset], used_size_of(layout));
     return other_offset;
+}
+
+// As the game saves: both copies end the same.
+void spec_ndsi_mirror_copy(uint8_t *data, size_t from_offset, size_t to_offset,
+                           const spec_ndsi_layout_t *layout) {
+    memcpy(&data[to_offset], &data[from_offset], used_size_of(layout));
 }
 
 // As the game saves: a block's counter advances only when its bytes change.
@@ -101,10 +107,4 @@ void spec_ndsi_stamp_copy(uint8_t *data, size_t copy_offset, size_t previous_off
     spec_write_u32_le(&footer[FOOTER_SAVE_COUNT_OFFSET], save_count + 1);
     spec_write_u16_le(&footer[FOOTER_CRC_OFFSET],
                       spec_crc16(&copy[layout->table_offset], table_size_of(layout)));
-}
-
-// As the game saves: both copies end the same.
-void spec_ndsi_mirror_copy(uint8_t *data, size_t from_offset, size_t to_offset,
-                           const spec_ndsi_layout_t *layout) {
-    memcpy(&data[to_offset], &data[from_offset], used_size_of(layout));
 }

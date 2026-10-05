@@ -20,60 +20,11 @@ constexpr size_t PLAY_MINUTES_OFFSET = 3;
 constexpr size_t PLAY_SECONDS_OFFSET = 4;
 constexpr size_t PLAY_FRAMES_OFFSET = 5;
 
-static bool is_all_zero(const uint8_t *bytes, size_t size) {
-    for (size_t index = 0; index < size; ++index) {
-        if (bytes[index] != 0) {
-            return false;
-        }
-    }
-    return true;
-}
-
-static void decode_badges(bool badges[static SPEC_GBC_BADGE_COUNT], uint8_t badge_byte) {
-    for (unsigned badge = 0; badge < SPEC_GBC_BADGE_COUNT; ++badge) {
-        badges[badge] = spec_get_bits(badge_byte, badge, 1) != 0;
-    }
-}
-
-static uint8_t encode_badges(const bool badges[static SPEC_GBC_BADGE_COUNT]) {
-    uint32_t badge_byte = 0;
-    for (unsigned badge = 0; badge < SPEC_GBC_BADGE_COUNT; ++badge) {
-        badge_byte = spec_set_bits(badge_byte, badge, 1, badges[badge]);
-    }
-    return (uint8_t)badge_byte;
-}
-
 static void decode_play_time(spec_gbc_play_time_t *play_time, const uint8_t *bytes) {
     play_time->hours = spec_read_u16_be(&bytes[PLAY_HOURS_OFFSET]);
     play_time->minutes = bytes[PLAY_MINUTES_OFFSET];
     play_time->seconds = bytes[PLAY_SECONDS_OFFSET];
     play_time->frames = bytes[PLAY_FRAMES_OFFSET];
-}
-
-static void encode_play_time(uint8_t *bytes, const spec_gbc_play_time_t *play_time) {
-    spec_write_u16_be(&bytes[PLAY_HOURS_OFFSET], play_time->hours);
-    bytes[PLAY_MINUTES_OFFSET] = play_time->minutes;
-    bytes[PLAY_SECONDS_OFFSET] = play_time->seconds;
-    bytes[PLAY_FRAMES_OFFSET] = play_time->frames;
-}
-
-static const char *unencodable_field_of(const spec_gbc_save_t *save,
-                                        const spec_gbc_layout_t *layout) {
-    size_t unused_name_size = SPEC_GBC_NAME_SIZE - layout->name_size;
-    if (!is_all_zero(&save->trainer.name[layout->name_size], unused_name_size)
-        || !is_all_zero(&save->rival_name[layout->name_size], unused_name_size)) {
-        return "a name is longer than this game's names";
-    }
-    if (!layout->has_player_gender && save->trainer.is_female) {
-        return "only Crystal has the player's gender";
-    }
-    if (save->money > MAX_MONEY || save->moms_money > MAX_MONEY) {
-        return "money is beyond 999999";
-    }
-    if (save->coins > MAX_COINS) {
-        return "coins are beyond 9999";
-    }
-    return nullptr;
 }
 
 void spec_gbc_decode_player(spec_gbc_save_t *save, const uint8_t *data,
@@ -88,16 +39,16 @@ void spec_gbc_decode_player(spec_gbc_save_t *save, const uint8_t *data,
     save->money = spec_read_u24_be(&data[layout->money_offset]);
     save->moms_money = spec_read_u24_be(&data[layout->money_offset + MOMS_MONEY_DISTANCE]);
     save->coins = spec_read_u16_be(&data[layout->coins_offset]);
-    decode_badges(save->johto_badges, data[layout->badges_offset]);
-    decode_badges(save->kanto_badges, data[layout->badges_offset + KANTO_BADGES_DISTANCE]);
+    spec_decode_flags(save->johto_badges, SPEC_GBC_BADGE_COUNT, data[layout->badges_offset]);
+    spec_decode_flags(save->kanto_badges, SPEC_GBC_BADGE_COUNT,
+                      data[layout->badges_offset + KANTO_BADGES_DISTANCE]);
 }
 
-spec_error_t spec_gbc_check_player(const spec_gbc_save_t *save, const spec_gbc_layout_t *layout) {
-    const char *unencodable_field = unencodable_field_of(save, layout);
-    if (unencodable_field != nullptr) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, unencodable_field);
-    }
-    return SPEC_OK;
+static void encode_play_time(uint8_t *bytes, const spec_gbc_play_time_t *play_time) {
+    spec_write_u16_be(&bytes[PLAY_HOURS_OFFSET], play_time->hours);
+    bytes[PLAY_MINUTES_OFFSET] = play_time->minutes;
+    bytes[PLAY_SECONDS_OFFSET] = play_time->seconds;
+    bytes[PLAY_FRAMES_OFFSET] = play_time->frames;
 }
 
 void spec_gbc_encode_player(uint8_t *data, const spec_gbc_layout_t *layout,
@@ -112,6 +63,35 @@ void spec_gbc_encode_player(uint8_t *data, const spec_gbc_layout_t *layout,
     spec_write_u24_be(&data[layout->money_offset], save->money);
     spec_write_u24_be(&data[layout->money_offset + MOMS_MONEY_DISTANCE], save->moms_money);
     spec_write_u16_be(&data[layout->coins_offset], save->coins);
-    data[layout->badges_offset] = encode_badges(save->johto_badges);
-    data[layout->badges_offset + KANTO_BADGES_DISTANCE] = encode_badges(save->kanto_badges);
+    data[layout->badges_offset] =
+        (uint8_t)spec_encode_flags(save->johto_badges, SPEC_GBC_BADGE_COUNT);
+    data[layout->badges_offset + KANTO_BADGES_DISTANCE] =
+        (uint8_t)spec_encode_flags(save->kanto_badges, SPEC_GBC_BADGE_COUNT);
+}
+
+static const char *unencodable_field_of(const spec_gbc_save_t *save,
+                                        const spec_gbc_layout_t *layout) {
+    size_t unused_name_size = SPEC_GBC_NAME_SIZE - layout->name_size;
+    if (!spec_is_all_zero(&save->trainer.name[layout->name_size], unused_name_size)
+        || !spec_is_all_zero(&save->rival_name[layout->name_size], unused_name_size)) {
+        return "a name is longer than this game's names";
+    }
+    if (!layout->has_player_gender && save->trainer.is_female) {
+        return "only Crystal has the player's gender";
+    }
+    if (save->money > MAX_MONEY || save->moms_money > MAX_MONEY) {
+        return "money is beyond 999999";
+    }
+    if (save->coins > MAX_COINS) {
+        return "coins are beyond 9999";
+    }
+    return nullptr;
+}
+
+spec_error_t spec_gbc_check_player(const spec_gbc_save_t *save, const spec_gbc_layout_t *layout) {
+    const char *unencodable_field = unencodable_field_of(save, layout);
+    if (unencodable_field != nullptr) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, unencodable_field);
+    }
+    return SPEC_OK;
 }

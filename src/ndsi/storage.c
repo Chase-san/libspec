@@ -64,29 +64,6 @@ static void decode_party(spec_ndsi_save_t *save, const uint8_t *copy,
     }
 }
 
-static spec_error_t check_party(const spec_ndsi_save_t *save) {
-    if (save->party_count > SPEC_NDSI_PARTY_CAPACITY) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "party_count is beyond the party");
-    }
-    for (size_t index = 0; index < SPEC_NDSI_PARTY_CAPACITY; ++index) {
-        spec_ndsi_pokemon_t party_pokemon = with_party_data(&save->party[index]);
-        if (check_pokemon(&party_pokemon, SPEC_NDSI_PARTY_RECORD_SIZE) != SPEC_OK) {
-            return spec_locate_error(SPEC_ERROR_LOCATION_PARTY, (uint32_t)index, 0);
-        }
-    }
-    return SPEC_OK;
-}
-
-static void encode_party(uint8_t *copy, const spec_ndsi_layout_t *layout,
-                         const spec_ndsi_save_t *save) {
-    spec_write_u32_le(&copy[layout->party_offset + PARTY_COUNT_OFFSET], save->party_count);
-    for (size_t index = 0; index < SPEC_NDSI_PARTY_CAPACITY; ++index) {
-        spec_ndsi_pokemon_t party_pokemon = with_party_data(&save->party[index]);
-        write_pokemon(&copy[party_record_offset(layout, index)], SPEC_NDSI_PARTY_RECORD_SIZE,
-                      &party_pokemon);
-    }
-}
-
 static void decode_boxes(spec_ndsi_save_t *save, const uint8_t *copy,
                          const spec_ndsi_layout_t *layout) {
     const uint8_t *box_info = &copy[layout->box_info_offset];
@@ -102,6 +79,95 @@ static void decode_boxes(spec_ndsi_save_t *save, const uint8_t *copy,
                                      SPEC_NDSI_BOX_RECORD_SIZE);
         }
     }
+}
+
+// A slot whose occupied word is clear is empty, whatever its record still holds.
+static void decode_daycare(spec_ndsi_daycare_t *daycare, const uint8_t *copy,
+                           const spec_ndsi_layout_t *layout) {
+    for (size_t index = 0; index < SPEC_NDSI_DAYCARE_CAPACITY; ++index) {
+        const uint8_t *slot = &copy[daycare_slot_offset(layout, index)];
+        daycare->slots[index] = (spec_ndsi_daycare_slot_t){};
+        if (spec_read_u32_le(slot) == 0) {
+            continue;
+        }
+        spec_ndsi_decode_pokemon(&daycare->slots[index].pokemon, &slot[DAYCARE_RECORD_OFFSET],
+                                 SPEC_NDSI_PARTY_RECORD_SIZE);
+        daycare->slots[index].steps = spec_read_u32_le(&slot[DAYCARE_STEPS_OFFSET]);
+    }
+    daycare->is_egg_waiting =
+        spec_read_u32_le(&copy[layout->daycare_offset + DAYCARE_EGG_WAITING_OFFSET]) != 0;
+}
+
+void spec_ndsi_decode_storage(spec_ndsi_save_t *save, const uint8_t *copy,
+                              const spec_ndsi_layout_t *layout) {
+    decode_party(save, copy, layout);
+    decode_boxes(save, copy, layout);
+    decode_daycare(&save->daycare, copy, layout);
+}
+
+static void encode_party(uint8_t *copy, const spec_ndsi_layout_t *layout,
+                         const spec_ndsi_save_t *save) {
+    spec_write_u32_le(&copy[layout->party_offset + PARTY_COUNT_OFFSET], save->party_count);
+    for (size_t index = 0; index < SPEC_NDSI_PARTY_CAPACITY; ++index) {
+        spec_ndsi_pokemon_t party_pokemon = with_party_data(&save->party[index]);
+        write_pokemon(&copy[party_record_offset(layout, index)], SPEC_NDSI_PARTY_RECORD_SIZE,
+                      &party_pokemon);
+    }
+}
+
+static void encode_boxes(uint8_t *copy, const spec_ndsi_layout_t *layout,
+                         const spec_ndsi_save_t *save) {
+    uint8_t *box_info = &copy[layout->box_info_offset];
+    box_info[CURRENT_BOX_OFFSET] = save->current_box;
+    for (size_t box = 0; box < SPEC_NDSI_BOX_COUNT; ++box) {
+        const spec_ndsi_box_t *pc_box = &save->boxes[box];
+        spec_nds_write_text(&box_info[BOX_NAMES_OFFSET + box * BOX_NAME_FIELD_SIZE], pc_box->name,
+                            SPEC_NDSI_BOX_NAME_SIZE);
+        box_info[WALLPAPERS_OFFSET + box] = pc_box->wallpaper;
+        for (size_t index = 0; index < SPEC_NDSI_BOX_CAPACITY; ++index) {
+            write_pokemon(&copy[box_record_offset(layout, box, index)], SPEC_NDSI_BOX_RECORD_SIZE,
+                          &pc_box->pokemon[index]);
+        }
+    }
+}
+
+// An empty slot is all zero, as the game leaves it.
+static void encode_daycare(uint8_t *copy, const spec_ndsi_layout_t *layout,
+                           const spec_ndsi_daycare_t *daycare) {
+    for (size_t index = 0; index < SPEC_NDSI_DAYCARE_CAPACITY; ++index) {
+        uint8_t *slot = &copy[daycare_slot_offset(layout, index)];
+        const spec_ndsi_daycare_slot_t *daycare_slot = &daycare->slots[index];
+        memset(slot, 0, DAYCARE_SLOT_SIZE);
+        if (daycare_slot->pokemon.species == 0) {
+            continue;
+        }
+        spec_ndsi_pokemon_t daycare_pokemon = with_party_data(&daycare_slot->pokemon);
+        spec_write_u32_le(slot, DAYCARE_SLOT_OCCUPIED);
+        write_pokemon(&slot[DAYCARE_RECORD_OFFSET], SPEC_NDSI_PARTY_RECORD_SIZE, &daycare_pokemon);
+        spec_write_u32_le(&slot[DAYCARE_STEPS_OFFSET], daycare_slot->steps);
+    }
+    spec_write_u32_le(&copy[layout->daycare_offset + DAYCARE_EGG_WAITING_OFFSET],
+                      daycare->is_egg_waiting ? 1 : 0);
+}
+
+void spec_ndsi_encode_storage(uint8_t *copy, const spec_ndsi_layout_t *layout,
+                              const spec_ndsi_save_t *save) {
+    encode_party(copy, layout, save);
+    encode_boxes(copy, layout, save);
+    encode_daycare(copy, layout, &save->daycare);
+}
+
+static spec_error_t check_party(const spec_ndsi_save_t *save) {
+    if (save->party_count > SPEC_NDSI_PARTY_CAPACITY) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "party_count is beyond the party");
+    }
+    for (size_t index = 0; index < SPEC_NDSI_PARTY_CAPACITY; ++index) {
+        spec_ndsi_pokemon_t party_pokemon = with_party_data(&save->party[index]);
+        if (check_pokemon(&party_pokemon, SPEC_NDSI_PARTY_RECORD_SIZE) != SPEC_OK) {
+            return spec_locate_error(SPEC_ERROR_LOCATION_PARTY, (uint32_t)index, 0);
+        }
+    }
+    return SPEC_OK;
 }
 
 static spec_error_t check_boxes(const spec_ndsi_save_t *save) {
@@ -124,39 +190,6 @@ static spec_error_t check_boxes(const spec_ndsi_save_t *save) {
     return SPEC_OK;
 }
 
-static void encode_boxes(uint8_t *copy, const spec_ndsi_layout_t *layout,
-                         const spec_ndsi_save_t *save) {
-    uint8_t *box_info = &copy[layout->box_info_offset];
-    box_info[CURRENT_BOX_OFFSET] = save->current_box;
-    for (size_t box = 0; box < SPEC_NDSI_BOX_COUNT; ++box) {
-        const spec_ndsi_box_t *pc_box = &save->boxes[box];
-        spec_nds_write_text(&box_info[BOX_NAMES_OFFSET + box * BOX_NAME_FIELD_SIZE], pc_box->name,
-                            SPEC_NDSI_BOX_NAME_SIZE);
-        box_info[WALLPAPERS_OFFSET + box] = pc_box->wallpaper;
-        for (size_t index = 0; index < SPEC_NDSI_BOX_CAPACITY; ++index) {
-            write_pokemon(&copy[box_record_offset(layout, box, index)], SPEC_NDSI_BOX_RECORD_SIZE,
-                          &pc_box->pokemon[index]);
-        }
-    }
-}
-
-// A slot whose occupied word is clear is empty, whatever its record still holds.
-static void decode_daycare(spec_ndsi_daycare_t *daycare, const uint8_t *copy,
-                           const spec_ndsi_layout_t *layout) {
-    for (size_t index = 0; index < SPEC_NDSI_DAYCARE_CAPACITY; ++index) {
-        const uint8_t *slot = &copy[daycare_slot_offset(layout, index)];
-        daycare->slots[index] = (spec_ndsi_daycare_slot_t){};
-        if (spec_read_u32_le(slot) == 0) {
-            continue;
-        }
-        spec_ndsi_decode_pokemon(&daycare->slots[index].pokemon, &slot[DAYCARE_RECORD_OFFSET],
-                                 SPEC_NDSI_PARTY_RECORD_SIZE);
-        daycare->slots[index].steps = spec_read_u32_le(&slot[DAYCARE_STEPS_OFFSET]);
-    }
-    daycare->is_egg_waiting =
-        spec_read_u32_le(&copy[layout->daycare_offset + DAYCARE_EGG_WAITING_OFFSET]) != 0;
-}
-
 static spec_error_t check_daycare(const spec_ndsi_daycare_t *daycare) {
     for (size_t index = 0; index < SPEC_NDSI_DAYCARE_CAPACITY; ++index) {
         spec_ndsi_pokemon_t daycare_pokemon = with_party_data(&daycare->slots[index].pokemon);
@@ -165,32 +198,6 @@ static spec_error_t check_daycare(const spec_ndsi_daycare_t *daycare) {
         }
     }
     return SPEC_OK;
-}
-
-// An empty slot is all zero, as the game leaves it.
-static void encode_daycare(uint8_t *copy, const spec_ndsi_layout_t *layout,
-                           const spec_ndsi_daycare_t *daycare) {
-    for (size_t index = 0; index < SPEC_NDSI_DAYCARE_CAPACITY; ++index) {
-        uint8_t *slot = &copy[daycare_slot_offset(layout, index)];
-        const spec_ndsi_daycare_slot_t *daycare_slot = &daycare->slots[index];
-        memset(slot, 0, DAYCARE_SLOT_SIZE);
-        if (daycare_slot->pokemon.species == 0) {
-            continue;
-        }
-        spec_ndsi_pokemon_t daycare_pokemon = with_party_data(&daycare_slot->pokemon);
-        spec_write_u32_le(slot, DAYCARE_SLOT_OCCUPIED);
-        write_pokemon(&slot[DAYCARE_RECORD_OFFSET], SPEC_NDSI_PARTY_RECORD_SIZE, &daycare_pokemon);
-        spec_write_u32_le(&slot[DAYCARE_STEPS_OFFSET], daycare_slot->steps);
-    }
-    spec_write_u32_le(&copy[layout->daycare_offset + DAYCARE_EGG_WAITING_OFFSET],
-                      daycare->is_egg_waiting ? 1 : 0);
-}
-
-void spec_ndsi_decode_storage(spec_ndsi_save_t *save, const uint8_t *copy,
-                              const spec_ndsi_layout_t *layout) {
-    decode_party(save, copy, layout);
-    decode_boxes(save, copy, layout);
-    decode_daycare(&save->daycare, copy, layout);
 }
 
 spec_error_t spec_ndsi_check_storage(const spec_ndsi_save_t *save) {
@@ -203,11 +210,4 @@ spec_error_t spec_ndsi_check_storage(const spec_ndsi_save_t *save) {
         return error;
     }
     return check_daycare(&save->daycare);
-}
-
-void spec_ndsi_encode_storage(uint8_t *copy, const spec_ndsi_layout_t *layout,
-                              const spec_ndsi_save_t *save) {
-    encode_party(copy, layout, save);
-    encode_boxes(copy, layout, save);
-    encode_daycare(copy, layout, &save->daycare);
 }

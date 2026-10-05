@@ -45,28 +45,18 @@ void spec_nds_decode_mail(spec_nds_mail_t *mail, const uint8_t *bytes) {
                 (uint8_t)spec_get_bits(icon_forms, icon * ICON_FORM_BIT_COUNT, ICON_FORM_BIT_COUNT),
         };
     }
-    for (size_t sentence = 0; sentence < SPEC_NDS_MAIL_SENTENCE_COUNT; ++sentence) {
-        const uint8_t *sentence_bytes = &bytes[SENTENCES_OFFSET + sentence * SENTENCE_SIZE];
-        mail->sentences[sentence].type = spec_read_u16_le(&sentence_bytes[0]);
-        mail->sentences[sentence].id = spec_read_u16_le(&sentence_bytes[2]);
-        mail->sentences[sentence].words[0] = spec_read_u16_le(&sentence_bytes[4]);
-        mail->sentences[sentence].words[1] = spec_read_u16_le(&sentence_bytes[6]);
-    }
+    spec_nds_decode_mail_sentences(mail->sentences, &bytes[SENTENCES_OFFSET]);
 }
 
-const char *spec_nds_unencodable_mail_field_of(const spec_nds_mail_t *mail) {
-    for (size_t icon = 0; icon < SPEC_NDS_MAIL_ICON_COUNT; ++icon) {
-        if (!spec_fits_in_bits(mail->icons[icon].sprite, ICON_SPRITE_BIT_COUNT)) {
-            return "a mail icon's sprite does not fit in 12 bits";
-        }
-        if (!spec_fits_in_bits(mail->icons[icon].palette, ICON_PALETTE_BIT_COUNT)) {
-            return "a mail icon's palette does not fit in 4 bits";
-        }
-        if (!spec_fits_in_bits(mail->icons[icon].form, ICON_FORM_BIT_COUNT)) {
-            return "a mail icon's form does not fit in 5 bits";
-        }
+void spec_nds_decode_mail_sentences(
+    spec_nds_mail_sentence_t sentences[static SPEC_NDS_MAIL_SENTENCE_COUNT], const uint8_t *bytes) {
+    for (size_t sentence = 0; sentence < SPEC_NDS_MAIL_SENTENCE_COUNT; ++sentence) {
+        const uint8_t *sentence_bytes = &bytes[sentence * SENTENCE_SIZE];
+        sentences[sentence].type = spec_read_u16_le(&sentence_bytes[0]);
+        sentences[sentence].id = spec_read_u16_le(&sentence_bytes[2]);
+        sentences[sentence].words[0] = spec_read_u16_le(&sentence_bytes[4]);
+        sentences[sentence].words[1] = spec_read_u16_le(&sentence_bytes[6]);
     }
-    return nullptr;
 }
 
 void spec_nds_encode_mail(uint8_t *bytes, const spec_nds_mail_t *mail) {
@@ -87,30 +77,54 @@ void spec_nds_encode_mail(uint8_t *bytes, const spec_nds_mail_t *mail) {
                                    mail->icons[icon].form);
     }
     spec_write_u16_le(&bytes[ICON_FORMS_OFFSET], (uint16_t)icon_forms);
+    spec_nds_encode_mail_sentences(&bytes[SENTENCES_OFFSET], mail->sentences);
+}
+
+void spec_nds_encode_mail_sentences(
+    uint8_t *bytes, const spec_nds_mail_sentence_t sentences[static SPEC_NDS_MAIL_SENTENCE_COUNT]) {
     for (size_t sentence = 0; sentence < SPEC_NDS_MAIL_SENTENCE_COUNT; ++sentence) {
-        uint8_t *sentence_bytes = &bytes[SENTENCES_OFFSET + sentence * SENTENCE_SIZE];
-        spec_write_u16_le(&sentence_bytes[0], mail->sentences[sentence].type);
-        spec_write_u16_le(&sentence_bytes[2], mail->sentences[sentence].id);
-        spec_write_u16_le(&sentence_bytes[4], mail->sentences[sentence].words[0]);
-        spec_write_u16_le(&sentence_bytes[6], mail->sentences[sentence].words[1]);
+        uint8_t *sentence_bytes = &bytes[sentence * SENTENCE_SIZE];
+        spec_write_u16_le(&sentence_bytes[0], sentences[sentence].type);
+        spec_write_u16_le(&sentence_bytes[2], sentences[sentence].id);
+        spec_write_u16_le(&sentence_bytes[4], sentences[sentence].words[0]);
+        spec_write_u16_le(&sentence_bytes[6], sentences[sentence].words[1]);
     }
 }
 
-// As Mail_Reset; the game also stamps its own language and version.
-spec_nds_mail_t spec_nds_no_mail(void) {
-    spec_nds_mail_t mail = {.type = NO_MAIL};
-    for (size_t index = 0; index < SPEC_NDS_TRAINER_NAME_SIZE; ++index) {
-        mail.author.name[index] = NO_ENTRY;
-    }
-    for (size_t icon = 0; icon < SPEC_NDS_MAIL_ICON_COUNT; ++icon) {
-        mail.icons[icon] =
-            (spec_nds_mail_icon_t){.sprite = NO_ICON_SPRITE, .palette = NO_ICON_PALETTE};
-    }
+void spec_nds_init_mail_sentences(
+    spec_nds_mail_sentence_t sentences[static SPEC_NDS_MAIL_SENTENCE_COUNT]) {
     for (size_t sentence = 0; sentence < SPEC_NDS_MAIL_SENTENCE_COUNT; ++sentence) {
-        mail.sentences[sentence] = (spec_nds_mail_sentence_t){
+        sentences[sentence] = (spec_nds_mail_sentence_t){
             .type = NO_ENTRY,
             .words = {NO_ENTRY, NO_ENTRY},
         };
     }
-    return mail;
+}
+
+const char *spec_nds_unencodable_mail_field_of(const spec_nds_mail_t *mail) {
+    for (size_t icon = 0; icon < SPEC_NDS_MAIL_ICON_COUNT; ++icon) {
+        if (!spec_fits_in_bits(mail->icons[icon].sprite, ICON_SPRITE_BIT_COUNT)) {
+            return "a mail icon's sprite does not fit in 12 bits";
+        }
+        if (!spec_fits_in_bits(mail->icons[icon].palette, ICON_PALETTE_BIT_COUNT)) {
+            return "a mail icon's palette does not fit in 4 bits";
+        }
+        if (!spec_fits_in_bits(mail->icons[icon].form, ICON_FORM_BIT_COUNT)) {
+            return "a mail icon's form does not fit in 5 bits";
+        }
+    }
+    return nullptr;
+}
+
+// As Mail_Reset.
+void spec_nds_init_mail(spec_nds_mail_t *mail) {
+    *mail = (spec_nds_mail_t){.type = NO_MAIL};
+    for (size_t index = 0; index < SPEC_NDS_TRAINER_NAME_SIZE; ++index) {
+        mail->author.name[index] = NO_ENTRY;
+    }
+    for (size_t icon = 0; icon < SPEC_NDS_MAIL_ICON_COUNT; ++icon) {
+        mail->icons[icon] =
+            (spec_nds_mail_icon_t){.sprite = NO_ICON_SPRITE, .palette = NO_ICON_PALETTE};
+    }
+    spec_nds_init_mail_sentences(mail->sentences);
 }

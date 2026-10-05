@@ -12,6 +12,18 @@ constexpr size_t SPEC_SPECIES_NAME_COUNT = 808;
 constexpr size_t SPEC_NAME_LANGUAGE_COUNT = SPEC_LANGUAGE_KOREAN + 1;
 constexpr size_t SPEC_LEVEL_COUNT = 101;
 
+// Species names
+
+// As the 3DS games store them, then as Gen 1 and 2, Gen 3 and 4, and Gen 5 do.
+extern const char *const spec_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
+extern const char
+    *const spec_game_boy_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
+extern const char
+    *const spec_upper_case_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
+extern const char *const spec_gen5_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
+
+// Experience
+
 enum spec_growth_rate : uint8_t {
     SPEC_GROWTH_RATE_MEDIUM_FAST,
     SPEC_GROWTH_RATE_ERRATIC,
@@ -22,14 +34,6 @@ enum spec_growth_rate : uint8_t {
     SPEC_GROWTH_RATE_COUNT,
 };
 typedef enum spec_growth_rate spec_growth_rate_t;
-
-// As the 3DS games store them, then as Gen 1 and 2, Gen 3 and 4, and Gen 5 do.
-extern const char *const spec_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
-extern const char
-    *const spec_game_boy_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
-extern const char
-    *const spec_upper_case_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
-extern const char *const spec_gen5_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT];
 
 extern const uint32_t spec_experience[SPEC_GROWTH_RATE_COUNT][SPEC_LEVEL_COUNT];
 

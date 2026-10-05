@@ -20,7 +20,7 @@ static spec_error_t find_layout(const spec_gb_layout_t **layout, spec_game_type_
     return SPEC_OK;
 }
 
-static spec_error_t check_save(const spec_gb_save_t *save, const spec_gb_layout_t *layout) {
+static spec_error_t check_parts(const spec_gb_save_t *save, const spec_gb_layout_t *layout) {
     spec_error_t error = spec_gb_check_player(save, layout);
     if (error != SPEC_OK) {
         return error;
@@ -64,7 +64,7 @@ spec_error_t spec_gb_write_save(const spec_gb_save_t *save,
         return spec_fail(SPEC_ERROR_INVALID_SAVE,
                          "the game data's checksum does not match for the save's language");
     }
-    error = check_save(save, layout);
+    error = check_parts(save, layout);
     if (error != SPEC_OK) {
         return error;
     }
@@ -74,4 +74,13 @@ spec_error_t spec_gb_write_save(const spec_gb_save_t *save,
     spec_gb_encode_items(data, layout, save);
     spec_gb_stamp_game_data(data, layout);
     return SPEC_OK;
+}
+
+spec_error_t spec_gb_check_save(const spec_gb_save_t *save) {
+    const spec_gb_layout_t *layout = nullptr;
+    spec_error_t error = find_layout(&layout, save->type, save->language);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    return check_parts(save, layout);
 }

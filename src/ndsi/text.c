@@ -21,22 +21,6 @@ static bool is_surrogate(char32_t code_point) {
     return code_point >= FIRST_SURROGATE && code_point <= LAST_SURROGATE;
 }
 
-static char32_t code_point_of(uint16_t unit) {
-    if (unit == HALF_WIDTH_MALE) {
-        return MALE_SIGN;
-    }
-    if (unit == HALF_WIDTH_FEMALE) {
-        return FEMALE_SIGN;
-    }
-    if (unit >= FIRST_GAME_GLYPH && unit <= LAST_GAME_GLYPH) {
-        return FIRST_PRIVATE_USE_GLYPH + (unit - FIRST_GAME_GLYPH);
-    }
-    if (unit == 0 || is_surrogate(unit)) {
-        return SPEC_REPLACEMENT_CHARACTER;
-    }
-    return unit;
-}
-
 static bool is_storable(char32_t code_point) {
     return code_point != 0 && code_point < END_OF_TEXT && !is_surrogate(code_point);
 }
@@ -54,20 +38,6 @@ static uint16_t unit_of(char32_t code_point, spec_language_t language) {
         return (uint16_t)(FIRST_GAME_GLYPH + (code_point - FIRST_PRIVATE_USE_GLYPH));
     }
     return (uint16_t)code_point;
-}
-
-spec_error_t spec_ndsi_text_to_utf8(char8_t utf8[static SPEC_NDSI_TEXT_BUFFER_SIZE],
-                                    const uint16_t *text, size_t text_size) {
-    if (text_size > SPEC_NDSI_TEXT_MAX_SIZE) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
-                         "text_size is larger than any Gen 5 text field");
-    }
-    size_t length = 0;
-    for (size_t index = 0; index < text_size && text[index] != END_OF_TEXT; ++index) {
-        length += spec_utf8_write(&utf8[length], code_point_of(text[index]));
-    }
-    utf8[length] = '\0';
-    return SPEC_OK;
 }
 
 // The units after the terminator are kept, as the naming screen leaves them.
@@ -100,5 +70,35 @@ spec_error_t spec_ndsi_text_from_utf8(uint16_t *text, size_t text_size, const ch
         text[index] = encoded[index];
     }
     text[length] = END_OF_TEXT;
+    return SPEC_OK;
+}
+
+static char32_t code_point_of(uint16_t unit) {
+    if (unit == HALF_WIDTH_MALE) {
+        return MALE_SIGN;
+    }
+    if (unit == HALF_WIDTH_FEMALE) {
+        return FEMALE_SIGN;
+    }
+    if (unit >= FIRST_GAME_GLYPH && unit <= LAST_GAME_GLYPH) {
+        return FIRST_PRIVATE_USE_GLYPH + (unit - FIRST_GAME_GLYPH);
+    }
+    if (unit == 0 || is_surrogate(unit)) {
+        return SPEC_REPLACEMENT_CHARACTER;
+    }
+    return unit;
+}
+
+spec_error_t spec_ndsi_text_to_utf8(char8_t utf8[static SPEC_NDSI_TEXT_BUFFER_SIZE],
+                                    const uint16_t *text, size_t text_size) {
+    if (text_size > SPEC_NDSI_TEXT_MAX_SIZE) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
+                         "text_size is larger than any Gen 5 text field");
+    }
+    size_t length = 0;
+    for (size_t index = 0; index < text_size && text[index] != END_OF_TEXT; ++index) {
+        length += spec_utf8_write(&utf8[length], code_point_of(text[index]));
+    }
+    utf8[length] = '\0';
     return SPEC_OK;
 }

@@ -11,6 +11,18 @@ constexpr spec_game_type_t TYPES_BY_SECTION_SIZE[] = {
     SPEC_GAME_TYPE_EMERALD,
 };
 
+static spec_error_t check_parts(const spec_gba_save_t *save, const spec_gba_layout_t *layout) {
+    spec_error_t error = spec_gba_check_player(save, layout);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    error = spec_gba_check_storage(save, layout);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    return spec_gba_check_items(save, layout);
+}
+
 static bool is_gen3_language(spec_language_t language) {
     return (language >= SPEC_LANGUAGE_JAPANESE && language <= SPEC_LANGUAGE_GERMAN)
            || language == SPEC_LANGUAGE_SPANISH;
@@ -51,24 +63,12 @@ static spec_language_t detect_language(const spec_gba_save_t *save) {
     return is_tied ? SPEC_LANGUAGE_UNKNOWN : leader;
 }
 
-static spec_error_t check_save(const spec_gba_save_t *save, const spec_gba_layout_t *layout) {
-    spec_error_t error = spec_gba_check_player(save, layout);
-    if (error != SPEC_OK) {
-        return error;
-    }
-    error = spec_gba_check_storage(save, layout);
-    if (error != SPEC_OK) {
-        return error;
-    }
-    return spec_gba_check_items(save, layout);
-}
-
 spec_error_t spec_gba_read_save(spec_gba_save_t *save,
                                 const uint8_t data[static SPEC_GBA_SAVE_SIZE]) {
     size_t type_count = sizeof TYPES_BY_SECTION_SIZE / sizeof TYPES_BY_SECTION_SIZE[0];
     for (size_t index = 0; index < type_count; ++index) {
         const spec_gba_layout_t *layout = spec_gba_get_layout(TYPES_BY_SECTION_SIZE[index]);
-        spec_gba_slot_t active;
+        spec_gba_save_slot_t active;
         if (!spec_gba_find_active_slot(&active, data, layout->section_sizes)) {
             continue;
         }
@@ -90,19 +90,27 @@ spec_error_t spec_gba_write_save(const spec_gba_save_t *save,
     if (layout == nullptr) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "type is not a GBA game type");
     }
-    spec_gba_slot_t active;
+    spec_gba_save_slot_t active;
     if (!spec_gba_find_active_slot(&active, data, layout->section_sizes)) {
         return spec_fail(SPEC_ERROR_INVALID_SAVE, "no save slot is valid for the save's type");
     }
-    spec_error_t error = check_save(save, layout);
+    spec_error_t error = check_parts(save, layout);
     if (error != SPEC_OK) {
         return error;
     }
-    spec_gba_slot_t next = spec_gba_copy_to_next_slot(data, &active);
+    spec_gba_save_slot_t next = spec_gba_copy_to_next_slot(data, &active);
     spec_gba_encode_player(data, &next, layout, save);
     spec_gba_encode_pokedex(data, &next, layout, &save->pokedex);
     spec_gba_encode_storage(data, &next, layout, save);
     spec_gba_encode_items(data, &next, layout, save);
     spec_gba_stamp_slot(data, &next, layout->section_sizes);
     return SPEC_OK;
+}
+
+spec_error_t spec_gba_check_save(const spec_gba_save_t *save) {
+    const spec_gba_layout_t *layout = spec_gba_get_layout(save->type);
+    if (layout == nullptr) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "type is not a GBA game type");
+    }
+    return check_parts(save, layout);
 }

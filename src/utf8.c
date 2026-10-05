@@ -6,6 +6,19 @@ constexpr char32_t LAST_CODE_POINT = 0x10FFFF;
 constexpr char32_t FIRST_SURROGATE = 0xD800;
 constexpr char32_t LAST_SURROGATE = 0xDFFF;
 
+static size_t length_of_code_point(char32_t code_point) {
+    if (code_point < 0x80) {
+        return 1;
+    }
+    if (code_point < 0x800) {
+        return 2;
+    }
+    if (code_point < 0x10000) {
+        return 3;
+    }
+    return 4;
+}
+
 static size_t length_of_lead_byte(char8_t lead_byte) {
     if (lead_byte < 0x80) {
         return 1;
@@ -20,19 +33,6 @@ static size_t length_of_lead_byte(char8_t lead_byte) {
         return 4;
     }
     return 0;
-}
-
-static size_t length_of_code_point(char32_t code_point) {
-    if (code_point < 0x80) {
-        return 1;
-    }
-    if (code_point < 0x800) {
-        return 2;
-    }
-    if (code_point < 0x10000) {
-        return 3;
-    }
-    return 4;
 }
 
 static bool is_continuation_byte(char8_t byte) {

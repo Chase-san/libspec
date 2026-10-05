@@ -6,6 +6,10 @@
 #include <stddef.h>
 #include <stdint.h>
 
+constexpr size_t SPEC_EXPECTED_IV_SETS_MAX = 3;
+
+// Errors
+
 enum [[nodiscard]] spec_error {
     SPEC_OK,
     SPEC_ERROR_INVALID_SAVE,
@@ -40,6 +44,8 @@ struct spec_error_data {
     uint32_t index1;
 };
 typedef struct spec_error_data spec_error_data_t;
+
+// Games
 
 enum spec_language : uint8_t {
     SPEC_LANGUAGE_UNKNOWN = 0,
@@ -87,6 +93,8 @@ enum spec_version : uint8_t {
     SPEC_VERSION_BLACK2 = 23,
 };
 typedef enum spec_version spec_version_t;
+
+// Pokémon
 
 enum spec_ball : uint8_t {
     SPEC_BALL_MASTER = 1,
@@ -166,14 +174,6 @@ enum spec_stat {
 };
 typedef enum spec_stat spec_stat_t;
 
-struct spec_item_slot {
-    uint16_t item;
-    uint16_t quantity;
-};
-typedef struct spec_item_slot spec_item_slot_t;
-
-constexpr size_t SPEC_EXPECTED_IV_SETS_MAX = 3;
-
 typedef uint32_t spec_pid_t;
 
 // How the stored IVs follow the PID in the Gen 3 and Gen 4 generator.
@@ -192,14 +192,30 @@ enum spec_naming : uint8_t {
 };
 typedef enum spec_naming spec_naming_t;
 
+// Items
+
+struct spec_item_slot {
+    uint16_t item;
+    uint16_t quantity;
+};
+typedef struct spec_item_slot spec_item_slot_t;
+
+// Error functions
+
 const char *spec_error_string(spec_error_t error);
 spec_error_data_t spec_last_error(void);
+
+// Species functions
+
 const char *spec_species_name(uint16_t national_number, spec_language_t language);
 
-spec_iv_method_t spec_find_iv_method(spec_pid_t pid, const uint8_t ivs[static SPEC_STAT_COUNT]);
+// Gen 3-4 RNG functions
+
 size_t spec_find_expected_ivs(spec_pid_t pid, spec_iv_method_t method,
                               uint8_t iv_sets[static SPEC_EXPECTED_IV_SETS_MAX][SPEC_STAT_COUNT]);
-void spec_pid_next(spec_pid_t *pid);
+spec_iv_method_t spec_find_iv_method(spec_pid_t pid, const uint8_t ivs[static SPEC_STAT_COUNT]);
+
+// Advances the seed and returns its upper half.
 uint16_t spec_random(uint32_t *seed);
 
 #endif

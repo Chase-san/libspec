@@ -16,6 +16,8 @@ constexpr size_t SPEC_NDS_CHARMAP_SIZE = 0xD66;
 constexpr size_t SPEC_NDS_ITEM_COUNT = 537;
 constexpr uint8_t SPEC_NDS_NO_POCKET = 0xFF;
 
+// Species
+
 struct spec_nds_species_data {
     uint8_t base_stats[SPEC_STAT_COUNT];
     spec_growth_rate_t growth_rate;
@@ -31,6 +33,15 @@ struct spec_nds_form_data {
 };
 typedef struct spec_nds_form_data spec_nds_form_data_t;
 
+extern const spec_nds_species_data_t spec_nds_species_data[SPEC_NDS_SPECIES_COUNT];
+extern const spec_nds_form_data_t spec_nds_form_data[SPEC_NDS_FORM_DATA_COUNT];
+
+// Text
+
+extern const uint16_t spec_nds_charmap[SPEC_NDS_CHARMAP_SIZE];
+
+// Items
+
 struct spec_nds_item_data {
     const char *english_name;
     uint8_t diamond_pearl_pocket;
@@ -38,11 +49,6 @@ struct spec_nds_item_data {
     uint8_t heartgold_soulsilver_pocket;
 };
 typedef struct spec_nds_item_data spec_nds_item_data_t;
-
-extern const spec_nds_species_data_t spec_nds_species_data[SPEC_NDS_SPECIES_COUNT];
-extern const spec_nds_form_data_t spec_nds_form_data[SPEC_NDS_FORM_DATA_COUNT];
-
-extern const uint16_t spec_nds_charmap[SPEC_NDS_CHARMAP_SIZE];
 
 extern const spec_nds_item_data_t spec_nds_items[SPEC_NDS_ITEM_COUNT];
 

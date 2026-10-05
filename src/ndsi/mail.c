@@ -15,7 +15,6 @@ constexpr size_t AUTHOR_NAME_OFFSET = 0x08;
 // TODO: Determine what Gen 5 does with the icon words.
 constexpr size_t ICONS_OFFSET = 0x18;
 constexpr size_t SENTENCES_OFFSET = 0x20;
-constexpr size_t SENTENCE_SIZE = 8;
 
 constexpr uint8_t NO_MAIL = 0xFF;
 constexpr uint16_t NO_ENTRY = 0xFFFF;
@@ -31,13 +30,7 @@ void spec_ndsi_decode_mail(spec_ndsi_mail_t *mail, const uint8_t *bytes) {
     for (size_t icon = 0; icon < SPEC_NDSI_MAIL_ICON_COUNT; ++icon) {
         mail->icons[icon] = spec_read_u16_le(&bytes[ICONS_OFFSET + icon * 2]);
     }
-    for (size_t sentence = 0; sentence < SPEC_NDSI_MAIL_SENTENCE_COUNT; ++sentence) {
-        const uint8_t *sentence_bytes = &bytes[SENTENCES_OFFSET + sentence * SENTENCE_SIZE];
-        mail->sentences[sentence].type = spec_read_u16_le(&sentence_bytes[0]);
-        mail->sentences[sentence].id = spec_read_u16_le(&sentence_bytes[2]);
-        mail->sentences[sentence].words[0] = spec_read_u16_le(&sentence_bytes[4]);
-        mail->sentences[sentence].words[1] = spec_read_u16_le(&sentence_bytes[6]);
-    }
+    spec_nds_decode_mail_sentences(mail->sentences, &bytes[SENTENCES_OFFSET]);
 }
 
 void spec_ndsi_encode_mail(uint8_t *bytes, const spec_ndsi_mail_t *mail) {
@@ -51,29 +44,17 @@ void spec_ndsi_encode_mail(uint8_t *bytes, const spec_ndsi_mail_t *mail) {
     for (size_t icon = 0; icon < SPEC_NDSI_MAIL_ICON_COUNT; ++icon) {
         spec_write_u16_le(&bytes[ICONS_OFFSET + icon * 2], mail->icons[icon]);
     }
-    for (size_t sentence = 0; sentence < SPEC_NDSI_MAIL_SENTENCE_COUNT; ++sentence) {
-        uint8_t *sentence_bytes = &bytes[SENTENCES_OFFSET + sentence * SENTENCE_SIZE];
-        spec_write_u16_le(&sentence_bytes[0], mail->sentences[sentence].type);
-        spec_write_u16_le(&sentence_bytes[2], mail->sentences[sentence].id);
-        spec_write_u16_le(&sentence_bytes[4], mail->sentences[sentence].words[0]);
-        spec_write_u16_le(&sentence_bytes[6], mail->sentences[sentence].words[1]);
-    }
+    spec_nds_encode_mail_sentences(&bytes[SENTENCES_OFFSET], mail->sentences);
 }
 
-// As Gen 4's Mail_Reset; the game also stamps its own language and version.
-spec_ndsi_mail_t spec_ndsi_no_mail(void) {
-    spec_ndsi_mail_t mail = {.type = NO_MAIL};
+// As Gen 4's Mail_Reset.
+void spec_ndsi_init_mail(spec_ndsi_mail_t *mail) {
+    *mail = (spec_ndsi_mail_t){.type = NO_MAIL};
     for (size_t index = 0; index < SPEC_NDSI_TRAINER_NAME_SIZE; ++index) {
-        mail.author.name[index] = NO_ENTRY;
+        mail->author.name[index] = NO_ENTRY;
     }
     for (size_t icon = 0; icon < SPEC_NDSI_MAIL_ICON_COUNT; ++icon) {
-        mail.icons[icon] = NO_ENTRY;
+        mail->icons[icon] = NO_ENTRY;
     }
-    for (size_t sentence = 0; sentence < SPEC_NDSI_MAIL_SENTENCE_COUNT; ++sentence) {
-        mail.sentences[sentence] = (spec_ndsi_mail_sentence_t){
-            .type = NO_ENTRY,
-            .words = {NO_ENTRY, NO_ENTRY},
-        };
-    }
-    return mail;
+    spec_nds_init_mail_sentences(mail->sentences);
 }

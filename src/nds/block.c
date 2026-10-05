@@ -46,13 +46,36 @@ static size_t block_size_of(block_id_t block_id, const spec_nds_layout_t *layout
     return block_id == GENERAL_BLOCK ? layout->general_size : layout->storage_size;
 }
 
-static size_t block_offset_in_partition(block_id_t block_id, const spec_nds_layout_t *layout) {
-    return block_id == GENERAL_BLOCK ? 0 : layout->storage_offset;
+// As SaveCheckInfo_CompareCounters: 0 follows 0xFFFFFFFF.
+static int compare_counters(uint32_t first, uint32_t second) {
+    if (first == UINT32_MAX && second == 0) {
+        return -1;
+    }
+    if (first == 0 && second == UINT32_MAX) {
+        return 1;
+    }
+    return (first > second) - (first < second);
 }
 
-static size_t other_partition_offset(size_t offset) {
-    return offset < SPEC_NDS_PARTITION_SIZE ? offset + SPEC_NDS_PARTITION_SIZE
-                                            : offset - SPEC_NDS_PARTITION_SIZE;
+// As SaveCheckInfo_CompareSectors: ties go to the first partition.
+static block_choice_t choose_copy(const block_copy_t copies[static PARTITION_COUNT]) {
+    if (copies[0].is_valid && copies[1].is_valid) {
+        int save_order = compare_counters(copies[0].save_counter, copies[1].save_counter);
+        int block_order = compare_counters(copies[0].block_counter, copies[1].block_counter);
+        bool is_second_newer = save_order < 0 || (save_order == 0 && block_order < 0);
+        return is_second_newer ? (block_choice_t){2, 1, 0} : (block_choice_t){2, 0, 1};
+    }
+    if (copies[0].is_valid) {
+        return (block_choice_t){1, 0, 0};
+    }
+    if (copies[1].is_valid) {
+        return (block_choice_t){1, 1, 1};
+    }
+    return (block_choice_t){};
+}
+
+static size_t block_offset_in_partition(block_id_t block_id, const spec_nds_layout_t *layout) {
+    return block_id == GENERAL_BLOCK ? 0 : layout->storage_offset;
 }
 
 // As SaveBlockFooter_Validate; Diamond, Pearl and Platinum keep the id in one byte.
@@ -85,36 +108,8 @@ static block_copy_t read_copy(const uint8_t *data, size_t partition, block_id_t 
     return copy;
 }
 
-// As SaveCheckInfo_CompareCounters: 0 follows 0xFFFFFFFF.
-static int compare_counters(uint32_t first, uint32_t second) {
-    if (first == UINT32_MAX && second == 0) {
-        return -1;
-    }
-    if (first == 0 && second == UINT32_MAX) {
-        return 1;
-    }
-    return (first > second) - (first < second);
-}
-
-// As SaveCheckInfo_CompareSectors: ties go to the first partition.
-static block_choice_t choose_copy(const block_copy_t copies[static PARTITION_COUNT]) {
-    if (copies[0].is_valid && copies[1].is_valid) {
-        int save_order = compare_counters(copies[0].save_counter, copies[1].save_counter);
-        int block_order = compare_counters(copies[0].block_counter, copies[1].block_counter);
-        bool is_second_newer = save_order < 0 || (save_order == 0 && block_order < 0);
-        return is_second_newer ? (block_choice_t){2, 1, 0} : (block_choice_t){2, 0, 1};
-    }
-    if (copies[0].is_valid) {
-        return (block_choice_t){1, 0, 0};
-    }
-    if (copies[1].is_valid) {
-        return (block_choice_t){1, 1, 1};
-    }
-    return (block_choice_t){};
-}
-
 // As SaveData_LoadCheck: each block picks its own copy, linked by the save counter.
-static bool find_split_blocks(spec_nds_blocks_t *loaded,
+static bool find_split_blocks(spec_nds_block_pair_t *loaded,
                               const block_copy_t copies[static BLOCK_COUNT][PARTITION_COUNT]) {
     block_choice_t general = choose_copy(copies[GENERAL_BLOCK]);
     block_choice_t storage = choose_copy(copies[STORAGE_BLOCK]);
@@ -135,7 +130,7 @@ static bool find_split_blocks(spec_nds_blocks_t *loaded,
     }
     const block_copy_t *general_copy = &copies[GENERAL_BLOCK][general_partition];
     const block_copy_t *storage_copy = &copies[STORAGE_BLOCK][storage_partition];
-    *loaded = (spec_nds_blocks_t){
+    *loaded = (spec_nds_block_pair_t){
         .general_offset = general_copy->offset,
         .storage_offset = storage_copy->offset,
         .save_counter = general_copy->save_counter,
@@ -175,7 +170,7 @@ static bool find_paired_partition(size_t *partition,
 }
 
 // A tool can leave the partition the game picks with an invalid copy; nothing loads then.
-static bool find_paired_blocks(spec_nds_blocks_t *loaded,
+static bool find_paired_blocks(spec_nds_block_pair_t *loaded,
                                const block_copy_t copies[static BLOCK_COUNT][PARTITION_COUNT]) {
     size_t partition = 0;
     if (!find_paired_partition(&partition, copies)) {
@@ -186,7 +181,7 @@ static bool find_paired_blocks(spec_nds_blocks_t *loaded,
     if (!general_copy->is_valid || !storage_copy->is_valid) {
         return false;
     }
-    *loaded = (spec_nds_blocks_t){
+    *loaded = (spec_nds_block_pair_t){
         .general_offset = general_copy->offset,
         .storage_offset = storage_copy->offset,
         .save_counter = general_copy->save_counter,
@@ -194,7 +189,7 @@ static bool find_paired_blocks(spec_nds_blocks_t *loaded,
     return true;
 }
 
-bool spec_nds_find_loaded_blocks(spec_nds_blocks_t *loaded, const uint8_t *data,
+bool spec_nds_find_loaded_blocks(spec_nds_block_pair_t *loaded, const uint8_t *data,
                                  const spec_nds_layout_t *layout) {
     block_copy_t copies[BLOCK_COUNT][PARTITION_COUNT];
     for (size_t partition = 0; partition < PARTITION_COUNT; ++partition) {
@@ -207,10 +202,16 @@ bool spec_nds_find_loaded_blocks(spec_nds_blocks_t *loaded, const uint8_t *data,
     return find_split_blocks(loaded, copies);
 }
 
+static size_t other_partition_offset(size_t offset) {
+    return offset < SPEC_NDS_PARTITION_SIZE ? offset + SPEC_NDS_PARTITION_SIZE
+                                            : offset - SPEC_NDS_PARTITION_SIZE;
+}
+
 // As a full save: each block goes opposite its loaded copy, and every counter advances.
-spec_nds_blocks_t spec_nds_copy_to_next_blocks(uint8_t *data, const spec_nds_blocks_t *loaded,
-                                               const spec_nds_layout_t *layout) {
-    spec_nds_blocks_t next = {
+spec_nds_block_pair_t spec_nds_copy_to_next_blocks(uint8_t *data,
+                                                   const spec_nds_block_pair_t *loaded,
+                                                   const spec_nds_layout_t *layout) {
+    spec_nds_block_pair_t next = {
         .general_offset = other_partition_offset(loaded->general_offset),
         .storage_offset = other_partition_offset(loaded->storage_offset),
         .save_counter = loaded->save_counter + 1,
@@ -234,7 +235,7 @@ static void stamp_block(uint8_t *block, block_id_t block_id, uint32_t save_count
                       spec_crc16(block, size - layout->footer_size));
 }
 
-void spec_nds_stamp_blocks(uint8_t *data, const spec_nds_blocks_t *blocks,
+void spec_nds_stamp_blocks(uint8_t *data, const spec_nds_block_pair_t *blocks,
                            const spec_nds_layout_t *layout) {
     stamp_block(&data[blocks->general_offset], GENERAL_BLOCK, blocks->save_counter,
                 blocks->general_counter, layout);

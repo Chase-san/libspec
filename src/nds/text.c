@@ -11,12 +11,16 @@ constexpr uint16_t FULL_WIDTH_FEMALE = 0x00EF;
 constexpr uint16_t HALF_WIDTH_MALE = 0x01BB;
 constexpr uint16_t HALF_WIDTH_FEMALE = 0x01BC;
 
-// TODO: Check the codes of the first 15 Korean syllables on a Korean cart.
-static char32_t code_point_of(uint16_t code) {
-    if (code >= SPEC_NDS_CHARMAP_SIZE || spec_nds_charmap[code] == 0) {
-        return SPEC_REPLACEMENT_CHARACTER;
+void spec_nds_read_text(uint16_t *text, const uint8_t *bytes, size_t text_size) {
+    for (size_t index = 0; index < text_size; ++index) {
+        text[index] = spec_read_u16_le(&bytes[index * 2]);
     }
-    return spec_nds_charmap[code];
+}
+
+void spec_nds_write_text(uint8_t *bytes, const uint16_t *text, size_t text_size) {
+    for (size_t index = 0; index < text_size; ++index) {
+        spec_write_u16_le(&bytes[index * 2], text[index]);
+    }
 }
 
 // Scanning from code 0 finds the full-width ♂ and ♀ first.
@@ -46,20 +50,6 @@ static uint16_t code_for_language(uint16_t code, spec_language_t language) {
         return HALF_WIDTH_FEMALE;
     }
     return code;
-}
-
-spec_error_t spec_nds_text_to_utf8(char8_t utf8[static SPEC_NDS_TEXT_BUFFER_SIZE],
-                                   const uint16_t *text, size_t text_size) {
-    if (text_size > SPEC_NDS_TEXT_MAX_SIZE) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
-                         "text_size is larger than any Gen 4 text field");
-    }
-    size_t length = 0;
-    for (size_t index = 0; index < text_size && text[index] != END_OF_TEXT; ++index) {
-        length += spec_utf8_write(&utf8[length], code_point_of(text[index]));
-    }
-    utf8[length] = '\0';
-    return SPEC_OK;
 }
 
 // The units after the terminator are kept, as the naming screen leaves them.
@@ -96,14 +86,24 @@ spec_error_t spec_nds_text_from_utf8(uint16_t *text, size_t text_size, const cha
     return SPEC_OK;
 }
 
-void spec_nds_read_text(uint16_t *text, const uint8_t *bytes, size_t text_size) {
-    for (size_t index = 0; index < text_size; ++index) {
-        text[index] = spec_read_u16_le(&bytes[index * 2]);
+// TODO: Check the codes of the first 15 Korean syllables on a Korean cart.
+static char32_t code_point_of(uint16_t code) {
+    if (code >= SPEC_NDS_CHARMAP_SIZE || spec_nds_charmap[code] == 0) {
+        return SPEC_REPLACEMENT_CHARACTER;
     }
+    return spec_nds_charmap[code];
 }
 
-void spec_nds_write_text(uint8_t *bytes, const uint16_t *text, size_t text_size) {
-    for (size_t index = 0; index < text_size; ++index) {
-        spec_write_u16_le(&bytes[index * 2], text[index]);
+spec_error_t spec_nds_text_to_utf8(char8_t utf8[static SPEC_NDS_TEXT_BUFFER_SIZE],
+                                   const uint16_t *text, size_t text_size) {
+    if (text_size > SPEC_NDS_TEXT_MAX_SIZE) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
+                         "text_size is larger than any Gen 4 text field");
     }
+    size_t length = 0;
+    for (size_t index = 0; index < text_size && text[index] != END_OF_TEXT; ++index) {
+        length += spec_utf8_write(&utf8[length], code_point_of(text[index]));
+    }
+    utf8[length] = '\0';
+    return SPEC_OK;
 }

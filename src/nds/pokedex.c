@@ -51,32 +51,6 @@ constexpr uint16_t DIAMOND_PEARL_LANGUAGE_SPECIES[] = {
 constexpr size_t DIAMOND_PEARL_LANGUAGE_SPECIES_COUNT =
     sizeof DIAMOND_PEARL_LANGUAGE_SPECIES / sizeof DIAMOND_PEARL_LANGUAGE_SPECIES[0];
 
-static bool is_flag_set(const uint8_t *flags, size_t national_number) {
-    return spec_get_bits(flags[(national_number - 1) / 8], (national_number - 1) % 8, 1) != 0;
-}
-
-static void set_flag(uint8_t *flags, size_t national_number, bool is_set) {
-    size_t byte = (national_number - 1) / 8;
-    flags[byte] = (uint8_t)spec_set_bits(flags[byte], (national_number - 1) % 8, 1, is_set);
-}
-
-// Genderless species are stored as male.
-static spec_gender_t first_seen_gender_of(size_t national_number, bool is_first_female) {
-    if (spec_nds_species_data[national_number].gender_ratio == GENDER_RATIO_GENDERLESS) {
-        return SPEC_GENDER_GENDERLESS;
-    }
-    return is_first_female ? SPEC_GENDER_FEMALE : SPEC_GENDER_MALE;
-}
-
-static bool does_diamond_pearl_record_language(uint16_t national_number) {
-    for (size_t index = 0; index < DIAMOND_PEARL_LANGUAGE_SPECIES_COUNT; ++index) {
-        if (DIAMOND_PEARL_LANGUAGE_SPECIES[index] == national_number) {
-            return true;
-        }
-    }
-    return false;
-}
-
 // A list ends early at the encoding's end value, or holds every form.
 static spec_nds_form_order_t form_order_of(const uint8_t *forms, size_t form_count,
                                            uint8_t end_value) {
@@ -86,31 +60,6 @@ static spec_nds_form_order_t form_order_of(const uint8_t *forms, size_t form_cou
         ++order.count;
     }
     return order;
-}
-
-// As NumFormsSeen_TwoForms: the first form fills both bits until a second one comes.
-static spec_nds_form_order_t decode_two_forms(uint8_t form_byte, bool is_seen) {
-    if (!is_seen) {
-        return (spec_nds_form_order_t){};
-    }
-    uint8_t forms[TWO_FORM_COUNT] = {
-        (uint8_t)spec_get_bits(form_byte, 0, 1),
-        (uint8_t)spec_get_bits(form_byte, 1, 1),
-    };
-    spec_nds_form_order_t order = {.count = 1, .forms = {forms[0]}};
-    if (forms[1] != forms[0]) {
-        order.forms[order.count++] = forms[1];
-    }
-    return order;
-}
-
-static uint8_t encode_two_forms(const spec_nds_form_order_t *order) {
-    if (order->count == 0) {
-        return NO_FORM_BYTE;
-    }
-    uint8_t second_form = order->count == 2 ? order->forms[1] : order->forms[0];
-    uint32_t form_byte = spec_set_bits(NO_FORM_BYTE, 0, 1, order->forms[0]);
-    return (uint8_t)spec_set_bits(form_byte, 1, 1, second_form);
 }
 
 static spec_nds_form_order_t decode_packed_forms(uint32_t word, unsigned bit_count,
@@ -134,58 +83,26 @@ static uint32_t encode_packed_forms(const spec_nds_form_order_t *order, unsigned
     return word;
 }
 
-static spec_nds_form_order_t decode_unown_order(const uint8_t *letters) {
-    return form_order_of(letters, UNOWN_FORM_COUNT, NO_FORM_BYTE);
-}
-
-static void encode_unown_order(uint8_t *letters, const spec_nds_form_order_t *order) {
-    for (size_t index = 0; index < UNOWN_FORM_COUNT; ++index) {
-        letters[index] = index < order->count ? order->forms[index] : NO_FORM_BYTE;
+// Genderless species are stored as male.
+static spec_gender_t first_seen_gender_of(size_t national_number, bool is_first_female) {
+    if (spec_nds_species_data[national_number].gender_ratio == GENDER_RATIO_GENDERLESS) {
+        return SPEC_GENDER_GENDERLESS;
     }
-}
-
-static spec_nds_form_order_t decode_deoxys_order(uint8_t caught_byte, uint8_t seen_byte) {
-    uint32_t nibbles = (uint32_t)caught_byte | ((uint32_t)seen_byte << 8);
-    return decode_packed_forms(nibbles, DEOXYS_FORM_BIT_COUNT, DEOXYS_FORM_COUNT, true);
+    return is_first_female ? SPEC_GENDER_FEMALE : SPEC_GENDER_MALE;
 }
 
 static void decode_flags(spec_nds_pokedex_t *pokedex, const uint8_t *dex) {
     for (size_t national_number = 1; national_number < SPEC_NDS_POKEDEX_SIZE; ++national_number) {
-        bool is_seen = is_flag_set(&dex[SEEN_OFFSET], national_number);
-        bool is_first_female = is_flag_set(&dex[FIRST_GENDERS_OFFSET], national_number);
-        bool is_second_female = is_flag_set(&dex[SECOND_GENDERS_OFFSET], national_number);
+        bool is_seen = spec_get_array_flag(&dex[SEEN_OFFSET], national_number - 1);
+        bool is_first_female = spec_get_array_flag(&dex[FIRST_GENDERS_OFFSET], national_number - 1);
+        bool is_second_female =
+            spec_get_array_flag(&dex[SECOND_GENDERS_OFFSET], national_number - 1);
         pokedex->is_seen[national_number] = is_seen;
         pokedex->is_caught[national_number] =
-            is_seen && is_flag_set(&dex[CAUGHT_OFFSET], national_number);
+            is_seen && spec_get_array_flag(&dex[CAUGHT_OFFSET], national_number - 1);
         pokedex->first_seen_gender[national_number] =
             first_seen_gender_of(national_number, is_first_female);
         pokedex->has_seen_both_genders[national_number] = is_second_female != is_first_female;
-    }
-}
-
-// As SetBit_Gender: the second array holds the other gender once both are seen.
-static void encode_flags(uint8_t *dex, const spec_nds_pokedex_t *pokedex) {
-    uint8_t caught[FLAGS_SIZE] = {};
-    uint8_t seen[FLAGS_SIZE] = {};
-    uint8_t first_genders[FLAGS_SIZE] = {};
-    uint8_t second_genders[FLAGS_SIZE] = {};
-    for (size_t national_number = 1; national_number < SPEC_NDS_POKEDEX_SIZE; ++national_number) {
-        bool is_caught = pokedex->is_caught[national_number];
-        bool is_first_female = pokedex->first_seen_gender[national_number] == SPEC_GENDER_FEMALE;
-        bool is_second_female = is_first_female != pokedex->has_seen_both_genders[national_number];
-        set_flag(caught, national_number, is_caught);
-        set_flag(seen, national_number, is_caught || pokedex->is_seen[national_number]);
-        set_flag(first_genders, national_number, is_first_female);
-        set_flag(second_genders, national_number, is_second_female);
-    }
-    uint32_t deoxys_nibbles = encode_packed_forms(&pokedex->forms.deoxys, DEOXYS_FORM_BIT_COUNT);
-    caught[DEOXYS_FLAGS_BYTE] = (uint8_t)deoxys_nibbles;
-    seen[DEOXYS_FLAGS_BYTE] = (uint8_t)(deoxys_nibbles >> 8);
-    for (size_t index = 0; index < FLAGS_SIZE; ++index) {
-        dex[CAUGHT_OFFSET + index] = caught[index];
-        dex[SEEN_OFFSET + index] = seen[index];
-        dex[FIRST_GENDERS_OFFSET + index] = first_genders[index];
-        dex[SECOND_GENDERS_OFFSET + index] = second_genders[index];
     }
 }
 
@@ -204,19 +121,29 @@ static void decode_languages(uint8_t *languages, const uint8_t *dex,
     }
 }
 
-static void encode_languages(uint8_t *dex, const uint8_t *languages,
-                             const spec_nds_pokedex_layout_t *pokedex_layout) {
-    uint8_t *stored_languages = &dex[pokedex_layout->languages_offset];
-    if (pokedex_layout->records_every_species_language) {
-        for (size_t national_number = 1; national_number < SPEC_NDS_POKEDEX_SIZE;
-             ++national_number) {
-            stored_languages[national_number] = languages[national_number];
-        }
-        return;
+// As NumFormsSeen_TwoForms: the first form fills both bits until a second one comes.
+static spec_nds_form_order_t decode_two_forms(uint8_t form_byte, bool is_seen) {
+    if (!is_seen) {
+        return (spec_nds_form_order_t){};
     }
-    for (size_t index = 0; index < DIAMOND_PEARL_LANGUAGE_SPECIES_COUNT; ++index) {
-        stored_languages[index] = languages[DIAMOND_PEARL_LANGUAGE_SPECIES[index]];
+    uint8_t forms[TWO_FORM_COUNT] = {
+        (uint8_t)spec_get_bits(form_byte, 0, 1),
+        (uint8_t)spec_get_bits(form_byte, 1, 1),
+    };
+    spec_nds_form_order_t order = {.count = 1, .forms = {forms[0]}};
+    if (forms[1] != forms[0]) {
+        order.forms[order.count++] = forms[1];
     }
+    return order;
+}
+
+static spec_nds_form_order_t decode_unown_order(const uint8_t *letters) {
+    return form_order_of(letters, UNOWN_FORM_COUNT, NO_FORM_BYTE);
+}
+
+static spec_nds_form_order_t decode_deoxys_order(uint8_t caught_byte, uint8_t seen_byte) {
+    uint32_t nibbles = (uint32_t)caught_byte | ((uint32_t)seen_byte << 8);
+    return decode_packed_forms(nibbles, DEOXYS_FORM_BIT_COUNT, DEOXYS_FORM_COUNT, true);
 }
 
 static void decode_forms(spec_nds_pokedex_forms_t *forms, const bool *is_seen, const uint8_t *dex,
@@ -243,6 +170,77 @@ static void decode_forms(spec_nds_pokedex_forms_t *forms, const bool *is_seen, c
     }
 }
 
+void spec_nds_decode_pokedex(spec_nds_pokedex_t *pokedex, const uint8_t *general,
+                             const spec_nds_layout_t *layout) {
+    const spec_nds_pokedex_layout_t *pokedex_layout = &layout->pokedex;
+    const uint8_t *dex = &general[pokedex_layout->offset];
+    pokedex->is_obtained = dex[pokedex_layout->obtained_offset] != 0;
+    pokedex->has_national_dex = dex[pokedex_layout->national_dex_offset] != 0;
+    pokedex->can_view_forms = dex[pokedex_layout->form_view_offset] != 0;
+    pokedex->can_view_languages = dex[pokedex_layout->language_view_offset] != 0;
+    pokedex->spinda_personality = spec_read_u32_le(&dex[SPINDA_OFFSET]);
+    decode_flags(pokedex, dex);
+    decode_languages(pokedex->languages, dex, pokedex_layout);
+    decode_forms(&pokedex->forms, pokedex->is_seen, dex, pokedex_layout);
+}
+
+// As SetBit_Gender: the second array holds the other gender once both are seen.
+static void encode_flags(uint8_t *dex, const spec_nds_pokedex_t *pokedex) {
+    uint8_t caught[FLAGS_SIZE] = {};
+    uint8_t seen[FLAGS_SIZE] = {};
+    uint8_t first_genders[FLAGS_SIZE] = {};
+    uint8_t second_genders[FLAGS_SIZE] = {};
+    for (size_t national_number = 1; national_number < SPEC_NDS_POKEDEX_SIZE; ++national_number) {
+        bool is_caught = pokedex->is_caught[national_number];
+        bool is_first_female = pokedex->first_seen_gender[national_number] == SPEC_GENDER_FEMALE;
+        bool is_second_female = is_first_female != pokedex->has_seen_both_genders[national_number];
+        spec_set_array_flag(caught, national_number - 1, is_caught);
+        spec_set_array_flag(seen, national_number - 1,
+                            is_caught || pokedex->is_seen[national_number]);
+        spec_set_array_flag(first_genders, national_number - 1, is_first_female);
+        spec_set_array_flag(second_genders, national_number - 1, is_second_female);
+    }
+    uint32_t deoxys_nibbles = encode_packed_forms(&pokedex->forms.deoxys, DEOXYS_FORM_BIT_COUNT);
+    caught[DEOXYS_FLAGS_BYTE] = (uint8_t)deoxys_nibbles;
+    seen[DEOXYS_FLAGS_BYTE] = (uint8_t)(deoxys_nibbles >> 8);
+    for (size_t index = 0; index < FLAGS_SIZE; ++index) {
+        dex[CAUGHT_OFFSET + index] = caught[index];
+        dex[SEEN_OFFSET + index] = seen[index];
+        dex[FIRST_GENDERS_OFFSET + index] = first_genders[index];
+        dex[SECOND_GENDERS_OFFSET + index] = second_genders[index];
+    }
+}
+
+static void encode_languages(uint8_t *dex, const uint8_t *languages,
+                             const spec_nds_pokedex_layout_t *pokedex_layout) {
+    uint8_t *stored_languages = &dex[pokedex_layout->languages_offset];
+    if (pokedex_layout->records_every_species_language) {
+        for (size_t national_number = 1; national_number < SPEC_NDS_POKEDEX_SIZE;
+             ++national_number) {
+            stored_languages[national_number] = languages[national_number];
+        }
+        return;
+    }
+    for (size_t index = 0; index < DIAMOND_PEARL_LANGUAGE_SPECIES_COUNT; ++index) {
+        stored_languages[index] = languages[DIAMOND_PEARL_LANGUAGE_SPECIES[index]];
+    }
+}
+
+static uint8_t encode_two_forms(const spec_nds_form_order_t *order) {
+    if (order->count == 0) {
+        return NO_FORM_BYTE;
+    }
+    uint8_t second_form = order->count == 2 ? order->forms[1] : order->forms[0];
+    uint32_t form_byte = spec_set_bits(NO_FORM_BYTE, 0, 1, order->forms[0]);
+    return (uint8_t)spec_set_bits(form_byte, 1, 1, second_form);
+}
+
+static void encode_unown_order(uint8_t *letters, const spec_nds_form_order_t *order) {
+    for (size_t index = 0; index < UNOWN_FORM_COUNT; ++index) {
+        letters[index] = index < order->count ? order->forms[index] : NO_FORM_BYTE;
+    }
+}
+
 // Deoxys's forms go with the caught and seen flags.
 static void encode_forms(uint8_t *dex, const spec_nds_pokedex_forms_t *forms,
                          const spec_nds_pokedex_layout_t *pokedex_layout) {
@@ -262,6 +260,24 @@ static void encode_forms(uint8_t *dex, const spec_nds_pokedex_forms_t *forms,
         dex[pokedex_layout->pichu_offset] =
             (uint8_t)encode_packed_forms(&forms->pichu, THREE_FORM_BIT_COUNT);
     }
+}
+
+// As the National Dex event, which marks both the Pokédex and the trainer.
+void spec_nds_encode_pokedex(uint8_t *general, const spec_nds_layout_t *layout,
+                             const spec_nds_pokedex_t *pokedex) {
+    const spec_nds_pokedex_layout_t *pokedex_layout = &layout->pokedex;
+    uint8_t *dex = &general[pokedex_layout->offset];
+    uint8_t *player_national_dex = &general[layout->player_offset + PLAYER_NATIONAL_DEX_OFFSET];
+    dex[pokedex_layout->obtained_offset] = pokedex->is_obtained ? 1 : 0;
+    dex[pokedex_layout->national_dex_offset] = pokedex->has_national_dex ? 1 : 0;
+    *player_national_dex = (uint8_t)spec_set_bits(*player_national_dex, PLAYER_NATIONAL_DEX_BIT, 1,
+                                                  pokedex->has_national_dex);
+    dex[pokedex_layout->form_view_offset] = pokedex->can_view_forms ? 1 : 0;
+    dex[pokedex_layout->language_view_offset] = pokedex->can_view_languages ? 1 : 0;
+    spec_write_u32_le(&dex[SPINDA_OFFSET], pokedex->spinda_personality);
+    encode_flags(dex, pokedex);
+    encode_languages(dex, pokedex->languages, pokedex_layout);
+    encode_forms(dex, &pokedex->forms, pokedex_layout);
 }
 
 static spec_error_t check_form_order(const spec_nds_form_order_t *order, uint16_t national_number,
@@ -314,6 +330,15 @@ static spec_error_t check_forms(const spec_nds_pokedex_forms_t *forms,
     return SPEC_OK;
 }
 
+static bool does_diamond_pearl_record_language(uint16_t national_number) {
+    for (size_t index = 0; index < DIAMOND_PEARL_LANGUAGE_SPECIES_COUNT; ++index) {
+        if (DIAMOND_PEARL_LANGUAGE_SPECIES[index] == national_number) {
+            return true;
+        }
+    }
+    return false;
+}
+
 static spec_error_t check_languages(const uint8_t *languages,
                                     const spec_nds_pokedex_layout_t *pokedex_layout) {
     for (uint16_t national_number = 1; national_number < SPEC_NDS_POKEDEX_SIZE; ++national_number) {
@@ -330,20 +355,6 @@ static spec_error_t check_languages(const uint8_t *languages,
     return SPEC_OK;
 }
 
-void spec_nds_decode_pokedex(spec_nds_pokedex_t *pokedex, const uint8_t *general,
-                             const spec_nds_layout_t *layout) {
-    const spec_nds_pokedex_layout_t *pokedex_layout = &layout->pokedex;
-    const uint8_t *dex = &general[pokedex_layout->offset];
-    pokedex->is_obtained = dex[pokedex_layout->obtained_offset] != 0;
-    pokedex->has_national_dex = dex[pokedex_layout->national_dex_offset] != 0;
-    pokedex->can_view_forms = dex[pokedex_layout->form_view_offset] != 0;
-    pokedex->can_view_languages = dex[pokedex_layout->language_view_offset] != 0;
-    pokedex->spinda_personality = spec_read_u32_le(&dex[SPINDA_OFFSET]);
-    decode_flags(pokedex, dex);
-    decode_languages(pokedex->languages, dex, pokedex_layout);
-    decode_forms(&pokedex->forms, pokedex->is_seen, dex, pokedex_layout);
-}
-
 spec_error_t spec_nds_check_pokedex(const spec_nds_pokedex_t *pokedex,
                                     const spec_nds_layout_t *layout) {
     spec_error_t error = check_languages(pokedex->languages, &layout->pokedex);
@@ -351,22 +362,4 @@ spec_error_t spec_nds_check_pokedex(const spec_nds_pokedex_t *pokedex,
         return error;
     }
     return check_forms(&pokedex->forms, &layout->pokedex);
-}
-
-// As the National Dex event, which marks both the Pokédex and the trainer.
-void spec_nds_encode_pokedex(uint8_t *general, const spec_nds_layout_t *layout,
-                             const spec_nds_pokedex_t *pokedex) {
-    const spec_nds_pokedex_layout_t *pokedex_layout = &layout->pokedex;
-    uint8_t *dex = &general[pokedex_layout->offset];
-    uint8_t *player_national_dex = &general[layout->player_offset + PLAYER_NATIONAL_DEX_OFFSET];
-    dex[pokedex_layout->obtained_offset] = pokedex->is_obtained ? 1 : 0;
-    dex[pokedex_layout->national_dex_offset] = pokedex->has_national_dex ? 1 : 0;
-    *player_national_dex = (uint8_t)spec_set_bits(*player_national_dex, PLAYER_NATIONAL_DEX_BIT, 1,
-                                                  pokedex->has_national_dex);
-    dex[pokedex_layout->form_view_offset] = pokedex->can_view_forms ? 1 : 0;
-    dex[pokedex_layout->language_view_offset] = pokedex->can_view_languages ? 1 : 0;
-    spec_write_u32_le(&dex[SPINDA_OFFSET], pokedex->spinda_personality);
-    encode_flags(dex, pokedex);
-    encode_languages(dex, pokedex->languages, pokedex_layout);
-    encode_forms(dex, &pokedex->forms, pokedex_layout);
 }

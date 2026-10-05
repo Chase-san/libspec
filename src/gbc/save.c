@@ -8,11 +8,20 @@
 #include "spec_internal.h"
 
 static spec_error_t find_layout(const spec_gbc_layout_t **layout, spec_game_type_t type,
-                                spec_language_t language, size_t data_size) {
+                                spec_language_t language) {
     *layout = spec_gbc_get_layout(type, language);
     if (*layout == nullptr) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
                          "no Gen 2 game of that type is in that language");
+    }
+    return SPEC_OK;
+}
+
+static spec_error_t find_sized_layout(const spec_gbc_layout_t **layout, spec_game_type_t type,
+                                      spec_language_t language, size_t data_size) {
+    spec_error_t error = find_layout(layout, type, language);
+    if (error != SPEC_OK) {
+        return error;
     }
     if (data_size != (*layout)->save_size) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "data_size is not this game's save size");
@@ -32,7 +41,7 @@ static spec_error_t find_loaded_copy(bool *is_primary, const uint8_t *data,
     return SPEC_OK;
 }
 
-static spec_error_t check_save(const spec_gbc_save_t *save, const spec_gbc_layout_t *layout) {
+static spec_error_t check_parts(const spec_gbc_save_t *save, const spec_gbc_layout_t *layout) {
     spec_error_t error = spec_gbc_check_player(save, layout);
     if (error != SPEC_OK) {
         return error;
@@ -52,7 +61,7 @@ static spec_error_t check_save(const spec_gbc_save_t *save, const spec_gbc_layou
 spec_error_t spec_gbc_read_save(spec_gbc_save_t *save, const uint8_t *data, size_t data_size,
                                 spec_game_type_t type, spec_language_t language) {
     const spec_gbc_layout_t *layout = nullptr;
-    spec_error_t error = find_layout(&layout, type, language, data_size);
+    spec_error_t error = find_sized_layout(&layout, type, language, data_size);
     if (error != SPEC_OK) {
         return error;
     }
@@ -78,7 +87,7 @@ spec_error_t spec_gbc_read_save(spec_gbc_save_t *save, const uint8_t *data, size
 // As _SaveGameData. Everything is checked before the save changes, so a failure changes nothing.
 spec_error_t spec_gbc_write_save(const spec_gbc_save_t *save, uint8_t *data, size_t data_size) {
     const spec_gbc_layout_t *layout = nullptr;
-    spec_error_t error = find_layout(&layout, save->type, save->language, data_size);
+    spec_error_t error = find_sized_layout(&layout, save->type, save->language, data_size);
     if (error != SPEC_OK) {
         return error;
     }
@@ -87,7 +96,7 @@ spec_error_t spec_gbc_write_save(const spec_gbc_save_t *save, uint8_t *data, siz
     if (error != SPEC_OK) {
         return error;
     }
-    error = check_save(save, layout);
+    error = check_parts(save, layout);
     if (error != SPEC_OK) {
         return error;
     }
@@ -101,4 +110,13 @@ spec_error_t spec_gbc_write_save(const spec_gbc_save_t *save, uint8_t *data, siz
     spec_gbc_encode_items(data, layout, save);
     spec_gbc_stamp_copies(data, layout);
     return SPEC_OK;
+}
+
+spec_error_t spec_gbc_check_save(const spec_gbc_save_t *save) {
+    const spec_gbc_layout_t *layout = nullptr;
+    spec_error_t error = find_layout(&layout, save->type, save->language);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    return check_parts(save, layout);
 }
