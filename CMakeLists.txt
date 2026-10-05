@@ -40,7 +40,11 @@ add_library(spec STATIC
     src/bytes.c
     src/utf8.c
     src/gba/save.c
+    src/gba/layout.c
     src/gba/slot.c
+    src/gba/player.c
+    src/gba/pokedex.c
+    src/gba/storage.c
     src/gba/pokemon.c
     src/gba/personality.c
     src/gba/items.c

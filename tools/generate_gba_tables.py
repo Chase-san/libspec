@@ -120,6 +120,10 @@ def c_string(text):
     return '"' + text.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+def c_string_or_null(cell):
+    return "nullptr" if cell == "-" else c_string(cell)
+
+
 def pocket_value(cell):
     return "SPEC_GBA_NO_POCKET" if cell == "-" else "SPEC_GBA_POCKET_" + cell.upper()
 
@@ -129,7 +133,8 @@ def items_body(items):
     for row in items:
         pockets = ", ".join(pocket_value(row[column]) for column in POCKET_COLUMNS)
         is_important = "true" if row["is_important"] == "yes" else "false"
-        lines.append(f"    [{row['item']}] = {{{c_string(row['name'])}, {pockets}, {is_important}}},")
+        names = ", ".join(c_string_or_null(row[column]) for column in ["english", "german"])
+        lines.append(f"    [{row['item']}] = {{{names}, {pockets}, {is_important}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 

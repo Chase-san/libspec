@@ -111,7 +111,7 @@ static bool is_failed_write_reported(const spec_gba_save_t *broken, spec_error_t
 static bool check_failed_writes(const spec_gba_save_t *save) {
     static spec_gba_save_t broken;
     broken = *save;
-    broken.boxes[3][12].origin.met_level = 200;
+    broken.boxes[3].pokemon[12].origin.met_level = 200;
     if (!is_failed_write_reported(&broken, SPEC_ERROR_VALUE_OUT_OF_RANGE, SPEC_ERROR_LOCATION_BOX,
                                   3, 12)) {
         return false;

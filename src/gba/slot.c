@@ -148,3 +148,54 @@ void spec_gba_write_slot_bytes(uint8_t *data, const spec_gba_slot_t *slot, size_
         copied += piece.size;
     }
 }
+
+uint8_t spec_gba_read_slot_u8(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset) {
+    uint8_t value = 0;
+    spec_gba_read_slot_bytes(&value, data, slot, offset, 1);
+    return value;
+}
+
+uint16_t spec_gba_read_slot_u16(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset) {
+    uint8_t bytes[2];
+    spec_gba_read_slot_bytes(bytes, data, slot, offset, sizeof bytes);
+    return spec_read_u16_le(bytes);
+}
+
+uint32_t spec_gba_read_slot_u32(const uint8_t *data, const spec_gba_slot_t *slot, size_t offset) {
+    uint8_t bytes[4];
+    spec_gba_read_slot_bytes(bytes, data, slot, offset, sizeof bytes);
+    return spec_read_u32_le(bytes);
+}
+
+void spec_gba_write_slot_u8(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
+                            uint8_t value) {
+    spec_gba_write_slot_bytes(data, slot, offset, &value, 1);
+}
+
+void spec_gba_write_slot_u16(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
+                             uint16_t value) {
+    uint8_t bytes[2];
+    spec_write_u16_le(bytes, value);
+    spec_gba_write_slot_bytes(data, slot, offset, bytes, sizeof bytes);
+}
+
+void spec_gba_write_slot_u32(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
+                             uint32_t value) {
+    uint8_t bytes[4];
+    spec_write_u32_le(bytes, value);
+    spec_gba_write_slot_bytes(data, slot, offset, bytes, sizeof bytes);
+}
+
+bool spec_gba_read_slot_flag(const uint8_t *data, const spec_gba_slot_t *slot, size_t flags_offset,
+                             uint16_t flag) {
+    uint8_t flag_byte = spec_gba_read_slot_u8(data, slot, flags_offset + flag / 8);
+    return spec_get_bits(flag_byte, flag % 8, 1) != 0;
+}
+
+void spec_gba_write_slot_flag(uint8_t *data, const spec_gba_slot_t *slot, size_t flags_offset,
+                              uint16_t flag, bool is_set) {
+    size_t flag_byte_offset = flags_offset + flag / 8;
+    uint8_t flag_byte = spec_gba_read_slot_u8(data, slot, flag_byte_offset);
+    spec_gba_write_slot_u8(data, slot, flag_byte_offset,
+                           (uint8_t)spec_set_bits(flag_byte, flag % 8, 1, is_set));
+}

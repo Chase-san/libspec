@@ -15,6 +15,8 @@ constexpr size_t SPEC_GBA_PARTY_RECORD_SIZE = 100;
 constexpr size_t SPEC_GBA_BOX_RECORD_SIZE = 80;
 constexpr size_t SPEC_GBA_NICKNAME_SIZE = 10;
 constexpr size_t SPEC_GBA_TRAINER_NAME_SIZE = 7;
+constexpr size_t SPEC_GBA_BOX_NAME_SIZE = 8;
+constexpr size_t SPEC_GBA_DAYCARE_CAPACITY = 3;
 constexpr size_t SPEC_GBA_MOVE_COUNT = 4;
 constexpr size_t SPEC_GBA_BADGE_COUNT = 8;
 // Indexed by National Dex number.
@@ -45,6 +47,20 @@ enum spec_gba_pocket {
     SPEC_GBA_POCKET_COUNT,
 };
 typedef enum spec_gba_pocket spec_gba_pocket_t;
+
+enum spec_gba_button_mode : uint8_t {
+    SPEC_GBA_BUTTON_MODE_NORMAL, // HELP in FireRed and LeafGreen
+    SPEC_GBA_BUTTON_MODE_LR,
+    SPEC_GBA_BUTTON_MODE_L_EQUALS_A,
+};
+typedef enum spec_gba_button_mode spec_gba_button_mode_t;
+
+enum spec_gba_text_speed : uint8_t {
+    SPEC_GBA_TEXT_SPEED_SLOW,
+    SPEC_GBA_TEXT_SPEED_MEDIUM,
+    SPEC_GBA_TEXT_SPEED_FAST,
+};
+typedef enum spec_gba_text_speed spec_gba_text_speed_t;
 
 enum spec_gba_contest_rank : uint8_t {
     SPEC_GBA_CONTEST_RANK_NONE,
@@ -197,6 +213,17 @@ struct spec_gba_play_time {
 };
 typedef struct spec_gba_play_time spec_gba_play_time_t;
 
+struct spec_gba_options {
+    spec_gba_button_mode_t button_mode;
+    spec_gba_text_speed_t text_speed;
+    uint8_t window_frame;
+    bool is_stereo;
+    bool is_battle_style_set;
+    bool is_battle_scene_off;
+    bool is_region_map_zoomed;
+};
+typedef struct spec_gba_options spec_gba_options_t;
+
 // Writing is_caught also marks the species seen.
 struct spec_gba_pokedex {
     bool is_obtained;
@@ -207,6 +234,28 @@ struct spec_gba_pokedex {
     bool is_caught[SPEC_GBA_POKEDEX_SIZE];
 };
 typedef struct spec_gba_pokedex spec_gba_pokedex_t;
+
+struct spec_gba_box {
+    uint8_t name[SPEC_GBA_BOX_NAME_SIZE];
+    uint8_t wallpaper;
+    spec_gba_pokemon_t pokemon[SPEC_GBA_BOX_CAPACITY];
+};
+typedef struct spec_gba_box spec_gba_box_t;
+
+struct spec_gba_daycare_slot {
+    spec_gba_pokemon_t pokemon;
+    uint32_t steps;
+};
+typedef struct spec_gba_daycare_slot spec_gba_daycare_slot_t;
+
+// The third slot is FireRed and LeafGreen's Route 5 daycare.
+struct spec_gba_daycare {
+    spec_gba_daycare_slot_t slots[SPEC_GBA_DAYCARE_CAPACITY];
+    bool is_egg_waiting;
+    uint32_t egg_personality;
+    uint8_t step_counter;
+};
+typedef struct spec_gba_daycare spec_gba_daycare_t;
 
 struct spec_gba_item_slot {
     uint16_t item;
@@ -222,11 +271,16 @@ struct spec_gba_save {
     spec_gba_play_time_t play_time;
     uint32_t money;
     uint16_t coins;
+    uint16_t battle_points; // Emerald only
     bool badges[SPEC_GBA_BADGE_COUNT];
+    uint8_t rival_name[SPEC_GBA_TRAINER_NAME_SIZE]; // FireRed and LeafGreen only
+    spec_gba_options_t options;
     spec_gba_pokedex_t pokedex;
     uint8_t party_count;
     spec_gba_pokemon_t party[SPEC_GBA_PARTY_CAPACITY];
-    spec_gba_pokemon_t boxes[SPEC_GBA_BOX_COUNT][SPEC_GBA_BOX_CAPACITY];
+    uint8_t current_box;
+    spec_gba_box_t boxes[SPEC_GBA_BOX_COUNT];
+    spec_gba_daycare_t daycare;
     spec_gba_item_slot_t items[SPEC_GBA_POCKET_COUNT][SPEC_GBA_POCKET_MAX_CAPACITY];
 };
 typedef struct spec_gba_save spec_gba_save_t;
@@ -260,7 +314,7 @@ spec_gba_find_expected_ivs(spec_gba_pid_t pid, spec_gba_iv_method_t method,
 void spec_gba_pid_next(spec_gba_pid_t *pid);
 uint16_t spec_gba_random(uint32_t *seed);
 
-const char *spec_gba_item_name(uint16_t item);
+const char *spec_gba_item_name(uint16_t item, spec_language_t language);
 spec_error_t spec_gba_get_pocket_for_item(spec_gba_pocket_t *pocket, spec_game_type_t type,
                                           uint16_t item);
 size_t spec_gba_pocket_capacity(spec_game_type_t type, spec_gba_pocket_t pocket);

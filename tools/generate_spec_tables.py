@@ -17,10 +17,16 @@ def c_string(text):
     return '"' + text.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
+LANGUAGE_COLUMNS = ["japanese", "english", "french", "italian", "german", "spanish", "korean"]
+
+
 def species_names_body(species_names):
-    lines = ["const char *const spec_species_names[SPEC_SPECIES_NAME_COUNT] = {"]
-    for row in species_names:
-        lines.append(f"    [{row['national']}] = {c_string(row['name'])},")
+    lines = ["const char *const spec_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_SPECIES_NAME_COUNT] = {"]
+    for language in LANGUAGE_COLUMNS:
+        lines.append(f"    [SPEC_LANGUAGE_{language.upper()}] = {{")
+        for row in species_names:
+            lines.append(f"        [{row['national']}] = {c_string(row[language])},")
+        lines.append("    },")
     lines.append("};")
     return "\n".join(lines) + "\n"
 

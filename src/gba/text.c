@@ -1,6 +1,7 @@
 #include <string.h>
 
 #include "gba/gba.h"
+#include "gba/gba_internal.h"
 #include "gba/tables.h"
 #include "spec_internal.h"
 
@@ -87,4 +88,12 @@ spec_error_t spec_gba_text_from_utf8(uint8_t *text, size_t text_size, const char
     memcpy(text, encoded, length);
     memset(&text[length], END_OF_TEXT, text_size - length);
     return SPEC_OK;
+}
+
+void spec_gba_write_slot_name(uint8_t *data, const spec_gba_slot_t *slot, size_t offset,
+                              const uint8_t *name, size_t name_size) {
+    spec_gba_write_slot_bytes(data, slot, offset, name, name_size);
+    if (memchr(name, END_OF_TEXT, name_size) == nullptr) {
+        spec_gba_write_slot_u8(data, slot, offset + name_size, END_OF_TEXT);
+    }
 }

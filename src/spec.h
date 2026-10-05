@@ -19,11 +19,14 @@ enum spec_error_location : uint8_t {
     SPEC_ERROR_LOCATION_NONE,
     SPEC_ERROR_LOCATION_PARTY,
     SPEC_ERROR_LOCATION_BOX,
+    SPEC_ERROR_LOCATION_WALLPAPER,
+    SPEC_ERROR_LOCATION_DAYCARE,
     SPEC_ERROR_LOCATION_ITEMS,
 };
 typedef enum spec_error_location spec_error_location_t;
 
-// index0 and index1: the party slot, the box and slot, or the pocket and slot.
+// index0 and index1: the party slot, the box and slot, the box, the daycare slot, or the pocket and
+// slot.
 struct spec_error_data {
     const char *message;
     spec_error_t error;
@@ -41,6 +44,7 @@ enum spec_language : uint8_t {
     SPEC_LANGUAGE_ITALIAN = 4,
     SPEC_LANGUAGE_GERMAN = 5,
     SPEC_LANGUAGE_SPANISH = 7,
+    SPEC_LANGUAGE_KOREAN = 8,
 };
 typedef enum spec_language spec_language_t;
 
@@ -127,6 +131,6 @@ typedef enum spec_stat spec_stat_t;
 
 const char *spec_error_string(spec_error_t error);
 spec_error_data_t spec_last_error(void);
-const char *spec_species_name(uint16_t national_number);
+const char *spec_species_name(uint16_t national_number, spec_language_t language);
 
 #endif

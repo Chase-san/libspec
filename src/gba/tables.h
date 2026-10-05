@@ -35,7 +35,8 @@ struct spec_gba_species_data {
 typedef struct spec_gba_species_data spec_gba_species_data_t;
 
 struct spec_gba_item_data {
-    const char *name;
+    const char *english_name;
+    const char *german_name;
     uint8_t ruby_sapphire_pocket;
     uint8_t emerald_pocket;
     uint8_t firered_leafgreen_pocket;

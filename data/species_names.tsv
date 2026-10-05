@@ -1,809 +1,810 @@
-# English species names by National Dex number: the US 3DS carts' text (Pokémon Bank's for 803-807)
-national	name
-1	Bulbasaur
-2	Ivysaur
-3	Venusaur
-4	Charmander
-5	Charmeleon
-6	Charizard
-7	Squirtle
-8	Wartortle
-9	Blastoise
-10	Caterpie
-11	Metapod
-12	Butterfree
-13	Weedle
-14	Kakuna
-15	Beedrill
-16	Pidgey
-17	Pidgeotto
-18	Pidgeot
-19	Rattata
-20	Raticate
-21	Spearow
-22	Fearow
-23	Ekans
-24	Arbok
-25	Pikachu
-26	Raichu
-27	Sandshrew
-28	Sandslash
-29	Nidoran♀
-30	Nidorina
-31	Nidoqueen
-32	Nidoran♂
-33	Nidorino
-34	Nidoking
-35	Clefairy
-36	Clefable
-37	Vulpix
-38	Ninetales
-39	Jigglypuff
-40	Wigglytuff
-41	Zubat
-42	Golbat
-43	Oddish
-44	Gloom
-45	Vileplume
-46	Paras
-47	Parasect
-48	Venonat
-49	Venomoth
-50	Diglett
-51	Dugtrio
-52	Meowth
-53	Persian
-54	Psyduck
-55	Golduck
-56	Mankey
-57	Primeape
-58	Growlithe
-59	Arcanine
-60	Poliwag
-61	Poliwhirl
-62	Poliwrath
-63	Abra
-64	Kadabra
-65	Alakazam
-66	Machop
-67	Machoke
-68	Machamp
-69	Bellsprout
-70	Weepinbell
-71	Victreebel
-72	Tentacool
-73	Tentacruel
-74	Geodude
-75	Graveler
-76	Golem
-77	Ponyta
-78	Rapidash
-79	Slowpoke
-80	Slowbro
-81	Magnemite
-82	Magneton
-83	Farfetch’d
-84	Doduo
-85	Dodrio
-86	Seel
-87	Dewgong
-88	Grimer
-89	Muk
-90	Shellder
-91	Cloyster
-92	Gastly
-93	Haunter
-94	Gengar
-95	Onix
-96	Drowzee
-97	Hypno
-98	Krabby
-99	Kingler
-100	Voltorb
-101	Electrode
-102	Exeggcute
-103	Exeggutor
-104	Cubone
-105	Marowak
-106	Hitmonlee
-107	Hitmonchan
-108	Lickitung
-109	Koffing
-110	Weezing
-111	Rhyhorn
-112	Rhydon
-113	Chansey
-114	Tangela
-115	Kangaskhan
-116	Horsea
-117	Seadra
-118	Goldeen
-119	Seaking
-120	Staryu
-121	Starmie
-122	Mr. Mime
-123	Scyther
-124	Jynx
-125	Electabuzz
-126	Magmar
-127	Pinsir
-128	Tauros
-129	Magikarp
-130	Gyarados
-131	Lapras
-132	Ditto
-133	Eevee
-134	Vaporeon
-135	Jolteon
-136	Flareon
-137	Porygon
-138	Omanyte
-139	Omastar
-140	Kabuto
-141	Kabutops
-142	Aerodactyl
-143	Snorlax
-144	Articuno
-145	Zapdos
-146	Moltres
-147	Dratini
-148	Dragonair
-149	Dragonite
-150	Mewtwo
-151	Mew
-152	Chikorita
-153	Bayleef
-154	Meganium
-155	Cyndaquil
-156	Quilava
-157	Typhlosion
-158	Totodile
-159	Croconaw
-160	Feraligatr
-161	Sentret
-162	Furret
-163	Hoothoot
-164	Noctowl
-165	Ledyba
-166	Ledian
-167	Spinarak
-168	Ariados
-169	Crobat
-170	Chinchou
-171	Lanturn
-172	Pichu
-173	Cleffa
-174	Igglybuff
-175	Togepi
-176	Togetic
-177	Natu
-178	Xatu
-179	Mareep
-180	Flaaffy
-181	Ampharos
-182	Bellossom
-183	Marill
-184	Azumarill
-185	Sudowoodo
-186	Politoed
-187	Hoppip
-188	Skiploom
-189	Jumpluff
-190	Aipom
-191	Sunkern
-192	Sunflora
-193	Yanma
-194	Wooper
-195	Quagsire
-196	Espeon
-197	Umbreon
-198	Murkrow
-199	Slowking
-200	Misdreavus
-201	Unown
-202	Wobbuffet
-203	Girafarig
-204	Pineco
-205	Forretress
-206	Dunsparce
-207	Gligar
-208	Steelix
-209	Snubbull
-210	Granbull
-211	Qwilfish
-212	Scizor
-213	Shuckle
-214	Heracross
-215	Sneasel
-216	Teddiursa
-217	Ursaring
-218	Slugma
-219	Magcargo
-220	Swinub
-221	Piloswine
-222	Corsola
-223	Remoraid
-224	Octillery
-225	Delibird
-226	Mantine
-227	Skarmory
-228	Houndour
-229	Houndoom
-230	Kingdra
-231	Phanpy
-232	Donphan
-233	Porygon2
-234	Stantler
-235	Smeargle
-236	Tyrogue
-237	Hitmontop
-238	Smoochum
-239	Elekid
-240	Magby
-241	Miltank
-242	Blissey
-243	Raikou
-244	Entei
-245	Suicune
-246	Larvitar
-247	Pupitar
-248	Tyranitar
-249	Lugia
-250	Ho-Oh
-251	Celebi
-252	Treecko
-253	Grovyle
-254	Sceptile
-255	Torchic
-256	Combusken
-257	Blaziken
-258	Mudkip
-259	Marshtomp
-260	Swampert
-261	Poochyena
-262	Mightyena
-263	Zigzagoon
-264	Linoone
-265	Wurmple
-266	Silcoon
-267	Beautifly
-268	Cascoon
-269	Dustox
-270	Lotad
-271	Lombre
-272	Ludicolo
-273	Seedot
-274	Nuzleaf
-275	Shiftry
-276	Taillow
-277	Swellow
-278	Wingull
-279	Pelipper
-280	Ralts
-281	Kirlia
-282	Gardevoir
-283	Surskit
-284	Masquerain
-285	Shroomish
-286	Breloom
-287	Slakoth
-288	Vigoroth
-289	Slaking
-290	Nincada
-291	Ninjask
-292	Shedinja
-293	Whismur
-294	Loudred
-295	Exploud
-296	Makuhita
-297	Hariyama
-298	Azurill
-299	Nosepass
-300	Skitty
-301	Delcatty
-302	Sableye
-303	Mawile
-304	Aron
-305	Lairon
-306	Aggron
-307	Meditite
-308	Medicham
-309	Electrike
-310	Manectric
-311	Plusle
-312	Minun
-313	Volbeat
-314	Illumise
-315	Roselia
-316	Gulpin
-317	Swalot
-318	Carvanha
-319	Sharpedo
-320	Wailmer
-321	Wailord
-322	Numel
-323	Camerupt
-324	Torkoal
-325	Spoink
-326	Grumpig
-327	Spinda
-328	Trapinch
-329	Vibrava
-330	Flygon
-331	Cacnea
-332	Cacturne
-333	Swablu
-334	Altaria
-335	Zangoose
-336	Seviper
-337	Lunatone
-338	Solrock
-339	Barboach
-340	Whiscash
-341	Corphish
-342	Crawdaunt
-343	Baltoy
-344	Claydol
-345	Lileep
-346	Cradily
-347	Anorith
-348	Armaldo
-349	Feebas
-350	Milotic
-351	Castform
-352	Kecleon
-353	Shuppet
-354	Banette
-355	Duskull
-356	Dusclops
-357	Tropius
-358	Chimecho
-359	Absol
-360	Wynaut
-361	Snorunt
-362	Glalie
-363	Spheal
-364	Sealeo
-365	Walrein
-366	Clamperl
-367	Huntail
-368	Gorebyss
-369	Relicanth
-370	Luvdisc
-371	Bagon
-372	Shelgon
-373	Salamence
-374	Beldum
-375	Metang
-376	Metagross
-377	Regirock
-378	Regice
-379	Registeel
-380	Latias
-381	Latios
-382	Kyogre
-383	Groudon
-384	Rayquaza
-385	Jirachi
-386	Deoxys
-387	Turtwig
-388	Grotle
-389	Torterra
-390	Chimchar
-391	Monferno
-392	Infernape
-393	Piplup
-394	Prinplup
-395	Empoleon
-396	Starly
-397	Staravia
-398	Staraptor
-399	Bidoof
-400	Bibarel
-401	Kricketot
-402	Kricketune
-403	Shinx
-404	Luxio
-405	Luxray
-406	Budew
-407	Roserade
-408	Cranidos
-409	Rampardos
-410	Shieldon
-411	Bastiodon
-412	Burmy
-413	Wormadam
-414	Mothim
-415	Combee
-416	Vespiquen
-417	Pachirisu
-418	Buizel
-419	Floatzel
-420	Cherubi
-421	Cherrim
-422	Shellos
-423	Gastrodon
-424	Ambipom
-425	Drifloon
-426	Drifblim
-427	Buneary
-428	Lopunny
-429	Mismagius
-430	Honchkrow
-431	Glameow
-432	Purugly
-433	Chingling
-434	Stunky
-435	Skuntank
-436	Bronzor
-437	Bronzong
-438	Bonsly
-439	Mime Jr.
-440	Happiny
-441	Chatot
-442	Spiritomb
-443	Gible
-444	Gabite
-445	Garchomp
-446	Munchlax
-447	Riolu
-448	Lucario
-449	Hippopotas
-450	Hippowdon
-451	Skorupi
-452	Drapion
-453	Croagunk
-454	Toxicroak
-455	Carnivine
-456	Finneon
-457	Lumineon
-458	Mantyke
-459	Snover
-460	Abomasnow
-461	Weavile
-462	Magnezone
-463	Lickilicky
-464	Rhyperior
-465	Tangrowth
-466	Electivire
-467	Magmortar
-468	Togekiss
-469	Yanmega
-470	Leafeon
-471	Glaceon
-472	Gliscor
-473	Mamoswine
-474	Porygon-Z
-475	Gallade
-476	Probopass
-477	Dusknoir
-478	Froslass
-479	Rotom
-480	Uxie
-481	Mesprit
-482	Azelf
-483	Dialga
-484	Palkia
-485	Heatran
-486	Regigigas
-487	Giratina
-488	Cresselia
-489	Phione
-490	Manaphy
-491	Darkrai
-492	Shaymin
-493	Arceus
-494	Victini
-495	Snivy
-496	Servine
-497	Serperior
-498	Tepig
-499	Pignite
-500	Emboar
-501	Oshawott
-502	Dewott
-503	Samurott
-504	Patrat
-505	Watchog
-506	Lillipup
-507	Herdier
-508	Stoutland
-509	Purrloin
-510	Liepard
-511	Pansage
-512	Simisage
-513	Pansear
-514	Simisear
-515	Panpour
-516	Simipour
-517	Munna
-518	Musharna
-519	Pidove
-520	Tranquill
-521	Unfezant
-522	Blitzle
-523	Zebstrika
-524	Roggenrola
-525	Boldore
-526	Gigalith
-527	Woobat
-528	Swoobat
-529	Drilbur
-530	Excadrill
-531	Audino
-532	Timburr
-533	Gurdurr
-534	Conkeldurr
-535	Tympole
-536	Palpitoad
-537	Seismitoad
-538	Throh
-539	Sawk
-540	Sewaddle
-541	Swadloon
-542	Leavanny
-543	Venipede
-544	Whirlipede
-545	Scolipede
-546	Cottonee
-547	Whimsicott
-548	Petilil
-549	Lilligant
-550	Basculin
-551	Sandile
-552	Krokorok
-553	Krookodile
-554	Darumaka
-555	Darmanitan
-556	Maractus
-557	Dwebble
-558	Crustle
-559	Scraggy
-560	Scrafty
-561	Sigilyph
-562	Yamask
-563	Cofagrigus
-564	Tirtouga
-565	Carracosta
-566	Archen
-567	Archeops
-568	Trubbish
-569	Garbodor
-570	Zorua
-571	Zoroark
-572	Minccino
-573	Cinccino
-574	Gothita
-575	Gothorita
-576	Gothitelle
-577	Solosis
-578	Duosion
-579	Reuniclus
-580	Ducklett
-581	Swanna
-582	Vanillite
-583	Vanillish
-584	Vanilluxe
-585	Deerling
-586	Sawsbuck
-587	Emolga
-588	Karrablast
-589	Escavalier
-590	Foongus
-591	Amoonguss
-592	Frillish
-593	Jellicent
-594	Alomomola
-595	Joltik
-596	Galvantula
-597	Ferroseed
-598	Ferrothorn
-599	Klink
-600	Klang
-601	Klinklang
-602	Tynamo
-603	Eelektrik
-604	Eelektross
-605	Elgyem
-606	Beheeyem
-607	Litwick
-608	Lampent
-609	Chandelure
-610	Axew
-611	Fraxure
-612	Haxorus
-613	Cubchoo
-614	Beartic
-615	Cryogonal
-616	Shelmet
-617	Accelgor
-618	Stunfisk
-619	Mienfoo
-620	Mienshao
-621	Druddigon
-622	Golett
-623	Golurk
-624	Pawniard
-625	Bisharp
-626	Bouffalant
-627	Rufflet
-628	Braviary
-629	Vullaby
-630	Mandibuzz
-631	Heatmor
-632	Durant
-633	Deino
-634	Zweilous
-635	Hydreigon
-636	Larvesta
-637	Volcarona
-638	Cobalion
-639	Terrakion
-640	Virizion
-641	Tornadus
-642	Thundurus
-643	Reshiram
-644	Zekrom
-645	Landorus
-646	Kyurem
-647	Keldeo
-648	Meloetta
-649	Genesect
-650	Chespin
-651	Quilladin
-652	Chesnaught
-653	Fennekin
-654	Braixen
-655	Delphox
-656	Froakie
-657	Frogadier
-658	Greninja
-659	Bunnelby
-660	Diggersby
-661	Fletchling
-662	Fletchinder
-663	Talonflame
-664	Scatterbug
-665	Spewpa
-666	Vivillon
-667	Litleo
-668	Pyroar
-669	Flabébé
-670	Floette
-671	Florges
-672	Skiddo
-673	Gogoat
-674	Pancham
-675	Pangoro
-676	Furfrou
-677	Espurr
-678	Meowstic
-679	Honedge
-680	Doublade
-681	Aegislash
-682	Spritzee
-683	Aromatisse
-684	Swirlix
-685	Slurpuff
-686	Inkay
-687	Malamar
-688	Binacle
-689	Barbaracle
-690	Skrelp
-691	Dragalge
-692	Clauncher
-693	Clawitzer
-694	Helioptile
-695	Heliolisk
-696	Tyrunt
-697	Tyrantrum
-698	Amaura
-699	Aurorus
-700	Sylveon
-701	Hawlucha
-702	Dedenne
-703	Carbink
-704	Goomy
-705	Sliggoo
-706	Goodra
-707	Klefki
-708	Phantump
-709	Trevenant
-710	Pumpkaboo
-711	Gourgeist
-712	Bergmite
-713	Avalugg
-714	Noibat
-715	Noivern
-716	Xerneas
-717	Yveltal
-718	Zygarde
-719	Diancie
-720	Hoopa
-721	Volcanion
-722	Rowlet
-723	Dartrix
-724	Decidueye
-725	Litten
-726	Torracat
-727	Incineroar
-728	Popplio
-729	Brionne
-730	Primarina
-731	Pikipek
-732	Trumbeak
-733	Toucannon
-734	Yungoos
-735	Gumshoos
-736	Grubbin
-737	Charjabug
-738	Vikavolt
-739	Crabrawler
-740	Crabominable
-741	Oricorio
-742	Cutiefly
-743	Ribombee
-744	Rockruff
-745	Lycanroc
-746	Wishiwashi
-747	Mareanie
-748	Toxapex
-749	Mudbray
-750	Mudsdale
-751	Dewpider
-752	Araquanid
-753	Fomantis
-754	Lurantis
-755	Morelull
-756	Shiinotic
-757	Salandit
-758	Salazzle
-759	Stufful
-760	Bewear
-761	Bounsweet
-762	Steenee
-763	Tsareena
-764	Comfey
-765	Oranguru
-766	Passimian
-767	Wimpod
-768	Golisopod
-769	Sandygast
-770	Palossand
-771	Pyukumuku
-772	Type: Null
-773	Silvally
-774	Minior
-775	Komala
-776	Turtonator
-777	Togedemaru
-778	Mimikyu
-779	Bruxish
-780	Drampa
-781	Dhelmise
-782	Jangmo-o
-783	Hakamo-o
-784	Kommo-o
-785	Tapu Koko
-786	Tapu Lele
-787	Tapu Bulu
-788	Tapu Fini
-789	Cosmog
-790	Cosmoem
-791	Solgaleo
-792	Lunala
-793	Nihilego
-794	Buzzwole
-795	Pheromosa
-796	Xurkitree
-797	Celesteela
-798	Kartana
-799	Guzzlord
-800	Necrozma
-801	Magearna
-802	Marshadow
-803	Poipole
-804	Naganadel
-805	Stakataka
-806	Blacephalon
-807	Zeraora
+# Species names by National Dex number: the 3DS carts' text (Pokémon Bank's for 803-807), by way of libxpe.
+# Italian and Spanish games use the English names, but for Type: Null.
+national	japanese	english	french	italian	german	spanish	korean
+1	フシギダネ	Bulbasaur	Bulbizarre	Bulbasaur	Bisasam	Bulbasaur	이상해씨
+2	フシギソウ	Ivysaur	Herbizarre	Ivysaur	Bisaknosp	Ivysaur	이상해풀
+3	フシギバナ	Venusaur	Florizarre	Venusaur	Bisaflor	Venusaur	이상해꽃
+4	ヒトカゲ	Charmander	Salamèche	Charmander	Glumanda	Charmander	파이리
+5	リザード	Charmeleon	Reptincel	Charmeleon	Glutexo	Charmeleon	리자드
+6	リザードン	Charizard	Dracaufeu	Charizard	Glurak	Charizard	리자몽
+7	ゼニガメ	Squirtle	Carapuce	Squirtle	Schiggy	Squirtle	꼬부기
+8	カメール	Wartortle	Carabaffe	Wartortle	Schillok	Wartortle	어니부기
+9	カメックス	Blastoise	Tortank	Blastoise	Turtok	Blastoise	거북왕
+10	キャタピー	Caterpie	Chenipan	Caterpie	Raupy	Caterpie	캐터피
+11	トランセル	Metapod	Chrysacier	Metapod	Safcon	Metapod	단데기
+12	バタフリー	Butterfree	Papilusion	Butterfree	Smettbo	Butterfree	버터플
+13	ビードル	Weedle	Aspicot	Weedle	Hornliu	Weedle	뿔충이
+14	コクーン	Kakuna	Coconfort	Kakuna	Kokuna	Kakuna	딱충이
+15	スピアー	Beedrill	Dardargnan	Beedrill	Bibor	Beedrill	독침붕
+16	ポッポ	Pidgey	Roucool	Pidgey	Taubsi	Pidgey	구구
+17	ピジョン	Pidgeotto	Roucoups	Pidgeotto	Tauboga	Pidgeotto	피죤
+18	ピジョット	Pidgeot	Roucarnage	Pidgeot	Tauboss	Pidgeot	피죤투
+19	コラッタ	Rattata	Rattata	Rattata	Rattfratz	Rattata	꼬렛
+20	ラッタ	Raticate	Rattatac	Raticate	Rattikarl	Raticate	레트라
+21	オニスズメ	Spearow	Piafabec	Spearow	Habitak	Spearow	깨비참
+22	オニドリル	Fearow	Rapasdepic	Fearow	Ibitak	Fearow	깨비드릴조
+23	アーボ	Ekans	Abo	Ekans	Rettan	Ekans	아보
+24	アーボック	Arbok	Arbok	Arbok	Arbok	Arbok	아보크
+25	ピカチュウ	Pikachu	Pikachu	Pikachu	Pikachu	Pikachu	피카츄
+26	ライチュウ	Raichu	Raichu	Raichu	Raichu	Raichu	라이츄
+27	サンド	Sandshrew	Sabelette	Sandshrew	Sandan	Sandshrew	모래두지
+28	サンドパン	Sandslash	Sablaireau	Sandslash	Sandamer	Sandslash	고지
+29	ニドラン♀	Nidoran♀	Nidoran♀	Nidoran♀	Nidoran♀	Nidoran♀	니드런♀
+30	ニドリーナ	Nidorina	Nidorina	Nidorina	Nidorina	Nidorina	니드리나
+31	ニドクイン	Nidoqueen	Nidoqueen	Nidoqueen	Nidoqueen	Nidoqueen	니드퀸
+32	ニドラン♂	Nidoran♂	Nidoran♂	Nidoran♂	Nidoran♂	Nidoran♂	니드런♂
+33	ニドリーノ	Nidorino	Nidorino	Nidorino	Nidorino	Nidorino	니드리노
+34	ニドキング	Nidoking	Nidoking	Nidoking	Nidoking	Nidoking	니드킹
+35	ピッピ	Clefairy	Mélofée	Clefairy	Piepi	Clefairy	삐삐
+36	ピクシー	Clefable	Mélodelfe	Clefable	Pixi	Clefable	픽시
+37	ロコン	Vulpix	Goupix	Vulpix	Vulpix	Vulpix	식스테일
+38	キュウコン	Ninetales	Feunard	Ninetales	Vulnona	Ninetales	나인테일
+39	プリン	Jigglypuff	Rondoudou	Jigglypuff	Pummeluff	Jigglypuff	푸린
+40	プクリン	Wigglytuff	Grodoudou	Wigglytuff	Knuddeluff	Wigglytuff	푸크린
+41	ズバット	Zubat	Nosferapti	Zubat	Zubat	Zubat	주뱃
+42	ゴルバット	Golbat	Nosferalto	Golbat	Golbat	Golbat	골뱃
+43	ナゾノクサ	Oddish	Mystherbe	Oddish	Myrapla	Oddish	뚜벅쵸
+44	クサイハナ	Gloom	Ortide	Gloom	Duflor	Gloom	냄새꼬
+45	ラフレシア	Vileplume	Rafflesia	Vileplume	Giflor	Vileplume	라플레시아
+46	パラス	Paras	Paras	Paras	Paras	Paras	파라스
+47	パラセクト	Parasect	Parasect	Parasect	Parasek	Parasect	파라섹트
+48	コンパン	Venonat	Mimitoss	Venonat	Bluzuk	Venonat	콘팡
+49	モルフォン	Venomoth	Aéromite	Venomoth	Omot	Venomoth	도나리
+50	ディグダ	Diglett	Taupiqueur	Diglett	Digda	Diglett	디그다
+51	ダグトリオ	Dugtrio	Triopikeur	Dugtrio	Digdri	Dugtrio	닥트리오
+52	ニャース	Meowth	Miaouss	Meowth	Mauzi	Meowth	나옹
+53	ペルシアン	Persian	Persian	Persian	Snobilikat	Persian	페르시온
+54	コダック	Psyduck	Psykokwak	Psyduck	Enton	Psyduck	고라파덕
+55	ゴルダック	Golduck	Akwakwak	Golduck	Entoron	Golduck	골덕
+56	マンキー	Mankey	Férosinge	Mankey	Menki	Mankey	망키
+57	オコリザル	Primeape	Colossinge	Primeape	Rasaff	Primeape	성원숭
+58	ガーディ	Growlithe	Caninos	Growlithe	Fukano	Growlithe	가디
+59	ウインディ	Arcanine	Arcanin	Arcanine	Arkani	Arcanine	윈디
+60	ニョロモ	Poliwag	Ptitard	Poliwag	Quapsel	Poliwag	발챙이
+61	ニョロゾ	Poliwhirl	Têtarte	Poliwhirl	Quaputzi	Poliwhirl	슈륙챙이
+62	ニョロボン	Poliwrath	Tartard	Poliwrath	Quappo	Poliwrath	강챙이
+63	ケーシィ	Abra	Abra	Abra	Abra	Abra	캐이시
+64	ユンゲラー	Kadabra	Kadabra	Kadabra	Kadabra	Kadabra	윤겔라
+65	フーディン	Alakazam	Alakazam	Alakazam	Simsala	Alakazam	후딘
+66	ワンリキー	Machop	Machoc	Machop	Machollo	Machop	알통몬
+67	ゴーリキー	Machoke	Machopeur	Machoke	Maschock	Machoke	근육몬
+68	カイリキー	Machamp	Mackogneur	Machamp	Machomei	Machamp	괴력몬
+69	マダツボミ	Bellsprout	Chétiflor	Bellsprout	Knofensa	Bellsprout	모다피
+70	ウツドン	Weepinbell	Boustiflor	Weepinbell	Ultrigaria	Weepinbell	우츠동
+71	ウツボット	Victreebel	Empiflor	Victreebel	Sarzenia	Victreebel	우츠보트
+72	メノクラゲ	Tentacool	Tentacool	Tentacool	Tentacha	Tentacool	왕눈해
+73	ドククラゲ	Tentacruel	Tentacruel	Tentacruel	Tentoxa	Tentacruel	독파리
+74	イシツブテ	Geodude	Racaillou	Geodude	Kleinstein	Geodude	꼬마돌
+75	ゴローン	Graveler	Gravalanch	Graveler	Georok	Graveler	데구리
+76	ゴローニャ	Golem	Grolem	Golem	Geowaz	Golem	딱구리
+77	ポニータ	Ponyta	Ponyta	Ponyta	Ponita	Ponyta	포니타
+78	ギャロップ	Rapidash	Galopa	Rapidash	Gallopa	Rapidash	날쌩마
+79	ヤドン	Slowpoke	Ramoloss	Slowpoke	Flegmon	Slowpoke	야돈
+80	ヤドラン	Slowbro	Flagadoss	Slowbro	Lahmus	Slowbro	야도란
+81	コイル	Magnemite	Magnéti	Magnemite	Magnetilo	Magnemite	코일
+82	レアコイル	Magneton	Magnéton	Magneton	Magneton	Magneton	레어코일
+83	カモネギ	Farfetch’d	Canarticho	Farfetch’d	Porenta	Farfetch’d	파오리
+84	ドードー	Doduo	Doduo	Doduo	Dodu	Doduo	두두
+85	ドードリオ	Dodrio	Dodrio	Dodrio	Dodri	Dodrio	두트리오
+86	パウワウ	Seel	Otaria	Seel	Jurob	Seel	쥬쥬
+87	ジュゴン	Dewgong	Lamantine	Dewgong	Jugong	Dewgong	쥬레곤
+88	ベトベター	Grimer	Tadmorv	Grimer	Sleima	Grimer	질퍽이
+89	ベトベトン	Muk	Grotadmorv	Muk	Sleimok	Muk	질뻐기
+90	シェルダー	Shellder	Kokiyas	Shellder	Muschas	Shellder	셀러
+91	パルシェン	Cloyster	Crustabri	Cloyster	Austos	Cloyster	파르셀
+92	ゴース	Gastly	Fantominus	Gastly	Nebulak	Gastly	고오스
+93	ゴースト	Haunter	Spectrum	Haunter	Alpollo	Haunter	고우스트
+94	ゲンガー	Gengar	Ectoplasma	Gengar	Gengar	Gengar	팬텀
+95	イワーク	Onix	Onix	Onix	Onix	Onix	롱스톤
+96	スリープ	Drowzee	Soporifik	Drowzee	Traumato	Drowzee	슬리프
+97	スリーパー	Hypno	Hypnomade	Hypno	Hypno	Hypno	슬리퍼
+98	クラブ	Krabby	Krabby	Krabby	Krabby	Krabby	크랩
+99	キングラー	Kingler	Krabboss	Kingler	Kingler	Kingler	킹크랩
+100	ビリリダマ	Voltorb	Voltorbe	Voltorb	Voltobal	Voltorb	찌리리공
+101	マルマイン	Electrode	Électrode	Electrode	Lektrobal	Electrode	붐볼
+102	タマタマ	Exeggcute	Noeunoeuf	Exeggcute	Owei	Exeggcute	아라리
+103	ナッシー	Exeggutor	Noadkoko	Exeggutor	Kokowei	Exeggutor	나시
+104	カラカラ	Cubone	Osselait	Cubone	Tragosso	Cubone	탕구리
+105	ガラガラ	Marowak	Ossatueur	Marowak	Knogga	Marowak	텅구리
+106	サワムラー	Hitmonlee	Kicklee	Hitmonlee	Kicklee	Hitmonlee	시라소몬
+107	エビワラー	Hitmonchan	Tygnon	Hitmonchan	Nockchan	Hitmonchan	홍수몬
+108	ベロリンガ	Lickitung	Excelangue	Lickitung	Schlurp	Lickitung	내루미
+109	ドガース	Koffing	Smogo	Koffing	Smogon	Koffing	또가스
+110	マタドガス	Weezing	Smogogo	Weezing	Smogmog	Weezing	또도가스
+111	サイホーン	Rhyhorn	Rhinocorne	Rhyhorn	Rihorn	Rhyhorn	뿔카노
+112	サイドン	Rhydon	Rhinoféros	Rhydon	Rizeros	Rhydon	코뿌리
+113	ラッキー	Chansey	Leveinard	Chansey	Chaneira	Chansey	럭키
+114	モンジャラ	Tangela	Saquedeneu	Tangela	Tangela	Tangela	덩쿠리
+115	ガルーラ	Kangaskhan	Kangourex	Kangaskhan	Kangama	Kangaskhan	캥카
+116	タッツー	Horsea	Hypotrempe	Horsea	Seeper	Horsea	쏘드라
+117	シードラ	Seadra	Hypocéan	Seadra	Seemon	Seadra	시드라
+118	トサキント	Goldeen	Poissirène	Goldeen	Goldini	Goldeen	콘치
+119	アズマオウ	Seaking	Poissoroy	Seaking	Golking	Seaking	왕콘치
+120	ヒトデマン	Staryu	Stari	Staryu	Sterndu	Staryu	별가사리
+121	スターミー	Starmie	Staross	Starmie	Starmie	Starmie	아쿠스타
+122	バリヤード	Mr. Mime	M. Mime	Mr. Mime	Pantimos	Mr. Mime	마임맨
+123	ストライク	Scyther	Insécateur	Scyther	Sichlor	Scyther	스라크
+124	ルージュラ	Jynx	Lippoutou	Jynx	Rossana	Jynx	루주라
+125	エレブー	Electabuzz	Élektek	Electabuzz	Elektek	Electabuzz	에레브
+126	ブーバー	Magmar	Magmar	Magmar	Magmar	Magmar	마그마
+127	カイロス	Pinsir	Scarabrute	Pinsir	Pinsir	Pinsir	쁘사이저
+128	ケンタロス	Tauros	Tauros	Tauros	Tauros	Tauros	켄타로스
+129	コイキング	Magikarp	Magicarpe	Magikarp	Karpador	Magikarp	잉어킹
+130	ギャラドス	Gyarados	Léviator	Gyarados	Garados	Gyarados	갸라도스
+131	ラプラス	Lapras	Lokhlass	Lapras	Lapras	Lapras	라프라스
+132	メタモン	Ditto	Métamorph	Ditto	Ditto	Ditto	메타몽
+133	イーブイ	Eevee	Évoli	Eevee	Evoli	Eevee	이브이
+134	シャワーズ	Vaporeon	Aquali	Vaporeon	Aquana	Vaporeon	샤미드
+135	サンダース	Jolteon	Voltali	Jolteon	Blitza	Jolteon	쥬피썬더
+136	ブースター	Flareon	Pyroli	Flareon	Flamara	Flareon	부스터
+137	ポリゴン	Porygon	Porygon	Porygon	Porygon	Porygon	폴리곤
+138	オムナイト	Omanyte	Amonita	Omanyte	Amonitas	Omanyte	암나이트
+139	オムスター	Omastar	Amonistar	Omastar	Amoroso	Omastar	암스타
+140	カブト	Kabuto	Kabuto	Kabuto	Kabuto	Kabuto	투구
+141	カブトプス	Kabutops	Kabutops	Kabutops	Kabutops	Kabutops	투구푸스
+142	プテラ	Aerodactyl	Ptéra	Aerodactyl	Aerodactyl	Aerodactyl	프테라
+143	カビゴン	Snorlax	Ronflex	Snorlax	Relaxo	Snorlax	잠만보
+144	フリーザー	Articuno	Artikodin	Articuno	Arktos	Articuno	프리져
+145	サンダー	Zapdos	Électhor	Zapdos	Zapdos	Zapdos	썬더
+146	ファイヤー	Moltres	Sulfura	Moltres	Lavados	Moltres	파이어
+147	ミニリュウ	Dratini	Minidraco	Dratini	Dratini	Dratini	미뇽
+148	ハクリュー	Dragonair	Draco	Dragonair	Dragonir	Dragonair	신뇽
+149	カイリュー	Dragonite	Dracolosse	Dragonite	Dragoran	Dragonite	망나뇽
+150	ミュウツー	Mewtwo	Mewtwo	Mewtwo	Mewtu	Mewtwo	뮤츠
+151	ミュウ	Mew	Mew	Mew	Mew	Mew	뮤
+152	チコリータ	Chikorita	Germignon	Chikorita	Endivie	Chikorita	치코리타
+153	ベイリーフ	Bayleef	Macronium	Bayleef	Lorblatt	Bayleef	베이리프
+154	メガニウム	Meganium	Méganium	Meganium	Meganie	Meganium	메가니움
+155	ヒノアラシ	Cyndaquil	Héricendre	Cyndaquil	Feurigel	Cyndaquil	브케인
+156	マグマラシ	Quilava	Feurisson	Quilava	Igelavar	Quilava	마그케인
+157	バクフーン	Typhlosion	Typhlosion	Typhlosion	Tornupto	Typhlosion	블레이범
+158	ワニノコ	Totodile	Kaiminus	Totodile	Karnimani	Totodile	리아코
+159	アリゲイツ	Croconaw	Crocrodil	Croconaw	Tyracroc	Croconaw	엘리게이
+160	オーダイル	Feraligatr	Aligatueur	Feraligatr	Impergator	Feraligatr	장크로다일
+161	オタチ	Sentret	Fouinette	Sentret	Wiesor	Sentret	꼬리선
+162	オオタチ	Furret	Fouinar	Furret	Wiesenior	Furret	다꼬리
+163	ホーホー	Hoothoot	Hoothoot	Hoothoot	Hoothoot	Hoothoot	부우부
+164	ヨルノズク	Noctowl	Noarfang	Noctowl	Noctuh	Noctowl	야부엉
+165	レディバ	Ledyba	Coxy	Ledyba	Ledyba	Ledyba	레디바
+166	レディアン	Ledian	Coxyclaque	Ledian	Ledian	Ledian	레디안
+167	イトマル	Spinarak	Mimigal	Spinarak	Webarak	Spinarak	페이검
+168	アリアドス	Ariados	Migalos	Ariados	Ariados	Ariados	아리아도스
+169	クロバット	Crobat	Nostenfer	Crobat	Iksbat	Crobat	크로뱃
+170	チョンチー	Chinchou	Loupio	Chinchou	Lampi	Chinchou	초라기
+171	ランターン	Lanturn	Lanturn	Lanturn	Lanturn	Lanturn	랜턴
+172	ピチュー	Pichu	Pichu	Pichu	Pichu	Pichu	피츄
+173	ピィ	Cleffa	Mélo	Cleffa	Pii	Cleffa	삐
+174	ププリン	Igglybuff	Toudoudou	Igglybuff	Fluffeluff	Igglybuff	푸푸린
+175	トゲピー	Togepi	Togepi	Togepi	Togepi	Togepi	토게피
+176	トゲチック	Togetic	Togetic	Togetic	Togetic	Togetic	토게틱
+177	ネイティ	Natu	Natu	Natu	Natu	Natu	네이티
+178	ネイティオ	Xatu	Xatu	Xatu	Xatu	Xatu	네이티오
+179	メリープ	Mareep	Wattouat	Mareep	Voltilamm	Mareep	메리프
+180	モココ	Flaaffy	Lainergie	Flaaffy	Waaty	Flaaffy	보송송
+181	デンリュウ	Ampharos	Pharamp	Ampharos	Ampharos	Ampharos	전룡
+182	キレイハナ	Bellossom	Joliflor	Bellossom	Blubella	Bellossom	아르코
+183	マリル	Marill	Marill	Marill	Marill	Marill	마릴
+184	マリルリ	Azumarill	Azumarill	Azumarill	Azumarill	Azumarill	마릴리
+185	ウソッキー	Sudowoodo	Simularbre	Sudowoodo	Mogelbaum	Sudowoodo	꼬지모
+186	ニョロトノ	Politoed	Tarpaud	Politoed	Quaxo	Politoed	왕구리
+187	ハネッコ	Hoppip	Granivol	Hoppip	Hoppspross	Hoppip	통통코
+188	ポポッコ	Skiploom	Floravol	Skiploom	Hubelupf	Skiploom	두코
+189	ワタッコ	Jumpluff	Cotovol	Jumpluff	Papungha	Jumpluff	솜솜코
+190	エイパム	Aipom	Capumain	Aipom	Griffel	Aipom	에이팜
+191	ヒマナッツ	Sunkern	Tournegrin	Sunkern	Sonnkern	Sunkern	해너츠
+192	キマワリ	Sunflora	Héliatronc	Sunflora	Sonnflora	Sunflora	해루미
+193	ヤンヤンマ	Yanma	Yanma	Yanma	Yanma	Yanma	왕자리
+194	ウパー	Wooper	Axoloto	Wooper	Felino	Wooper	우파
+195	ヌオー	Quagsire	Maraiste	Quagsire	Morlord	Quagsire	누오
+196	エーフィ	Espeon	Mentali	Espeon	Psiana	Espeon	에브이
+197	ブラッキー	Umbreon	Noctali	Umbreon	Nachtara	Umbreon	블래키
+198	ヤミカラス	Murkrow	Cornèbre	Murkrow	Kramurx	Murkrow	니로우
+199	ヤドキング	Slowking	Roigada	Slowking	Laschoking	Slowking	야도킹
+200	ムウマ	Misdreavus	Feuforêve	Misdreavus	Traunfugil	Misdreavus	무우마
+201	アンノーン	Unown	Zarbi	Unown	Icognito	Unown	안농
+202	ソーナンス	Wobbuffet	Qulbutoké	Wobbuffet	Woingenau	Wobbuffet	마자용
+203	キリンリキ	Girafarig	Girafarig	Girafarig	Girafarig	Girafarig	키링키
+204	クヌギダマ	Pineco	Pomdepik	Pineco	Tannza	Pineco	피콘
+205	フォレトス	Forretress	Foretress	Forretress	Forstellka	Forretress	쏘콘
+206	ノコッチ	Dunsparce	Insolourdo	Dunsparce	Dummisel	Dunsparce	노고치
+207	グライガー	Gligar	Scorplane	Gligar	Skorgla	Gligar	글라이거
+208	ハガネール	Steelix	Steelix	Steelix	Stahlos	Steelix	강철톤
+209	ブルー	Snubbull	Snubbull	Snubbull	Snubbull	Snubbull	블루
+210	グランブル	Granbull	Granbull	Granbull	Granbull	Granbull	그랑블루
+211	ハリーセン	Qwilfish	Qwilfish	Qwilfish	Baldorfish	Qwilfish	침바루
+212	ハッサム	Scizor	Cizayox	Scizor	Scherox	Scizor	핫삼
+213	ツボツボ	Shuckle	Caratroc	Shuckle	Pottrott	Shuckle	단단지
+214	ヘラクロス	Heracross	Scarhino	Heracross	Skaraborn	Heracross	헤라크로스
+215	ニューラ	Sneasel	Farfuret	Sneasel	Sniebel	Sneasel	포푸니
+216	ヒメグマ	Teddiursa	Teddiursa	Teddiursa	Teddiursa	Teddiursa	깜지곰
+217	リングマ	Ursaring	Ursaring	Ursaring	Ursaring	Ursaring	링곰
+218	マグマッグ	Slugma	Limagma	Slugma	Schneckmag	Slugma	마그마그
+219	マグカルゴ	Magcargo	Volcaropod	Magcargo	Magcargo	Magcargo	마그카르고
+220	ウリムー	Swinub	Marcacrin	Swinub	Quiekel	Swinub	꾸꾸리
+221	イノムー	Piloswine	Cochignon	Piloswine	Keifel	Piloswine	메꾸리
+222	サニーゴ	Corsola	Corayon	Corsola	Corasonn	Corsola	코산호
+223	テッポウオ	Remoraid	Rémoraid	Remoraid	Remoraid	Remoraid	총어
+224	オクタン	Octillery	Octillery	Octillery	Octillery	Octillery	대포무노
+225	デリバード	Delibird	Cadoizo	Delibird	Botogel	Delibird	딜리버드
+226	マンタイン	Mantine	Démanta	Mantine	Mantax	Mantine	만타인
+227	エアームド	Skarmory	Airmure	Skarmory	Panzaeron	Skarmory	무장조
+228	デルビル	Houndour	Malosse	Houndour	Hunduster	Houndour	델빌
+229	ヘルガー	Houndoom	Démolosse	Houndoom	Hundemon	Houndoom	헬가
+230	キングドラ	Kingdra	Hyporoi	Kingdra	Seedraking	Kingdra	킹드라
+231	ゴマゾウ	Phanpy	Phanpy	Phanpy	Phanpy	Phanpy	코코리
+232	ドンファン	Donphan	Donphan	Donphan	Donphan	Donphan	코리갑
+233	ポリゴン２	Porygon2	Porygon2	Porygon2	Porygon2	Porygon2	폴리곤2
+234	オドシシ	Stantler	Cerfrousse	Stantler	Damhirplex	Stantler	노라키
+235	ドーブル	Smeargle	Queulorior	Smeargle	Farbeagle	Smeargle	루브도
+236	バルキー	Tyrogue	Debugant	Tyrogue	Rabauz	Tyrogue	배루키
+237	カポエラー	Hitmontop	Kapoera	Hitmontop	Kapoera	Hitmontop	카포에라
+238	ムチュール	Smoochum	Lippouti	Smoochum	Kussilla	Smoochum	뽀뽀라
+239	エレキッド	Elekid	Élekid	Elekid	Elekid	Elekid	에레키드
+240	ブビィ	Magby	Magby	Magby	Magby	Magby	마그비
+241	ミルタンク	Miltank	Écrémeuh	Miltank	Miltank	Miltank	밀탱크
+242	ハピナス	Blissey	Leuphorie	Blissey	Heiteira	Blissey	해피너스
+243	ライコウ	Raikou	Raikou	Raikou	Raikou	Raikou	라이코
+244	エンテイ	Entei	Entei	Entei	Entei	Entei	앤테이
+245	スイクン	Suicune	Suicune	Suicune	Suicune	Suicune	스이쿤
+246	ヨーギラス	Larvitar	Embrylex	Larvitar	Larvitar	Larvitar	애버라스
+247	サナギラス	Pupitar	Ymphect	Pupitar	Pupitar	Pupitar	데기라스
+248	バンギラス	Tyranitar	Tyranocif	Tyranitar	Despotar	Tyranitar	마기라스
+249	ルギア	Lugia	Lugia	Lugia	Lugia	Lugia	루기아
+250	ホウオウ	Ho-Oh	Ho-Oh	Ho-Oh	Ho-Oh	Ho-Oh	칠색조
+251	セレビィ	Celebi	Celebi	Celebi	Celebi	Celebi	세레비
+252	キモリ	Treecko	Arcko	Treecko	Geckarbor	Treecko	나무지기
+253	ジュプトル	Grovyle	Massko	Grovyle	Reptain	Grovyle	나무돌이
+254	ジュカイン	Sceptile	Jungko	Sceptile	Gewaldro	Sceptile	나무킹
+255	アチャモ	Torchic	Poussifeu	Torchic	Flemmli	Torchic	아차모
+256	ワカシャモ	Combusken	Galifeu	Combusken	Jungglut	Combusken	영치코
+257	バシャーモ	Blaziken	Braségali	Blaziken	Lohgock	Blaziken	번치코
+258	ミズゴロウ	Mudkip	Gobou	Mudkip	Hydropi	Mudkip	물짱이
+259	ヌマクロー	Marshtomp	Flobio	Marshtomp	Moorabbel	Marshtomp	늪짱이
+260	ラグラージ	Swampert	Laggron	Swampert	Sumpex	Swampert	대짱이
+261	ポチエナ	Poochyena	Medhyèna	Poochyena	Fiffyen	Poochyena	포챠나
+262	グラエナ	Mightyena	Grahyèna	Mightyena	Magnayen	Mightyena	그라에나
+263	ジグザグマ	Zigzagoon	Zigzaton	Zigzagoon	Zigzachs	Zigzagoon	지그제구리
+264	マッスグマ	Linoone	Linéon	Linoone	Geradaks	Linoone	직구리
+265	ケムッソ	Wurmple	Chenipotte	Wurmple	Waumpel	Wurmple	개무소
+266	カラサリス	Silcoon	Armulys	Silcoon	Schaloko	Silcoon	실쿤
+267	アゲハント	Beautifly	Charmillon	Beautifly	Papinella	Beautifly	뷰티플라이
+268	マユルド	Cascoon	Blindalys	Cascoon	Panekon	Cascoon	카스쿤
+269	ドクケイル	Dustox	Papinox	Dustox	Pudox	Dustox	독케일
+270	ハスボー	Lotad	Nénupiot	Lotad	Loturzel	Lotad	연꽃몬
+271	ハスブレロ	Lombre	Lombre	Lombre	Lombrero	Lombre	로토스
+272	ルンパッパ	Ludicolo	Ludicolo	Ludicolo	Kappalores	Ludicolo	로파파
+273	タネボー	Seedot	Grainipiot	Seedot	Samurzel	Seedot	도토링
+274	コノハナ	Nuzleaf	Pifeuil	Nuzleaf	Blanas	Nuzleaf	잎새코
+275	ダーテング	Shiftry	Tengalice	Shiftry	Tengulist	Shiftry	다탱구
+276	スバメ	Taillow	Nirondelle	Taillow	Schwalbini	Taillow	테일로
+277	オオスバメ	Swellow	Hélédelle	Swellow	Schwalboss	Swellow	스왈로
+278	キャモメ	Wingull	Goélise	Wingull	Wingull	Wingull	갈모매
+279	ペリッパー	Pelipper	Bekipan	Pelipper	Pelipper	Pelipper	패리퍼
+280	ラルトス	Ralts	Tarsal	Ralts	Trasla	Ralts	랄토스
+281	キルリア	Kirlia	Kirlia	Kirlia	Kirlia	Kirlia	킬리아
+282	サーナイト	Gardevoir	Gardevoir	Gardevoir	Guardevoir	Gardevoir	가디안
+283	アメタマ	Surskit	Arakdo	Surskit	Gehweiher	Surskit	비구술
+284	アメモース	Masquerain	Maskadra	Masquerain	Maskeregen	Masquerain	비나방
+285	キノココ	Shroomish	Balignon	Shroomish	Knilz	Shroomish	버섯꼬
+286	キノガッサ	Breloom	Chapignon	Breloom	Kapilz	Breloom	버섯모
+287	ナマケロ	Slakoth	Parecool	Slakoth	Bummelz	Slakoth	게을로
+288	ヤルキモノ	Vigoroth	Vigoroth	Vigoroth	Muntier	Vigoroth	발바로
+289	ケッキング	Slaking	Monaflèmit	Slaking	Letarking	Slaking	게을킹
+290	ツチニン	Nincada	Ningale	Nincada	Nincada	Nincada	토중몬
+291	テッカニン	Ninjask	Ninjask	Ninjask	Ninjask	Ninjask	아이스크
+292	ヌケニン	Shedinja	Munja	Shedinja	Ninjatom	Shedinja	껍질몬
+293	ゴニョニョ	Whismur	Chuchmur	Whismur	Flurmel	Whismur	소곤룡
+294	ドゴーム	Loudred	Ramboum	Loudred	Krakeelo	Loudred	노공룡
+295	バクオング	Exploud	Brouhabam	Exploud	Krawumms	Exploud	폭음룡
+296	マクノシタ	Makuhita	Makuhita	Makuhita	Makuhita	Makuhita	마크탕
+297	ハリテヤマ	Hariyama	Hariyama	Hariyama	Hariyama	Hariyama	하리뭉
+298	ルリリ	Azurill	Azurill	Azurill	Azurill	Azurill	루리리
+299	ノズパス	Nosepass	Tarinor	Nosepass	Nasgnet	Nosepass	코코파스
+300	エネコ	Skitty	Skitty	Skitty	Eneco	Skitty	에나비
+301	エネコロロ	Delcatty	Delcatty	Delcatty	Enekoro	Delcatty	델케티
+302	ヤミラミ	Sableye	Ténéfix	Sableye	Zobiris	Sableye	깜까미
+303	クチート	Mawile	Mysdibule	Mawile	Flunkifer	Mawile	입치트
+304	ココドラ	Aron	Galekid	Aron	Stollunior	Aron	가보리
+305	コドラ	Lairon	Galegon	Lairon	Stollrak	Lairon	갱도라
+306	ボスゴドラ	Aggron	Galeking	Aggron	Stolloss	Aggron	보스로라
+307	アサナン	Meditite	Méditikka	Meditite	Meditie	Meditite	요가랑
+308	チャーレム	Medicham	Charmina	Medicham	Meditalis	Medicham	요가램
+309	ラクライ	Electrike	Dynavolt	Electrike	Frizelbliz	Electrike	썬더라이
+310	ライボルト	Manectric	Élecsprint	Manectric	Voltenso	Manectric	썬더볼트
+311	プラスル	Plusle	Posipi	Plusle	Plusle	Plusle	플러시
+312	マイナン	Minun	Négapi	Minun	Minun	Minun	마이농
+313	バルビート	Volbeat	Muciole	Volbeat	Volbeat	Volbeat	볼비트
+314	イルミーゼ	Illumise	Lumivole	Illumise	Illumise	Illumise	네오비트
+315	ロゼリア	Roselia	Rosélia	Roselia	Roselia	Roselia	로젤리아
+316	ゴクリン	Gulpin	Gloupti	Gulpin	Schluppuck	Gulpin	꼴깍몬
+317	マルノーム	Swalot	Avaltout	Swalot	Schlukwech	Swalot	꿀꺽몬
+318	キバニア	Carvanha	Carvanha	Carvanha	Kanivanha	Carvanha	샤프니아
+319	サメハダー	Sharpedo	Sharpedo	Sharpedo	Tohaido	Sharpedo	샤크니아
+320	ホエルコ	Wailmer	Wailmer	Wailmer	Wailmer	Wailmer	고래왕자
+321	ホエルオー	Wailord	Wailord	Wailord	Wailord	Wailord	고래왕
+322	ドンメル	Numel	Chamallot	Numel	Camaub	Numel	둔타
+323	バクーダ	Camerupt	Camérupt	Camerupt	Camerupt	Camerupt	폭타
+324	コータス	Torkoal	Chartor	Torkoal	Qurtel	Torkoal	코터스
+325	バネブー	Spoink	Spoink	Spoink	Spoink	Spoink	피그점프
+326	ブーピッグ	Grumpig	Groret	Grumpig	Groink	Grumpig	피그킹
+327	パッチール	Spinda	Spinda	Spinda	Pandir	Spinda	얼루기
+328	ナックラー	Trapinch	Kraknoix	Trapinch	Knacklion	Trapinch	톱치
+329	ビブラーバ	Vibrava	Vibraninf	Vibrava	Vibrava	Vibrava	비브라바
+330	フライゴン	Flygon	Libégon	Flygon	Libelldra	Flygon	플라이곤
+331	サボネア	Cacnea	Cacnea	Cacnea	Tuska	Cacnea	선인왕
+332	ノクタス	Cacturne	Cacturne	Cacturne	Noktuska	Cacturne	밤선인
+333	チルット	Swablu	Tylton	Swablu	Wablu	Swablu	파비코
+334	チルタリス	Altaria	Altaria	Altaria	Altaria	Altaria	파비코리
+335	ザングース	Zangoose	Mangriff	Zangoose	Sengo	Zangoose	쟝고
+336	ハブネーク	Seviper	Séviper	Seviper	Vipitis	Seviper	세비퍼
+337	ルナトーン	Lunatone	Séléroc	Lunatone	Lunastein	Lunatone	루나톤
+338	ソルロック	Solrock	Solaroc	Solrock	Sonnfel	Solrock	솔록
+339	ドジョッチ	Barboach	Barloche	Barboach	Schmerbe	Barboach	미꾸리
+340	ナマズン	Whiscash	Barbicha	Whiscash	Welsar	Whiscash	메깅
+341	ヘイガニ	Corphish	Écrapince	Corphish	Krebscorps	Corphish	가재군
+342	シザリガー	Crawdaunt	Colhomard	Crawdaunt	Krebutack	Crawdaunt	가재장군
+343	ヤジロン	Baltoy	Balbuto	Baltoy	Puppance	Baltoy	오뚝군
+344	ネンドール	Claydol	Kaorine	Claydol	Lepumentas	Claydol	점토도리
+345	リリーラ	Lileep	Lilia	Lileep	Liliep	Lileep	릴링
+346	ユレイドル	Cradily	Vacilys	Cradily	Wielie	Cradily	릴리요
+347	アノプス	Anorith	Anorith	Anorith	Anorith	Anorith	아노딥스
+348	アーマルド	Armaldo	Armaldo	Armaldo	Armaldo	Armaldo	아말도
+349	ヒンバス	Feebas	Barpau	Feebas	Barschwa	Feebas	빈티나
+350	ミロカロス	Milotic	Milobellus	Milotic	Milotic	Milotic	밀로틱
+351	ポワルン	Castform	Morphéo	Castform	Formeo	Castform	캐스퐁
+352	カクレオン	Kecleon	Kecleon	Kecleon	Kecleon	Kecleon	켈리몬
+353	カゲボウズ	Shuppet	Polichombr	Shuppet	Shuppet	Shuppet	어둠대신
+354	ジュペッタ	Banette	Branette	Banette	Banette	Banette	다크펫
+355	ヨマワル	Duskull	Skelénox	Duskull	Zwirrlicht	Duskull	해골몽
+356	サマヨール	Dusclops	Téraclope	Dusclops	Zwirrklop	Dusclops	미라몽
+357	トロピウス	Tropius	Tropius	Tropius	Tropius	Tropius	트로피우스
+358	チリーン	Chimecho	Éoko	Chimecho	Palimpalim	Chimecho	치렁
+359	アブソル	Absol	Absol	Absol	Absol	Absol	앱솔
+360	ソーナノ	Wynaut	Okéoké	Wynaut	Isso	Wynaut	마자
+361	ユキワラシ	Snorunt	Stalgamin	Snorunt	Schneppke	Snorunt	눈꼬마
+362	オニゴーリ	Glalie	Oniglali	Glalie	Firnontor	Glalie	얼음귀신
+363	タマザラシ	Spheal	Obalie	Spheal	Seemops	Spheal	대굴레오
+364	トドグラー	Sealeo	Phogleur	Sealeo	Seejong	Sealeo	씨레오
+365	トドゼルガ	Walrein	Kaimorse	Walrein	Walraisa	Walrein	씨카이저
+366	パールル	Clamperl	Coquiperl	Clamperl	Perlu	Clamperl	진주몽
+367	ハンテール	Huntail	Serpang	Huntail	Aalabyss	Huntail	헌테일
+368	サクラビス	Gorebyss	Rosabyss	Gorebyss	Saganabyss	Gorebyss	분홍장이
+369	ジーランス	Relicanth	Relicanth	Relicanth	Relicanth	Relicanth	시라칸
+370	ラブカス	Luvdisc	Lovdisc	Luvdisc	Liebiskus	Luvdisc	사랑동이
+371	タツベイ	Bagon	Draby	Bagon	Kindwurm	Bagon	아공이
+372	コモルー	Shelgon	Drackhaus	Shelgon	Draschel	Shelgon	쉘곤
+373	ボーマンダ	Salamence	Drattak	Salamence	Brutalanda	Salamence	보만다
+374	ダンバル	Beldum	Terhal	Beldum	Tanhel	Beldum	메탕
+375	メタング	Metang	Métang	Metang	Metang	Metang	메탕구
+376	メタグロス	Metagross	Métalosse	Metagross	Metagross	Metagross	메타그로스
+377	レジロック	Regirock	Regirock	Regirock	Regirock	Regirock	레지락
+378	レジアイス	Regice	Regice	Regice	Regice	Regice	레지아이스
+379	レジスチル	Registeel	Registeel	Registeel	Registeel	Registeel	레지스틸
+380	ラティアス	Latias	Latias	Latias	Latias	Latias	라티아스
+381	ラティオス	Latios	Latios	Latios	Latios	Latios	라티오스
+382	カイオーガ	Kyogre	Kyogre	Kyogre	Kyogre	Kyogre	가이오가
+383	グラードン	Groudon	Groudon	Groudon	Groudon	Groudon	그란돈
+384	レックウザ	Rayquaza	Rayquaza	Rayquaza	Rayquaza	Rayquaza	레쿠쟈
+385	ジラーチ	Jirachi	Jirachi	Jirachi	Jirachi	Jirachi	지라치
+386	デオキシス	Deoxys	Deoxys	Deoxys	Deoxys	Deoxys	테오키스
+387	ナエトル	Turtwig	Tortipouss	Turtwig	Chelast	Turtwig	모부기
+388	ハヤシガメ	Grotle	Boskara	Grotle	Chelcarain	Grotle	수풀부기
+389	ドダイトス	Torterra	Torterra	Torterra	Chelterrar	Torterra	토대부기
+390	ヒコザル	Chimchar	Ouisticram	Chimchar	Panflam	Chimchar	불꽃숭이
+391	モウカザル	Monferno	Chimpenfeu	Monferno	Panpyro	Monferno	파이숭이
+392	ゴウカザル	Infernape	Simiabraz	Infernape	Panferno	Infernape	초염몽
+393	ポッチャマ	Piplup	Tiplouf	Piplup	Plinfa	Piplup	팽도리
+394	ポッタイシ	Prinplup	Prinplouf	Prinplup	Pliprin	Prinplup	팽태자
+395	エンペルト	Empoleon	Pingoléon	Empoleon	Impoleon	Empoleon	엠페르트
+396	ムックル	Starly	Étourmi	Starly	Staralili	Starly	찌르꼬
+397	ムクバード	Staravia	Étourvol	Staravia	Staravia	Staravia	찌르버드
+398	ムクホーク	Staraptor	Étouraptor	Staraptor	Staraptor	Staraptor	찌르호크
+399	ビッパ	Bidoof	Keunotor	Bidoof	Bidiza	Bidoof	비버니
+400	ビーダル	Bibarel	Castorno	Bibarel	Bidifas	Bibarel	비버통
+401	コロボーシ	Kricketot	Crikzik	Kricketot	Zirpurze	Kricketot	귀뚤뚜기
+402	コロトック	Kricketune	Mélokrik	Kricketune	Zirpeise	Kricketune	귀뚤톡크
+403	コリンク	Shinx	Lixy	Shinx	Sheinux	Shinx	꼬링크
+404	ルクシオ	Luxio	Luxio	Luxio	Luxio	Luxio	럭시오
+405	レントラー	Luxray	Luxray	Luxray	Luxtra	Luxray	렌트라
+406	スボミー	Budew	Rozbouton	Budew	Knospi	Budew	꼬몽울
+407	ロズレイド	Roserade	Roserade	Roserade	Roserade	Roserade	로즈레이드
+408	ズガイドス	Cranidos	Kranidos	Cranidos	Koknodon	Cranidos	두개도스
+409	ラムパルド	Rampardos	Charkos	Rampardos	Rameidon	Rampardos	램펄드
+410	タテトプス	Shieldon	Dinoclier	Shieldon	Schilterus	Shieldon	방패톱스
+411	トリデプス	Bastiodon	Bastiodon	Bastiodon	Bollterus	Bastiodon	바리톱스
+412	ミノムッチ	Burmy	Cheniti	Burmy	Burmy	Burmy	도롱충이
+413	ミノマダム	Wormadam	Cheniselle	Wormadam	Burmadame	Wormadam	도롱마담
+414	ガーメイル	Mothim	Papilord	Mothim	Moterpel	Mothim	나메일
+415	ミツハニー	Combee	Apitrini	Combee	Wadribie	Combee	세꿀버리
+416	ビークイン	Vespiquen	Apireine	Vespiquen	Honweisel	Vespiquen	비퀸
+417	パチリス	Pachirisu	Pachirisu	Pachirisu	Pachirisu	Pachirisu	파치리스
+418	ブイゼル	Buizel	Mustébouée	Buizel	Bamelin	Buizel	브이젤
+419	フローゼル	Floatzel	Mustéflott	Floatzel	Bojelin	Floatzel	플로젤
+420	チェリンボ	Cherubi	Ceribou	Cherubi	Kikugi	Cherubi	체리버
+421	チェリム	Cherrim	Ceriflor	Cherrim	Kinoso	Cherrim	체리꼬
+422	カラナクシ	Shellos	Sancoki	Shellos	Schalellos	Shellos	깝질무
+423	トリトドン	Gastrodon	Tritosor	Gastrodon	Gastrodon	Gastrodon	트리토돈
+424	エテボース	Ambipom	Capidextre	Ambipom	Ambidiffel	Ambipom	겟핸보숭
+425	フワンテ	Drifloon	Baudrive	Drifloon	Driftlon	Drifloon	흔들풍손
+426	フワライド	Drifblim	Grodrive	Drifblim	Drifzepeli	Drifblim	둥실라이드
+427	ミミロル	Buneary	Laporeille	Buneary	Haspiror	Buneary	이어롤
+428	ミミロップ	Lopunny	Lockpin	Lopunny	Schlapor	Lopunny	이어롭
+429	ムウマージ	Mismagius	Magirêve	Mismagius	Traunmagil	Mismagius	무우마직
+430	ドンカラス	Honchkrow	Corboss	Honchkrow	Kramshef	Honchkrow	돈크로우
+431	ニャルマー	Glameow	Chaglam	Glameow	Charmian	Glameow	나옹마
+432	ブニャット	Purugly	Chaffreux	Purugly	Shnurgarst	Purugly	몬냥이
+433	リーシャン	Chingling	Korillon	Chingling	Klingplim	Chingling	랑딸랑
+434	スカンプー	Stunky	Moufouette	Stunky	Skunkapuh	Stunky	스컹뿡
+435	スカタンク	Skuntank	Moufflair	Skuntank	Skuntank	Skuntank	스컹탱크
+436	ドーミラー	Bronzor	Archéomire	Bronzor	Bronzel	Bronzor	동미러
+437	ドータクン	Bronzong	Archéodong	Bronzong	Bronzong	Bronzong	동탁군
+438	ウソハチ	Bonsly	Manzaï	Bonsly	Mobai	Bonsly	꼬지지
+439	マネネ	Mime Jr.	Mime Jr.	Mime Jr.	Pantimimi	Mime Jr.	흉내내
+440	ピンプク	Happiny	Ptiravi	Happiny	Wonneira	Happiny	핑복
+441	ペラップ	Chatot	Pijako	Chatot	Plaudagei	Chatot	페라페
+442	ミカルゲ	Spiritomb	Spiritomb	Spiritomb	Kryppuk	Spiritomb	화강돌
+443	フカマル	Gible	Griknot	Gible	Kaumalat	Gible	딥상어동
+444	ガバイト	Gabite	Carmache	Gabite	Knarksel	Gabite	한바이트
+445	ガブリアス	Garchomp	Carchacrok	Garchomp	Knakrack	Garchomp	한카리아스
+446	ゴンベ	Munchlax	Goinfrex	Munchlax	Mampfaxo	Munchlax	먹고자
+447	リオル	Riolu	Riolu	Riolu	Riolu	Riolu	리오르
+448	ルカリオ	Lucario	Lucario	Lucario	Lucario	Lucario	루카리오
+449	ヒポポタス	Hippopotas	Hippopotas	Hippopotas	Hippopotas	Hippopotas	히포포타스
+450	カバルドン	Hippowdon	Hippodocus	Hippowdon	Hippoterus	Hippowdon	하마돈
+451	スコルピ	Skorupi	Rapion	Skorupi	Pionskora	Skorupi	스콜피
+452	ドラピオン	Drapion	Drascore	Drapion	Piondragi	Drapion	드래피온
+453	グレッグル	Croagunk	Cradopaud	Croagunk	Glibunkel	Croagunk	삐딱구리
+454	ドクロッグ	Toxicroak	Coatox	Toxicroak	Toxiquak	Toxicroak	독개굴
+455	マスキッパ	Carnivine	Vortente	Carnivine	Venuflibis	Carnivine	무스틈니
+456	ケイコウオ	Finneon	Écayon	Finneon	Finneon	Finneon	형광어
+457	ネオラント	Lumineon	Luminéon	Lumineon	Lumineon	Lumineon	네오라이트
+458	タマンタ	Mantyke	Babimanta	Mantyke	Mantirps	Mantyke	타만타
+459	ユキカブリ	Snover	Blizzi	Snover	Shnebedeck	Snover	눈쓰개
+460	ユキノオー	Abomasnow	Blizzaroi	Abomasnow	Rexblisar	Abomasnow	눈설왕
+461	マニューラ	Weavile	Dimoret	Weavile	Snibunna	Weavile	포푸니라
+462	ジバコイル	Magnezone	Magnézone	Magnezone	Magnezone	Magnezone	자포코일
+463	ベロベルト	Lickilicky	Coudlangue	Lickilicky	Schlurplek	Lickilicky	내룸벨트
+464	ドサイドン	Rhyperior	Rhinastoc	Rhyperior	Rihornior	Rhyperior	거대코뿌리
+465	モジャンボ	Tangrowth	Bouldeneu	Tangrowth	Tangoloss	Tangrowth	덩쿠림보
+466	エレキブル	Electivire	Élekable	Electivire	Elevoltek	Electivire	에레키블
+467	ブーバーン	Magmortar	Maganon	Magmortar	Magbrant	Magmortar	마그마번
+468	トゲキッス	Togekiss	Togekiss	Togekiss	Togekiss	Togekiss	토게키스
+469	メガヤンマ	Yanmega	Yanmega	Yanmega	Yanmega	Yanmega	메가자리
+470	リーフィア	Leafeon	Phyllali	Leafeon	Folipurba	Leafeon	리피아
+471	グレイシア	Glaceon	Givrali	Glaceon	Glaziola	Glaceon	글레이시아
+472	グライオン	Gliscor	Scorvol	Gliscor	Skorgro	Gliscor	글라이온
+473	マンムー	Mamoswine	Mammochon	Mamoswine	Mamutel	Mamoswine	맘모꾸리
+474	ポリゴンＺ	Porygon-Z	Porygon-Z	Porygon-Z	Porygon-Z	Porygon-Z	폴리곤Z
+475	エルレイド	Gallade	Gallame	Gallade	Galagladi	Gallade	엘레이드
+476	ダイノーズ	Probopass	Tarinorme	Probopass	Voluminas	Probopass	대코파스
+477	ヨノワール	Dusknoir	Noctunoir	Dusknoir	Zwirrfinst	Dusknoir	야느와르몽
+478	ユキメノコ	Froslass	Momartik	Froslass	Frosdedje	Froslass	눈여아
+479	ロトム	Rotom	Motisma	Rotom	Rotom	Rotom	로토무
+480	ユクシー	Uxie	Créhelf	Uxie	Selfe	Uxie	유크시
+481	エムリット	Mesprit	Créfollet	Mesprit	Vesprit	Mesprit	엠라이트
+482	アグノム	Azelf	Créfadet	Azelf	Tobutz	Azelf	아그놈
+483	ディアルガ	Dialga	Dialga	Dialga	Dialga	Dialga	디아루가
+484	パルキア	Palkia	Palkia	Palkia	Palkia	Palkia	펄기아
+485	ヒードラン	Heatran	Heatran	Heatran	Heatran	Heatran	히드런
+486	レジギガス	Regigigas	Regigigas	Regigigas	Regigigas	Regigigas	레지기가스
+487	ギラティナ	Giratina	Giratina	Giratina	Giratina	Giratina	기라티나
+488	クレセリア	Cresselia	Cresselia	Cresselia	Cresselia	Cresselia	크레세리아
+489	フィオネ	Phione	Phione	Phione	Phione	Phione	피오네
+490	マナフィ	Manaphy	Manaphy	Manaphy	Manaphy	Manaphy	마나피
+491	ダークライ	Darkrai	Darkrai	Darkrai	Darkrai	Darkrai	다크라이
+492	シェイミ	Shaymin	Shaymin	Shaymin	Shaymin	Shaymin	쉐이미
+493	アルセウス	Arceus	Arceus	Arceus	Arceus	Arceus	아르세우스
+494	ビクティニ	Victini	Victini	Victini	Victini	Victini	비크티니
+495	ツタージャ	Snivy	Vipélierre	Snivy	Serpifeu	Snivy	주리비얀
+496	ジャノビー	Servine	Lianaja	Servine	Efoserp	Servine	샤비
+497	ジャローダ	Serperior	Majaspic	Serperior	Serpiroyal	Serperior	샤로다
+498	ポカブ	Tepig	Gruikui	Tepig	Floink	Tepig	뚜꾸리
+499	チャオブー	Pignite	Grotichon	Pignite	Ferkokel	Pignite	차오꿀
+500	エンブオー	Emboar	Roitiflam	Emboar	Flambirex	Emboar	염무왕
+501	ミジュマル	Oshawott	Moustillon	Oshawott	Ottaro	Oshawott	수댕이
+502	フタチマル	Dewott	Mateloutre	Dewott	Zwottronin	Dewott	쌍검자비
+503	ダイケンキ	Samurott	Clamiral	Samurott	Admurai	Samurott	대검귀
+504	ミネズミ	Patrat	Ratentif	Patrat	Nagelotz	Patrat	보르쥐
+505	ミルホッグ	Watchog	Miradar	Watchog	Kukmarda	Watchog	보르그
+506	ヨーテリー	Lillipup	Ponchiot	Lillipup	Yorkleff	Lillipup	요테리
+507	ハーデリア	Herdier	Ponchien	Herdier	Terribark	Herdier	하데리어
+508	ムーランド	Stoutland	Mastouffe	Stoutland	Bissbark	Stoutland	바랜드
+509	チョロネコ	Purrloin	Chacripan	Purrloin	Felilou	Purrloin	쌔비냥
+510	レパルダス	Liepard	Léopardus	Liepard	Kleoparda	Liepard	레파르다스
+511	ヤナップ	Pansage	Feuillajou	Pansage	Vegimak	Pansage	야나프
+512	ヤナッキー	Simisage	Feuiloutan	Simisage	Vegichita	Simisage	야나키
+513	バオップ	Pansear	Flamajou	Pansear	Grillmak	Pansear	바오프
+514	バオッキー	Simisear	Flamoutan	Simisear	Grillchita	Simisear	바오키
+515	ヒヤップ	Panpour	Flotajou	Panpour	Sodamak	Panpour	앗차프
+516	ヒヤッキー	Simipour	Flotoutan	Simipour	Sodachita	Simipour	앗차키
+517	ムンナ	Munna	Munna	Munna	Somniam	Munna	몽나
+518	ムシャーナ	Musharna	Mushana	Musharna	Somnivora	Musharna	몽얌나
+519	マメパト	Pidove	Poichigeon	Pidove	Dusselgurr	Pidove	콩둘기
+520	ハトーボー	Tranquill	Colombeau	Tranquill	Navitaub	Tranquill	유토브
+521	ケンホロウ	Unfezant	Déflaisan	Unfezant	Fasasnob	Unfezant	켄호로우
+522	シママ	Blitzle	Zébibron	Blitzle	Elezeba	Blitzle	줄뮤마
+523	ゼブライカ	Zebstrika	Zéblitz	Zebstrika	Zebritz	Zebstrika	제브라이카
+524	ダンゴロ	Roggenrola	Nodulithe	Roggenrola	Kiesling	Roggenrola	단굴
+525	ガントル	Boldore	Géolithe	Boldore	Sedimantur	Boldore	암트르
+526	ギガイアス	Gigalith	Gigalithe	Gigalith	Brockoloss	Gigalith	기가이어스
+527	コロモリ	Woobat	Chovsourir	Woobat	Fleknoil	Woobat	또르박쥐
+528	ココロモリ	Swoobat	Rhinolove	Swoobat	Fletiamo	Swoobat	맘박쥐
+529	モグリュー	Drilbur	Rototaupe	Drilbur	Rotomurf	Drilbur	두더류
+530	ドリュウズ	Excadrill	Minotaupe	Excadrill	Stalobor	Excadrill	몰드류
+531	タブンネ	Audino	Nanméouïe	Audino	Ohrdoch	Audino	다부니
+532	ドッコラー	Timburr	Charpenti	Timburr	Praktibalk	Timburr	으랏차
+533	ドテッコツ	Gurdurr	Ouvrifier	Gurdurr	Strepoli	Gurdurr	토쇠골
+534	ローブシン	Conkeldurr	Bétochef	Conkeldurr	Meistagrif	Conkeldurr	노보청
+535	オタマロ	Tympole	Tritonde	Tympole	Schallquap	Tympole	동챙이
+536	ガマガル	Palpitoad	Batracné	Palpitoad	Mebrana	Palpitoad	두까비
+537	ガマゲロゲ	Seismitoad	Crapustule	Seismitoad	Branawarz	Seismitoad	두빅굴
+538	ナゲキ	Throh	Judokrak	Throh	Jiutesto	Throh	던지미
+539	ダゲキ	Sawk	Karaclée	Sawk	Karadonis	Sawk	타격귀
+540	クルミル	Sewaddle	Larveyette	Sewaddle	Strawickl	Sewaddle	두르보
+541	クルマユ	Swadloon	Couverdure	Swadloon	Folikon	Swadloon	두르쿤
+542	ハハコモリ	Leavanny	Manternel	Leavanny	Matrifol	Leavanny	모아머
+543	フシデ	Venipede	Venipatte	Venipede	Toxiped	Venipede	마디네
+544	ホイーガ	Whirlipede	Scobolide	Whirlipede	Rollum	Whirlipede	휠구
+545	ペンドラー	Scolipede	Brutapode	Scolipede	Cerapendra	Scolipede	펜드라
+546	モンメン	Cottonee	Doudouvet	Cottonee	Waumboll	Cottonee	소미안
+547	エルフーン	Whimsicott	Farfaduvet	Whimsicott	Elfun	Whimsicott	엘풍
+548	チュリネ	Petilil	Chlorobule	Petilil	Lilminip	Petilil	치릴리
+549	ドレディア	Lilligant	Fragilady	Lilligant	Dressella	Lilligant	드레디어
+550	バスラオ	Basculin	Bargantua	Basculin	Barschuft	Basculin	배쓰나이
+551	メグロコ	Sandile	Mascaïman	Sandile	Ganovil	Sandile	깜눈크
+552	ワルビル	Krokorok	Escroco	Krokorok	Rokkaiman	Krokorok	악비르
+553	ワルビアル	Krookodile	Crocorible	Krookodile	Rabigator	Krookodile	악비아르
+554	ダルマッカ	Darumaka	Darumarond	Darumaka	Flampion	Darumaka	달막화
+555	ヒヒダルマ	Darmanitan	Darumacho	Darmanitan	Flampivian	Darmanitan	불비달마
+556	マラカッチ	Maractus	Maracachi	Maractus	Maracamba	Maractus	마라카치
+557	イシズマイ	Dwebble	Crabicoque	Dwebble	Lithomith	Dwebble	돌살이
+558	イワパレス	Crustle	Crabaraque	Crustle	Castellith	Crustle	암팰리스
+559	ズルッグ	Scraggy	Baggiguane	Scraggy	Zurrokex	Scraggy	곤율랭
+560	ズルズキン	Scrafty	Baggaïd	Scrafty	Irokex	Scrafty	곤율거니
+561	シンボラー	Sigilyph	Cryptéro	Sigilyph	Symvolara	Sigilyph	심보러
+562	デスマス	Yamask	Tutafeh	Yamask	Makabaja	Yamask	데스마스
+563	デスカーン	Cofagrigus	Tutankafer	Cofagrigus	Echnatoll	Cofagrigus	데스니칸
+564	プロトーガ	Tirtouga	Carapagos	Tirtouga	Galapaflos	Tirtouga	프로토가
+565	アバゴーラ	Carracosta	Mégapagos	Carracosta	Karippas	Carracosta	늑골라
+566	アーケン	Archen	Arkéapti	Archen	Flapteryx	Archen	아켄
+567	アーケオス	Archeops	Aéroptéryx	Archeops	Aeropteryx	Archeops	아케오스
+568	ヤブクロン	Trubbish	Miamiasme	Trubbish	Unratütox	Trubbish	깨봉이
+569	ダストダス	Garbodor	Miasmax	Garbodor	Deponitox	Garbodor	더스트나
+570	ゾロア	Zorua	Zorua	Zorua	Zorua	Zorua	조로아
+571	ゾロアーク	Zoroark	Zoroark	Zoroark	Zoroark	Zoroark	조로아크
+572	チラーミィ	Minccino	Chinchidou	Minccino	Picochilla	Minccino	치라미
+573	チラチーノ	Cinccino	Pashmilla	Cinccino	Chillabell	Cinccino	치라치노
+574	ゴチム	Gothita	Scrutella	Gothita	Mollimorba	Gothita	고디탱
+575	ゴチミル	Gothorita	Mesmérella	Gothorita	Hypnomorba	Gothorita	고디보미
+576	ゴチルゼル	Gothitelle	Sidérella	Gothitelle	Morbitesse	Gothitelle	고디모아젤
+577	ユニラン	Solosis	Nucléos	Solosis	Monozyto	Solosis	유니란
+578	ダブラン	Duosion	Méios	Duosion	Mitodos	Duosion	듀란
+579	ランクルス	Reuniclus	Symbios	Reuniclus	Zytomega	Reuniclus	란쿨루스
+580	コアルヒー	Ducklett	Couaneton	Ducklett	Piccolente	Ducklett	꼬지보리
+581	スワンナ	Swanna	Lakmécygne	Swanna	Swaroness	Swanna	스완나
+582	バニプッチ	Vanillite	Sorbébé	Vanillite	Gelatini	Vanillite	바닐프티
+583	バニリッチ	Vanillish	Sorboul	Vanillish	Gelatroppo	Vanillish	바닐리치
+584	バイバニラ	Vanilluxe	Sorbouboul	Vanilluxe	Gelatwino	Vanilluxe	배바닐라
+585	シキジカ	Deerling	Vivaldaim	Deerling	Sesokitz	Deerling	사철록
+586	メブキジカ	Sawsbuck	Haydaim	Sawsbuck	Kronjuwild	Sawsbuck	바라철록
+587	エモンガ	Emolga	Emolga	Emolga	Emolga	Emolga	에몽가
+588	カブルモ	Karrablast	Carabing	Karrablast	Laukaps	Karrablast	딱정곤
+589	シュバルゴ	Escavalier	Lançargot	Escavalier	Cavalanzas	Escavalier	슈바르고
+590	タマゲタケ	Foongus	Trompignon	Foongus	Tarnpignon	Foongus	깜놀버슬
+591	モロバレル	Amoonguss	Gaulet	Amoonguss	Hutsassa	Amoonguss	뽀록나
+592	プルリル	Frillish	Viskuse	Frillish	Quabbel	Frillish	탱그릴
+593	ブルンゲル	Jellicent	Moyade	Jellicent	Apoquallyp	Jellicent	탱탱겔
+594	ママンボウ	Alomomola	Mamanbo	Alomomola	Mamolida	Alomomola	맘복치
+595	バチュル	Joltik	Statitik	Joltik	Wattzapf	Joltik	파쪼옥
+596	デンチュラ	Galvantula	Mygavolt	Galvantula	Voltula	Galvantula	전툴라
+597	テッシード	Ferroseed	Grindur	Ferroseed	Kastadur	Ferroseed	철시드
+598	ナットレイ	Ferrothorn	Noacier	Ferrothorn	Tentantel	Ferrothorn	너트령
+599	ギアル	Klink	Tic	Klink	Klikk	Klink	기어르
+600	ギギアル	Klang	Clic	Klang	Kliklak	Klang	기기어르
+601	ギギギアル	Klinklang	Cliticlic	Klinklang	Klikdiklak	Klinklang	기기기어르
+602	シビシラス	Tynamo	Anchwatt	Tynamo	Zapplardin	Tynamo	저리어
+603	シビビール	Eelektrik	Lampéroie	Eelektrik	Zapplalek	Eelektrik	저리릴
+604	シビルドン	Eelektross	Ohmassacre	Eelektross	Zapplarang	Eelektross	저리더프
+605	リグレー	Elgyem	Lewsor	Elgyem	Pygraulon	Elgyem	리그레
+606	オーベム	Beheeyem	Neitram	Beheeyem	Megalon	Beheeyem	벰크
+607	ヒトモシ	Litwick	Funécire	Litwick	Lichtel	Litwick	불켜미
+608	ランプラー	Lampent	Mélancolux	Lampent	Laternecto	Lampent	램프라
+609	シャンデラ	Chandelure	Lugulabre	Chandelure	Skelabra	Chandelure	샹델라
+610	キバゴ	Axew	Coupenotte	Axew	Milza	Axew	터검니
+611	オノンド	Fraxure	Incisache	Fraxure	Sharfax	Fraxure	액슨도
+612	オノノクス	Haxorus	Tranchodon	Haxorus	Maxax	Haxorus	액스라이즈
+613	クマシュン	Cubchoo	Polarhume	Cubchoo	Petznief	Cubchoo	코고미
+614	ツンベアー	Beartic	Polagriffe	Beartic	Siberio	Beartic	툰베어
+615	フリージオ	Cryogonal	Hexagel	Cryogonal	Frigometri	Cryogonal	프리지오
+616	チョボマキ	Shelmet	Escargaume	Shelmet	Schnuthelm	Shelmet	쪼마리
+617	アギルダー	Accelgor	Limaspeed	Accelgor	Hydragil	Accelgor	어지리더
+618	マッギョ	Stunfisk	Limonde	Stunfisk	Flunschlik	Stunfisk	메더
+619	コジョフー	Mienfoo	Kungfouine	Mienfoo	Lin-Fu	Mienfoo	비조푸
+620	コジョンド	Mienshao	Shaofouine	Mienshao	Wie-Shu	Mienshao	비조도
+621	クリムガン	Druddigon	Drakkarmin	Druddigon	Shardrago	Druddigon	크리만
+622	ゴビット	Golett	Gringolem	Golett	Golbit	Golett	골비람
+623	ゴルーグ	Golurk	Golemastoc	Golurk	Golgantes	Golurk	골루그
+624	コマタナ	Pawniard	Scalpion	Pawniard	Gladiantri	Pawniard	자망칼
+625	キリキザン	Bisharp	Scalproie	Bisharp	Caesurio	Bisharp	절각참
+626	バッフロン	Bouffalant	Frison	Bouffalant	Bisofank	Bouffalant	버프론
+627	ワシボン	Rufflet	Furaiglon	Rufflet	Geronimatz	Rufflet	수리둥보
+628	ウォーグル	Braviary	Gueriaigle	Braviary	Washakwil	Braviary	워글
+629	バルチャイ	Vullaby	Vostourno	Vullaby	Skallyk	Vullaby	벌차이
+630	バルジーナ	Mandibuzz	Vaututrice	Mandibuzz	Grypheldis	Mandibuzz	버랜지나
+631	クイタラン	Heatmor	Aflamanoir	Heatmor	Furnifraß	Heatmor	앤티골
+632	アイアント	Durant	Fermite	Durant	Fermicula	Durant	아이앤트
+633	モノズ	Deino	Solochi	Deino	Kapuno	Deino	모노두
+634	ジヘッド	Zweilous	Diamat	Zweilous	Duodino	Zweilous	디헤드
+635	サザンドラ	Hydreigon	Trioxhydre	Hydreigon	Trikephalo	Hydreigon	삼삼드래
+636	メラルバ	Larvesta	Pyronille	Larvesta	Ignivor	Larvesta	활화르바
+637	ウルガモス	Volcarona	Pyrax	Volcarona	Ramoth	Volcarona	불카모스
+638	コバルオン	Cobalion	Cobaltium	Cobalion	Kobalium	Cobalion	코바르온
+639	テラキオン	Terrakion	Terrakium	Terrakion	Terrakium	Terrakion	테라키온
+640	ビリジオン	Virizion	Viridium	Virizion	Viridium	Virizion	비리디온
+641	トルネロス	Tornadus	Boréas	Tornadus	Boreos	Tornadus	토네로스
+642	ボルトロス	Thundurus	Fulguris	Thundurus	Voltolos	Thundurus	볼트로스
+643	レシラム	Reshiram	Reshiram	Reshiram	Reshiram	Reshiram	레시라무
+644	ゼクロム	Zekrom	Zekrom	Zekrom	Zekrom	Zekrom	제크로무
+645	ランドロス	Landorus	Démétéros	Landorus	Demeteros	Landorus	랜드로스
+646	キュレム	Kyurem	Kyurem	Kyurem	Kyurem	Kyurem	큐레무
+647	ケルディオ	Keldeo	Keldeo	Keldeo	Keldeo	Keldeo	케르디오
+648	メロエッタ	Meloetta	Meloetta	Meloetta	Meloetta	Meloetta	메로엣타
+649	ゲノセクト	Genesect	Genesect	Genesect	Genesect	Genesect	게노세크트
+650	ハリマロン	Chespin	Marisson	Chespin	Igamaro	Chespin	도치마론
+651	ハリボーグ	Quilladin	Boguérisse	Quilladin	Igastarnish	Quilladin	도치보구
+652	ブリガロン	Chesnaught	Blindépique	Chesnaught	Brigaron	Chesnaught	브리가론
+653	フォッコ	Fennekin	Feunnec	Fennekin	Fynx	Fennekin	푸호꼬
+654	テールナー	Braixen	Roussil	Braixen	Rutena	Braixen	테르나
+655	マフォクシー	Delphox	Goupelin	Delphox	Fennexis	Delphox	마폭시
+656	ケロマツ	Froakie	Grenousse	Froakie	Froxy	Froakie	개구마르
+657	ゲコガシラ	Frogadier	Croâporal	Frogadier	Amphizel	Frogadier	개굴반장
+658	ゲッコウガ	Greninja	Amphinobi	Greninja	Quajutsu	Greninja	개굴닌자
+659	ホルビー	Bunnelby	Sapereau	Bunnelby	Scoppel	Bunnelby	파르빗
+660	ホルード	Diggersby	Excavarenne	Diggersby	Grebbit	Diggersby	파르토
+661	ヤヤコマ	Fletchling	Passerouge	Fletchling	Dartiri	Fletchling	화살꼬빈
+662	ヒノヤコマ	Fletchinder	Braisillon	Fletchinder	Dartignis	Fletchinder	불화살빈
+663	ファイアロー	Talonflame	Flambusard	Talonflame	Fiaro	Talonflame	파이어로
+664	コフキムシ	Scatterbug	Lépidonille	Scatterbug	Purmel	Scatterbug	분이벌레
+665	コフーライ	Spewpa	Pérégrain	Spewpa	Puponcho	Spewpa	분떠도리
+666	ビビヨン	Vivillon	Prismillon	Vivillon	Vivillon	Vivillon	비비용
+667	シシコ	Litleo	Hélionceau	Litleo	Leufeo	Litleo	레오꼬
+668	カエンジシ	Pyroar	Némélios	Pyroar	Pyroleo	Pyroar	화염레오
+669	フラベベ	Flabébé	Flabébé	Flabébé	Flabébé	Flabébé	플라베베
+670	フラエッテ	Floette	Floette	Floette	Floette	Floette	플라엣테
+671	フラージェス	Florges	Florges	Florges	Florges	Florges	플라제스
+672	メェークル	Skiddo	Cabriolaine	Skiddo	Mähikel	Skiddo	메이클
+673	ゴーゴート	Gogoat	Chevroum	Gogoat	Chevrumm	Gogoat	고고트
+674	ヤンチャム	Pancham	Pandespiègle	Pancham	Pam-Pam	Pancham	판짱
+675	ゴロンダ	Pangoro	Pandarbare	Pangoro	Pandagro	Pangoro	부란다
+676	トリミアン	Furfrou	Couafarel	Furfrou	Coiffwaff	Furfrou	트리미앙
+677	ニャスパー	Espurr	Psystigri	Espurr	Psiau	Espurr	냐스퍼
+678	ニャオニクス	Meowstic	Mistigrix	Meowstic	Psiaugon	Meowstic	냐오닉스
+679	ヒトツキ	Honedge	Monorpale	Honedge	Gramokles	Honedge	단칼빙
+680	ニダンギル	Doublade	Dimoclès	Doublade	Duokles	Doublade	쌍검킬
+681	ギルガルド	Aegislash	Exagide	Aegislash	Durengard	Aegislash	킬가르도
+682	シュシュプ	Spritzee	Fluvetin	Spritzee	Parfi	Spritzee	슈쁘
+683	フレフワン	Aromatisse	Cocotine	Aromatisse	Parfinesse	Aromatisse	프레프티르
+684	ペロッパフ	Swirlix	Sucroquin	Swirlix	Flauschling	Swirlix	나룸퍼프
+685	ペロリーム	Slurpuff	Cupcanaille	Slurpuff	Sabbaione	Slurpuff	나루림
+686	マーイーカ	Inkay	Sepiatop	Inkay	Iscalar	Inkay	오케이징
+687	カラマネロ	Malamar	Sepiatroce	Malamar	Calamanero	Malamar	칼라마네로
+688	カメテテ	Binacle	Opermine	Binacle	Bithora	Binacle	거북손손
+689	ガメノデス	Barbaracle	Golgopathe	Barbaracle	Thanathora	Barbaracle	거북손데스
+690	クズモー	Skrelp	Venalgue	Skrelp	Algitt	Skrelp	수레기
+691	ドラミドロ	Dragalge	Kravarech	Dragalge	Tandrak	Dragalge	드래캄
+692	ウデッポウ	Clauncher	Flingouste	Clauncher	Scampisto	Clauncher	완철포
+693	ブロスター	Clawitzer	Gamblast	Clawitzer	Wummer	Clawitzer	블로스터
+694	エリキテル	Helioptile	Galvaran	Helioptile	Eguana	Helioptile	목도리키텔
+695	エレザード	Heliolisk	Iguolta	Heliolisk	Elezard	Heliolisk	일레도리자드
+696	チゴラス	Tyrunt	Ptyranidur	Tyrunt	Balgoras	Tyrunt	티고라스
+697	ガチゴラス	Tyrantrum	Rexillius	Tyrantrum	Monargoras	Tyrantrum	견고라스
+698	アマルス	Amaura	Amagara	Amaura	Amarino	Amaura	아마루스
+699	アマルルガ	Aurorus	Dragmara	Aurorus	Amagarga	Aurorus	아마루르가
+700	ニンフィア	Sylveon	Nymphali	Sylveon	Feelinara	Sylveon	님피아
+701	ルチャブル	Hawlucha	Brutalibré	Hawlucha	Resladero	Hawlucha	루차불
+702	デデンネ	Dedenne	Dedenne	Dedenne	Dedenne	Dedenne	데덴네
+703	メレシー	Carbink	Strassie	Carbink	Rocara	Carbink	멜리시
+704	ヌメラ	Goomy	Mucuscule	Goomy	Viscora	Goomy	미끄메라
+705	ヌメイル	Sliggoo	Colimucus	Sliggoo	Viscargot	Sliggoo	미끄네일
+706	ヌメルゴン	Goodra	Muplodocus	Goodra	Viscogon	Goodra	미끄래곤
+707	クレッフィ	Klefki	Trousselin	Klefki	Clavion	Klefki	클레피
+708	ボクレー	Phantump	Brocélôme	Phantump	Paragoni	Phantump	나목령
+709	オーロット	Trevenant	Desséliande	Trevenant	Trombork	Trevenant	대로트
+710	バケッチャ	Pumpkaboo	Pitrouille	Pumpkaboo	Irrbis	Pumpkaboo	호바귀
+711	パンプジン	Gourgeist	Banshitrouye	Gourgeist	Pumpdjinn	Gourgeist	펌킨인
+712	カチコール	Bergmite	Grelaçon	Bergmite	Arktip	Bergmite	꽁어름
+713	クレベース	Avalugg	Séracrawl	Avalugg	Arktilas	Avalugg	크레베이스
+714	オンバット	Noibat	Sonistrelle	Noibat	eF-eM	Noibat	음뱃
+715	オンバーン	Noivern	Bruyverne	Noivern	UHaFnir	Noivern	음번
+716	ゼルネアス	Xerneas	Xerneas	Xerneas	Xerneas	Xerneas	제르네아스
+717	イベルタル	Yveltal	Yveltal	Yveltal	Yveltal	Yveltal	이벨타르
+718	ジガルデ	Zygarde	Zygarde	Zygarde	Zygarde	Zygarde	지가르데
+719	ディアンシー	Diancie	Diancie	Diancie	Diancie	Diancie	디안시
+720	フーパ	Hoopa	Hoopa	Hoopa	Hoopa	Hoopa	후파
+721	ボルケニオン	Volcanion	Volcanion	Volcanion	Volcanion	Volcanion	볼케니온
+722	モクロー	Rowlet	Brindibou	Rowlet	Bauz	Rowlet	나몰빼미
+723	フクスロー	Dartrix	Efflèche	Dartrix	Arboretoss	Dartrix	빼미스로우
+724	ジュナイパー	Decidueye	Archéduc	Decidueye	Silvarro	Decidueye	모크나이퍼
+725	ニャビー	Litten	Flamiaou	Litten	Flamiau	Litten	냐오불
+726	ニャヒート	Torracat	Matoufeu	Torracat	Miezunder	Torracat	냐오히트
+727	ガオガエン	Incineroar	Félinferno	Incineroar	Fuegro	Incineroar	어흥염
+728	アシマリ	Popplio	Otaquin	Popplio	Robball	Popplio	누리공
+729	オシャマリ	Brionne	Otarlette	Brionne	Marikeck	Brionne	키요공
+730	アシレーヌ	Primarina	Oratoria	Primarina	Primarene	Primarina	누리레느
+731	ツツケラ	Pikipek	Picassaut	Pikipek	Peppeck	Pikipek	콕코구리
+732	ケララッパ	Trumbeak	Piclairon	Trumbeak	Trompeck	Trumbeak	크라파
+733	ドデカバシ	Toucannon	Bazoucan	Toucannon	Tukanon	Toucannon	왕큰부리
+734	ヤングース	Yungoos	Manglouton	Yungoos	Mangunior	Yungoos	영구스
+735	デカグース	Gumshoos	Argouste	Gumshoos	Manguspektor	Gumshoos	형사구스
+736	アゴジムシ	Grubbin	Larvibule	Grubbin	Mabula	Grubbin	턱지충이
+737	デンヂムシ	Charjabug	Chrysapile	Charjabug	Akkup	Charjabug	전지충이
+738	クワガノン	Vikavolt	Lucanon	Vikavolt	Donarion	Vikavolt	투구뿌논
+739	マケンカニ	Crabrawler	Crabagarre	Crabrawler	Krabbox	Crabrawler	오기지게
+740	ケケンカニ	Crabominable	Crabominable	Crabominable	Krawell	Crabominable	모단단게
+741	オドリドリ	Oricorio	Plumeline	Oricorio	Choreogel	Oricorio	춤추새
+742	アブリー	Cutiefly	Bombydou	Cutiefly	Wommel	Cutiefly	에블리
+743	アブリボン	Ribombee	Rubombelle	Ribombee	Bandelby	Ribombee	에리본
+744	イワンコ	Rockruff	Rocabot	Rockruff	Wuffels	Rockruff	암멍이
+745	ルガルガン	Lycanroc	Lougaroc	Lycanroc	Wolwerock	Lycanroc	루가루암
+746	ヨワシ	Wishiwashi	Froussardine	Wishiwashi	Lusardin	Wishiwashi	약어리
+747	ヒドイデ	Mareanie	Vorastérie	Mareanie	Garstella	Mareanie	시마사리
+748	ドヒドイデ	Toxapex	Prédastérie	Toxapex	Aggrostella	Toxapex	더시마사리
+749	ドロバンコ	Mudbray	Tiboudet	Mudbray	Pampuli	Mudbray	머드나기
+750	バンバドロ	Mudsdale	Bourrinos	Mudsdale	Pampross	Mudsdale	만마드
+751	シズクモ	Dewpider	Araqua	Dewpider	Araqua	Dewpider	물거미
+752	オニシズクモ	Araquanid	Tarenbulle	Araquanid	Aranestro	Araquanid	깨비물거미
+753	カリキリ	Fomantis	Mimantis	Fomantis	Imantis	Fomantis	짜랑랑
+754	ラランテス	Lurantis	Floramantis	Lurantis	Mantidea	Lurantis	라란티스
+755	ネマシュ	Morelull	Spododo	Morelull	Bubungus	Morelull	자마슈
+756	マシェード	Shiinotic	Lampignon	Shiinotic	Lamellux	Shiinotic	마셰이드
+757	ヤトウモリ	Salandit	Tritox	Salandit	Molunk	Salandit	야도뇽
+758	エンニュート	Salazzle	Malamandre	Salazzle	Amfira	Salazzle	염뉴트
+759	ヌイコグマ	Stufful	Nounourson	Stufful	Velursi	Stufful	포곰곰
+760	キテルグマ	Bewear	Chelours	Bewear	Kosturso	Bewear	이븐곰
+761	アマカジ	Bounsweet	Croquine	Bounsweet	Frubberl	Bounsweet	달콤아
+762	アママイコ	Steenee	Candine	Steenee	Frubaila	Steenee	달무리나
+763	アマージョ	Tsareena	Sucreine	Tsareena	Fruyal	Tsareena	달코퀸
+764	キュワワー	Comfey	Guérilande	Comfey	Curelei	Comfey	큐아링
+765	ヤレユータン	Oranguru	Gouroutan	Oranguru	Kommandutan	Oranguru	하랑우탄
+766	ナゲツケサル	Passimian	Quartermac	Passimian	Quartermak	Passimian	내던숭이
+767	コソクムシ	Wimpod	Sovkipou	Wimpod	Reißlaus	Wimpod	꼬시레
+768	グソクムシャ	Golisopod	Sarmuraï	Golisopod	Tectass	Golisopod	갑주무사
+769	スナバァ	Sandygast	Bacabouh	Sandygast	Sankabuh	Sandygast	모래꿍
+770	シロデスナ	Palossand	Trépassable	Palossand	Colossand	Palossand	모래성이당
+771	ナマコブシ	Pyukumuku	Concombaffe	Pyukumuku	Gufa	Pyukumuku	해무기
+772	タイプ：ヌル	Type: Null	Type:0	Tipo Zero	Typ:Null	Código Cero	타입:널
+773	シルヴァディ	Silvally	Silvallié	Silvally	Amigento	Silvally	실버디
+774	メテノ	Minior	Météno	Minior	Meteno	Minior	메테노
+775	ネッコアラ	Komala	Dodoala	Komala	Koalelu	Komala	자말라
+776	バクガメス	Turtonator	Boumata	Turtonator	Tortunator	Turtonator	폭거북스
+777	トゲデマル	Togedemaru	Togedemaru	Togedemaru	Togedemaru	Togedemaru	토게데마루
+778	ミミッキュ	Mimikyu	Mimiqui	Mimikyu	Mimigma	Mimikyu	따라큐
+779	ハギギシリ	Bruxish	Denticrisse	Bruxish	Knirfish	Bruxish	치갈기
+780	ジジーロン	Drampa	Draïeul	Drampa	Sen-Long	Drampa	할비롱
+781	ダダリン	Dhelmise	Sinistrail	Dhelmise	Moruda	Dhelmise	타타륜
+782	ジャラコ	Jangmo-o	Bébécaille	Jangmo-o	Miniras	Jangmo-o	짜랑꼬
+783	ジャランゴ	Hakamo-o	Écaïd	Hakamo-o	Mediras	Hakamo-o	짜랑고우
+784	ジャラランガ	Kommo-o	Ékaïser	Kommo-o	Grandiras	Kommo-o	짜랑고우거
+785	カプ・コケコ	Tapu Koko	Tokorico	Tapu Koko	Kapu-Riki	Tapu Koko	카푸꼬꼬꼭
+786	カプ・テテフ	Tapu Lele	Tokopiyon	Tapu Lele	Kapu-Fala	Tapu Lele	카푸나비나
+787	カプ・ブルル	Tapu Bulu	Tokotoro	Tapu Bulu	Kapu-Toro	Tapu Bulu	카푸브루루
+788	カプ・レヒレ	Tapu Fini	Tokopisco	Tapu Fini	Kapu-Kime	Tapu Fini	카푸느지느
+789	コスモッグ	Cosmog	Cosmog	Cosmog	Cosmog	Cosmog	코스모그
+790	コスモウム	Cosmoem	Cosmovum	Cosmoem	Cosmovum	Cosmoem	코스모움
+791	ソルガレオ	Solgaleo	Solgaleo	Solgaleo	Solgaleo	Solgaleo	솔가레오
+792	ルナアーラ	Lunala	Lunala	Lunala	Lunala	Lunala	루나아라
+793	ウツロイド	Nihilego	Zéroïd	Nihilego	Anego	Nihilego	텅비드
+794	マッシブーン	Buzzwole	Mouscoto	Buzzwole	Masskito	Buzzwole	매시붕
+795	フェローチェ	Pheromosa	Cancrelove	Pheromosa	Schabelle	Pheromosa	페로코체
+796	デンジュモク	Xurkitree	Câblifère	Xurkitree	Voltriant	Xurkitree	전수목
+797	テッカグヤ	Celesteela	Bamboiselle	Celesteela	Kaguron	Celesteela	철화구야
+798	カミツルギ	Kartana	Katagami	Kartana	Katagami	Kartana	종이신도
+799	アクジキング	Guzzlord	Engloutyran	Guzzlord	Schlingking	Guzzlord	악식킹
+800	ネクロズマ	Necrozma	Necrozma	Necrozma	Necrozma	Necrozma	네크로즈마
+801	マギアナ	Magearna	Magearna	Magearna	Magearna	Magearna	마기아나
+802	マーシャドー	Marshadow	Marshadow	Marshadow	Marshadow	Marshadow	마샤도
+803	ベベノム	Poipole	Vémini	Poipole	Venicro	Poipole	베베놈
+804	アーゴヨン	Naganadel	Mandrillon	Naganadel	Agoyon	Naganadel	아고용
+805	ツンデツンデ	Stakataka	Ama-Ama	Stakataka	Muramura	Stakataka	차곡차곡
+806	ズガドーン	Blacephalon	Pierroteknik	Blacephalon	Kopplosio	Blacephalon	두파팡
+807	ゼラオラ	Zeraora	Zeraora	Zeraora	Zeraora	Zeraora	제라오라
