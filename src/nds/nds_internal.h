@@ -102,11 +102,15 @@ void spec_nds_encode_storage(uint8_t *general, uint8_t *storage, const spec_nds_
 void spec_nds_flag_changed_boxes(uint8_t *storage, const uint8_t *other_storage,
                                  const spec_nds_layout_t *layout);
 
+void spec_nds_decode_status(spec_nds_status_t *status, uint32_t word);
+uint32_t spec_nds_encode_status(const spec_nds_status_t *status);
 // Records are encrypted, as stored.
 void spec_nds_decode_pokemon(spec_nds_pokemon_t *pokemon, const uint8_t *record,
                              size_t record_size);
 spec_error_t spec_nds_encode_pokemon(uint8_t *record, size_t record_size,
                                      const spec_nds_pokemon_t *pokemon);
+uint16_t spec_nds_current_hp_after(uint16_t current_hp, uint16_t old_max_hp, uint16_t new_max_hp,
+                                   bool is_shedinja);
 void spec_nds_fill_party_data(spec_nds_pokemon_t *pokemon);
 
 void spec_nds_decode_mail(spec_nds_mail_t *mail, const uint8_t *bytes);
@@ -116,7 +120,6 @@ spec_nds_mail_t spec_nds_no_mail(void);
 
 spec_error_t spec_nds_check_item_placement(spec_game_type_t type, spec_nds_pocket_t pocket,
                                            uint16_t item);
-bool spec_nds_is_item_slot_empty(const spec_nds_item_slot_t *item_slot);
 void spec_nds_decode_items(spec_nds_save_t *save, const uint8_t *general,
                            const spec_nds_layout_t *layout);
 spec_error_t spec_nds_check_items(const spec_nds_save_t *save, const spec_nds_layout_t *layout);

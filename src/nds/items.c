@@ -73,11 +73,6 @@ spec_error_t spec_nds_check_item_placement(spec_game_type_t type, spec_nds_pocke
     return SPEC_OK;
 }
 
-// The game clears the item when its quantity reaches zero.
-bool spec_nds_is_item_slot_empty(const spec_nds_item_slot_t *item_slot) {
-    return item_slot->item == 0 || item_slot->quantity == 0;
-}
-
 static size_t item_slot_offset(const spec_nds_layout_t *layout, spec_nds_pocket_t pocket,
                                size_t index) {
     return layout->pocket_offsets[pocket] + index * ITEM_SLOT_SIZE;
@@ -94,7 +89,7 @@ static spec_error_t check_pocket(const spec_nds_item_slot_t *item_slots, spec_nd
     size_t capacity = spec_nds_pocket_capacity(layout->type, pocket);
     size_t filled_slot_count = 0;
     for (size_t index = 0; index < SPEC_NDS_POCKET_MAX_CAPACITY; ++index) {
-        if (spec_nds_is_item_slot_empty(&item_slots[index])) {
+        if (spec_is_item_slot_empty(&item_slots[index])) {
             continue;
         }
         if (filled_slot_count == capacity) {
@@ -111,21 +106,13 @@ static spec_error_t check_pocket(const spec_nds_item_slot_t *item_slots, spec_nd
     return SPEC_OK;
 }
 
-// As the game condenses a pocket.
 static void encode_pocket(uint8_t *general, const spec_nds_layout_t *layout,
                           spec_nds_pocket_t pocket, const spec_nds_item_slot_t *item_slots) {
-    size_t filled_slot_count = 0;
-    for (size_t index = 0; index < SPEC_NDS_POCKET_MAX_CAPACITY; ++index) {
-        if (!spec_nds_is_item_slot_empty(&item_slots[index])) {
-            write_item_slot(general, item_slot_offset(layout, pocket, filled_slot_count),
-                            &item_slots[index]);
-            ++filled_slot_count;
-        }
-    }
-    constexpr spec_nds_item_slot_t EMPTY_SLOT = {};
+    spec_nds_item_slot_t condensed[SPEC_NDS_POCKET_MAX_CAPACITY];
+    spec_condense_pocket(condensed, item_slots, SPEC_NDS_POCKET_MAX_CAPACITY);
     size_t capacity = spec_nds_pocket_capacity(layout->type, pocket);
-    for (size_t index = filled_slot_count; index < capacity; ++index) {
-        write_item_slot(general, item_slot_offset(layout, pocket, index), &EMPTY_SLOT);
+    for (size_t index = 0; index < capacity; ++index) {
+        write_item_slot(general, item_slot_offset(layout, pocket, index), &condensed[index]);
     }
 }
 
@@ -191,11 +178,5 @@ size_t spec_nds_pocket_item_count(const spec_nds_save_t *save, spec_nds_pocket_t
     if (pocket >= SPEC_NDS_POCKET_COUNT) {
         return 0;
     }
-    size_t item_count = 0;
-    for (size_t index = 0; index < SPEC_NDS_POCKET_MAX_CAPACITY; ++index) {
-        if (!spec_nds_is_item_slot_empty(&save->items[pocket][index])) {
-            ++item_count;
-        }
-    }
-    return item_count;
+    return spec_count_filled_slots(save->items[pocket], SPEC_NDS_POCKET_MAX_CAPACITY);
 }

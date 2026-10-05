@@ -139,7 +139,6 @@ void spec_gba_fill_party_data(spec_gba_pokemon_t *pokemon);
 
 spec_error_t spec_gba_check_item_placement(spec_game_type_t type, spec_gba_pocket_t pocket,
                                            uint16_t item);
-bool spec_gba_is_item_slot_empty(const spec_gba_item_slot_t *item_slot);
 void spec_gba_decode_items(spec_gba_save_t *save, const uint8_t *data, const spec_gba_slot_t *slot,
                            const spec_gba_layout_t *layout);
 spec_error_t spec_gba_check_items(const spec_gba_save_t *save, const spec_gba_layout_t *layout);

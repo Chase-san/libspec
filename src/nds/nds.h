@@ -1,4 +1,4 @@
-// The Nintendo DS API, Gen 4 for now: saves, Pokémon, personality, items and text.
+// The Gen 4 (Nintendo DS) API: saves, Pokémon, personality, items and text.
 
 #ifndef SPEC_NDS_H
 #define SPEC_NDS_H
@@ -424,11 +424,7 @@ struct spec_nds_daycare {
 };
 typedef struct spec_nds_daycare spec_nds_daycare_t;
 
-struct spec_nds_item_slot {
-    uint16_t item;
-    uint16_t quantity;
-};
-typedef struct spec_nds_item_slot spec_nds_item_slot_t;
+typedef spec_item_slot_t spec_nds_item_slot_t;
 
 // Writing condenses pockets; a slot with no item or zero quantity is empty.
 struct spec_nds_save {

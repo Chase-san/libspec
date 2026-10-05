@@ -27,12 +27,22 @@ constexpr char32_t SPEC_REPLACEMENT_CHARACTER = 0xFFFD;
 size_t spec_utf8_read(const char8_t *utf8, char32_t *code_point);
 size_t spec_utf8_write(char8_t *utf8, char32_t code_point);
 
+uint16_t spec_crc16(const uint8_t *bytes, size_t size);
+
+bool spec_is_item_slot_empty(const spec_item_slot_t *item_slot);
+size_t spec_count_filled_slots(const spec_item_slot_t *item_slots, size_t slot_count);
+void spec_condense_pocket(spec_item_slot_t *condensed, const spec_item_slot_t *item_slots,
+                          size_t slot_count);
+
 spec_gender_t spec_gender_from_ratio(spec_pid_t pid, uint8_t gender_ratio);
 bool spec_is_shiny(spec_pid_t pid, uint16_t trainer_id, uint16_t secret_id);
 
 // Moves a record's four data blocks to and from one of 24 stored orders, taken order % 24.
 void spec_shuffle_blocks(uint8_t *blocks, size_t block_size, size_t order);
 void spec_unshuffle_blocks(uint8_t *blocks, size_t block_size, size_t order);
+void spec_xor_with_random_stream(uint8_t *bytes, size_t size, uint32_t seed);
+// The records' checksum: a wrapping sum of little-endian u16s.
+uint16_t spec_sum_u16(const uint8_t *bytes, size_t size);
 
 uint8_t spec_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience);
 // As CalcMonStats; HP ignores the nature.

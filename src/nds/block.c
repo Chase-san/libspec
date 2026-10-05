@@ -7,7 +7,6 @@
 
 constexpr size_t PARTITION_COUNT = 2;
 constexpr uint32_t BLOCK_MAGIC = 0x20060623;
-constexpr uint16_t CRC_POLYNOMIAL = 0x1021;
 
 // Counted back from the block's end, where both footer kinds keep them.
 constexpr size_t FOOTER_SIZE_FROM_END = 0xC;
@@ -55,22 +54,6 @@ static size_t other_partition_offset(size_t offset) {
                                             : offset - SPEC_NDS_PARTITION_SIZE;
 }
 
-// As MATH_CalcCRC16CCITT.
-static uint16_t crc16_of(const uint8_t *bytes, size_t size) {
-    uint16_t crc = 0xFFFF;
-    for (size_t index = 0; index < size; ++index) {
-        crc ^= (uint16_t)(bytes[index] << 8);
-        for (unsigned bit = 0; bit < 8; ++bit) {
-            bool is_top_bit_set = (crc & 0x8000) != 0;
-            crc = (uint16_t)(crc << 1);
-            if (is_top_bit_set) {
-                crc ^= CRC_POLYNOMIAL;
-            }
-        }
-    }
-    return crc;
-}
-
 // As SaveBlockFooter_Validate; Diamond, Pearl and Platinum keep the id in one byte.
 static bool is_block_valid(const uint8_t *block, block_id_t block_id,
                            const spec_nds_layout_t *layout) {
@@ -81,7 +64,7 @@ static bool is_block_valid(const uint8_t *block, block_id_t block_id,
     return spec_read_u32_le(end - FOOTER_SIZE_FROM_END) == size
            && spec_read_u32_le(end - FOOTER_MAGIC_FROM_END) == BLOCK_MAGIC && stored_id == block_id
            && spec_read_u16_le(end - FOOTER_CRC_FROM_END)
-                  == crc16_of(block, size - layout->footer_size);
+                  == spec_crc16(block, size - layout->footer_size);
 }
 
 static block_copy_t read_copy(const uint8_t *data, size_t partition, block_id_t block_id,
@@ -247,7 +230,7 @@ static void stamp_block(uint8_t *block, block_id_t block_id, uint32_t save_count
         spec_write_u32_le(&footer[FOOTER_BLOCK_COUNTER], block_counter);
     }
     spec_write_u16_le(&block[size - FOOTER_CRC_FROM_END],
-                      crc16_of(block, size - layout->footer_size));
+                      spec_crc16(block, size - layout->footer_size));
 }
 
 void spec_nds_stamp_blocks(uint8_t *data, const spec_nds_blocks_t *blocks,

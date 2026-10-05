@@ -1,4 +1,4 @@
-// A Gen 3 or Gen 4 record's four data blocks, moved to and from their stored order.
+// A Pokémon record's data blocks: their stored order, their encryption and their checksum.
 
 #include <string.h>
 
@@ -32,4 +32,20 @@ void spec_unshuffle_blocks(uint8_t *blocks, size_t block_size, size_t order) {
     for (size_t block = 0; block < BLOCK_COUNT; ++block) {
         memcpy(&blocks[block * block_size], &as_stored[positions[block] * block_size], block_size);
     }
+}
+
+// As Pokemon_EncryptData: the generator's draws, seeded by the key, mask each u16.
+void spec_xor_with_random_stream(uint8_t *bytes, size_t size, uint32_t seed) {
+    for (size_t offset = 0; offset < size; offset += 2) {
+        uint16_t mask = spec_random(&seed);
+        spec_write_u16_le(&bytes[offset], (uint16_t)(spec_read_u16_le(&bytes[offset]) ^ mask));
+    }
+}
+
+uint16_t spec_sum_u16(const uint8_t *bytes, size_t size) {
+    uint16_t sum = 0;
+    for (size_t offset = 0; offset < size; offset += 2) {
+        sum = (uint16_t)(sum + spec_read_u16_le(&bytes[offset]));
+    }
+    return sum;
 }

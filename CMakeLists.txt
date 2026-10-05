@@ -47,13 +47,27 @@ add_custom_command(
             ${nds_data}/items.tsv
     VERBATIM)
 
+set(ndsi_data ${CMAKE_CURRENT_SOURCE_DIR}/data/ndsi)
+set(ndsi_generated ${CMAKE_CURRENT_BINARY_DIR}/ndsi/gen)
+set(ndsi_tables
+    ${ndsi_generated}/species_data.c
+    ${ndsi_generated}/items.c)
+add_custom_command(
+    OUTPUT ${ndsi_tables}
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/generate_ndsi_tables.py
+            ${ndsi_data} ${ndsi_generated}
+    DEPENDS tools/generate_ndsi_tables.py ${ndsi_data}/species.tsv ${ndsi_data}/items.tsv
+    VERBATIM)
+
 add_library(spec STATIC
     src/spec.c
     src/names.c
     src/bytes.c
     src/utf8.c
+    src/crc16.c
+    src/bag.c
     src/personality.c
-    src/shuffle.c
+    src/record.c
     src/stats.c
     src/gba/save.c
     src/gba/layout.c
@@ -76,9 +90,21 @@ add_library(spec STATIC
     src/nds/personality.c
     src/nds/items.c
     src/nds/text.c
+    src/ndsi/save.c
+    src/ndsi/layout.c
+    src/ndsi/copy.c
+    src/ndsi/player.c
+    src/ndsi/pokedex.c
+    src/ndsi/storage.c
+    src/ndsi/pokemon.c
+    src/ndsi/mail.c
+    src/ndsi/personality.c
+    src/ndsi/items.c
+    src/ndsi/text.c
     ${spec_tables}
     ${gba_tables}
-    ${nds_tables})
+    ${nds_tables}
+    ${ndsi_tables})
 target_include_directories(spec PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:include/spec>)
@@ -90,6 +116,7 @@ install(TARGETS spec ARCHIVE DESTINATION lib)
 install(FILES src/spec.h DESTINATION include/spec)
 install(FILES src/gba/gba.h DESTINATION include/spec/gba)
 install(FILES src/nds/nds.h DESTINATION include/spec/nds)
+install(FILES src/ndsi/ndsi.h DESTINATION include/spec/ndsi)
 
 if(SPEC_GBA_TEST_SAVES)
     enable_testing()
@@ -110,5 +137,16 @@ if(SPEC_NDS_TEST_SAVES)
     foreach(test_save IN LISTS test_saves)
         get_filename_component(test_name ${test_save} NAME_WE)
         add_test(NAME nds_round_trip_${test_name} COMMAND nds_round_trip ${test_save})
+    endforeach()
+endif()
+
+if(SPEC_NDSI_TEST_SAVES)
+    enable_testing()
+    add_executable(ndsi_round_trip tests/ndsi_round_trip.c)
+    target_link_libraries(ndsi_round_trip PRIVATE spec)
+    file(GLOB test_saves ${SPEC_NDSI_TEST_SAVES})
+    foreach(test_save IN LISTS test_saves)
+        get_filename_component(test_name ${test_save} NAME_WE)
+        add_test(NAME ndsi_round_trip_${test_name} COMMAND ndsi_round_trip ${test_save})
     endforeach()
 endif()

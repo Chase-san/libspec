@@ -59,6 +59,8 @@ enum spec_game_type : uint8_t {
     SPEC_GAME_TYPE_DIAMOND_PEARL,
     SPEC_GAME_TYPE_PLATINUM,
     SPEC_GAME_TYPE_HEARTGOLD_SOULSILVER,
+    SPEC_GAME_TYPE_BLACK_WHITE,
+    SPEC_GAME_TYPE_BLACK2_WHITE2,
 };
 typedef enum spec_game_type spec_game_type_t;
 
@@ -74,6 +76,10 @@ enum spec_version : uint8_t {
     SPEC_VERSION_PEARL = 11,
     SPEC_VERSION_PLATINUM = 12,
     SPEC_VERSION_COLOSSEUM_XD = 15,
+    SPEC_VERSION_WHITE = 20,
+    SPEC_VERSION_BLACK = 21,
+    SPEC_VERSION_WHITE2 = 22,
+    SPEC_VERSION_BLACK2 = 23,
 };
 typedef enum spec_version spec_version_t;
 
@@ -102,7 +108,8 @@ enum spec_ball : uint8_t {
     SPEC_BALL_FRIEND = 22,
     SPEC_BALL_MOON = 23,
     SPEC_BALL_SPORT = 24,
-    SPEC_BALL_PARK = 25,
+    SPEC_BALL_PARK = 25,  // Gen 4
+    SPEC_BALL_DREAM = 25, // Gen 5
 };
 typedef enum spec_ball spec_ball_t;
 
@@ -153,6 +160,12 @@ enum spec_stat {
     SPEC_STAT_COUNT,
 };
 typedef enum spec_stat spec_stat_t;
+
+struct spec_item_slot {
+    uint16_t item;
+    uint16_t quantity;
+};
+typedef struct spec_item_slot spec_item_slot_t;
 
 constexpr size_t SPEC_EXPECTED_IV_SETS_MAX = 3;
 

@@ -78,6 +78,7 @@ constexpr unsigned TOXIC_TURNS_BIT = 8;
 constexpr unsigned TOXIC_TURNS_BIT_COUNT = 4;
 
 constexpr size_t SUBSTRUCT_SIZE = 12;
+constexpr size_t SUBSTRUCTS_SIZE = 4 * SUBSTRUCT_SIZE;
 
 constexpr uint16_t SHEDINJA = 303;
 constexpr uint16_t FIRST_MAIL_ITEM = 121;
@@ -103,14 +104,6 @@ static void xor_substructs(uint8_t *record) {
 // As the game orders the substructs: personality % 24.
 static size_t substruct_order_of(const uint8_t *record) {
     return spec_read_u32_le(&record[PERSONALITY_OFFSET]);
-}
-
-static uint16_t checksum_of(const uint8_t *plain) {
-    uint16_t checksum = 0;
-    for (size_t offset = SUBSTRUCTS_OFFSET; offset < SPEC_GBA_BOX_RECORD_SIZE; offset += 2) {
-        checksum = (uint16_t)(checksum + spec_read_u16_le(&plain[offset]));
-    }
-    return checksum;
 }
 
 // hasSpecies and the egg-name bit are derived on write.
@@ -356,7 +349,8 @@ void spec_gba_decode_pokemon(spec_gba_pokemon_t *pokemon, const uint8_t *record,
         decode_party_data(&pokemon->party_data, plain);
     }
     // A failed checksum reads as a Bad Egg, as in the game.
-    if (checksum_of(plain) != spec_read_u16_le(&plain[CHECKSUM_OFFSET])) {
+    if (spec_sum_u16(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCTS_SIZE)
+        != spec_read_u16_le(&plain[CHECKSUM_OFFSET])) {
         pokemon->is_bad_egg = true;
         pokemon->is_egg = true;
     }
@@ -380,7 +374,8 @@ spec_error_t spec_gba_encode_pokemon(uint8_t *record, size_t record_size,
     encode_condition(plain, pokemon);
     encode_misc(plain, pokemon);
     encode_party_data(plain, &pokemon->party_data);
-    spec_write_u16_le(&plain[CHECKSUM_OFFSET], checksum_of(plain));
+    spec_write_u16_le(&plain[CHECKSUM_OFFSET],
+                      spec_sum_u16(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCTS_SIZE));
     spec_shuffle_blocks(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCT_SIZE, substruct_order_of(plain));
     xor_substructs(plain);
     memcpy(record, plain, record_size);

@@ -248,11 +248,7 @@ struct spec_gba_daycare {
 };
 typedef struct spec_gba_daycare spec_gba_daycare_t;
 
-struct spec_gba_item_slot {
-    uint16_t item;
-    uint16_t quantity;
-};
-typedef struct spec_gba_item_slot spec_gba_item_slot_t;
+typedef spec_item_slot_t spec_gba_item_slot_t;
 
 // Writing condenses pockets; a slot with no item or zero quantity is empty.
 struct spec_gba_save {
