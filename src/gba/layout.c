@@ -1,3 +1,5 @@
+// Where each Gen 3 game keeps its fields: Ruby and Sapphire, Emerald, FireRed and LeafGreen.
+
 #include "gba/gba_internal.h"
 
 constexpr size_t SAVE_BLOCK_2 = 0 * SPEC_GBA_SECTION_DATA_SIZE;
@@ -193,6 +195,7 @@ const spec_gba_layout_t *spec_gba_get_layout(spec_game_type_t type) {
             return &EMERALD_LAYOUT;
         case SPEC_GAME_TYPE_FIRERED_LEAFGREEN:
             return &FIRERED_LEAFGREEN_LAYOUT;
+        default:
+            return nullptr;
     }
-    return nullptr;
 }

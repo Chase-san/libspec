@@ -1,3 +1,5 @@
+// Gen 3 Pokémon storage: the party, the PC boxes and the daycare.
+
 #include "gba/gba.h"
 #include "gba/gba_internal.h"
 #include "spec_internal.h"

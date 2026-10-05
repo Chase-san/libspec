@@ -1,3 +1,5 @@
+// UTF-8 encoding and decoding, one code point at a time.
+
 #include "spec_internal.h"
 
 constexpr char32_t LAST_CODE_POINT = 0x10FFFF;

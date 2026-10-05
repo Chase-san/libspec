@@ -1,3 +1,5 @@
+// The Gen 3 Pokédex: seen and caught flags, and the National Dex.
+
 #include "gba/gba.h"
 #include "gba/gba_internal.h"
 #include "spec_internal.h"

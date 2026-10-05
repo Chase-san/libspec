@@ -1,4 +1,4 @@
-# Gen 3 items: pret's item tables (pokeruby, pokeemerald, pokefirered) and their English and German names (pokeruby's German build), by way of libxpe.
+# Gen 3 items: pret's item tables (pokeruby, pokeemerald, pokefirered) and their English and German names (pokeruby's German build).
 # A name or pocket of '-' means none (only Ruby and Sapphire were built in German). Important items are the ones the PC refuses.
 item	english	german	ruby_sapphire	emerald	firered_leafgreen	is_important
 1	MASTER BALL	MEISTERBALL	poke_balls	poke_balls	poke_balls	no

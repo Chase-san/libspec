@@ -1,3 +1,5 @@
+// Gen 3 items: item data, pocket rules, and the bag and PC codec.
+
 #include "gba/gba.h"
 #include "gba/gba_internal.h"
 #include "gba/tables.h"
@@ -32,8 +34,9 @@ static const size_t *pocket_capacities_of(spec_game_type_t type) {
             return EMERALD_POCKET_CAPACITIES;
         case SPEC_GAME_TYPE_FIRERED_LEAFGREEN:
             return FIRERED_LEAFGREEN_POCKET_CAPACITIES;
+        default:
+            return nullptr;
     }
-    return nullptr;
 }
 
 static const spec_gba_item_data_t *item_data_of(uint16_t item) {
@@ -51,8 +54,9 @@ static uint8_t pocket_in(const spec_gba_item_data_t *item_data, spec_game_type_t
             return item_data->emerald_pocket;
         case SPEC_GAME_TYPE_FIRERED_LEAFGREEN:
             return item_data->firered_leafgreen_pocket;
+        default:
+            return SPEC_GBA_NO_POCKET;
     }
-    return SPEC_GBA_NO_POCKET;
 }
 
 static bool is_in_game(const spec_gba_item_data_t *item_data, spec_game_type_t type) {

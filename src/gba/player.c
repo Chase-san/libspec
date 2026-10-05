@@ -1,3 +1,5 @@
+// The Gen 3 player: trainer, play time, wallet, badges, rival name and options.
+
 #include "gba/gba.h"
 #include "gba/gba_internal.h"
 #include "spec_internal.h"

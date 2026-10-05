@@ -1,3 +1,5 @@
+// The Gen 3 flash: two slots of fourteen checksummed sectors, and slot-relative access.
+
 #include <string.h>
 
 #include "gba/gba_internal.h"

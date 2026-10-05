@@ -1,3 +1,5 @@
+// Gen 3 Pokémon records: the encrypted codec, stats, names and species numbering.
+
 #include <string.h>
 
 #include "gba/gba.h"
@@ -76,22 +78,11 @@ constexpr unsigned TOXIC_TURNS_BIT = 8;
 constexpr unsigned TOXIC_TURNS_BIT_COUNT = 4;
 
 constexpr size_t SUBSTRUCT_SIZE = 12;
-constexpr size_t SUBSTRUCT_COUNT = 4;
-constexpr size_t SUBSTRUCT_ORDER_COUNT = 24;
 
 constexpr uint16_t SHEDINJA = 303;
 constexpr uint16_t FIRST_MAIL_ITEM = 121;
 constexpr uint16_t LAST_MAIL_ITEM = 132;
 constexpr uint8_t NO_MAIL = 0xFF;
-constexpr uint8_t MAX_LEVEL = 100;
-
-// Stored positions of Growth, Attacks, EVs and Misc for each personality % 24.
-constexpr uint8_t SUBSTRUCT_POSITIONS[SUBSTRUCT_ORDER_COUNT][SUBSTRUCT_COUNT] = {
-    {0, 1, 2, 3}, {0, 1, 3, 2}, {0, 2, 1, 3}, {0, 3, 1, 2}, {0, 2, 3, 1}, {0, 3, 2, 1},
-    {1, 0, 2, 3}, {1, 0, 3, 2}, {2, 0, 1, 3}, {3, 0, 1, 2}, {2, 0, 3, 1}, {3, 0, 2, 1},
-    {1, 2, 0, 3}, {1, 3, 0, 2}, {2, 1, 0, 3}, {3, 1, 0, 2}, {2, 3, 0, 1}, {3, 2, 0, 1},
-    {1, 2, 3, 0}, {1, 3, 2, 0}, {2, 1, 3, 0}, {3, 1, 2, 0}, {2, 3, 1, 0}, {3, 2, 1, 0},
-};
 
 static bool get_flag(uint32_t word, unsigned bit) {
     return spec_get_bits(word, bit, 1) != 0;
@@ -109,29 +100,9 @@ static void xor_substructs(uint8_t *record) {
     }
 }
 
-static const uint8_t *substruct_positions_of(const uint8_t *record) {
-    return SUBSTRUCT_POSITIONS[spec_read_u32_le(&record[PERSONALITY_OFFSET])
-                               % SUBSTRUCT_ORDER_COUNT];
-}
-
-static void shuffle_substructs(uint8_t *record) {
-    const uint8_t *positions = substruct_positions_of(record);
-    uint8_t in_order[SUBSTRUCT_COUNT * SUBSTRUCT_SIZE];
-    memcpy(in_order, &record[SUBSTRUCTS_OFFSET], sizeof in_order);
-    for (size_t substruct = 0; substruct < SUBSTRUCT_COUNT; ++substruct) {
-        memcpy(&record[SUBSTRUCTS_OFFSET + positions[substruct] * SUBSTRUCT_SIZE],
-               &in_order[substruct * SUBSTRUCT_SIZE], SUBSTRUCT_SIZE);
-    }
-}
-
-static void unshuffle_substructs(uint8_t *record) {
-    const uint8_t *positions = substruct_positions_of(record);
-    uint8_t as_stored[SUBSTRUCT_COUNT * SUBSTRUCT_SIZE];
-    memcpy(as_stored, &record[SUBSTRUCTS_OFFSET], sizeof as_stored);
-    for (size_t substruct = 0; substruct < SUBSTRUCT_COUNT; ++substruct) {
-        memcpy(&record[SUBSTRUCTS_OFFSET + substruct * SUBSTRUCT_SIZE],
-               &as_stored[positions[substruct] * SUBSTRUCT_SIZE], SUBSTRUCT_SIZE);
-    }
+// As the game orders the substructs: personality % 24.
+static size_t substruct_order_of(const uint8_t *record) {
+    return spec_read_u32_le(&record[PERSONALITY_OFFSET]);
 }
 
 static uint16_t checksum_of(const uint8_t *plain) {
@@ -374,7 +345,7 @@ void spec_gba_decode_pokemon(spec_gba_pokemon_t *pokemon, const uint8_t *record,
     uint8_t plain[SPEC_GBA_PARTY_RECORD_SIZE] = {};
     memcpy(plain, record, record_size);
     xor_substructs(plain);
-    unshuffle_substructs(plain);
+    spec_unshuffle_blocks(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCT_SIZE, substruct_order_of(plain));
     *pokemon = (spec_gba_pokemon_t){};
     decode_header(pokemon, plain);
     decode_growth(pokemon, plain);
@@ -392,7 +363,7 @@ void spec_gba_decode_pokemon(spec_gba_pokemon_t *pokemon, const uint8_t *record,
     if (pokemon->species != 0) {
         pokemon->personality = spec_gba_decode_personality(pokemon->personality.pid,
                                                            pokemon->species, &pokemon->trainer);
-        pokemon->iv_method = spec_gba_find_iv_method(pokemon->personality.pid, pokemon->ivs);
+        pokemon->iv_method = spec_find_iv_method(pokemon->personality.pid, pokemon->ivs);
     }
 }
 
@@ -410,7 +381,7 @@ spec_error_t spec_gba_encode_pokemon(uint8_t *record, size_t record_size,
     encode_misc(plain, pokemon);
     encode_party_data(plain, &pokemon->party_data);
     spec_write_u16_le(&plain[CHECKSUM_OFFSET], checksum_of(plain));
-    shuffle_substructs(plain);
+    spec_shuffle_blocks(&plain[SUBSTRUCTS_OFFSET], SUBSTRUCT_SIZE, substruct_order_of(plain));
     xor_substructs(plain);
     memcpy(record, plain, record_size);
     return SPEC_OK;
@@ -437,49 +408,16 @@ spec_error_t spec_gba_write_pokemon(uint8_t *raw, size_t raw_size,
     return spec_gba_encode_pokemon(raw, raw_size, pokemon);
 }
 
-static uint8_t level_of(spec_gba_growth_rate_t growth_rate, uint32_t experience) {
-    // As GetLevelFromMonExp.
-    uint8_t level = 1;
-    while (level <= MAX_LEVEL && spec_gba_experience[growth_rate][level] <= experience) {
-        ++level;
-    }
-    return (uint8_t)(level - 1);
-}
-
-static unsigned level_share_of(const spec_gba_pokemon_t *pokemon,
-                               const spec_gba_species_data_t *species_data, spec_stat_t stat,
-                               uint8_t level) {
-    unsigned points =
-        2U * species_data->base_stats[stat] + pokemon->ivs[stat] + pokemon->evs[stat] / 4U;
-    return points * level / 100;
-}
-
-static uint16_t max_hp_of(const spec_gba_pokemon_t *pokemon,
-                          const spec_gba_species_data_t *species_data, uint8_t level) {
-    if (pokemon->species == SHEDINJA) {
+static uint16_t stat_of(const spec_gba_pokemon_t *pokemon,
+                        const spec_gba_species_data_t *species_data, spec_stat_t stat,
+                        uint8_t level) {
+    if (stat == SPEC_STAT_HP && pokemon->species == SHEDINJA) {
         return 1;
     }
-    return (uint16_t)(level_share_of(pokemon, species_data, SPEC_STAT_HP, level) + level + 10);
-}
-
-static uint16_t other_stat_of(const spec_gba_pokemon_t *pokemon,
-                              const spec_gba_species_data_t *species_data, spec_stat_t stat,
-                              uint8_t level) {
-    uint16_t value = (uint16_t)(level_share_of(pokemon, species_data, stat, level) + 5);
-    // Nature n raises stat n / 5 and lowers n % 5, from Attack; 16-bit math as in the game.
-    unsigned nature = pokemon->personality.pid % SPEC_NATURE_COUNT;
-    unsigned raised_stat = SPEC_STAT_ATTACK + nature / 5;
-    unsigned lowered_stat = SPEC_STAT_ATTACK + nature % 5;
-    if (raised_stat == lowered_stat) {
-        return value;
-    }
-    if (stat == raised_stat) {
-        return (uint16_t)((uint16_t)(value * 110) / 100);
-    }
-    if (stat == lowered_stat) {
-        return (uint16_t)((uint16_t)(value * 90) / 100);
-    }
-    return value;
+    // The nature comes from the pid, since personality.nature is ignored on write.
+    spec_nature_t nature = (spec_nature_t)(pokemon->personality.pid % SPEC_NATURE_COUNT);
+    return spec_calculate_stat(stat, species_data->base_stats[stat], pokemon->ivs[stat],
+                               pokemon->evs[stat], level, nature);
 }
 
 static uint16_t current_hp_after(const spec_gba_pokemon_t *pokemon, uint16_t old_max_hp,
@@ -500,14 +438,14 @@ static uint16_t current_hp_after(const spec_gba_pokemon_t *pokemon, uint16_t old
 
 static void calculate_stats(spec_gba_pokemon_t *pokemon,
                             const spec_gba_species_data_t *species_data) {
-    uint8_t level = level_of(species_data->growth_rate, pokemon->experience);
+    uint8_t level = spec_level_for_experience(species_data->growth_rate, pokemon->experience);
     uint16_t old_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
-    uint16_t new_max_hp = max_hp_of(pokemon, species_data, level);
+    uint16_t new_max_hp = stat_of(pokemon, species_data, SPEC_STAT_HP, level);
     pokemon->party_data.current_hp = current_hp_after(pokemon, old_max_hp, new_max_hp);
     pokemon->party_data.level = level;
     pokemon->party_data.stats[SPEC_STAT_HP] = new_max_hp;
     for (spec_stat_t stat = SPEC_STAT_ATTACK; stat < SPEC_STAT_COUNT; ++stat) {
-        pokemon->party_data.stats[stat] = other_stat_of(pokemon, species_data, stat, level);
+        pokemon->party_data.stats[stat] = stat_of(pokemon, species_data, stat, level);
     }
 }
 

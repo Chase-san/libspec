@@ -1,3 +1,5 @@
+// Species names by National Dex number and language.
+
 #include "spec.h"
 #include "spec_tables.h"
 

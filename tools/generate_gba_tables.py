@@ -6,11 +6,9 @@ usage: generate_gba_tables.py DATA_DIRECTORY OUTPUT_DIRECTORY
 import sys
 from pathlib import Path
 
-GROWTH_RATES = ["medium_fast", "erratic", "fluctuating", "medium_slow", "fast", "slow"]
 STAT_COLUMNS = ["hp", "attack", "defense", "speed", "special_attack", "special_defense"]
 CHARMAP_COLUMNS = ["japanese", "international", "french", "german"]
 POCKET_COLUMNS = ["ruby_sapphire", "emerald", "firered_leafgreen"]
-MAX_LEVEL = 100
 
 
 def read_tsv(path):
@@ -26,7 +24,7 @@ def write_c_file(path, source, body):
 
 
 def growth_rate_enum(name):
-    return "SPEC_GBA_GROWTH_RATE_" + name.upper()
+    return "SPEC_GROWTH_RATE_" + name.upper()
 
 
 def species_national_body(species):
@@ -48,48 +46,6 @@ def species_data_body(species):
         growth_rate = growth_rate_enum(row["growth_rate"])
         gender_ratio = row["gender_ratio"]
         lines.append(f"    [{row['index']}] = {{{{{stats}}}, {growth_rate}, {gender_ratio}}}, // {row['name']}")
-    lines.append("};")
-    return "\n".join(lines) + "\n"
-
-
-def experience_at_level(growth_rate, n):
-    # pret's experience_tables.h lists levels 0 and 1 outright and uses these formulas from level 2.
-    if n <= 1:
-        return n
-    cube = n * n * n
-    if growth_rate == "medium_fast":
-        return cube
-    if growth_rate == "erratic":
-        if n <= 50:
-            return (100 - n) * cube // 50
-        if n <= 68:
-            return (150 - n) * cube // 100
-        if n <= 98:
-            return ((1911 - 10 * n) // 3) * cube // 500
-        return (160 - n) * cube // 100
-    if growth_rate == "fluctuating":
-        if n <= 15:
-            return ((n + 1) // 3 + 24) * cube // 50
-        if n <= 36:
-            return (n + 14) * cube // 50
-        return ((n // 2) + 32) * cube // 50
-    if growth_rate == "medium_slow":
-        return (6 * cube) // 5 - 15 * n * n + 100 * n - 140
-    if growth_rate == "fast":
-        return (4 * cube) // 5
-    if growth_rate == "slow":
-        return (5 * cube) // 4
-    raise ValueError(growth_rate)
-
-
-def experience_body():
-    lines = ["const uint32_t spec_gba_experience[SPEC_GBA_GROWTH_RATE_COUNT][SPEC_GBA_LEVEL_COUNT] = {"]
-    for growth_rate in GROWTH_RATES:
-        values = [str(experience_at_level(growth_rate, level)) for level in range(MAX_LEVEL + 1)]
-        lines.append(f"    [{growth_rate_enum(growth_rate)}] = {{")
-        for start in range(0, len(values), 10):
-            lines.append("        " + ", ".join(values[start : start + 10]) + ",")
-        lines.append("    },")
     lines.append("};")
     return "\n".join(lines) + "\n"
 
@@ -148,7 +104,6 @@ def main():
     items = read_tsv(data_directory / "items.tsv")
     write_c_file(output_directory / "species_national.c", "data/gba/species.tsv", species_national_body(species))
     write_c_file(output_directory / "species_data.c", "data/gba/species.tsv", species_data_body(species))
-    write_c_file(output_directory / "experience.c", "pret's growth-rate formulas", experience_body())
     write_c_file(output_directory / "charmap.c", "data/gba/charmap.tsv", charmap_body(charmap))
     write_c_file(output_directory / "items.c", "data/gba/items.tsv", items_body(items))
 

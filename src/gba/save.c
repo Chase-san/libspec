@@ -1,3 +1,5 @@
+// Reading and writing a whole Gen 3 save: detection, then each part's codec in turn.
+
 #include "gba/gba.h"
 #include "gba/gba_internal.h"
 #include "spec_internal.h"

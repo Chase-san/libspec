@@ -1,3 +1,5 @@
+// Writes a Gen 3 save back unedited and checks what changes, then checks refused writes.
+
 #include <stdio.h>
 #include <string.h>
 

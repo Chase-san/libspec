@@ -1,0 +1,517 @@
+# Gen 4 items: their pocket in each game (pret pokediamond item_data.json, pokeplatinum res/items/data, pokeheartgold item_data.csv) and English name (the games' item text banks).
+# A pocket of '-' means the game lacks the item.
+item	english	diamond_pearl	platinum	heartgold_soulsilver
+1	Master Ball	poke_balls	poke_balls	poke_balls
+2	Ultra Ball	poke_balls	poke_balls	poke_balls
+3	Great Ball	poke_balls	poke_balls	poke_balls
+4	Poké Ball	poke_balls	poke_balls	poke_balls
+5	Safari Ball	poke_balls	poke_balls	poke_balls
+6	Net Ball	poke_balls	poke_balls	poke_balls
+7	Dive Ball	poke_balls	poke_balls	poke_balls
+8	Nest Ball	poke_balls	poke_balls	poke_balls
+9	Repeat Ball	poke_balls	poke_balls	poke_balls
+10	Timer Ball	poke_balls	poke_balls	poke_balls
+11	Luxury Ball	poke_balls	poke_balls	poke_balls
+12	Premier Ball	poke_balls	poke_balls	poke_balls
+13	Dusk Ball	poke_balls	poke_balls	poke_balls
+14	Heal Ball	poke_balls	poke_balls	poke_balls
+15	Quick Ball	poke_balls	poke_balls	poke_balls
+16	Cherish Ball	poke_balls	poke_balls	poke_balls
+17	Potion	medicine	medicine	medicine
+18	Antidote	medicine	medicine	medicine
+19	Burn Heal	medicine	medicine	medicine
+20	Ice Heal	medicine	medicine	medicine
+21	Awakening	medicine	medicine	medicine
+22	Parlyz Heal	medicine	medicine	medicine
+23	Full Restore	medicine	medicine	medicine
+24	Max Potion	medicine	medicine	medicine
+25	Hyper Potion	medicine	medicine	medicine
+26	Super Potion	medicine	medicine	medicine
+27	Full Heal	medicine	medicine	medicine
+28	Revive	medicine	medicine	medicine
+29	Max Revive	medicine	medicine	medicine
+30	Fresh Water	medicine	medicine	medicine
+31	Soda Pop	medicine	medicine	medicine
+32	Lemonade	medicine	medicine	medicine
+33	Moomoo Milk	medicine	medicine	medicine
+34	EnergyPowder	medicine	medicine	medicine
+35	Energy Root	medicine	medicine	medicine
+36	Heal Powder	medicine	medicine	medicine
+37	Revival Herb	medicine	medicine	medicine
+38	Ether	medicine	medicine	medicine
+39	Max Ether	medicine	medicine	medicine
+40	Elixir	medicine	medicine	medicine
+41	Max Elixir	medicine	medicine	medicine
+42	Lava Cookie	medicine	medicine	medicine
+43	Berry Juice	medicine	medicine	medicine
+44	Sacred Ash	medicine	medicine	medicine
+45	HP Up	medicine	medicine	medicine
+46	Protein	medicine	medicine	medicine
+47	Iron	medicine	medicine	medicine
+48	Carbos	medicine	medicine	medicine
+49	Calcium	medicine	medicine	medicine
+50	Rare Candy	medicine	medicine	medicine
+51	PP Up	medicine	medicine	medicine
+52	Zinc	medicine	medicine	medicine
+53	PP Max	medicine	medicine	medicine
+54	Old Gateau	medicine	medicine	medicine
+55	Guard Spec.	battle_items	battle_items	battle_items
+56	Dire Hit	battle_items	battle_items	battle_items
+57	X Attack	battle_items	battle_items	battle_items
+58	X Defend	battle_items	battle_items	battle_items
+59	X Speed	battle_items	battle_items	battle_items
+60	X Accuracy	battle_items	battle_items	battle_items
+61	X Special	battle_items	battle_items	battle_items
+62	X Sp. Def	battle_items	battle_items	battle_items
+63	Poké Doll	battle_items	battle_items	battle_items
+64	Fluffy Tail	battle_items	battle_items	battle_items
+65	Blue Flute	battle_items	battle_items	battle_items
+66	Yellow Flute	battle_items	battle_items	battle_items
+67	Red Flute	battle_items	battle_items	battle_items
+68	Black Flute	items	items	items
+69	White Flute	items	items	items
+70	Shoal Salt	items	items	items
+71	Shoal Shell	items	items	items
+72	Red Shard	items	items	items
+73	Blue Shard	items	items	items
+74	Yellow Shard	items	items	items
+75	Green Shard	items	items	items
+76	Super Repel	items	items	items
+77	Max Repel	items	items	items
+78	Escape Rope	items	items	items
+79	Repel	items	items	items
+80	Sun Stone	items	items	items
+81	Moon Stone	items	items	items
+82	Fire Stone	items	items	items
+83	Thunderstone	items	items	items
+84	Water Stone	items	items	items
+85	Leaf Stone	items	items	items
+86	TinyMushroom	items	items	items
+87	Big Mushroom	items	items	items
+88	Pearl	items	items	items
+89	Big Pearl	items	items	items
+90	Stardust	items	items	items
+91	Star Piece	items	items	items
+92	Nugget	items	items	items
+93	Heart Scale	items	items	items
+94	Honey	items	items	items
+95	Growth Mulch	items	items	items
+96	Damp Mulch	items	items	items
+97	Stable Mulch	items	items	items
+98	Gooey Mulch	items	items	items
+99	Root Fossil	items	items	items
+100	Claw Fossil	items	items	items
+101	Helix Fossil	items	items	items
+102	Dome Fossil	items	items	items
+103	Old Amber	items	items	items
+104	Armor Fossil	items	items	items
+105	Skull Fossil	items	items	items
+106	Rare Bone	items	items	items
+107	Shiny Stone	items	items	items
+108	Dusk Stone	items	items	items
+109	Dawn Stone	items	items	items
+110	Oval Stone	items	items	items
+111	Odd Keystone	items	items	items
+112	Griseous Orb	-	items	items
+135	Adamant Orb	items	items	items
+136	Lustrous Orb	items	items	items
+137	Grass Mail	mail	mail	mail
+138	Flame Mail	mail	mail	mail
+139	Bubble Mail	mail	mail	mail
+140	Bloom Mail	mail	mail	mail
+141	Tunnel Mail	mail	mail	mail
+142	Steel Mail	mail	mail	mail
+143	Heart Mail	mail	mail	mail
+144	Snow Mail	mail	mail	mail
+145	Space Mail	mail	mail	mail
+146	Air Mail	mail	mail	mail
+147	Mosaic Mail	mail	mail	mail
+148	Brick Mail	mail	mail	mail
+149	Cheri Berry	berries	berries	berries
+150	Chesto Berry	berries	berries	berries
+151	Pecha Berry	berries	berries	berries
+152	Rawst Berry	berries	berries	berries
+153	Aspear Berry	berries	berries	berries
+154	Leppa Berry	berries	berries	berries
+155	Oran Berry	berries	berries	berries
+156	Persim Berry	berries	berries	berries
+157	Lum Berry	berries	berries	berries
+158	Sitrus Berry	berries	berries	berries
+159	Figy Berry	berries	berries	berries
+160	Wiki Berry	berries	berries	berries
+161	Mago Berry	berries	berries	berries
+162	Aguav Berry	berries	berries	berries
+163	Iapapa Berry	berries	berries	berries
+164	Razz Berry	berries	berries	berries
+165	Bluk Berry	berries	berries	berries
+166	Nanab Berry	berries	berries	berries
+167	Wepear Berry	berries	berries	berries
+168	Pinap Berry	berries	berries	berries
+169	Pomeg Berry	berries	berries	berries
+170	Kelpsy Berry	berries	berries	berries
+171	Qualot Berry	berries	berries	berries
+172	Hondew Berry	berries	berries	berries
+173	Grepa Berry	berries	berries	berries
+174	Tamato Berry	berries	berries	berries
+175	Cornn Berry	berries	berries	berries
+176	Magost Berry	berries	berries	berries
+177	Rabuta Berry	berries	berries	berries
+178	Nomel Berry	berries	berries	berries
+179	Spelon Berry	berries	berries	berries
+180	Pamtre Berry	berries	berries	berries
+181	Watmel Berry	berries	berries	berries
+182	Durin Berry	berries	berries	berries
+183	Belue Berry	berries	berries	berries
+184	Occa Berry	berries	berries	berries
+185	Passho Berry	berries	berries	berries
+186	Wacan Berry	berries	berries	berries
+187	Rindo Berry	berries	berries	berries
+188	Yache Berry	berries	berries	berries
+189	Chople Berry	berries	berries	berries
+190	Kebia Berry	berries	berries	berries
+191	Shuca Berry	berries	berries	berries
+192	Coba Berry	berries	berries	berries
+193	Payapa Berry	berries	berries	berries
+194	Tanga Berry	berries	berries	berries
+195	Charti Berry	berries	berries	berries
+196	Kasib Berry	berries	berries	berries
+197	Haban Berry	berries	berries	berries
+198	Colbur Berry	berries	berries	berries
+199	Babiri Berry	berries	berries	berries
+200	Chilan Berry	berries	berries	berries
+201	Liechi Berry	berries	berries	berries
+202	Ganlon Berry	berries	berries	berries
+203	Salac Berry	berries	berries	berries
+204	Petaya Berry	berries	berries	berries
+205	Apicot Berry	berries	berries	berries
+206	Lansat Berry	berries	berries	berries
+207	Starf Berry	berries	berries	berries
+208	Enigma Berry	berries	berries	berries
+209	Micle Berry	berries	berries	berries
+210	Custap Berry	berries	berries	berries
+211	Jaboca Berry	berries	berries	berries
+212	Rowap Berry	berries	berries	berries
+213	BrightPowder	items	items	items
+214	White Herb	items	items	items
+215	Macho Brace	items	items	items
+216	Exp. Share	items	items	items
+217	Quick Claw	items	items	items
+218	Soothe Bell	items	items	items
+219	Mental Herb	items	items	items
+220	Choice Band	items	items	items
+221	King’s Rock	items	items	items
+222	SilverPowder	items	items	items
+223	Amulet Coin	items	items	items
+224	Cleanse Tag	items	items	items
+225	Soul Dew	items	items	items
+226	DeepSeaTooth	items	items	items
+227	DeepSeaScale	items	items	items
+228	Smoke Ball	items	items	items
+229	Everstone	items	items	items
+230	Focus Band	items	items	items
+231	Lucky Egg	items	items	items
+232	Scope Lens	items	items	items
+233	Metal Coat	items	items	items
+234	Leftovers	items	items	items
+235	Dragon Scale	items	items	items
+236	Light Ball	items	items	items
+237	Soft Sand	items	items	items
+238	Hard Stone	items	items	items
+239	Miracle Seed	items	items	items
+240	BlackGlasses	items	items	items
+241	Black Belt	items	items	items
+242	Magnet	items	items	items
+243	Mystic Water	items	items	items
+244	Sharp Beak	items	items	items
+245	Poison Barb	items	items	items
+246	NeverMeltIce	items	items	items
+247	Spell Tag	items	items	items
+248	TwistedSpoon	items	items	items
+249	Charcoal	items	items	items
+250	Dragon Fang	items	items	items
+251	Silk Scarf	items	items	items
+252	Up-Grade	items	items	items
+253	Shell Bell	items	items	items
+254	Sea Incense	items	items	items
+255	Lax Incense	items	items	items
+256	Lucky Punch	items	items	items
+257	Metal Powder	items	items	items
+258	Thick Club	items	items	items
+259	Stick	items	items	items
+260	Red Scarf	items	items	items
+261	Blue Scarf	items	items	items
+262	Pink Scarf	items	items	items
+263	Green Scarf	items	items	items
+264	Yellow Scarf	items	items	items
+265	Wide Lens	items	items	items
+266	Muscle Band	items	items	items
+267	Wise Glasses	items	items	items
+268	Expert Belt	items	items	items
+269	Light Clay	items	items	items
+270	Life Orb	items	items	items
+271	Power Herb	items	items	items
+272	Toxic Orb	items	items	items
+273	Flame Orb	items	items	items
+274	Quick Powder	items	items	items
+275	Focus Sash	items	items	items
+276	Zoom Lens	items	items	items
+277	Metronome	items	items	items
+278	Iron Ball	items	items	items
+279	Lagging Tail	items	items	items
+280	Destiny Knot	items	items	items
+281	Black Sludge	items	items	items
+282	Icy Rock	items	items	items
+283	Smooth Rock	items	items	items
+284	Heat Rock	items	items	items
+285	Damp Rock	items	items	items
+286	Grip Claw	items	items	items
+287	Choice Scarf	items	items	items
+288	Sticky Barb	items	items	items
+289	Power Bracer	items	items	items
+290	Power Belt	items	items	items
+291	Power Lens	items	items	items
+292	Power Band	items	items	items
+293	Power Anklet	items	items	items
+294	Power Weight	items	items	items
+295	Shed Shell	items	items	items
+296	Big Root	items	items	items
+297	Choice Specs	items	items	items
+298	Flame Plate	items	items	items
+299	Splash Plate	items	items	items
+300	Zap Plate	items	items	items
+301	Meadow Plate	items	items	items
+302	Icicle Plate	items	items	items
+303	Fist Plate	items	items	items
+304	Toxic Plate	items	items	items
+305	Earth Plate	items	items	items
+306	Sky Plate	items	items	items
+307	Mind Plate	items	items	items
+308	Insect Plate	items	items	items
+309	Stone Plate	items	items	items
+310	Spooky Plate	items	items	items
+311	Draco Plate	items	items	items
+312	Dread Plate	items	items	items
+313	Iron Plate	items	items	items
+314	Odd Incense	items	items	items
+315	Rock Incense	items	items	items
+316	Full Incense	items	items	items
+317	Wave Incense	items	items	items
+318	Rose Incense	items	items	items
+319	Luck Incense	items	items	items
+320	Pure Incense	items	items	items
+321	Protector	items	items	items
+322	Electirizer	items	items	items
+323	Magmarizer	items	items	items
+324	Dubious Disc	items	items	items
+325	Reaper Cloth	items	items	items
+326	Razor Claw	items	items	items
+327	Razor Fang	items	items	items
+328	TM01	tms_hms	tms_hms	tms_hms
+329	TM02	tms_hms	tms_hms	tms_hms
+330	TM03	tms_hms	tms_hms	tms_hms
+331	TM04	tms_hms	tms_hms	tms_hms
+332	TM05	tms_hms	tms_hms	tms_hms
+333	TM06	tms_hms	tms_hms	tms_hms
+334	TM07	tms_hms	tms_hms	tms_hms
+335	TM08	tms_hms	tms_hms	tms_hms
+336	TM09	tms_hms	tms_hms	tms_hms
+337	TM10	tms_hms	tms_hms	tms_hms
+338	TM11	tms_hms	tms_hms	tms_hms
+339	TM12	tms_hms	tms_hms	tms_hms
+340	TM13	tms_hms	tms_hms	tms_hms
+341	TM14	tms_hms	tms_hms	tms_hms
+342	TM15	tms_hms	tms_hms	tms_hms
+343	TM16	tms_hms	tms_hms	tms_hms
+344	TM17	tms_hms	tms_hms	tms_hms
+345	TM18	tms_hms	tms_hms	tms_hms
+346	TM19	tms_hms	tms_hms	tms_hms
+347	TM20	tms_hms	tms_hms	tms_hms
+348	TM21	tms_hms	tms_hms	tms_hms
+349	TM22	tms_hms	tms_hms	tms_hms
+350	TM23	tms_hms	tms_hms	tms_hms
+351	TM24	tms_hms	tms_hms	tms_hms
+352	TM25	tms_hms	tms_hms	tms_hms
+353	TM26	tms_hms	tms_hms	tms_hms
+354	TM27	tms_hms	tms_hms	tms_hms
+355	TM28	tms_hms	tms_hms	tms_hms
+356	TM29	tms_hms	tms_hms	tms_hms
+357	TM30	tms_hms	tms_hms	tms_hms
+358	TM31	tms_hms	tms_hms	tms_hms
+359	TM32	tms_hms	tms_hms	tms_hms
+360	TM33	tms_hms	tms_hms	tms_hms
+361	TM34	tms_hms	tms_hms	tms_hms
+362	TM35	tms_hms	tms_hms	tms_hms
+363	TM36	tms_hms	tms_hms	tms_hms
+364	TM37	tms_hms	tms_hms	tms_hms
+365	TM38	tms_hms	tms_hms	tms_hms
+366	TM39	tms_hms	tms_hms	tms_hms
+367	TM40	tms_hms	tms_hms	tms_hms
+368	TM41	tms_hms	tms_hms	tms_hms
+369	TM42	tms_hms	tms_hms	tms_hms
+370	TM43	tms_hms	tms_hms	tms_hms
+371	TM44	tms_hms	tms_hms	tms_hms
+372	TM45	tms_hms	tms_hms	tms_hms
+373	TM46	tms_hms	tms_hms	tms_hms
+374	TM47	tms_hms	tms_hms	tms_hms
+375	TM48	tms_hms	tms_hms	tms_hms
+376	TM49	tms_hms	tms_hms	tms_hms
+377	TM50	tms_hms	tms_hms	tms_hms
+378	TM51	tms_hms	tms_hms	tms_hms
+379	TM52	tms_hms	tms_hms	tms_hms
+380	TM53	tms_hms	tms_hms	tms_hms
+381	TM54	tms_hms	tms_hms	tms_hms
+382	TM55	tms_hms	tms_hms	tms_hms
+383	TM56	tms_hms	tms_hms	tms_hms
+384	TM57	tms_hms	tms_hms	tms_hms
+385	TM58	tms_hms	tms_hms	tms_hms
+386	TM59	tms_hms	tms_hms	tms_hms
+387	TM60	tms_hms	tms_hms	tms_hms
+388	TM61	tms_hms	tms_hms	tms_hms
+389	TM62	tms_hms	tms_hms	tms_hms
+390	TM63	tms_hms	tms_hms	tms_hms
+391	TM64	tms_hms	tms_hms	tms_hms
+392	TM65	tms_hms	tms_hms	tms_hms
+393	TM66	tms_hms	tms_hms	tms_hms
+394	TM67	tms_hms	tms_hms	tms_hms
+395	TM68	tms_hms	tms_hms	tms_hms
+396	TM69	tms_hms	tms_hms	tms_hms
+397	TM70	tms_hms	tms_hms	tms_hms
+398	TM71	tms_hms	tms_hms	tms_hms
+399	TM72	tms_hms	tms_hms	tms_hms
+400	TM73	tms_hms	tms_hms	tms_hms
+401	TM74	tms_hms	tms_hms	tms_hms
+402	TM75	tms_hms	tms_hms	tms_hms
+403	TM76	tms_hms	tms_hms	tms_hms
+404	TM77	tms_hms	tms_hms	tms_hms
+405	TM78	tms_hms	tms_hms	tms_hms
+406	TM79	tms_hms	tms_hms	tms_hms
+407	TM80	tms_hms	tms_hms	tms_hms
+408	TM81	tms_hms	tms_hms	tms_hms
+409	TM82	tms_hms	tms_hms	tms_hms
+410	TM83	tms_hms	tms_hms	tms_hms
+411	TM84	tms_hms	tms_hms	tms_hms
+412	TM85	tms_hms	tms_hms	tms_hms
+413	TM86	tms_hms	tms_hms	tms_hms
+414	TM87	tms_hms	tms_hms	tms_hms
+415	TM88	tms_hms	tms_hms	tms_hms
+416	TM89	tms_hms	tms_hms	tms_hms
+417	TM90	tms_hms	tms_hms	tms_hms
+418	TM91	tms_hms	tms_hms	tms_hms
+419	TM92	tms_hms	tms_hms	tms_hms
+420	HM01	tms_hms	tms_hms	tms_hms
+421	HM02	tms_hms	tms_hms	tms_hms
+422	HM03	tms_hms	tms_hms	tms_hms
+423	HM04	tms_hms	tms_hms	tms_hms
+424	HM05	tms_hms	tms_hms	tms_hms
+425	HM06	tms_hms	tms_hms	tms_hms
+426	HM07	tms_hms	tms_hms	tms_hms
+427	HM08	tms_hms	tms_hms	tms_hms
+428	Explorer Kit	key_items	key_items	-
+429	Loot Sack	key_items	key_items	key_items
+430	Rule Book	key_items	key_items	key_items
+431	Poké Radar	key_items	key_items	key_items
+432	Point Card	key_items	key_items	key_items
+433	Journal	key_items	key_items	key_items
+434	Seal Case	key_items	key_items	key_items
+435	Fashion Case	key_items	key_items	key_items
+436	Seal Bag	key_items	key_items	key_items
+437	Pal Pad	key_items	key_items	key_items
+438	Works Key	key_items	key_items	key_items
+439	Old Charm	key_items	key_items	key_items
+440	Galactic Key	key_items	key_items	key_items
+441	Red Chain	key_items	key_items	key_items
+442	Town Map	key_items	key_items	key_items
+443	Vs. Seeker	key_items	key_items	key_items
+444	Coin Case	key_items	key_items	key_items
+445	Old Rod	key_items	key_items	key_items
+446	Good Rod	key_items	key_items	key_items
+447	Super Rod	key_items	key_items	key_items
+448	Sprayduck	key_items	key_items	key_items
+449	Poffin Case	key_items	key_items	key_items
+450	Bicycle	key_items	key_items	key_items
+451	Suite Key	key_items	key_items	key_items
+452	Oak’s Letter	key_items	key_items	key_items
+453	Lunar Wing	key_items	key_items	key_items
+454	Member Card	key_items	key_items	key_items
+455	Azure Flute	key_items	key_items	key_items
+456	S.S. Ticket	key_items	key_items	key_items
+457	Contest Pass	key_items	key_items	key_items
+458	Magma Stone	key_items	key_items	key_items
+459	Parcel	key_items	key_items	key_items
+460	Coupon 1	key_items	key_items	key_items
+461	Coupon 2	key_items	key_items	key_items
+462	Coupon 3	key_items	key_items	key_items
+463	Storage Key	key_items	key_items	key_items
+464	SecretPotion	key_items	key_items	key_items
+465	Vs. Recorder	-	key_items	key_items
+466	Gracidea	-	key_items	key_items
+467	Secret Key	-	key_items	key_items
+468	Apricorn Box	-	-	key_items
+469	UNOWN Report	-	-	key_items
+470	Berry Pots	-	-	key_items
+471	Dowsing MCHN	-	-	key_items
+472	Blue Card	-	-	key_items
+473	SlowpokeTail	-	-	key_items
+474	Clear Bell	-	-	key_items
+475	Card Key	-	-	key_items
+476	Basement Key	-	-	key_items
+477	SquirtBottle	-	-	key_items
+478	Red Scale	-	-	key_items
+479	Lost Item	-	-	key_items
+480	Pass	-	-	key_items
+481	Machine Part	-	-	key_items
+482	Silver Wing	-	-	key_items
+483	Rainbow Wing	-	-	key_items
+484	Mystery Egg	-	-	key_items
+485	Red Apricorn	-	-	items
+486	Ylw Apricorn	-	-	items
+487	Blu Apricorn	-	-	items
+488	Grn Apricorn	-	-	items
+489	Pnk Apricorn	-	-	items
+490	Wht Apricorn	-	-	items
+491	Blk Apricorn	-	-	items
+492	Fast Ball	-	-	poke_balls
+493	Level Ball	-	-	poke_balls
+494	Lure Ball	-	-	poke_balls
+495	Heavy Ball	-	-	poke_balls
+496	Love Ball	-	-	poke_balls
+497	Friend Ball	-	-	poke_balls
+498	Moon Ball	-	-	poke_balls
+499	Sport Ball	-	-	poke_balls
+500	Park Ball	-	-	poke_balls
+501	Photo Album	-	-	key_items
+502	GB Sounds	-	-	key_items
+503	Tidal Bell	-	-	key_items
+504	RageCandyBar	-	-	key_items
+505	Data Card 01	-	-	items
+506	Data Card 02	-	-	items
+507	Data Card 03	-	-	items
+508	Data Card 04	-	-	items
+509	Data Card 05	-	-	items
+510	Data Card 06	-	-	items
+511	Data Card 07	-	-	items
+512	Data Card 08	-	-	items
+513	Data Card 09	-	-	items
+514	Data Card 10	-	-	items
+515	Data Card 11	-	-	items
+516	Data Card 12	-	-	items
+517	Data Card 13	-	-	items
+518	Data Card 14	-	-	items
+519	Data Card 15	-	-	items
+520	Data Card 16	-	-	items
+521	Data Card 17	-	-	items
+522	Data Card 18	-	-	items
+523	Data Card 19	-	-	items
+524	Data Card 20	-	-	items
+525	Data Card 21	-	-	items
+526	Data Card 22	-	-	items
+527	Data Card 23	-	-	items
+528	Data Card 24	-	-	items
+529	Data Card 25	-	-	items
+530	Data Card 26	-	-	items
+531	Data Card 27	-	-	items
+532	Jade Orb	-	-	key_items
+533	Lock Capsule	-	-	key_items
+534	Red Orb	-	-	key_items
+535	Blue Orb	-	-	key_items
+536	Enigma Stone	-	-	key_items

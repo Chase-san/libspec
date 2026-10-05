@@ -1,3 +1,5 @@
+// The Gen 3 character sets, to and from UTF-8.
+
 #include <string.h>
 
 #include "gba/gba.h"

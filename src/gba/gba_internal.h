@@ -1,3 +1,5 @@
+// Gen 3 internals: save layouts, flash slot access and the codecs save.c runs.
+
 #ifndef SPEC_GBA_INTERNAL_H
 #define SPEC_GBA_INTERNAL_H
 

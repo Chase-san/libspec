@@ -1,3 +1,5 @@
+// Error strings and the thread-local last error.
+
 #include "spec.h"
 #include "spec_internal.h"
 

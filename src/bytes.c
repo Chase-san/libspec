@@ -1,3 +1,5 @@
+// Little-endian reads and writes, and bit fields within a word.
+
 #include "spec_internal.h"
 
 uint16_t spec_read_u16_le(const uint8_t *bytes) {

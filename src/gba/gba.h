@@ -1,3 +1,5 @@
+// The Gen 3 (Game Boy Advance) API: saves, Pokémon, species, personality, items and text.
+
 #ifndef SPEC_GBA_H
 #define SPEC_GBA_H
 
@@ -21,7 +23,6 @@ constexpr size_t SPEC_GBA_MOVE_COUNT = 4;
 constexpr size_t SPEC_GBA_BADGE_COUNT = 8;
 // Indexed by National Dex number.
 constexpr size_t SPEC_GBA_POKEDEX_SIZE = 387;
-constexpr size_t SPEC_GBA_EXPECTED_IV_SETS_MAX = 3;
 constexpr size_t SPEC_GBA_POCKET_MAX_CAPACITY = 64;
 constexpr size_t SPEC_GBA_TEXT_MAX_SIZE = SPEC_GBA_NICKNAME_SIZE;
 // Up to 3 UTF-8 bytes per character, plus NUL.
@@ -95,25 +96,15 @@ enum spec_gba_ribbon : uint16_t {
 };
 typedef enum spec_gba_ribbon spec_gba_ribbon_t;
 
-typedef uint32_t spec_gba_pid_t;
-
 // Only pid is stored; the rest is derived on read.
 struct spec_gba_personality {
-    spec_gba_pid_t pid;
+    spec_pid_t pid;
     spec_nature_t nature;
     spec_gender_t gender;
     bool is_shiny;
     uint8_t unown_form;
 };
 typedef struct spec_gba_personality spec_gba_personality_t;
-
-enum spec_gba_iv_method : uint8_t {
-    SPEC_GBA_IV_METHOD_NONE,
-    SPEC_GBA_IV_METHOD_STRAIGHT,     // aka method 1
-    SPEC_GBA_IV_METHOD_SKIP_BEFORE,  // aka method 2
-    SPEC_GBA_IV_METHOD_SKIP_BETWEEN, // aka method 4
-};
-typedef enum spec_gba_iv_method spec_gba_iv_method_t;
 
 struct spec_gba_trainer {
     uint8_t name[SPEC_GBA_TRAINER_NAME_SIZE];
@@ -187,7 +178,7 @@ struct spec_gba_pokemon {
     uint8_t ability_number;
     uint8_t ivs[SPEC_STAT_COUNT];
     // Derived on read.
-    spec_gba_iv_method_t iv_method;
+    spec_iv_method_t iv_method;
     uint8_t evs[SPEC_STAT_COUNT];
     spec_gba_move_t moves[SPEC_GBA_MOVE_COUNT];
 
@@ -304,15 +295,8 @@ bool spec_gba_is_safe_to_box(const spec_gba_pokemon_t *pokemon);
 uint16_t spec_gba_species_to_national(uint16_t species);
 uint16_t spec_gba_species_from_national(uint16_t national_number);
 
-spec_gba_personality_t spec_gba_decode_personality(spec_gba_pid_t pid, uint16_t species,
+spec_gba_personality_t spec_gba_decode_personality(spec_pid_t pid, uint16_t species,
                                                    const spec_gba_trainer_t *trainer);
-spec_gba_iv_method_t spec_gba_find_iv_method(spec_gba_pid_t pid,
-                                             const uint8_t ivs[static SPEC_STAT_COUNT]);
-size_t
-spec_gba_find_expected_ivs(spec_gba_pid_t pid, spec_gba_iv_method_t method,
-                           uint8_t iv_sets[static SPEC_GBA_EXPECTED_IV_SETS_MAX][SPEC_STAT_COUNT]);
-void spec_gba_pid_next(spec_gba_pid_t *pid);
-uint16_t spec_gba_random(uint32_t *seed);
 
 const char *spec_gba_item_name(uint16_t item, spec_language_t language);
 spec_error_t spec_gba_get_pocket_for_item(spec_gba_pocket_t *pocket, spec_game_type_t type,
