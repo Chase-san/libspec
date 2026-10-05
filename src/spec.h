@@ -54,6 +54,10 @@ enum spec_language : uint8_t {
 typedef enum spec_language spec_language_t;
 
 enum spec_game_type : uint8_t {
+    SPEC_GAME_TYPE_RED_BLUE, // Japanese Green too
+    SPEC_GAME_TYPE_YELLOW,
+    SPEC_GAME_TYPE_GOLD_SILVER,
+    SPEC_GAME_TYPE_CRYSTAL,
     SPEC_GAME_TYPE_RUBY_SAPPHIRE,
     SPEC_GAME_TYPE_EMERALD,
     SPEC_GAME_TYPE_FIRERED_LEAFGREEN,

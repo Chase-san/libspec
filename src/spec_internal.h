@@ -13,7 +13,8 @@
 spec_error_t spec_fail(spec_error_t error, const char *message);
 spec_error_t spec_locate_error(spec_error_location_t location, uint32_t index0, uint32_t index1);
 
-// As Gen 3 and 4 store the names, then as Gen 5 does; nullptr when the language has none.
+// As Gen 1 and 2 store the names, then Gen 3 and 4, then Gen 5; nullptr when the language has none.
+const char8_t *spec_game_boy_species_name(uint16_t national_number, spec_language_t language);
 const char8_t *spec_upper_case_species_name(uint16_t national_number, spec_language_t language);
 const char8_t *spec_gen5_species_name(uint16_t national_number, spec_language_t language);
 
@@ -21,6 +22,10 @@ uint16_t spec_read_u16_le(const uint8_t *bytes);
 uint32_t spec_read_u32_le(const uint8_t *bytes);
 void spec_write_u16_le(uint8_t *bytes, uint16_t value);
 void spec_write_u32_le(uint8_t *bytes, uint32_t value);
+uint16_t spec_read_u16_be(const uint8_t *bytes);
+uint32_t spec_read_u24_be(const uint8_t *bytes);
+void spec_write_u16_be(uint8_t *bytes, uint16_t value);
+void spec_write_u24_be(uint8_t *bytes, uint32_t value);
 uint32_t spec_get_bits(uint32_t word, unsigned first_bit, unsigned bit_count);
 uint32_t spec_set_bits(uint32_t word, unsigned first_bit, unsigned bit_count, uint32_t value);
 bool spec_fits_in_bits(uint32_t value, unsigned bit_count);

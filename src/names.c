@@ -15,6 +15,13 @@ const char *spec_species_name(uint16_t national_number, spec_language_t language
     return spec_species_names[language][national_number];
 }
 
+const char8_t *spec_game_boy_species_name(uint16_t national_number, spec_language_t language) {
+    if (!has_name(national_number, language)) {
+        return nullptr;
+    }
+    return (const char8_t *)spec_game_boy_species_names[language][national_number];
+}
+
 const char8_t *spec_upper_case_species_name(uint16_t national_number, spec_language_t language) {
     if (!has_name(national_number, language)) {
         return nullptr;

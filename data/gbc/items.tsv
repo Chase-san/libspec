@@ -1,0 +1,227 @@
+# Gen 2 items: names from pret pokecrystal data/items/names.asm; pockets from the type ItemAttributes gives each
+# (data/items/attributes.asm, as _ReceiveItem files them), per pokegold and pokecrystal, "-" for a dummy (Gold and
+# Silver's TERU-SAMA). machine is the TM or HM number the TM/HM pocket keeps the item's quantity under;
+# is_mail follows data/items/mail_items.asm.
+item	english	gold_silver_pocket	crystal_pocket	machine	is_mail
+1	MASTER BALL	balls	balls	-	no
+2	ULTRA BALL	balls	balls	-	no
+3	BRIGHTPOWDER	items	items	-	no
+4	GREAT BALL	balls	balls	-	no
+5	# BALL	balls	balls	-	no
+7	BICYCLE	key_items	key_items	-	no
+8	MOON STONE	items	items	-	no
+9	ANTIDOTE	items	items	-	no
+10	BURN HEAL	items	items	-	no
+11	ICE HEAL	items	items	-	no
+12	AWAKENING	items	items	-	no
+13	PARLYZ HEAL	items	items	-	no
+14	FULL RESTORE	items	items	-	no
+15	MAX POTION	items	items	-	no
+16	HYPER POTION	items	items	-	no
+17	SUPER POTION	items	items	-	no
+18	POTION	items	items	-	no
+19	ESCAPE ROPE	items	items	-	no
+20	REPEL	items	items	-	no
+21	MAX ELIXER	items	items	-	no
+22	FIRE STONE	items	items	-	no
+23	THUNDERSTONE	items	items	-	no
+24	WATER STONE	items	items	-	no
+26	HP UP	items	items	-	no
+27	PROTEIN	items	items	-	no
+28	IRON	items	items	-	no
+29	CARBOS	items	items	-	no
+30	LUCKY PUNCH	items	items	-	no
+31	CALCIUM	items	items	-	no
+32	RARE CANDY	items	items	-	no
+33	X ACCURACY	items	items	-	no
+34	LEAF STONE	items	items	-	no
+35	METAL POWDER	items	items	-	no
+36	NUGGET	items	items	-	no
+37	# DOLL	items	items	-	no
+38	FULL HEAL	items	items	-	no
+39	REVIVE	items	items	-	no
+40	MAX REVIVE	items	items	-	no
+41	GUARD SPEC.	items	items	-	no
+42	SUPER REPEL	items	items	-	no
+43	MAX REPEL	items	items	-	no
+44	DIRE HIT	items	items	-	no
+46	FRESH WATER	items	items	-	no
+47	SODA POP	items	items	-	no
+48	LEMONADE	items	items	-	no
+49	X ATTACK	items	items	-	no
+51	X DEFEND	items	items	-	no
+52	X SPEED	items	items	-	no
+53	X SPECIAL	items	items	-	no
+54	COIN CASE	key_items	key_items	-	no
+55	ITEMFINDER	key_items	key_items	-	no
+57	EXP.SHARE	items	items	-	no
+58	OLD ROD	key_items	key_items	-	no
+59	GOOD ROD	key_items	key_items	-	no
+60	SILVER LEAF	items	items	-	no
+61	SUPER ROD	key_items	key_items	-	no
+62	PP UP	items	items	-	no
+63	ETHER	items	items	-	no
+64	MAX ETHER	items	items	-	no
+65	ELIXER	items	items	-	no
+66	RED SCALE	key_items	key_items	-	no
+67	SECRETPOTION	key_items	key_items	-	no
+68	S.S.TICKET	key_items	key_items	-	no
+69	MYSTERY EGG	key_items	key_items	-	no
+70	CLEAR BELL	-	key_items	-	no
+71	SILVER WING	key_items	key_items	-	no
+72	MOOMOO MILK	items	items	-	no
+73	QUICK CLAW	items	items	-	no
+74	PSNCUREBERRY	items	items	-	no
+75	GOLD LEAF	items	items	-	no
+76	SOFT SAND	items	items	-	no
+77	SHARP BEAK	items	items	-	no
+78	PRZCUREBERRY	items	items	-	no
+79	BURNT BERRY	items	items	-	no
+80	ICE BERRY	items	items	-	no
+81	POISON BARB	items	items	-	no
+82	KING'S ROCK	items	items	-	no
+83	BITTER BERRY	items	items	-	no
+84	MINT BERRY	items	items	-	no
+85	RED APRICORN	items	items	-	no
+86	TINYMUSHROOM	items	items	-	no
+87	BIG MUSHROOM	items	items	-	no
+88	SILVERPOWDER	items	items	-	no
+89	BLU APRICORN	items	items	-	no
+91	AMULET COIN	items	items	-	no
+92	YLW APRICORN	items	items	-	no
+93	GRN APRICORN	items	items	-	no
+94	CLEANSE TAG	items	items	-	no
+95	MYSTIC WATER	items	items	-	no
+96	TWISTEDSPOON	items	items	-	no
+97	WHT APRICORN	items	items	-	no
+98	BLACKBELT	items	items	-	no
+99	BLK APRICORN	items	items	-	no
+101	PNK APRICORN	items	items	-	no
+102	BLACKGLASSES	items	items	-	no
+103	SLOWPOKETAIL	items	items	-	no
+104	PINK BOW	items	items	-	no
+105	STICK	items	items	-	no
+106	SMOKE BALL	items	items	-	no
+107	NEVERMELTICE	items	items	-	no
+108	MAGNET	items	items	-	no
+109	MIRACLEBERRY	items	items	-	no
+110	PEARL	items	items	-	no
+111	BIG PEARL	items	items	-	no
+112	EVERSTONE	items	items	-	no
+113	SPELL TAG	items	items	-	no
+114	RAGECANDYBAR	items	items	-	no
+115	GS BALL	-	key_items	-	no
+116	BLUE CARD	-	key_items	-	no
+117	MIRACLE SEED	items	items	-	no
+118	THICK CLUB	items	items	-	no
+119	FOCUS BAND	items	items	-	no
+121	ENERGYPOWDER	items	items	-	no
+122	ENERGY ROOT	items	items	-	no
+123	HEAL POWDER	items	items	-	no
+124	REVIVAL HERB	items	items	-	no
+125	HARD STONE	items	items	-	no
+126	LUCKY EGG	items	items	-	no
+127	CARD KEY	key_items	key_items	-	no
+128	MACHINE PART	key_items	key_items	-	no
+129	EGG TICKET	-	key_items	-	no
+130	LOST ITEM	key_items	key_items	-	no
+131	STARDUST	items	items	-	no
+132	STAR PIECE	items	items	-	no
+133	BASEMENT KEY	key_items	key_items	-	no
+134	PASS	key_items	key_items	-	no
+138	CHARCOAL	items	items	-	no
+139	BERRY JUICE	items	items	-	no
+140	SCOPE LENS	items	items	-	no
+143	METAL COAT	items	items	-	no
+144	DRAGON FANG	items	items	-	no
+146	LEFTOVERS	items	items	-	no
+150	MYSTERYBERRY	items	items	-	no
+151	DRAGON SCALE	items	items	-	no
+152	BERSERK GENE	items	items	-	no
+156	SACRED ASH	items	items	-	no
+157	HEAVY BALL	balls	balls	-	no
+158	FLOWER MAIL	items	items	-	yes
+159	LEVEL BALL	balls	balls	-	no
+160	LURE BALL	balls	balls	-	no
+161	FAST BALL	balls	balls	-	no
+163	LIGHT BALL	items	items	-	no
+164	FRIEND BALL	balls	balls	-	no
+165	MOON BALL	balls	balls	-	no
+166	LOVE BALL	balls	balls	-	no
+167	NORMAL BOX	items	items	-	no
+168	GORGEOUS BOX	items	items	-	no
+169	SUN STONE	items	items	-	no
+170	POLKADOT BOW	items	items	-	no
+172	UP-GRADE	items	items	-	no
+173	BERRY	items	items	-	no
+174	GOLD BERRY	items	items	-	no
+175	SQUIRTBOTTLE	key_items	key_items	-	no
+177	PARK BALL	balls	balls	-	no
+178	RAINBOW WING	key_items	key_items	-	no
+180	BRICK PIECE	items	items	-	no
+181	SURF MAIL	items	items	-	yes
+182	LITEBLUEMAIL	items	items	-	yes
+183	PORTRAITMAIL	items	items	-	yes
+184	LOVELY MAIL	items	items	-	yes
+185	EON MAIL	items	items	-	yes
+186	MORPH MAIL	items	items	-	yes
+187	BLUESKY MAIL	items	items	-	yes
+188	MUSIC MAIL	items	items	-	yes
+189	MIRAGE MAIL	items	items	-	yes
+191	TM01	tms_hms	tms_hms	1	no
+192	TM02	tms_hms	tms_hms	2	no
+193	TM03	tms_hms	tms_hms	3	no
+194	TM04	tms_hms	tms_hms	4	no
+196	TM05	tms_hms	tms_hms	5	no
+197	TM06	tms_hms	tms_hms	6	no
+198	TM07	tms_hms	tms_hms	7	no
+199	TM08	tms_hms	tms_hms	8	no
+200	TM09	tms_hms	tms_hms	9	no
+201	TM10	tms_hms	tms_hms	10	no
+202	TM11	tms_hms	tms_hms	11	no
+203	TM12	tms_hms	tms_hms	12	no
+204	TM13	tms_hms	tms_hms	13	no
+205	TM14	tms_hms	tms_hms	14	no
+206	TM15	tms_hms	tms_hms	15	no
+207	TM16	tms_hms	tms_hms	16	no
+208	TM17	tms_hms	tms_hms	17	no
+209	TM18	tms_hms	tms_hms	18	no
+210	TM19	tms_hms	tms_hms	19	no
+211	TM20	tms_hms	tms_hms	20	no
+212	TM21	tms_hms	tms_hms	21	no
+213	TM22	tms_hms	tms_hms	22	no
+214	TM23	tms_hms	tms_hms	23	no
+215	TM24	tms_hms	tms_hms	24	no
+216	TM25	tms_hms	tms_hms	25	no
+217	TM26	tms_hms	tms_hms	26	no
+218	TM27	tms_hms	tms_hms	27	no
+219	TM28	tms_hms	tms_hms	28	no
+221	TM29	tms_hms	tms_hms	29	no
+222	TM30	tms_hms	tms_hms	30	no
+223	TM31	tms_hms	tms_hms	31	no
+224	TM32	tms_hms	tms_hms	32	no
+225	TM33	tms_hms	tms_hms	33	no
+226	TM34	tms_hms	tms_hms	34	no
+227	TM35	tms_hms	tms_hms	35	no
+228	TM36	tms_hms	tms_hms	36	no
+229	TM37	tms_hms	tms_hms	37	no
+230	TM38	tms_hms	tms_hms	38	no
+231	TM39	tms_hms	tms_hms	39	no
+232	TM40	tms_hms	tms_hms	40	no
+233	TM41	tms_hms	tms_hms	41	no
+234	TM42	tms_hms	tms_hms	42	no
+235	TM43	tms_hms	tms_hms	43	no
+236	TM44	tms_hms	tms_hms	44	no
+237	TM45	tms_hms	tms_hms	45	no
+238	TM46	tms_hms	tms_hms	46	no
+239	TM47	tms_hms	tms_hms	47	no
+240	TM48	tms_hms	tms_hms	48	no
+241	TM49	tms_hms	tms_hms	49	no
+242	TM50	tms_hms	tms_hms	50	no
+243	HM01	tms_hms	tms_hms	51	no
+244	HM02	tms_hms	tms_hms	52	no
+245	HM03	tms_hms	tms_hms	53	no
+246	HM04	tms_hms	tms_hms	54	no
+247	HM05	tms_hms	tms_hms	55	no
+248	HM06	tms_hms	tms_hms	56	no
+249	HM07	tms_hms	tms_hms	57	no

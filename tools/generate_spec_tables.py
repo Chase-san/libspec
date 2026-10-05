@@ -41,6 +41,11 @@ def upper_case_name(name, language):
     return name.upper()
 
 
+# As Gen 1 and 2 store them: as Gen 3 and 4 do, but with no space in Mr. Mime's name.
+def game_boy_name(name, language):
+    return upper_case_name(name, language).replace(". ", ".")
+
+
 # As Gen 5 stores them: Farfetch'd with a plain apostrophe.
 def gen5_name(name, language):
     return name.replace("\u2019", "'")
@@ -109,6 +114,7 @@ def main():
     output_directory.mkdir(parents=True, exist_ok=True)
     species_names = read_tsv(data_directory / "species_names.tsv")
     names = species_names_body(species_names, "spec_species_names", lambda name, language: name)
+    names += "\n" + species_names_body(species_names, "spec_game_boy_species_names", game_boy_name)
     names += "\n" + species_names_body(species_names, "spec_upper_case_species_names", upper_case_name)
     names += "\n" + species_names_body(species_names, "spec_gen5_species_names", gen5_name)
     write_c_file(output_directory / "species_names.c", "data/species_names.tsv", names)

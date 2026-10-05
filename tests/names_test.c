@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "gb/gb.h"
 #include "gba/gba.h"
+#include "gbc/gbc.h"
 #include "nds/nds.h"
 #include "ndsi/ndsi.h"
 
@@ -20,6 +22,75 @@ static bool is_nds_name(const spec_nds_pokemon_t *pokemon, const char *expected)
     char8_t name[SPEC_NDS_TEXT_BUFFER_SIZE];
     return spec_nds_pokemon_get_name(pokemon, name) == SPEC_OK
            && strcmp((const char *)name, expected) == 0;
+}
+
+static bool is_gb_text(const uint8_t *text, size_t text_size, spec_language_t language,
+                       const char *expected) {
+    char8_t utf8[SPEC_GB_TEXT_BUFFER_SIZE];
+    return spec_gb_text_to_utf8(utf8, text, text_size, language) == SPEC_OK
+           && strcmp((const char *)utf8, expected) == 0;
+}
+
+static void check_gen1(void) {
+    constexpr uint8_t BULBASAUR[SPEC_GB_NAME_SIZE] = {
+        0x81, 0x94, 0x8B, 0x81, 0x80, 0x92, 0x80, 0x94, 0x91, 0x50, 0x50,
+    };
+    spec_gb_pokemon_t bulbasaur = {.species = spec_gb_species_from_national(1)};
+    check(spec_gb_pokemon_remove_nickname(&bulbasaur, SPEC_LANGUAGE_ENGLISH) == SPEC_OK
+              && memcmp(bulbasaur.nickname, BULBASAUR, sizeof BULBASAUR) == 0,
+          "a Gen 1 name is upper case, padded with terminators");
+    spec_gb_pokemon_t mr_mime = {.species = spec_gb_species_from_national(122)};
+    check(spec_gb_pokemon_remove_nickname(&mr_mime, SPEC_LANGUAGE_FRENCH) == SPEC_OK
+              && is_gb_text(mr_mime.nickname, SPEC_GB_NAME_SIZE, SPEC_LANGUAGE_FRENCH, "M.MIME")
+              && mr_mime.nickname[1] == 0xE8,
+          "Gen 1 writes Mr. Mime without a space, with the period");
+    check(spec_gb_pokemon_set_nickname(&mr_mime, u8"MR.X", SPEC_LANGUAGE_ENGLISH) == SPEC_OK
+              && mr_mime.nickname[2] == 0xF2 && mr_mime.nickname[4] == 0x50,
+          "the Gen 1 keyboard types the decimal point");
+    check(spec_gb_pokemon_remove_nickname(&bulbasaur, SPEC_LANGUAGE_JAPANESE) == SPEC_OK
+              && is_gb_text(bulbasaur.nickname, SPEC_GB_JAPANESE_NAME_SIZE, SPEC_LANGUAGE_JAPANESE,
+                            "フシギダネ")
+              && bulbasaur.nickname[5] == 0x50,
+          "a Japanese Gen 1 name fills 6 bytes");
+    constexpr uint8_t HEBI[] = {0xCD, 0x3B, 0x50};
+    constexpr uint8_t HEBI_IN_KATAKANA[] = {0xCD, 0x1A, 0x50};
+    check(is_gb_text(HEBI, sizeof HEBI, SPEC_LANGUAGE_JAPANESE, "へび")
+              && is_gb_text(HEBI_IN_KATAKANA, sizeof HEBI_IN_KATAKANA, SPEC_LANGUAGE_JAPANESE,
+                            "ヘビ"),
+          "a kana both scripts share reads as the name's other kana");
+    uint8_t ligature[4];
+    check(spec_gb_text_from_utf8(ligature, sizeof ligature, u8"I’d", SPEC_LANGUAGE_ENGLISH)
+                  == SPEC_OK
+              && ligature[0] == 0x88 && ligature[1] == 0xBB && ligature[2] == 0x50,
+          "Gen 1 writes ’d as its ligature");
+}
+
+static void check_gen2(void) {
+    constexpr uint8_t CHIKORITA[SPEC_GBC_NAME_SIZE] = {
+        0x82, 0x87, 0x88, 0x8A, 0x8E, 0x91, 0x88, 0x93, 0x80, 0x50, 0x50,
+    };
+    spec_gbc_pokemon_t chikorita = {.species = 152};
+    check(spec_gbc_pokemon_remove_nickname(&chikorita, SPEC_LANGUAGE_ENGLISH) == SPEC_OK
+              && memcmp(chikorita.nickname, CHIKORITA, sizeof CHIKORITA) == 0,
+          "a Gen 2 name is upper case, padded with terminators");
+    constexpr uint8_t EGG_OVER_CHIKORITA[SPEC_GBC_NAME_SIZE] = {
+        0x84, 0x86, 0x86, 0x50, 0x8E, 0x91, 0x88, 0x93, 0x80, 0x50, 0x50,
+    };
+    spec_gbc_pokemon_t egg = chikorita;
+    egg.is_egg = true;
+    check(spec_gbc_pokemon_remove_nickname(&egg, SPEC_LANGUAGE_ENGLISH) == SPEC_OK
+              && memcmp(egg.nickname, EGG_OVER_CHIKORITA, sizeof EGG_OVER_CHIKORITA) == 0,
+          "a Gen 2 egg's name is written over the old one");
+    check(spec_gbc_pokemon_set_nickname(&egg, u8"LEAF", SPEC_LANGUAGE_ENGLISH)
+              == SPEC_ERROR_VALUE_OUT_OF_RANGE,
+          "a Gen 2 egg cannot be nicknamed");
+    check(spec_gbc_pokemon_set_nickname(&chikorita, u8"Leaf’s", SPEC_LANGUAGE_ENGLISH) == SPEC_OK
+              && chikorita.nickname[4] == 0xD4 && chikorita.nickname[5] == 0x50
+              && chikorita.nickname[10] == 0x50,
+          "a Gen 2 nickname writes ’s as its ligature, then terminators to the end");
+    spec_gbc_traits_t traits = spec_gbc_decode_traits((uint8_t[]){0, 10, 10, 10, 10}, 201);
+    check(traits.is_shiny && traits.unown_form == 8,
+          "Gen 2 decides shininess and the Unown form from the DVs: a shiny Unown is I or V");
 }
 
 static void check_gen3(void) {
@@ -126,6 +197,8 @@ static void check_gen5(void) {
 }
 
 int main(void) {
+    check_gen1();
+    check_gen2();
     check_gen3();
     check_gen4();
     check_gen5();

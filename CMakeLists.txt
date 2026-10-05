@@ -18,6 +18,35 @@ add_custom_command(
     DEPENDS tools/generate_spec_tables.py ${spec_data}/species_names.tsv
     VERBATIM)
 
+set(gb_data ${CMAKE_CURRENT_SOURCE_DIR}/data/gb)
+set(gb_generated ${CMAKE_CURRENT_BINARY_DIR}/gb/gen)
+set(gb_tables
+    ${gb_generated}/species_national.c
+    ${gb_generated}/species_data.c
+    ${gb_generated}/charmap.c
+    ${gb_generated}/items.c)
+add_custom_command(
+    OUTPUT ${gb_tables}
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/generate_gb_tables.py
+            ${gb_data} ${gb_generated}
+    DEPENDS tools/generate_gb_tables.py ${gb_data}/species.tsv ${gb_data}/charmap.tsv
+            ${gb_data}/items.tsv
+    VERBATIM)
+
+set(gbc_data ${CMAKE_CURRENT_SOURCE_DIR}/data/gbc)
+set(gbc_generated ${CMAKE_CURRENT_BINARY_DIR}/gbc/gen)
+set(gbc_tables
+    ${gbc_generated}/species_data.c
+    ${gbc_generated}/charmap.c
+    ${gbc_generated}/items.c)
+add_custom_command(
+    OUTPUT ${gbc_tables}
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/generate_gbc_tables.py
+            ${gbc_data} ${gbc_generated}
+    DEPENDS tools/generate_gbc_tables.py tools/generate_gb_tables.py ${gbc_data}/species.tsv
+            ${gbc_data}/charmap.tsv ${gbc_data}/items.tsv
+    VERBATIM)
+
 set(gba_data ${CMAKE_CURRENT_SOURCE_DIR}/data/gba)
 set(gba_generated ${CMAKE_CURRENT_BINARY_DIR}/gba/gen)
 set(gba_tables
@@ -69,6 +98,27 @@ add_library(spec STATIC
     src/personality.c
     src/record.c
     src/stats.c
+    src/gb/save.c
+    src/gb/layout.c
+    src/gb/list.c
+    src/gb/checksum.c
+    src/gb/player.c
+    src/gb/pokedex.c
+    src/gb/storage.c
+    src/gb/pokemon.c
+    src/gb/items.c
+    src/gb/text.c
+    src/gbc/save.c
+    src/gbc/layout.c
+    src/gbc/copy.c
+    src/gbc/player.c
+    src/gbc/pokedex.c
+    src/gbc/storage.c
+    src/gbc/pokemon.c
+    src/gbc/traits.c
+    src/gbc/mail.c
+    src/gbc/items.c
+    src/gbc/text.c
     src/gba/save.c
     src/gba/layout.c
     src/gba/slot.c
@@ -102,6 +152,8 @@ add_library(spec STATIC
     src/ndsi/items.c
     src/ndsi/text.c
     ${spec_tables}
+    ${gb_tables}
+    ${gbc_tables}
     ${gba_tables}
     ${nds_tables}
     ${ndsi_tables})
@@ -114,6 +166,8 @@ endif()
 
 install(TARGETS spec ARCHIVE DESTINATION lib)
 install(FILES src/spec.h DESTINATION include/spec)
+install(FILES src/gb/gb.h DESTINATION include/spec/gb)
+install(FILES src/gbc/gbc.h DESTINATION include/spec/gbc)
 install(FILES src/gba/gba.h DESTINATION include/spec/gba)
 install(FILES src/nds/nds.h DESTINATION include/spec/nds)
 install(FILES src/ndsi/ndsi.h DESTINATION include/spec/ndsi)
@@ -122,6 +176,28 @@ enable_testing()
 add_executable(names_test tests/names_test.c)
 target_link_libraries(names_test PRIVATE spec)
 add_test(NAME names_test COMMAND names_test)
+
+if(SPEC_GB_TEST_SAVES)
+    enable_testing()
+    add_executable(gb_round_trip tests/gb_round_trip.c)
+    target_link_libraries(gb_round_trip PRIVATE spec)
+    file(GLOB test_saves ${SPEC_GB_TEST_SAVES})
+    foreach(test_save IN LISTS test_saves)
+        get_filename_component(test_name ${test_save} NAME_WE)
+        add_test(NAME gb_round_trip_${test_name} COMMAND gb_round_trip ${test_save})
+    endforeach()
+endif()
+
+if(SPEC_GBC_TEST_SAVES)
+    enable_testing()
+    add_executable(gbc_round_trip tests/gbc_round_trip.c)
+    target_link_libraries(gbc_round_trip PRIVATE spec)
+    file(GLOB test_saves ${SPEC_GBC_TEST_SAVES})
+    foreach(test_save IN LISTS test_saves)
+        get_filename_component(test_name ${test_save} NAME_WE)
+        add_test(NAME gbc_round_trip_${test_name} COMMAND gbc_round_trip ${test_save})
+    endforeach()
+endif()
 
 if(SPEC_GBA_TEST_SAVES)
     enable_testing()
