@@ -1,7 +1,3 @@
-# Gen 7's glyphs for the Chinese species names, which it stores as private-use units: each
-# unit of the Sun and Moon carts' Simplified (a/0/3/8) and Traditional (a/0/3/9) species-name
-# lists (member 55; Pokémon Bank 6.8's for 803-807), and the character PokeAPI's names
-# (421247a969939f793c52bf8105f3c4e35517d8c1) align it with, by majority over every species.
 unit	character
 E800	蛋
 E801	妙

@@ -1,8 +1,3 @@
-# Gen 3 items: pret's item tables (pokeruby, pokeemerald, pokefirered) and their English and German names (pokeruby's German build).
-# A name or pocket of '-' means none (only Ruby and Sapphire were built in German). Important items are the ones the PC refuses.
-# later_item: the item's number in Gen 4 to 7, which names it in the other languages: pret
-# pokeplatinum's, for the items Pal Park converts (res/items/data, gbaID); else the one the 3DS
-# games name alike in English; "-" for none.
 item	english	german	ruby_sapphire	emerald	firered_leafgreen	is_important	later_item
 1	MASTER BALL	MEISTERBALL	poke_balls	poke_balls	poke_balls	no	1
 2	ULTRA BALL	HYPERBALL	poke_balls	poke_balls	poke_balls	no	2

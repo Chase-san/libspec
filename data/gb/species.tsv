@@ -1,5 +1,3 @@
-# Gen 1 species by the game's index: pret pokered constants/pokemon_constants.asm, data/pokemon/dex_order.asm
-# and data/pokemon/base_stats/*.asm (Mew's data/pokemon/mew.asm). Indices that name no species are left out.
 index	national	hp	attack	defense	speed	special	growth_rate
 1	112	105	130	120	40	45	slow
 2	115	105	95	80	90	40	medium_fast

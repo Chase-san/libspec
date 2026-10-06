@@ -1,8 +1,3 @@
-# Gen 1 items the bag and PC can hold: pret pokered constants/item_constants.asm and data/items/names.asm.
-# Dummies ("?????" or an ITEM_ constant), badges and elevator floors are left out; machines are named as GetMachineName (home/names.asm) builds them.
-# The other languages' names: Japanese pokegreen, French pokered-fr, German pokered-de, Spanish pokered-es
-# (data/items/names.asm, machines by GetMachineName) and the Italian Blue cart (dmg-apei-ita.gb); Gen 1
-# shipped in no other language.
 item	english	japanese	french	italian	german	spanish
 1	MASTER BALL	マスターボール	MASTER BALL	MASTER BALL	MEISTERBALL	MASTER BALL
 2	ULTRA BALL	ハイパーボール	HYPER BALL	ULTRA BALL	HYPERBALL	ULTRA BALL

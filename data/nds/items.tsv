@@ -1,5 +1,3 @@
-# Gen 4 items: their pocket in each game (pret pokediamond item_data.json, pokeplatinum res/items/data, pokeheartgold item_data.csv) and English name (the games' item text banks).
-# A pocket of '-' means the game lacks the item.
 item	english	diamond_pearl	platinum	heartgold_soulsilver
 1	Master Ball	poke_balls	poke_balls	poke_balls
 2	Ultra Ball	poke_balls	poke_balls	poke_balls

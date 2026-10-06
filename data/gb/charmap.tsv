@@ -1,11 +1,3 @@
-# Gen 1 characters by byte, from the name fonts in the constants/charmap.asm of pret pokered and pokeyellow (English),
-# einstein95/pokered-fr and pokered-de, Narishma-gb/pokeyellow-fr and Brianum/pokeyellow-de (French and German),
-# einstein95/pokered-es (Italian and Spanish; Italian Blue's cart holds its font), and Narishma-gb/pokegreen, pokeblue
-# and pokeyellow-jp (Japanese).
-# 0x50 ends a name and 0x49-0x5F are control codes, so neither is listed. A ligature byte is two characters,
-# written greedily. A ~ marks a byte that is read but never written, another byte writing its character.
-# Game-only glyphs use Game Freak's private-use code points (PK U+E0A7, MN U+E0A8, … U+E08D, × U+E088), the
-# Pokédollar is $, and japanese is katakana where the two kana share a tile, japanese_hiragana the other reading.
 byte	english	french_german	italian_spanish	japanese	japanese_hiragana
 05	-	-	-	U+30AC	-
 06	-	-	-	U+30AE	-

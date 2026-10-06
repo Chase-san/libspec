@@ -1,5 +1,3 @@
-# Gen 4 species by National Dex number, then the forms whose stats differ: pret pokeplatinum res/pokemon/<species>/data.json and forms/<form>/data.json.
-# Gender and growth always come from form 0. gender_ratio is the stored byte: 0 always male, 254 always female, 255 genderless, otherwise female below it.
 national	form	hp	attack	defense	speed	special_attack	special_defense	growth_rate	gender_ratio
 1	0	45	49	49	45	65	65	medium_slow	31
 2	0	60	62	63	60	80	80	medium_slow	31

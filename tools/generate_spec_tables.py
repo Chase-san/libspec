@@ -32,7 +32,7 @@ NAME_KINDS = [
 
 
 def read_tsv(path):
-    lines = [line for line in path.read_text().splitlines() if line and not line.startswith("#")]
+    lines = [line for line in path.read_text().splitlines() if line]
     header = lines[0].split("\t")
     return [dict(zip(header, line.split("\t"))) for line in lines[1:]]
 

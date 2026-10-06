@@ -1,11 +1,3 @@
-# Gen 2 characters by byte, from the name fonts in the constants/charmap.asm of pret pokecrystal and pokegold (English)
-# and Narishma-gb/pokesilver (Japanese, which Japanese Crystal's cart draws alike). French, German, Italian and Spanish
-# take 0xBA-0xDF and 0xE4-0xE5 from pokecrystal's copies of their fonts (gfx/font/french_german.png and
-# spanish_italian.png); erosunica/pokecrystal-es agrees on Spanish.
-# 0x50 ends a name and 0x49-0x5F are control codes, so neither is listed. A ligature byte is two characters,
-# written greedily. A ~ marks a byte that is read but never written, another byte writing its character.
-# Game-only glyphs use Game Freak's private-use code points (PK U+E0A7, MN U+E0A8, … U+E08D, × U+E088), the
-# Pokédollar is $, and japanese is katakana where the two kana share a tile, japanese_hiragana the other reading.
 byte	english	french_german	italian_spanish	japanese	japanese_hiragana
 05	-	-	-	U+30AC	-
 06	-	-	-	U+30AE	-

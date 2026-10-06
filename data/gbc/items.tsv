@@ -1,10 +1,3 @@
-# Gen 2 items: names from pret pokecrystal data/items/names.asm; pockets from the type ItemAttributes gives each
-# (data/items/attributes.asm, as _ReceiveItem files them), per pokegold and pokecrystal, "-" for a dummy (Gold and
-# Silver's TERU-SAMA). machine is the TM or HM number the TM/HM pocket keeps the item's quantity under;
-# is_mail follows data/items/mail_items.asm.
-# The English names write # as POKé, as PlacePOKe prints it (pokecrystal home/text.asm). The other
-# languages' names: Japanese from the Japanese Crystal cart (cgb-bxtj-jpn.gbc), Spanish pokecrystal-es
-# and Korean pokegold-kr (data/items/names.asm).
 item	english	gold_silver_pocket	crystal_pocket	machine	is_mail	japanese	spanish	korean
 1	MASTER BALL	balls	balls	-	no	マスターボール	MASTER BALL	마스터볼
 2	ULTRA BALL	balls	balls	-	no	ハイパーボール	ULTRA BALL	하이퍼볼

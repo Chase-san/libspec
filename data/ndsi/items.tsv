@@ -1,5 +1,3 @@
-# Gen 5 items: their pocket in each game (bits 7-10 of byte 8 of each item's member of a/0/2/4) and English name (a/0/0/2), from the US carts.
-# A pocket of '-' means the game lacks the item.
 item	english	black_white	black2_white2
 1	Master Ball	items	items
 2	Ultra Ball	items	items

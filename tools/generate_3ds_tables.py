@@ -14,7 +14,7 @@ ITEM_COUNT = 960
 
 
 def read_tsv(path):
-    lines = [line for line in path.read_text(encoding="utf-8").splitlines() if line and not line.startswith("#")]
+    lines = [line for line in path.read_text(encoding="utf-8").splitlines() if line]
     header = lines[0].split("\t")
     return [dict(zip(header, line.split("\t"))) for line in lines[1:]]
 

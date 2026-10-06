@@ -1,8 +1,3 @@
-# Gen 6 and 7 items: the bag pocket each game files them in, from the item data (bits 7-10 of
-# the u16 at byte 8 of each item's member: X and Y a/2/2/0, Omega Ruby and Alpha Sapphire
-# a/1/9/7, Sun and Moon a/0/1/9); Ultra Sun and Ultra Moon's are Sun and Moon's, and for their
-# own items (921-959) the pockets their saves show them in. "-" is an item the game lacks, or
-# a held Z-Crystal, which never sits in the bag. Names are the shared item names.
 item	x_y	omega_ruby_alpha_sapphire	sun_moon	ultra_sun_ultra_moon
 1	items	items	items	items
 2	items	items	items	items

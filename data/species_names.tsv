@@ -1,7 +1,3 @@
-# Species names by National Dex number: the 3DS carts' text (Pokémon Bank's for 803-807).
-# Italian and Spanish games use the English names, but for Type: Null.
-# The carts write the Chinese names in their own glyphs; each is read as PokeAPI's names
-# (421247a969939f793c52bf8105f3c4e35517d8c1) align it with a character, by majority over every species.
 national	japanese	english	french	italian	german	spanish	korean	chinese_simplified	chinese_traditional
 1	フシギダネ	Bulbasaur	Bulbizarre	Bulbasaur	Bisasam	Bulbasaur	이상해씨	妙蛙种子	妙蛙種子
 2	フシギソウ	Ivysaur	Herbizarre	Ivysaur	Bisaknosp	Ivysaur	이상해풀	妙蛙草	妙蛙草

@@ -1,5 +1,3 @@
-# Type names in Gen 4 to 7's order, which spec_type_t follows: the Sun and Moon carts' text
-# (member 107).
 type	japanese	english	french	italian	german	spanish	korean	chinese_simplified	chinese_traditional
 0	ノーマル	Normal	Normal	Normale	Normal	Normal	노말	一般	一般
 1	かくとう	Fighting	Combat	Lotta	Kampf	Lucha	격투	格斗	格鬥

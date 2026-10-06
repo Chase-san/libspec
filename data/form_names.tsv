@@ -1,11 +1,3 @@
-# Form names by National Dex number and form, as Gen 7 numbers forms. source: sun_moon, the Sun
-# and Moon carts' form list (member 114), whose line for a species names its first form and
-# whose lines past the last species name the other forms in species order (the personal
-# table's form counts, a/0/1/7, place them); pokeapi, the forms only Ultra Sun and Ultra Moon
-# have, from PokeAPI (421247a969939f793c52bf8105f3c4e35517d8c1); omega_ruby_alpha_sapphire, the Pikachu forms those
-# games number their own way, from their form list (member 5 of a/0/7/1 to a/0/7/8), which has
-# no Chinese. Forms the lists leave unnamed, such as totems, are left out. Unown's forms are
-# "One form" and Arceus's and Genesect's their species' name, as the carts write them.
 national	form	source	japanese	english	french	italian	german	spanish	korean	chinese_simplified	chinese_traditional
 3	1	sun_moon	メガフシギバナ	Mega Venusaur	Méga-Florizarre	MegaVenusaur	Mega-Bisaflor	Mega-Venusaur	메가이상해꽃	超级妙蛙花	超級妙蛙花
 6	1	sun_moon	メガリザードンＸ	Mega Charizard X	Méga-Dracaufeu X	MegaCharizard X	Mega-Glurak X	Mega-Charizard X	메가리자몽X	超级喷火龙Ｘ	超級噴火龍Ｘ

@@ -1,6 +1,3 @@
-# Gen 2 species by National Dex number: pret pokecrystal data/pokemon/base_stats/*.asm, in BaseData's order;
-# pokegold holds the same rows. gender_ratio is the stored byte: female when (Attack DV << 4 | Speed DV) is at most it,
-# 0 always male, 254 always female, 255 genderless.
 national	hp	attack	defense	speed	special_attack	special_defense	growth_rate	gender_ratio
 1	45	49	49	45	65	65	medium_slow	31
 2	60	62	63	60	80	80	medium_slow	31

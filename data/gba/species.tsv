@@ -1,5 +1,3 @@
-# Gen 3 species by the game's index: pret pokeemerald gSpeciesInfo and sSpeciesToNationalPokedexNum.
-# gender_ratio is the stored byte: 0 always male, 254 always female, 255 genderless, otherwise female below it.
 index	national	hp	attack	defense	speed	special_attack	special_defense	growth_rate	gender_ratio
 1	1	45	49	49	45	65	65	medium_slow	31
 2	2	60	62	63	60	80	80	medium_slow	31

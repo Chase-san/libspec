@@ -1,5 +1,3 @@
-# Gen 4 characters by 16-bit code: pret's msgenc charmap.txt (pokeplatinum, pokeheartgold, pokediamond agree), drawn as the cartridge font draws them.
-# Game-only glyphs use Game Freak's private-use code points (U+E081-U+E0A8); Korean jamo decode as compatibility jamo. Codes not listed have no character.
 code	character
 0001	U+3000
 0002	U+3041

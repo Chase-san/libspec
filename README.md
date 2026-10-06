@@ -27,6 +27,11 @@ This library has the following capabilities.
 - Trainer Editing
 - Names in every language the games use: species, forms, moves, abilities, items, natures and types
 
+## Data
+
+The tables the library is built from are in `data/`. [data/README.md](data/README.md) describes what
+each file holds and where it comes from, including what cartridge paths such as `a/0/1/6` mean.
+
 ## Contributions
 
 This project makes significant use of Claude Code and Claude Opus 5.5, under careful direction and review by the original author.
