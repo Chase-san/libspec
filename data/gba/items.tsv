@@ -1,310 +1,310 @@
-item	english	german	ruby_sapphire	emerald	firered_leafgreen	is_important	later_item
-1	MASTER BALL	MEISTERBALL	poke_balls	poke_balls	poke_balls	no	1
-2	ULTRA BALL	HYPERBALL	poke_balls	poke_balls	poke_balls	no	2
-3	GREAT BALL	SUPERBALL	poke_balls	poke_balls	poke_balls	no	3
-4	POKé BALL	POKéBALL	poke_balls	poke_balls	poke_balls	no	4
-5	SAFARI BALL	SAFARIBALL	poke_balls	poke_balls	poke_balls	no	5
-6	NET BALL	NETZBALL	poke_balls	poke_balls	poke_balls	no	6
-7	DIVE BALL	TAUCHBALL	poke_balls	poke_balls	poke_balls	no	7
-8	NEST BALL	NESTBALL	poke_balls	poke_balls	poke_balls	no	8
-9	REPEAT BALL	WIEDERBALL	poke_balls	poke_balls	poke_balls	no	9
-10	TIMER BALL	TIMERBALL	poke_balls	poke_balls	poke_balls	no	10
-11	LUXURY BALL	LUXUSBALL	poke_balls	poke_balls	poke_balls	no	11
-12	PREMIER BALL	PREMIERBALL	poke_balls	poke_balls	poke_balls	no	12
-13	POTION	TRANK	items	items	items	no	17
-14	ANTIDOTE	GEGENGIFT	items	items	items	no	18
-15	BURN HEAL	FEUERHEILER	items	items	items	no	19
-16	ICE HEAL	EISHEILER	items	items	items	no	20
-17	AWAKENING	AUFWECKER	items	items	items	no	21
-18	PARLYZ HEAL	PARA-HEILER	items	items	items	no	22
-19	FULL RESTORE	TOP-GENESUNG	items	items	items	no	23
-20	MAX POTION	TOP-TRANK	items	items	items	no	24
-21	HYPER POTION	HYPERTRANK	items	items	items	no	25
-22	SUPER POTION	SUPERTRANK	items	items	items	no	26
-23	FULL HEAL	HYPERHEILER	items	items	items	no	27
-24	REVIVE	BELEBER	items	items	items	no	28
-25	MAX REVIVE	TOP-BELEBER	items	items	items	no	29
-26	FRESH WATER	TAFELWASSER	items	items	items	no	30
-27	SODA POP	SPRUDEL	items	items	items	no	31
-28	LEMONADE	LIMONADE	items	items	items	no	32
-29	MOOMOO MILK	KUHMUH-MILCH	items	items	items	no	33
-30	ENERGYPOWDER	ENERGIESTAUB	items	items	items	no	34
-31	ENERGY ROOT	KRAFTWURZEL	items	items	items	no	35
-32	HEAL POWDER	HEILPUDER	items	items	items	no	36
-33	REVIVAL HERB	VITALKRAUT	items	items	items	no	37
-34	ETHER	ÄTHER	items	items	items	no	38
-35	MAX ETHER	TOP-ÄTHER	items	items	items	no	39
-36	ELIXIR	ELIXIER	items	items	items	no	40
-37	MAX ELIXIR	TOP-ELIXIER	items	items	items	no	41
-38	LAVA COOKIE	LAVAKEKS	items	items	items	no	42
-39	BLUE FLUTE	BLAUE FLÖTE	items	items	items	no	65
-40	YELLOW FLUTE	GELBE FLÖTE	items	items	items	no	66
-41	RED FLUTE	ROTE FLÖTE	items	items	items	no	67
-42	BLACK FLUTE	SCHW. FLÖTE	items	items	items	no	68
-43	WHITE FLUTE	WEISSE FLÖTE	items	items	items	no	69
-44	BERRY JUICE	BEERENSAFT	items	items	items	no	43
-45	SACRED ASH	ZAUBERASCHE	items	items	items	no	44
-46	SHOAL SALT	KÜSTENSALZ	items	items	items	no	70
-47	SHOAL SHELL	KÜSTENSCHALE	items	items	items	no	71
-48	RED SHARD	PURPURSTÜCK	items	items	items	no	72
-49	BLUE SHARD	INDIGOSTÜCK	items	items	items	no	73
-50	YELLOW SHARD	GELBSTÜCK	items	items	items	no	74
-51	GREEN SHARD	GRÜNSTÜCK	items	items	items	no	75
-63	HP UP	KP-PLUS	items	items	items	no	45
-64	PROTEIN	PROTEIN	items	items	items	no	46
-65	IRON	EISEN	items	items	items	no	47
-66	CARBOS	CARBON	items	items	items	no	48
-67	CALCIUM	KALZIUM	items	items	items	no	49
-68	RARE CANDY	SONDERBONBON	items	items	items	no	50
-69	PP UP	AP-PLUS	items	items	items	no	51
-70	ZINC	ZINK	items	items	items	no	52
-71	PP MAX	AP-TOP	items	items	items	no	53
-73	GUARD SPEC.	MEGABLOCK	items	items	items	no	55
-74	DIRE HIT	ANGRIFFPLUS	items	items	items	no	56
-75	X ATTACK	X-ANGRIFF	items	items	items	no	57
-76	X DEFEND	X-ABWEHR	items	items	items	no	58
-77	X SPEED	X-TEMPO	items	items	items	no	59
-78	X ACCURACY	X-TREFFER	items	items	items	no	60
-79	X SPECIAL	X-SPEZIAL	items	items	items	no	61
-80	POKé DOLL	POKéPUPPE	items	items	items	no	63
-81	FLUFFY TAIL	ENECO-RUTE	items	items	items	no	64
-83	SUPER REPEL	SUPERSCHUTZ	items	items	items	no	76
-84	MAX REPEL	TOP-SCHUTZ	items	items	items	no	77
-85	ESCAPE ROPE	FLUCHTSEIL	items	items	items	no	78
-86	REPEL	SCHUTZ	items	items	items	no	79
-93	SUN STONE	SONNENSTEIN	items	items	items	no	80
-94	MOON STONE	MONDSTEIN	items	items	items	no	81
-95	FIRE STONE	FEUERSTEIN	items	items	items	no	82
-96	THUNDERSTONE	DONNERSTEIN	items	items	items	no	83
-97	WATER STONE	WASSERSTEIN	items	items	items	no	84
-98	LEAF STONE	BLATTSTEIN	items	items	items	no	85
-103	TINYMUSHROOM	MINIPILZ	items	items	items	no	86
-104	BIG MUSHROOM	RIESENPILZ	items	items	items	no	87
-106	PEARL	PERLE	items	items	items	no	88
-107	BIG PEARL	RIESENPERLE	items	items	items	no	89
-108	STARDUST	STERNENSTAUB	items	items	items	no	90
-109	STAR PIECE	STERNENSTÜCK	items	items	items	no	91
-110	NUGGET	NUGGET	items	items	items	no	92
-111	HEART SCALE	HERZSCHUPPE	items	items	items	no	93
-121	ORANGE MAIL	ZIGZAGBRIEF	items	items	items	no	-
-122	HARBOR MAIL	HAFENBRIEF	items	items	items	no	-
-123	GLITTER MAIL	GLITZERBRIEF	items	items	items	no	-
-124	MECH MAIL	EILBRIEF	items	items	items	no	-
-125	WOOD MAIL	WALDBRIEF	items	items	items	no	-
-126	WAVE MAIL	WELLENBRIEF	items	items	items	no	-
-127	BEAD MAIL	PERLENBRIEF	items	items	items	no	-
-128	SHADOW MAIL	DUNKELBRIEF	items	items	items	no	-
-129	TROPIC MAIL	TROPENBRIEF	items	items	items	no	-
-130	DREAM MAIL	TRAUMBRIEF	items	items	items	no	-
-131	FAB MAIL	EDELBRIEF	items	items	items	no	-
-132	RETRO MAIL	RETROBRIEF	items	items	items	no	-
-133	CHERI BERRY	AMRENABEERE	berries	berries	berries	no	149
-134	CHESTO BERRY	MARONBEERE	berries	berries	berries	no	150
-135	PECHA BERRY	PIRSIFBEERE	berries	berries	berries	no	151
-136	RAWST BERRY	FRAGIABEERE	berries	berries	berries	no	152
-137	ASPEAR BERRY	WILBIRBEERE	berries	berries	berries	no	153
-138	LEPPA BERRY	JONAGOBEERE	berries	berries	berries	no	154
-139	ORAN BERRY	SINELBEERE	berries	berries	berries	no	155
-140	PERSIM BERRY	PERSIMBEERE	berries	berries	berries	no	156
-141	LUM BERRY	PRUNUSBEERE	berries	berries	berries	no	157
-142	SITRUS BERRY	TSITRUBEERE	berries	berries	berries	no	158
-143	FIGY BERRY	GIEFEBEERE	berries	berries	berries	no	159
-144	WIKI BERRY	WIKIBEERE	berries	berries	berries	no	160
-145	MAGO BERRY	MAGOBEERE	berries	berries	berries	no	161
-146	AGUAV BERRY	GAUVEBEERE	berries	berries	berries	no	162
-147	IAPAPA BERRY	YAPABEERE	berries	berries	berries	no	163
-148	RAZZ BERRY	HIMMIHBEERE	berries	berries	berries	no	164
-149	BLUK BERRY	MORBBEERE	berries	berries	berries	no	165
-150	NANAB BERRY	NANABBEERE	berries	berries	berries	no	166
-151	WEPEAR BERRY	NIRBEBEERE	berries	berries	berries	no	167
-152	PINAP BERRY	SANANABEERE	berries	berries	berries	no	168
-153	POMEG BERRY	GRANABEERE	berries	berries	berries	no	169
-154	KELPSY BERRY	SETANGBEERE	berries	berries	berries	no	170
-155	QUALOT BERRY	QUALOTBEERE	berries	berries	berries	no	171
-156	HONDEW BERRY	HONMELBEERE	berries	berries	berries	no	172
-157	GREPA BERRY	LABRUSBEERE	berries	berries	berries	no	173
-158	TAMATO BERRY	TAMOTBEERE	berries	berries	berries	no	174
-159	CORNN BERRY	SAIMBEERE	berries	berries	berries	no	175
-160	MAGOST BERRY	MAGOSTBEERE	berries	berries	berries	no	176
-161	RABUTA BERRY	RABUTABEERE	berries	berries	berries	no	177
-162	NOMEL BERRY	TRONZIBEERE	berries	berries	berries	no	178
-163	SPELON BERRY	KIWANBEERE	berries	berries	berries	no	179
-164	PAMTRE BERRY	PALLMBEERE	berries	berries	berries	no	180
-165	WATMEL BERRY	WASMELBEERE	berries	berries	berries	no	181
-166	DURIN BERRY	DURINBEERE	berries	berries	berries	no	182
-167	BELUE BERRY	MYRTILBEERE	berries	berries	berries	no	183
-168	LIECHI BERRY	LYDZIBEERE	berries	berries	berries	no	201
-169	GANLON BERRY	LINGANBEERE	berries	berries	berries	no	202
-170	SALAC BERRY	SALKABEERE	berries	berries	berries	no	203
-171	PETAYA BERRY	TAHAYBEERE	berries	berries	berries	no	204
-172	APICOT BERRY	APIKOBEERE	berries	berries	berries	no	205
-173	LANSAT BERRY	LANSATBEERE	berries	berries	berries	no	206
-174	STARF BERRY	KRAMBOBEERE	berries	berries	berries	no	207
-175	ENIGMA BERRY	ENIGMABEERE	berries	berries	berries	no	208
-179	BRIGHTPOWDER	BLENDPUDER	items	items	items	no	213
-180	WHITE HERB	SCHLOHKRAUT	items	items	items	no	214
-181	MACHO BRACE	MACHOBAND	items	items	items	no	215
-182	EXP. SHARE	EP-TEILER	items	items	items	no	216
-183	QUICK CLAW	FLINKKLAUE	items	items	items	no	217
-184	SOOTHE BELL	SANFTGLOCKE	items	items	items	no	218
-185	MENTAL HERB	MENTALKRAUT	items	items	items	no	219
-186	CHOICE BAND	WAHLBAND	items	items	items	no	220
-187	KING’S ROCK	KING-STEIN	items	items	items	no	221
-188	SILVERPOWDER	SILBERSTAUB	items	items	items	no	222
-189	AMULET COIN	MÜNZAMULETT	items	items	items	no	223
-190	CLEANSE TAG	SCHUTZBAND	items	items	items	no	224
-191	SOUL DEW	SEELENTAU	items	items	items	no	225
-192	DEEPSEATOOTH	ABYSSZAHN	items	items	items	no	226
-193	DEEPSEASCALE	ABYSSPLATTE	items	items	items	no	227
-194	SMOKE BALL	RAUCHBALL	items	items	items	no	228
-195	EVERSTONE	EWIGSTEIN	items	items	items	no	229
-196	FOCUS BAND	FOKUS-BAND	items	items	items	no	230
-197	LUCKY EGG	GLÜCKS-EI	items	items	items	no	231
-198	SCOPE LENS	SCOPE-LINSE	items	items	items	no	232
-199	METAL COAT	METALLMANTEL	items	items	items	no	233
-200	LEFTOVERS	ÜBERRESTE	items	items	items	no	234
-201	DRAGON SCALE	DRACHENHAUT	items	items	items	no	235
-202	LIGHT BALL	KUGELBLITZ	items	items	items	no	236
-203	SOFT SAND	PUDERSAND	items	items	items	no	237
-204	HARD STONE	GRANITSTEIN	items	items	items	no	238
-205	MIRACLE SEED	WUNDERSAAT	items	items	items	no	239
-206	BLACKGLASSES	SCHATTENGLAS	items	items	items	no	240
-207	BLACK BELT	SCHWARZGURT	items	items	items	no	241
-208	MAGNET	MAGNET	items	items	items	no	242
-209	MYSTIC WATER	ZAUBERWASSER	items	items	items	no	243
-210	SHARP BEAK	HACKATTACK	items	items	items	no	244
-211	POISON BARB	GIFTSTICH	items	items	items	no	245
-212	NEVERMELTICE	EWIGES EIS	items	items	items	no	246
-213	SPELL TAG	BANNSTICKER	items	items	items	no	247
-214	TWISTEDSPOON	KRÜMMLÖFFEL	items	items	items	no	248
-215	CHARCOAL	HOLZKOHLE	items	items	items	no	249
-216	DRAGON FANG	DRACHENZAHN	items	items	items	no	250
-217	SILK SCARF	SEIDENSCHAL	items	items	items	no	251
-218	UP-GRADE	UP-GRADE	items	items	items	no	252
-219	SHELL BELL	SEEGESANG	items	items	items	no	253
-220	SEA INCENSE	SEERAUCH	items	items	items	no	254
-221	LAX INCENSE	LAXRAUCH	items	items	items	no	255
-222	LUCKY PUNCH	LUCKY PUNCH	items	items	items	no	256
-223	METAL POWDER	METALLSTAUB	items	items	items	no	257
-224	THICK CLUB	KAMPFKNOCHEN	items	items	items	no	258
-225	STICK	LAUCHSTANGE	items	items	items	no	259
-254	RED SCARF	ROTER SCHAL	items	items	items	no	260
-255	BLUE SCARF	BLAUER SCHAL	items	items	items	no	261
-256	PINK SCARF	ROSA SCHAL	items	items	items	no	262
-257	GREEN SCARF	GRÜNER SCHAL	items	items	items	no	263
-258	YELLOW SCARF	GELBER SCHAL	items	items	items	no	264
-259	MACH BIKE	EILRAD	key_items	key_items	key_items	yes	718
-260	COIN CASE	MÜNZKORB	key_items	key_items	key_items	yes	444
-261	ITEMFINDER	DETEKTOR	key_items	key_items	key_items	yes	-
-262	OLD ROD	ANGEL	key_items	key_items	key_items	yes	445
-263	GOOD ROD	PROFIANGEL	key_items	key_items	key_items	yes	446
-264	SUPER ROD	SUPERANGEL	key_items	key_items	key_items	yes	447
-265	S.S. TICKET	BOOTSTICKET	key_items	key_items	key_items	yes	456
-266	CONTEST PASS	WETTB.-KARTE	key_items	key_items	key_items	yes	457
-268	WAILMER PAIL	WAILMERKANNE	key_items	key_items	key_items	yes	720
-269	DEVON GOODS	DEVON-WAREN	key_items	key_items	key_items	yes	-
-270	SOOT SACK	ASCHETASCHE	key_items	key_items	key_items	yes	722
-271	BASEMENT KEY	KELLERÖFFNER	key_items	key_items	key_items	yes	-
-272	ACRO BIKE	KUNSTRAD	key_items	key_items	key_items	yes	719
-273	POKéBLOCK CASE	POKéBLOCKBOX	key_items	key_items	key_items	yes	-
-274	LETTER	BRIEF	key_items	key_items	key_items	yes	725
-275	EON TICKET	ÄON-TICKET	key_items	key_items	key_items	yes	726
-276	RED ORB	ROTE KUGEL	key_items	key_items	key_items	yes	534
-277	BLUE ORB	BLAUE KUGEL	key_items	key_items	key_items	yes	535
-278	SCANNER	SCANNER	key_items	key_items	key_items	yes	727
-279	GO-GOGGLES	WÜSTENGLAS	key_items	key_items	key_items	yes	728
-280	METEORITE	METEORIT	key_items	key_items	key_items	yes	-
-281	RM. 1 KEY	K1-SCHLÜSSEL	key_items	key_items	key_items	yes	-
-282	RM. 2 KEY	K2-SCHLÜSSEL	key_items	key_items	key_items	yes	-
-283	RM. 4 KEY	K4-SCHLÜSSEL	key_items	key_items	key_items	yes	-
-284	RM. 6 KEY	K6-SCHLÜSSEL	key_items	key_items	key_items	yes	-
-285	STORAGE KEY	L.-SCHLÜSSEL	key_items	key_items	key_items	yes	463
-286	ROOT FOSSIL	WURZELFOSSIL	key_items	key_items	key_items	yes	99
-287	CLAW FOSSIL	KLAUENFOSSIL	key_items	key_items	key_items	yes	100
-288	DEVON SCOPE	DEVON-SCOPE	key_items	key_items	key_items	yes	735
-289	TM01	TM01	tms_hms	tms_hms	tms_hms	no	328
-290	TM02	TM02	tms_hms	tms_hms	tms_hms	no	329
-291	TM03	TM03	tms_hms	tms_hms	tms_hms	no	330
-292	TM04	TM04	tms_hms	tms_hms	tms_hms	no	331
-293	TM05	TM05	tms_hms	tms_hms	tms_hms	no	332
-294	TM06	TM06	tms_hms	tms_hms	tms_hms	no	333
-295	TM07	TM07	tms_hms	tms_hms	tms_hms	no	334
-296	TM08	TM08	tms_hms	tms_hms	tms_hms	no	335
-297	TM09	TM09	tms_hms	tms_hms	tms_hms	no	336
-298	TM10	TM10	tms_hms	tms_hms	tms_hms	no	337
-299	TM11	TM11	tms_hms	tms_hms	tms_hms	no	338
-300	TM12	TM12	tms_hms	tms_hms	tms_hms	no	339
-301	TM13	TM13	tms_hms	tms_hms	tms_hms	no	340
-302	TM14	TM14	tms_hms	tms_hms	tms_hms	no	341
-303	TM15	TM15	tms_hms	tms_hms	tms_hms	no	342
-304	TM16	TM16	tms_hms	tms_hms	tms_hms	no	343
-305	TM17	TM17	tms_hms	tms_hms	tms_hms	no	344
-306	TM18	TM18	tms_hms	tms_hms	tms_hms	no	345
-307	TM19	TM19	tms_hms	tms_hms	tms_hms	no	346
-308	TM20	TM20	tms_hms	tms_hms	tms_hms	no	347
-309	TM21	TM21	tms_hms	tms_hms	tms_hms	no	348
-310	TM22	TM22	tms_hms	tms_hms	tms_hms	no	349
-311	TM23	TM23	tms_hms	tms_hms	tms_hms	no	350
-312	TM24	TM24	tms_hms	tms_hms	tms_hms	no	351
-313	TM25	TM25	tms_hms	tms_hms	tms_hms	no	352
-314	TM26	TM26	tms_hms	tms_hms	tms_hms	no	353
-315	TM27	TM27	tms_hms	tms_hms	tms_hms	no	354
-316	TM28	TM28	tms_hms	tms_hms	tms_hms	no	355
-317	TM29	TM29	tms_hms	tms_hms	tms_hms	no	356
-318	TM30	TM30	tms_hms	tms_hms	tms_hms	no	357
-319	TM31	TM31	tms_hms	tms_hms	tms_hms	no	358
-320	TM32	TM32	tms_hms	tms_hms	tms_hms	no	359
-321	TM33	TM33	tms_hms	tms_hms	tms_hms	no	360
-322	TM34	TM34	tms_hms	tms_hms	tms_hms	no	361
-323	TM35	TM35	tms_hms	tms_hms	tms_hms	no	362
-324	TM36	TM36	tms_hms	tms_hms	tms_hms	no	363
-325	TM37	TM37	tms_hms	tms_hms	tms_hms	no	364
-326	TM38	TM38	tms_hms	tms_hms	tms_hms	no	365
-327	TM39	TM39	tms_hms	tms_hms	tms_hms	no	366
-328	TM40	TM40	tms_hms	tms_hms	tms_hms	no	367
-329	TM41	TM41	tms_hms	tms_hms	tms_hms	no	368
-330	TM42	TM42	tms_hms	tms_hms	tms_hms	no	369
-331	TM43	TM43	tms_hms	tms_hms	tms_hms	no	370
-332	TM44	TM44	tms_hms	tms_hms	tms_hms	no	371
-333	TM45	TM45	tms_hms	tms_hms	tms_hms	no	372
-334	TM46	TM46	tms_hms	tms_hms	tms_hms	no	373
-335	TM47	TM47	tms_hms	tms_hms	tms_hms	no	374
-336	TM48	TM48	tms_hms	tms_hms	tms_hms	no	375
-337	TM49	TM49	tms_hms	tms_hms	tms_hms	no	376
-338	TM50	TM50	tms_hms	tms_hms	tms_hms	no	377
-339	HM01	VM01	tms_hms	tms_hms	tms_hms	yes	420
-340	HM02	VM02	tms_hms	tms_hms	tms_hms	yes	421
-341	HM03	VM03	tms_hms	tms_hms	tms_hms	yes	422
-342	HM04	VM04	tms_hms	tms_hms	tms_hms	yes	423
-343	HM05	VM05	tms_hms	tms_hms	tms_hms	yes	424
-344	HM06	VM06	tms_hms	tms_hms	tms_hms	yes	425
-345	HM07	VM07	tms_hms	tms_hms	tms_hms	yes	426
-346	HM08	VM08	tms_hms	tms_hms	tms_hms	yes	427
-349	OAK’S PARCEL	-	-	key_items	key_items	yes	459
-350	POKé FLUTE	-	-	key_items	key_items	yes	651
-351	SECRET KEY	-	-	key_items	key_items	yes	467
-352	BIKE VOUCHER	-	-	key_items	key_items	yes	-
-353	GOLD TEETH	-	-	key_items	key_items	yes	-
-354	OLD AMBER	-	-	key_items	key_items	yes	103
-355	CARD KEY	-	-	key_items	key_items	yes	475
-356	LIFT KEY	-	-	key_items	key_items	yes	-
-357	HELIX FOSSIL	-	-	key_items	key_items	yes	101
-358	DOME FOSSIL	-	-	key_items	key_items	yes	102
-359	SILPH SCOPE	-	-	key_items	key_items	yes	-
-360	BICYCLE	-	-	key_items	key_items	yes	450
-361	TOWN MAP	-	-	key_items	key_items	yes	442
-362	VS SEEKER	-	-	key_items	key_items	yes	443
-363	FAME CHECKER	-	-	key_items	key_items	yes	-
-364	TM CASE	-	-	key_items	key_items	yes	-
-365	BERRY POUCH	-	-	key_items	key_items	yes	-
-366	TEACHY TV	-	-	key_items	key_items	yes	-
-367	TRI-PASS	-	-	key_items	key_items	yes	-
-368	RAINBOW PASS	-	-	key_items	key_items	yes	-
-369	TEA	-	-	key_items	key_items	yes	-
-370	MYSTICTICKET	-	-	key_items	key_items	yes	-
-371	AURORATICKET	-	-	key_items	key_items	yes	-
-372	POWDER JAR	-	-	key_items	key_items	yes	-
-373	RUBY	-	-	key_items	key_items	yes	-
-374	SAPPHIRE	-	-	key_items	key_items	yes	-
-375	MAGMA EMBLEM	-	-	key_items	-	yes	-
-376	OLD SEA MAP	-	-	key_items	-	yes	-
+item	ruby_sapphire	emerald	firered_leafgreen	is_important	later_item	english	german
+1	poke_balls	poke_balls	poke_balls	no	1	MASTER BALL	MEISTERBALL
+2	poke_balls	poke_balls	poke_balls	no	2	ULTRA BALL	HYPERBALL
+3	poke_balls	poke_balls	poke_balls	no	3	GREAT BALL	SUPERBALL
+4	poke_balls	poke_balls	poke_balls	no	4	POKé BALL	POKéBALL
+5	poke_balls	poke_balls	poke_balls	no	5	SAFARI BALL	SAFARIBALL
+6	poke_balls	poke_balls	poke_balls	no	6	NET BALL	NETZBALL
+7	poke_balls	poke_balls	poke_balls	no	7	DIVE BALL	TAUCHBALL
+8	poke_balls	poke_balls	poke_balls	no	8	NEST BALL	NESTBALL
+9	poke_balls	poke_balls	poke_balls	no	9	REPEAT BALL	WIEDERBALL
+10	poke_balls	poke_balls	poke_balls	no	10	TIMER BALL	TIMERBALL
+11	poke_balls	poke_balls	poke_balls	no	11	LUXURY BALL	LUXUSBALL
+12	poke_balls	poke_balls	poke_balls	no	12	PREMIER BALL	PREMIERBALL
+13	items	items	items	no	17	POTION	TRANK
+14	items	items	items	no	18	ANTIDOTE	GEGENGIFT
+15	items	items	items	no	19	BURN HEAL	FEUERHEILER
+16	items	items	items	no	20	ICE HEAL	EISHEILER
+17	items	items	items	no	21	AWAKENING	AUFWECKER
+18	items	items	items	no	22	PARLYZ HEAL	PARA-HEILER
+19	items	items	items	no	23	FULL RESTORE	TOP-GENESUNG
+20	items	items	items	no	24	MAX POTION	TOP-TRANK
+21	items	items	items	no	25	HYPER POTION	HYPERTRANK
+22	items	items	items	no	26	SUPER POTION	SUPERTRANK
+23	items	items	items	no	27	FULL HEAL	HYPERHEILER
+24	items	items	items	no	28	REVIVE	BELEBER
+25	items	items	items	no	29	MAX REVIVE	TOP-BELEBER
+26	items	items	items	no	30	FRESH WATER	TAFELWASSER
+27	items	items	items	no	31	SODA POP	SPRUDEL
+28	items	items	items	no	32	LEMONADE	LIMONADE
+29	items	items	items	no	33	MOOMOO MILK	KUHMUH-MILCH
+30	items	items	items	no	34	ENERGYPOWDER	ENERGIESTAUB
+31	items	items	items	no	35	ENERGY ROOT	KRAFTWURZEL
+32	items	items	items	no	36	HEAL POWDER	HEILPUDER
+33	items	items	items	no	37	REVIVAL HERB	VITALKRAUT
+34	items	items	items	no	38	ETHER	ÄTHER
+35	items	items	items	no	39	MAX ETHER	TOP-ÄTHER
+36	items	items	items	no	40	ELIXIR	ELIXIER
+37	items	items	items	no	41	MAX ELIXIR	TOP-ELIXIER
+38	items	items	items	no	42	LAVA COOKIE	LAVAKEKS
+39	items	items	items	no	65	BLUE FLUTE	BLAUE FLÖTE
+40	items	items	items	no	66	YELLOW FLUTE	GELBE FLÖTE
+41	items	items	items	no	67	RED FLUTE	ROTE FLÖTE
+42	items	items	items	no	68	BLACK FLUTE	SCHW. FLÖTE
+43	items	items	items	no	69	WHITE FLUTE	WEISSE FLÖTE
+44	items	items	items	no	43	BERRY JUICE	BEERENSAFT
+45	items	items	items	no	44	SACRED ASH	ZAUBERASCHE
+46	items	items	items	no	70	SHOAL SALT	KÜSTENSALZ
+47	items	items	items	no	71	SHOAL SHELL	KÜSTENSCHALE
+48	items	items	items	no	72	RED SHARD	PURPURSTÜCK
+49	items	items	items	no	73	BLUE SHARD	INDIGOSTÜCK
+50	items	items	items	no	74	YELLOW SHARD	GELBSTÜCK
+51	items	items	items	no	75	GREEN SHARD	GRÜNSTÜCK
+63	items	items	items	no	45	HP UP	KP-PLUS
+64	items	items	items	no	46	PROTEIN	PROTEIN
+65	items	items	items	no	47	IRON	EISEN
+66	items	items	items	no	48	CARBOS	CARBON
+67	items	items	items	no	49	CALCIUM	KALZIUM
+68	items	items	items	no	50	RARE CANDY	SONDERBONBON
+69	items	items	items	no	51	PP UP	AP-PLUS
+70	items	items	items	no	52	ZINC	ZINK
+71	items	items	items	no	53	PP MAX	AP-TOP
+73	items	items	items	no	55	GUARD SPEC.	MEGABLOCK
+74	items	items	items	no	56	DIRE HIT	ANGRIFFPLUS
+75	items	items	items	no	57	X ATTACK	X-ANGRIFF
+76	items	items	items	no	58	X DEFEND	X-ABWEHR
+77	items	items	items	no	59	X SPEED	X-TEMPO
+78	items	items	items	no	60	X ACCURACY	X-TREFFER
+79	items	items	items	no	61	X SPECIAL	X-SPEZIAL
+80	items	items	items	no	63	POKé DOLL	POKéPUPPE
+81	items	items	items	no	64	FLUFFY TAIL	ENECO-RUTE
+83	items	items	items	no	76	SUPER REPEL	SUPERSCHUTZ
+84	items	items	items	no	77	MAX REPEL	TOP-SCHUTZ
+85	items	items	items	no	78	ESCAPE ROPE	FLUCHTSEIL
+86	items	items	items	no	79	REPEL	SCHUTZ
+93	items	items	items	no	80	SUN STONE	SONNENSTEIN
+94	items	items	items	no	81	MOON STONE	MONDSTEIN
+95	items	items	items	no	82	FIRE STONE	FEUERSTEIN
+96	items	items	items	no	83	THUNDERSTONE	DONNERSTEIN
+97	items	items	items	no	84	WATER STONE	WASSERSTEIN
+98	items	items	items	no	85	LEAF STONE	BLATTSTEIN
+103	items	items	items	no	86	TINYMUSHROOM	MINIPILZ
+104	items	items	items	no	87	BIG MUSHROOM	RIESENPILZ
+106	items	items	items	no	88	PEARL	PERLE
+107	items	items	items	no	89	BIG PEARL	RIESENPERLE
+108	items	items	items	no	90	STARDUST	STERNENSTAUB
+109	items	items	items	no	91	STAR PIECE	STERNENSTÜCK
+110	items	items	items	no	92	NUGGET	NUGGET
+111	items	items	items	no	93	HEART SCALE	HERZSCHUPPE
+121	items	items	items	no	-	ORANGE MAIL	ZIGZAGBRIEF
+122	items	items	items	no	-	HARBOR MAIL	HAFENBRIEF
+123	items	items	items	no	-	GLITTER MAIL	GLITZERBRIEF
+124	items	items	items	no	-	MECH MAIL	EILBRIEF
+125	items	items	items	no	-	WOOD MAIL	WALDBRIEF
+126	items	items	items	no	-	WAVE MAIL	WELLENBRIEF
+127	items	items	items	no	-	BEAD MAIL	PERLENBRIEF
+128	items	items	items	no	-	SHADOW MAIL	DUNKELBRIEF
+129	items	items	items	no	-	TROPIC MAIL	TROPENBRIEF
+130	items	items	items	no	-	DREAM MAIL	TRAUMBRIEF
+131	items	items	items	no	-	FAB MAIL	EDELBRIEF
+132	items	items	items	no	-	RETRO MAIL	RETROBRIEF
+133	berries	berries	berries	no	149	CHERI BERRY	AMRENABEERE
+134	berries	berries	berries	no	150	CHESTO BERRY	MARONBEERE
+135	berries	berries	berries	no	151	PECHA BERRY	PIRSIFBEERE
+136	berries	berries	berries	no	152	RAWST BERRY	FRAGIABEERE
+137	berries	berries	berries	no	153	ASPEAR BERRY	WILBIRBEERE
+138	berries	berries	berries	no	154	LEPPA BERRY	JONAGOBEERE
+139	berries	berries	berries	no	155	ORAN BERRY	SINELBEERE
+140	berries	berries	berries	no	156	PERSIM BERRY	PERSIMBEERE
+141	berries	berries	berries	no	157	LUM BERRY	PRUNUSBEERE
+142	berries	berries	berries	no	158	SITRUS BERRY	TSITRUBEERE
+143	berries	berries	berries	no	159	FIGY BERRY	GIEFEBEERE
+144	berries	berries	berries	no	160	WIKI BERRY	WIKIBEERE
+145	berries	berries	berries	no	161	MAGO BERRY	MAGOBEERE
+146	berries	berries	berries	no	162	AGUAV BERRY	GAUVEBEERE
+147	berries	berries	berries	no	163	IAPAPA BERRY	YAPABEERE
+148	berries	berries	berries	no	164	RAZZ BERRY	HIMMIHBEERE
+149	berries	berries	berries	no	165	BLUK BERRY	MORBBEERE
+150	berries	berries	berries	no	166	NANAB BERRY	NANABBEERE
+151	berries	berries	berries	no	167	WEPEAR BERRY	NIRBEBEERE
+152	berries	berries	berries	no	168	PINAP BERRY	SANANABEERE
+153	berries	berries	berries	no	169	POMEG BERRY	GRANABEERE
+154	berries	berries	berries	no	170	KELPSY BERRY	SETANGBEERE
+155	berries	berries	berries	no	171	QUALOT BERRY	QUALOTBEERE
+156	berries	berries	berries	no	172	HONDEW BERRY	HONMELBEERE
+157	berries	berries	berries	no	173	GREPA BERRY	LABRUSBEERE
+158	berries	berries	berries	no	174	TAMATO BERRY	TAMOTBEERE
+159	berries	berries	berries	no	175	CORNN BERRY	SAIMBEERE
+160	berries	berries	berries	no	176	MAGOST BERRY	MAGOSTBEERE
+161	berries	berries	berries	no	177	RABUTA BERRY	RABUTABEERE
+162	berries	berries	berries	no	178	NOMEL BERRY	TRONZIBEERE
+163	berries	berries	berries	no	179	SPELON BERRY	KIWANBEERE
+164	berries	berries	berries	no	180	PAMTRE BERRY	PALLMBEERE
+165	berries	berries	berries	no	181	WATMEL BERRY	WASMELBEERE
+166	berries	berries	berries	no	182	DURIN BERRY	DURINBEERE
+167	berries	berries	berries	no	183	BELUE BERRY	MYRTILBEERE
+168	berries	berries	berries	no	201	LIECHI BERRY	LYDZIBEERE
+169	berries	berries	berries	no	202	GANLON BERRY	LINGANBEERE
+170	berries	berries	berries	no	203	SALAC BERRY	SALKABEERE
+171	berries	berries	berries	no	204	PETAYA BERRY	TAHAYBEERE
+172	berries	berries	berries	no	205	APICOT BERRY	APIKOBEERE
+173	berries	berries	berries	no	206	LANSAT BERRY	LANSATBEERE
+174	berries	berries	berries	no	207	STARF BERRY	KRAMBOBEERE
+175	berries	berries	berries	no	208	ENIGMA BERRY	ENIGMABEERE
+179	items	items	items	no	213	BRIGHTPOWDER	BLENDPUDER
+180	items	items	items	no	214	WHITE HERB	SCHLOHKRAUT
+181	items	items	items	no	215	MACHO BRACE	MACHOBAND
+182	items	items	items	no	216	EXP. SHARE	EP-TEILER
+183	items	items	items	no	217	QUICK CLAW	FLINKKLAUE
+184	items	items	items	no	218	SOOTHE BELL	SANFTGLOCKE
+185	items	items	items	no	219	MENTAL HERB	MENTALKRAUT
+186	items	items	items	no	220	CHOICE BAND	WAHLBAND
+187	items	items	items	no	221	KING’S ROCK	KING-STEIN
+188	items	items	items	no	222	SILVERPOWDER	SILBERSTAUB
+189	items	items	items	no	223	AMULET COIN	MÜNZAMULETT
+190	items	items	items	no	224	CLEANSE TAG	SCHUTZBAND
+191	items	items	items	no	225	SOUL DEW	SEELENTAU
+192	items	items	items	no	226	DEEPSEATOOTH	ABYSSZAHN
+193	items	items	items	no	227	DEEPSEASCALE	ABYSSPLATTE
+194	items	items	items	no	228	SMOKE BALL	RAUCHBALL
+195	items	items	items	no	229	EVERSTONE	EWIGSTEIN
+196	items	items	items	no	230	FOCUS BAND	FOKUS-BAND
+197	items	items	items	no	231	LUCKY EGG	GLÜCKS-EI
+198	items	items	items	no	232	SCOPE LENS	SCOPE-LINSE
+199	items	items	items	no	233	METAL COAT	METALLMANTEL
+200	items	items	items	no	234	LEFTOVERS	ÜBERRESTE
+201	items	items	items	no	235	DRAGON SCALE	DRACHENHAUT
+202	items	items	items	no	236	LIGHT BALL	KUGELBLITZ
+203	items	items	items	no	237	SOFT SAND	PUDERSAND
+204	items	items	items	no	238	HARD STONE	GRANITSTEIN
+205	items	items	items	no	239	MIRACLE SEED	WUNDERSAAT
+206	items	items	items	no	240	BLACKGLASSES	SCHATTENGLAS
+207	items	items	items	no	241	BLACK BELT	SCHWARZGURT
+208	items	items	items	no	242	MAGNET	MAGNET
+209	items	items	items	no	243	MYSTIC WATER	ZAUBERWASSER
+210	items	items	items	no	244	SHARP BEAK	HACKATTACK
+211	items	items	items	no	245	POISON BARB	GIFTSTICH
+212	items	items	items	no	246	NEVERMELTICE	EWIGES EIS
+213	items	items	items	no	247	SPELL TAG	BANNSTICKER
+214	items	items	items	no	248	TWISTEDSPOON	KRÜMMLÖFFEL
+215	items	items	items	no	249	CHARCOAL	HOLZKOHLE
+216	items	items	items	no	250	DRAGON FANG	DRACHENZAHN
+217	items	items	items	no	251	SILK SCARF	SEIDENSCHAL
+218	items	items	items	no	252	UP-GRADE	UP-GRADE
+219	items	items	items	no	253	SHELL BELL	SEEGESANG
+220	items	items	items	no	254	SEA INCENSE	SEERAUCH
+221	items	items	items	no	255	LAX INCENSE	LAXRAUCH
+222	items	items	items	no	256	LUCKY PUNCH	LUCKY PUNCH
+223	items	items	items	no	257	METAL POWDER	METALLSTAUB
+224	items	items	items	no	258	THICK CLUB	KAMPFKNOCHEN
+225	items	items	items	no	259	STICK	LAUCHSTANGE
+254	items	items	items	no	260	RED SCARF	ROTER SCHAL
+255	items	items	items	no	261	BLUE SCARF	BLAUER SCHAL
+256	items	items	items	no	262	PINK SCARF	ROSA SCHAL
+257	items	items	items	no	263	GREEN SCARF	GRÜNER SCHAL
+258	items	items	items	no	264	YELLOW SCARF	GELBER SCHAL
+259	key_items	key_items	key_items	yes	718	MACH BIKE	EILRAD
+260	key_items	key_items	key_items	yes	444	COIN CASE	MÜNZKORB
+261	key_items	key_items	key_items	yes	-	ITEMFINDER	DETEKTOR
+262	key_items	key_items	key_items	yes	445	OLD ROD	ANGEL
+263	key_items	key_items	key_items	yes	446	GOOD ROD	PROFIANGEL
+264	key_items	key_items	key_items	yes	447	SUPER ROD	SUPERANGEL
+265	key_items	key_items	key_items	yes	456	S.S. TICKET	BOOTSTICKET
+266	key_items	key_items	key_items	yes	457	CONTEST PASS	WETTB.-KARTE
+268	key_items	key_items	key_items	yes	720	WAILMER PAIL	WAILMERKANNE
+269	key_items	key_items	key_items	yes	-	DEVON GOODS	DEVON-WAREN
+270	key_items	key_items	key_items	yes	722	SOOT SACK	ASCHETASCHE
+271	key_items	key_items	key_items	yes	-	BASEMENT KEY	KELLERÖFFNER
+272	key_items	key_items	key_items	yes	719	ACRO BIKE	KUNSTRAD
+273	key_items	key_items	key_items	yes	-	POKéBLOCK CASE	POKéBLOCKBOX
+274	key_items	key_items	key_items	yes	725	LETTER	BRIEF
+275	key_items	key_items	key_items	yes	726	EON TICKET	ÄON-TICKET
+276	key_items	key_items	key_items	yes	534	RED ORB	ROTE KUGEL
+277	key_items	key_items	key_items	yes	535	BLUE ORB	BLAUE KUGEL
+278	key_items	key_items	key_items	yes	727	SCANNER	SCANNER
+279	key_items	key_items	key_items	yes	728	GO-GOGGLES	WÜSTENGLAS
+280	key_items	key_items	key_items	yes	-	METEORITE	METEORIT
+281	key_items	key_items	key_items	yes	-	RM. 1 KEY	K1-SCHLÜSSEL
+282	key_items	key_items	key_items	yes	-	RM. 2 KEY	K2-SCHLÜSSEL
+283	key_items	key_items	key_items	yes	-	RM. 4 KEY	K4-SCHLÜSSEL
+284	key_items	key_items	key_items	yes	-	RM. 6 KEY	K6-SCHLÜSSEL
+285	key_items	key_items	key_items	yes	463	STORAGE KEY	L.-SCHLÜSSEL
+286	key_items	key_items	key_items	yes	99	ROOT FOSSIL	WURZELFOSSIL
+287	key_items	key_items	key_items	yes	100	CLAW FOSSIL	KLAUENFOSSIL
+288	key_items	key_items	key_items	yes	735	DEVON SCOPE	DEVON-SCOPE
+289	tms_hms	tms_hms	tms_hms	no	328	TM01	TM01
+290	tms_hms	tms_hms	tms_hms	no	329	TM02	TM02
+291	tms_hms	tms_hms	tms_hms	no	330	TM03	TM03
+292	tms_hms	tms_hms	tms_hms	no	331	TM04	TM04
+293	tms_hms	tms_hms	tms_hms	no	332	TM05	TM05
+294	tms_hms	tms_hms	tms_hms	no	333	TM06	TM06
+295	tms_hms	tms_hms	tms_hms	no	334	TM07	TM07
+296	tms_hms	tms_hms	tms_hms	no	335	TM08	TM08
+297	tms_hms	tms_hms	tms_hms	no	336	TM09	TM09
+298	tms_hms	tms_hms	tms_hms	no	337	TM10	TM10
+299	tms_hms	tms_hms	tms_hms	no	338	TM11	TM11
+300	tms_hms	tms_hms	tms_hms	no	339	TM12	TM12
+301	tms_hms	tms_hms	tms_hms	no	340	TM13	TM13
+302	tms_hms	tms_hms	tms_hms	no	341	TM14	TM14
+303	tms_hms	tms_hms	tms_hms	no	342	TM15	TM15
+304	tms_hms	tms_hms	tms_hms	no	343	TM16	TM16
+305	tms_hms	tms_hms	tms_hms	no	344	TM17	TM17
+306	tms_hms	tms_hms	tms_hms	no	345	TM18	TM18
+307	tms_hms	tms_hms	tms_hms	no	346	TM19	TM19
+308	tms_hms	tms_hms	tms_hms	no	347	TM20	TM20
+309	tms_hms	tms_hms	tms_hms	no	348	TM21	TM21
+310	tms_hms	tms_hms	tms_hms	no	349	TM22	TM22
+311	tms_hms	tms_hms	tms_hms	no	350	TM23	TM23
+312	tms_hms	tms_hms	tms_hms	no	351	TM24	TM24
+313	tms_hms	tms_hms	tms_hms	no	352	TM25	TM25
+314	tms_hms	tms_hms	tms_hms	no	353	TM26	TM26
+315	tms_hms	tms_hms	tms_hms	no	354	TM27	TM27
+316	tms_hms	tms_hms	tms_hms	no	355	TM28	TM28
+317	tms_hms	tms_hms	tms_hms	no	356	TM29	TM29
+318	tms_hms	tms_hms	tms_hms	no	357	TM30	TM30
+319	tms_hms	tms_hms	tms_hms	no	358	TM31	TM31
+320	tms_hms	tms_hms	tms_hms	no	359	TM32	TM32
+321	tms_hms	tms_hms	tms_hms	no	360	TM33	TM33
+322	tms_hms	tms_hms	tms_hms	no	361	TM34	TM34
+323	tms_hms	tms_hms	tms_hms	no	362	TM35	TM35
+324	tms_hms	tms_hms	tms_hms	no	363	TM36	TM36
+325	tms_hms	tms_hms	tms_hms	no	364	TM37	TM37
+326	tms_hms	tms_hms	tms_hms	no	365	TM38	TM38
+327	tms_hms	tms_hms	tms_hms	no	366	TM39	TM39
+328	tms_hms	tms_hms	tms_hms	no	367	TM40	TM40
+329	tms_hms	tms_hms	tms_hms	no	368	TM41	TM41
+330	tms_hms	tms_hms	tms_hms	no	369	TM42	TM42
+331	tms_hms	tms_hms	tms_hms	no	370	TM43	TM43
+332	tms_hms	tms_hms	tms_hms	no	371	TM44	TM44
+333	tms_hms	tms_hms	tms_hms	no	372	TM45	TM45
+334	tms_hms	tms_hms	tms_hms	no	373	TM46	TM46
+335	tms_hms	tms_hms	tms_hms	no	374	TM47	TM47
+336	tms_hms	tms_hms	tms_hms	no	375	TM48	TM48
+337	tms_hms	tms_hms	tms_hms	no	376	TM49	TM49
+338	tms_hms	tms_hms	tms_hms	no	377	TM50	TM50
+339	tms_hms	tms_hms	tms_hms	yes	420	HM01	VM01
+340	tms_hms	tms_hms	tms_hms	yes	421	HM02	VM02
+341	tms_hms	tms_hms	tms_hms	yes	422	HM03	VM03
+342	tms_hms	tms_hms	tms_hms	yes	423	HM04	VM04
+343	tms_hms	tms_hms	tms_hms	yes	424	HM05	VM05
+344	tms_hms	tms_hms	tms_hms	yes	425	HM06	VM06
+345	tms_hms	tms_hms	tms_hms	yes	426	HM07	VM07
+346	tms_hms	tms_hms	tms_hms	yes	427	HM08	VM08
+349	-	key_items	key_items	yes	459	OAK’S PARCEL	-
+350	-	key_items	key_items	yes	651	POKé FLUTE	-
+351	-	key_items	key_items	yes	467	SECRET KEY	-
+352	-	key_items	key_items	yes	-	BIKE VOUCHER	-
+353	-	key_items	key_items	yes	-	GOLD TEETH	-
+354	-	key_items	key_items	yes	103	OLD AMBER	-
+355	-	key_items	key_items	yes	475	CARD KEY	-
+356	-	key_items	key_items	yes	-	LIFT KEY	-
+357	-	key_items	key_items	yes	101	HELIX FOSSIL	-
+358	-	key_items	key_items	yes	102	DOME FOSSIL	-
+359	-	key_items	key_items	yes	-	SILPH SCOPE	-
+360	-	key_items	key_items	yes	450	BICYCLE	-
+361	-	key_items	key_items	yes	442	TOWN MAP	-
+362	-	key_items	key_items	yes	443	VS SEEKER	-
+363	-	key_items	key_items	yes	-	FAME CHECKER	-
+364	-	key_items	key_items	yes	-	TM CASE	-
+365	-	key_items	key_items	yes	-	BERRY POUCH	-
+366	-	key_items	key_items	yes	-	TEACHY TV	-
+367	-	key_items	key_items	yes	-	TRI-PASS	-
+368	-	key_items	key_items	yes	-	RAINBOW PASS	-
+369	-	key_items	key_items	yes	-	TEA	-
+370	-	key_items	key_items	yes	-	MYSTICTICKET	-
+371	-	key_items	key_items	yes	-	AURORATICKET	-
+372	-	key_items	key_items	yes	-	POWDER JAR	-
+373	-	key_items	key_items	yes	-	RUBY	-
+374	-	key_items	key_items	yes	-	SAPPHIRE	-
+375	-	key_items	-	yes	-	MAGMA EMBLEM	-
+376	-	key_items	-	yes	-	OLD SEA MAP	-

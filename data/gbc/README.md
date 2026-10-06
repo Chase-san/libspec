@@ -16,8 +16,8 @@ Species by National Dex number, with base stats, growth rate and gender ratio.
 
 ## `charmap.tsv`
 
-Characters by byte, in the same columns as Gen 1's: `english`, `french_german`,
-`italian_spanish`, `japanese` and `japanese_hiragana`.
+Characters by byte, in the same columns as Gen 1's: `japanese`, `japanese_hiragana`, `english`,
+`french_german` and `italian_spanish`.
 
 The characters come from the name fonts:
 

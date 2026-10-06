@@ -1,16 +1,16 @@
 # libSPEC
 
-Specialized Pokemon Editing in C
+Specialized Pokémon Editing in C
 
-This library is designed to make an highly accurate and safe editing library. The following information may be asperational rather than actual.
+This library is designed to make a highly accurate and safe editing library. The following information may be aspirational rather than actual.
 
 ## Target Games
 
-This library is targets pokemon games in their entirety (including non-english) on the following systems
+This library targets Pokémon games in their entirety (including non-English) on the following systems
 
-- Nintendo Gameboy
-- Nintendo Gameboy Color
-- Nintendo Gameboy Advance
+- Nintendo Game Boy
+- Nintendo Game Boy Color
+- Nintendo Game Boy Advance
 - Nintendo DS
 - Nintendo DSi
 - Nintendo 3DS
@@ -19,11 +19,11 @@ This library is targets pokemon games in their entirety (including non-english) 
 
 This library has the following capabilities.
 
-- Pokemon Editing
+- Pokémon Editing
   - Boxes
   - Party
   - Daycare
-- Pokedex Editing
+- Pokédex Editing
 - Trainer Editing
 - Names in every language the games use: species, forms, moves, abilities, items, natures and types
 
@@ -46,9 +46,9 @@ Its information comes from community sources, original research and decompilatio
   - erosunica (pokecrystal-es)
 - PokéAPI, for the Chinese species names and what only Ultra Sun and Ultra Moon add
 - Project Pokémon, PKHeX's contributors and SciresM, whose research documented the Gen 6 and 7 saves and Gen 7's save signature.
-- Bulbapedia, Serebii.net, and Pokemon Database.
+- Bulbapedia, Serebii.net and Pokémon Database.
 - The author's own cartridges and applications from which the Gen 5, Gen 6 and Gen 7 data is extracted.
-  - This includes all english games from owned cartridges and a number of foreign language games across various platforms.
+  - This includes all English games from owned cartridges and a number of foreign language games across various platforms.
 - The author's own older programs and libraries such as PPSE-DS, libspec (old), and PokeLib.
 
 PokéAPI data is used under its BSD 3-Clause licence: Copyright (c) 2013–2023 Paul Hallett and PokéAPI contributors.

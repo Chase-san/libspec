@@ -17,9 +17,33 @@ has a folder of its own, with its own README:
 
 - Every file is tab-separated, with a header row first and then one row per entry.
 - `-` in a cell means there is nothing there: no name in that language, or no pocket in that game.
-- The name tables have one column per language, always in this order: `japanese` (kana),
-  `english`, `french`, `italian`, `german`, `spanish`, `korean`, `chinese_simplified`,
-  `chinese_traditional`.
+
+### Column order
+
+Every file follows the same column order, so its short, fixed columns line up and its names are
+easy to find.
+
+1. The key: the number each row is for, such as `item` or `national`.
+2. The other short columns: numbers, flags, pockets and codes.
+3. Last, the names and other text, one column per language, in this order:
+   1. `japanese` (kana)
+   2. `english`
+   3. `french`
+   4. `italian`
+   5. `german`
+   6. `spanish`
+   7. `korean`
+   8. `chinese_simplified`
+   9. `chinese_traditional`
+
+A file leaves out the languages it has no names for, but keeps the rest in this order. Some files
+lack a language because no source for it is on hand yet, such as Gen 2's French, German and
+Italian item names.
+
+A column that serves more than one language sits where its first language would. For example, in
+the Game Boy character maps, `japanese_hiragana` follows `japanese`, and `french_german` and
+`italian_spanish` take French's and Italian's places. Gen 3's `international` character set, which
+the English, Italian and Spanish games share, takes English's place.
 
 ### Citations
 

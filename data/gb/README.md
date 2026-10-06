@@ -17,8 +17,8 @@ Species by the game's own index, which is not the National Dex number.
 
 ## `charmap.tsv`
 
-Characters by byte, one column per character set: `english`, `french_german`, `italian_spanish`,
-`japanese` and `japanese_hiragana`.
+Characters by byte, one column per character set: `japanese`, `japanese_hiragana`, `english`,
+`french_german` and `italian_spanish`.
 
 The characters come from the name fonts in each disassembly's `constants/charmap.asm`:
 
