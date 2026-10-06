@@ -221,8 +221,8 @@ spec_error_t spec_gbc_pokemon_calculate_stats(spec_gbc_pokemon_t *pokemon) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species has no species data");
     }
     uint16_t old_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
-    pokemon->level = spec_gb_level_for_experience(
-        spec_gbc_species_data[pokemon->species].growth_rate, pokemon->experience);
+    pokemon->level = spec_level_for_experience(spec_gbc_species_data[pokemon->species].growth_rate,
+                                               pokemon->experience);
     set_stats(pokemon, pokemon->level);
     uint16_t new_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
     uint16_t current_hp = pokemon->party_data.current_hp;

@@ -8,6 +8,7 @@ from pathlib import Path
 
 STAT_COLUMNS = ["hp", "attack", "defense", "speed", "special"]
 CHARMAP_COLUMNS = ["english", "french_german", "italian_spanish", "japanese"]
+ITEM_NAME_COLUMNS = ["japanese", "english", "french", "italian", "german", "spanish"]
 
 
 def read_tsv(path):
@@ -87,10 +88,15 @@ def c_string(text):
     return '"' + text.replace("\\", "\\\\").replace('"', '\\"') + '"'
 
 
-def items_body(items):
-    lines = ["const char *const spec_gb_item_names[SPEC_GB_ITEM_COUNT] = {"]
-    for row in items:
-        lines.append(f"    [{row['item']}] = {c_string(row['english'])},")
+# A language's names, "-" for none.
+def item_names_body(items, table_name, count_name, columns):
+    lines = [f"const char *const {table_name}[SPEC_NAME_LANGUAGE_COUNT][{count_name}] = {{"]
+    for column in columns:
+        lines.append(f"    [SPEC_LANGUAGE_{column.upper()}] = {{")
+        for row in items:
+            if row[column] != "-":
+                lines.append(f"        [{row['item']}] = {c_string(row[column])},")
+        lines.append("    },")
     lines.append("};")
     return "\n".join(lines) + "\n"
 
@@ -105,7 +111,8 @@ def main():
     write_c_file(output_directory / "species_national.c", "data/gb/species.tsv", species_national_body(species))
     write_c_file(output_directory / "species_data.c", "data/gb/species.tsv", species_data_body(species))
     write_c_file(output_directory / "charmap.c", "data/gb/charmap.tsv", charmap_body(charmap, "spec_gb_charmap"))
-    write_c_file(output_directory / "items.c", "data/gb/items.tsv", items_body(items))
+    names = item_names_body(items, "spec_gb_item_names", "SPEC_GB_ITEM_COUNT", ITEM_NAME_COLUMNS)
+    write_c_file(output_directory / "items.c", "data/gb/items.tsv", names)
 
 
 if __name__ == "__main__":

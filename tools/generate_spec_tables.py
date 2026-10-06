@@ -7,9 +7,28 @@ import sys
 import unicodedata
 from pathlib import Path
 
-LANGUAGE_COLUMNS = ["japanese", "english", "french", "italian", "german", "spanish", "korean"]
+LANGUAGE_COLUMNS = [
+    "japanese",
+    "english",
+    "french",
+    "italian",
+    "german",
+    "spanish",
+    "korean",
+    "chinese_simplified",
+    "chinese_traditional",
+]
+# Latin names change case; Japanese, Korean and Chinese ones have none.
+CASELESS_COLUMNS = ["japanese", "korean", "chinese_simplified", "chinese_traditional"]
 GROWTH_RATES = ["medium_fast", "erratic", "fluctuating", "medium_slow", "fast", "slow"]
 MAX_LEVEL = 100
+NAME_KINDS = [
+    ("move", "SPEC_MOVE_NAME_COUNT"),
+    ("ability", "SPEC_ABILITY_NAME_COUNT"),
+    ("item", "SPEC_ITEM_NAME_COUNT"),
+    ("nature", "SPEC_NATURE_COUNT"),
+    ("type", "SPEC_TYPE_COUNT"),
+]
 
 
 def read_tsv(path):
@@ -34,7 +53,7 @@ def without_accents(text):
 
 # As Gen 3 and 4 store them: Latin names in upper case, and French ones without accents.
 def upper_case_name(name, language):
-    if language in ("japanese", "korean"):
+    if language in CASELESS_COLUMNS:
         return name
     if language == "french":
         return unicodedata.normalize("NFC", without_accents(name.upper()))
@@ -59,6 +78,38 @@ def species_names_body(species_names, table_name, name_of):
             lines.append(f"        [{row['national']}] = {c_string(name_of(row[language], language))},")
         lines.append("    },")
     lines.append("};")
+    return "\n".join(lines) + "\n"
+
+
+# The other name tables: a row per number, a column per language, "-" for no name.
+def names_body(rows, number_column, table_name, count_name):
+    lines = [f"const char *const {table_name}[SPEC_NAME_LANGUAGE_COUNT][{count_name}] = {{"]
+    for language in LANGUAGE_COLUMNS:
+        lines.append(f"    [SPEC_LANGUAGE_{language.upper()}] = {{")
+        for row in rows:
+            if row[language] != "-":
+                lines.append(f"        [{row[number_column]}] = {c_string(row[language])},")
+        lines.append("    },")
+    lines.append("};")
+    return "\n".join(lines) + "\n"
+
+
+def form_numbering_enum(source):
+    if source == "omega_ruby_alpha_sapphire":
+        return "SPEC_FORM_NUMBERING_OMEGA_RUBY_ALPHA_SAPPHIRE"
+    return "SPEC_FORM_NUMBERING_GEN7"
+
+
+def form_names_body(rows):
+    lines = ["const spec_form_names_t spec_form_names[] = {"]
+    for row in rows:
+        lines.append(f"    {{{row['national']}, {row['form']}, {form_numbering_enum(row['source'])}, {{")
+        for language in LANGUAGE_COLUMNS:
+            if row[language] != "-":
+                lines.append(f"        [SPEC_LANGUAGE_{language.upper()}] = {c_string(row[language])},")
+        lines.append("    }},")
+    lines.append("};\n")
+    lines.append("const size_t spec_form_names_count = sizeof spec_form_names / sizeof spec_form_names[0];")
     return "\n".join(lines) + "\n"
 
 
@@ -118,6 +169,12 @@ def main():
     names += "\n" + species_names_body(species_names, "spec_upper_case_species_names", upper_case_name)
     names += "\n" + species_names_body(species_names, "spec_gen5_species_names", gen5_name)
     write_c_file(output_directory / "species_names.c", "data/species_names.tsv", names)
+    forms = form_names_body(read_tsv(data_directory / "form_names.tsv"))
+    write_c_file(output_directory / "form_names.c", "data/form_names.tsv", forms)
+    for kind, count_name in NAME_KINDS:
+        rows = read_tsv(data_directory / f"{kind}_names.tsv")
+        body = names_body(rows, kind, f"spec_{kind}_names", count_name)
+        write_c_file(output_directory / f"{kind}_names.c", f"data/{kind}_names.tsv", body)
     write_c_file(output_directory / "experience.c", "pret's growth-rate formulas", experience_body())
 
 

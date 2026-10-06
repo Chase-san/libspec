@@ -90,7 +90,8 @@ def items_body(items):
         pockets = ", ".join(pocket_value(row[column]) for column in POCKET_COLUMNS)
         is_important = "true" if row["is_important"] == "yes" else "false"
         names = ", ".join(c_string_or_null(row[column]) for column in ["english", "german"])
-        lines.append(f"    [{row['item']}] = {{{names}, {pockets}, {is_important}}},")
+        later_item = "0" if row["later_item"] == "-" else row["later_item"]
+        lines.append(f"    [{row['item']}] = {{{names}, {pockets}, {is_important}, {later_item}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 

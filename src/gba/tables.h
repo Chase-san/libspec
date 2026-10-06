@@ -46,6 +46,8 @@ struct spec_gba_item_data {
     uint8_t emerald_pocket;
     uint8_t firered_leafgreen_pocket;
     bool is_important;
+    // The item's number from Gen 4 on, which names it in the other languages; 0 for none.
+    uint16_t later_item;
 };
 typedef struct spec_gba_item_data spec_gba_item_data_t;
 

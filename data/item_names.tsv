@@ -1,0 +1,900 @@
+# Item names by item number as Gen 4 to 7 number items: the Sun and Moon carts' text
+# (member 36), and Pokémon Bank 6.8's (member 8) for 921-959. Dummies, which the lists name
+# "???", are left out.
+item	japanese	english	french	italian	german	spanish	korean	chinese_simplified	chinese_traditional
+1	マスターボール	Master Ball	Master Ball	Master Ball	Meisterball	Master Ball	마스터볼	大师球	大師球
+2	ハイパーボール	Ultra Ball	Hyper Ball	Ultra Ball	Hyperball	Ultra Ball	하이퍼볼	高级球	高級球
+3	スーパーボール	Great Ball	Super Ball	Mega Ball	Superball	Super Ball	수퍼볼	超级球	超級球
+4	モンスターボール	Poké Ball	Poké Ball	Poké Ball	Pokéball	Poké Ball	몬스터볼	精灵球	精靈球
+5	サファリボール	Safari Ball	Safari Ball	Safari Ball	Safariball	Safari Ball	사파리볼	狩猎球	狩獵球
+6	ネットボール	Net Ball	Filet Ball	Rete Ball	Netzball	Malla Ball	넷트볼	捕网球	捕網球
+7	ダイブボール	Dive Ball	Scuba Ball	Sub Ball	Tauchball	Buceo Ball	다이브볼	潜水球	潛水球
+8	ネストボール	Nest Ball	Faiblo Ball	Minor Ball	Nestball	Nido Ball	네스트볼	巢穴球	巢穴球
+9	リピートボール	Repeat Ball	Bis Ball	Bis Ball	Wiederball	Acopio Ball	리피드볼	重复球	重複球
+10	タイマーボール	Timer Ball	Chrono Ball	Timer Ball	Timerball	Turno Ball	타이마볼	计时球	計時球
+11	ゴージャスボール	Luxury Ball	Luxe Ball	Chic Ball	Luxusball	Lujo Ball	럭셔리볼	豪华球	豪華球
+12	プレミアボール	Premier Ball	Honor Ball	Premier Ball	Premierball	Honor Ball	프레미어볼	纪念球	紀念球
+13	ダークボール	Dusk Ball	Sombre Ball	Scuro Ball	Finsterball	Ocaso Ball	다크볼	黑暗球	黑暗球
+14	ヒールボール	Heal Ball	Soin Ball	Cura Ball	Heilball	Sana Ball	힐볼	治愈球	治癒球
+15	クイックボール	Quick Ball	Rapide Ball	Velox Ball	Flottball	Veloz Ball	퀵볼	先机球	先機球
+16	プレシャスボール	Cherish Ball	Mémoire Ball	Pregio Ball	Jubelball	Gloria Ball	프레셔스볼	贵重球	貴重球
+17	キズぐすり	Potion	Potion	Pozione	Trank	Poción	상처약	伤药	傷藥
+18	どくけし	Antidote	Antidote	Antidoto	Gegengift	Antídoto	해독제	解毒药	解毒藥
+19	やけどなおし	Burn Heal	Anti-Brûle	Antiscottatura	Feuerheiler	Antiquemar	화상치료제	灼伤药	灼傷藥
+20	こおりなおし	Ice Heal	Antigel	Antigelo	Eisheiler	Antihielo	얼음상태치료제	解冻药	解凍藥
+21	ねむけざまし	Awakening	Réveil	Sveglia	Aufwecker	Despertar	잠깨는약	解眠药	解眠藥
+22	まひなおし	Paralyze Heal	Anti-Para	Antiparalisi	Para-Heiler	Antiparalizador	마비치료제	解麻药	解麻藥
+23	かいふくのくすり	Full Restore	Guérison	Ricarica Totale	Top-Genesung	Restaurar Todo	회복약	全复药	全復藥
+24	まんたんのくすり	Max Potion	Potion Max	Pozione Max	Top-Trank	Poción Máxima	풀회복약	全满药	全滿藥
+25	すごいキズぐすり	Hyper Potion	Hyper Potion	Iperpozione	Hypertrank	Hiperpoción	고급상처약	厉害伤药	厲害傷藥
+26	いいキズぐすり	Super Potion	Super Potion	Superpozione	Supertrank	Superpoción	좋은상처약	好伤药	好傷藥
+27	なんでもなおし	Full Heal	Total Soin	Cura Totale	Hyperheiler	Cura Total	만병통치제	万灵药	萬靈藥
+28	げんきのかけら	Revive	Rappel	Revitalizzante	Beleber	Revivir	기력의조각	活力碎片	活力碎片
+29	げんきのかたまり	Max Revive	Rappel Max	Revitalizz. Max	Top-Beleber	Revivir Máximo	기력의덩어리	活力块	活力塊
+30	おいしいみず	Fresh Water	Eau Fraîche	Acqua Fresca	Tafelwasser	Agua Fresca	맛있는물	美味之水	美味之水
+31	サイコソーダ	Soda Pop	Soda Cool	Gassosa	Sprudel	Refresco	미네랄사이다	劲爽汽水	勁爽汽水
+32	ミックスオレ	Lemonade	Limonade	Lemonsucco	Limonade	Limonada	후르츠밀크	果汁牛奶	果汁牛奶
+33	モーモーミルク	Moomoo Milk	Lait Meumeu	Latte Mumu	Kuhmuh-Milch	Leche Mu-mu	튼튼밀크	哞哞鲜奶	哞哞鮮奶
+34	ちからのこな	Energy Powder	Poudrénergie	Polvenergia	Energiestaub	Polvo Energía	힘의가루	元气粉	元氣粉
+35	ちからのねっこ	Energy Root	Racinénergie	Radicenergia	Kraftwurzel	Raíz Energía	힘의뿌리	元气根	元氣根
+36	ばんのうごな	Heal Powder	Poudre Soin	Polvocura	Heilpuder	Polvo Curación	만능가루	万能粉	萬能粉
+37	ふっかつそう	Revival Herb	Herbe Rappel	Vitalerba	Vitalkraut	Hierba Revivir	부활초	复活草	復活草
+38	ピーピーエイド	Ether	Huile	Etere	Äther	Éter	PP에이드	ＰＰ单项小补剂	ＰＰ單項小補劑
+39	ピーピーリカバー	Max Ether	Huile Max	Etere Max	Top-Äther	Éter Máximo	PP회복	ＰＰ单项全补剂	ＰＰ單項全補劑
+40	ピーピーエイダー	Elixir	Élixir	Elisir	Elixier	Elixir	PP에이더	ＰＰ多项小补剂	ＰＰ多項小補劑
+41	ピーピーマックス	Max Elixir	Max Élixir	Elisir Max	Top-Elixier	Elixir Máximo	PP맥스	ＰＰ多项全补剂	ＰＰ多項全補劑
+42	フエンせんべい	Lava Cookie	Lava Cookie	Lavottino	Lavakeks	Galleta Lava	용암전병	釜炎仙贝	釜炎仙貝
+43	きのみジュース	Berry Juice	Jus de Baie	Succodibacca	Beerensaft	Zumo de Baya	나무열매쥬스	树果汁	樹果汁
+44	せいなるはい	Sacred Ash	Cendre Sacrée	Ceneremagica	Zauberasche	Ceniza Sagrada	성스러운분말	圣灰	聖灰
+45	マックスアップ	HP Up	PV Plus	PS-Su	KP-Plus	Más PS	맥스업	ＨＰ增强剂	ＨＰ增強劑
+46	タウリン	Protein	Protéine	Proteina	Protein	Proteína	타우린	攻击增强剂	攻擊增強劑
+47	ブロムヘキシン	Iron	Fer	Ferro	Eisen	Hierro	사포닌	防御增强剂	防禦增強劑
+48	インドメタシン	Carbos	Carbone	Carburante	Carbon	Carburante	알칼로이드	速度增强剂	速度增強劑
+49	リゾチウム	Calcium	Calcium	Calcio	Kalzium	Calcio	리보플라빈	特攻增强剂	特攻增強劑
+50	ふしぎなアメ	Rare Candy	Super Bonbon	Caramella Rara	Sonderbonbon	Caramelo Raro	이상한사탕	神奇糖果	神奇糖果
+51	ポイントアップ	PP Up	PP Plus	PP-Su	AP-Plus	Más PP	포인트업	ＰＰ提升剂	ＰＰ提升劑
+52	キトサン	Zinc	Zinc	Zinco	Zink	Zinc	키토산	特防增强剂	特防增強劑
+53	ポイントマックス	PP Max	PP Max	PP-Max	AP-Top	PP Máximos	포인트맥스	ＰＰ极限提升剂	ＰＰ極限提升劑
+54	もりのヨウカン	Old Gateau	Vieux Gâteau	Dolce Gateau	Spezialität	Barrita Plus	숲의양갱	森之羊羹	森之羊羹
+55	エフェクトガード	Guard Spec.	Défense Spéciale	Superguardia	Megablock	Protec. Especial	이펙트가드	能力防守	能力防守
+56	クリティカット	Dire Hit	Muscle +	Supercolpo	Angriffplus	Directo	크리티컬커터	要害攻击	要害攻擊
+57	プラスパワー	X Attack	Attaque +	Attacco X	X-Angriff	Ataque X	플러스파워	力量强化	力量強化
+58	ディフェンダー	X Defense	Défense +	Difesa X	X-Abwehr	Defensa X	디펜드업	防御强化	防禦強化
+59	スピーダー	X Speed	Vitesse +	Velocità X	X-Tempo	Velocidad X	스피드업	速度强化	速度強化
+60	ヨクアタール	X Accuracy	Précision +	Precisione X	X-Treffer	Precisión X	잘-맞히기	命中强化	命中強化
+61	スペシャルアップ	X Sp. Atk	Spécial +	Att. Speciale X	X-Spezial	Especial X	스페셜업	特攻强化	特攻強化
+62	スペシャルガード	X Sp. Def	Déf. Spé. +	Dif. Speciale X	X-Spezial-Vert.	Def. Especial X	스페셜가드	特防强化	特防強化
+63	ピッピにんぎょう	Poké Doll	Poké Poupée	Poké Bambola	Poképuppe	Poké Muñeco	삐삐인형	皮皮玩偶	皮皮玩偶
+64	エネコのシッポ	Fluffy Tail	Queue Skitty	Coda Skitty	Eneco-Rute	Cola Skitty	에나비꼬리	向尾喵的尾巴	向尾喵的尾巴
+65	あおいビードロ	Blue Flute	Flûte Bleue	Flauto Blu	Blaue Flöte	Flauta Azul	파랑비드로	蓝色玻璃哨	藍色玻璃哨
+66	きいろビードロ	Yellow Flute	Flûte Jaune	Flauto Giallo	Gelbe Flöte	Flauta Amarilla	노랑비드로	黄色玻璃哨	黃色玻璃哨
+67	あかいビードロ	Red Flute	Flûte Rouge	Flauto Rosso	Rote Flöte	Flauta Roja	빨강비드로	红色玻璃哨	紅色玻璃哨
+68	くろいビードロ	Black Flute	Flûte Noire	Flauto Nero	Schwarze Flöte	Flauta Negra	검정비드로	黑色玻璃哨	黑色玻璃哨
+69	しろいビードロ	White Flute	Flûte Blanche	Flauto Bianco	Weiße Flöte	Flauta Blanca	하양비드로	白色玻璃哨	白色玻璃哨
+70	あさせのしお	Shoal Salt	Sel Tréfonds	Sale Ondoso	Küstensalz	Sal Cardumen	여울소금	浅滩海盐	淺灘海鹽
+71	あさせのかいがら	Shoal Shell	CoquilleTréfonds	Gusciondoso	Küstenschale	Concha Cardumen	여울조개껍질	浅滩贝壳	淺灘貝殼
+72	あかいかけら	Red Shard	Tesson Rouge	Coccio Rosso	Purpurstück	Parte Roja	빨강조각	红色碎片	紅色碎片
+73	あおいかけら	Blue Shard	Tesson Bleu	Coccio Blu	Indigostück	Parte Azul	파랑조각	蓝色碎片	藍色碎片
+74	きいろいかけら	Yellow Shard	Tesson Jaune	Coccio Giallo	Gelbstück	Parte Amarilla	노랑조각	黄色碎片	黃色碎片
+75	みどりのかけら	Green Shard	Tesson Vert	Coccio Verde	Grünstück	Parte Verde	초록조각	绿色碎片	綠色碎片
+76	シルバースプレー	Super Repel	Super Repousse	Superrepellente	Superschutz	Superrepelente	실버스프레이	白银喷雾	白銀噴霧
+77	ゴールドスプレー	Max Repel	Max Repousse	Repellente Max	Top-Schutz	Repelente Máximo	골드스프레이	黄金喷雾	黃金噴霧
+78	あなぬけのヒモ	Escape Rope	Corde Sortie	Fune di Fuga	Fluchtseil	Cuerda Huida	동굴탈출로프	离洞绳	離洞繩
+79	むしよけスプレー	Repel	Repousse	Repellente	Schutz	Repelente	벌레회피스프레이	除虫喷雾	除蟲噴霧
+80	たいようのいし	Sun Stone	Pierre Soleil	Pietrasolare	Sonnenstein	Piedra Solar	태양의돌	日之石	日之石
+81	つきのいし	Moon Stone	Pierre Lune	Pietralunare	Mondstein	Piedra Lunar	달의돌	月之石	月之石
+82	ほのおのいし	Fire Stone	Pierre Feu	Pietrafocaia	Feuerstein	Piedra Fuego	불꽃의돌	火之石	火之石
+83	かみなりのいし	Thunder Stone	Pierre Foudre	Pietratuono	Donnerstein	Piedra Trueno	천둥의돌	雷之石	雷之石
+84	みずのいし	Water Stone	Pierre Eau	Pietraidrica	Wasserstein	Piedra Agua	물의돌	水之石	水之石
+85	リーフのいし	Leaf Stone	Pierre Plante	Pietrafoglia	Blattstein	Piedra Hoja	리프의돌	叶之石	葉之石
+86	ちいさなキノコ	Tiny Mushroom	Petit Champi	Minifungo	Minipilz	Miniseta	작은버섯	小蘑菇	小蘑菇
+87	おおきなキノコ	Big Mushroom	Gros Champi	Grande Fungo	Riesenpilz	Seta Grande	큰버섯	大蘑菇	大蘑菇
+88	しんじゅ	Pearl	Perle	Perla	Perle	Perla	진주	珍珠	珍珠
+89	おおきなしんじゅ	Big Pearl	Grande Perle	Grande Perla	Riesenperle	Perla Grande	큰진주	大珍珠	大珍珠
+90	ほしのすな	Stardust	Poussière Étoile	Polvostella	Sternenstaub	Polvo Estelar	별의모래	星星沙子	星星沙子
+91	ほしのかけら	Star Piece	Morceau d’Étoile	Pezzo Stella	Sternenstück	Trozo Estrella	별의조각	星星碎片	星星碎片
+92	きんのたま	Nugget	Pépite	Pepita	Nugget	Pepita	금구슬	金珠	金珠
+93	ハートのウロコ	Heart Scale	Écaille Cœur	Squama Cuore	Herzschuppe	Escama Corazón	하트비늘	心之鳞片	心之鱗片
+94	あまいミツ	Honey	Miel	Miele	Honig	Miel	달콤한꿀	甜甜蜜	甜甜蜜
+95	すくすくこやし	Growth Mulch	Fertipousse	Fertilrapido	Wachsmulch	Abono Rápido	무럭무럭비료	速速肥	速速肥
+96	じめじめこやし	Damp Mulch	Fertihumide	Fertilidro	Feuchtmulch	Abono Lento	축축이비료	湿湿肥	濕濕肥
+97	ながながこやし	Stable Mulch	Fertistable	Fertilsaldo	Stabilmulch	Abono Fijador	오래오래비료	久久肥	久久肥
+98	ねばねばこやし	Gooey Mulch	Fertiglu	Fertilcolla	Neumulch	Abono Brote	끈적끈적비료	粘粘肥	黏黏肥
+99	ねっこのカセキ	Root Fossil	Fossile Racine	Radifossile	Wurzelfossil	Fósil Raíz	뿌리화석	根状化石	根狀化石
+100	ツメのカセキ	Claw Fossil	Fossile Griffe	Fossilunghia	Klauenfossil	Fósil Garra	발톱화석	爪子化石	爪子化石
+101	かいのカセキ	Helix Fossil	Nautile	Helixfossile	Helixfossil	Fósil Hélix	조개화석	贝壳化石	貝殼化石
+102	こうらのカセキ	Dome Fossil	Fossile Dôme	Domofossile	Domfossil	Fósil Domo	껍질화석	甲壳化石	甲殼化石
+103	ひみつのコハク	Old Amber	Vieil Ambre	Ambra Antica	Altbernstein	Ámbar Viejo	비밀의호박	秘密琥珀	秘密琥珀
+104	たてのカセキ	Armor Fossil	Fossile Armure	Fossilscudo	Panzerfossil	Fósil Coraza	방패의화석	盾甲化石	盾甲化石
+105	ずがいのカセキ	Skull Fossil	Fossile Crâne	Fossilcranio	Kopffossil	Fósil Cráneo	두개의화석	头盖化石	頭蓋化石
+106	きちょうなホネ	Rare Bone	Os Rare	Osso Raro	Steinknochen	Hueso Raro	귀중한뼈	贵重骨头	貴重骨頭
+107	ひかりのいし	Shiny Stone	Pierre Éclat	Pietrabrillo	Leuchtstein	Piedra Día	빛의돌	光之石	光之石
+108	やみのいし	Dusk Stone	Pierre Nuit	Neropietra	Finsterstein	Piedra Noche	어둠의돌	暗之石	暗之石
+109	めざめいし	Dawn Stone	Pierre Aube	Pietralbore	Funkelstein	Piedra Alba	각성의돌	觉醒之石	覺醒之石
+110	まんまるいし	Oval Stone	Pierre Ovale	Pietraovale	Ovaler Stein	Piedra Oval	동글동글돌	浑圆之石	渾圓之石
+111	かなめいし	Odd Keystone	Clé de Voûte	Roccianima	Spiritkern	Piedra Espíritu	쐐기돌	楔石	楔石
+112	はっきんだま	Griseous Orb	Orbe Platiné	Grigiosfera	Platinum-Orb	Griseosfera	백금옥	白金宝珠	白金寶珠
+116	アクアカセット	Douse Drive	Module Aqua	Idromodulo	Aquamodul	HidroROM	아쿠아카세트	水流卡带	水流卡帶
+117	イナズマカセット	Shock Drive	Module Choc	Voltmodulo	Blitzmodul	FulgoROM	번개카세트	闪电卡带	閃電卡帶
+118	ブレイズカセット	Burn Drive	Module Pyro	Piromodulo	Flammenmodul	PiroROM	블레이즈카세트	火焰卡带	火焰卡帶
+119	フリーズカセット	Chill Drive	Module Cryo	Gelomodulo	Gefriermodul	CrioROM	프리즈카세트	冰冻卡带	冰凍卡帶
+134	ハートスイーツ	Sweet Heart	Chococœur	Dolcecuore	Herzkonfekt	Corazón Dulce	하트스위트	心形甜点	心形甜點
+135	こんごうだま	Adamant Orb	Orbe Adamant	Adamasfera	Adamant-Orb	Diamansfera	금강옥	金刚宝珠	金剛寶珠
+136	しらたま	Lustrous Orb	Orbe Perlé	Splendisfera	Weiß-Orb	Lustresfera	백옥	白玉宝珠	白玉寶珠
+137	はじめてメール	Greet Mail	Lettre Salut	Messaggio Inizio	Grußbrief	Carta Inicial	첫메일	初次邮件	初次郵件
+138	だいすきメール	Favored Mail	Lettre Fan	Messaggio TVB	Faiblebrief	Carta Favoritos	애호메일	喜爱邮件	喜愛郵件
+139	おさそいメール	RSVP Mail	Lettre Invit	Messaggio Invito	Einladebrief	Carta Invitar	권유메일	邀请邮件	邀請郵件
+140	かんしゃメール	Thanks Mail	Lettre Merci	Messaggio Grazie	Dankesbrief	Carta Gracias	감사메일	感谢邮件	感謝郵件
+141	しつもんメール	Inquiry Mail	Lettre Demande	Messaggio Chiedi	Fragebrief	Carta Pregunta	질문메일	询问邮件	詢問郵件
+142	おすすめメール	Like Mail	Lettre Avis	Mess. Sugg.	Insiderbrief	Carta Gustos	추천메일	推荐邮件	推薦郵件
+143	おかえしメール	Reply Mail	Lettre Réponse	Mess. Risp.	Rückbrief	Carta Respuesta	답장메일	回复邮件	回覆郵件
+144	ブリッジメールＳ	Bridge Mail S	Lettre Pont S	Mess. Frec.	Brückbrief H	Carta Puente S	브리지메일S	桥梁邮件Ｓ	橋梁郵件Ｓ
+145	ブリッジメールＨ	Bridge Mail D	Lettre Pont Y	Mess. Libec.	Brückbrief M	Carta Puente F	브리지메일M	桥梁邮件Ｈ	橋梁郵件Ｈ
+146	ブリッジメールＣ	Bridge Mail T	Lettre Pont F	Mess. Prop.	Brückbrief Z	Carta Puente A	브리지메일C	桥梁邮件Ｃ	橋梁郵件Ｃ
+147	ブリッジメールＶ	Bridge Mail V	Lettre Pont H	Mess. Vill.	Brückbrief D	Carta Puente V	브리지메일V	桥梁邮件Ｖ	橋梁郵件Ｖ
+148	ブリッジメールＷ	Bridge Mail M	Lettre Pont I	Mess. Merav.	Brückbrief W	Carta Puente P	브리지메일W	桥梁邮件Ｗ	橋梁郵件Ｗ
+149	クラボのみ	Cheri Berry	Baie Ceriz	Baccaliegia	Amrenabeere	Baya Zreza	버치열매	樱子果	櫻子果
+150	カゴのみ	Chesto Berry	Baie Maron	Baccastagna	Maronbeere	Baya Atania	유루열매	零余果	零餘果
+151	モモンのみ	Pecha Berry	Baie Pêcha	Baccapesca	Pirsifbeere	Baya Meloc	복슝열매	桃桃果	桃桃果
+152	チーゴのみ	Rawst Berry	Baie Fraive	Baccafrago	Fragiabeere	Baya Safre	복분열매	莓莓果	莓莓果
+153	ナナシのみ	Aspear Berry	Baie Willia	Baccaperina	Wilbirbeere	Baya Perasi	배리열매	利木果	利木果
+154	ヒメリのみ	Leppa Berry	Baie Mepo	Baccamela	Jonagobeere	Baya Zanama	과사열매	苹野果	蘋野果
+155	オレンのみ	Oran Berry	Baie Oran	Baccarancia	Sinelbeere	Baya Aranja	오랭열매	橙橙果	橙橙果
+156	キーのみ	Persim Berry	Baie Kika	Baccaki	Persimbeere	Baya Caquic	시몬열매	柿仔果	柿仔果
+157	ラムのみ	Lum Berry	Baie Prine	Baccaprugna	Prunusbeere	Baya Ziuela	리샘열매	木子果	木子果
+158	オボンのみ	Sitrus Berry	Baie Sitrus	Baccacedro	Tsitrubeere	Baya Zidra	자뭉열매	文柚果	文柚果
+159	フィラのみ	Figy Berry	Baie Figuy	Baccafico	Giefebeere	Baya Higog	무화열매	勿花果	勿花果
+160	ウイのみ	Wiki Berry	Baie Wiki	Baccakiwi	Wikibeere	Baya Wiki	위키열매	异奇果	異奇果
+161	マゴのみ	Mago Berry	Baie Mago	Baccamango	Magobeere	Baya Ango	마고열매	芒芒果	芒芒果
+162	バンジのみ	Aguav Berry	Baie Gowav	Baccaguava	Gauvebeere	Baya Guaya	아바열매	乐芭果	樂芭果
+163	イアのみ	Iapapa Berry	Baie Papaya	Baccapaia	Yapabeere	Baya Pabaya	파야열매	芭亚果	芭亞果
+164	ズリのみ	Razz Berry	Baie Framby	Baccalampon	Himmihbeere	Baya Frambu	라즈열매	蔓莓果	蔓莓果
+165	ブリーのみ	Bluk Berry	Baie Remu	Baccamora	Morbbeere	Baya Oram	블리열매	墨莓果	墨莓果
+166	ナナのみ	Nanab Berry	Baie Nanab	Baccabana	Nanabbeere	Baya Latano	나나열매	蕉香果	蕉香果
+167	セシナのみ	Wepear Berry	Baie Repoi	Baccapera	Nirbebeere	Baya Peragu	서배열매	西梨果	西梨果
+168	パイルのみ	Pinap Berry	Baie Nanana	Baccananas	Sananabeere	Baya Pinia	파인열매	凰梨果	凰梨果
+169	ザロクのみ	Pomeg Berry	Baie Grena	Baccagrana	Granabeere	Baya Grana	유석열매	榴石果	榴石果
+170	ネコブのみ	Kelpsy Berry	Baie Alga	Baccalga	Setangbeere	Baya Algama	시마열매	藻根果	藻根果
+171	タポルのみ	Qualot Berry	Baie Qualot	Baccaloquat	Qualotbeere	Baya Ispero	파비열매	比巴果	比巴果
+172	ロメのみ	Hondew Berry	Baie Lonme	Baccamelon	Honmelbeere	Baya Meluce	로매열매	哈密果	哈密果
+173	ウブのみ	Grepa Berry	Baie Résin	Baccauva	Labrusbeere	Baya Uvav	또뽀열매	萄葡果	萄葡果
+174	マトマのみ	Tamato Berry	Baie Tamato	Baccamodoro	Tamotbeere	Baya Tamate	토망열매	茄番果	茄番果
+175	モコシのみ	Cornn Berry	Baie Siam	Baccavena	Saimbeere	Baya Mais	수숙열매	玉黍果	玉黍果
+176	ゴスのみ	Magost Berry	Baie Mangou	Baccagostan	Magostbeere	Baya Aostan	고스티열매	岳竹果	岳竹果
+177	ラブタのみ	Rabuta Berry	Baie Rabuta	Baccambutan	Rabutabeere	Baya Rautan	라부탐열매	茸丹果	茸丹果
+178	ノメルのみ	Nomel Berry	Baie Tronci	Baccalemon	Tronzibeere	Baya Monli	노멜열매	檬柠果	檬檸果
+179	ノワキのみ	Spelon Berry	Baie Kiwan	Baccamelos	Kiwanbeere	Baya Wikano	메호키열매	刺角果	刺角果
+180	シーヤのみ	Pamtre Berry	Baie Palma	Baccapalma	Pallmbeere	Baya Plama	자야열매	椰木果	椰木果
+181	カイスのみ	Watmel Berry	Baie Stekpa	Baccacomero	Wasmelbeere	Baya Sambia	슈박열매	瓜西果	瓜西果
+182	ドリのみ	Durin Berry	Baie Durin	Baccadurian	Durinbeere	Baya Rudion	두리열매	金枕果	金枕果
+183	ベリブのみ	Belue Berry	Baie Myrte	Baccartillo	Myrtilbeere	Baya Andano	루베열매	靛莓果	靛莓果
+184	オッカのみ	Occa Berry	Baie Chocco	Baccacao	Koakobeere	Baya Caoca	오카열매	巧可果	巧可果
+185	イトケのみ	Passho Berry	Baie Pocpoc	Baccapasflo	Foepasbeere	Baya Pasio	꼬시개열매	千香果	千香果
+186	ソクノのみ	Wacan Berry	Baie Parma	Baccaparmen	Kerzalbeere	Baya Gualot	초나열매	烛木果	燭木果
+187	リンドのみ	Rindo Berry	Baie Ratam	Baccarindo	Grindobeere	Baya Tamar	린드열매	罗子果	羅子果
+188	ヤチェのみ	Yache Berry	Baie Nanone	Baccamoya	Kiroyabeere	Baya Rimoya	플카열매	番荔果	番荔果
+189	ヨプのみ	Chople Berry	Baie Pomroz	Baccarosmel	Rospelbeere	Baya Pomaro	로플열매	莲蒲果	蓮蒲果
+190	ビアーのみ	Kebia Berry	Baie Kébia	Baccakebia	Grarzbeere	Baya Kebia	으름열매	通通果	通通果
+191	シュカのみ	Shuca Berry	Baie Jouca	Baccanaca	Schukebeere	Baya Acardo	슈캐열매	腰木果	腰木果
+192	バコウのみ	Coba Berry	Baie Cobaba	Baccababa	Kobabeere	Baya Kouba	바코열매	棱瓜果	稜瓜果
+193	ウタンのみ	Payapa Berry	Baie Yapap	Baccapayapa	Pyapabeere	Baya Payapa	야파열매	福禄果	福祿果
+194	タンガのみ	Tanga Berry	Baie Panga	Baccaitan	Tanigabeere	Baya Yecana	리체열매	扁樱果	扁櫻果
+195	ヨロギのみ	Charti Berry	Baie Charti	Baccaciofo	Chiaribeere	Baya Alcho	루미열매	草蚕果	草蠶果
+196	カシブのみ	Kasib Berry	Baie Sédra	Baccacitrus	Zitarzbeere	Baya Drasi	수불열매	佛柑果	佛柑果
+197	ハバンのみ	Haban Berry	Baie Fraigo	Baccahaban	Terirobeere	Baya Anjiro	하반열매	莓榴果	莓榴果
+198	ナモのみ	Colbur Berry	Baie Lampou	Baccaxan	Burleobeere	Baya Dillo	마코열매	刺耳果	刺耳果
+199	リリバのみ	Babiri Berry	Baie Babiri	Baccababiri	Babiribeere	Baya Baribá	바리비열매	霹霹果	霹霹果
+200	ホズのみ	Chilan Berry	Baie Zalis	Baccacinlan	Latchibeere	Baya Chilan	카리열매	灯浆果	燈漿果
+201	チイラのみ	Liechi Berry	Baie Lichii	Baccalici	Lydzibeere	Baya Lichi	치리열매	枝荔果	枝荔果
+202	リュガのみ	Ganlon Berry	Baie Lingan	Baccalongan	Linganbeere	Baya Gonlan	용아열매	龙睛果	龍睛果
+203	カムラのみ	Salac Berry	Baie Sailak	Baccasalak	Salkabeere	Baya Aslac	캄라열매	沙鳞果	沙鱗果
+204	ヤタピのみ	Petaya Berry	Baie Pitaye	Baccapitaya	Tahaybeere	Baya Yapati	야타비열매	龙火果	龍火果
+205	ズアのみ	Apicot Berry	Baie Abriko	Baccacocca	Apikobeere	Baya Aricoc	규살열매	杏仔果	杏仔果
+206	サンのみ	Lansat Berry	Baie Lansat	Baccalangsa	Lansatbeere	Baya Zonlan	랑사열매	兰萨果	蘭薩果
+207	スターのみ	Starf Berry	Baie Frista	Baccambola	Krambobeere	Baya Arabol	스타열매	星桃果	星桃果
+208	ナゾのみ	Enigma Berry	Baie Enigma	Baccaenigma	Enigmabeere	Baya Enigma	의문열매	谜芝果	謎芝果
+209	ミクルのみ	Micle Berry	Baie Micle	Baccaracolo	Wunfrubeere	Baya Lagro	미클열매	奇秘果	奇秘果
+210	イバンのみ	Custap Berry	Baie Chérim	Baccacrela	Eipfelbeere	Baya Chiri	애슈열매	释陀果	釋陀果
+211	ジャポのみ	Jaboca Berry	Baie Jaboca	Baccajaba	Jabocabeere	Baya Jaboca	자보열매	嘉珍果	嘉珍果
+212	レンブのみ	Rowap Berry	Baie Pommo	Baccaroam	Roselbeere	Baya Magua	애터열매	雾莲果	霧蓮果
+213	ひかりのこな	Bright Powder	Poudre Claire	Luminpolvere	Blendpuder	Polvo Brillo	반짝가루	光粉	光粉
+214	しろいハーブ	White Herb	Herbe Blanche	Erbachiara	Schlohkraut	Hierba Blanca	하양허브	白色香草	白色香草
+215	きょうせいギプス	Macho Brace	Bracelet Macho	Crescicappa	Machoband	Brazal Firme	교정깁스	强制锻炼器	強制鍛鍊器
+216	がくしゅうそうち	Exp. Share	Multi Exp	Condividi Esp.	EP-Teiler	Repartir Exp	학습장치	学习装置	學習裝置
+217	せんせいのツメ	Quick Claw	Vive Griffe	Rapidartigli	Flinkklaue	Garra Rápida	선제공격손톱	先制之爪	先制之爪
+218	やすらぎのすず	Soothe Bell	Grelot Zen	Calmanella	Sanftglocke	Campana Alivio	평온의방울	安抚之铃	安撫之鈴
+219	メンタルハーブ	Mental Herb	Herbe Mental	Mentalerba	Mentalkraut	Hierba Mental	멘탈허브	心灵香草	心靈香草
+220	こだわりハチマキ	Choice Band	Bandeau Choix	Bendascelta	Wahlband	Cinta Elegida	구애머리띠	讲究头带	講究頭帶
+221	おうじゃのしるし	King’s Rock	Roche Royale	Roccia di Re	King-Stein	Roca del Rey	왕의징표석	王者之证	王者之證
+222	ぎんのこな	Silver Powder	Poudre Argentée	Argenpolvere	Silberstaub	Polvo Plata	은빛가루	银粉	銀粉
+223	おまもりこばん	Amulet Coin	Pièce Rune	Monetamuleto	Münzamulett	Moneda Amuleto	부적금화	护符金币	護符金幣
+224	きよめのおふだ	Cleanse Tag	Rune Purifiante	Velopuro	Schutzband	Amuleto	순결의부적	洁净之符	潔淨之符
+225	こころのしずく	Soul Dew	Rosée Âme	Cuorugiada	Seelentau	Rocío Bondad	마음의물방울	心之水滴	心之水滴
+226	しんかいのキバ	Deep Sea Tooth	Dent Océan	Dente Abissi	Abysszahn	Diente Marino	심해의이빨	深海之牙	深海之牙
+227	しんかいのウロコ	Deep Sea Scale	Écaille Océan	Squamabissi	Abyssplatte	Escama Marina	심해의비늘	深海鳞片	深海鱗片
+228	けむりだま	Smoke Ball	Boule Fumée	Palla Fumo	Rauchball	Bola Humo	연막탄	烟雾球	煙霧球
+229	かわらずのいし	Everstone	Pierre Stase	Pietrastante	Ewigstein	Piedra Eterna	변함없는돌	不变之石	不變之石
+230	きあいのハチマキ	Focus Band	Bandeau	Bandana	Fokus-Band	Cinta Focus	기합의머리띠	气势头带	氣勢頭帶
+231	しあわせタマゴ	Lucky Egg	Œuf Chance	Fortunuovo	Glücks-Ei	Huevo Suerte	행복의알	幸运蛋	幸運蛋
+232	ピントレンズ	Scope Lens	Lentilscope	Mirino	Scope-Linse	Periscopio	초점렌즈	焦点镜	焦點鏡
+233	メタルコート	Metal Coat	Peau Métal	Metalcoperta	Metallmantel	Revest. Metálico	금속코트	金属膜	金屬膜
+234	たべのこし	Leftovers	Restes	Avanzi	Überreste	Restos	먹다남은음식	吃剩的东西	吃剩的東西
+235	りゅうのウロコ	Dragon Scale	Écaille Draco	Squama Drago	Drachenhaut	Escama Dragón	용의비늘	龙之鳞片	龍之鱗片
+236	でんきだま	Light Ball	Balle Lumière	Elettropalla	Kugelblitz	Bola Luminosa	전기구슬	电气球	電氣球
+237	やわらかいすな	Soft Sand	Sable Doux	Sabbia Soffice	Pudersand	Arena Fina	부드러운모래	柔软沙子	柔軟沙子
+238	かたいいし	Hard Stone	Pierre Dure	Pietradura	Granitstein	Piedra Dura	딱딱한돌	硬石头	硬石頭
+239	きせきのタネ	Miracle Seed	Graine Miracle	Miracolseme	Wundersaat	Semilla Milagro	기적의씨	奇迹种子	奇跡種子
+240	くろいメガネ	Black Glasses	Lunettes Noires	Occhialineri	Schattenglas	Gafas de Sol	검은안경	黑色眼镜	黑色眼鏡
+241	くろおび	Black Belt	Ceinture Noire	Cinturanera	Schwarzgurt	Cinturón Negro	검은띠	黑带	黑帶
+242	じしゃく	Magnet	Aimant	Calamita	Magnet	Imán	자석	磁铁	磁鐵
+243	しんぴのしずく	Mystic Water	Eau Mystique	Acqua Magica	Zauberwasser	Agua Mística	신비의물방울	神秘水滴	神秘水滴
+244	するどいくちばし	Sharp Beak	Bec Pointu	Beccaffilato	Hackattack	Pico Afilado	예리한부리	锐利鸟嘴	銳利鳥嘴
+245	どくバリ	Poison Barb	Pic Venin	Velenaculeo	Giftstich	Flecha Venenosa	독바늘	毒针	毒針
+246	とけないこおり	Never-Melt Ice	Glace Éternelle	Gelomai	Ewiges Eis	Antiderretir	녹지않는얼음	不融冰	不融冰
+247	のろいのおふだ	Spell Tag	Rune Sort	Spettrotarga	Bannsticker	Hechizo	저주의부적	诅咒之符	詛咒之符
+248	まがったスプーン	Twisted Spoon	Cuiller Tordue	Cucchiaio Torto	Krummlöffel	Cuchara Torcida	휘어진스푼	弯曲的汤匙	彎曲的湯匙
+249	もくたん	Charcoal	Charbon	Carbonella	Holzkohle	Carbón	목탄	木炭	木炭
+250	りゅうのキバ	Dragon Fang	Croc Dragon	Dentedidrago	Drachenzahn	Colmillo Dragón	용의이빨	龙之牙	龍之牙
+251	シルクのスカーフ	Silk Scarf	Mouchoir Soie	Sciarpa Seta	Seidenschal	Pañuelo Seda	실크스카프	丝绸围巾	絲綢圍巾
+252	アップグレード	Up-Grade	Améliorator	Upgrade	Up-Grade	Mejora	업그레이드	升级数据	升級資料
+253	かいがらのすず	Shell Bell	Grelot Coque	Conchinella	Seegesang	Campana Concha	조개껍질방울	贝壳之铃	貝殼之鈴
+254	うしおのおこう	Sea Incense	Encens Mer	Marearoma	Seerauch	Incienso Marino	바닷물향로	海潮薰香	海潮薰香
+255	のんきのおこう	Lax Incense	Encens Doux	Distraroma	Laxrauch	Incienso Suave	무사태평향로	悠闲薰香	悠閒薰香
+256	ラッキーパンチ	Lucky Punch	Poing Chance	Fortunpugno	Lucky Punch	Puño Suerte	럭키펀치	吉利拳	吉利拳
+257	メタルパウダー	Metal Powder	Poudre Métal	Metalpolvere	Metallstaub	Polvo Metálico	금속파우더	金属粉	金屬粉
+258	ふといホネ	Thick Club	Masse Os	Ossospesso	Kampfknochen	Hueso Grueso	굵은뼈	粗骨头	粗骨頭
+259	ながねぎ	Stick	Bâton	Gambo	Lauchstange	Palo	대파	大葱	大蔥
+260	あかいバンダナ	Red Scarf	Foulard Rouge	Fascia Rossa	Roter Schal	Pañuelo Rojo	빨강밴드	红色头巾	紅色頭巾
+261	あおいバンダナ	Blue Scarf	Foulard Bleu	Fascia Blu	Blauer Schal	Pañuelo Azul	파랑밴드	蓝色头巾	藍色頭巾
+262	ピンクのバンダナ	Pink Scarf	Foulard Rose	Fascia Rosa	Rosa Schal	Pañuelo Rosa	분홍밴드	粉红头巾	粉紅頭巾
+263	みどりのバンダナ	Green Scarf	Foulard Vert	Fascia Verde	Grüner Schal	Pañuelo Verde	초록밴드	绿色头巾	綠色頭巾
+264	きいろのバンダナ	Yellow Scarf	Foulard Jaune	Fascia Gialla	Gelber Schal	Pañuelo Amarillo	노랑밴드	黄色头巾	黃色頭巾
+265	こうかくレンズ	Wide Lens	Loupe	Grandelente	Großlinse	Lupa	광각렌즈	广角镜	廣角鏡
+266	ちからのハチマキ	Muscle Band	Bandeau Muscle	Muscolbanda	Muskelband	Cinta Fuerte	힘의머리띠	力量头带	力量頭帶
+267	ものしりメガネ	Wise Glasses	Lunettes Sages	Saviocchiali	Schlauglas	Gafas Especiales	박식안경	博识眼镜	博識眼鏡
+268	たつじんのおび	Expert Belt	Ceinture Pro	Abilcintura	Expertengurt	Cinta Experto	달인의띠	达人带	達人帶
+269	ひかりのねんど	Light Clay	Lumargile	Creta Luce	Lichtlehm	Refleluz	빛의점토	光之黏土	光之黏土
+270	いのちのたま	Life Orb	Orbe Vie	Assorbisfera	Leben-Orb	Vidasfera	생명의구슬	生命宝珠	生命寶珠
+271	パワフルハーブ	Power Herb	Herbe Pouvoir	Vigorerba	Energiekraut	Hierba Única	파워풀허브	强力香草	強力香草
+272	どくどくだま	Toxic Orb	Orbe Toxique	Tossicsfera	Toxik-Orb	Toxisfera	맹독구슬	剧毒宝珠	劇毒寶珠
+273	かえんだま	Flame Orb	Orbe Flamme	Fiammosfera	Heiß-Orb	Llamasfera	화염구슬	火焰宝珠	火焰寶珠
+274	スピードパウダー	Quick Powder	Poudre Vite	Velopolvere	Flottstaub	Polvo Veloz	스피드파우더	速度粉	速度粉
+275	きあいのタスキ	Focus Sash	Ceinture Force	Focalnastro	Fokusgurt	Banda Focus	기합의띠	气势披带	氣勢披帶
+276	フォーカスレンズ	Zoom Lens	Lentille Zoom	Zoomlente	Zoomlinse	Telescopio	포커스렌즈	对焦镜	對焦鏡
+277	メトロノーム	Metronome	Métronome	Plessimetro	Metronom	Metrónomo	메트로놈	节拍器	節拍器
+278	くろいてっきゅう	Iron Ball	Balle Fer	Ferropalla	Eisenkugel	Bola Férrea	검은철구	黑色铁球	黑色鐵球
+279	こうこうのしっぽ	Lagging Tail	Ralentiqueue	Rallentocoda	Schwerschweif	Cola Plúmbea	느림보꼬리	后攻之尾	後攻之尾
+280	あかいいと	Destiny Knot	Nœud Destin	Destincomune	Fatumknoten	Lazo Destino	빨간실	红线	紅線
+281	くろいヘドロ	Black Sludge	Boue Noire	Fangopece	Giftschleim	Lodo Negro	검은진흙	黑色污泥	黑色污泥
+282	つめたいいわ	Icy Rock	Roche Glace	Rocciafredda	Eisbrocken	Roca Helada	차가운바위	冰冷岩石	冰冷岩石
+283	さらさらいわ	Smooth Rock	Roche Lisse	Roccialiscia	Glattbrocken	Roca Suave	보송보송바위	沙沙岩石	沙沙岩石
+284	あついいわ	Heat Rock	Roche Chaude	Rocciacalda	Heißbrocken	Roca Calor	뜨거운바위	炽热岩石	熾熱岩石
+285	しめったいわ	Damp Rock	Roche Humide	Rocciaumida	Nassbrocken	Roca Lluvia	축축한바위	潮湿岩石	潮濕岩石
+286	ねばりのかぎづめ	Grip Claw	Accro Griffe	Presartigli	Griffklaue	Garra Garfio	끈기갈고리손톱	紧缠钩爪	緊纏鉤爪
+287	こだわりスカーフ	Choice Scarf	Mouchoir Choix	Stolascelta	Wahlschal	Pañuelo Elegido	구애스카프	讲究围巾	講究圍巾
+288	くっつきバリ	Sticky Barb	Piquants	Vischiopunta	Klettdorn	Toxiestrella	끈적끈적바늘	附着针	附著針
+289	パワーリスト	Power Bracer	Poignée Pouvoir	Vigorcerchio	Machtreif	Brazal Recio	파워리스트	力量护腕	力量護腕
+290	パワーベルト	Power Belt	Ceinture Pouvoir	Vigorfascia	Machtgurt	Cinto Recio	파워벨트	力量腰带	力量腰帶
+291	パワーレンズ	Power Lens	Lentille Pouvoir	Vigorlente	Machtlinse	Lente Recia	파워렌즈	力量镜	力量鏡
+292	パワーバンド	Power Band	Bandeau Pouvoir	Vigorbanda	Machtband	Banda Recia	파워밴드	力量束带	力量束帶
+293	パワーアンクル	Power Anklet	Chaîne Pouvoir	Vigorgliera	Machtkette	Franja Recia	파워앵클릿	力量护踝	力量護踝
+294	パワーウエイト	Power Weight	Poids Pouvoir	Vigorpeso	Machtgewicht	Pesa Recia	파워웨이트	力量负重	力量負重
+295	きれいなぬけがら	Shed Shell	Carapace Mue	Disfoguscio	Wechselhülle	Muda Concha	아름다운허물	美丽空壳	美麗空殼
+296	おおきなねっこ	Big Root	Grosse Racine	Granradice	Großwurzel	Raíz Grande	큰뿌리	大根茎	大根莖
+297	こだわりメガネ	Choice Specs	Lunettes Choix	Lentiscelta	Wahlglas	Gafas Elegid	구애안경	讲究眼镜	講究眼鏡
+298	ひのたまプレート	Flame Plate	Plaque Flamme	Lastrarogo	Feuertafel	Tabla Llama	불구슬플레이트	火球石板	火球石板
+299	しずくプレート	Splash Plate	Plaque Hydro	Lastraidro	Wassertafel	Tabla Linfa	물방울플레이트	水滴石板	水滴石板
+300	いかずちプレート	Zap Plate	Plaque Volt	Lastrasaetta	Blitztafel	Tabla Trueno	우뢰플레이트	雷电石板	雷電石板
+301	みどりのプレート	Meadow Plate	Plaque Herbe	Lastraprato	Wiesentafel	Tabla Pradal	초록플레이트	碧绿石板	碧綠石板
+302	つららのプレート	Icicle Plate	Plaque Glace	Lastragelo	Frosttafel	Tabla Helada	고드름플레이트	冰柱石板	冰柱石板
+303	こぶしのプレート	Fist Plate	Plaque Poing	Lastrapugno	Fausttafel	Tabla Fuerte	주먹플레이트	拳头石板	拳頭石板
+304	もうどくプレート	Toxic Plate	Plaque Toxik	Lastrafiele	Gifttafel	Tabla Tóxica	맹독플레이트	剧毒石板	劇毒石板
+305	だいちのプレート	Earth Plate	Plaque Terre	Lastrageo	Erdtafel	Tabla Terrax	대지플레이트	大地石板	大地石板
+306	あおぞらプレート	Sky Plate	Plaque Ciel	Lastracielo	Wolkentafel	Tabla Cielo	푸른하늘플레이트	蓝天石板	藍天石板
+307	ふしぎのプレート	Mind Plate	Plaque Esprit	Lastramente	Hirntafel	Tabla Mental	이상한플레이트	神奇石板	神奇石板
+308	たまむしプレート	Insect Plate	Plaque Insecte	Lastrabaco	Käfertafel	Tabla Bicho	비단벌레플레이트	玉虫石板	玉蟲石板
+309	がんせきプレート	Stone Plate	Plaque Roc	Lastrapietra	Steintafel	Tabla Pétrea	암석플레이트	岩石石板	岩石石板
+310	もののけプレート	Spooky Plate	Plaque Fantôme	Lastratetra	Spuktafel	Tabla Terror	원령플레이트	妖怪石板	妖怪石板
+311	りゅうのプレート	Draco Plate	Plaque Draco	Lastradrakon	Dracotafel	Tabla Draco	용의플레이트	龙之石板	龍之石板
+312	こわもてプレート	Dread Plate	Plaque Ombre	Lastratimore	Furchttafel	Tabla Oscura	공포플레이트	恶颜石板	惡顏石板
+313	こうてつプレート	Iron Plate	Plaque Fer	Lastraferro	Eisentafel	Tabla Acero	강철플레이트	钢铁石板	鋼鐵石板
+314	あやしいおこう	Odd Incense	Encens Bizarre	Bizzoaroma	Schrägrauch	Incienso Raro	괴상한향로	奇异薰香	奇異薰香
+315	がんせきおこう	Rock Incense	Encens Roc	Roccioaroma	Steinrauch	Incienso Roca	암석향로	岩石薰香	岩石薰香
+316	まんぷくおこう	Full Incense	Encens Plein	Gonfioaroma	Lahmrauch	Incienso Lento	만복향로	饱腹薰香	飽腹薰香
+317	さざなみのおこう	Wave Incense	Encens Vague	Ondaroma	Wellenrauch	Incienso Aqua	잔물결향로	涟漪薰香	漣漪薰香
+318	おはなのおこう	Rose Incense	Encens Fleur	Rosaroma	Rosenrauch	Incienso Floral	꽃향로	花朵薰香	花朵薰香
+319	こううんのおこう	Luck Incense	Encens Veine	Fortunaroma	Glücksrauch	Incienso Duplo	행운의향로	幸运薰香	幸運薰香
+320	きよめのおこう	Pure Incense	Encens Pur	Puroaroma	Scheuchrauch	Incienso Puro	순결의향로	洁净薰香	潔淨薰香
+321	プロテクター	Protector	Protecteur	Copertura	Schützer	Protector	프로텍터	护具	護具
+322	エレキブースター	Electirizer	Électriseur	Elettritore	Stromisierer	Electrizador	에레키부스터	电力增幅器	電力增幅器
+323	マグマブースター	Magmarizer	Magmariseur	Magmatore	Magmaisierer	Magmatizador	마그마부스터	熔岩增幅器	熔岩增幅器
+324	あやしいパッチ	Dubious Disc	CD Douteux	Dubbiodisco	Dubiosdisc	Disco Extraño	괴상한패치	可疑补丁	可疑修正檔
+325	れいかいのぬの	Reaper Cloth	Tissu Fauche	Terrorpanno	Düsterumhang	Tela Terrible	영계의천	灵界之布	靈界之布
+326	するどいツメ	Razor Claw	Griffe Rasoir	Affilartigli	Scharfklaue	Garra Afilada	예리한손톱	锐利之爪	銳利之爪
+327	するどいキバ	Razor Fang	Croc Rasoir	Affilodente	Scharfzahn	Colmillo Agudo	예리한이빨	锐利之牙	銳利之牙
+328	わざマシン０１	TM01	CT01	MT01	TM01	MT01	기술머신01	招式学习器０１	招式學習器０１
+329	わざマシン０２	TM02	CT02	MT02	TM02	MT02	기술머신02	招式学习器０２	招式學習器０２
+330	わざマシン０３	TM03	CT03	MT03	TM03	MT03	기술머신03	招式学习器０３	招式學習器０３
+331	わざマシン０４	TM04	CT04	MT04	TM04	MT04	기술머신04	招式学习器０４	招式學習器０４
+332	わざマシン０５	TM05	CT05	MT05	TM05	MT05	기술머신05	招式学习器０５	招式學習器０５
+333	わざマシン０６	TM06	CT06	MT06	TM06	MT06	기술머신06	招式学习器０６	招式學習器０６
+334	わざマシン０７	TM07	CT07	MT07	TM07	MT07	기술머신07	招式学习器０７	招式學習器０７
+335	わざマシン０８	TM08	CT08	MT08	TM08	MT08	기술머신08	招式学习器０８	招式學習器０８
+336	わざマシン０９	TM09	CT09	MT09	TM09	MT09	기술머신09	招式学习器０９	招式學習器０９
+337	わざマシン１０	TM10	CT10	MT10	TM10	MT10	기술머신10	招式学习器１０	招式學習器１０
+338	わざマシン１１	TM11	CT11	MT11	TM11	MT11	기술머신11	招式学习器１１	招式學習器１１
+339	わざマシン１２	TM12	CT12	MT12	TM12	MT12	기술머신12	招式学习器１２	招式學習器１２
+340	わざマシン１３	TM13	CT13	MT13	TM13	MT13	기술머신13	招式学习器１３	招式學習器１３
+341	わざマシン１４	TM14	CT14	MT14	TM14	MT14	기술머신14	招式学习器１４	招式學習器１４
+342	わざマシン１５	TM15	CT15	MT15	TM15	MT15	기술머신15	招式学习器１５	招式學習器１５
+343	わざマシン１６	TM16	CT16	MT16	TM16	MT16	기술머신16	招式学习器１６	招式學習器１６
+344	わざマシン１７	TM17	CT17	MT17	TM17	MT17	기술머신17	招式学习器１７	招式學習器１７
+345	わざマシン１８	TM18	CT18	MT18	TM18	MT18	기술머신18	招式学习器１８	招式學習器１８
+346	わざマシン１９	TM19	CT19	MT19	TM19	MT19	기술머신19	招式学习器１９	招式學習器１９
+347	わざマシン２０	TM20	CT20	MT20	TM20	MT20	기술머신20	招式学习器２０	招式學習器２０
+348	わざマシン２１	TM21	CT21	MT21	TM21	MT21	기술머신21	招式学习器２１	招式學習器２１
+349	わざマシン２２	TM22	CT22	MT22	TM22	MT22	기술머신22	招式学习器２２	招式學習器２２
+350	わざマシン２３	TM23	CT23	MT23	TM23	MT23	기술머신23	招式学习器２３	招式學習器２３
+351	わざマシン２４	TM24	CT24	MT24	TM24	MT24	기술머신24	招式学习器２４	招式學習器２４
+352	わざマシン２５	TM25	CT25	MT25	TM25	MT25	기술머신25	招式学习器２５	招式學習器２５
+353	わざマシン２６	TM26	CT26	MT26	TM26	MT26	기술머신26	招式学习器２６	招式學習器２６
+354	わざマシン２７	TM27	CT27	MT27	TM27	MT27	기술머신27	招式学习器２７	招式學習器２７
+355	わざマシン２８	TM28	CT28	MT28	TM28	MT28	기술머신28	招式学习器２８	招式學習器２８
+356	わざマシン２９	TM29	CT29	MT29	TM29	MT29	기술머신29	招式学习器２９	招式學習器２９
+357	わざマシン３０	TM30	CT30	MT30	TM30	MT30	기술머신30	招式学习器３０	招式學習器３０
+358	わざマシン３１	TM31	CT31	MT31	TM31	MT31	기술머신31	招式学习器３１	招式學習器３１
+359	わざマシン３２	TM32	CT32	MT32	TM32	MT32	기술머신32	招式学习器３２	招式學習器３２
+360	わざマシン３３	TM33	CT33	MT33	TM33	MT33	기술머신33	招式学习器３３	招式學習器３３
+361	わざマシン３４	TM34	CT34	MT34	TM34	MT34	기술머신34	招式学习器３４	招式學習器３４
+362	わざマシン３５	TM35	CT35	MT35	TM35	MT35	기술머신35	招式学习器３５	招式學習器３５
+363	わざマシン３６	TM36	CT36	MT36	TM36	MT36	기술머신36	招式学习器３６	招式學習器３６
+364	わざマシン３７	TM37	CT37	MT37	TM37	MT37	기술머신37	招式学习器３７	招式學習器３７
+365	わざマシン３８	TM38	CT38	MT38	TM38	MT38	기술머신38	招式学习器３８	招式學習器３８
+366	わざマシン３９	TM39	CT39	MT39	TM39	MT39	기술머신39	招式学习器３９	招式學習器３９
+367	わざマシン４０	TM40	CT40	MT40	TM40	MT40	기술머신40	招式学习器４０	招式學習器４０
+368	わざマシン４１	TM41	CT41	MT41	TM41	MT41	기술머신41	招式学习器４１	招式學習器４１
+369	わざマシン４２	TM42	CT42	MT42	TM42	MT42	기술머신42	招式学习器４２	招式學習器４２
+370	わざマシン４３	TM43	CT43	MT43	TM43	MT43	기술머신43	招式学习器４３	招式學習器４３
+371	わざマシン４４	TM44	CT44	MT44	TM44	MT44	기술머신44	招式学习器４４	招式學習器４４
+372	わざマシン４５	TM45	CT45	MT45	TM45	MT45	기술머신45	招式学习器４５	招式學習器４５
+373	わざマシン４６	TM46	CT46	MT46	TM46	MT46	기술머신46	招式学习器４６	招式學習器４６
+374	わざマシン４７	TM47	CT47	MT47	TM47	MT47	기술머신47	招式学习器４７	招式學習器４７
+375	わざマシン４８	TM48	CT48	MT48	TM48	MT48	기술머신48	招式学习器４８	招式學習器４８
+376	わざマシン４９	TM49	CT49	MT49	TM49	MT49	기술머신49	招式学习器４９	招式學習器４９
+377	わざマシン５０	TM50	CT50	MT50	TM50	MT50	기술머신50	招式学习器５０	招式學習器５０
+378	わざマシン５１	TM51	CT51	MT51	TM51	MT51	기술머신51	招式学习器５１	招式學習器５１
+379	わざマシン５２	TM52	CT52	MT52	TM52	MT52	기술머신52	招式学习器５２	招式學習器５２
+380	わざマシン５３	TM53	CT53	MT53	TM53	MT53	기술머신53	招式学习器５３	招式學習器５３
+381	わざマシン５４	TM54	CT54	MT54	TM54	MT54	기술머신54	招式学习器５４	招式學習器５４
+382	わざマシン５５	TM55	CT55	MT55	TM55	MT55	기술머신55	招式学习器５５	招式學習器５５
+383	わざマシン５６	TM56	CT56	MT56	TM56	MT56	기술머신56	招式学习器５６	招式學習器５６
+384	わざマシン５７	TM57	CT57	MT57	TM57	MT57	기술머신57	招式学习器５７	招式學習器５７
+385	わざマシン５８	TM58	CT58	MT58	TM58	MT58	기술머신58	招式学习器５８	招式學習器５８
+386	わざマシン５９	TM59	CT59	MT59	TM59	MT59	기술머신59	招式学习器５９	招式學習器５９
+387	わざマシン６０	TM60	CT60	MT60	TM60	MT60	기술머신60	招式学习器６０	招式學習器６０
+388	わざマシン６１	TM61	CT61	MT61	TM61	MT61	기술머신61	招式学习器６１	招式學習器６１
+389	わざマシン６２	TM62	CT62	MT62	TM62	MT62	기술머신62	招式学习器６２	招式學習器６２
+390	わざマシン６３	TM63	CT63	MT63	TM63	MT63	기술머신63	招式学习器６３	招式學習器６３
+391	わざマシン６４	TM64	CT64	MT64	TM64	MT64	기술머신64	招式学习器６４	招式學習器６４
+392	わざマシン６５	TM65	CT65	MT65	TM65	MT65	기술머신65	招式学习器６５	招式學習器６５
+393	わざマシン６６	TM66	CT66	MT66	TM66	MT66	기술머신66	招式学习器６６	招式學習器６６
+394	わざマシン６７	TM67	CT67	MT67	TM67	MT67	기술머신67	招式学习器６７	招式學習器６７
+395	わざマシン６８	TM68	CT68	MT68	TM68	MT68	기술머신68	招式学习器６８	招式學習器６８
+396	わざマシン６９	TM69	CT69	MT69	TM69	MT69	기술머신69	招式学习器６９	招式學習器６９
+397	わざマシン７０	TM70	CT70	MT70	TM70	MT70	기술머신70	招式学习器７０	招式學習器７０
+398	わざマシン７１	TM71	CT71	MT71	TM71	MT71	기술머신71	招式学习器７１	招式學習器７１
+399	わざマシン７２	TM72	CT72	MT72	TM72	MT72	기술머신72	招式学习器７２	招式學習器７２
+400	わざマシン７３	TM73	CT73	MT73	TM73	MT73	기술머신73	招式学习器７３	招式學習器７３
+401	わざマシン７４	TM74	CT74	MT74	TM74	MT74	기술머신74	招式学习器７４	招式學習器７４
+402	わざマシン７５	TM75	CT75	MT75	TM75	MT75	기술머신75	招式学习器７５	招式學習器７５
+403	わざマシン７６	TM76	CT76	MT76	TM76	MT76	기술머신76	招式学习器７６	招式學習器７６
+404	わざマシン７７	TM77	CT77	MT77	TM77	MT77	기술머신77	招式学习器７７	招式學習器７７
+405	わざマシン７８	TM78	CT78	MT78	TM78	MT78	기술머신78	招式学习器７８	招式學習器７８
+406	わざマシン７９	TM79	CT79	MT79	TM79	MT79	기술머신79	招式学习器７９	招式學習器７９
+407	わざマシン８０	TM80	CT80	MT80	TM80	MT80	기술머신80	招式学习器８０	招式學習器８０
+408	わざマシン８１	TM81	CT81	MT81	TM81	MT81	기술머신81	招式学习器８１	招式學習器８１
+409	わざマシン８２	TM82	CT82	MT82	TM82	MT82	기술머신82	招式学习器８２	招式學習器８２
+410	わざマシン８３	TM83	CT83	MT83	TM83	MT83	기술머신83	招式学习器８３	招式學習器８３
+411	わざマシン８４	TM84	CT84	MT84	TM84	MT84	기술머신84	招式学习器８４	招式學習器８４
+412	わざマシン８５	TM85	CT85	MT85	TM85	MT85	기술머신85	招式学习器８５	招式學習器８５
+413	わざマシン８６	TM86	CT86	MT86	TM86	MT86	기술머신86	招式学习器８６	招式學習器８６
+414	わざマシン８７	TM87	CT87	MT87	TM87	MT87	기술머신87	招式学习器８７	招式學習器８７
+415	わざマシン８８	TM88	CT88	MT88	TM88	MT88	기술머신88	招式学习器８８	招式學習器８８
+416	わざマシン８９	TM89	CT89	MT89	TM89	MT89	기술머신89	招式学习器８９	招式學習器８９
+417	わざマシン９０	TM90	CT90	MT90	TM90	MT90	기술머신90	招式学习器９０	招式學習器９０
+418	わざマシン９１	TM91	CT91	MT91	TM91	MT91	기술머신91	招式学习器９１	招式學習器９１
+419	わざマシン９２	TM92	CT92	MT92	TM92	MT92	기술머신92	招式学习器９２	招式學習器９２
+420	ひでんマシン０１	HM01	CS01	MN01	VM01	MO01	비전머신01	秘传学习器０１	秘傳學習器０１
+421	ひでんマシン０２	HM02	CS02	MN02	VM02	MO02	비전머신02	秘传学习器０２	秘傳學習器０２
+422	ひでんマシン０３	HM03	CS03	MN03	VM03	MO03	비전머신03	秘传学习器０３	秘傳學習器０３
+423	ひでんマシン０４	HM04	CS04	MN04	VM04	MO04	비전머신04	秘传学习器０４	秘傳學習器０４
+424	ひでんマシン０５	HM05	CS05	MN05	VM05	MO05	비전머신05	秘传学习器０５	秘傳學習器０５
+425	ひでんマシン０６	HM06	CS06	MN06	VM06	MO06	비전머신06	秘传学习器０６	秘傳學習器０６
+428	たんけんセット	Explorer Kit	Explorakit	Esplorokit	Forschersack	Kit Explorador	탐험세트	探险套装	探險組合
+429	たからぶくろ	Loot Sack	Sac Butin	Bottinosacca	Beutesack	Saca Botín	보물주머니	宝物袋	寶物袋
+430	ルールブック	Rule Book	Livre Règles	Libro Regole	Regelbuch	Reglamento	룰북	规则书	規則書
+431	ポケトレ	Poké Radar	Poké Radar	Poké Radar	Pokéradar	Pokéradar	포켓트레	宝可追踪	寶可追蹤
+432	ポイントカード	Point Card	Carte Points	Scheda Punti	Punktekarte	Tarjeta Puntos	포인트카드	点数卡	點數卡
+433	ぼうけんノート	Journal	Journal	Agenda	Tagebuch	Diario	모험노트	冒险笔记	冒險筆記
+434	シールいれ	Seal Case	Boîte Sceaux	Portabolli	Stickerkoffer	Caja Sellos	실상자	贴纸盒	貼紙盒
+435	アクセサリーいれ	Fashion Case	Coffret Mode	Scatola Chic	Modekoffer	Caja Corazón	액세서리상자	饰品盒	飾品盒
+436	シールぶくろ	Seal Bag	Sac Sceaux	Bollosacca	Stickertüte	Bolsa Sellos	실주머니	贴纸袋	貼紙袋
+437	ともだちてちょう	Pal Pad	Registre Ami	Blocco Amici	Adressbuch	Bloc amigos	친구수첩	朋友手册	朋友手冊
+438	はつでんしょキー	Works Key	Clé Centrale	Turbinchiave	K-Schlüssel	Llave Central	발전소키	发电厂钥匙	發電廠鑰匙
+439	こだいのおまもり	Old Charm	Vieux Grigri	Arcamuleto	Talisman	Talismán	고대의부적	古代护符	古代護符
+440	ギンガだんのカギ	Galactic Key	Clé Galaxie	Galachiave	G-Schlüssel	Llave Galaxia	갤럭시단의열쇠	银河队钥匙	銀河隊鑰匙
+441	あかいくさり	Red Chain	Chaîne Rouge	Rossocatena	Rote Kette	Cadena Roja	빨강쇠사슬	红色锁链	紅色鎖鏈
+442	タウンマップ	Town Map	Carte	Mappa Città	Karte	Mapa	타운맵	城镇地图	城鎮地圖
+443	バトルサーチャー	Vs. Seeker	Cherche VS	Cercasfide	Kampffahnder	Buscapelea	배틀서처	对战搜寻器	對戰搜尋器
+444	コインケース	Coin Case	Boîte Jetons	Salvadanaio	Münzkorb	Monedero	동전케이스	代币盒	代幣盒
+445	ボロのつりざお	Old Rod	Canne	Amo Vecchio	Angel	Caña Vieja	낡은낚싯대	破旧钓竿	破舊釣竿
+446	いいつりざお	Good Rod	Super Canne	Amo Buono	Profiangel	Caña Buena	좋은낚싯대	好钓竿	好釣竿
+447	すごいつりざお	Super Rod	Méga Canne	Super Amo	Superangel	Supercaña	대단한낚싯대	厉害钓竿	厲害釣竿
+448	コダックじょうろ	Sprayduck	Kwakarrosoir	Sprayduck	Entonkanne	Psydugadera	고라파덕물뿌리개	可达鸭喷壶	可達鴨噴壺
+449	ポフィンケース	Poffin Case	Boîte Poffin	Portapoffin	Knurspbox	Pokochera	포핀케이스	宝芬盒	寶芬盒
+450	じてんしゃ	Bike	Bicyclette	Bicicletta	Fahrrad	Bici	자전거	自行车	自行車
+451	ルームキー	Suite Key	Clé Chambre	Chiave Suite	B-Schlüssel	Llave Suite	룸키	房间钥匙	房間鑰匙
+452	オーキドのてがみ	Oak’s Letter	Lettre Chen	Lettera Oak	Eichs Brief	Carta Prof. Oak	오박사의편지	大木的信	大木的信
+453	みかづきのはね	Lunar Wing	Lun’Aile	Alalunare	Lunarfeder	Pluma Lunar	초승달날개	新月之羽	新月之羽
+454	メンバーズカード	Member Card	Carte Membre	Scheda Soci	Mitgliedskarte	Carné Socio	멤버스카드	会员卡	會員卡
+455	てんかいのふえ	Azure Flute	Flûte Azur	Flauto Cielo	Azurflöte	Flauta Azur	천계의피리	天界之笛	天界之笛
+456	ふねのチケット	S.S. Ticket	Passe Bateau	Biglietto Nave	Bootsticket	Ticket Barco	승선티켓	船票	船票
+457	コンテストパス	Contest Pass	Passe Concours	Tessera Gare	Wettbewerbskarte	Pase Concurso	콘테스트패스	华丽大赛参加证	華麗大賽參加證
+458	かざんのおきいし	Magma Stone	Pierre Magma	Magmapietra	Magmastein	Piedra Magma	화산의돌	火山镇石	火山鎮石
+459	おとどけもの	Parcel	Colis	Pacco	Paket	Paquete	전해줄물건	包裹	包裹
+460	ひきかえけん１	Coupon 1	Bon 1	Coupon 1	Kupon 1	Cupón 1	교환권1	兑换券１	兌換券１
+461	ひきかえけん２	Coupon 2	Bon 2	Coupon 2	Kupon 2	Cupón 2	교환권2	兑换券２	兌換券２
+462	ひきかえけん３	Coupon 3	Bon 3	Coupon 3	Kupon 3	Cupón 3	교환권3	兑换券３	兌換券３
+463	そうこのカギ	Storage Key	Clé Stockage	Depochiave	Lagerschlüssel	Llave Almacén	창고열쇠	仓库钥匙	倉庫鑰匙
+464	ひでんのくすり	Secret Potion	Potion Secrète	Pozione Segreta	Geheimtrank	Poción Secreta	비전신약	秘传之药	秘傳之藥
+465	バトルレコーダー	Vs. Recorder	Magnéto VS	Registradati	Kampfkamera	Cámara Lucha	배틀레코더	对战记录器	對戰記錄器
+466	グラシデアのはな	Gracidea	Gracidée	Gracidea	Gracidea	Gracídea	그라시데아꽃	葛拉西蒂亚花	葛拉西蒂亞花
+467	ひみつのカギ	Secret Key	Clé Secrète	Chiave Segreta	?-Öffner	Llave Secreta	비밀의열쇠	秘密钥匙	秘密鑰匙
+468	ぼんぐりケース	Apricorn Box	Boîte Noigrume	Ghicobox	Aprikokobox	Caja Bonguri	규토리케이스	球果盒	球果盒
+469	アンノーンノート	Unown Report	Carnet Zarbi	UnownBloc	Icognitoheft	Bloc Unown	안농노트	未知图腾笔记	未知圖騰筆記
+470	きのみプランター	Berry Pots	Plante-Baies	Piantabacche	Pflanzset	Plantabayas	나무열매플랜터	树果种植盆	樹果種植盆
+471	ダウジングマシン	Dowsing Machine	Cherch’Objet	Ricerca Strum.	Itemradar	Zahorí	다우징머신	探宝器	探寶器
+472	ブルーカード	Blue Card	Carte Bleue	Carta Blu	Blaue Karte	Tarjeta Azul	블루카드	蓝卡	藍卡
+473	おいしいシッポ	Slowpoke Tail	Queue Ramoloss	Coda Slowpoke	Flegmon-Rute	Cola Slowpoke	맛있는꼬리	美味尾巴	美味尾巴
+474	とうめいなスズ	Clear Bell	Glas Transparent	Campana Chiara	Klarglocke	Campana Clara	크리스탈방울	透明铃铛	透明鈴鐺
+475	カードキー	Card Key	Carte Magnétique	Apriporta	Türöffner	Llave Magnética	카드키	钥匙卡	鑰匙卡
+476	ちかのかぎ	Basement Key	Clé Sous-Sol	Chiave sotterr.	Kelleröffner	Llave Sótano	지하의열쇠	地下钥匙	地下鑰匙
+477	ゼニガメじょうろ	Squirt Bottle	Carapuce à O	Annaffiatoio	Schiggykanne	Regadera	꼬부기물뿌리개	杰尼龟喷壶	傑尼龜噴壺
+478	あかいウロコ	Red Scale	Écaillerouge	Squama Rossa	Rote Haut	Escama Roja	빨간비늘	红色鳞片	紅色鱗片
+479	おとしもの	Lost Item	Objet perdu	Strumento perso	Fundsache	Objeto Perdido	분실물	遗失物	遺失物
+480	リニアパス	Pass	Passe Train	Superpass	Fahrschein	Magnetopase	리니어패스	磁浮列车自由票	磁浮列車自由票
+481	きかいのぶひん	Machine Part	Partie Machine	Pezzo macch.	Spule	Maquinaria	기계부품	机械零件	機械零件
+482	ぎんいろのはね	Silver Wing	Argent’Aile	Aladargento	Silberflügel	Ala Plateada	은빛날개	银色之羽	銀色之羽
+483	にじいろのはね	Rainbow Wing	Arc-en-Ci’Aile	Ala d’Iride	Buntschwinge	Ala Arcoíris	무지갯빛날개	虹色之羽	虹色之羽
+484	ふしぎなタマゴ	Mystery Egg	Œuf Mystère	Uovo Mistero	Rätsel-Ei	Huevo Misterioso	이상한알	神奇蛋	神奇蛋
+485	あかぼんぐり	Red Apricorn	Noigrume Rouge	Ghicocca Rossa	Aprikoko Rot	Bonguri Rojo	빨간규토리	红球果	紅球果
+486	あおぼんぐり	Blue Apricorn	Noigrume Bleu	Ghicocca Blu	Aprikoko Blu	Bonguri Azul	파란규토리	蓝球果	藍球果
+487	きぼんぐり	Yellow Apricorn	Noigrume Jaune	Ghicocca Gialla	Aprikoko Glb	Bonguri Amarillo	노랑규토리	黄球果	黃球果
+488	みどぼんぐり	Green Apricorn	Noigrume Vert	Ghicocca Verde	Aprikoko Grn	Bonguri Verde	초록규토리	绿球果	綠球果
+489	ももぼんぐり	Pink Apricorn	Noigrume Rose	Ghicocca Rosa	Aprikoko Pnk	Bonguri Rosa	담홍규토리	粉球果	粉球果
+490	しろぼんぐり	White Apricorn	Noigrume Blanc	Ghicocca Bianca	Aprikoko Wss	Bonguri Blanco	하얀규토리	白球果	白球果
+491	くろぼんぐり	Black Apricorn	Noigrume Noir	Ghicocca Nera	Aprikoko Swz	Bonguri Negro	검은규토리	黑球果	黑球果
+492	スピードボール	Fast Ball	Speed Ball	Rapid Ball	Turboball	Rapid Ball	스피드볼	速度球	速度球
+493	レベルボール	Level Ball	Niveau Ball	Level Ball	Levelball	Nivel Ball	레벨볼	等级球	等級球
+494	ルアーボール	Lure Ball	Appât Ball	Esca Ball	Köderball	Cebo Ball	루어볼	诱饵球	誘餌球
+495	ヘビーボール	Heavy Ball	Masse Ball	Peso Ball	Schwerball	Peso Ball	헤비볼	沉重球	沉重球
+496	ラブラブボール	Love Ball	Love Ball	Love Ball	Sympaball	Amor Ball	러브러브볼	甜蜜球	甜蜜球
+497	フレンドボール	Friend Ball	Copain Ball	Friend Ball	Freundesball	Amigo Ball	프렌드볼	友友球	友友球
+498	ムーンボール	Moon Ball	Lune Ball	Luna Ball	Mondball	Luna Ball	문볼	月亮球	月亮球
+499	コンペボール	Sport Ball	Compét’Ball	Gara Ball	Turnierball	Competi Ball	콤페볼	竞赛球	競賽球
+500	パークボール	Park Ball	Parc Ball	Parco Ball	Parkball	Parque Ball	파크볼	公园球	公園球
+501	フォトアルバム	Photo Album	Album Photo	Album	Fotoalbum	Álbum	포토앨범	相册	相簿
+502	ＧＢプレイヤー	GB Sounds	Lecteur GB	Lettore GB	GB-Player	Lector GB	GB플레이어	ＧＢ播放器	ＧＢ播放器
+503	うみなりのスズ	Tidal Bell	Glas Tempête	Campana Onda	Gischtglocke	Campana Oleaje	해명의방울	海声铃铛	海聲鈴鐺
+504	いかりまんじゅう	Rage Candy Bar	Bonbon Rage	Iramella	Wutkeks	Caramelo Furia	분노의호두과자	愤怒馒头	憤怒饅頭
+505	データカード０１	Data Card 01	Carte Mémo01	Scheda Dati 01	Datenkarte01	Tarjeta Datos 01	데이터카드01	数据卡０１	資料卡０１
+506	データカード０２	Data Card 02	Carte Mémo02	Scheda Dati 02	Datenkarte02	Tarjeta Datos 02	데이터카드02	数据卡０２	資料卡０２
+507	データカード０３	Data Card 03	Carte Mémo03	Scheda Dati 03	Datenkarte03	Tarjeta Datos 03	데이터카드03	数据卡０３	資料卡０３
+508	データカード０４	Data Card 04	Carte Mémo04	Scheda Dati 04	Datenkarte04	Tarjeta Datos 04	데이터카드04	数据卡０４	資料卡０４
+509	データカード０５	Data Card 05	Carte Mémo05	Scheda Dati 05	Datenkarte05	Tarjeta Datos 05	데이터카드05	数据卡０５	資料卡０５
+510	データカード０６	Data Card 06	Carte Mémo06	Scheda Dati 06	Datenkarte06	Tarjeta Datos 06	데이터카드06	数据卡０６	資料卡０６
+511	データカード０７	Data Card 07	Carte Mémo07	Scheda Dati 07	Datenkarte07	Tarjeta Datos 07	데이터카드07	数据卡０７	資料卡０７
+512	データカード０８	Data Card 08	Carte Mémo08	Scheda Dati 08	Datenkarte08	Tarjeta Datos 08	데이터카드08	数据卡０８	資料卡０８
+513	データカード０９	Data Card 09	Carte Mémo09	Scheda Dati 09	Datenkarte09	Tarjeta Datos 09	데이터카드09	数据卡０９	資料卡０９
+514	データカード１０	Data Card 10	Carte Mémo10	Scheda Dati 10	Datenkarte10	Tarjeta Datos 10	데이터카드10	数据卡１０	資料卡１０
+515	データカード１１	Data Card 11	Carte Mémo11	Scheda Dati 11	Datenkarte11	Tarjeta Datos 11	데이터카드11	数据卡１１	資料卡１１
+516	データカード１２	Data Card 12	Carte Mémo12	Scheda Dati 12	Datenkarte12	Tarjeta Datos 12	데이터카드12	数据卡１２	資料卡１２
+517	データカード１３	Data Card 13	Carte Mémo13	Scheda Dati 13	Datenkarte13	Tarjeta Datos 13	데이터카드13	数据卡１３	資料卡１３
+518	データカード１４	Data Card 14	Carte Mémo14	Scheda Dati 14	Datenkarte14	Tarjeta Datos 14	데이터카드14	数据卡１４	資料卡１４
+519	データカード１５	Data Card 15	Carte Mémo15	Scheda Dati 15	Datenkarte15	Tarjeta Datos 15	데이터카드15	数据卡１５	資料卡１５
+520	データカード１６	Data Card 16	Carte Mémo16	Scheda Dati 16	Datenkarte16	Tarjeta Datos 16	데이터카드16	数据卡１６	資料卡１６
+521	データカード１７	Data Card 17	Carte Mémo17	Scheda Dati 17	Datenkarte17	Tarjeta Datos 17	데이터카드17	数据卡１７	資料卡１７
+522	データカード１８	Data Card 18	Carte Mémo18	Scheda Dati 18	Datenkarte18	Tarjeta Datos 18	데이터카드18	数据卡１８	資料卡１８
+523	データカード１９	Data Card 19	Carte Mémo19	Scheda Dati 19	Datenkarte19	Tarjeta Datos 19	데이터카드19	数据卡１９	資料卡１９
+524	データカード２０	Data Card 20	Carte Mémo20	Scheda Dati 20	Datenkarte20	Tarjeta Datos 20	데이터카드20	数据卡２０	資料卡２０
+525	データカード２１	Data Card 21	Carte Mémo21	Scheda Dati 21	Datenkarte21	Tarjeta Datos 21	데이터카드21	数据卡２１	資料卡２１
+526	データカード２２	Data Card 22	Carte Mémo22	Scheda Dati 22	Datenkarte22	Tarjeta Datos 22	데이터카드22	数据卡２２	資料卡２２
+527	データカード２３	Data Card 23	Carte Mémo23	Scheda Dati 23	Datenkarte23	Tarjeta Datos 23	데이터카드23	数据卡２３	資料卡２３
+528	データカード２４	Data Card 24	Carte Mémo24	Scheda Dati 24	Datenkarte24	Tarjeta Datos 24	데이터카드24	数据卡２４	資料卡２４
+529	データカード２５	Data Card 25	Carte Mémo25	Scheda Dati 25	Datenkarte25	Tarjeta Datos 25	데이터카드25	数据卡２５	資料卡２５
+530	データカード２６	Data Card 26	Carte Mémo26	Scheda Dati 26	Datenkarte26	Tarjeta Datos 26	데이터카드26	数据卡２６	資料卡２６
+531	データカード２７	Data Card 27	Carte Mémo27	Scheda Dati 27	Datenkarte27	Tarjeta Datos 27	데이터카드27	数据卡２７	資料卡２７
+532	もえぎいろのたま	Jade Orb	Orbe Vert	Sfera Verde	Grüne Kugel	Esfera Verde	연둣빛구슬	草绿色宝珠	草綠色寶珠
+533	ロックカプセル	Lock Capsule	Poké Écrin	Capsula Scrigno	Tresorkapsel	Cápsula Candado	록캡슐	上锁的容器	上鎖的容器
+534	べにいろのたま	Red Orb	Gemme Rouge	Gemma rossa	Roter Edelstein	Prisma Rojo	주홍구슬	朱红色宝珠	朱紅色寶珠
+535	あいいろのたま	Blue Orb	Gemme Bleue	Gemma blu	Blauer Edelstein	Prisma Azul	쪽빛구슬	靛蓝色宝珠	靛藍色寶珠
+536	なぞのすいしょう	Enigma Stone	Mystécristal	Misticristal	Mytokristall	Misticristal	수수께끼의수정	谜之水晶	謎之水晶
+537	きれいなウロコ	Prism Scale	Bel’Écaille	Squama Bella	Schönschuppe	Escama Bella	고운비늘	美丽鳞片	美麗鱗片
+538	しんかのきせき	Eviolite	Évoluroc	Evolcondensa	Evolith	Mineral Evol	진화의휘석	进化奇石	進化奇石
+539	かるいし	Float Stone	Pierrallégée	Pietralieve	Leichtstein	Piedra Pómez	가벼운돌	轻石	輕石
+540	ゴツゴツメット	Rocky Helmet	Casque Brut	Bitorzolelmo	Beulenhelm	Casco Dentado	울퉁불퉁멧	凸凸头盔	凸凸頭盔
+541	ふうせん	Air Balloon	Ballon	Palloncino	Luftballon	Globo Helio	풍선	气球	氣球
+542	レッドカード	Red Card	Carton Rouge	Cartelrosso	Rote Karte	Tarjeta Roja	레드카드	红牌	紅牌
+543	ねらいのまと	Ring Target	Point de Mire	Facilsaglio	Zielscheibe	Blanco	겨냥표적	标靶	標靶
+544	しめつけバンド	Binding Band	Bande Étreinte	Legafascia	Klammerband	Banda Atadura	조임밴드	紧绑束带	緊綁束帶
+545	きゅうこん	Absorb Bulb	Bulbe	Bulbo	Knolle	Tubérculo	구근	球根	球根
+546	じゅうでんち	Cell Battery	Pile	Ricaripila	Akku	Pila	충전지	充电电池	充電電池
+547	だっしゅつボタン	Eject Button	Bouton Fuite	Pulsantefuga	Fluchtknopf	Botón Escape	탈출버튼	逃脱按键	逃脫按鍵
+548	ほのおのジュエル	Fire Gem	Joyau Feu	Bijoufuoco	Feuerjuwel	Gema Fuego	불꽃주얼	火之宝石	火之寶石
+549	みずのジュエル	Water Gem	Joyau Eau	Bijouacqua	Wasserjuwel	Gema Agua	물주얼	水之宝石	水之寶石
+550	でんきのジュエル	Electric Gem	Joyau Électrik	Bijouelettro	Elektrojuwel	Gema Eléctrica	전기주얼	电之宝石	電之寶石
+551	くさのジュエル	Grass Gem	Joyau Plante	Bijouerba	Pflanzenjuwel	Gema Planta	풀주얼	草之宝石	草之寶石
+552	こおりのジュエル	Ice Gem	Joyau Glace	Bijoughiaccio	Eisjuwel	Gema Hielo	얼음주얼	冰之宝石	冰之寶石
+553	かくとうジュエル	Fighting Gem	Joyau Combat	Bijoulotta	Kampfjuwel	Gema Lucha	격투주얼	格斗宝石	格鬥寶石
+554	どくのジュエル	Poison Gem	Joyau Poison	Bijouveleno	Giftjuwel	Gema Veneno	독주얼	毒之宝石	毒之寶石
+555	じめんのジュエル	Ground Gem	Joyau Sol	Bijouterra	Bodenjuwel	Gema Tierra	땅주얼	地面宝石	地面寶石
+556	ひこうのジュエル	Flying Gem	Joyau Vol	Bijouvolante	Flugjuwel	Gema Voladora	비행주얼	飞行宝石	飛行寶石
+557	エスパージュエル	Psychic Gem	Joyau Psy	Bijoupsico	Psychojuwel	Gema Psíquica	에스퍼주얼	超能力宝石	超能力寶石
+558	むしのジュエル	Bug Gem	Joyau Insecte	Bijoucoleottero	Käferjuwel	Gema Bicho	벌레주얼	虫之宝石	蟲之寶石
+559	いわのジュエル	Rock Gem	Joyau Roche	Bijouroccia	Gesteinsjuwel	Gema Roca	바위주얼	岩石宝石	岩石寶石
+560	ゴーストジュエル	Ghost Gem	Joyau Spectre	Bijouspettro	Geisterjuwel	Gema Fantasma	고스트주얼	幽灵宝石	幽靈寶石
+561	ドラゴンジュエル	Dragon Gem	Joyau Dragon	Bijoudrago	Drakojuwel	Gema Dragón	드래곤주얼	龙之宝石	龍之寶石
+562	あくのジュエル	Dark Gem	Joyau Ténèbres	Bijoubuio	Unlichtjuwel	Gema Siniestra	악주얼	恶之宝石	惡之寶石
+563	はがねのジュエル	Steel Gem	Joyau Acier	Bijouacciaio	Stahljuwel	Gema Acero	강철주얼	钢之宝石	鋼之寶石
+564	ノーマルジュエル	Normal Gem	Joyau Normal	Bijounormale	Normaljuwel	Gema Normal	노말주얼	一般宝石	一般寶石
+565	たいりょくのハネ	Health Wing	Aile Santé	Piumsalute	Heilfeder	Pluma Vigor	체력날개	体力之羽	體力之羽
+566	きんりょくのハネ	Muscle Wing	Aile Force	Piumpotenza	Kraftfeder	Pluma Músculo	근력날개	肌力之羽	肌力之羽
+567	ていこうのハネ	Resist Wing	Aile Armure	Piumtutela	Abwehrfeder	Pluma Aguante	저항력날개	抵抗之羽	抵抗之羽
+568	ちりょくのハネ	Genius Wing	Aile Esprit	Piumingegno	Geniefeder	Pluma Intelecto	지력날개	智力之羽	智力之羽
+569	せいしんのハネ	Clever Wing	Aile Mental	Piumintuito	Espritfeder	Pluma Mente	정신력날개	精神之羽	精神之羽
+570	しゅんぱつのハネ	Swift Wing	Aile Sprint	Piumreazione	Flinkfeder	Pluma Ímpetu	순발력날개	瞬发之羽	瞬發之羽
+571	きれいなハネ	Pretty Wing	Jolie Aile	Piumabella	Prachtfeder	Pluma Bella	고운날개	美丽之羽	美麗之羽
+572	ふたのカセキ	Cover Fossil	Fossile Plaque	Fossiltappo	Schildfossil	Fósil Tapa	덮개화석	背盖化石	背蓋化石
+573	はねのカセキ	Plume Fossil	Fossile Plume	Fossilpiuma	Federfossil	Fósil Pluma	날개화석	羽毛化石	羽毛化石
+574	リバティチケット	Liberty Pass	Passe Liberté	Liberticket	Gartenpass	Tarjeta Libertad	리버티티켓	自由船票	自由船票
+575	デルダマ	Pass Orb	Offrisphère	Passabilia	Transferorb	Regalosfera	딜구슬	释出之玉	釋出之玉
+576	ドリームボール	Dream Ball	Rêve Ball	Dream Ball	Traumball	Ensueño Ball	드림볼	梦境球	夢境球
+577	ポケじゃらし	Poké Toy	Poké Plumet	Pokégingillo	Pokéwedel	Pokéseñuelo	포켓풀	宝可尾草	寶可尾草
+578	グッズケース	Prop Case	Boîte Parure	Portagadget	Deko-Box	Neceser	굿즈케이스	物品箱	物品箱
+579	ドラゴンのホネ	Dragon Skull	Crâne Dragon	Teschio	Drakoschädel	Cráneo Dragón	드래곤의뼈	龙之骨	龍之骨
+580	かおるキノコ	Balm Mushroom	Champi Suave	Profumfungo	Duftpilz	Seta Aroma	향기버섯	芳香蘑菇	芳香蘑菇
+581	でかいきんのたま	Big Nugget	Maxi Pépite	Granpepita	Riesennugget	Maxipepita	큰금구슬	巨大金珠	巨大金珠
+582	おだんごしんじゅ	Pearl String	Perle Triple	Trittiperla	Triperle	Sarta Perlas	경단진주	丸子珍珠	丸子珍珠
+583	すいせいのかけら	Comet Shard	Morceau Comète	Pezzo Cometa	Kometstück	Fragmento Cometa	혜성조각	彗星碎片	彗星碎片
+584	こだいのどうか	Relic Copper	Vieux Sou	Soldantico	Alter Heller	Real Cobre	고대의동화	古代铜币	古代銅幣
+585	こだいのぎんか	Relic Silver	Vieil Écu	Ducatantico	Alter Taler	Real Plata	고대의은화	古代银币	古代銀幣
+586	こだいのきんか	Relic Gold	Vieux Ducat	Doblonantico	Alter Dukat	Real Oro	고대의금화	古代金币	古代金幣
+587	こだいのツボ	Relic Vase	Vieux Vase	Vasantico	Alte Vase	Ánfora	고대의항아리	古代之壶	古代之壺
+588	こだいのうでわ	Relic Band	Vieux Bijou	Bracciantico	Alter Reif	Brazal	고대의팔찌	古代手镯	古代手鐲
+589	こだいのせきぞう	Relic Statue	Vieux Santon	Statuantica	Alte Statue	Efigie Antigua	고대의석상	古代石像	古代石像
+590	こだいのおうかん	Relic Crown	Vieux Tortil	Coronantica	Alte Krone	Corona Antigua	고대의왕관	古代王冠	古代王冠
+591	ヒウンアイス	Casteliacone	Glace Volute	Conostropoli	Stratos-Eis	Porcehelado	구름아이스	飞云冰淇淋	飛雲冰淇淋
+592	クリティカット２	Dire Hit 2	Muscle 2	Supercolpo 2	Angriffplus2	Directo 2	크리티컬커터2	要害攻击２	要害攻擊２
+593	スピーダー２	X Speed 2	Vitesse 2	Velocità X-2	X-Tempo2	Velocidad X 2	스피드업2	速度强化２	速度強化２
+594	ＳＰアップ２	X Sp. Atk 2	Atq. Spé. 2	Att. Sp. X-2	X-Spezial2	Especial X 2	스페셜업2	特攻强化２	特攻強化２
+595	ＳＰガード２	X Sp. Def 2	Déf. Spé. 2	Dif. Spec. X-2	X-Sp.-Vert.2	Def. Esp. X 2	스페셜가드2	特防强化２	特防強化２
+596	ディフェンダー２	X Defense 2	Défense 2	Difesa X-2	X-Abwehr2	Defensa X 2	디펜드업2	防御强化２	防禦強化２
+597	プラスパワー２	X Attack 2	Attaque 2	Attacco X-2	X-Angriff2	Ataque X 2	플러스파워2	力量强化２	力量強化２
+598	ヨクアタール２	X Accuracy 2	Précision 2	Precisione X-2	X-Treffer2	Precisión X 2	잘-맞히기2	命中强化２	命中強化２
+599	スピーダー３	X Speed 3	Vitesse 3	Velocità X-3	X-Tempo3	Velocidad X 3	스피드업3	速度强化３	速度強化３
+600	ＳＰアップ３	X Sp. Atk 3	Atq. Spé. 3	Att. Sp. X-3	X-Spezial3	Especial X 3	스페셜업3	特攻强化３	特攻強化３
+601	ＳＰガード３	X Sp. Def 3	Déf. Spé. 3	Dif. Spec. X-3	X-Sp.-Vert.3	Def. Esp. X 3	스페셜가드3	特防强化３	特防強化３
+602	ディフェンダー３	X Defense 3	Défense 3	Difesa X-3	X-Abwehr3	Defensa X 3	디펜드업3	防御强化３	防禦強化３
+603	プラスパワー３	X Attack 3	Attaque 3	Attacco X-3	X-Angriff3	Ataque X 3	플러스파워3	力量强化３	力量強化３
+604	ヨクアタール３	X Accuracy 3	Précision 3	Precisione X-3	X-Treffer3	Precisión X 3	잘-맞히기3	命中强化３	命中強化３
+605	スピーダー６	X Speed 6	Vitesse 6	Velocità X-6	X-Tempo6	Velocidad X 6	스피드업6	速度强化６	速度強化６
+606	ＳＰアップ６	X Sp. Atk 6	Atq. Spé. 6	Att. Sp. X-6	X-Spezial6	Especial X 6	스페셜업6	特攻强化６	特攻強化６
+607	ＳＰガード６	X Sp. Def 6	Déf. Spé. 6	Dif. Spec. X-6	X-Sp.-Vert.6	Def. Esp. X 6	스페셜가드6	特防强化６	特防強化６
+608	ディフェンダー６	X Defense 6	Défense 6	Difesa X-6	X-Abwehr6	Defensa X 6	디펜드업6	防御强化６	防禦強化６
+609	プラスパワー６	X Attack 6	Attaque 6	Attacco X-6	X-Angriff6	Ataque X 6	플러스파워6	力量强化６	力量強化６
+610	ヨクアタール６	X Accuracy 6	Précision 6	Precisione X-6	X-Treffer6	Precisión X 6	잘-맞히기6	命中强化６	命中強化６
+611	スキルコール	Ability Urge	Appel Talent	Chiamabilità	Fähigk.-Appell	Habilitador	스킬콜	？？？	？？？
+612	アイテムドロップ	Item Drop	Jette Objet	Lascioggetto	Itemabwurf	Tiraobjeto	아이템드롭	？？？	？？？
+613	アイテムコール	Item Urge	Appel Objet	Chiamoggetto	Itemappell	Activaobjeto	아이템콜	？？？	？？？
+614	フラットコール	Reset Urge	Réamorçage	Ripristino	Umkehrappell	Quitaestado	플랫콜	？？？	？？？
+615	クリティカット３	Dire Hit 3	Muscle 3	Supercolpo 3	Angriffplus3	Directo 3	크리티컬커터3	要害攻击３	要害攻擊３
+616	ライトストーン	Light Stone	Galet Blanc	Chiarolite	Lichtstein	Orbe Claro	라이트스톤	光明石	光明石
+617	ダークストーン	Dark Stone	Galet Noir	Scurolite	Dunkelstein	Orbe Oscuro	다크스톤	黑暗石	黑闇石
+618	わざマシン９３	TM93	CT93	MT93	TM93	MT93	기술머신93	招式学习器９３	招式學習器９３
+619	わざマシン９４	TM94	CT94	MT94	TM94	MT94	기술머신94	招式学习器９４	招式學習器９４
+620	わざマシン９５	TM95	CT95	MT95	TM95	MT95	기술머신95	招式学习器９５	招式學習器９５
+621	ライブキャスター	Xtransceiver	Vokit	Interpoké	Viso-Caster	Videomisor	라이브캐스터	即时通讯器	即時通訊器
+623	はいたつぶつ１	Gram 1	Courrier 1	Missiva 1	Briefpost 1	Envío 1	배달물1	配送物品１	配送物品１
+624	はいたつぶつ２	Gram 2	Courrier 2	Missiva 2	Briefpost 2	Envío 2	배달물2	配送物品２	配送物品２
+625	はいたつぶつ３	Gram 3	Courrier 3	Missiva 3	Briefpost 3	Envío 3	배달물3	配送物品３	配送物品３
+626	ライブキャスター	Xtransceiver	Vokit	Interpoké	Viso-Caster	Videomisor	라이브캐스터	即时通讯器	即時通訊器
+627	メダルボックス	Medal Box	Boîte Médailles	Box Premi	Medaillenbox	Caja Insignias	메달박스	奖牌盒	獎牌盒
+628	いでんしのくさび	DNA Splicers	Pointeau ADN	Cuneo DNA	DNS-Keil	Punta ADN	유전자쐐기	基因之楔	基因之楔
+629	いでんしのくさび	DNA Splicers	Pointeau ADN	Cuneo DNA	DNS-Keil	Punta ADN	유전자쐐기	基因之楔	基因之楔
+630	きょかしょう	Permit	Permis	Permesso	Genehmigung	Pase	허가증	许可证	許可證
+631	まるいおまもり	Oval Charm	Charme Ovale	Ovamuleto	Ovalpin	Amuleto Oval	둥근부적	圆形护符	圓形護符
+632	ひかるおまもり	Shiny Charm	Charme Chroma	Cromamuleto	Schillerpin	Amuleto Iris	빛나는부적	闪耀护符	閃耀護符
+633	プラズマカード	Plasma Card	Carte Plasma	Carta Plasma	Plasmakarte	Tarjeta Plasma	플라스마카드	等离子卡	等離子卡
+634	よごれたハンカチ	Grubby Hanky	Mouchoir Sale	Pezza Sporca	Schnäuztuch	Pañuelo Sucio	더러운손수건	脏手帕	髒手帕
+635	アクロママシーン	Colress Machine	Nikodule	Acrocongegno	Achromat	Acromáquina	아크로마머신	阿克罗玛机器	阿克羅瑪機器
+636	わすれもの	Dropped Item	Objet Trouvé	Oggetto perso	Fundsache	Objeto Perdido	잊은물건	遗忘物	遺忘物
+637	わすれもの	Dropped Item	Objet Trouvé	Oggetto perso	Fundsache	Objeto Perdido	잊은물건	遗忘物	遺忘物
+638	うつしかがみ	Reveal Glass	Miroir Sacré	Verispecchio	Wahrspiegel	Espejo Veraz	비추는거울	现形镜	現形鏡
+639	じゃくてんほけん	Weakness Policy	Vulné-Assurance	Vulneropolizza	Schwächenschutz	Seguro Debilidad	약점보험	弱点保险	弱點保險
+640	とつげきチョッキ	Assault Vest	Veste de Combat	Corpetto assalto	Offensivweste	Chaleco Asalto	돌격조끼	突击背心	突擊背心
+641	ホロキャスター	Holo Caster	Holokit	Holovox	Holo-Log	Holomisor	홀로캐스터	全息影像通讯器	全像投影通訊器
+642	はかせのてがみ	Prof’s Letter	Lettre du Prof	Lettera del Prof	Brief vom Prof	Carta Profesor	박사의편지	博士的信	博士的信
+643	ローラースケート	Roller Skates	Rollers	Pattini	Rollerskates	Patines	롤러스케이트	轮滑鞋	溜冰鞋
+644	せいれいプレート	Pixie Plate	Plaque Pixie	Lastraspiritello	Feentafel	Tabla Duende	정령플레이트	妖精石板	妖精石板
+645	とくせいカプセル	Ability Capsule	Pilule Talent	Capsula abilità	Fähigk.-Kapsel	Cáps. Habilidad	특성캡슐	特性胶囊	特性膠囊
+646	ホイップポップ	Whipped Dream	Chantibonbon	Dolcespuma	Sahnehäubchen	Dulce de Nata	휘핑팝	泡沫奶油	泡沫奶油
+647	においぶくろ	Sachet	Sachet Senteur	Bustina aromi	Duftbeutel	Saquito Fragante	향기주머니	香袋	香袋
+648	ひかりごけ	Luminous Moss	Lichen Lumineux	Muschioluce	Leuchtmoos	Musgo Brillante	빛이끼	光苔	光苔
+649	ゆきだま	Snowball	Boule de Neige	Palla di neve	Schneeball	Bola de Nieve	눈덩이	雪球	雪球
+650	ぼうじんゴーグル	Safety Goggles	Lunettes Filtre	Visierantisabbia	Schutzbrille	Gafa Protectora	방진고글	防尘护目镜	防塵護目鏡
+651	ポケモンのふえ	Poké Flute	Pokéflûte	Poké Flauto	Pokéflöte	Poké Flauta	포켓몬피리	宝可梦之笛	寶可夢之笛
+652	たわわこやし	Rich Mulch	Fertibondance	Fertilflorido	Sprießmulch	Abono Fértil	주렁주렁비료	硕果肥	碩果肥
+653	びっくりこやし	Surprise Mulch	Fertistantané	Fertilsorpresa	Wundermulch	Abono Sorpresa	깜놀비료	吃惊肥	吃驚肥
+654	ぐんぐんこやし	Boost Mulch	Fertibérance	Fertilcopioso	Wuchermulch	Abono Fructífero	부쩍부쩍비료	劲劲肥	勁勁肥
+655	とんでもこやし	Amaze Mulch	Fertiprodige	Fertilprodigio	Ultramulch	Abono Insólito	기절초풍비료	超效肥	超效肥
+656	ゲンガナイト	Gengarite	Ectoplasmite	Gengarite	Gengarnit	Gengarita	팬텀나이트	耿鬼进化石	耿鬼進化石
+657	サーナイトナイト	Gardevoirite	Gardevoirite	Gardevoirite	Guardevoirnit	Gardevoirita	가디안나이트	沙奈朵进化石	沙奈朵進化石
+658	デンリュウナイト	Ampharosite	Pharampite	Ampharosite	Ampharosnit	Ampharosita	전룡나이트	电龙进化石	電龍進化石
+659	フシギバナイト	Venusaurite	Florizarrite	Venusaurite	Bisaflornit	Venusaurita	이상해꽃나이트	妙蛙花进化石	妙蛙花進化石
+660	リザードナイトＸ	Charizardite X	Dracaufite X	Charizardite X	Gluraknit X	Charizardita X	리자몽나이트X	喷火龙进化石Ｘ	噴火龍進化石Ｘ
+661	カメックスナイト	Blastoisinite	Tortankite	Blastoisite	Turtoknit	Blastoisita	거북왕나이트	水箭龟进化石	水箭龜進化石
+662	ミュウツナイトＸ	Mewtwonite X	Mewtwoïte X	Mewtwoite X	Mewtunit X	Mewtwoita X	뮤츠나이트X	超梦进化石Ｘ	超夢進化石Ｘ
+663	ミュウツナイトＹ	Mewtwonite Y	Mewtwoïte Y	Mewtwoite Y	Mewtunit Y	Mewtwoita Y	뮤츠나이트Y	超梦进化石Ｙ	超夢進化石Ｙ
+664	バシャーモナイト	Blazikenite	Braségalite	Blazikenite	Lohgocknit	Blazikenita	번치코나이트	火焰鸡进化石	火焰雞進化石
+665	チャーレムナイト	Medichamite	Charminite	Medichamite	Meditalisnit	Medichamita	요가램나이트	恰雷姆进化石	恰雷姆進化石
+666	ヘルガナイト	Houndoominite	Démolossite	Houndoomite	Hundemonit	Houndoomita	헬가나이트	黑鲁加进化石	黑魯加進化石
+667	ボスゴドラナイト	Aggronite	Galekingite	Aggronite	Stollossnit	Aggronita	보스로라나이트	波士可多拉进化石	波士可多拉進化石
+668	ジュペッタナイト	Banettite	Branettite	Banettite	Banetteonit	Banettita	다크펫나이트	诅咒娃娃进化石	詛咒娃娃進化石
+669	バンギラスナイト	Tyranitarite	Tyranocivite	Tyranitarite	Despotarnit	Tyranitarita	마기라스나이트	班基拉斯进化石	班基拉斯進化石
+670	ハッサムナイト	Scizorite	Cizayoxite	Scizorite	Scheroxnit	Scizorita	핫삼나이트	巨钳螳螂进化石	巨鉗螳螂進化石
+671	カイロスナイト	Pinsirite	Scarabruite	Pinsirite	Pinsirnit	Pinsirita	쁘사이저나이트	凯罗斯进化石	凱羅斯進化石
+672	プテラナイト	Aerodactylite	Ptéraïte	Aerodactylite	Aerodactylonit	Aerodactylita	프테라나이트	化石翼龙进化石	化石翼龍進化石
+673	ルカリオナイト	Lucarionite	Lucarite	Lucarite	Lucarionit	Lucarita	루카리오나이트	路卡利欧进化石	路卡利歐進化石
+674	ユキノオナイト	Abomasite	Blizzarite	Abomasnowite	Rexblisarnit	Abomasnowita	눈설왕나이트	暴雪王进化石	暴雪王進化石
+675	ガルーラナイト	Kangaskhanite	Kangourexite	Kangaskhanite	Kangamanit	Kangaskhanita	캥카나이트	袋兽进化石	袋獸進化石
+676	ギャラドスナイト	Gyaradosite	Léviatorite	Gyaradosite	Garadosnit	Gyaradosita	갸라도스나이트	暴鲤龙进化石	暴鯉龍進化石
+677	アブソルナイト	Absolite	Absolite	Absolite	Absolnit	Absolita	앱솔나이트	阿勃梭鲁进化石	阿勃梭魯進化石
+678	リザードナイトＹ	Charizardite Y	Dracaufite Y	Charizardite Y	Gluraknit Y	Charizardita Y	리자몽나이트Y	喷火龙进化石Ｙ	噴火龍進化石Ｙ
+679	フーディナイト	Alakazite	Alakazamite	Alakazamite	Simsalanit	Alakazamita	후디나이트	胡地进化石	胡地進化石
+680	ヘラクロスナイト	Heracronite	Scarhinoïte	Heracrossite	Skarabornit	Heracrossita	헤라크로스나이트	赫拉克罗斯进化石	赫拉克羅斯進化石
+681	クチートナイト	Mawilite	Mysdibulite	Mawilite	Flunkifernit	Mawilita	입치트나이트	大嘴娃进化石	大嘴娃進化石
+682	ライボルトナイト	Manectite	Élecsprintite	Manectricite	Voltensonit	Manectricita	썬더볼트나이트	雷电兽进化石	雷電獸進化石
+683	ガブリアスナイト	Garchompite	Carchacrokite	Garchompite	Knakracknit	Garchompita	한카리아스나이트	烈咬陆鲨进化石	烈咬陸鯊進化石
+684	ラティアスナイト	Latiasite	Latiasite	Latiasite	Latiasnit	Latiasita	라티아스나이트	拉帝亚斯进化石	拉帝亞斯進化石
+685	ラティオスナイト	Latiosite	Latiosite	Latiosite	Latiosnit	Latiosita	라티오스나이트	拉帝欧斯进化石	拉帝歐斯進化石
+686	ロゼルのみ	Roseli Berry	Baie Selro	Baccarcadè	Hibisbeere	Baya Hibis	로셀열매	洛玫果	洛玫果
+687	アッキのみ	Kee Berry	Baie Éka	Baccalighia	Akibeere	Baya Biglia	악키열매	亚开果	亞開果
+688	タラプのみ	Maranga Berry	Baie Rangma	Baccapane	Tarabeere	Baya Maranga	타라프열매	香罗果	香羅果
+689	ハスボーじょうろ	Sprinklotad	Nénurrosoir	Irrigalotad	Loturzelkanne	Lotadgadera	연꽃몬물뿌리개	莲叶童子喷壶	蓮葉童子噴壺
+690	わざマシン９６	TM96	CT96	MT96	TM96	MT96	기술머신96	招式学习器９６	招式學習器９６
+691	わざマシン９７	TM97	CT97	MT97	TM97	MT97	기술머신97	招式学习器９７	招式學習器９７
+692	わざマシン９８	TM98	CT98	MT98	TM98	MT98	기술머신98	招式学习器９８	招式學習器９８
+693	わざマシン９９	TM99	CT99	MT99	TM99	MT99	기술머신99	招式学习器９９	招式學習器９９
+694	わざマシン１００	TM100	CT100	MT100	TM100	MT100	기술머신100	招式学习器１００	招式學習器１００
+695	はつでんしょパス	Power Plant Pass	Passe Centrale	Pass Centrale	Kraftwerks-Pass	Pase Central	발전소패스	发电厂通行证	發電廠通行證
+696	メガリング	Mega Ring	Méga-Anneau	Megacerchio	Mega-Ring	Mega-Aro	메가링	超级环	超級環
+697	すごそうないし	Intriguing Stone	Pierre Insolite	Sasso suggestivo	Kurioser Stein	Piedra Insólita	대단할듯한돌	似珍石	似珍石
+698	ありふれたいし	Common Stone	Pierre Ordinaire	Sasso qualsiasi	Normaler Stein	Piedra Común	흔해빠진돌	常见石	常見石
+699	バーゲンチケット	Discount Coupon	Bon Réduction	Buono sconto	Rabattmarke	Vale Descuento	바겐세일티켓	折价券	折價券
+700	エレベータのキー	Elevator Key	Clé Ascenseur	Chiave ascensore	Liftschlüssel	Llave Ascensor	엘리베이터키	电梯钥匙	電梯鑰匙
+701	ＴＭＶパス	TMV Pass	Passe TMV	Pass TMV	TMV-Pass	Abono del TMV	TMV패스	ＴＭＶ自由票	ＴＭＶ自由票
+702	カロスエンブレム	Honor of Kalos	Insigne de Kalos	Emblema di Kalos	Kalos-Emblem	Emblema Kalos	칼로스엠블럼	卡洛斯勋章	卡洛斯勳章
+703	たんけんこころえ	Adventure Rules	ABC Aventure	Guida Avventura	Abenteuerfibel	Guía de Máximas	탐험수칙	探险心得	探險心得
+704	ふしぎなおきもの	Strange Souvenir	Bibelot Bizarre	Strano ninnolo	Skurriloskulptur	Estatuilla Rara	이상한장식품	神秘摆设	神秘擺設
+705	レンズケース	Lens Case	Boîte Lentilles	Portalenti	Linsenetui	Portalentillas	렌즈케이스	隐形眼镜盒	隱形眼鏡盒
+706	コスメポーチ	Makeup Bag	Trousse Beauté	Trousse	Kosmetiketui	Kit Maquillaje	코스메틱파우치	化妆包	化妝包
+707	いしょうトランク	Travel Trunk	Malle Penderie	Baule per abiti	Kleiderkoffer	Maleta	의상트렁크	衣物箱	衣物箱
+708	ミアレガレット	Lumiose Galette	Galette Illumis	Pan di Lumi	Illumina-Galette	Crêpe Luminalia	미르갈레트	密阿雷格雷派饼	密阿雷格雷派餅
+709	シャラサブレ	Shalour Sable	Sablé Yantreizh	Yantafrollino	Yantara-Sablé	Galleta Yantra	사라사블레	娑罗沙布蕾	娑羅沙布蕾
+710	アゴのカセキ	Jaw Fossil	Fossile Mâchoire	Fossilmascella	Kieferfossil	Fósil Mandíbula	턱화석	颚之化石	顎之化石
+711	ヒレのカセキ	Sail Fossil	Fossile Nageoire	Fossilpinna	Flossenfossil	Fósil Aleta	지느러미화석	鳍之化石	鰭之化石
+712	ハンサムチケット	Looker Ticket	Ticket Beladonis	Carta Bellocchio	LeBelle-Ticket	Boleto Handsome	핸섬티켓	帅哥券	帥哥券
+713	じてんしゃ	Bike	Bicyclette	Bicicletta	Fahrrad	Bici	자전거	自行车	自行車
+714	ホロキャスター	Holo Caster	Holokit	Holovox	Holo-Log	Holomisor	홀로캐스터	全息影像通讯器	全像投影通訊器
+715	ようせいジュエル	Fairy Gem	Joyau Fée	Bijoufolletto	Feenjuwel	Gema Hada	페어리주얼	妖精宝石	妖精寶石
+716	メガチャーム	Mega Charm	Méga-Charme	Megaciondolo	Megaillon	Megacolgante	메가참	超级坠饰	超級墜飾
+717	メガグローブ	Mega Glove	Méga-Gant	Megaguanto	Mega-Handschuh	Megaguante	메가글러브	超级手套	超級手套
+718	マッハじてんしゃ	Mach Bike	Vélo de Course	Bici da corsa	Eilrad	Bici de Carreras	마하자전거	音速自行车	音速自行車
+719	ダートじてんしゃ	Acro Bike	Vélo Cross	Bici da cross	Kunstrad	Bici Acrobática	더트자전거	越野自行车	越野自行車
+720	ホエルコじょうろ	Wailmer Pail	Wailmerrosoir	Vaso Wailmer	Wailmerkanne	Wailmegadera	고래왕자물뿌리개	吼吼鲸喷壶	吼吼鯨噴壺
+721	デボンのにもつ	Devon Parts	Pack Devon	Merce Devon	Devon-Waren	Piezas Devon	데봉화물	得文的物品	得文的物品
+722	はいぶくろ	Soot Sack	Sac à Suie	Sacco cenere	Aschetasche	Saco Hollín	재주머니	集灰袋	集灰袋
+723	ちかのカギ	Basement Key	Clé Sous-Sol	Chiave sotterr.	Kelleröffner	Llave del Sótano	지하열쇠	地下钥匙	地下鑰匙
+724	ポロックキット	Pokéblock Kit	Kit Pokébloc	Kit Pokémelle	Pokériegel-Set	Kit de Pokécubos	포켓몬스넥키트	宝可方块套装	寶可方塊組合
+725	ダイゴへのてがみ	Letter	Lettre à Pierre	Lettera	Brief an Troy	Carta a Máximo	성호에게줄편지	给大吾的信	給大吾的信
+726	むげんのチケット	Eon Ticket	Passe Éon	Biglietto Eone	Äon-Ticket	Ticket Eón	무한티켓	无限船票	無限船票
+727	たんちき	Scanner	Scanner	Scanner	Scanner	Escáner	탐지기	探测器	探測器
+728	ゴーゴーゴーグル	Go-Goggles	Lunettes Sable	Occhialoni	Wüstenglas	Gafas Aislantes	고고고글	ＧＯＧＯ护目镜	ＧＯＧＯ護目鏡
+729	いんせき	Meteorite	Météorite	Meteorite	Meteorit	Meteorito	운석	陨石	隕石
+730	１ごうしつのカギ	Key to Room 1	Clé Salle 1	Chiave stanza 1	R1-Schlüssel	Ll. Habitación 1	1호실열쇠	１号客房的钥匙	１號客房的鑰匙
+731	２ごうしつのカギ	Key to Room 2	Clé Salle 2	Chiave stanza 2	R2-Schlüssel	Ll. Habitación 2	2호실열쇠	２号客房的钥匙	２號客房的鑰匙
+732	４ごうしつのカギ	Key to Room 4	Clé Salle 4	Chiave stanza 4	R4-Schlüssel	Ll. Habitación 4	4호실열쇠	４号客房的钥匙	４號客房的鑰匙
+733	６ごうしつのカギ	Key to Room 6	Clé Salle 6	Chiave stanza 6	R6-Schlüssel	Ll. Habitación 6	6호실열쇠	６号客房的钥匙	６號客房的鑰匙
+734	そうこのカギ	Storage Key	Clé Stockage	Chiave magazzino	Lagerschlüssel	Llave Almacén	창고열쇠	仓库钥匙	倉庫鑰匙
+735	デボンスコープ	Devon Scope	Devon Scope	Devonscopio	Devon-Scope	Detector Devon	데봉스코프	得文侦测镜	得文偵測鏡
+736	ふねのチケット	S.S. Ticket	Passe Bateau	Biglietto Nave	Bootsticket	Ticket Barco	승선티켓	船票	船票
+737	ひでんマシン０７	HM07	CS07	MN07	VM07	MO07	비전머신07	秘传学习器０７	秘傳學習器０７
+738	デボンボンベ	Devon Scuba Gear	Plongeur Devon	Maschera Devon	Devon-Atemgerät	Bombona Devon	데봉봄베	得文潜水装备	得文潛水裝備
+739	ライブスーツ	Contest Costume	Costume Live	Costume Live	Live-Anzug	Traje de Gala	라이브슈트	演出礼服	演出禮服
+740	ライブドレス	Contest Costume	Robe Live	Vestito Live	Live-Kleid	Vestido de Gala	라이브드레스	演出礼裙	演出禮裙
+741	マグマスーツ	Magma Suit	Scaph. Magma	Tuta Magma	Magma-Anzug	Traje Magma	마그마슈트	熔岩装	熔岩裝
+742	アクアスーツ	Aqua Suit	Scaphandre Aqua	Tuta Idro	Aqua-Anzug	Traje Aqua	아쿠아슈트	海洋装	海洋裝
+743	ペアチケット	Pair of Tickets	Ticket Duo	Biglietto doppio	Zweierticket	Entrada para dos	페어티켓	双人票	雙人票
+744	メガバングル	Mega Bracelet	Méga-Bracelet	Megabracciale	Mega-Armreif	Megapulsera	메가뱅글	超级手镯	超級手鐲
+745	メガペンダント	Mega Pendant	Méga-Pendentif	Megapendente	Mega-Anhänger	Megacollar	메가펜던트	超级吊坠	超級吊墜
+746	メガメガネ	Mega Glasses	Méga-Lunettes	Megaocchiali	Mega-Brille	Megagafas	메가글라스	超级眼镜	超級眼鏡
+747	メガイカリ	Mega Anchor	Méga-Ancre	Megaancora	Mega-Anker	Megaancla	메가앵커	超级船锚	超級船錨
+748	メガラペルピン	Mega Stickpin	Méga-Pin’s	Megaspilla	Mega-Anstecker	Megabroche	메가라펠핀	超级领针	超級領針
+749	メガティアラ	Mega Tiara	Méga-Tiare	Megadiadema	Mega-Diadem	Megatiara	메가티아러	超级头冠	超級頭冠
+750	メガアンクレット	Mega Anklet	Méga-Grève	Megagambale	Mega-Beinreif	Megatobillera	메가앵클릿	超级脚镯	超級腳鐲
+751	いんせき	Meteorite	Météorite	Meteorite	Meteorit	Meteorito	운석	陨石	隕石
+752	ラグラージナイト	Swampertite	Laggronite	Swampertite	Sumpexnit	Swampertita	대짱이나이트	巨沼怪进化石	巨沼怪進化石
+753	ジュカインナイト	Sceptilite	Jungkite	Sceptilite	Gewaldronit	Sceptilita	나무킹나이트	蜥蜴王进化石	蜥蜴王進化石
+754	ヤミラミナイト	Sablenite	Ténéfixite	Sableyite	Zobirisnit	Sableynita	깜까미나이트	勾魂眼进化石	勾魂眼進化石
+755	チルタリスナイト	Altarianite	Altarite	Altarite	Altarianit	Altarianita	파비코리나이트	七夕青鸟进化石	七夕青鳥進化石
+756	エルレイドナイト	Galladite	Gallamite	Galladite	Galagladinit	Galladita	엘레이드나이트	艾路雷朵进化石	艾路雷朵進化石
+757	タブンネナイト	Audinite	Nanméouïte	Audinite	Ohrdochnit	Audinita	다부니나이트	差不多娃娃进化石	差不多娃娃進化石
+758	メタグロスナイト	Metagrossite	Métalossite	Metagrossite	Metagrossnit	Metagrossita	메타그로스나이트	巨金怪进化石	巨金怪進化石
+759	サメハダナイト	Sharpedonite	Sharpedite	Sharpedite	Tohaidonit	Sharpedonita	샤크니아나이트	巨牙鲨进化石	巨牙鯊進化石
+760	ヤドランナイト	Slowbronite	Flagadossite	Slowbroite	Lahmusnit	Slowbronita	야도란나이트	呆壳兽进化石	呆殼獸進化石
+761	ハガネールナイト	Steelixite	Steelixite	Steelixite	Stahlosnit	Steelixita	강철톤나이트	大钢蛇进化石	大鋼蛇進化石
+762	ピジョットナイト	Pidgeotite	Roucarnagite	Pidgeotite	Taubossnit	Pidgeotita	피죤투나이트	大比鸟进化石	大比鳥進化石
+763	オニゴーリナイト	Glalitite	Oniglalite	Glalite	Firnontornit	Glalita	얼음귀신나이트	冰鬼护进化石	冰鬼護進化石
+764	ディアンシナイト	Diancite	Diancite	Diancite	Diancienit	Diancita	디안시나이트	蒂安希进化石	蒂安希進化石
+765	いましめのツボ	Prison Bottle	Vase Scellé	Vaso del vincolo	Banngefäß	Vasija Castigo	굴레의항아리	惩戒之壶	懲戒之壺
+766	メガブレス	Mega Cuff	Méga-Manchette	Megapolsiera	Mega-Armband	Megabrazalete	메가블레스	超级护腕	超級護腕
+767	バクーダナイト	Cameruptite	Caméruptite	Cameruptite	Cameruptnit	Cameruptita	폭타나이트	喷火驼进化石	噴火駝進化石
+768	ミミロップナイト	Lopunnite	Lockpinite	Lopunnite	Schlapornit	Lopunnita	이어롭나이트	长耳兔进化石	長耳兔進化石
+769	ボーマンダナイト	Salamencite	Drattakite	Salamencite	Brutalandanit	Salamencita	보만다나이트	暴飞龙进化石	暴飛龍進化石
+770	スピアナイト	Beedrillite	Dardargnite	Beedrillite	Bibornit	Beedrillita	독침붕나이트	大针蜂进化石	大針蜂進化石
+771	いんせき	Meteorite	Météorite	Meteorite	Meteorit	Meteorito	운석	陨石	隕石
+772	いんせき	Meteorite	Météorite	Meteorite	Meteorit	Meteorito	운석	陨石	隕石
+773	キーストーン	Key Stone	Gemme Sésame	Pietrachiave	Schlüssel-Stein	Piedra Activadora	키스톤	钥石	鑰石
+774	いんせきのかけら	Meteorite Shard	Éclat Météorite	Framm. meteorite	Meteoritenstück	Frag. Meteorito	운석조각	陨石碎片	隕石碎片
+775	むげんのふえ	Eon Flute	Flûte Éon	Flauto Eone	Äon-Flöte	Flauta Eón	무한의피리	无限之笛	無限之笛
+776	ノーマルＺ	Normalium Z	Normazélite	Normium Z	Normium Z	Normastal Z	노말Z	一般Ｚ	一般Ｚ
+777	ホノオＺ	Firium Z	Pyrozélite	Pirium Z	Pyrium Z	Pirostal Z	불꽃Z	火Ｚ	火Ｚ
+778	ミズＺ	Waterium Z	Aquazélite	Idrium Z	Aquium Z	Hidrostal Z	물Z	水Ｚ	水Ｚ
+779	デンキＺ	Electrium Z	Voltazélite	Electrium Z	Voltium Z	Electrostal Z	전기Z	电Ｚ	電Ｚ
+780	クサＺ	Grassium Z	Florazélite	Herbium Z	Botanium Z	Fitostal Z	풀Z	草Ｚ	草Ｚ
+781	コオリＺ	Icium Z	Cryozélite	Glacium Z	Glacium Z	Criostal Z	얼음Z	冰Ｚ	冰Ｚ
+782	カクトウＺ	Fightinium Z	Combazélite	Luctium Z	Battalium Z	Lizastal Z	격투Z	格斗Ｚ	格鬥Ｚ
+783	ドクＺ	Poisonium Z	Toxizélite	Venenium Z	Toxium Z	Toxistal Z	독Z	毒Ｚ	毒Ｚ
+784	ジメンＺ	Groundium Z	Terrazélite	Terrium Z	Terrium Z	Geostal Z	땅Z	地面Ｚ	地面Ｚ
+785	ヒコウＺ	Flyinium Z	Aérozélite	Volantium Z	Aerium Z	Aerostal Z	비행Z	飞行Ｚ	飛行Ｚ
+786	エスパーＺ	Psychium Z	Psychézélite	Psichium Z	Psium Z	Psicostal Z	에스퍼Z	超能力Ｚ	超能力Ｚ
+787	ムシＺ	Buginium Z	Insectozélite	Insectium Z	Insectium Z	Insectostal Z	벌레Z	虫Ｚ	蟲Ｚ
+788	イワＺ	Rockium Z	Rocazélite	Petrium Z	Petrium Z	Litostal Z	바위Z	岩石Ｚ	岩石Ｚ
+789	ゴーストＺ	Ghostium Z	Spectrozélite	Spectrium Z	Phantomium Z	Espectrostal Z	고스트Z	幽灵Ｚ	幽靈Ｚ
+790	ドラゴンＺ	Dragonium Z	Dracozélite	Draconium Z	Dracium Z	Dracostal Z	드래곤Z	龙Ｚ	龍Ｚ
+791	アクＺ	Darkinium Z	Ténébrozélite	Obscurium Z	Noctium Z	Nictostal Z	악Z	恶Ｚ	惡Ｚ
+792	ハガネＺ	Steelium Z	Métallozélite	Metallium Z	Metallium Z	Metalostal Z	강철Z	钢Ｚ	鋼Ｚ
+793	フェアリーＺ	Fairium Z	Nymphézélite	Follectium Z	Sylphium Z	Feeristal Z	페어리Z	妖精Ｚ	妖精Ｚ
+794	ピカチュウＺ	Pikanium Z	Pikazélite	Pikacium Z	Pikachium Z	Pikastal Z	피카츄Z	皮卡丘Ｚ	皮卡丘Ｚ
+795	ぎんのおうかん	Bottle Cap	Capsule d’Argent	Tappo d’argento	Silberkronkorken	Chapa Plateada	은왕관	银色王冠	銀色王冠
+796	きんのおうかん	Gold Bottle Cap	Capsule d’Or	Tappo d’oro	Goldkronkorken	Chapa Dorada	금왕관	金色王冠	金色王冠
+797	Ｚリング	Z-Ring	Bracelet Z	Cerchio Z	Z-Ring	Pulsera Z	Z링	Ｚ手环	Ｚ手環
+798	ジュナイパーＺ	Decidium Z	Archézélite	Deciduenium Z	Silvarronium Z	Dueyestal Z	모크나이퍼Z	狙射树枭Ｚ	狙射樹梟Ｚ
+799	ガオガエンＺ	Incinium Z	Félinozélite	Incineronium Z	Fuegronium Z	Incinostal Z	어흥염Z	炽焰咆哮虎Ｚ	熾焰咆哮虎Ｚ
+800	アシレーヌＺ	Primarium Z	Oratozélite	Primarinium Z	Primarenium Z	Primastal Z	누리레느Z	西狮海壬Ｚ	西獅海壬Ｚ
+801	カプＺ	Tapunium Z	Tokozélite	Tapium Z	Kapium Z	Tapistal Z	카푸Z	卡璞Ｚ	卡璞Ｚ
+802	マーシャドーＺ	Marshadium Z	Marshadozélite	Marshadium Z	Marshadownium Z	Marshastal Z	마샤도Z	玛夏多Ｚ	瑪夏多Ｚ
+803	アロライＺ	Aloraichium Z	Aloraïzélite	Aloraicium Z	A-Raichunium Z	Alo-Raistal Z	알로라이Z	阿罗雷Ｚ	阿羅雷Ｚ
+804	カビゴンＺ	Snorlium Z	Ronflézélite	Snorlactium Z	Relaxonium Z	Snorlastal Z	잠만보Z	卡比兽Ｚ	卡比獸Ｚ
+805	イーブイＺ	Eevium Z	Évolizélite	Eevium Z	Evolium Z	Eeveestal Z	이브이Z	伊布Ｚ	伊布Ｚ
+806	ミュウＺ	Mewnium Z	Mewzélite	Mewnium Z	Mewnium Z	Mewstal Z	뮤Z	梦幻Ｚ	夢幻Ｚ
+807	ノーマルＺ	Normalium Z	Normazélite	Normium Z	Normium Z	Normastal Z	노말Z	一般Ｚ	一般Ｚ
+808	ホノオＺ	Firium Z	Pyrozélite	Pirium Z	Pyrium Z	Pirostal Z	불꽃Z	火Ｚ	火Ｚ
+809	ミズＺ	Waterium Z	Aquazélite	Idrium Z	Aquium Z	Hidrostal Z	물Z	水Ｚ	水Ｚ
+810	デンキＺ	Electrium Z	Voltazélite	Electrium Z	Voltium Z	Electrostal Z	전기Z	电Ｚ	電Ｚ
+811	クサＺ	Grassium Z	Florazélite	Herbium Z	Botanium Z	Fitostal Z	풀Z	草Ｚ	草Ｚ
+812	コオリＺ	Icium Z	Cryozélite	Glacium Z	Glacium Z	Criostal Z	얼음Z	冰Ｚ	冰Ｚ
+813	カクトウＺ	Fightinium Z	Combazélite	Luctium Z	Battalium Z	Lizastal Z	격투Z	格斗Ｚ	格鬥Ｚ
+814	ドクＺ	Poisonium Z	Toxizélite	Venenium Z	Toxium Z	Toxistal Z	독Z	毒Ｚ	毒Ｚ
+815	ジメンＺ	Groundium Z	Terrazélite	Terrium Z	Terrium Z	Geostal Z	땅Z	地面Ｚ	地面Ｚ
+816	ヒコウＺ	Flyinium Z	Aérozélite	Volantium Z	Aerium Z	Aerostal Z	비행Z	飞行Ｚ	飛行Ｚ
+817	エスパーＺ	Psychium Z	Psychézélite	Psichium Z	Psium Z	Psicostal Z	에스퍼Z	超能力Ｚ	超能力Ｚ
+818	ムシＺ	Buginium Z	Insectozélite	Insectium Z	Insectium Z	Insectostal Z	벌레Z	虫Ｚ	蟲Ｚ
+819	イワＺ	Rockium Z	Rocazélite	Petrium Z	Petrium Z	Litostal Z	바위Z	岩石Ｚ	岩石Ｚ
+820	ゴーストＺ	Ghostium Z	Spectrozélite	Spectrium Z	Phantomium Z	Espectrostal Z	고스트Z	幽灵Ｚ	幽靈Ｚ
+821	ドラゴンＺ	Dragonium Z	Dracozélite	Draconium Z	Dracium Z	Dracostal Z	드래곤Z	龙Ｚ	龍Ｚ
+822	アクＺ	Darkinium Z	Ténébrozélite	Obscurium Z	Noctium Z	Nictostal Z	악Z	恶Ｚ	惡Ｚ
+823	ハガネＺ	Steelium Z	Métallozélite	Metallium Z	Metallium Z	Metalostal Z	강철Z	钢Ｚ	鋼Ｚ
+824	フェアリーＺ	Fairium Z	Nymphézélite	Follectium Z	Sylphium Z	Feeristal Z	페어리Z	妖精Ｚ	妖精Ｚ
+825	ピカチュウＺ	Pikanium Z	Pikazélite	Pikacium Z	Pikachium Z	Pikastal Z	피카츄Z	皮卡丘Ｚ	皮卡丘Ｚ
+826	ジュナイパーＺ	Decidium Z	Archézélite	Deciduenium Z	Silvarronium Z	Dueyestal Z	모크나이퍼Z	狙射树枭Ｚ	狙射樹梟Ｚ
+827	ガオガエンＺ	Incinium Z	Félinozélite	Incineronium Z	Fuegronium Z	Incinostal Z	어흥염Z	炽焰咆哮虎Ｚ	熾焰咆哮虎Ｚ
+828	アシレーヌＺ	Primarium Z	Oratozélite	Primarinium Z	Primarenium Z	Primastal Z	누리레느Z	西狮海壬Ｚ	西獅海壬Ｚ
+829	カプＺ	Tapunium Z	Tokozélite	Tapium Z	Kapium Z	Tapistal Z	카푸Z	卡璞Ｚ	卡璞Ｚ
+830	マーシャドーＺ	Marshadium Z	Marshadozélite	Marshadium Z	Marshadownium Z	Marshastal Z	마샤도Z	玛夏多Ｚ	瑪夏多Ｚ
+831	アロライＺ	Aloraichium Z	Aloraïzélite	Aloraicium Z	A-Raichunium Z	Alo-Raistal Z	알로라이Z	阿罗雷Ｚ	阿羅雷Ｚ
+832	カビゴンＺ	Snorlium Z	Ronflézélite	Snorlactium Z	Relaxonium Z	Snorlastal Z	잠만보Z	卡比兽Ｚ	卡比獸Ｚ
+833	イーブイＺ	Eevium Z	Évolizélite	Eevium Z	Evolium Z	Eeveestal Z	이브이Z	伊布Ｚ	伊布Ｚ
+834	ミュウＺ	Mewnium Z	Mewzélite	Mewnium Z	Mewnium Z	Mewstal Z	뮤Z	梦幻Ｚ	夢幻Ｚ
+835	サトピカＺ	Pikashunium Z	Pikachazélite	Ashpikacium Z	Ash-Pikachium Z	Ash-Pikastal Z	지우피카Z	智皮卡Ｚ	智皮卡Ｚ
+836	サトピカＺ	Pikashunium Z	Pikachazélite	Ashpikacium Z	Ash-Pikachium Z	Ash-Pikastal Z	지우피카Z	智皮卡Ｚ	智皮卡Ｚ
+841	ざいりょうぶくろ	Forage Bag	Sac Ingrédients	Portaingredienti	Zutatenbeutel	Zurrón	재료주머니	材料袋	材料袋
+842	つりざお	Fishing Rod	Canne à Pêche	Amo	Angel	Caña	낚싯대	钓竿	釣竿
+843	はかせのふくめん	Professor’s Mask	Masque du Prof	Maschera Prof.	Maske des Profs	Máscara Profesor	박사의복면	博士的面罩	博士的面罩
+844	フェスチケット	Festival Ticket	Festicket	Festicket	Festival-Ticket	Festicupón	페스티켓	圆庆票	圓慶票
+845	かがやくいし	Sparkling Stone	Gemme Lumière	Pietra lucente	Glitzerstein	Piedra Brillante	빛나는돌	光辉石	光輝石
+846	ビビリだま	Adrenaline Orb	Orbe Frousse	Fifasfera	Zitterorb	Nerviosfera	주눅구슬	胆怯球	膽怯球
+847	ジガルデキューブ	Zygarde Cube	Boîte Zygarde	Teca Zygarde	Zygarde-Würfel	Arca de Zygarde	지가르데큐브	基格尔德多面体	基格爾德多面體
+849	こおりのいし	Ice Stone	Pierre Glace	Pietragelo	Eisstein	Piedra Hielo	얼음의돌	冰之石	冰之石
+850	ライドギア	Ride Pager	Appel-Monture	Chiamapassaggio	PokéMobil-Funk	Buscamontura	라이드기어	骑行装置	騎行裝置
+851	ウルトラボール	Beast Ball	Ultra Ball	UC Ball	Ultraball	Ente Ball	울트라볼	究极球	究極球
+852	おおきいマラサダ	Big Malasada	Malasada Maxi	Malasada maxi	Maxi-Malasada	Malasada Maxi	큰 말라사다	大马拉萨达	大馬拉薩達
+853	くれないのミツ	Red Nectar	Nectar Rouge	Nettare rosso	Roter Nektar	Néctar Rojo	다홍꿀	朱红色花蜜	朱紅色花蜜
+854	やまぶきのミツ	Yellow Nectar	Nectar Jaune	Nettare giallo	Gelber Nektar	Néctar Amarillo	진노랑꿀	金黄色花蜜	金黃色花蜜
+855	うすもものミツ	Pink Nectar	Nectar Rose	Nettare rosa	Rosa Nektar	Néctar Rosa	연분홍꿀	桃粉色花蜜	桃粉色花蜜
+856	むらさきのミツ	Purple Nectar	Nectar Mauve	Nettare viola	Purpurner Nektar	Néctar Violeta	보라꿀	兰紫色花蜜	蘭紫色花蜜
+857	たいようのふえ	Sun Flute	Flûte du Soleil	Flauto solare	Sonnenflöte	Flauta Solar	태양의피리	太阳之笛	太陽之笛
+858	つきのふえ	Moon Flute	Flûte de la Lune	Flauto lunare	Mondflöte	Flauta Lunar	달의피리	月亮之笛	月亮之笛
+860	あやしいカード	Enigmatic Card	Message Mystère	Lettera segreta	Seltsame Karte	Nota Intrigante	괴상한카드	奇异卡片	奇異卡片
+879	グランドコート	Terrain Extender	Champ’Duit	Fissacampo	Feldbeschichtung	Cubresuelos	그라운드코트	大地膜	大地膜
+880	ぼうごパット	Protective Pads	Pare-Effet	Smorzaurti	Schutzpolster	Paracontacto	방호패드	部位护具	部位護具
+881	エレキシード	Electric Seed	Graine Électrik	Elettroseme	Elektro-Samen	Semilla Electro	일렉트릭시드	电气种子	電氣種子
+882	サイコシード	Psychic Seed	Graine Psychique	Psicoseme	Psycho-Samen	Semilla Psique	사이코시드	精神种子	精神種子
+883	ミストシード	Misty Seed	Graine Brume	Nebbiaseme	Nebel-Samen	Semilla Bruma	미스트시드	薄雾种子	薄霧種子
+884	グラスシード	Grassy Seed	Graine Herbe	Erbaseme	Gras-Samen	Semilla Hierba	그래스시드	青草种子	青草種子
+904	ファイトメモリ	Fighting Memory	ROM Combat	ROM Lotta	Kampf-Disc	Disco Lucha	파이팅메모리	战斗存储碟	戰鬥記憶碟
+905	フライングメモリ	Flying Memory	ROM Vol	ROM Volante	Flug-Disc	Disco Volador	플라잉메모리	飞翔存储碟	飛翔記憶碟
+906	ポイズンメモリ	Poison Memory	ROM Poison	ROM Veleno	Gift-Disc	Disco Veneno	포이즌메모리	毒存储碟	毒記憶碟
+907	グラウンドメモリ	Ground Memory	ROM Sol	ROM Terra	Boden-Disc	Disco Tierra	그라운드메모리	大地存储碟	大地記憶碟
+908	ロックメモリ	Rock Memory	ROM Roche	ROM Roccia	Gesteins-Disc	Disco Roca	락메모리	岩石存储碟	岩石記憶碟
+909	バグメモリ	Bug Memory	ROM Insecte	ROM Coleottero	Käfer-Disc	Disco Bicho	버그메모리	虫子存储碟	蟲子記憶碟
+910	ゴーストメモリ	Ghost Memory	ROM Spectre	ROM Spettro	Geister-Disc	Disco Fantasma	고스트메모리	幽灵存储碟	幽靈記憶碟
+911	スチールメモリ	Steel Memory	ROM Acier	ROM Acciaio	Stahl-Disc	Disco Acero	스틸메모리	钢铁存储碟	鋼鐵記憶碟
+912	ファイヤーメモリ	Fire Memory	ROM Feu	ROM Fuoco	Feuer-Disc	Disco Fuego	파이어메모리	火焰存储碟	火焰記憶碟
+913	ウオーターメモリ	Water Memory	ROM Eau	ROM Acqua	Wasser-Disc	Disco Agua	워터메모리	清水存储碟	清水記憶碟
+914	グラスメモリ	Grass Memory	ROM Plante	ROM Erba	Pflanzen-Disc	Disco Planta	그래스메모리	青草存储碟	青草記憶碟
+915	エレクトロメモリ	Electric Memory	ROM Électrik	ROM Elettro	Elektro-Disc	Disco Eléctrico	일렉트릭메모리	电子存储碟	電子記憶碟
+916	サイキックメモリ	Psychic Memory	ROM Psy	ROM Psico	Psycho-Disc	Disco Psíquico	사이킥메모리	精神存储碟	精神記憶碟
+917	アイスメモリ	Ice Memory	ROM Glace	ROM Ghiaccio	Eis-Disc	Disco Hielo	아이스메모리	冰雪存储碟	冰雪記憶碟
+918	ドラゴンメモリ	Dragon Memory	ROM Dragon	ROM Drago	Drachen-Disc	Disco Dragón	드래곤메모리	龙存储碟	龍記憶碟
+919	ダークメモリ	Dark Memory	ROM Ténèbres	ROM Buio	Unlicht-Disc	Disco Siniestro	다크메모리	黑暗存储碟	黑暗記憶碟
+920	フェアリーメモリ	Fairy Memory	ROM Fée	ROM Folletto	Feen-Disc	Disco Hada	페어리메모리	妖精存储碟	妖精記憶碟
+921	ソルガレオＺ	Solganium Z	Solgazélite	Solgaleium Z	Solgalium Z	Solgaleostal Z	솔가레오Z	索尔迦雷欧Ｚ	索爾迦雷歐Ｚ
+922	ルナアーラＺ	Lunalium Z	Lunazélite	Lunalium Z	Lunalium Z	Lunalastal Z	루나아라Z	露奈雅拉Ｚ	露奈雅拉Ｚ
+923	ウルトラネクロＺ	Ultranecrozium Z	Ultranécrozélite	Ultranecrozium Z	Ultranecronium Z	Ultranecrostal Z	울트라네크로Z	究极奈克洛Ｚ	究極奈克洛Ｚ
+924	ミミッキュＺ	Mimikium Z	Mimiquizélite	Mimikyum Z	Mimigmium Z	Mimikyustal Z	따라큐Z	谜拟ＱＺ	謎擬ＱＺ
+925	ルガルガンＺ	Lycanium Z	Lougarozélite	Lycanrochium Z	Wolwerockium Z	Lycanrostal Z	루가루암Z	鬃岩狼人Ｚ	鬃岩狼人Ｚ
+926	ジャラランガＺ	Kommonium Z	Ékaïzélite	Kommonium Z	Grandirasium Z	Kommostal Z	짜랑고우거Z	杖尾鳞甲龙Ｚ	杖尾鱗甲龍Ｚ
+927	ソルガレオＺ	Solganium Z	Solgazélite	Solgaleium Z	Solgalium Z	Solgaleostal Z	솔가레오Z	索尔迦雷欧Ｚ	索爾迦雷歐Ｚ
+928	ルナアーラＺ	Lunalium Z	Lunazélite	Lunalium Z	Lunalium Z	Lunalastal Z	루나아라Z	露奈雅拉Ｚ	露奈雅拉Ｚ
+929	ウルトラネクロＺ	Ultranecrozium Z	Ultranécrozélite	Ultranecrozium Z	Ultranecronium Z	Ultranecrostal Z	울트라네크로Z	究极奈克洛Ｚ	究極奈克洛Ｚ
+930	ミミッキュＺ	Mimikium Z	Mimiquizélite	Mimikyum Z	Mimigmium Z	Mimikyustal Z	따라큐Z	谜拟ＱＺ	謎擬ＱＺ
+931	ルガルガンＺ	Lycanium Z	Lougarozélite	Lycanrochium Z	Wolwerockium Z	Lycanrostal Z	루가루암Z	鬃岩狼人Ｚ	鬃岩狼人Ｚ
+932	ジャラランガＺ	Kommonium Z	Ékaïzélite	Kommonium Z	Grandirasium Z	Kommostal Z	짜랑고우거Z	杖尾鳞甲龙Ｚ	杖尾鱗甲龍Ｚ
+933	Ｚパワーリング	Z-Power Ring	Super Bracelet Z	Supercerchio Z	Z-Kraftring	Superpulsera Z	Z파워링	Ｚ强力手环	Ｚ強力手環
+934	ももいろはなびら	Pink Petal	Pétale Rose	Petalo rosa	Rosa Blatt	Pétalo Rosa	담홍꽃잎	粉红花瓣	粉紅花瓣
+935	だいだいはなびら	Orange Petal	Pétale Orange	Petalo arancione	Oranges Blatt	Pétalo Naranja	주황꽃잎	橙色花瓣	橙色花瓣
+936	あおのはなびら	Blue Petal	Pétale Bleu	Petalo azzurro	Blaues Blatt	Pétalo Azul	파랑꽃잎	蓝色花瓣	藍色花瓣
+937	あかのはなびら	Red Petal	Pétale Rouge	Petalo rosso	Rotes Blatt	Pétalo Rojo	빨강꽃잎	红色花瓣	紅色花瓣
+938	みどりのはなびら	Green Petal	Pétale Vert	Petalo verde	Grünes Blatt	Pétalo Verde	초록꽃잎	绿色花瓣	綠色花瓣
+939	きいろのはなびら	Yellow Petal	Pétale Jaune	Petalo giallo	Gelbes Blatt	Pétalo Amarillo	노랑꽃잎	黄色花瓣	黃色花瓣
+940	むらさきはなびら	Purple Petal	Pétale Violet	Petalo violetto	Violettes Blatt	Pétalo Violeta	보라꽃잎	紫色花瓣	紫色花瓣
+941	にじいろのはな	Rainbow Flower	Fleur 7 Couleurs	Fiore arcobaleno	Regenbogenblüte	Flor Irisada	무지개꽃	虹色之花	虹色之花
+942	だいだいバッジ	Surge Badge	Fulguro-Badge	Medaglia Tonante	Gewitterorden	Medalla Fulgor	주황배지	桔色徽章	橘色徽章
+943	ネクロプラスソル	N-Solarizer	Necrosol	Necrosolix	Necrosol	Necrosol	네크로플러스솔	奈克洛索尔合体器	奈克洛索爾合體器
+944	ネクロプラスルナ	N-Lunarizer	Necroluna	Necrolunix	Necrolun	Necroluna	네크로플러스루나	奈克洛露奈合体器	奈克洛露奈合體器
+945	ネクロプラスソル	N-Solarizer	Necrosol	Necrosolix	Necrosol	Necrosol	네크로플러스솔	奈克洛索尔合体器	奈克洛索爾合體器
+946	ネクロプラスルナ	N-Lunarizer	Necroluna	Necrolunix	Necrolun	Necroluna	네크로플러스루나	奈克洛露奈合体器	奈克洛露奈合體器
+947	イリマのノーマルＺ	Ilima’s Normalium Z	Cristal Z Althéo	Normium Z Liam	Elimas Normium Z	Cristal Z (Liam)	일리마의 노말Z	伊利马的一般Ｚ	伊利馬的一般Ｚ
+948	のこされたボール	Left Poké Ball	Poké Ball donnée	Poké Ball altrui	Nachlassball	Poké Ball Ajena	남겨진 볼	留下的精灵球	留下的精靈球
+949	タマゴふかポン	Roto Hatch	Moti-Couveuse	Cova’n’roll	Brutbon	Cupón Eclosión	알부화캡슐토이	孵蛋碰碰	孵蛋碰碰
+950	やすうりポン	Roto Bargain	Moti-Promo	Sconto’n’roll	Schnäppchenbon	Cupón Rebaja	할인캡슐토이	优惠碰碰	優惠碰碰
+951	おこづかいポン	Roto Prize Money	Moti-Magot	Soldi’n’roll	Preisgeldbon	Cupón Botín	용돈캡슐토이	零花钱碰碰	零用錢碰碰
+952	けいけんポン	Roto Exp. Points	Moti-Exp	Esp’n’roll	EP-Bon	Cupón Exp	경험캡슐토이	经验碰碰	經驗碰碰
+953	なつきポン	Roto Friendship	Moti-Cœur	Affetto’n’roll	Freundschaftsbon	Cupón Amistad	친밀도캡슐토이	亲密碰碰	親密碰碰
+954	みっけポン	Roto Encounter	Moti-Appât	Incontra’n’roll	Lockbon	Cupón Reclamo	발견캡슐토이	相遇碰碰	相遇碰碰
+955	かくれポン	Roto Stealth	Moti-Camouflage	Repelle’n’roll	Schutzbon	Cupón Sigilo	숨기캡슐토이	隐身碰碰	隱身碰碰
+956	ＨＰかいふくポン	Roto HP Restore	Moti-Récup’ PV	PS’n’roll	KP-Bon	Cupón PS	HP회복캡슐토이	ＨＰ回复碰碰	ＨＰ回復碰碰
+957	ＰＰかいふくポン	Roto PP Restore	Moti-Récup’ PP	PP’n’roll	AP-Bon	Cupón PP	PP회복캡슐토이	ＰＰ回复碰碰	ＰＰ回復碰碰
+958	おうえんポン	Roto Boost	Moti-Soutien	Stat’n’roll	Statuswertebon	Cupón Refuerzo	응원캡슐토이	加油碰碰	加油碰碰
+959	つかまえポン	Roto Catch	Moti-Capture	Acchiappa’n’roll	Fangbon	Cupón Captura	잡기캡슐토이	捕捉碰碰	捕捉碰碰

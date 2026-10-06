@@ -1,8 +1,10 @@
-// Checks that setting and removing a nickname write what each generation's games write.
+// Checks the name tables, and that setting and removing a nickname write what each generation's
+// games write.
 
 #include <stdio.h>
 #include <string.h>
 
+#include "3ds/3ds.h"
 #include "gb/gb.h"
 #include "gba/gba.h"
 #include "gbc/gbc.h"
@@ -16,6 +18,47 @@ static void check(bool is_passing, const char *what) {
         ++failure_count;
         printf("failed: %s\n", what);
     }
+}
+
+static bool is_name(const char *name, const char *expected) {
+    return name != nullptr && strcmp(name, expected) == 0;
+}
+
+static void check_name_tables(void) {
+    check(is_name(spec_move_name(1, SPEC_LANGUAGE_JAPANESE), "はたく")
+              && is_name(spec_move_name(728, SPEC_LANGUAGE_CHINESE_TRADITIONAL), "熾魂熱舞烈音爆")
+              && spec_move_name(0, SPEC_LANGUAGE_ENGLISH) == nullptr
+              && spec_move_name(729, SPEC_LANGUAGE_ENGLISH) == nullptr,
+          "moves are named from 1 to 728");
+    check(is_name(spec_ability_name(1, SPEC_LANGUAGE_GERMAN), "Duftnote")
+              && is_name(spec_nature_name(SPEC_NATURE_HARDY, SPEC_LANGUAGE_FRENCH), "Hardi")
+              && is_name(spec_type_name(SPEC_TYPE_FAIRY, SPEC_LANGUAGE_KOREAN), "페어리")
+              && is_name(spec_species_name(1, SPEC_LANGUAGE_CHINESE_SIMPLIFIED), "妙蛙种子"),
+          "abilities, natures, types and species are named in every language");
+    check(is_name(spec_form_name(SPEC_GAME_TYPE_SUN_MOON, 25, 1, SPEC_LANGUAGE_ENGLISH),
+                  "Original Cap")
+              && is_name(spec_form_name(SPEC_GAME_TYPE_OMEGA_RUBY_ALPHA_SAPPHIRE, 25, 1,
+                                        SPEC_LANGUAGE_ENGLISH),
+                         "Pikachu Rock Star")
+              && is_name(spec_form_name(SPEC_GAME_TYPE_PLATINUM, 479, 1, SPEC_LANGUAGE_ENGLISH),
+                         "Heat Rotom")
+              && is_name(spec_form_name(SPEC_GAME_TYPE_ULTRA_SUN_ULTRA_MOON, 800, 3,
+                                        SPEC_LANGUAGE_ENGLISH),
+                         "Ultra Necrozma")
+              && spec_form_name(SPEC_GAME_TYPE_PLATINUM, 493, 9, SPEC_LANGUAGE_ENGLISH) == nullptr
+              && is_name(spec_form_name(SPEC_GAME_TYPE_PLATINUM, 493, 17, SPEC_LANGUAGE_ENGLISH),
+                         "Arceus"),
+          "forms are named as each game numbers them");
+    check(is_name(spec_gb_item_name(1, SPEC_LANGUAGE_GERMAN), "MEISTERBALL")
+              && is_name(spec_gbc_item_name(5, SPEC_LANGUAGE_ENGLISH), "POKé BALL")
+              && is_name(spec_gbc_item_name(5, SPEC_LANGUAGE_KOREAN), "몬스터볼")
+              && is_name(spec_gba_item_name(259, SPEC_LANGUAGE_JAPANESE), "マッハじてんしゃ")
+              && is_name(spec_nds_item_name(1, SPEC_LANGUAGE_JAPANESE), "マスターボール")
+              && is_name(spec_ndsi_item_name(1, SPEC_LANGUAGE_ENGLISH), "Master Ball"),
+          "each console names its own items");
+    check(spec_gb_decode_type(0x14) == SPEC_TYPE_FIRE
+              && spec_gb_decode_type(0x06) == SPEC_TYPE_COUNT,
+          "Gen 1 types decode to the shared order");
 }
 
 static bool is_nds_name(const spec_nds_pokemon_t *pokemon, const char *expected) {
@@ -196,12 +239,57 @@ static void check_gen5(void) {
           "a Gen 5 egg cannot be nicknamed");
 }
 
+static void check_gen6_and_gen7(void) {
+    constexpr uint16_t NIDORAN[SPEC_3DS_NAME_SIZE] = {'N', 'i', 'd', 'o', 'r', 'a', 'n', 0xE08E};
+    spec_3ds_pokemon_t nidoran = {
+        .generation = 6,
+        .species = 32,
+        .language = SPEC_LANGUAGE_ENGLISH,
+        .is_nicknamed = true,
+    };
+    check(spec_3ds_pokemon_remove_nickname(&nidoran) == SPEC_OK
+              && memcmp(nidoran.nickname, NIDORAN, sizeof NIDORAN) == 0 && !nidoran.is_nicknamed,
+          "a Gen 6 name writes the half-width ♂, zeros after it");
+    nidoran.language = SPEC_LANGUAGE_JAPANESE;
+    check(spec_3ds_pokemon_remove_nickname(&nidoran) == SPEC_OK && nidoran.nickname[4] == 0x2642,
+          "a Japanese Gen 6 name writes the full-width ♂");
+    constexpr uint16_t PIKACHU_IN_GLYPHS[SPEC_3DS_NAME_SIZE] = {0xE82D, 0xE80F, 0xE82E};
+    spec_3ds_pokemon_t pikachu = {
+        .generation = 7,
+        .species = 25,
+        .language = SPEC_LANGUAGE_CHINESE_SIMPLIFIED,
+    };
+    char8_t name[SPEC_3DS_TEXT_BUFFER_SIZE];
+    check(spec_3ds_pokemon_remove_nickname(&pikachu) == SPEC_OK
+              && memcmp(pikachu.nickname, PIKACHU_IN_GLYPHS, sizeof PIKACHU_IN_GLYPHS) == 0
+              && spec_3ds_pokemon_get_name(&pikachu, name) == SPEC_OK
+              && strcmp((const char *)name, "皮卡丘") == 0,
+          "Gen 7 writes Chinese species names in its own glyphs, which read back as characters");
+    spec_3ds_pokemon_t egg = {
+        .generation = 6,
+        .species = 25,
+        .language = SPEC_LANGUAGE_FRENCH,
+        .is_egg = true,
+    };
+    check(spec_3ds_pokemon_remove_nickname(&egg) == SPEC_OK
+              && spec_3ds_pokemon_get_name(&egg, name) == SPEC_OK
+              && strcmp((const char *)name, "Œuf") == 0,
+          "a Gen 6 egg is named in its language");
+    spec_3ds_pokemon_t renamed = pikachu;
+    check(spec_3ds_pokemon_set_nickname(&renamed, u8"Sparky", SPEC_NAMING_CAUGHT_OR_HATCHED)
+                  == SPEC_OK
+              && renamed.is_nicknamed,
+          "a name other than the species' marks a nickname");
+}
+
 int main(void) {
+    check_name_tables();
     check_gen1();
     check_gen2();
     check_gen3();
     check_gen4();
     check_gen5();
+    check_gen6_and_gen7();
     printf("%zu failures\n", failure_count);
     return failure_count == 0 ? 0 : 1;
 }

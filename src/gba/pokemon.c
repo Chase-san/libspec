@@ -134,7 +134,7 @@ static uint16_t current_hp_after(const spec_gba_pokemon_t *pokemon, uint16_t old
 
 static void calculate_stats(spec_gba_pokemon_t *pokemon,
                             const spec_gba_species_data_t *species_data) {
-    uint8_t level = spec_level_for_experience(species_data->growth_rate, pokemon->experience);
+    uint8_t level = spec_gen3_level_for_experience(species_data->growth_rate, pokemon->experience);
     uint16_t old_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
     uint16_t new_max_hp = stat_of(pokemon, species_data, SPEC_STAT_HP, level);
     pokemon->party_data.current_hp = current_hp_after(pokemon, old_max_hp, new_max_hp);
@@ -453,8 +453,8 @@ uint8_t spec_gba_pokemon_get_level(const spec_gba_pokemon_t *pokemon) {
     if (spec_gba_species_to_national(pokemon->species) == 0) {
         return 0;
     }
-    return spec_level_for_experience(spec_gba_species_data[pokemon->species].growth_rate,
-                                     pokemon->experience);
+    return spec_gen3_level_for_experience(spec_gba_species_data[pokemon->species].growth_rate,
+                                          pokemon->experience);
 }
 
 spec_error_t spec_gba_pokemon_get_name(const spec_gba_pokemon_t *pokemon,

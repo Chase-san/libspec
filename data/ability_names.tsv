@@ -1,0 +1,236 @@
+# Ability names by ability number: the Sun and Moon carts' text (member 96), and Pokémon
+# Bank 6.8's (member 27) for 233.
+ability	japanese	english	french	italian	german	spanish	korean	chinese_simplified	chinese_traditional
+1	あくしゅう	Stench	Puanteur	Tanfo	Duftnote	Hedor	악취	恶臭	惡臭
+2	あめふらし	Drizzle	Crachin	Piovischio	Niesel	Llovizna	잔비	降雨	降雨
+3	かそく	Speed Boost	Turbo	Acceleratore	Temposchub	Impulso	가속	加速	加速
+4	カブトアーマー	Battle Armor	Armurbaston	Lottascudo	Kampfpanzer	Armadura Batalla	전투무장	战斗盔甲	戰鬥盔甲
+5	がんじょう	Sturdy	Fermeté	Vigore	Robustheit	Robustez	옹골참	结实	結實
+6	しめりけ	Damp	Moiteur	Umidità	Feuchtigkeit	Humedad	습기	湿气	濕氣
+7	じゅうなん	Limber	Échauffement	Scioltezza	Flexibilität	Flexibilidad	유연	柔软	柔軟
+8	すながくれ	Sand Veil	Voile Sable	Sabbiavelo	Sandschleier	Velo Arena	모래숨기	沙隐	沙隱
+9	せいでんき	Static	Statik	Statico	Statik	Elec. Estática	정전기	静电	靜電
+10	ちくでん	Volt Absorb	Absorb Volt	Assorbivolt	Voltabsorber	Absorbe Elec	축전	蓄电	蓄電
+11	ちょすい	Water Absorb	Absorb Eau	Assorbacqua	H2O-Absorber	Absorbe Agua	저수	储水	儲水
+12	どんかん	Oblivious	Benêt	Indifferenza	Dösigkeit	Despiste	둔감	迟钝	遲鈍
+13	ノーてんき	Cloud Nine	Ciel Gris	Antimeteo	Wolke Sieben	Aclimatación	날씨부정	无关天气	無關天氣
+14	ふくがん	Compound Eyes	Œil Composé	Insettocchi	Facettenauge	Ojo Compuesto	복안	复眼	複眼
+15	ふみん	Insomnia	Insomnia	Insonnia	Insomnia	Insomnio	불면	不眠	不眠
+16	へんしょく	Color Change	Déguisement	Cambiacolore	Farbwechsel	Cambio Color	변색	变色	變色
+17	めんえき	Immunity	Vaccin	Immunità	Immunität	Inmunidad	면역	免疫	免疫
+18	もらいび	Flash Fire	Torche	Fuocardore	Feuerfänger	Absorbe Fuego	타오르는불꽃	引火	引火
+19	りんぷん	Shield Dust	Écran Poudre	Polvoscudo	Puderabwehr	Polvo Escudo	인분	鳞粉	鱗粉
+20	マイペース	Own Tempo	Tempo Perso	Mente Locale	Tempomacher	Ritmo Propio	마이페이스	我行我素	我行我素
+21	きゅうばん	Suction Cups	Ventouse	Ventose	Saugnapf	Ventosas	흡반	吸盘	吸盤
+22	いかく	Intimidate	Intimidation	Prepotenza	Bedroher	Intimidación	위협	威吓	威嚇
+23	かげふみ	Shadow Tag	Marque Ombre	Pedinombra	Wegsperre	Sombra Trampa	그림자밟기	踩影	踩影
+24	さめはだ	Rough Skin	Peau Dure	Cartavetro	Rauhaut	Piel Tosca	까칠한피부	粗糙皮肤	粗糙皮膚
+25	ふしぎなまもり	Wonder Guard	Garde Mystik	Magidifesa	Wunderwache	Superguarda	불가사의부적	神奇守护	神奇守護
+26	ふゆう	Levitate	Lévitation	Levitazione	Schwebe	Levitación	부유	飘浮	飄浮
+27	ほうし	Effect Spore	Pose Spore	Spargispora	Sporenwirt	Efecto Espora	포자	孢子	孢子
+28	シンクロ	Synchronize	Synchro	Sincronismo	Synchro	Sincronía	싱크로	同步	同步
+29	クリアボディ	Clear Body	Corps Sain	Corpochiaro	Neutraltorso	Cuerpo Puro	클리어바디	恒净之躯	恆淨之軀
+30	しぜんかいふく	Natural Cure	Médic Nature	Alternacura	Innere Kraft	Cura Natural	자연회복	自然回复	自然回復
+31	ひらいしん	Lightning Rod	Paratonnerre	Parafulmine	Blitzfänger	Pararrayos	피뢰침	避雷针	避雷針
+32	てんのめぐみ	Serene Grace	Sérénité	Leggiadro	Edelmut	Dicha	하늘의은총	天恩	天恩
+33	すいすい	Swift Swim	Glissade	Nuotovelox	Wassertempo	Nado Rápido	쓱쓱	悠游自如	悠游自如
+34	ようりょくそ	Chlorophyll	Chlorophylle	Clorofilla	Chlorophyll	Clorofila	엽록소	叶绿素	葉綠素
+35	はっこう	Illuminate	Lumiattirance	Risplendi	Erleuchtung	Iluminación	발광	发光	發光
+36	トレース	Trace	Calque	Traccia	Fährte	Rastro	트레이스	复制	複製
+37	ちからもち	Huge Power	Coloforce	Macroforza	Kraftkoloss	Potencia	천하장사	大力士	大力士
+38	どくのトゲ	Poison Point	Point Poison	Velenopunto	Giftdorn	Punto Tóxico	독가시	毒刺	毒刺
+39	せいしんりょく	Inner Focus	Attention	Forza Interiore	Konzentrator	Foco Interno	정신력	精神力	精神力
+40	マグマのよろい	Magma Armor	Armumagma	Magmascudo	Magmapanzer	Escudo Magma	마그마의무장	熔岩铠甲	熔岩鎧甲
+41	みずのベール	Water Veil	Ignifu-Voile	Idrovelo	Aquahülle	Velo Agua	수의베일	水幕	水幕
+42	じりょく	Magnet Pull	Magnépiège	Magnetismo	Magnetfalle	Imán	자력	磁力	磁力
+43	ぼうおん	Soundproof	Anti-Bruit	Antisuono	Lärmschutz	Insonorizar	방음	隔音	隔音
+44	あめうけざら	Rain Dish	Cuvette	Copripioggia	Regengenuss	Cura Lluvia	젖은접시	雨盘	雨盤
+45	すなおこし	Sand Stream	Sable Volant	Sabbiafiume	Sandsturm	Chorro Arena	모래날림	扬沙	揚沙
+46	プレッシャー	Pressure	Pression	Pressione	Erzwinger	Presión	프레셔	压迫感	壓迫感
+47	あついしぼう	Thick Fat	Isograisse	Grassospesso	Speckschicht	Sebo	두꺼운지방	厚脂肪	厚脂肪
+48	はやおき	Early Bird	Matinal	Sveglialampo	Frühwecker	Madrugar	일찍기상	早起	早起
+49	ほのおのからだ	Flame Body	Corps Ardent	Corpodifuoco	Flammkörper	Cuerpo Llama	불꽃몸	火焰之躯	火焰之軀
+50	にげあし	Run Away	Fuite	Fugafacile	Angsthase	Fuga	도주	逃跑	逃跑
+51	するどいめ	Keen Eye	Regard Vif	Sguardofermo	Adlerauge	Vista Lince	날카로운눈	锐利目光	銳利目光
+52	かいりきバサミ	Hyper Cutter	Hyper Cutter	Ipertaglio	Scherenmacht	Corte Fuerte	괴력집게	怪力钳	怪力鉗
+53	ものひろい	Pickup	Ramassage	Raccolta	Mitnahme	Recogida	픽업	捡拾	撿拾
+54	なまけ	Truant	Absentéisme	Pigrone	Schnarchnase	Ausente	게으름	懒惰	懶惰
+55	はりきり	Hustle	Agitation	Tuttafretta	Übereifer	Entusiasmo	의욕	活力	活力
+56	メロメロボディ	Cute Charm	Joli Sourire	Incantevole	Charmebolzen	Gran Encanto	헤롱헤롱바디	迷人之躯	迷人之軀
+57	プラス	Plus	Plus	Più	Plus	Más	플러스	正电	正電
+58	マイナス	Minus	Minus	Meno	Minus	Menos	마이너스	负电	負電
+59	てんきや	Forecast	Météo	Previsioni	Prognose	Predicción	기분파	阴晴不定	陰晴不定
+60	ねんちゃく	Sticky Hold	Glue	Antifurto	Wertehalter	Viscosidad	점착	黏着	黏著
+61	だっぴ	Shed Skin	Mue	Muta	Expidermis	Mudar	탈피	蜕皮	蛻皮
+62	こんじょう	Guts	Cran	Dentistretti	Adrenalin	Agallas	근성	毅力	毅力
+63	ふしぎなうろこ	Marvel Scale	Écaille Spéciale	Pelledura	Notschutz	Escama Especial	이상한비늘	神奇鳞片	神奇鱗片
+64	ヘドロえき	Liquid Ooze	Suintement	Melma	Kloakensoße	Lodo Líquido	해감액	污泥浆	污泥漿
+65	しんりょく	Overgrow	Engrais	Erbaiuto	Notdünger	Espesura	심록	茂盛	茂盛
+66	もうか	Blaze	Brasier	Aiutofuoco	Großbrand	Mar Llamas	맹화	猛火	猛火
+67	げきりゅう	Torrent	Torrent	Acquaiuto	Sturzbach	Torrente	급류	激流	激流
+68	むしのしらせ	Swarm	Essaim	Aiutinsetto	Hexaplaga	Enjambre	벌레의알림	虫之预感	蟲之預感
+69	いしあたま	Rock Head	Tête de Roc	Testadura	Steinhaupt	Cabeza Roca	돌머리	坚硬脑袋	堅硬腦袋
+70	ひでり	Drought	Sécheresse	Siccità	Dürre	Sequía	가뭄	日照	日照
+71	ありじごく	Arena Trap	Piège Sable	Trappoarena	Ausweglos	Trampa Arena	개미지옥	沙穴	沙穴
+72	やるき	Vital Spirit	Esprit Vital	Spiritovivo	Munterkeit	Espíritu Vital	의기양양	干劲	幹勁
+73	しろいけむり	White Smoke	Écran Fumée	Fumochiaro	Pulverrauch	Humo Blanco	하얀연기	白色烟雾	白色煙霧
+74	ヨガパワー	Pure Power	Force Pure	Forzapura	Mentalkraft	Energía Pura	순수한힘	瑜伽之力	瑜伽之力
+75	シェルアーマー	Shell Armor	Coque Armure	Guscioscudo	Panzerhaut	Caparazón	조가비갑옷	硬壳盔甲	硬殼盔甲
+76	エアロック	Air Lock	Air Lock	Riparo	Klimaschutz	Bucle Aire	에어록	气闸	氣閘
+77	ちどりあし	Tangled Feet	Pieds Confus	Intricopiedi	Fußangel	Tumbos	갈지자걸음	蹒跚	蹣跚
+78	でんきエンジン	Motor Drive	Motorisé	Elettrorapid	Starthilfe	Electromotor	전기엔진	电气引擎	電氣引擎
+79	とうそうしん	Rivalry	Rivalité	Antagonismo	Rivalität	Rivalidad	투쟁심	斗争心	鬥爭心
+80	ふくつのこころ	Steadfast	Impassible	Cuordeciso	Felsenfest	Impasible	불굴의마음	不屈之心	不屈之心
+81	ゆきがくれ	Snow Cloak	Rideau Neige	Mantelneve	Schneemantel	Manto Níveo	눈숨기	雪隐	雪隱
+82	くいしんぼう	Gluttony	Gloutonnerie	Voracità	Völlerei	Gula	먹보	贪吃鬼	貪吃鬼
+83	いかりのつぼ	Anger Point	Colérique	Grancollera	Kurzschluss	Irascible	분노의경혈	愤怒穴位	憤怒穴位
+84	かるわざ	Unburden	Délestage	Agiltecnica	Entlastung	Liviano	곡예	轻装	輕裝
+85	たいねつ	Heatproof	Ignifugé	Antifuoco	Hitzeschutz	Ignífugo	내열	耐热	耐熱
+86	たんじゅん	Simple	Simple	Disinvoltura	Wankelmut	Simple	단순	单纯	單純
+87	かんそうはだ	Dry Skin	Peau Sèche	Pellearsa	Trockenheit	Piel Seca	건조피부	干燥皮肤	乾燥皮膚
+88	ダウンロード	Download	Télécharge	Download	Download	Descarga	다운로드	下载	下載
+89	てつのこぶし	Iron Fist	Poing de Fer	Ferropugno	Eisenfaust	Puño Férreo	철주먹	铁拳	鐵拳
+90	ポイズンヒール	Poison Heal	Soin Poison	Velencura	Aufheber	Antídoto	포이즌힐	毒疗	毒療
+91	てきおうりょく	Adaptability	Adaptabilité	Adattabilità	Anpassung	Adaptable	적응력	适应力	適應力
+92	スキルリンク	Skill Link	Multi-Coups	Abillegame	Wertelink	Encadenado	스킬링크	连续攻击	連續攻擊
+93	うるおいボディ	Hydration	Hydratation	Idratazione	Hydration	Hidratación	촉촉바디	湿润之躯	濕潤之軀
+94	サンパワー	Solar Power	Force Soleil	Solarpotere	Solarkraft	Poder Solar	선파워	太阳之力	太陽之力
+95	はやあし	Quick Feet	Pied Véloce	Piedisvelti	Rasanz	Pies Rápidos	속보	飞毛腿	飛毛腿
+96	ノーマルスキン	Normalize	Normalise	Normalità	Regulierung	Normalidad	노말스킨	一般皮肤	一般皮膚
+97	スナイパー	Sniper	Sniper	Cecchino	Superschütze	Francotirador	스나이퍼	狙击手	狙擊手
+98	マジックガード	Magic Guard	Garde Magik	Magicscudo	Magieschild	Muro Mágico	매직가드	魔法防守	魔法防守
+99	ノーガード	No Guard	Annule Garde	Nullodifesa	Schildlos	Indefenso	노가드	无防守	無防守
+100	あとだし	Stall	Frein	Rallentatore	Zeitspiel	Rezagado	시간벌기	慢出	慢出
+101	テクニシャン	Technician	Technicien	Tecnico	Techniker	Experto	테크니션	技术高手	技術高手
+102	リーフガード	Leaf Guard	Feuille Garde	Fogliamanto	Floraschild	Defensa Hoja	리프가드	叶子防守	葉子防守
+103	ぶきよう	Klutz	Maladresse	Impaccio	Tollpatsch	Zoquete	서투름	笨拙	笨拙
+104	かたやぶり	Mold Breaker	Brise Moule	Rompiforma	Überbrückung	Rompemoldes	틀깨기	破格	破格
+105	きょううん	Super Luck	Chanceux	Supersorte	Glückspilz	Afortunado	대운	超幸运	超幸運
+106	ゆうばく	Aftermath	Boom Final	Scoppio	Finalschlag	Resquicio	유폭	引爆	引爆
+107	きけんよち	Anticipation	Anticipation	Presagio	Vorahnung	Anticipación	위험예지	危险预知	危險預知
+108	よちむ	Forewarn	Prédiction	Premonizione	Vorwarnung	Alerta	예지몽	预知梦	預知夢
+109	てんねん	Unaware	Inconscient	Imprudenza	Unkenntnis	Ignorante	천진	纯朴	純樸
+110	いろめがね	Tinted Lens	Lentiteintée	Lentifumé	Aufwertung	Cromolente	색안경	有色眼镜	有色眼鏡
+111	フィルター	Filter	Filtre	Filtro	Filter	Filtro	필터	过滤	過濾
+112	スロースタート	Slow Start	Début Calme	Lentoinizio	Saumselig	Inicio Lento	슬로스타트	慢启动	慢啟動
+113	きもったま	Scrappy	Querelleur	Nervisaldi	Rauflust	Intrépido	배짱	胆量	膽量
+114	よびみず	Storm Drain	Lavabo	Acquascolo	Sturmsog	Colector	마중물	引水	引水
+115	アイスボディ	Ice Body	Corps Gel	Corpogelo	Eishaut	Gélido	아이스바디	冰冻之躯	冰凍之軀
+116	ハードロック	Solid Rock	Solide Roc	Solidroccia	Felskern	Roca Sólida	하드록	坚硬岩石	堅硬岩石
+117	ゆきふらし	Snow Warning	Alerte Neige	Scendineve	Hagelalarm	Nevada	눈퍼뜨리기	降雪	降雪
+118	みつあつめ	Honey Gather	Cherche Miel	Mielincetta	Honigmaul	Recogemiel	꿀모으기	采蜜	採蜜
+119	おみとおし	Frisk	Fouille	Indagine	Schnüffler	Cacheo	통찰	察觉	察覺
+120	すてみ	Reckless	Téméraire	Temerarietà	Achtlos	Audaz	이판사판	舍身	捨身
+121	マルチタイプ	Multitype	Multi-Type	Multitipo	Variabilität	Multitipo	멀티타입	多属性	多屬性
+122	フラワーギフト	Flower Gift	Don Floral	Regalfiore	Pflanzengabe	Don Floral	플라워기프트	花之礼	花之禮
+123	ナイトメア	Bad Dreams	Mauvais Rêve	Sogniamari	Alptraum	Mal Sueño	나이트메어	梦魇	夢魘
+124	わるいてぐせ	Pickpocket	Pickpocket	Arraffalesto	Langfinger	Hurto	나쁜손버릇	顺手牵羊	順手牽羊
+125	ちからずく	Sheer Force	Sans Limite	Forzabruta	Rohe Gewalt	Potencia Bruta	우격다짐	强行	強行
+126	あまのじゃく	Contrary	Contestation	Inversione	Umkehrung	Respondón	심술꾸러기	唱反调	唱反調
+127	きんちょうかん	Unnerve	Tension	Agitazione	Anspannung	Nerviosismo	긴장감	紧张感	緊張感
+128	まけんき	Defiant	Acharné	Agonismo	Siegeswille	Competitivo	오기	不服输	不服輸
+129	よわき	Defeatist	Défaitiste	Sconforto	Schwächling	Flaqueza	무기력	软弱	軟弱
+130	のろわれボディ	Cursed Body	Corps Maudit	Corpofunesto	Tastfluch	Cuerpo Maldito	저주받은바디	诅咒之躯	詛咒之軀
+131	いやしのこころ	Healer	Cœur Soin	Curacuore	Heilherz	Alma Cura	치유의마음	治愈之心	治癒之心
+132	フレンドガード	Friend Guard	Garde Amie	Amicoscudo	Freundeshut	Compiescolta	프렌드가드	友情防守	友情防守
+133	くだけるよろい	Weak Armor	Armurouillée	Sottilguscio	Bruchrüstung	Armadura Frágil	깨어진갑옷	碎裂铠甲	碎裂鎧甲
+134	ヘヴィメタル	Heavy Metal	Heavy Metal	Metalpesante	Schwermetall	Metal Pesado	헤비메탈	重金属	重金屬
+135	ライトメタル	Light Metal	Light Metal	Metalleggero	Leichtmetall	Metal Liviano	라이트메탈	轻金属	輕金屬
+136	マルチスケイル	Multiscale	Multiécaille	Multisquame	Multischuppe	Compensación	멀티스케일	多重鳞片	多重鱗片
+137	どくぼうそう	Toxic Boost	Rage Poison	Velenimpeto	Giftwahn	Ímpetu Tóxico	독폭주	中毒激升	中毒激升
+138	ねつぼうそう	Flare Boost	Rage Brûlure	Bruciaimpeto	Hitzewahn	Ímpetu Ardiente	열폭주	受热激升	受熱激升
+139	しゅうかく	Harvest	Récolte	Coglibacche	Reiche Ernte	Cosecha	수확	收获	收穫
+140	テレパシー	Telepathy	Télépathe	Telepatia	Telepathie	Telepatía	텔레파시	心灵感应	心靈感應
+141	ムラっけ	Moody	Lunatique	Altalena	Gefühlswippe	Veleta	변덕쟁이	心情不定	心情不定
+142	ぼうじん	Overcoat	Envelocape	Copricapo	Wetterfest	Funda	방진	防尘	防塵
+143	どくしゅ	Poison Touch	Toxitouche	Velentocco	Giftgriff	Toque Tóxico	독수	毒手	毒手
+144	さいせいりょく	Regenerator	Régé-Force	Rigenergia	Belebekraft	Regeneración	재생력	再生力	再生力
+145	はとむね	Big Pecks	Cœur de Coq	Pettinfuori	Brustbieter	Sacapecho	부풀린가슴	健壮胸肌	健壯胸肌
+146	すなかき	Sand Rush	Baigne Sable	Remasabbia	Sandscharrer	Ímpetu Arena	모래헤치기	拨沙	撥沙
+147	ミラクルスキン	Wonder Skin	Peau Miracle	Splendicute	Wunderhaut	Piel Milagro	미라클스킨	奇迹皮肤	奇跡皮膚
+148	アナライズ	Analytic	Analyste	Ponderazione	Analyse	Cálculo Final	애널라이즈	分析	分析
+149	イリュージョン	Illusion	Illusion	Illusione	Trugbild	Ilusión	일루전	幻觉	幻覺
+150	かわりもの	Imposter	Imposteur	Sosia	Doppelgänger	Impostor	괴짜	变身者	變身者
+151	すりぬけ	Infiltrator	Infiltration	Intrapasso	Schwebedurch	Allanamiento	틈새포착	穿透	穿透
+152	ミイラ	Mummy	Momie	Mummia	Mumie	Momia	미라	木乃伊	木乃伊
+153	じしんかじょう	Moxie	Impudence	Arroganza	Hochmut	Autoestima	자기과신	自信过度	自信過度
+154	せいぎのこころ	Justified	Cœur Noble	Giustizia	Redlichkeit	Justiciero	정의의마음	正义之心	正義之心
+155	びびり	Rattled	Phobique	Paura	Hasenfuß	Cobardía	주눅	胆怯	膽怯
+156	マジックミラー	Magic Bounce	Miroir Magik	Magispecchio	Magiespiegel	Espejo Mágico	매직미러	魔法镜	魔法鏡
+157	そうしょく	Sap Sipper	Herbivore	Mangiaerba	Vegetarier	Herbívoro	초식	食草	食草
+158	いたずらごころ	Prankster	Farceur	Burla	Strolch	Bromista	짓궂은마음	恶作剧之心	惡作劇之心
+159	すなのちから	Sand Force	Force Sable	Silicoforza	Sandgewalt	Poder Arena	모래의힘	沙之力	沙之力
+160	てつのトゲ	Iron Barbs	Épine de Fer	Spineferrate	Eisenstachel	Punta Acero	철가시	铁刺	鐵刺
+161	ダルマモード	Zen Mode	Mode Transe	Stato Zen	Trance-Modus	Modo Daruma	달마모드	达摩模式	達摩模式
+162	しょうりのほし	Victory Star	Victorieux	Vittorstella	Triumphstern	Tinovictoria	승리의별	胜利之星	勝利之星
+163	ターボブレイズ	Turboblaze	TurboBrasier	Piroturbina	Turbobrand	Turbollama	터보블레이즈	涡轮火焰	渦輪火焰
+164	テラボルテージ	Teravolt	Téra-Voltage	Teravolt	Teravolt	Terravoltaje	테라볼티지	兆级电压	兆級電壓
+165	アロマベール	Aroma Veil	Aroma-Voile	Aromavelo	Dufthülle	Velo Aroma	아로마베일	芳香幕	芳香幕
+166	フラワーベール	Flower Veil	Flora-Voile	Fiorvelo	Blütenhülle	Velo Flor	플라워베일	花幕	花幕
+167	ほおぶくろ	Cheek Pouch	Bajoues	Guancegonfie	Backentaschen	Carrillo	볼주머니	颊囊	頰囊
+168	へんげんじざい	Protean	Protéen	Mutatipo	Wandlungskunst	Mutatipo	변환자재	变幻自如	變幻自如
+169	ファーコート	Fur Coat	Toison Épaisse	Foltopelo	Fellkleid	Pelaje Recio	퍼코트	毛皮大衣	毛皮大衣
+170	マジシャン	Magician	Magicien	Prestigiatore	Zauberer	Prestidigitador	매지션	魔术师	魔術師
+171	ぼうだん	Bulletproof	Pare-Balles	Antiproiettile	Kugelsicher	Antibalas	방탄	防弹	防彈
+172	かちき	Competitive	Battant	Tenacia	Unbeugsamkeit	Tenacidad	승기	好胜	好勝
+173	がんじょうあご	Strong Jaw	Prognathe	Ferromascella	Titankiefer	Mandíbula Fuerte	옹골찬턱	强壮之颚	強壯之顎
+174	フリーズスキン	Refrigerate	Peau Gelée	Pellegelo	Frostschicht	Piel Helada	프리즈스킨	冰冻皮肤	冰凍皮膚
+175	スイートベール	Sweet Veil	Gluco-Voile	Dolcevelo	Zuckerhülle	Velo Dulce	스위트베일	甜幕	甜幕
+176	バトルスイッチ	Stance Change	Déclic Tactique	Accendilotta	Taktikwechsel	Cambio Táctico	배틀스위치	战斗切换	戰鬥切換
+177	はやてのつばさ	Gale Wings	Ailes Bourrasque	Aliraffica	Orkanschwingen	Alas Vendaval	질풍날개	疾风之翼	疾風之翼
+178	メガランチャー	Mega Launcher	Méga Blaster	Megalancio	Megawumme	Megadisparador	메가런처	超级发射器	超級發射器
+179	くさのけがわ	Grass Pelt	Toison Herbue	Peloderba	Pflanzenpelz	Manto Frondoso	풀모피	草之毛皮	草之毛皮
+180	きょうせい	Symbiosis	Symbiose	Simbiosi	Nutznießer	Simbiosis	공생	共生	共生
+181	かたいツメ	Tough Claws	Griffe Dure	Unghiedure	Krallenwucht	Garra Dura	단단한발톱	硬爪	硬爪
+182	フェアリースキン	Pixilate	Peau Féérique	Pellefolletto	Feenschicht	Piel Feérica	페어리스킨	妖精皮肤	妖精皮膚
+183	ぬめぬめ	Gooey	Poisseux	Viscosità	Viskosität	Baba	미끈미끈	黏滑	黏滑
+184	スカイスキン	Aerilate	Peau Céleste	Pellecielo	Zenithaut	Piel Celeste	스카이스킨	飞行皮肤	飛行皮膚
+185	おやこあい	Parental Bond	Amour Filial	Amorefiliale	Familienbande	Amor Filial	부자유친	亲子爱	親子愛
+186	ダークオーラ	Dark Aura	Aura Ténébreuse	Auratetra	Dunkelaura	Aura Oscura	다크오라	暗黑气场	暗黑氣場
+187	フェアリーオーラ	Fairy Aura	Aura Féérique	Aurafolletto	Feenaura	Aura Feérica	페어리오라	妖精气场	妖精氣場
+188	オーラブレイク	Aura Break	Aura Inversée	Frangiaura	Aura-Umkehr	Rompeaura	오라브레이크	气场破坏	氣場破壞
+189	はじまりのうみ	Primordial Sea	Mer Primaire	Mare Primordiale	Urmeer	Mar del Albor	시작의바다	始源之海	始源之海
+190	おわりのだいち	Desolate Land	Terre Finale	Terra Estrema	Endland	Tierra del Ocaso	끝의대지	终结之地	終結之地
+191	デルタストリーム	Delta Stream	Souffle Delta	Flusso Delta	Delta-Wind	Ráfaga Delta	델타스트림	德尔塔气流	德爾塔氣流
+192	じきゅうりょく	Stamina	Endurance	Sopportazione	Zähigkeit	Firmeza	지구력	持久力	持久力
+193	にげごし	Wimp Out	Escampette	Fuggifuggi	Reißaus	Huida	도망태세	跃跃欲逃	躍躍欲逃
+194	ききかいひ	Emergency Exit	Repli Tactique	Passoindietro	Rückzug	Retirada	위기회피	危险回避	危險迴避
+195	みずがため	Water Compaction	Sable Humide	Idrorinforzo	Verklumpen	Hidrorrefuerzo	꾸덕꾸덕굳기	遇水凝固	遇水凝固
+196	ひとでなし	Merciless	Cruauté	Spietatezza	Quälerei	Ensañamiento	무도한행동	不仁不义	不仁不義
+197	リミットシールド	Shields Down	Bouclier-Carcan	Scudosoglia	Limitschild	Escudo Limitado	리밋실드	界限盾壳	界限盾殼
+198	はりこみ	Stakeout	Filature	Sorveglianza	Beschattung	Vigilante	잠복	蹲守	監視
+199	すいほう	Water Bubble	Aquabulle	Bolladacqua	Wasserblase	Pompa	수포	水泡	水泡
+200	はがねつかい	Steelworker	Expert Acier	Tempracciaio	Stahlprofi	Acero Templado	강철술사	钢能力者	鋼能力者
+201	ぎゃくじょう	Berserk	Dracolère	Furore	Wutausbruch	Cólera	발끈	怒火冲天	怒火沖天
+202	ゆきかき	Slush Rush	Chasse-Neige	Spalaneve	Schneescharrer	Quitanieves	눈치우기	拨雪	撥雪
+203	えんかく	Long Reach	Longue Portée	Distacco	Langstrecke	Remoto	원격	远隔	遠隔
+204	うるおいボイス	Liquid Voice	Hydrata-Son	Idrovoce	Plätscherstimme	Voz Fluida	촉촉보이스	湿润之声	濕潤之聲
+205	ヒーリングシフト	Triage	Prioguérison	Primacura	Heilwandel	Primer Auxilio	힐링시프트	先行治疗	先行治療
+206	エレキスキン	Galvanize	Peau Électrique	Pellelettro	Elektrohaut	Piel Eléctrica	일렉트릭스킨	电气皮肤	電氣皮膚
+207	サーフテール	Surge Surfer	Surf Caudal	Codasurf	Surf-Schweif	Cola Surf	서핑테일	冲浪之尾	衝浪之尾
+208	ぎょぐん	Schooling	Banc	Banco	Fischschwarm	Banco	어군	鱼群	魚群
+209	ばけのかわ	Disguise	Fantômasque	Fantasmanto	Kostümspuk	Disfraz	탈	画皮	畫皮
+210	きずなへんげ	Battle Bond	Synergie	Morfosintonia	Freundschaftsakt	Fuerte Afecto	유대변화	牵绊变身	牽絆變身
+211	スワームチェンジ	Power Construct	Rassemblement	Sciamefusione	Scharwandel	Agrupamiento	스웜체인지	群聚变形	群聚變形
+212	ふしょく	Corrosion	Corrosion	Corrosione	Korrosion	Corrosión	부식	腐蚀	腐蝕
+213	ぜったいねむり	Comatose	Hypersommeil	Sonno Assoluto	Dauerschlaf	Letargo Perenne	절대안깸	绝对睡眠	絕對睡眠
+214	じょおうのいげん	Queenly Majesty	Prestance Royale	Regalità	Majestät	Regia Presencia	여왕의위엄	女王的威严	女王的威嚴
+215	とびだすなかみ	Innards Out	Expuls’Organes	Espellinterno	Magenkrempler	Revés	내용물분출	飞出的内在物	飛出的內在物
+216	おどりこ	Dancer	Danseuse	Sincrodanza	Tänzer	Pareja de Baile	무희	舞者	舞者
+217	バッテリー	Battery	Batterie	Batteria	Batterie	Batería	배터리	蓄电池	蓄電池
+218	もふもふ	Fluffy	Boule de Poils	Morbidone	Flauschigkeit	Peluche	복슬복슬	毛茸茸	毛茸茸
+219	ビビッドボディ	Dazzling	Corps Coloré	Corposgargiante	Buntkörper	Cuerpo Vívido	비비드바디	鲜艳之躯	鮮艷之軀
+220	ソウルハート	Soul-Heart	Animacœur	Cuoreanima	Seelenherz	Coránima	소울하트	魂心	魂心
+221	カーリーヘアー	Tangling Hair	Mèche Rebelle	Boccolidoro	Lockenkopf	Rizos Rebeldes	컬리헤어	卷发	捲髮
+222	レシーバー	Receiver	Receveur	Ricezione	Receiver	Receptor	리시버	接球手	接球手
+223	かがくのちから	Power of Alchemy	Osmose	Forza Chimica	Chemiekraft	Reacción Química	과학의힘	化学之力	化學之力
+224	ビーストブースト	Beast Boost	Boost Chimère	Ultraboost	Bestien-Boost	Ultraimpulso	비스트부스트	异兽提升	異獸提升
+225	ＡＲシステム	RKS System	Système Alpha	Sistema Primevo	Alpha-System	Sistema Alfa	AR시스템	ＡＲ系统	ＡＲ系統
+226	エレキメイカー	Electric Surge	Créa-Élec	Elettrogenesi	Elektro-Erzeuger	Electrogénesis	일렉트릭메이커	电气制造者	電氣製造者
+227	サイコメイカー	Psychic Surge	Créa-Psy	Psicogenesi	Psycho-Erzeuger	Psicogénesis	사이코메이커	精神制造者	精神製造者
+228	ミストメイカー	Misty Surge	Créa-Brume	Nebbiogenesi	Nebel-Erzeuger	Nebulogénesis	미스트메이커	薄雾制造者	薄霧製造者
+229	グラスメイカー	Grassy Surge	Créa-Herbe	Erbogenesi	Gras-Erzeuger	Herbogénesis	그래스메이커	青草制造者	青草製造者
+230	メタルプロテクト	Full Metal Body	Métallo-Garde	Metalprotezione	Metallprotektor	Guardia Metálica	메탈프로텍트	金属防护	金屬防護
+231	ファントムガード	Shadow Shield	Spectro-Bouclier	Spettroguardia	Phantomschutz	Guardia Espectro	스펙터가드	幻影防守	幻影防守
+232	プリズムアーマー	Prism Armor	Prisme-Armure	Scudoprisma	Prismarüstung	Armadura Prisma	프리즘아머	棱镜装甲	稜鏡裝甲
+233	ブレインフォース	Neuroforce	Cérébro-Force	Cerebroforza	Zerebralmacht	Fuerza Cerebral	브레인포스	脑核之力	腦核之力

@@ -1,4 +1,4 @@
-// What every console shares: errors, common enums, species names and the Gen 3-4 RNG.
+// What every console shares: errors, common enums, names and the Gen 3-4 RNG.
 
 #ifndef SPEC_H
 #define SPEC_H
@@ -56,6 +56,8 @@ enum spec_language : uint8_t {
     SPEC_LANGUAGE_GERMAN = 5,
     SPEC_LANGUAGE_SPANISH = 7,
     SPEC_LANGUAGE_KOREAN = 8,
+    SPEC_LANGUAGE_CHINESE_SIMPLIFIED = 9,   // Gen 7
+    SPEC_LANGUAGE_CHINESE_TRADITIONAL = 10, // Gen 7
 };
 typedef enum spec_language spec_language_t;
 
@@ -72,6 +74,10 @@ enum spec_game_type : uint8_t {
     SPEC_GAME_TYPE_HEARTGOLD_SOULSILVER,
     SPEC_GAME_TYPE_BLACK_WHITE,
     SPEC_GAME_TYPE_BLACK2_WHITE2,
+    SPEC_GAME_TYPE_X_Y,
+    SPEC_GAME_TYPE_OMEGA_RUBY_ALPHA_SAPPHIRE,
+    SPEC_GAME_TYPE_SUN_MOON,
+    SPEC_GAME_TYPE_ULTRA_SUN_ULTRA_MOON,
 };
 typedef enum spec_game_type spec_game_type_t;
 
@@ -91,6 +97,22 @@ enum spec_version : uint8_t {
     SPEC_VERSION_BLACK = 21,
     SPEC_VERSION_WHITE2 = 22,
     SPEC_VERSION_BLACK2 = 23,
+    SPEC_VERSION_X = 24,
+    SPEC_VERSION_Y = 25,
+    SPEC_VERSION_ALPHA_SAPPHIRE = 26,
+    SPEC_VERSION_OMEGA_RUBY = 27,
+    SPEC_VERSION_SUN = 30,
+    SPEC_VERSION_MOON = 31,
+    SPEC_VERSION_ULTRA_SUN = 32,
+    SPEC_VERSION_ULTRA_MOON = 33,
+    // The Virtual Console games Poké Transporter moves Pokémon from into Gen 7.
+    SPEC_VERSION_RED = 35,
+    SPEC_VERSION_GREEN = 36, // Japanese Green, and Blue elsewhere
+    SPEC_VERSION_BLUE = 37,  // Japanese Blue
+    SPEC_VERSION_YELLOW = 38,
+    SPEC_VERSION_GOLD = 39,
+    SPEC_VERSION_SILVER = 40,
+    SPEC_VERSION_CRYSTAL = 41,
 };
 typedef enum spec_version spec_version_t;
 
@@ -122,7 +144,8 @@ enum spec_ball : uint8_t {
     SPEC_BALL_MOON = 23,
     SPEC_BALL_SPORT = 24,
     SPEC_BALL_PARK = 25,  // Gen 4
-    SPEC_BALL_DREAM = 25, // Gen 5
+    SPEC_BALL_DREAM = 25, // Gen 5 on
+    SPEC_BALL_BEAST = 26, // Gen 7
 };
 typedef enum spec_ball spec_ball_t;
 
@@ -174,6 +197,30 @@ enum spec_stat {
 };
 typedef enum spec_stat spec_stat_t;
 
+// In Gen 4 to 7's order; Gen 1 to 3 number types their own way.
+enum spec_type : uint8_t {
+    SPEC_TYPE_NORMAL,
+    SPEC_TYPE_FIGHTING,
+    SPEC_TYPE_FLYING,
+    SPEC_TYPE_POISON,
+    SPEC_TYPE_GROUND,
+    SPEC_TYPE_ROCK,
+    SPEC_TYPE_BUG,
+    SPEC_TYPE_GHOST,
+    SPEC_TYPE_STEEL,
+    SPEC_TYPE_FIRE,
+    SPEC_TYPE_WATER,
+    SPEC_TYPE_GRASS,
+    SPEC_TYPE_ELECTRIC,
+    SPEC_TYPE_PSYCHIC,
+    SPEC_TYPE_ICE,
+    SPEC_TYPE_DRAGON,
+    SPEC_TYPE_DARK,
+    SPEC_TYPE_FAIRY,
+    SPEC_TYPE_COUNT,
+};
+typedef enum spec_type spec_type_t;
+
 typedef uint32_t spec_pid_t;
 
 // How the stored IVs follow the PID in the Gen 3 and Gen 4 generator.
@@ -205,9 +252,17 @@ typedef struct spec_item_slot spec_item_slot_t;
 const char *spec_error_string(spec_error_t error);
 spec_error_data_t spec_last_error(void);
 
-// Species functions
+// Name functions: the 3DS games' names in each language, nullptr when there is none. Items are
+// numbered per generation, so each console names its own.
 
+const char *spec_ability_name(uint16_t ability, spec_language_t language);
+// Forms are numbered as the type's games number them.
+const char *spec_form_name(spec_game_type_t type, uint16_t national_number, uint8_t form,
+                           spec_language_t language);
+const char *spec_move_name(uint16_t move, spec_language_t language);
+const char *spec_nature_name(spec_nature_t nature, spec_language_t language);
 const char *spec_species_name(uint16_t national_number, spec_language_t language);
+const char *spec_type_name(spec_type_t type, spec_language_t language);
 
 // Gen 3-4 RNG functions
 

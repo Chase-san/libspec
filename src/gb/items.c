@@ -19,7 +19,7 @@ static size_t pocket_offset(const spec_gb_layout_t *layout, spec_gb_pocket_t poc
 }
 
 static bool is_item(uint16_t item) {
-    return item < SPEC_GB_ITEM_COUNT && spec_gb_item_names[item] != nullptr;
+    return item < SPEC_GB_ITEM_COUNT && spec_gb_item_names[SPEC_LANGUAGE_ENGLISH][item] != nullptr;
 }
 
 static size_t item_slot_offset(size_t index) {
@@ -103,12 +103,11 @@ spec_error_t spec_gb_check_item_placement(spec_gb_pocket_t pocket, uint16_t item
     return SPEC_OK;
 }
 
-// TODO: Item names for other languages; pret's localized builds have them.
 const char *spec_gb_item_name(uint16_t item, spec_language_t language) {
-    if (!is_item(item) || language != SPEC_LANGUAGE_ENGLISH) {
+    if (!is_item(item) || language >= SPEC_NAME_LANGUAGE_COUNT) {
         return nullptr;
     }
-    return spec_gb_item_names[item];
+    return spec_gb_item_names[language][item];
 }
 
 size_t spec_gb_pocket_capacity(spec_gb_pocket_t pocket) {

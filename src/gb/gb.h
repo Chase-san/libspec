@@ -186,6 +186,11 @@ spec_error_t spec_gb_pokemon_set_nickname(spec_gb_pokemon_t *pokemon, const char
 spec_gb_species_t spec_gb_species_from_national(uint16_t national_number);
 uint16_t spec_gb_species_to_national(spec_gb_species_t species);
 
+// Type functions
+
+// A Pokémon's stored type; SPEC_TYPE_COUNT for a number that names none, Bird's among them.
+spec_type_t spec_gb_decode_type(uint8_t type);
+
 // Item functions
 
 spec_error_t spec_gb_check_item_placement(spec_gb_pocket_t pocket, uint16_t item);

@@ -45,6 +45,6 @@ extern const spec_gb_character_t spec_gb_charmap_japanese[SPEC_GB_CHARMAP_SIZE];
 
 // Items
 
-extern const char *const spec_gb_item_names[SPEC_GB_ITEM_COUNT];
+extern const char *const spec_gb_item_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_GB_ITEM_COUNT];
 
 #endif

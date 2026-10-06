@@ -168,7 +168,7 @@ spec_error_t spec_gba_get_pocket_for_item(spec_gba_pocket_t *pocket, spec_game_t
     return SPEC_OK;
 }
 
-// TODO: Item names for other languages; pret has only the English and German builds.
+// pret builds Gen 3 in English and German only, so the other languages take the later games' names.
 const char *spec_gba_item_name(uint16_t item, spec_language_t language) {
     const spec_gba_item_data_t *item_data = item_data_of(item);
     if (item_data == nullptr) {
@@ -180,7 +180,8 @@ const char *spec_gba_item_name(uint16_t item, spec_language_t language) {
         case SPEC_LANGUAGE_GERMAN:
             return item_data->german_name;
         default:
-            return nullptr;
+            return item_data->later_item == 0 ? nullptr
+                                              : spec_item_name(item_data->later_item, language);
     }
 }
 

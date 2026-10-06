@@ -10,12 +10,18 @@ find_package(Python3 REQUIRED COMPONENTS Interpreter)
 
 set(spec_data ${CMAKE_CURRENT_SOURCE_DIR}/data)
 set(spec_generated ${CMAKE_CURRENT_BINARY_DIR}/gen)
-set(spec_tables ${spec_generated}/species_names.c ${spec_generated}/experience.c)
+set(spec_name_kinds species form move ability item nature type)
+set(spec_tables ${spec_generated}/experience.c)
+set(spec_name_data)
+foreach(kind ${spec_name_kinds})
+    list(APPEND spec_tables ${spec_generated}/${kind}_names.c)
+    list(APPEND spec_name_data ${spec_data}/${kind}_names.tsv)
+endforeach()
 add_custom_command(
     OUTPUT ${spec_tables}
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/generate_spec_tables.py
             ${spec_data} ${spec_generated}
-    DEPENDS tools/generate_spec_tables.py ${spec_data}/species_names.tsv
+    DEPENDS tools/generate_spec_tables.py ${spec_name_data}
     VERBATIM)
 
 set(gb_data ${CMAKE_CURRENT_SOURCE_DIR}/data/gb)
@@ -88,6 +94,20 @@ add_custom_command(
     DEPENDS tools/generate_ndsi_tables.py ${ndsi_data}/species.tsv ${ndsi_data}/items.tsv
     VERBATIM)
 
+set(3ds_data ${CMAKE_CURRENT_SOURCE_DIR}/data/3ds)
+set(3ds_generated ${CMAKE_CURRENT_BINARY_DIR}/3ds/gen)
+set(3ds_tables
+    ${3ds_generated}/species_data.c
+    ${3ds_generated}/items.c
+    ${3ds_generated}/chinese.c)
+add_custom_command(
+    OUTPUT ${3ds_tables}
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/generate_3ds_tables.py
+            ${3ds_data} ${3ds_generated}
+    DEPENDS tools/generate_3ds_tables.py ${3ds_data}/species.tsv ${3ds_data}/items.tsv
+            ${3ds_data}/chinese_glyphs.tsv ${3ds_data}/chinese_species_names.tsv
+    VERBATIM)
+
 add_library(spec STATIC
     src/spec.c
     src/names.c
@@ -151,12 +171,27 @@ add_library(spec STATIC
     src/ndsi/personality.c
     src/ndsi/items.c
     src/ndsi/text.c
+    src/3ds/save.c
+    src/3ds/layout.c
+    src/3ds/footer.c
+    src/3ds/signature.c
+    src/3ds/sha.c
+    src/3ds/aes.c
+    src/3ds/rsa.c
+    src/3ds/player.c
+    src/3ds/pokedex.c
+    src/3ds/storage.c
+    src/3ds/pokemon.c
+    src/3ds/personality.c
+    src/3ds/items.c
+    src/3ds/text.c
     ${spec_tables}
     ${gb_tables}
     ${gbc_tables}
     ${gba_tables}
     ${nds_tables}
-    ${ndsi_tables})
+    ${ndsi_tables}
+    ${3ds_tables})
 target_include_directories(spec PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:include/spec>)
@@ -171,6 +206,7 @@ install(FILES src/gbc/gbc.h DESTINATION include/spec/gbc)
 install(FILES src/gba/gba.h DESTINATION include/spec/gba)
 install(FILES src/nds/nds.h DESTINATION include/spec/nds)
 install(FILES src/ndsi/ndsi.h DESTINATION include/spec/ndsi)
+install(FILES src/3ds/3ds.h DESTINATION include/spec/3ds)
 
 enable_testing()
 add_executable(names_test tests/names_test.c)
@@ -229,5 +265,19 @@ if(SPEC_NDSI_TEST_SAVES)
     foreach(test_save IN LISTS test_saves)
         get_filename_component(test_name ${test_save} NAME_WE)
         add_test(NAME ndsi_round_trip_${test_name} COMMAND ndsi_round_trip ${test_save})
+    endforeach()
+endif()
+
+# Gen 7 writes need the games' signing key, its private exponent in a file of its own; without it
+# the Gen 7 saves check reading and the refused writes only.
+if(SPEC_3DS_TEST_SAVES)
+    enable_testing()
+    add_executable(3ds_round_trip tests/3ds_round_trip.c)
+    target_link_libraries(3ds_round_trip PRIVATE spec)
+    file(GLOB test_saves ${SPEC_3DS_TEST_SAVES})
+    foreach(test_save IN LISTS test_saves)
+        get_filename_component(test_name ${test_save} NAME_WE)
+        add_test(NAME 3ds_round_trip_${test_name}
+                 COMMAND 3ds_round_trip ${test_save} ${SPEC_3DS_SIGNING_KEY})
     endforeach()
 endif()

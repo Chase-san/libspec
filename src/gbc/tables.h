@@ -38,7 +38,6 @@ extern const spec_gb_character_t spec_gbc_charmap_japanese[SPEC_GB_CHARMAP_SIZE]
 
 // machine is 0 for an item that is no TM or HM.
 struct spec_gbc_item_data {
-    const char *english_name;
     uint8_t gold_silver_pocket;
     uint8_t crystal_pocket;
     uint8_t machine;
@@ -47,5 +46,6 @@ struct spec_gbc_item_data {
 typedef struct spec_gbc_item_data spec_gbc_item_data_t;
 
 extern const spec_gbc_item_data_t spec_gbc_items[SPEC_GBC_ITEM_COUNT];
+extern const char *const spec_gbc_item_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_GBC_ITEM_COUNT];
 
 #endif

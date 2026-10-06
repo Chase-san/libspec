@@ -659,7 +659,7 @@ spec_error_t spec_nds_pokemon_set_level(spec_nds_pokemon_t *pokemon, uint8_t lev
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "level is not 1 to 100");
     }
     spec_growth_rate_t growth_rate = spec_nds_species_data[pokemon->species].growth_rate;
-    pokemon->experience = spec_experience[growth_rate][level];
+    pokemon->experience = spec_experience_for_level(growth_rate, level);
     calculate_stats(pokemon);
     return SPEC_OK;
 }

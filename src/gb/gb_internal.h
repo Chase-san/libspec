@@ -123,8 +123,6 @@ uint8_t spec_gb_encode_status(const spec_gb_status_t *status);
 uint16_t spec_gb_calculate_stat(uint8_t base_stat, uint8_t dv, uint16_t stat_experience,
                                 uint8_t level, bool is_hp);
 uint8_t spec_gb_hp_dv(const uint8_t dvs[static SPEC_GB_STAT_COUNT]);
-// As CalcLevelFromExperience, which starts at level 1.
-uint8_t spec_gb_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience);
 
 void spec_gb_fill_party_data(spec_gb_pokemon_t *pokemon);
 

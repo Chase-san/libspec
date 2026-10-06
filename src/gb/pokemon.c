@@ -49,7 +49,7 @@ static const spec_gb_species_data_t *species_data_of(const spec_gb_pokemon_t *po
 // The HP DV comes from the others, since dvs[SPEC_GB_STAT_HP] is ignored on write.
 static void set_level_and_stats(spec_gb_pokemon_t *pokemon,
                                 const spec_gb_species_data_t *species_data) {
-    uint8_t level = spec_gb_level_for_experience(species_data->growth_rate, pokemon->experience);
+    uint8_t level = spec_level_for_experience(species_data->growth_rate, pokemon->experience);
     pokemon->party_data.level = level;
     for (size_t stat = 0; stat < SPEC_GB_STAT_COUNT; ++stat) {
         uint8_t dv = stat == SPEC_GB_STAT_HP ? spec_gb_hp_dv(pokemon->dvs) : pokemon->dvs[stat];
@@ -214,11 +214,6 @@ uint8_t spec_gb_hp_dv(const uint8_t dvs[static SPEC_GB_STAT_COUNT]) {
                      | (dvs[SPEC_GB_STAT_SPEED] & 1) << 1 | (dvs[SPEC_GB_STAT_SPECIAL] & 1));
 }
 
-uint8_t spec_gb_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience) {
-    uint8_t level = spec_level_for_experience(growth_rate, experience);
-    return level == 0 ? 1 : level;
-}
-
 // As withdrawing does: the level from the experience, then the stats; the HP stays.
 void spec_gb_fill_party_data(spec_gb_pokemon_t *pokemon) {
     bool has_party_data =
@@ -313,4 +308,42 @@ uint16_t spec_gb_species_to_national(spec_gb_species_t species) {
         return 0;
     }
     return spec_gb_national_of_species[species];
+}
+
+// pret pokered constants/type_constants.asm.
+spec_type_t spec_gb_decode_type(uint8_t type) {
+    switch (type) {
+        case 0x00:
+            return SPEC_TYPE_NORMAL;
+        case 0x01:
+            return SPEC_TYPE_FIGHTING;
+        case 0x02:
+            return SPEC_TYPE_FLYING;
+        case 0x03:
+            return SPEC_TYPE_POISON;
+        case 0x04:
+            return SPEC_TYPE_GROUND;
+        case 0x05:
+            return SPEC_TYPE_ROCK;
+        case 0x07:
+            return SPEC_TYPE_BUG;
+        case 0x08:
+            return SPEC_TYPE_GHOST;
+        case 0x14:
+            return SPEC_TYPE_FIRE;
+        case 0x15:
+            return SPEC_TYPE_WATER;
+        case 0x16:
+            return SPEC_TYPE_GRASS;
+        case 0x17:
+            return SPEC_TYPE_ELECTRIC;
+        case 0x18:
+            return SPEC_TYPE_PSYCHIC;
+        case 0x19:
+            return SPEC_TYPE_ICE;
+        case 0x1A:
+            return SPEC_TYPE_DRAGON;
+        default:
+            return SPEC_TYPE_COUNT;
+    }
 }

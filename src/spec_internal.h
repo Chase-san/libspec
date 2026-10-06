@@ -17,12 +17,14 @@ constexpr char32_t SPEC_REPLACEMENT_CHARACTER = 0xFFFD;
 spec_error_t spec_fail(spec_error_t error, const char *message);
 spec_error_t spec_locate_error(spec_error_location_t location, uint32_t index0, uint32_t index1);
 
-// Species name functions
+// Name functions
 
 // The names as Game Boy games, Gen 5 and Gen 3 and 4 store them; nullptr when the language has
 // none.
 const char8_t *spec_game_boy_species_name(uint16_t national_number, spec_language_t language);
 const char8_t *spec_gen5_species_name(uint16_t national_number, spec_language_t language);
+// Items as Gen 4 to 7 number them; Gen 1 to 3 number their own.
+const char *spec_item_name(uint16_t item, spec_language_t language);
 const char8_t *spec_upper_case_species_name(uint16_t national_number, spec_language_t language);
 
 // Byte and bit functions
@@ -33,10 +35,12 @@ uint32_t spec_encode_flags(const bool *flags, size_t flag_count);
 uint16_t spec_read_u16_be(const uint8_t *bytes);
 uint16_t spec_read_u16_le(const uint8_t *bytes);
 uint32_t spec_read_u24_be(const uint8_t *bytes);
+uint32_t spec_read_u32_be(const uint8_t *bytes);
 uint32_t spec_read_u32_le(const uint8_t *bytes);
 void spec_write_u16_be(uint8_t *bytes, uint16_t value);
 void spec_write_u16_le(uint8_t *bytes, uint16_t value);
 void spec_write_u24_be(uint8_t *bytes, uint32_t value);
+void spec_write_u32_be(uint8_t *bytes, uint32_t value);
 void spec_write_u32_le(uint8_t *bytes, uint32_t value);
 
 bool spec_fits_in_bits(uint32_t value, unsigned bit_count);
@@ -59,6 +63,7 @@ size_t spec_utf8_write(char8_t *utf8, char32_t code_point);
 // CRC functions
 
 uint16_t spec_crc16(const uint8_t *bytes, size_t size);
+uint16_t spec_crc16_usb(const uint8_t *bytes, size_t size);
 
 // Item slot functions
 
@@ -88,6 +93,10 @@ void spec_xor_with_random_stream(uint8_t *bytes, size_t size, uint32_t seed);
 // As CalcMonStats; HP ignores the nature.
 uint16_t spec_calculate_stat(spec_stat_t stat, uint8_t base_stat, uint8_t iv, uint8_t ev,
                              uint8_t level, spec_nature_t nature);
+// Gen 3's tables ask 1 experience of level 1; Gen 1 and 2's code, and Gen 4 on's tables
+// (pokeplatinum's exp_tables.csv, the 3DS games' own), none.
+uint32_t spec_experience_for_level(spec_growth_rate_t growth_rate, uint8_t level);
+uint8_t spec_gen3_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience);
 uint8_t spec_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience);
 
 #endif

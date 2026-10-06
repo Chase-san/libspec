@@ -145,13 +145,17 @@ spec_error_t spec_nds_get_pocket_for_item(spec_nds_pocket_t *pocket, spec_game_t
     return SPEC_OK;
 }
 
-// TODO: Item names for other languages; pret builds the US games alone.
+// The English names are the game's own; the other languages take the 3DS games' names, whose
+// numbers are the same.
 const char *spec_nds_item_name(uint16_t item, spec_language_t language) {
     const spec_nds_item_data_t *item_data = item_data_of(item);
-    if (item_data == nullptr || language != SPEC_LANGUAGE_ENGLISH) {
+    if (item_data == nullptr) {
         return nullptr;
     }
-    return item_data->english_name;
+    if (language == SPEC_LANGUAGE_ENGLISH) {
+        return item_data->english_name;
+    }
+    return spec_item_name(item, language);
 }
 
 static const size_t *pocket_capacities_of(spec_game_type_t type) {

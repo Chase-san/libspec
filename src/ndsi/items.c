@@ -138,13 +138,17 @@ spec_error_t spec_ndsi_get_pocket_for_item(spec_ndsi_pocket_t *pocket, spec_game
     return SPEC_OK;
 }
 
-// TODO: Item names for other languages; the US carts are the only source so far.
+// The English names are the game's own; the other languages take the 3DS games' names, whose
+// numbers are the same.
 const char *spec_ndsi_item_name(uint16_t item, spec_language_t language) {
     const spec_ndsi_item_data_t *item_data = item_data_of(item);
-    if (item_data == nullptr || language != SPEC_LANGUAGE_ENGLISH) {
+    if (item_data == nullptr) {
         return nullptr;
     }
-    return item_data->english_name;
+    if (language == SPEC_LANGUAGE_ENGLISH) {
+        return item_data->english_name;
+    }
+    return spec_item_name(item, language);
 }
 
 static bool is_ndsi_game(spec_game_type_t type) {

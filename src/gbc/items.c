@@ -18,7 +18,8 @@ constexpr size_t POCKET_CAPACITIES[SPEC_GBC_POCKET_COUNT] = {
 };
 
 static const spec_gbc_item_data_t *item_data_of(uint16_t item) {
-    if (item >= SPEC_GBC_ITEM_COUNT || spec_gbc_items[item].english_name == nullptr) {
+    if (item >= SPEC_GBC_ITEM_COUNT
+        || spec_gbc_item_names[SPEC_LANGUAGE_ENGLISH][item] == nullptr) {
         return nullptr;
     }
     return &spec_gbc_items[item];
@@ -220,13 +221,12 @@ spec_error_t spec_gbc_get_pocket_for_item(spec_gbc_pocket_t *pocket, spec_game_t
     return SPEC_OK;
 }
 
-// TODO: Item names for other languages; pret's localized builds have them.
+// TODO: Item names in French, German and Italian, which no retail source on hand holds.
 const char *spec_gbc_item_name(uint16_t item, spec_language_t language) {
-    const spec_gbc_item_data_t *item_data = item_data_of(item);
-    if (item_data == nullptr || language != SPEC_LANGUAGE_ENGLISH) {
+    if (item_data_of(item) == nullptr || language >= SPEC_NAME_LANGUAGE_COUNT) {
         return nullptr;
     }
-    return item_data->english_name;
+    return spec_gbc_item_names[language][item];
 }
 
 size_t spec_gbc_pocket_capacity(spec_gbc_pocket_t pocket) {

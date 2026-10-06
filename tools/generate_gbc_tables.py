@@ -6,10 +6,11 @@ usage: generate_gbc_tables.py DATA_DIRECTORY OUTPUT_DIRECTORY
 import sys
 from pathlib import Path
 
-from generate_gb_tables import c_string, charmap_body, growth_rate_enum, read_tsv
+from generate_gb_tables import charmap_body, growth_rate_enum, item_names_body, read_tsv
 
 STAT_COLUMNS = ["hp", "attack", "defense", "speed", "special_attack", "special_defense"]
 POCKET_COLUMNS = ["gold_silver_pocket", "crystal_pocket"]
+ITEM_NAME_COLUMNS = ["japanese", "english", "spanish", "korean"]
 
 
 def write_c_file(path, source, body):
@@ -38,7 +39,7 @@ def items_body(items):
         pockets = ", ".join(pocket_value(row[column]) for column in POCKET_COLUMNS)
         machine = "0" if row["machine"] == "-" else row["machine"]
         is_mail = "true" if row["is_mail"] == "yes" else "false"
-        lines.append(f"    [{row['item']}] = {{{c_string(row['english'])}, {pockets}, {machine}, {is_mail}}},")
+        lines.append(f"    [{row['item']}] = {{{pockets}, {machine}, {is_mail}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 
@@ -52,7 +53,8 @@ def main():
     items = read_tsv(data_directory / "items.tsv")
     write_c_file(output_directory / "species_data.c", "data/gbc/species.tsv", species_data_body(species))
     write_c_file(output_directory / "charmap.c", "data/gbc/charmap.tsv", charmap_body(charmap, "spec_gbc_charmap"))
-    write_c_file(output_directory / "items.c", "data/gbc/items.tsv", items_body(items))
+    names = item_names_body(items, "spec_gbc_item_names", "SPEC_GBC_ITEM_COUNT", ITEM_NAME_COLUMNS)
+    write_c_file(output_directory / "items.c", "data/gbc/items.tsv", items_body(items) + "\n" + names)
 
 
 if __name__ == "__main__":

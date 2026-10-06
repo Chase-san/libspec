@@ -32,6 +32,11 @@ uint32_t spec_read_u24_be(const uint8_t *bytes) {
     return ((uint32_t)bytes[0] << 16) | ((uint32_t)bytes[1] << 8) | (uint32_t)bytes[2];
 }
 
+uint32_t spec_read_u32_be(const uint8_t *bytes) {
+    return ((uint32_t)bytes[0] << 24) | ((uint32_t)bytes[1] << 16) | ((uint32_t)bytes[2] << 8)
+           | (uint32_t)bytes[3];
+}
+
 uint32_t spec_read_u32_le(const uint8_t *bytes) {
     return (uint32_t)bytes[0] | ((uint32_t)bytes[1] << 8) | ((uint32_t)bytes[2] << 16)
            | ((uint32_t)bytes[3] << 24);
@@ -51,6 +56,13 @@ void spec_write_u24_be(uint8_t *bytes, uint32_t value) {
     bytes[0] = (uint8_t)(value >> 16);
     bytes[1] = (uint8_t)(value >> 8);
     bytes[2] = (uint8_t)value;
+}
+
+void spec_write_u32_be(uint8_t *bytes, uint32_t value) {
+    bytes[0] = (uint8_t)(value >> 24);
+    bytes[1] = (uint8_t)(value >> 16);
+    bytes[2] = (uint8_t)(value >> 8);
+    bytes[3] = (uint8_t)value;
 }
 
 void spec_write_u32_le(uint8_t *bytes, uint32_t value) {

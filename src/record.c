@@ -6,7 +6,8 @@
 
 constexpr size_t BLOCK_COUNT = 4;
 constexpr size_t ORDER_COUNT = 24;
-constexpr size_t BLOCK_MAX_SIZE = 32;
+// Gen 3 to 5's blocks are 12 or 32 bytes, Gen 6 and 7's 56.
+constexpr size_t BLOCK_MAX_SIZE = 56;
 
 // The stored position of each block for each shuffle order.
 constexpr uint8_t STORED_POSITIONS[ORDER_COUNT][BLOCK_COUNT] = {

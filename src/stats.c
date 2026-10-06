@@ -31,11 +31,20 @@ uint16_t spec_calculate_stat(spec_stat_t stat, uint8_t base_stat, uint8_t iv, ui
     return apply_nature((uint16_t)(level_share + 5), stat, nature);
 }
 
-// As GetLevelFromMonExp.
-uint8_t spec_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience) {
+uint32_t spec_experience_for_level(spec_growth_rate_t growth_rate, uint8_t level) {
+    return level == 1 ? 0 : spec_experience[growth_rate][level];
+}
+
+// As Gen 3's GetLevelFromMonExp.
+uint8_t spec_gen3_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience) {
     uint8_t level = 1;
     while (level <= MAX_LEVEL && spec_experience[growth_rate][level] <= experience) {
         ++level;
     }
     return (uint8_t)(level - 1);
+}
+
+uint8_t spec_level_for_experience(spec_growth_rate_t growth_rate, uint32_t experience) {
+    uint8_t level = spec_gen3_level_for_experience(growth_rate, experience);
+    return level == 0 ? 1 : level;
 }

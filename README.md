@@ -25,3 +25,4 @@ This library has the following capabilities.
   - Daycare
 - Pokedex Editing
 - Trainer Editing
+- Names in every language the games use: species, forms, moves, abilities, items, natures and types
