@@ -26,3 +26,7 @@ This library has the following capabilities.
 - Pokedex Editing
 - Trainer Editing
 - Names in every language the games use: species, forms, moves, abilities, items, natures and types
+
+## Contribution
+
+This project makes significant use of Claude Code and Claude Opus 5.5, under careful direction and review by the original author.
