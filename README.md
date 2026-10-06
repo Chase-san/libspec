@@ -41,10 +41,10 @@ Its information comes from community sources, original research and decompilatio
   - erosunica (pokecrystal-es)
 - PokéAPI, for the Chinese species names and what only Ultra Sun and Ultra Moon add
 - Project Pokémon, PKHeX's contributors and SciresM, whose research documented the Gen 6 and 7 saves and Gen 7's save signature.
+- Bulbapedia, Serebii.net, and Pokemon Database.
 - The author's own cartridges and applications from which the Gen 5, Gen 6 and Gen 7 data is extracted.
-- Bulbapedia
-- libspec (old)
-- PokeLib
+  - This includes all english games from owned cartridges and a number of foreign language games across various platforms.
+- The author's own older programs and libraries such as PPSE-DS, libspec (old), and PokeLib.
 
 PokéAPI data is used under its BSD 3-Clause licence: Copyright (c) 2013–2023 Paul Hallett and PokéAPI contributors.
 
