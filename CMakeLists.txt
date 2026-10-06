@@ -268,8 +268,6 @@ if(SPEC_NDSI_TEST_SAVES)
     endforeach()
 endif()
 
-# Gen 7 writes need the games' signing key, its private exponent in a file of its own; without it
-# the Gen 7 saves check reading and the refused writes only.
 if(SPEC_3DS_TEST_SAVES)
     enable_testing()
     add_executable(3ds_round_trip tests/3ds_round_trip.c)
@@ -277,7 +275,6 @@ if(SPEC_3DS_TEST_SAVES)
     file(GLOB test_saves ${SPEC_3DS_TEST_SAVES})
     foreach(test_save IN LISTS test_saves)
         get_filename_component(test_name ${test_save} NAME_WE)
-        add_test(NAME 3ds_round_trip_${test_name}
-                 COMMAND 3ds_round_trip ${test_save} ${SPEC_3DS_SIGNING_KEY})
+        add_test(NAME 3ds_round_trip_${test_name} COMMAND 3ds_round_trip ${test_save})
     endforeach()
 endif()

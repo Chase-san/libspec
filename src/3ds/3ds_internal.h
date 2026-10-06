@@ -14,6 +14,8 @@ constexpr size_t SPEC_3DS_SHA1_SIZE = 20;
 constexpr size_t SPEC_3DS_SHA256_SIZE = 32;
 constexpr size_t SPEC_3DS_AES_BLOCK_SIZE = 16;
 constexpr size_t SPEC_3DS_AES_ROUND_KEYS_SIZE = 176;
+// The save key's 768-bit modulus, and the numbers it works on.
+constexpr size_t SPEC_3DS_RSA_SIZE = 0x60;
 // Gen 7's signature, inside its signed block: the footer's SHA-256, then the RSA signature.
 constexpr size_t SPEC_3DS_SIGNATURE_OFFSET = 0x100;
 constexpr size_t SPEC_3DS_SIGNATURE_SIZE = 0x80;
@@ -72,11 +74,8 @@ void spec_3ds_stamp_footer(uint8_t *data, const spec_3ds_layout_t *layout);
 
 // Signature functions
 
-spec_error_t spec_3ds_check_signing_key(const spec_3ds_signing_key_t *signing_key);
-
 // Run last: the signature covers the footer, and so every block's CRC.
-void spec_3ds_sign_save(uint8_t *data, const spec_3ds_layout_t *layout,
-                        const spec_3ds_signing_key_t *signing_key);
+void spec_3ds_sign_save(uint8_t *data, const spec_3ds_layout_t *layout);
 
 // Crypto functions: SHA-1 and SHA-256 (FIPS 180-4), AES-128 (FIPS 197) and textbook RSA
 
@@ -84,10 +83,10 @@ void spec_3ds_aes128_encrypt(uint8_t block[static SPEC_3DS_AES_BLOCK_SIZE],
                              const uint8_t round_keys[static SPEC_3DS_AES_ROUND_KEYS_SIZE]);
 void spec_3ds_aes128_expand_key(uint8_t round_keys[static SPEC_3DS_AES_ROUND_KEYS_SIZE],
                                 const uint8_t key[static SPEC_3DS_AES_BLOCK_SIZE]);
-// Modulo the save key's modulus; numbers are big-endian, SPEC_3DS_SIGNING_KEY_SIZE bytes.
-void spec_3ds_rsa_power(uint8_t result[static SPEC_3DS_SIGNING_KEY_SIZE],
-                        const uint8_t base[static SPEC_3DS_SIGNING_KEY_SIZE],
-                        const uint8_t *exponent, size_t exponent_size);
+// Modulo the save key's modulus; numbers are big-endian.
+void spec_3ds_rsa_power(uint8_t result[static SPEC_3DS_RSA_SIZE],
+                        const uint8_t base[static SPEC_3DS_RSA_SIZE],
+                        const uint8_t exponent[static SPEC_3DS_RSA_SIZE]);
 void spec_3ds_sha1(uint8_t digest[static SPEC_3DS_SHA1_SIZE], const uint8_t *bytes, size_t size);
 void spec_3ds_sha256(uint8_t digest[static SPEC_3DS_SHA256_SIZE], const uint8_t *bytes,
                      size_t size);

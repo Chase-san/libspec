@@ -12,8 +12,6 @@
 
 // Omega Ruby and Alpha Sapphire's, the largest; every game type's save has a size of its own.
 constexpr size_t SPEC_3DS_SAVE_MAX_SIZE = 0x76000;
-// The private exponent of the key Gen 7 signs its saves with.
-constexpr size_t SPEC_3DS_SIGNING_KEY_SIZE = 0x60;
 constexpr size_t SPEC_3DS_PARTY_CAPACITY = 6;
 // Gen 6 has 31 boxes, Gen 7 32.
 constexpr size_t SPEC_3DS_BOX_MAX_COUNT = 32;
@@ -302,20 +300,12 @@ struct spec_3ds_save {
 };
 typedef struct spec_3ds_save spec_3ds_save_t;
 
-// The private half of the key Gen 7 signs its saves with, which ships in the games' code and not
-// in this library.
-struct spec_3ds_signing_key {
-    uint8_t private_exponent[SPEC_3DS_SIGNING_KEY_SIZE];
-};
-typedef struct spec_3ds_signing_key spec_3ds_signing_key_t;
-
 // Save functions
 
 // data is the plaintext main file a save manager or an emulator keeps.
 spec_error_t spec_3ds_read_save(spec_3ds_save_t *save, const uint8_t *data, size_t data_size);
-// Gen 7 needs the signing key; Gen 6 takes nullptr.
-spec_error_t spec_3ds_write_save(const spec_3ds_save_t *save, uint8_t *data, size_t data_size,
-                                 const spec_3ds_signing_key_t *signing_key);
+// Gen 7 saves are signed again, as the games sign them.
+spec_error_t spec_3ds_write_save(const spec_3ds_save_t *save, uint8_t *data, size_t data_size);
 
 // What writing checks, without writing.
 spec_error_t spec_3ds_check_save(const spec_3ds_save_t *save);

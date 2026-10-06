@@ -15,7 +15,6 @@ constexpr size_t CIPHER_BLOCK_COUNT = (MESSAGE_SIZE - CIPHER_OFFSET) / SPEC_3DS_
 constexpr uint8_t SUBKEY_POLYNOMIAL = 0x87;
 // The top bit is dropped so the message stays below the modulus.
 constexpr uint8_t BELOW_MODULUS_MASK = 0x7F;
-constexpr uint8_t PUBLIC_EXPONENT[] = {0x01, 0x00, 0x01};
 
 // The public key as DER (RFC 5280's SubjectPublicKeyInfo), which keys the AES.
 constexpr uint8_t PUBLIC_KEY_DER[] = {
@@ -29,23 +28,16 @@ constexpr uint8_t PUBLIC_KEY_DER[] = {
     0xF2, 0xBF, 0x3D, 0x7E, 0x83, 0x11, 0x41, 0xA9, 0x73, 0x02, 0x03, 0x01, 0x00, 0x01,
 };
 
-// A key that undoes what the public key does is the game's.
-spec_error_t spec_3ds_check_signing_key(const spec_3ds_signing_key_t *signing_key) {
-    if (signing_key == nullptr) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "Gen 7 saves need the signing key");
-    }
-    uint8_t message[SPEC_3DS_SIGNING_KEY_SIZE] = {};
-    message[SPEC_3DS_SIGNING_KEY_SIZE - 1] = 2;
-    uint8_t signature[SPEC_3DS_SIGNING_KEY_SIZE];
-    spec_3ds_rsa_power(signature, message, signing_key->private_exponent,
-                       SPEC_3DS_SIGNING_KEY_SIZE);
-    uint8_t recovered[SPEC_3DS_SIGNING_KEY_SIZE];
-    spec_3ds_rsa_power(recovered, signature, PUBLIC_EXPONENT, sizeof PUBLIC_EXPONENT);
-    if (memcmp(recovered, message, sizeof message) != 0) {
-        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the signing key is not the games' key");
-    }
-    return SPEC_OK;
-}
+// The private exponent, which Sun's and Moon's code hold with the modulus as an RSAPrivateKey
+// (ExeFS/.code#0x4A4030 on the US carts); every Gen 7 save in hand is signed with it.
+constexpr uint8_t PRIVATE_EXPONENT[SPEC_3DS_RSA_SIZE] = {
+    0x77, 0x54, 0x55, 0x66, 0x8F, 0xFF, 0x3C, 0xBA, 0x30, 0x26, 0xC2, 0xD0, 0xB2, 0x6B, 0x80, 0x85,
+    0x89, 0x59, 0x58, 0x34, 0x11, 0x57, 0xAE, 0xB0, 0x3B, 0x6B, 0x04, 0x95, 0xEE, 0x57, 0x80, 0x3E,
+    0x21, 0x86, 0xEB, 0x6C, 0xB2, 0xEB, 0x62, 0xA7, 0x1D, 0xF1, 0x8A, 0x3C, 0x9C, 0x65, 0x79, 0x07,
+    0x76, 0x70, 0x96, 0x1B, 0x3A, 0x61, 0x02, 0xDA, 0xBE, 0x5A, 0x19, 0x4A, 0xB5, 0x8C, 0x32, 0x50,
+    0xAE, 0xD5, 0x97, 0xFC, 0x78, 0x97, 0x8A, 0x32, 0x6D, 0xB1, 0xD7, 0xB2, 0x8D, 0xCC, 0xCB, 0x2A,
+    0x3E, 0x01, 0x4E, 0xDB, 0xD3, 0x97, 0xAD, 0x33, 0xB8, 0xF2, 0x8C, 0xD5, 0x25, 0x05, 0x42, 0x51,
+};
 
 static uint8_t *signature_of(uint8_t *data, const spec_3ds_layout_t *layout) {
     return &data[layout->blocks[layout->signed_block].offset + SPEC_3DS_SIGNATURE_OFFSET];
@@ -117,8 +109,7 @@ static void derive_round_keys(uint8_t round_keys[static SPEC_3DS_AES_ROUND_KEYS_
     spec_3ds_aes128_expand_key(round_keys, digest);
 }
 
-void spec_3ds_sign_save(uint8_t *data, const spec_3ds_layout_t *layout,
-                        const spec_3ds_signing_key_t *signing_key) {
+void spec_3ds_sign_save(uint8_t *data, const spec_3ds_layout_t *layout) {
     uint8_t hash[SPEC_3DS_SHA256_SIZE];
     spec_3ds_sha256(hash, &data[layout->save_size - FOOTER_SIZE], layout->hashed_footer_size);
     uint8_t message[MESSAGE_SIZE];
@@ -129,6 +120,5 @@ void spec_3ds_sign_save(uint8_t *data, const spec_3ds_layout_t *layout,
     message[CIPHER_OFFSET] &= BELOW_MODULUS_MASK;
     uint8_t *signature = signature_of(data, layout);
     memcpy(signature, hash, SPEC_3DS_SHA256_SIZE);
-    spec_3ds_rsa_power(&signature[SPEC_3DS_SHA256_SIZE], &message[CIPHER_OFFSET],
-                       signing_key->private_exponent, SPEC_3DS_SIGNING_KEY_SIZE);
+    spec_3ds_rsa_power(&signature[SPEC_3DS_SHA256_SIZE], &message[CIPHER_OFFSET], PRIVATE_EXPONENT);
 }

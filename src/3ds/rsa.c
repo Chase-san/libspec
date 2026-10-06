@@ -5,11 +5,11 @@
 #include "3ds/3ds_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t LIMB_COUNT = SPEC_3DS_SIGNING_KEY_SIZE / 4;
+constexpr size_t LIMB_COUNT = SPEC_3DS_RSA_SIZE / 4;
 constexpr size_t LIMB_BIT_COUNT = 32;
 
 // The public key's modulus, which Sun's and Moon's code holds with the private exponent.
-constexpr uint8_t MODULUS[SPEC_3DS_SIGNING_KEY_SIZE] = {
+constexpr uint8_t MODULUS[SPEC_3DS_RSA_SIZE] = {
     0xB6, 0x1E, 0x19, 0x20, 0x91, 0xF9, 0x0A, 0x8F, 0x76, 0xA6, 0xEA, 0xAA, 0x9A, 0x3C, 0xE5, 0x8C,
     0x86, 0x3F, 0x39, 0xAE, 0x25, 0x3F, 0x03, 0x78, 0x16, 0xF5, 0x97, 0x58, 0x54, 0xE0, 0x7A, 0x9A,
     0x45, 0x66, 0x01, 0xE7, 0xC9, 0x4C, 0x29, 0x75, 0x9F, 0xE1, 0x55, 0xC0, 0x64, 0xED, 0xDF, 0xA1,
@@ -42,17 +42,15 @@ static void subtract(uint32_t *left, const number_t right) {
     }
 }
 
-static void number_from_bytes(number_t number,
-                              const uint8_t bytes[static SPEC_3DS_SIGNING_KEY_SIZE]) {
+static void number_from_bytes(number_t number, const uint8_t bytes[static SPEC_3DS_RSA_SIZE]) {
     for (size_t limb = 0; limb < LIMB_COUNT; ++limb) {
-        number[limb] = spec_read_u32_be(&bytes[SPEC_3DS_SIGNING_KEY_SIZE - (limb + 1) * 4]);
+        number[limb] = spec_read_u32_be(&bytes[SPEC_3DS_RSA_SIZE - (limb + 1) * 4]);
     }
 }
 
-static void number_to_bytes(uint8_t bytes[static SPEC_3DS_SIGNING_KEY_SIZE],
-                            const number_t number) {
+static void number_to_bytes(uint8_t bytes[static SPEC_3DS_RSA_SIZE], const number_t number) {
     for (size_t limb = 0; limb < LIMB_COUNT; ++limb) {
-        spec_write_u32_be(&bytes[SPEC_3DS_SIGNING_KEY_SIZE - (limb + 1) * 4], number[limb]);
+        spec_write_u32_be(&bytes[SPEC_3DS_RSA_SIZE - (limb + 1) * 4], number[limb]);
     }
 }
 
@@ -114,9 +112,9 @@ static void montgomery_square_of_radix(number_t result, const number_t modulus) 
     memcpy(result, doubled, sizeof(number_t));
 }
 
-void spec_3ds_rsa_power(uint8_t result[static SPEC_3DS_SIGNING_KEY_SIZE],
-                        const uint8_t base[static SPEC_3DS_SIGNING_KEY_SIZE],
-                        const uint8_t *exponent, size_t exponent_size) {
+void spec_3ds_rsa_power(uint8_t result[static SPEC_3DS_RSA_SIZE],
+                        const uint8_t base[static SPEC_3DS_RSA_SIZE],
+                        const uint8_t exponent[static SPEC_3DS_RSA_SIZE]) {
     number_t modulus;
     number_from_bytes(modulus, MODULUS);
     uint32_t negative_inverse = negative_inverse_of(modulus[0]);
@@ -129,7 +127,7 @@ void spec_3ds_rsa_power(uint8_t result[static SPEC_3DS_SIGNING_KEY_SIZE],
     number_t base_montgomery;
     montgomery_multiply(power, one, radix_squared, modulus, negative_inverse);
     montgomery_multiply(base_montgomery, base_number, radix_squared, modulus, negative_inverse);
-    for (size_t byte = 0; byte < exponent_size; ++byte) {
+    for (size_t byte = 0; byte < SPEC_3DS_RSA_SIZE; ++byte) {
         for (unsigned bit = 8; bit-- > 0;) {
             montgomery_multiply(power, power, power, modulus, negative_inverse);
             if (((exponent[byte] >> bit) & 1) != 0) {

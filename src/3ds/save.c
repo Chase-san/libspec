@@ -39,8 +39,7 @@ spec_error_t spec_3ds_read_save(spec_3ds_save_t *save, const uint8_t *data, size
 
 // Everything is checked before the save changes, so a failure changes nothing. The game keeps
 // one copy, so the write is in place; the footer's two timers stay as they are.
-spec_error_t spec_3ds_write_save(const spec_3ds_save_t *save, uint8_t *data, size_t data_size,
-                                 const spec_3ds_signing_key_t *signing_key) {
+spec_error_t spec_3ds_write_save(const spec_3ds_save_t *save, uint8_t *data, size_t data_size) {
     const spec_3ds_layout_t *layout = spec_3ds_get_layout(save->type);
     if (layout == nullptr) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "type is not a 3DS game type");
@@ -52,19 +51,13 @@ spec_error_t spec_3ds_write_save(const spec_3ds_save_t *save, uint8_t *data, siz
     if (error != SPEC_OK) {
         return error;
     }
-    if (layout->is_gen7) {
-        error = spec_3ds_check_signing_key(signing_key);
-        if (error != SPEC_OK) {
-            return error;
-        }
-    }
     spec_3ds_encode_player(data, layout, save);
     spec_3ds_encode_pokedex(data, layout, &save->pokedex);
     spec_3ds_encode_storage(data, layout, save);
     spec_3ds_encode_items(data, layout, save);
     spec_3ds_stamp_footer(data, layout);
     if (layout->is_gen7) {
-        spec_3ds_sign_save(data, layout, signing_key);
+        spec_3ds_sign_save(data, layout);
     }
     return SPEC_OK;
 }
