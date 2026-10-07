@@ -41,6 +41,7 @@ constexpr spec_gbc_layout_t GOLD_SILVER_LAYOUT = {
     .mailbox_offset = 0x0834,           // pret/pokegold sMailboxCount
     .mailbox_backup_offset = 0x0A0B,    // pret/pokegold sMailboxCountBackup
 
+    .trainer_id_offset = 0x2009,     // pret/pokegold sPlayerData1 wPlayerID
     .rival_name_offset = 0x2021,     // pret/pokegold sPlayerData1 wRivalName
     .play_time_offset = 0x2052,      // pret/pokegold sPlayerData1 wGameTimeCap
     .status_flags_offset = 0x23D9,   // pret/pokegold sPlayerData3 wStatusFlags
@@ -87,6 +88,7 @@ constexpr spec_gbc_layout_t CRYSTAL_LAYOUT = {
     .mailbox_offset = 0x0834,           // pret/pokecrystal sMailboxCount
     .mailbox_backup_offset = 0x0A0B,    // pret/pokecrystal sMailboxCountBackup
 
+    .trainer_id_offset = 0x2009,     // pret/pokecrystal sPlayerData wPlayerID
     .rival_name_offset = 0x2021,     // pret/pokecrystal sPlayerData wRivalName
     .play_time_offset = 0x2051,      // pret/pokecrystal sPlayerData wGameTimeCap
     .status_flags_offset = 0x23DA,   // pret/pokecrystal sPlayerData wStatusFlags
@@ -133,6 +135,7 @@ constexpr spec_gbc_layout_t JAPANESE_GOLD_SILVER_LAYOUT = {
     .mailbox_offset = 0x07F8,           // Narishma-gb/pokesilver sMailboxCount
     .mailbox_backup_offset = 0x099D,    // Narishma-gb/pokesilver sMailboxCountBackup
 
+    .trainer_id_offset = 0x2009,     // Narishma-gb/pokesilver sPlayerData wPlayerID
     .rival_name_offset = 0x2017,     // Narishma-gb/pokesilver sPlayerData wRivalName
     .play_time_offset = 0x2033,      // Narishma-gb/pokesilver sPlayerData wGameTimeCap
     .status_flags_offset = 0x23BA,   // Narishma-gb/pokesilver sPlayerData wStatusFlags
@@ -181,6 +184,7 @@ constexpr spec_gbc_layout_t JAPANESE_CRYSTAL_LAYOUT = {
     .mailbox_offset = 0x07F8,           // cgb-bxtj-jpn.gbc BackupPartyMonMail (#0x47B49)
     .mailbox_backup_offset = 0x099D,    // cgb-bxtj-jpn.gbc BackupPartyMonMail (#0x47B49)
 
+    .trainer_id_offset = 0x2009,     // cgb-bxtj-jpn.gbc SavePlayerData (#0x14DB9)
     .rival_name_offset = 0x2017,     // Bulbapedia Rival name
     .play_time_offset = 0x2033,      // cgb-bxtj-jpn.gbc GameTimer (#0x207B)
     .status_flags_offset = 0x23BC,   // cgb-bxtj-jpn.gbc

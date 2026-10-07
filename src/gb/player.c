@@ -37,8 +37,7 @@ static void decode_play_time(spec_gb_play_time_t *play_time, const uint8_t *byte
 
 void spec_gb_decode_player(spec_gb_save_t *save, const uint8_t *data,
                            const spec_gb_layout_t *layout) {
-    memcpy(save->trainer.name, &data[SPEC_GB_GAME_DATA_OFFSET], layout->name_size);
-    save->trainer.id = spec_read_u16_be(&data[layout->trainer_id_offset]);
+    spec_gb_decode_trainer(&save->trainer, data, layout);
     memcpy(save->rival_name, &data[layout->rival_name_offset], layout->name_size);
     decode_play_time(&save->play_time, &data[layout->play_time_offset]);
     save->money = decode_bcd(&data[layout->money_offset], MONEY_SIZE);
@@ -47,6 +46,13 @@ void spec_gb_decode_player(spec_gb_save_t *save, const uint8_t *data,
     if (save->type == SPEC_GAME_TYPE_YELLOW) {
         save->pikachu_friendship = data[layout->pikachu_friendship_offset];
     }
+}
+
+void spec_gb_decode_trainer(spec_gb_trainer_t *trainer, const uint8_t *data,
+                            const spec_gb_layout_t *layout) {
+    *trainer = (spec_gb_trainer_t){};
+    memcpy(trainer->name, &data[SPEC_GB_GAME_DATA_OFFSET], layout->name_size);
+    trainer->id = spec_read_u16_be(&data[layout->trainer_id_offset]);
 }
 
 static void encode_bcd(uint8_t *bytes, size_t size, uint32_t value) {

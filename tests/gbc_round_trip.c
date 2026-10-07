@@ -89,6 +89,38 @@ static bool check_edit(const spec_gbc_save_t *save) {
     return true;
 }
 
+// Read from the backup, every field must come from where that copy keeps it, so junk in the
+// primary changes nothing read.
+static bool check_backup_read(const spec_gbc_save_t *save) {
+    static spec_gbc_save_t reread;
+    static uint8_t rewritten[SPEC_GBC_JAPANESE_CRYSTAL_SAVE_SIZE];
+    memcpy(written, original, save_size);
+    if (spec_gbc_write_save(save, written, save_size) != SPEC_OK) {
+        printf("backup read: %s\n", spec_last_error().message);
+        return false;
+    }
+    const spec_gbc_layout_t *layout = spec_gbc_get_layout(save->type, save->language);
+    memset(&written[SPEC_GBC_GAME_DATA_OFFSET], 0x5A, layout->game_data_size);
+    if (spec_gbc_read_save(&reread, written, save_size, save->type, save->language) != SPEC_OK) {
+        printf("backup read: %s\n", spec_last_error().message);
+        return false;
+    }
+    memcpy(written, original, save_size);
+    memcpy(rewritten, original, save_size);
+    if (spec_gbc_write_save(save, written, save_size) != SPEC_OK
+        || spec_gbc_write_save(&reread, rewritten, save_size) != SPEC_OK) {
+        printf("backup read: %s\n", spec_last_error().message);
+        return false;
+    }
+    for (size_t offset = 0; offset < save_size; ++offset) {
+        if (written[offset] != rewritten[offset]) {
+            printf("backup read: byte 0x%zX differs\n", offset);
+            return false;
+        }
+    }
+    return true;
+}
+
 static bool is_failed_write_reported(const spec_gbc_save_t *broken, spec_error_t expected_error,
                                      spec_error_location_t location, uint32_t index0,
                                      uint32_t index1) {
@@ -258,8 +290,9 @@ int main(int argument_count, char **arguments) {
         printf("read_save: %s\n", spec_last_error().message);
         return 1;
     }
-    if (!check_unedited_write(&save) || !check_edit(&save) || !check_failed_writes(&save)
-        || !check_clock_data(&save) || !check_identify(&save) || !check_language_vote(&save)) {
+    if (!check_unedited_write(&save) || !check_edit(&save) || !check_backup_read(&save)
+        || !check_failed_writes(&save) || !check_clock_data(&save) || !check_identify(&save)
+        || !check_language_vote(&save)) {
         return 1;
     }
     printf("type %d, language %d, party %d: ok\n", save.type, save.language, save.party_count);

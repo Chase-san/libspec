@@ -46,6 +46,7 @@ struct spec_gbc_layout {
     size_t mailbox_offset;
     size_t mailbox_backup_offset;
 
+    size_t trainer_id_offset;
     size_t rival_name_offset;
     size_t play_time_offset;
     size_t status_flags_offset;
@@ -70,11 +71,21 @@ struct spec_gbc_layout {
 };
 typedef struct spec_gbc_layout spec_gbc_layout_t;
 
+// Save functions
+
+// The game's layout, with the game data where the copy the game loads keeps it.
+spec_error_t spec_gbc_find_loaded_layout(spec_gbc_layout_t *loaded_layout, const uint8_t *data,
+                                         size_t data_size, spec_game_type_t type,
+                                         spec_language_t language);
+
 // Layout functions
 
 const spec_gbc_layout_t *spec_gbc_get_layout(spec_game_type_t type, spec_language_t language);
 
 // Copy functions
+
+// The layout reading the game data from the backup, as loading it does.
+void spec_gbc_get_backup_layout(spec_gbc_layout_t *backup_layout, const spec_gbc_layout_t *layout);
 
 bool spec_gbc_has_save(const uint8_t *data, const spec_gbc_layout_t *layout);
 bool spec_gbc_is_backup_valid(const uint8_t *data, const spec_gbc_layout_t *layout);
@@ -87,6 +98,8 @@ void spec_gbc_stamp_copies(uint8_t *data, const spec_gbc_layout_t *layout);
 
 void spec_gbc_decode_player(spec_gbc_save_t *save, const uint8_t *data,
                             const spec_gbc_layout_t *layout);
+void spec_gbc_decode_trainer(spec_gbc_trainer_t *trainer, const uint8_t *data,
+                             const spec_gbc_layout_t *layout);
 void spec_gbc_encode_player(uint8_t *data, const spec_gbc_layout_t *layout,
                             const spec_gbc_save_t *save);
 
@@ -103,6 +116,12 @@ spec_error_t spec_gbc_check_pokedex(const spec_gbc_pokedex_t *pokedex);
 
 // Storage functions
 
+size_t spec_gbc_box_offset(const spec_gbc_layout_t *layout, size_t box);
+
+void spec_gbc_decode_daycare(spec_gbc_daycare_t *daycare, const uint8_t *data,
+                             const spec_gbc_layout_t *layout);
+void spec_gbc_decode_list_entry(spec_gbc_pokemon_t *pokemon, const uint8_t *list,
+                                const spec_gb_list_shape_t *shape, size_t index);
 void spec_gbc_decode_storage(spec_gbc_save_t *save, const uint8_t *data,
                              const spec_gbc_layout_t *layout);
 void spec_gbc_encode_storage(uint8_t *data, const spec_gbc_layout_t *layout,

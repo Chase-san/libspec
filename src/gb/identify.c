@@ -45,14 +45,15 @@ static bool is_list_terminated(const uint8_t *list, const spec_gb_list_shape_t *
 }
 
 // A one-byte checksum also matches by chance, so the lists must make sense too.
-static bool are_lists_sound(const spec_gb_save_t *save, const uint8_t *data,
-                            const spec_gb_layout_t *layout) {
+static bool are_lists_sound(const uint8_t *data, const spec_gb_layout_t *layout) {
     if (!is_list_terminated(&data[layout->party_offset], &layout->party_shape)
         || !is_list_terminated(&data[layout->current_box_list_offset], &layout->box_shape)) {
         return false;
     }
     for (size_t box = 0; box < layout->box_count; ++box) {
-        if (save->boxes[box].count > layout->box_shape.capacity) {
+        size_t list_offset = 0;
+        if (spec_gb_find_box_list(&list_offset, data, layout, box)
+            && data[list_offset] > layout->box_shape.capacity) {
             return false;
         }
     }
@@ -80,19 +81,31 @@ static void count_pokemon_vote(spec_gb_language_vote_t *vote, const spec_gb_poke
     }
 }
 
-static spec_language_t elect_save_language(const spec_gb_save_t *save,
-                                           const spec_gb_layout_t *layout) {
-    spec_gb_language_vote_t vote = {};
-    for (size_t index = 0; index < save->party_count; ++index) {
-        count_pokemon_vote(&vote, &save->party[index], &save->trainer);
+// Decoding one Pokémon at a time keeps a whole save off the stack.
+static void count_list_votes(spec_gb_language_vote_t *vote, const uint8_t *list,
+                             const spec_gb_list_shape_t *shape, const spec_gb_trainer_t *player) {
+    for (size_t index = 0; index < list[0]; ++index) {
+        spec_gb_pokemon_t pokemon;
+        spec_gb_decode_list_entry(&pokemon, list, shape, index);
+        count_pokemon_vote(vote, &pokemon, player);
     }
+}
+
+static spec_language_t elect_save_language(const uint8_t *data, const spec_gb_layout_t *layout) {
+    spec_gb_trainer_t player;
+    spec_gb_decode_trainer(&player, data, layout);
+    spec_gb_language_vote_t vote = {};
+    count_list_votes(&vote, &data[layout->party_offset], &layout->party_shape, &player);
     for (size_t box = 0; box < layout->box_count; ++box) {
-        for (size_t index = 0; index < save->boxes[box].count; ++index) {
-            count_pokemon_vote(&vote, &save->boxes[box].pokemon[index], &save->trainer);
+        size_t list_offset = 0;
+        if (spec_gb_find_box_list(&list_offset, data, layout, box)) {
+            count_list_votes(&vote, &data[list_offset], &layout->box_shape, &player);
         }
     }
-    if (save->daycare.species != 0) {
-        count_pokemon_vote(&vote, &save->daycare, &save->trainer);
+    spec_gb_pokemon_t daycare;
+    spec_gb_decode_daycare(&daycare, data, layout);
+    if (daycare.species != 0) {
+        count_pokemon_vote(&vote, &daycare, &player);
     }
     return spec_gb_elect_language(&vote);
 }
@@ -126,15 +139,12 @@ size_t spec_gb_identify_save(spec_gb_identity_t identities[static SPEC_GB_IDENTI
     size_t identity_count = 0;
     for (size_t index = 0; index < sizeof LAYOUT_LANGUAGES / sizeof LAYOUT_LANGUAGES[0]; ++index) {
         const spec_gb_layout_t *layout = spec_gb_get_layout(LAYOUT_LANGUAGES[index]);
-        spec_gb_save_t save;
-        if (spec_gb_read_save(&save, data, SPEC_GAME_TYPE_RED_BLUE, LAYOUT_LANGUAGES[index])
-                != SPEC_OK
-            || !are_lists_sound(&save, data, layout)) {
+        if (!spec_gb_is_game_data_valid(data, layout) || !are_lists_sound(data, layout)) {
             continue;
         }
         spec_language_t language = SPEC_LANGUAGE_JAPANESE;
         if (LAYOUT_LANGUAGES[index] != SPEC_LANGUAGE_JAPANESE) {
-            language = elect_save_language(&save, layout);
+            language = elect_save_language(data, layout);
         }
         spec_game_type_t types[2];
         size_t type_count = find_types(types, data, layout);

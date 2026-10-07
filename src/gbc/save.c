@@ -1,8 +1,6 @@
 // Reading and writing a whole Gen 2 save: the copy the game loads, then each part's codec in
 // turn.
 
-#include <string.h>
-
 #include "gbc/gbc.h"
 #include "gbc/gbc_internal.h"
 #include "spec_internal.h"
@@ -70,8 +68,9 @@ static spec_error_t check_parts(const spec_gbc_save_t *save, const spec_gbc_layo
 }
 
 // As TryLoadSaveFile: the primary, else the backup, which the game then saves over the primary.
-spec_error_t spec_gbc_read_save(spec_gbc_save_t *save, const uint8_t *data, size_t data_size,
-                                spec_game_type_t type, spec_language_t language) {
+spec_error_t spec_gbc_find_loaded_layout(spec_gbc_layout_t *loaded_layout, const uint8_t *data,
+                                         size_t data_size, spec_game_type_t type,
+                                         spec_language_t language) {
     const spec_gbc_layout_t *layout = nullptr;
     spec_error_t error = find_sized_layout(&layout, type, language, data_size);
     if (error != SPEC_OK) {
@@ -82,17 +81,26 @@ spec_error_t spec_gbc_read_save(spec_gbc_save_t *save, const uint8_t *data, size
     if (error != SPEC_OK) {
         return error;
     }
-    uint8_t loaded[SPEC_GBC_JAPANESE_CRYSTAL_SAVE_SIZE];
-    memcpy(loaded, data, layout->save_size);
+    *loaded_layout = *layout;
     if (!is_primary) {
-        spec_gbc_restore_primary(loaded, layout);
+        spec_gbc_get_backup_layout(loaded_layout, layout);
+    }
+    return SPEC_OK;
+}
+
+spec_error_t spec_gbc_read_save(spec_gbc_save_t *save, const uint8_t *data, size_t data_size,
+                                spec_game_type_t type, spec_language_t language) {
+    spec_gbc_layout_t layout;
+    spec_error_t error = spec_gbc_find_loaded_layout(&layout, data, data_size, type, language);
+    if (error != SPEC_OK) {
+        return error;
     }
     *save = (spec_gbc_save_t){.type = type, .language = language};
-    spec_gbc_decode_player(save, loaded, layout);
-    spec_gbc_decode_pokedex(&save->pokedex, loaded, layout);
-    spec_gbc_decode_storage(save, loaded, layout);
-    spec_gbc_decode_party_mail(save, loaded, layout);
-    spec_gbc_decode_items(save, loaded, layout);
+    spec_gbc_decode_player(save, data, &layout);
+    spec_gbc_decode_pokedex(&save->pokedex, data, &layout);
+    spec_gbc_decode_storage(save, data, &layout);
+    spec_gbc_decode_party_mail(save, data, &layout);
+    spec_gbc_decode_items(save, data, &layout);
     return SPEC_OK;
 }
 

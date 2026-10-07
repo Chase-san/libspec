@@ -11,22 +11,12 @@ constexpr unsigned HAS_CHANGED_BOXES_BIT = 7;
 
 constexpr size_t DAYCARE_NICKNAME_OFFSET = 1;
 
-static void read_entry(spec_gb_pokemon_t *pokemon, const uint8_t *list,
-                       const spec_gb_list_shape_t *shape, size_t index) {
-    *pokemon = (spec_gb_pokemon_t){};
-    spec_gb_decode_pokemon(pokemon, &list[spec_gb_list_record_offset(shape, index)],
-                           shape->record_size);
-    memcpy(pokemon->trainer.name, &list[spec_gb_list_trainer_name_offset(shape, index)],
-           shape->name_size);
-    memcpy(pokemon->nickname, &list[spec_gb_list_nickname_offset(shape, index)], shape->name_size);
-}
-
 // The count is kept even when it overflows the list, so writing refuses it.
 static uint8_t decode_list(spec_gb_pokemon_t *pokemon, const uint8_t *list,
                            const spec_gb_list_shape_t *shape) {
     uint8_t count = list[0];
     for (size_t index = 0; index < count && index < shape->capacity; ++index) {
-        read_entry(&pokemon[index], list, shape, index);
+        spec_gb_decode_list_entry(&pokemon[index], list, shape, index);
     }
     return count;
 }
@@ -109,35 +99,25 @@ static size_t daycare_record_offset(const spec_gb_layout_t *layout) {
     return daycare_trainer_name_offset(layout) + layout->name_size;
 }
 
-static void decode_party(spec_gb_save_t *save, const uint8_t *data,
-                         const spec_gb_layout_t *layout) {
-    save->party_count = decode_list(save->party, &data[layout->party_offset], &layout->party_shape);
-    for (size_t index = 0; index < SPEC_GB_PARTY_CAPACITY; ++index) {
-        spec_gb_fill_party_data(&save->party[index]);
-    }
-}
-
 // The current box lives in the game data; the stored boxes count only once the player has
 // changed boxes, and hold whatever the cartridge did before then.
-static void decode_boxes(spec_gb_save_t *save, const uint8_t *data,
-                         const spec_gb_layout_t *layout) {
+bool spec_gb_find_box_list(size_t *list_offset, const uint8_t *data, const spec_gb_layout_t *layout,
+                           size_t box) {
     uint8_t current_box_byte = data[layout->current_box_offset];
-    save->current_box = current_box_of(current_box_byte);
-    for (size_t box = 0; box < layout->box_count; ++box) {
-        spec_gb_box_t *pc_box = &save->boxes[box];
-        if (box == save->current_box) {
-            pc_box->count = decode_list(pc_box->pokemon, &data[layout->current_box_list_offset],
-                                        &layout->box_shape);
-        } else if (has_changed_boxes(current_box_byte)) {
-            pc_box->count =
-                decode_list(pc_box->pokemon, &data[box_offset(layout, box)], &layout->box_shape);
-        }
+    if (box == current_box_of(current_box_byte)) {
+        *list_offset = layout->current_box_list_offset;
+        return true;
     }
+    if (!has_changed_boxes(current_box_byte)) {
+        return false;
+    }
+    *list_offset = box_offset(layout, box);
+    return true;
 }
 
 // The in-use byte decides; withdrawing leaves the Pokémon's bytes behind.
-static void decode_daycare(spec_gb_pokemon_t *daycare, const uint8_t *data,
-                           const spec_gb_layout_t *layout) {
+void spec_gb_decode_daycare(spec_gb_pokemon_t *daycare, const uint8_t *data,
+                            const spec_gb_layout_t *layout) {
     const uint8_t *bytes = &data[layout->daycare_offset];
     *daycare = (spec_gb_pokemon_t){};
     if (bytes[0] == 0) {
@@ -148,11 +128,41 @@ static void decode_daycare(spec_gb_pokemon_t *daycare, const uint8_t *data,
     memcpy(daycare->trainer.name, &bytes[daycare_trainer_name_offset(layout)], layout->name_size);
 }
 
+void spec_gb_decode_list_entry(spec_gb_pokemon_t *pokemon, const uint8_t *list,
+                               const spec_gb_list_shape_t *shape, size_t index) {
+    *pokemon = (spec_gb_pokemon_t){};
+    spec_gb_decode_pokemon(pokemon, &list[spec_gb_list_record_offset(shape, index)],
+                           shape->record_size);
+    memcpy(pokemon->trainer.name, &list[spec_gb_list_trainer_name_offset(shape, index)],
+           shape->name_size);
+    memcpy(pokemon->nickname, &list[spec_gb_list_nickname_offset(shape, index)], shape->name_size);
+}
+
+static void decode_party(spec_gb_save_t *save, const uint8_t *data,
+                         const spec_gb_layout_t *layout) {
+    save->party_count = decode_list(save->party, &data[layout->party_offset], &layout->party_shape);
+    for (size_t index = 0; index < SPEC_GB_PARTY_CAPACITY; ++index) {
+        spec_gb_fill_party_data(&save->party[index]);
+    }
+}
+
+static void decode_boxes(spec_gb_save_t *save, const uint8_t *data,
+                         const spec_gb_layout_t *layout) {
+    save->current_box = current_box_of(data[layout->current_box_offset]);
+    for (size_t box = 0; box < layout->box_count; ++box) {
+        size_t list_offset = 0;
+        if (spec_gb_find_box_list(&list_offset, data, layout, box)) {
+            spec_gb_box_t *pc_box = &save->boxes[box];
+            pc_box->count = decode_list(pc_box->pokemon, &data[list_offset], &layout->box_shape);
+        }
+    }
+}
+
 void spec_gb_decode_storage(spec_gb_save_t *save, const uint8_t *data,
                             const spec_gb_layout_t *layout) {
     decode_party(save, data, layout);
     decode_boxes(save, data, layout);
-    decode_daycare(&save->daycare, data, layout);
+    spec_gb_decode_daycare(&save->daycare, data, layout);
 }
 
 static void encode_party(uint8_t *data, const spec_gb_layout_t *layout,

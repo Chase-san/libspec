@@ -13,23 +13,12 @@ constexpr unsigned DAYCARE_HAS_POKEMON_BIT = 0;
 constexpr unsigned DAYCARE_MAN_COMPATIBLE_BIT = 5;
 constexpr unsigned DAYCARE_MAN_HAS_EGG_BIT = 6;
 
-static void read_entry(spec_gbc_pokemon_t *pokemon, const uint8_t *list,
-                       const spec_gb_list_shape_t *shape, size_t index) {
-    *pokemon = (spec_gbc_pokemon_t){};
-    spec_gbc_decode_pokemon(pokemon, &list[spec_gb_list_record_offset(shape, index)],
-                            shape->record_size);
-    pokemon->is_egg = list[spec_gb_list_species_offset(shape, index)] == SPEC_GBC_EGG;
-    memcpy(pokemon->trainer.name, &list[spec_gb_list_trainer_name_offset(shape, index)],
-           shape->name_size);
-    memcpy(pokemon->nickname, &list[spec_gb_list_nickname_offset(shape, index)], shape->name_size);
-}
-
 // The count is kept even when it overflows the list, so writing refuses it.
 static uint8_t decode_list(spec_gbc_pokemon_t *pokemon, const uint8_t *list,
                            const spec_gb_list_shape_t *shape) {
     uint8_t count = list[0];
     for (size_t index = 0; index < count && index < shape->capacity; ++index) {
-        read_entry(&pokemon[index], list, shape, index);
+        spec_gbc_decode_list_entry(&pokemon[index], list, shape, index);
     }
     return count;
 }
@@ -91,7 +80,7 @@ static spec_gbc_pokemon_t with_party_data(const spec_gbc_pokemon_t *pokemon) {
     return party_pokemon;
 }
 
-static size_t box_offset(const spec_gbc_layout_t *layout, size_t box) {
+size_t spec_gbc_box_offset(const spec_gbc_layout_t *layout, size_t box) {
     size_t bank = SPEC_GB_FIRST_BOX_BANK + box / layout->boxes_per_bank;
     size_t box_size = spec_gb_list_size(&layout->box_shape) + BOX_PADDING_SIZE;
     return bank * SPEC_GB_BANK_SIZE + box % layout->boxes_per_bank * box_size;
@@ -115,27 +104,6 @@ static size_t daycare_egg_offset(const spec_gbc_layout_t *layout) {
     return daycare_pokemon_offset(layout, 1) + daycare_pokemon_size(layout);
 }
 
-static void decode_party(spec_gbc_save_t *save, const uint8_t *data,
-                         const spec_gbc_layout_t *layout) {
-    save->party_count = decode_list(save->party, &data[layout->party_offset], &layout->party_shape);
-    for (size_t index = 0; index < SPEC_GBC_PARTY_CAPACITY; ++index) {
-        spec_gbc_fill_party_data(&save->party[index]);
-    }
-}
-
-// As LoadBox: the stored boxes count, not the working copy of the current one.
-static void decode_boxes(spec_gbc_save_t *save, const uint8_t *data,
-                         const spec_gbc_layout_t *layout) {
-    save->current_box = data[layout->current_box_offset];
-    for (size_t box = 0; box < layout->box_count; ++box) {
-        spec_gbc_box_t *pc_box = &save->boxes[box];
-        memcpy(pc_box->name, &data[layout->box_names_offset + box * SPEC_GBC_BOX_NAME_SIZE],
-               SPEC_GBC_BOX_NAME_SIZE);
-        pc_box->count =
-            decode_list(pc_box->pokemon, &data[box_offset(layout, box)], &layout->box_shape);
-    }
-}
-
 static void read_daycare_pokemon(spec_gbc_pokemon_t *pokemon, const uint8_t *bytes,
                                  const spec_gbc_layout_t *layout) {
     *pokemon = (spec_gbc_pokemon_t){};
@@ -145,8 +113,8 @@ static void read_daycare_pokemon(spec_gbc_pokemon_t *pokemon, const uint8_t *byt
 }
 
 // A slot's bit decides; withdrawing leaves the Pokémon's bytes behind.
-static void decode_daycare(spec_gbc_daycare_t *daycare, const uint8_t *data,
-                           const spec_gbc_layout_t *layout) {
+void spec_gbc_decode_daycare(spec_gbc_daycare_t *daycare, const uint8_t *data,
+                             const spec_gbc_layout_t *layout) {
     uint8_t man_byte = data[layout->daycare_offset];
     uint8_t lady_byte = data[daycare_lady_offset(layout)];
     uint8_t slot_bytes[SPEC_GBC_DAYCARE_CAPACITY] = {man_byte, lady_byte};
@@ -165,11 +133,43 @@ static void decode_daycare(spec_gbc_daycare_t *daycare, const uint8_t *data,
     daycare->egg.is_egg = daycare->egg.species != 0;
 }
 
+void spec_gbc_decode_list_entry(spec_gbc_pokemon_t *pokemon, const uint8_t *list,
+                                const spec_gb_list_shape_t *shape, size_t index) {
+    *pokemon = (spec_gbc_pokemon_t){};
+    spec_gbc_decode_pokemon(pokemon, &list[spec_gb_list_record_offset(shape, index)],
+                            shape->record_size);
+    pokemon->is_egg = list[spec_gb_list_species_offset(shape, index)] == SPEC_GBC_EGG;
+    memcpy(pokemon->trainer.name, &list[spec_gb_list_trainer_name_offset(shape, index)],
+           shape->name_size);
+    memcpy(pokemon->nickname, &list[spec_gb_list_nickname_offset(shape, index)], shape->name_size);
+}
+
+static void decode_party(spec_gbc_save_t *save, const uint8_t *data,
+                         const spec_gbc_layout_t *layout) {
+    save->party_count = decode_list(save->party, &data[layout->party_offset], &layout->party_shape);
+    for (size_t index = 0; index < SPEC_GBC_PARTY_CAPACITY; ++index) {
+        spec_gbc_fill_party_data(&save->party[index]);
+    }
+}
+
+// As LoadBox: the stored boxes count, not the working copy of the current one.
+static void decode_boxes(spec_gbc_save_t *save, const uint8_t *data,
+                         const spec_gbc_layout_t *layout) {
+    save->current_box = data[layout->current_box_offset];
+    for (size_t box = 0; box < layout->box_count; ++box) {
+        spec_gbc_box_t *pc_box = &save->boxes[box];
+        memcpy(pc_box->name, &data[layout->box_names_offset + box * SPEC_GBC_BOX_NAME_SIZE],
+               SPEC_GBC_BOX_NAME_SIZE);
+        pc_box->count = decode_list(pc_box->pokemon, &data[spec_gbc_box_offset(layout, box)],
+                                    &layout->box_shape);
+    }
+}
+
 void spec_gbc_decode_storage(spec_gbc_save_t *save, const uint8_t *data,
                              const spec_gbc_layout_t *layout) {
     decode_party(save, data, layout);
     decode_boxes(save, data, layout);
-    decode_daycare(&save->daycare, data, layout);
+    spec_gbc_decode_daycare(&save->daycare, data, layout);
 }
 
 static void encode_party(uint8_t *data, const spec_gbc_layout_t *layout,
@@ -189,10 +189,10 @@ static void encode_boxes(uint8_t *data, const spec_gbc_layout_t *layout,
         const spec_gbc_box_t *pc_box = &save->boxes[box];
         memcpy(&data[layout->box_names_offset + box * SPEC_GBC_BOX_NAME_SIZE], pc_box->name,
                SPEC_GBC_BOX_NAME_SIZE);
-        encode_list(&data[box_offset(layout, box)], &layout->box_shape, pc_box->pokemon,
+        encode_list(&data[spec_gbc_box_offset(layout, box)], &layout->box_shape, pc_box->pokemon,
                     pc_box->count);
     }
-    memcpy(&data[layout->active_box_offset], &data[box_offset(layout, save->current_box)],
+    memcpy(&data[layout->active_box_offset], &data[spec_gbc_box_offset(layout, save->current_box)],
            spec_gb_list_size(&layout->box_shape));
 }
 

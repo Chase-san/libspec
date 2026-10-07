@@ -29,6 +29,37 @@ static uint16_t sum_backup(const uint8_t *data, const spec_gbc_layout_t *layout)
     return sum;
 }
 
+static size_t backup_offset_of(const spec_gbc_layout_t *layout, size_t offset) {
+    for (size_t index = 0; index < layout->backup_chunk_count; ++index) {
+        const spec_gbc_backup_chunk_t *chunk = &layout->backup_chunks[index];
+        if (offset >= chunk->primary_offset && offset < chunk->primary_offset + chunk->size) {
+            return chunk->backup_offset + (offset - chunk->primary_offset);
+        }
+    }
+    return offset;
+}
+
+// Each field lies within one chunk, so the whole field moves with its offset.
+void spec_gbc_get_backup_layout(spec_gbc_layout_t *backup_layout, const spec_gbc_layout_t *layout) {
+    *backup_layout = *layout;
+    size_t *game_data_offsets[] = {
+        &backup_layout->trainer_id_offset,   &backup_layout->rival_name_offset,
+        &backup_layout->play_time_offset,    &backup_layout->status_flags_offset,
+        &backup_layout->money_offset,        &backup_layout->coins_offset,
+        &backup_layout->badges_offset,       &backup_layout->tms_hms_offset,
+        &backup_layout->items_offset,        &backup_layout->key_items_offset,
+        &backup_layout->balls_offset,        &backup_layout->pc_items_offset,
+        &backup_layout->current_box_offset,  &backup_layout->box_names_offset,
+        &backup_layout->party_offset,        &backup_layout->pokedex_caught_offset,
+        &backup_layout->pokedex_seen_offset, &backup_layout->unown_dex_offset,
+        &backup_layout->daycare_offset,
+    };
+    for (size_t index = 0; index < sizeof game_data_offsets / sizeof game_data_offsets[0];
+         ++index) {
+        *game_data_offsets[index] = backup_offset_of(layout, *game_data_offsets[index]);
+    }
+}
+
 // As TryLoadSaveData, which offers CONTINUE when either copy's check values hold.
 bool spec_gbc_has_save(const uint8_t *data, const spec_gbc_layout_t *layout) {
     bool is_primary_marked =

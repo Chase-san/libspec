@@ -8,8 +8,7 @@
 
 constexpr uint32_t MAX_MONEY = 999'999;
 constexpr uint16_t MAX_COINS = 9'999;
-constexpr size_t TRAINER_ID_OFFSET = SPEC_GBC_GAME_DATA_OFFSET;       // pret/pokegold wPlayerID
-constexpr size_t TRAINER_NAME_OFFSET = SPEC_GBC_GAME_DATA_OFFSET + 2; // pret/pokegold wPlayerName
+constexpr size_t TRAINER_NAME_DISTANCE = 2; // pret/pokegold wPlayerName
 // Mom's savings follow the player's money.
 constexpr size_t MOMS_MONEY_DISTANCE = 3;   // pret/pokegold wMomsMoney
 constexpr size_t KANTO_BADGES_DISTANCE = 1; // pret/pokegold wKantoBadges
@@ -29,11 +28,7 @@ static void decode_play_time(spec_gbc_play_time_t *play_time, const uint8_t *byt
 
 void spec_gbc_decode_player(spec_gbc_save_t *save, const uint8_t *data,
                             const spec_gbc_layout_t *layout) {
-    save->trainer.id = spec_read_u16_be(&data[TRAINER_ID_OFFSET]);
-    memcpy(save->trainer.name, &data[TRAINER_NAME_OFFSET], layout->name_size);
-    if (layout->has_player_gender) {
-        save->trainer.is_female = data[layout->player_gender_offset] != 0;
-    }
+    spec_gbc_decode_trainer(&save->trainer, data, layout);
     memcpy(save->rival_name, &data[layout->rival_name_offset], layout->name_size);
     decode_play_time(&save->play_time, &data[layout->play_time_offset]);
     save->money = spec_read_u24_be(&data[layout->money_offset]);
@@ -42,6 +37,17 @@ void spec_gbc_decode_player(spec_gbc_save_t *save, const uint8_t *data,
     spec_decode_flags(save->johto_badges, SPEC_GBC_BADGE_COUNT, data[layout->badges_offset]);
     spec_decode_flags(save->kanto_badges, SPEC_GBC_BADGE_COUNT,
                       data[layout->badges_offset + KANTO_BADGES_DISTANCE]);
+}
+
+void spec_gbc_decode_trainer(spec_gbc_trainer_t *trainer, const uint8_t *data,
+                             const spec_gbc_layout_t *layout) {
+    *trainer = (spec_gbc_trainer_t){};
+    trainer->id = spec_read_u16_be(&data[layout->trainer_id_offset]);
+    memcpy(trainer->name, &data[layout->trainer_id_offset + TRAINER_NAME_DISTANCE],
+           layout->name_size);
+    if (layout->has_player_gender) {
+        trainer->is_female = data[layout->player_gender_offset] != 0;
+    }
 }
 
 static void encode_play_time(uint8_t *bytes, const spec_gbc_play_time_t *play_time) {
@@ -53,8 +59,9 @@ static void encode_play_time(uint8_t *bytes, const spec_gbc_play_time_t *play_ti
 
 void spec_gbc_encode_player(uint8_t *data, const spec_gbc_layout_t *layout,
                             const spec_gbc_save_t *save) {
-    spec_write_u16_be(&data[TRAINER_ID_OFFSET], save->trainer.id);
-    memcpy(&data[TRAINER_NAME_OFFSET], save->trainer.name, layout->name_size);
+    spec_write_u16_be(&data[layout->trainer_id_offset], save->trainer.id);
+    memcpy(&data[layout->trainer_id_offset + TRAINER_NAME_DISTANCE], save->trainer.name,
+           layout->name_size);
     if (layout->has_player_gender) {
         data[layout->player_gender_offset] = save->trainer.is_female ? 1 : 0;
     }

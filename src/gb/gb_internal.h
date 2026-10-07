@@ -105,6 +105,8 @@ void spec_gb_stamp_game_data(uint8_t *data, const spec_gb_layout_t *layout);
 
 void spec_gb_decode_player(spec_gb_save_t *save, const uint8_t *data,
                            const spec_gb_layout_t *layout);
+void spec_gb_decode_trainer(spec_gb_trainer_t *trainer, const uint8_t *data,
+                            const spec_gb_layout_t *layout);
 void spec_gb_encode_player(uint8_t *data, const spec_gb_layout_t *layout,
                            const spec_gb_save_t *save);
 
@@ -119,6 +121,14 @@ void spec_gb_encode_pokedex(uint8_t *data, const spec_gb_layout_t *layout,
 
 // Storage functions
 
+// False for a box the cartridge has not stored yet.
+bool spec_gb_find_box_list(size_t *list_offset, const uint8_t *data, const spec_gb_layout_t *layout,
+                           size_t box);
+
+void spec_gb_decode_daycare(spec_gb_pokemon_t *daycare, const uint8_t *data,
+                            const spec_gb_layout_t *layout);
+void spec_gb_decode_list_entry(spec_gb_pokemon_t *pokemon, const uint8_t *list,
+                               const spec_gb_list_shape_t *shape, size_t index);
 void spec_gb_decode_storage(spec_gb_save_t *save, const uint8_t *data,
                             const spec_gb_layout_t *layout);
 void spec_gb_encode_storage(uint8_t *data, const spec_gb_layout_t *layout,
