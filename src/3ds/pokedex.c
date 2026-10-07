@@ -1,5 +1,7 @@
 // The Gen 6 and 7 Pokédex: caught, the looks seen and the look each entry shows.
 
+#include <string.h>
+
 #include "3ds/3ds.h"
 #include "3ds/3ds_internal.h"
 #include "spec_internal.h"
@@ -73,7 +75,8 @@ void spec_3ds_decode_pokedex(spec_3ds_pokedex_t *pokedex, const uint8_t *data,
                              const spec_3ds_layout_t *layout) {
     const uint8_t *dex = &data[layout->pokedex_offset];
     const pokedex_offsets_t *offsets = pokedex_offsets_of(layout);
-    *pokedex = (spec_3ds_pokedex_t){};
+    // A compound literal would build the whole Pokédex on the stack in unoptimized builds.
+    memset(pokedex, 0, sizeof *pokedex);
     for (size_t national_number = 1; national_number <= offsets->species_count; ++national_number) {
         uint8_t seen_looks =
             looks_at(dex, offsets->seen, offsets->look_flags_size, national_number);

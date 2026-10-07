@@ -1,5 +1,7 @@
 // Reading and writing a whole Gen 5 save: detection, then each part's codec in turn.
 
+#include <string.h>
+
 #include "ndsi/ndsi.h"
 #include "ndsi/ndsi_internal.h"
 #include "spec_internal.h"
@@ -35,7 +37,9 @@ spec_error_t spec_ndsi_read_save(spec_ndsi_save_t *save,
             continue;
         }
         const uint8_t *copy = &data[loaded_offset];
-        *save = (spec_ndsi_save_t){.type = layout->type};
+        // A compound literal would build the whole save on the stack in unoptimized builds.
+        memset(save, 0, sizeof *save);
+        save->type = layout->type;
         spec_ndsi_decode_player(save, copy, layout);
         spec_ndsi_decode_pokedex(&save->pokedex, copy, layout);
         spec_ndsi_decode_storage(save, copy, layout);

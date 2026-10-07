@@ -1,5 +1,7 @@
 // Reading and writing a whole Gen 4 save: detection, then each part's codec in turn.
 
+#include <string.h>
+
 #include "nds/nds.h"
 #include "nds/nds_internal.h"
 #include "spec_internal.h"
@@ -37,7 +39,9 @@ spec_error_t spec_nds_read_save(spec_nds_save_t *save,
         }
         const uint8_t *general = &data[loaded.general_offset];
         const uint8_t *storage = &data[loaded.storage_offset];
-        *save = (spec_nds_save_t){.type = layout->type};
+        // A compound literal would build the whole save on the stack in unoptimized builds.
+        memset(save, 0, sizeof *save);
+        save->type = layout->type;
         spec_nds_decode_player(save, general, layout);
         spec_nds_decode_pokedex(&save->pokedex, general, layout);
         spec_nds_decode_storage(save, general, storage, layout);

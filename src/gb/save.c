@@ -1,5 +1,7 @@
 // Reading and writing a whole Gen 1 save: the checksum, then each part's codec in turn.
 
+#include <string.h>
+
 #include "gb/gb.h"
 #include "gb/gb_internal.h"
 #include "spec_internal.h"
@@ -44,7 +46,10 @@ spec_error_t spec_gb_read_save(spec_gb_save_t *save, const uint8_t data[static S
         return spec_fail(SPEC_ERROR_INVALID_SAVE,
                          "the game data's checksum does not match for that language");
     }
-    *save = (spec_gb_save_t){.type = type, .language = language};
+    // A compound literal would build the whole save on the stack in unoptimized builds.
+    memset(save, 0, sizeof *save);
+    save->type = type;
+    save->language = language;
     spec_gb_decode_player(save, data, layout);
     spec_gb_decode_pokedex(&save->pokedex, data, layout);
     spec_gb_decode_storage(save, data, layout);

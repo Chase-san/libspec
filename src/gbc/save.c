@@ -1,6 +1,8 @@
 // Reading and writing a whole Gen 2 save: the copy the game loads, then each part's codec in
 // turn.
 
+#include <string.h>
+
 #include "gbc/gbc.h"
 #include "gbc/gbc_internal.h"
 #include "spec_internal.h"
@@ -95,7 +97,10 @@ spec_error_t spec_gbc_read_save(spec_gbc_save_t *save, const uint8_t *data, size
     if (error != SPEC_OK) {
         return error;
     }
-    *save = (spec_gbc_save_t){.type = type, .language = language};
+    // A compound literal would build the whole save on the stack in unoptimized builds.
+    memset(save, 0, sizeof *save);
+    save->type = type;
+    save->language = language;
     spec_gbc_decode_player(save, data, &layout);
     spec_gbc_decode_pokedex(&save->pokedex, data, &layout);
     spec_gbc_decode_storage(save, data, &layout);

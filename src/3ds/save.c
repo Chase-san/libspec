@@ -1,5 +1,7 @@
 // Reading and writing a whole Gen 6 or 7 save: detection, each part's codec, then the footer.
 
+#include <string.h>
+
 #include "3ds/3ds.h"
 #include "3ds/3ds_internal.h"
 #include "spec_internal.h"
@@ -29,7 +31,9 @@ spec_error_t spec_3ds_read_save(spec_3ds_save_t *save, const uint8_t *data, size
     if (!spec_3ds_is_footer_valid(data, layout)) {
         return spec_fail(SPEC_ERROR_INVALID_SAVE, "the save's game would not load it");
     }
-    *save = (spec_3ds_save_t){.type = layout->type};
+    // A compound literal would build the whole save on the stack in unoptimized builds.
+    memset(save, 0, sizeof *save);
+    save->type = layout->type;
     spec_3ds_decode_player(save, data, layout);
     spec_3ds_decode_pokedex(&save->pokedex, data, layout);
     spec_3ds_decode_storage(save, data, layout);

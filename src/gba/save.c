@@ -1,5 +1,7 @@
 // Reading and writing a whole Gen 3 save: detection, then each part's codec in turn.
 
+#include <string.h>
+
 #include "gba/gba.h"
 #include "gba/gba_internal.h"
 #include "spec_internal.h"
@@ -72,7 +74,9 @@ spec_error_t spec_gba_read_save(spec_gba_save_t *save,
         if (!spec_gba_find_active_slot(&active, data, layout->section_sizes)) {
             continue;
         }
-        *save = (spec_gba_save_t){.type = layout->type};
+        // A compound literal would build the whole save on the stack in unoptimized builds.
+        memset(save, 0, sizeof *save);
+        save->type = layout->type;
         spec_gba_decode_player(save, data, &active, layout);
         spec_gba_decode_pokedex(&save->pokedex, data, &active, layout);
         spec_gba_decode_storage(save, data, &active, layout);
