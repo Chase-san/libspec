@@ -13,10 +13,10 @@ constexpr uint16_t MAX_COINS = 9'999;
 constexpr uint16_t MAX_PLAY_HOURS = 255;
 
 // Hours, then the byte that marks the clock maxed out, which is left as it is.
-constexpr size_t PLAY_HOURS_OFFSET = 0;
-constexpr size_t PLAY_MINUTES_OFFSET = 2;
-constexpr size_t PLAY_SECONDS_OFFSET = 3;
-constexpr size_t PLAY_FRAMES_OFFSET = 4;
+constexpr size_t PLAY_HOURS_OFFSET = 0;   // pret/pokered wPlayTimeHours
+constexpr size_t PLAY_MINUTES_OFFSET = 2; // pret/pokered wPlayTimeMinutes
+constexpr size_t PLAY_SECONDS_OFFSET = 3; // pret/pokered wPlayTimeSeconds
+constexpr size_t PLAY_FRAMES_OFFSET = 4;  // pret/pokered wPlayTimeFrames
 
 // Packed BCD, most significant digits first.
 static uint32_t decode_bcd(const uint8_t *bytes, size_t size) {

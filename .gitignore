@@ -1,4 +1,6 @@
 build/
 ref/
+__pycache__/
 *.o
 *.a
+CLAUDE.md

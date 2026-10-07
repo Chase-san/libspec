@@ -210,6 +210,16 @@ static void check_gen4(void) {
               && is_nds_name(&caught, "Ted") && caught.is_nicknamed
               && memcmp(&caught.nickname[4], &turtwig.nickname[4], 7 * sizeof(uint16_t)) == 0,
           "a Gen 4 nickname given when caught keeps the old name's tail");
+    // As the verified Platinum saves hold a Bidoof named when caught.
+    constexpr uint16_t B_OVER_BIDOOF[SPEC_NDS_NICKNAME_SIZE] = {
+        0x012C, 0xFFFF, 0x012E, 0x0139, 0x0139, 0x0130, 0xFFFF, 0, 0, 0, 0,
+    };
+    spec_nds_pokemon_t bidoof = {.species = 399, .language = SPEC_LANGUAGE_ENGLISH};
+    check(spec_nds_pokemon_remove_nickname(&bidoof) == SPEC_OK
+              && spec_nds_pokemon_set_nickname(&bidoof, u8"B", SPEC_NAMING_CAUGHT_OR_HATCHED)
+                     == SPEC_OK
+              && memcmp(bidoof.nickname, B_OVER_BIDOOF, sizeof B_OVER_BIDOOF) == 0,
+          "a Gen 4 nickname given when caught is typed over the species name");
     spec_nds_pokemon_t renamed = turtwig;
     renamed.nickname[9] = 0x1234;
     check(spec_nds_pokemon_set_nickname(&renamed, u8"Ted", SPEC_NAMING_NAME_RATER) == SPEC_OK
@@ -256,6 +266,16 @@ static void check_gen5(void) {
               && memcmp(caught.nickname, PIG_OVER_TEPIG, sizeof PIG_OVER_TEPIG) == 0
               && caught.is_nicknamed,
           "a Gen 5 nickname given when caught keeps the old name's tail");
+    // As the verified Black saves hold a Purrloin named when caught.
+    constexpr uint16_t KITTY_OVER_PURRLOIN[SPEC_NDSI_NICKNAME_SIZE] = {
+        'K', 'I', 'T', 'T', 'Y', 0xFFFF, 'i', 'n', 0xFFFF, 0, 0xFFFF,
+    };
+    spec_ndsi_pokemon_t purrloin = {.species = 509, .language = SPEC_LANGUAGE_ENGLISH};
+    check(spec_ndsi_pokemon_remove_nickname(&purrloin) == SPEC_OK
+              && spec_ndsi_pokemon_set_nickname(&purrloin, u8"KITTY", SPEC_NAMING_CAUGHT_OR_HATCHED)
+                     == SPEC_OK
+              && memcmp(purrloin.nickname, KITTY_OVER_PURRLOIN, sizeof KITTY_OVER_PURRLOIN) == 0,
+          "a Gen 5 nickname given when caught is typed over the species name");
     constexpr uint16_t RENAMED_PIG[SPEC_NDSI_NICKNAME_SIZE] = {
         'P', 'i', 'g', 0xFFFF, 0, 0, 0, 0, 0, 0, 0,
     };

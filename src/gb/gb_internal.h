@@ -14,7 +14,7 @@ constexpr size_t SPEC_GB_BANK_SIZE = 0x2000;
 constexpr size_t SPEC_GB_FIRST_BOX_BANK = 2;
 constexpr size_t SPEC_GB_BOX_BANK_COUNT = 2;
 // The checksummed game data starts with the player's name.
-constexpr size_t SPEC_GB_GAME_DATA_OFFSET = 0x2598;
+constexpr size_t SPEC_GB_GAME_DATA_OFFSET = 0x2598; // pret/pokered sGameData
 constexpr uint8_t SPEC_GB_END_OF_TEXT = 0x50;
 constexpr uint8_t SPEC_GB_END_OF_LIST = 0xFF;
 // The longest text the games encode: 12 characters and the terminator (pret ITEM_NAME_LENGTH).

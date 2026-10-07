@@ -10,7 +10,7 @@
 #include "gbc/gbc.h"
 
 // The checksummed game data starts with the trainer's ID, after the check value.
-constexpr size_t SPEC_GBC_GAME_DATA_OFFSET = 0x2009;
+constexpr size_t SPEC_GBC_GAME_DATA_OFFSET = 0x2009; // pret/pokegold sGameData
 constexpr size_t SPEC_GBC_BACKUP_CHUNK_MAX_COUNT = 5;
 constexpr uint8_t SPEC_GBC_EGG = 0xFD;
 

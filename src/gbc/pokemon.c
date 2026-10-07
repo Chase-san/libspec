@@ -8,22 +8,22 @@
 #include "gbc/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t SPECIES_OFFSET = 0x00;
-constexpr size_t HELD_ITEM_OFFSET = 0x01;
-constexpr size_t MOVES_OFFSET = 0x02;
-constexpr size_t TRAINER_ID_OFFSET = 0x06;
-constexpr size_t EXPERIENCE_OFFSET = 0x08;
-constexpr size_t STAT_EXPERIENCE_OFFSET = 0x0B;
-constexpr size_t DVS_OFFSET = 0x15;
-constexpr size_t PP_OFFSET = 0x17;
-constexpr size_t FRIENDSHIP_OFFSET = 0x1B;
-constexpr size_t POKERUS_OFFSET = 0x1C;
-constexpr size_t CAUGHT_TIME_LEVEL_OFFSET = 0x1D;
-constexpr size_t CAUGHT_GENDER_LOCATION_OFFSET = 0x1E;
-constexpr size_t LEVEL_OFFSET = 0x1F;
-constexpr size_t STATUS_OFFSET = 0x20;
-constexpr size_t CURRENT_HP_OFFSET = 0x22;
-constexpr size_t STATS_OFFSET = 0x24;
+constexpr size_t SPECIES_OFFSET = 0x00;                // pret/pokecrystal box_struct Species
+constexpr size_t HELD_ITEM_OFFSET = 0x01;              // pret/pokecrystal box_struct Item
+constexpr size_t MOVES_OFFSET = 0x02;                  // pret/pokecrystal box_struct Moves
+constexpr size_t TRAINER_ID_OFFSET = 0x06;             // pret/pokecrystal box_struct ID
+constexpr size_t EXPERIENCE_OFFSET = 0x08;             // pret/pokecrystal box_struct Exp
+constexpr size_t STAT_EXPERIENCE_OFFSET = 0x0B;        // pret/pokecrystal box_struct StatExp
+constexpr size_t DVS_OFFSET = 0x15;                    // pret/pokecrystal box_struct DVs
+constexpr size_t PP_OFFSET = 0x17;                     // pret/pokecrystal box_struct PP
+constexpr size_t FRIENDSHIP_OFFSET = 0x1B;             // pret/pokecrystal box_struct Happiness
+constexpr size_t POKERUS_OFFSET = 0x1C;                // pret/pokecrystal box_struct PokerusStatus
+constexpr size_t CAUGHT_TIME_LEVEL_OFFSET = 0x1D;      // pret/pokecrystal box_struct CaughtData
+constexpr size_t CAUGHT_GENDER_LOCATION_OFFSET = 0x1E; // pret/pokecrystal box_struct CaughtGender
+constexpr size_t LEVEL_OFFSET = 0x1F;                  // pret/pokecrystal box_struct Level
+constexpr size_t STATUS_OFFSET = 0x20;                 // pret/pokecrystal party_struct Status
+constexpr size_t CURRENT_HP_OFFSET = 0x22;             // pret/pokecrystal party_struct HP
+constexpr size_t STATS_OFFSET = 0x24;                  // pret/pokecrystal party_struct Stats
 
 constexpr unsigned DV_BIT_COUNT = 4;
 constexpr unsigned PP_BIT_COUNT = 6;

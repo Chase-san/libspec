@@ -1,4 +1,4 @@
-// Where Gen 1 saves keep their fields: Japan's layout and everyone else's (pret wram.asm).
+// Where Gen 1 saves keep their fields: Japan's layout and everyone else's.
 
 #include "gb/gb_internal.h"
 
@@ -11,24 +11,24 @@ constexpr spec_gb_layout_t INTERNATIONAL_LAYOUT = {
     .has_box_checksums = true,
     .does_bank_checksum_sum_itself = false,
 
-    .pokedex_caught_offset = 0x25A3,
-    .pokedex_seen_offset = 0x25B6,
-    .bag_offset = 0x25C9,
-    .money_offset = 0x25F3,
-    .rival_name_offset = 0x25F6,
-    .badges_offset = 0x2602,
-    .trainer_id_offset = 0x2605,
-    .pikachu_friendship_offset = 0x271C,
-    .pc_items_offset = 0x27E6,
-    .current_box_offset = 0x284C,
-    .coins_offset = 0x2850,
-    .player_starter_offset = 0x29C3,
-    .event_flags_offset = 0x29F3,
-    .play_time_offset = 0x2CED,
-    .daycare_offset = 0x2CF4,
-    .party_offset = 0x2F2C,
-    .current_box_list_offset = 0x30C0,
-    .checksum_offset = 0x3523,
+    .pokedex_caught_offset = 0x25A3,     // pret/pokered sMainData wPokedexOwned
+    .pokedex_seen_offset = 0x25B6,       // pret/pokered sMainData wPokedexSeen
+    .bag_offset = 0x25C9,                // pret/pokered sMainData wNumBagItems
+    .money_offset = 0x25F3,              // pret/pokered sMainData wPlayerMoney
+    .rival_name_offset = 0x25F6,         // pret/pokered sMainData wRivalName
+    .badges_offset = 0x2602,             // pret/pokered sMainData wObtainedBadges
+    .trainer_id_offset = 0x2605,         // pret/pokered sMainData wPlayerID
+    .pikachu_friendship_offset = 0x271C, // pret/pokeyellow sMainData wPikachuHappiness
+    .pc_items_offset = 0x27E6,           // pret/pokered sMainData wNumBoxItems
+    .current_box_offset = 0x284C,        // pret/pokered sMainData wCurrentBoxNum
+    .coins_offset = 0x2850,              // pret/pokered sMainData wPlayerCoins
+    .player_starter_offset = 0x29C3,     // pret/pokered sMainData wPlayerStarter
+    .event_flags_offset = 0x29F3,        // pret/pokered sMainData wEventFlags
+    .play_time_offset = 0x2CED,          // pret/pokered sMainData wPlayTimeHours
+    .daycare_offset = 0x2CF4,            // pret/pokered sMainData wDayCareInUse
+    .party_offset = 0x2F2C,              // pret/pokered sPartyData wPartyCount
+    .current_box_list_offset = 0x30C0,   // pret/pokered sCurBoxData wBoxCount
+    .checksum_offset = 0x3523,           // pret/pokered sMainDataCheckSum
 };
 
 constexpr spec_gb_layout_t JAPANESE_LAYOUT = {
@@ -38,27 +38,27 @@ constexpr spec_gb_layout_t JAPANESE_LAYOUT = {
     .party_shape = {SPEC_GB_PARTY_CAPACITY, SPEC_GB_PARTY_RECORD_SIZE, SPEC_GB_JAPANESE_NAME_SIZE},
     .box_shape = {30, SPEC_GB_BOX_RECORD_SIZE, SPEC_GB_JAPANESE_NAME_SIZE},
     .has_box_checksums = false,
-    // pret: "BUG: the checked data area contains the Checksum byte".
+    // Narishma-gb/pokegreen: "BUG: the checked data area contains the Checksum byte".
     .does_bank_checksum_sum_itself = true,
 
-    .pokedex_caught_offset = 0x259E,
-    .pokedex_seen_offset = 0x25B1,
-    .bag_offset = 0x25C4,
-    .money_offset = 0x25EE,
-    .rival_name_offset = 0x25F1,
-    .badges_offset = 0x25F8,
-    .trainer_id_offset = 0x25FB,
-    .pikachu_friendship_offset = 0x2712,
-    .pc_items_offset = 0x27DC,
-    .current_box_offset = 0x2842,
-    .coins_offset = 0x2846,
-    .player_starter_offset = 0x29B9,
-    .event_flags_offset = 0x29E9,
-    .play_time_offset = 0x2CA0,
-    .daycare_offset = 0x2CA7,
-    .party_offset = 0x2ED5,
-    .current_box_list_offset = 0x302D,
-    .checksum_offset = 0x3594,
+    .pokedex_caught_offset = 0x259E,     // Narishma-gb/pokegreen sMainData wPokedexOwned
+    .pokedex_seen_offset = 0x25B1,       // Narishma-gb/pokegreen sMainData wPokedexSeen
+    .bag_offset = 0x25C4,                // Narishma-gb/pokegreen sMainData wNumBagItems
+    .money_offset = 0x25EE,              // Narishma-gb/pokegreen sMainData wPlayerMoney
+    .rival_name_offset = 0x25F1,         // Narishma-gb/pokegreen sMainData wRivalName
+    .badges_offset = 0x25F8,             // Narishma-gb/pokegreen sMainData wObtainedBadges
+    .trainer_id_offset = 0x25FB,         // Narishma-gb/pokegreen sMainData wPlayerID
+    .pikachu_friendship_offset = 0x2712, // Narishma-gb/pokeyellow-jp sMainData wPikachuHappiness
+    .pc_items_offset = 0x27DC,           // Narishma-gb/pokegreen sMainData wNumBoxItems
+    .current_box_offset = 0x2842,        // Narishma-gb/pokegreen sMainData wCurrentBoxNum
+    .coins_offset = 0x2846,              // Narishma-gb/pokegreen sMainData wPlayerCoins
+    .player_starter_offset = 0x29B9,     // Narishma-gb/pokegreen sMainData wPlayerStarter
+    .event_flags_offset = 0x29E9,        // Narishma-gb/pokegreen sMainData wEventFlags
+    .play_time_offset = 0x2CA0,          // Narishma-gb/pokegreen sMainData wPlayTimeHours
+    .daycare_offset = 0x2CA7,            // Narishma-gb/pokegreen sMainData wDayCareInUse
+    .party_offset = 0x2ED5,              // Narishma-gb/pokegreen sPartyData wPartyCount
+    .current_box_list_offset = 0x302D,   // Narishma-gb/pokegreen sCurBoxData wBoxCount
+    .checksum_offset = 0x3594,           // Narishma-gb/pokegreen sMainDataCheckSum
 };
 
 const spec_gb_layout_t *spec_gb_get_layout(spec_language_t language) {

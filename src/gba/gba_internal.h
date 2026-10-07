@@ -8,8 +8,8 @@
 
 #include "gba/gba.h"
 
-constexpr size_t SPEC_GBA_SECTION_COUNT = 14;
-constexpr size_t SPEC_GBA_SECTION_DATA_SIZE = 0xF80;
+constexpr size_t SPEC_GBA_SECTION_COUNT = 14;        // pret/pokeemerald NUM_SECTORS_PER_SLOT
+constexpr size_t SPEC_GBA_SECTION_DATA_SIZE = 0xF80; // pret/pokeemerald SECTOR_DATA_SIZE
 constexpr size_t SPEC_GBA_POKEDEX_SEEN_COPY_COUNT = 3;
 
 struct spec_gba_national_dex_layout {

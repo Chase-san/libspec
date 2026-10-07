@@ -8,17 +8,17 @@
 
 constexpr uint32_t MAX_MONEY = 999'999;
 constexpr uint16_t MAX_COINS = 9'999;
-constexpr size_t TRAINER_ID_OFFSET = SPEC_GBC_GAME_DATA_OFFSET;
-constexpr size_t TRAINER_NAME_OFFSET = SPEC_GBC_GAME_DATA_OFFSET + 2;
+constexpr size_t TRAINER_ID_OFFSET = SPEC_GBC_GAME_DATA_OFFSET;       // pret/pokegold wPlayerID
+constexpr size_t TRAINER_NAME_OFFSET = SPEC_GBC_GAME_DATA_OFFSET + 2; // pret/pokegold wPlayerName
 // Mom's savings follow the player's money.
-constexpr size_t MOMS_MONEY_DISTANCE = 3;
-constexpr size_t KANTO_BADGES_DISTANCE = 1;
+constexpr size_t MOMS_MONEY_DISTANCE = 3;   // pret/pokegold wMomsMoney
+constexpr size_t KANTO_BADGES_DISTANCE = 1; // pret/pokegold wKantoBadges
 
 // The byte that marks the clock capped comes first and is left as it is.
-constexpr size_t PLAY_HOURS_OFFSET = 1;
-constexpr size_t PLAY_MINUTES_OFFSET = 3;
-constexpr size_t PLAY_SECONDS_OFFSET = 4;
-constexpr size_t PLAY_FRAMES_OFFSET = 5;
+constexpr size_t PLAY_HOURS_OFFSET = 1;   // pret/pokegold wGameTimeHours
+constexpr size_t PLAY_MINUTES_OFFSET = 3; // pret/pokegold wGameTimeMinutes
+constexpr size_t PLAY_SECONDS_OFFSET = 4; // pret/pokegold wGameTimeSeconds
+constexpr size_t PLAY_FRAMES_OFFSET = 5;  // pret/pokegold wGameTimeFrames
 
 static void decode_play_time(spec_gbc_play_time_t *play_time, const uint8_t *bytes) {
     play_time->hours = spec_read_u16_be(&bytes[PLAY_HOURS_OFFSET]);

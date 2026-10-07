@@ -6,7 +6,8 @@
 #include "gbc/gbc_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t MESSAGE_OFFSET = 0;
+constexpr size_t MESSAGE_OFFSET = 0; // pret/pokegold mailmsg Message
+// pret/pokegold mailmsg Author
 constexpr size_t AUTHOR_OFFSET = MESSAGE_OFFSET + SPEC_GBC_MAIL_MESSAGE_SIZE;
 constexpr size_t MAILBOX_CAPACITY = 10;
 

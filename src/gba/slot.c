@@ -5,15 +5,15 @@
 #include "gba/gba_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t SECTOR_SIZE = 0x1000;
-constexpr size_t SLOT_COUNT = 2;
+constexpr size_t SECTOR_SIZE = 0x1000; // pret/pokeemerald SECTOR_SIZE
+constexpr size_t SLOT_COUNT = 2;       // pret/pokeemerald NUM_SAVE_SLOTS
 constexpr uint16_t ALL_SECTIONS = (1 << SPEC_GBA_SECTION_COUNT) - 1;
 
-constexpr size_t SECTION_ID_OFFSET = 0xFF4;
-constexpr size_t CHECKSUM_OFFSET = 0xFF6;
-constexpr size_t SIGNATURE_OFFSET = 0xFF8;
-constexpr size_t COUNTER_OFFSET = 0xFFC;
-constexpr uint32_t SECTOR_SIGNATURE = 0x08012025;
+constexpr size_t SECTION_ID_OFFSET = 0xFF4;       // pret/pokeemerald SaveSector id
+constexpr size_t CHECKSUM_OFFSET = 0xFF6;         // pret/pokeemerald SaveSector checksum
+constexpr size_t SIGNATURE_OFFSET = 0xFF8;        // pret/pokeemerald SaveSector signature
+constexpr size_t COUNTER_OFFSET = 0xFFC;          // pret/pokeemerald SaveSector counter
+constexpr uint32_t SECTOR_SIGNATURE = 0x08012025; // pret/pokeemerald SECTOR_SIGNATURE
 
 struct piece {
     size_t data_offset;

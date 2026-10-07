@@ -5,11 +5,11 @@
 #include "gbc/gbc_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t CHECK_VALUE_1_OFFSET = 0x2008;
-constexpr uint8_t CHECK_VALUE_1 = 99;
-constexpr uint8_t CHECK_VALUE_2 = 127;
+constexpr size_t CHECK_VALUE_1_OFFSET = 0x2008; // pret/pokegold sCheckValue1
+constexpr uint8_t CHECK_VALUE_1 = 99;           // pret/pokegold SAVE_CHECK_VALUE_1
+constexpr uint8_t CHECK_VALUE_2 = 127;          // pret/pokegold SAVE_CHECK_VALUE_2
 // Each copy's second check value follows its checksum.
-constexpr size_t CHECK_VALUE_2_DISTANCE = 2;
+constexpr size_t CHECK_VALUE_2_DISTANCE = 2; // pret/pokegold sCheckValue2
 
 // As Checksum: a wrapping 16-bit sum of the bytes.
 static uint16_t sum_bytes(const uint8_t *bytes, size_t size) {

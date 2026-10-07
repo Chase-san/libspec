@@ -591,7 +591,8 @@ spec_error_t spec_ndsi_pokemon_set_nickname(spec_ndsi_pokemon_t *pokemon, const 
     spec_error_t error = SPEC_OK;
     switch (naming) {
         case SPEC_NAMING_CAUGHT_OR_HATCHED:
-            // TODO: Verify there are no other trash bytes.
+            // The name and its terminator go over the old name, as the verified Black saves show
+            // for Pokémon named when caught and for the starter.
             error = spec_ndsi_text_from_utf8(pokemon->nickname, SPEC_NDSI_NICKNAME_SIZE, nickname,
                                              pokemon->language);
             break;

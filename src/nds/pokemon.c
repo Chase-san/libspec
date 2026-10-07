@@ -690,12 +690,16 @@ spec_error_t spec_nds_pokemon_set_nickname(spec_nds_pokemon_t *pokemon, const ch
     spec_error_t error = SPEC_OK;
     switch (naming) {
         case SPEC_NAMING_CAUGHT_OR_HATCHED:
-            // TODO: Verify there are no other trash bytes.
+            // Battle and hatching copy the name and its terminator alone (pret battle_script.c,
+            // egg_hatch.c), as the verified Platinum saves show.
             error = spec_nds_text_from_utf8(pokemon->nickname, SPEC_NDS_NICKNAME_SIZE, nickname,
                                             pokemon->language);
             break;
         case SPEC_NAMING_NAME_RATER:
-            // TODO: Check trash bytes on Gen 4 rename.
+            // The field naming screen copies its whole buffer, whose units past the terminator are
+            // leftover memory (pret naming_screen.c, unk_0203D1B8.c), as the starter a verified
+            // Platinum save names in Rowan's lab shows. Zeros stand in for them.
+            // TODO: Confirm on a Name Rater rename in a verified save.
             error = write_zero_padded_nickname(pokemon, nickname);
             break;
         default:

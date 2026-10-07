@@ -4,9 +4,9 @@
 #include "gba/gba_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t POKEDEX_FLAGS_SIZE = 0x34;
-constexpr uint8_t POKEDEX_MODE_NATIONAL = 1;
-constexpr uint8_t POKEDEX_ORDER_FIRST = 0;
+constexpr size_t POKEDEX_FLAGS_SIZE = 0x34;  // pret/pokeemerald NUM_DEX_FLAG_BYTES
+constexpr uint8_t POKEDEX_MODE_NATIONAL = 1; // pret/pokeemerald DEX_MODE_NATIONAL
+constexpr uint8_t POKEDEX_ORDER_FIRST = 0;   // pret/pokeemerald EnableNationalPokedex
 
 static bool is_national_dex_enabled(const uint8_t *data, const spec_gba_save_slot_t *slot,
                                     const spec_gba_layout_t *layout) {

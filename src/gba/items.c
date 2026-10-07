@@ -5,8 +5,8 @@
 #include "gba/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t ITEM_SLOT_SIZE = 4;
-constexpr size_t ITEM_QUANTITY_OFFSET = 2;
+constexpr size_t ITEM_SLOT_SIZE = 4;       // pret/pokeemerald ItemSlot
+constexpr size_t ITEM_QUANTITY_OFFSET = 2; // pret/pokeemerald ItemSlot quantity
 
 constexpr size_t RUBY_SAPPHIRE_POCKET_CAPACITIES[SPEC_GBA_POCKET_COUNT] = {
     [SPEC_GBA_POCKET_ITEMS] = 20,      [SPEC_GBA_POCKET_KEY_ITEMS] = 20,

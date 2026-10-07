@@ -7,36 +7,36 @@
 #include "gba/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t PERSONALITY_OFFSET = 0x00;
-constexpr size_t TRAINER_ID_OFFSET = 0x04;
-constexpr size_t SECRET_ID_OFFSET = 0x06;
-constexpr size_t NICKNAME_OFFSET = 0x08;
-constexpr size_t LANGUAGE_OFFSET = 0x12;
-constexpr size_t FLAGS_OFFSET = 0x13;
-constexpr size_t TRAINER_NAME_OFFSET = 0x14;
-constexpr size_t MARKINGS_OFFSET = 0x1B;
-constexpr size_t CHECKSUM_OFFSET = 0x1C;
-constexpr size_t SUBSTRUCTS_OFFSET = 0x20;
-constexpr size_t SPECIES_OFFSET = 0x20;
-constexpr size_t HELD_ITEM_OFFSET = 0x22;
-constexpr size_t EXPERIENCE_OFFSET = 0x24;
-constexpr size_t PP_UPS_OFFSET = 0x28;
-constexpr size_t FRIENDSHIP_OFFSET = 0x29;
-constexpr size_t MOVES_OFFSET = 0x2C;
-constexpr size_t MOVE_PP_OFFSET = 0x34;
-constexpr size_t EVS_OFFSET = 0x38;
-constexpr size_t CONTEST_STATS_OFFSET = 0x3E;
-constexpr size_t SHEEN_OFFSET = 0x43;
-constexpr size_t POKERUS_OFFSET = 0x44;
-constexpr size_t MET_LOCATION_OFFSET = 0x45;
-constexpr size_t ORIGIN_OFFSET = 0x46;
-constexpr size_t IVS_OFFSET = 0x48;
-constexpr size_t RIBBONS_OFFSET = 0x4C;
-constexpr size_t STATUS_OFFSET = 0x50;
-constexpr size_t LEVEL_OFFSET = 0x54;
-constexpr size_t MAIL_ID_OFFSET = 0x55;
-constexpr size_t CURRENT_HP_OFFSET = 0x56;
-constexpr size_t STATS_OFFSET = 0x58;
+constexpr size_t PERSONALITY_OFFSET = 0x00;   // pret/pokeemerald BoxPokemon personality
+constexpr size_t TRAINER_ID_OFFSET = 0x04;    // pret/pokeemerald BoxPokemon otId
+constexpr size_t SECRET_ID_OFFSET = 0x06;     // pret/pokeemerald BoxPokemon otId, upper half
+constexpr size_t NICKNAME_OFFSET = 0x08;      // pret/pokeemerald BoxPokemon nickname
+constexpr size_t LANGUAGE_OFFSET = 0x12;      // pret/pokeemerald BoxPokemon language
+constexpr size_t FLAGS_OFFSET = 0x13;         // pret/pokeemerald BoxPokemon isBadEgg
+constexpr size_t TRAINER_NAME_OFFSET = 0x14;  // pret/pokeemerald BoxPokemon otName
+constexpr size_t MARKINGS_OFFSET = 0x1B;      // pret/pokeemerald BoxPokemon markings
+constexpr size_t CHECKSUM_OFFSET = 0x1C;      // pret/pokeemerald BoxPokemon checksum
+constexpr size_t SUBSTRUCTS_OFFSET = 0x20;    // pret/pokeemerald BoxPokemon secure
+constexpr size_t SPECIES_OFFSET = 0x20;       // pret/pokeemerald PokemonSubstruct0 species
+constexpr size_t HELD_ITEM_OFFSET = 0x22;     // pret/pokeemerald PokemonSubstruct0 heldItem
+constexpr size_t EXPERIENCE_OFFSET = 0x24;    // pret/pokeemerald PokemonSubstruct0 experience
+constexpr size_t PP_UPS_OFFSET = 0x28;        // pret/pokeemerald PokemonSubstruct0 ppBonuses
+constexpr size_t FRIENDSHIP_OFFSET = 0x29;    // pret/pokeemerald PokemonSubstruct0 friendship
+constexpr size_t MOVES_OFFSET = 0x2C;         // pret/pokeemerald PokemonSubstruct1 moves
+constexpr size_t MOVE_PP_OFFSET = 0x34;       // pret/pokeemerald PokemonSubstruct1 pp
+constexpr size_t EVS_OFFSET = 0x38;           // pret/pokeemerald PokemonSubstruct2 hpEV
+constexpr size_t CONTEST_STATS_OFFSET = 0x3E; // pret/pokeemerald PokemonSubstruct2 cool
+constexpr size_t SHEEN_OFFSET = 0x43;         // pret/pokeemerald PokemonSubstruct2 sheen
+constexpr size_t POKERUS_OFFSET = 0x44;       // pret/pokeemerald PokemonSubstruct3 pokerus
+constexpr size_t MET_LOCATION_OFFSET = 0x45;  // pret/pokeemerald PokemonSubstruct3 metLocation
+constexpr size_t ORIGIN_OFFSET = 0x46;        // pret/pokeemerald PokemonSubstruct3 metLevel
+constexpr size_t IVS_OFFSET = 0x48;           // pret/pokeemerald PokemonSubstruct3 hpIV
+constexpr size_t RIBBONS_OFFSET = 0x4C;       // pret/pokeemerald PokemonSubstruct3 coolRibbon
+constexpr size_t STATUS_OFFSET = 0x50;        // pret/pokeemerald Pokemon status
+constexpr size_t LEVEL_OFFSET = 0x54;         // pret/pokeemerald Pokemon level
+constexpr size_t MAIL_ID_OFFSET = 0x55;       // pret/pokeemerald Pokemon mail
+constexpr size_t CURRENT_HP_OFFSET = 0x56;    // pret/pokeemerald Pokemon hp
+constexpr size_t STATS_OFFSET = 0x58;         // pret/pokeemerald Pokemon maxHP
 
 constexpr unsigned BAD_EGG_BIT = 0;
 constexpr unsigned HAS_SPECIES_BIT = 1;
@@ -77,7 +77,7 @@ constexpr unsigned BADLY_POISONED_BIT = 7;
 constexpr unsigned TOXIC_TURNS_BIT = 8;
 constexpr unsigned TOXIC_TURNS_BIT_COUNT = 4;
 
-constexpr size_t SUBSTRUCT_SIZE = 12;
+constexpr size_t SUBSTRUCT_SIZE = 12; // pret/pokeemerald NUM_SUBSTRUCT_BYTES
 constexpr size_t SUBSTRUCTS_SIZE = 4 * SUBSTRUCT_SIZE;
 
 constexpr uint16_t SHEDINJA = 303;

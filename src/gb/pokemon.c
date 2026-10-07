@@ -7,20 +7,20 @@
 #include "gb/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t SPECIES_OFFSET = 0x00;
-constexpr size_t CURRENT_HP_OFFSET = 0x01;
-constexpr size_t BOX_LEVEL_OFFSET = 0x03;
-constexpr size_t STATUS_OFFSET = 0x04;
-constexpr size_t TYPES_OFFSET = 0x05;
-constexpr size_t CATCH_RATE_OFFSET = 0x07;
-constexpr size_t MOVES_OFFSET = 0x08;
-constexpr size_t TRAINER_ID_OFFSET = 0x0C;
-constexpr size_t EXPERIENCE_OFFSET = 0x0E;
-constexpr size_t STAT_EXPERIENCE_OFFSET = 0x11;
-constexpr size_t DVS_OFFSET = 0x1B;
-constexpr size_t PP_OFFSET = 0x1D;
-constexpr size_t LEVEL_OFFSET = 0x21;
-constexpr size_t STATS_OFFSET = 0x22;
+constexpr size_t SPECIES_OFFSET = 0x00;         // pret/pokered box_struct Species
+constexpr size_t CURRENT_HP_OFFSET = 0x01;      // pret/pokered box_struct HP
+constexpr size_t BOX_LEVEL_OFFSET = 0x03;       // pret/pokered box_struct BoxLevel
+constexpr size_t STATUS_OFFSET = 0x04;          // pret/pokered box_struct Status
+constexpr size_t TYPES_OFFSET = 0x05;           // pret/pokered box_struct Type
+constexpr size_t CATCH_RATE_OFFSET = 0x07;      // pret/pokered box_struct CatchRate
+constexpr size_t MOVES_OFFSET = 0x08;           // pret/pokered box_struct Moves
+constexpr size_t TRAINER_ID_OFFSET = 0x0C;      // pret/pokered box_struct OTID
+constexpr size_t EXPERIENCE_OFFSET = 0x0E;      // pret/pokered box_struct Exp
+constexpr size_t STAT_EXPERIENCE_OFFSET = 0x11; // pret/pokered box_struct HPExp
+constexpr size_t DVS_OFFSET = 0x1B;             // pret/pokered box_struct DVs
+constexpr size_t PP_OFFSET = 0x1D;              // pret/pokered box_struct PP
+constexpr size_t LEVEL_OFFSET = 0x21;           // pret/pokered party_struct Level
+constexpr size_t STATS_OFFSET = 0x22;           // pret/pokered party_struct Stats
 
 constexpr unsigned SLEEP_TURNS_BIT = 0;
 constexpr unsigned SLEEP_TURNS_BIT_COUNT = 3;

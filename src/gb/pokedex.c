@@ -5,8 +5,7 @@
 #include "spec_internal.h"
 
 constexpr size_t POKEDEX_FLAGS_SIZE = (SPEC_GB_POKEDEX_SIZE - 1 + 7) / 8;
-// EVENT_GOT_POKEDEX (pret constants/event_constants.asm).
-constexpr size_t GOT_POKEDEX_EVENT = 0x25;
+constexpr size_t GOT_POKEDEX_EVENT = 0x25; // pret/pokered EVENT_GOT_POKEDEX
 
 void spec_gb_decode_pokedex(spec_gb_pokedex_t *pokedex, const uint8_t *data,
                             const spec_gb_layout_t *layout) {
