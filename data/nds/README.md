@@ -31,6 +31,9 @@ Species by National Dex number, then the forms whose data differs from their spe
 Characters by 16-bit code.
 
 - Source: pret's msgenc `charmap.txt`. pokeplatinum, pokeheartgold and pokediamond agree.
+- Except the first 15 Korean syllables, 가 to 갗, which are at 0x0401–0x040F, one code above
+  `charmap.txt`. Korean Pearl's species names (member 357 of `msgdata/msg.narc`) decode to the
+  Korean names only so, and its text never uses 0x0400.
 - Each character is the one the cart's font draws.
 - Glyphs only the games have use Game Freak's private-use code points, U+E081–U+E0A8.
 - Korean jamo decode as compatibility jamo.

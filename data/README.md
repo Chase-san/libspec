@@ -66,7 +66,8 @@ Sources are named precisely enough to find again:
 - pret and the other disassemblies are cited by repository and path, such as
   `pokecrystal data/items/names.asm`.
 - Cartridge data is cited by its place on the cart, as the next section explains. The carts are
-  the author's own US carts.
+  the author's own, and US carts unless a note names another, such as Korean Pearl for Gen 4's
+  Korean text.
 
 ## Where cartridge data lives
 

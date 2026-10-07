@@ -6,8 +6,10 @@
 #include "spec_internal.h"
 
 constexpr size_t PARTITION_COUNT = 2;
-// TODO: Check the block magic on a Korean cart.
 constexpr uint32_t BLOCK_MAGIC = 0x20060623; // pret/pokeplatinum SECTOR_SIGNATURE
+// Korean Pearl's ValidateChunk is pret pokediamond's with this in place of BLOCK_MAGIC.
+constexpr uint32_t KOREAN_DIAMOND_PEARL_BLOCK_MAGIC = 0x20070903; // ntr-apak-kor.nds ARM9#0x23728
+// TODO: Check the block magic on Korean Platinum, HeartGold and SoulSilver carts.
 
 // Counted back from the block's end, where both footer kinds keep them.
 constexpr size_t FOOTER_SIZE_FROM_END = 0xC;  // pret/pokeplatinum SaveBlockFooter size
@@ -78,6 +80,14 @@ static size_t block_offset_in_partition(block_id_t block_id, const spec_nds_layo
     return block_id == GENERAL_BLOCK ? 0 : layout->storage_offset;
 }
 
+static bool is_block_magic(uint32_t magic, const spec_nds_layout_t *layout) {
+    if (magic == BLOCK_MAGIC) {
+        return true;
+    }
+    return layout->type == SPEC_GAME_TYPE_DIAMOND_PEARL
+           && magic == KOREAN_DIAMOND_PEARL_BLOCK_MAGIC;
+}
+
 // As SaveBlockFooter_Validate; Diamond, Pearl and Platinum keep the id in one byte.
 static bool is_block_valid(const uint8_t *block, block_id_t block_id,
                            const spec_nds_layout_t *layout) {
@@ -86,7 +96,8 @@ static bool is_block_valid(const uint8_t *block, block_id_t block_id,
     uint16_t stored_id = layout->are_blocks_paired ? spec_read_u16_le(end - FOOTER_ID_FROM_END)
                                                    : *(end - FOOTER_ID_FROM_END);
     return spec_read_u32_le(end - FOOTER_SIZE_FROM_END) == size
-           && spec_read_u32_le(end - FOOTER_MAGIC_FROM_END) == BLOCK_MAGIC && stored_id == block_id
+           && is_block_magic(spec_read_u32_le(end - FOOTER_MAGIC_FROM_END), layout)
+           && stored_id == block_id
            && spec_read_u16_le(end - FOOTER_CRC_FROM_END)
                   == spec_crc16(block, size - layout->footer_size);
 }

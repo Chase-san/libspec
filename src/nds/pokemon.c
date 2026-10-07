@@ -106,8 +106,10 @@ constexpr unsigned TOXIC_TURNS_BIT_COUNT = 4;
 constexpr uint16_t SHEDINJA = 292;
 constexpr uint16_t FIRST_MAIL_ITEM = 137;
 constexpr uint16_t LAST_MAIL_ITEM = 148;
-// Gen 4 names an egg in the game's language; only the English name is on record.
-constexpr char8_t ENGLISH_EGG_NICKNAME[] = u8"Egg";
+// The species names' Egg line, which a new egg is named with (pret pokeplatinum daycare.c).
+constexpr char8_t ENGLISH_EGG_NICKNAME[] = u8"Egg";     // ntr-cpue-usa.nds msgdata/msg.narc 362
+constexpr char8_t JAPANESE_EGG_NICKNAME[] = u8"タマゴ"; // ntr-cpuj-jpn.nds msgdata/msg.narc 356
+constexpr char8_t KOREAN_EGG_NICKNAME[] = u8"알";       // ntr-apak-kor.nds msgdata/msg.narc 357
 constexpr uint16_t END_OF_TEXT = 0xFFFF;
 constexpr uint16_t FARAWAY_PLACE = 3002;
 
@@ -615,11 +617,23 @@ spec_error_t spec_nds_pokemon_calculate_stats(spec_nds_pokemon_t *pokemon) {
     return SPEC_OK;
 }
 
+// Gen 4 names an egg in the game's language.
+static const char8_t *egg_nickname_of(spec_language_t language) {
+    if (language == SPEC_LANGUAGE_JAPANESE) {
+        return JAPANESE_EGG_NICKNAME;
+    }
+    if (language == SPEC_LANGUAGE_KOREAN) {
+        return KOREAN_EGG_NICKNAME;
+    }
+    // TODO: Determine the French, Italian, German and Spanish egg names; English stands in.
+    return ENGLISH_EGG_NICKNAME;
+}
+
 // The game writes an egg's name over the old one, keeping what follows its terminator.
 static spec_error_t write_egg_nickname(spec_nds_pokemon_t *pokemon) {
-    // TODO: Determine egg names for languages other than English.
-    spec_error_t error = spec_nds_text_from_utf8(pokemon->nickname, SPEC_NDS_NICKNAME_SIZE,
-                                                 ENGLISH_EGG_NICKNAME, pokemon->language);
+    spec_error_t error =
+        spec_nds_text_from_utf8(pokemon->nickname, SPEC_NDS_NICKNAME_SIZE,
+                                egg_nickname_of(pokemon->language), pokemon->language);
     if (error == SPEC_OK) {
         pokemon->is_nicknamed = false;
     }
@@ -691,7 +705,7 @@ spec_error_t spec_nds_pokemon_set_nickname(spec_nds_pokemon_t *pokemon, const ch
     if (pokemon->is_egg || pokemon->is_bad_egg) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the games never name an egg");
     }
-    // TODO: Check the Japanese nickname length.
+    // TODO: Check the Japanese and Korean nickname lengths.
     spec_error_t error = SPEC_OK;
     switch (naming) {
         case SPEC_NAMING_CAUGHT_OR_HATCHED:

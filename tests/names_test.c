@@ -188,6 +188,11 @@ static void check_gen3(void) {
           "a Gen 3 nickname is followed by 0xFF to the end");
     check(spec_gba_pokemon_set_nickname(&egg, u8"BOB") == SPEC_ERROR_VALUE_OUT_OF_RANGE,
           "a Gen 3 egg cannot be nicknamed");
+    spec_gba_pokemon_t japanese = {.species = 1, .language = SPEC_LANGUAGE_JAPANESE};
+    check(spec_gba_pokemon_set_nickname(&japanese, u8"フシギダネ") == SPEC_OK
+              && spec_gba_pokemon_set_nickname(&japanese, u8"フシギダネだ")
+                     == SPEC_ERROR_NAME_TOO_LONG,
+          "a Gen 3 Japanese nickname has at most five characters");
 }
 
 static void check_gen4(void) {
@@ -201,6 +206,15 @@ static void check_gen4(void) {
     check(spec_nds_pokemon_remove_nickname(&charmander) == SPEC_OK
               && is_nds_name(&charmander, "SALAMECHE"),
           "a Gen 4 French name drops its accents");
+    spec_nds_pokemon_t japanese_egg = {
+        .species = 4, .language = SPEC_LANGUAGE_JAPANESE, .is_egg = true};
+    spec_nds_pokemon_t korean_egg = {
+        .species = 4, .language = SPEC_LANGUAGE_KOREAN, .is_egg = true};
+    check(spec_nds_pokemon_remove_nickname(&japanese_egg) == SPEC_OK
+              && is_nds_name(&japanese_egg, "タマゴ")
+              && spec_nds_pokemon_remove_nickname(&korean_egg) == SPEC_OK
+              && is_nds_name(&korean_egg, "알"),
+          "a Gen 4 egg is named in its game's language");
     spec_nds_pokemon_t bad_egg = {.species = 4, .is_egg = true, .is_bad_egg = true};
     check(spec_nds_pokemon_remove_nickname(&bad_egg) == SPEC_ERROR_UNKNOWN_NAME,
           "a Bad Egg has no stored name");

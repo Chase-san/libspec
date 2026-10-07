@@ -86,7 +86,6 @@ spec_error_t spec_nds_text_from_utf8(uint16_t *text, size_t text_size, const cha
     return SPEC_OK;
 }
 
-// TODO: Check the codes of the first 15 Korean syllables on a Korean cart.
 static char32_t code_point_of(uint16_t code) {
     if (code >= SPEC_NDS_CHARMAP_SIZE || spec_nds_charmap[code] == 0) {
         return SPEC_REPLACEMENT_CHARACTER;

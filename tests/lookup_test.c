@@ -10,6 +10,7 @@
 #include "gbc/gbc.h"
 #include "nds/nds.h"
 #include "ndsi/ndsi.h"
+#include "spec_internal.h"
 
 static size_t failure_count;
 
@@ -238,6 +239,28 @@ static void check_identify_of_blank_data(void) {
     check(is_nothing_identified, "erased data is no game's save");
 }
 
+// A Diamond and Pearl block footer: the size, the magic, the block's id, then its CRC.
+static void stamp_diamond_pearl_block(uint8_t *block, size_t size, uint8_t block_id,
+                                      uint32_t magic) {
+    uint8_t *footer = &block[size - 0x14];
+    spec_write_u32_le(&footer[0x8], (uint32_t)size);
+    spec_write_u32_le(&footer[0xC], magic);
+    footer[0x10] = block_id;
+    spec_write_u16_le(&footer[0x12], spec_crc16(block, size - 0x14));
+}
+
+static void check_korean_diamond_pearl_magic(void) {
+    constexpr size_t GENERAL_SIZE = 0xC100;
+    constexpr size_t STORAGE_SIZE = 0x121E0;
+    static uint8_t data[SPEC_NDS_SAVE_SIZE];
+    static spec_nds_save_t save;
+    memset(data, 0, sizeof data);
+    stamp_diamond_pearl_block(data, GENERAL_SIZE, 0, 0x20070903);
+    stamp_diamond_pearl_block(&data[GENERAL_SIZE], STORAGE_SIZE, 1, 0x20070903);
+    check(spec_nds_read_save(&save, data) == SPEC_OK && save.type == SPEC_GAME_TYPE_DIAMOND_PEARL,
+          "Korean Pearl's block magic reads as Diamond and Pearl");
+}
+
 int main(void) {
     check_box_geometry();
     check_game_limits();
@@ -250,6 +273,7 @@ int main(void) {
     check_moves_end_at_last_move();
     check_max_pp();
     check_identify_of_blank_data();
+    check_korean_diamond_pearl_magic();
     printf("%zu failures\n", failure_count);
     if (failure_count != 0) {
         return 1;

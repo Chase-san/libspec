@@ -84,6 +84,9 @@ constexpr uint16_t SHEDINJA = 303;
 constexpr uint16_t FIRST_MAIL_ITEM = 121;
 constexpr uint16_t LAST_MAIL_ITEM = 132;
 constexpr uint8_t NO_MAIL = 0xFF;
+constexpr uint8_t END_OF_TEXT = 0xFF;
+// The maxChars of the Japanese cart's sMonNamingScreenTemplate (agb-bpej-jpn.gba #0x565CD1).
+constexpr size_t JAPANESE_NICKNAME_LENGTH = 5;
 // Every Gen 3 game names an egg in Japanese.
 constexpr char8_t EGG_NICKNAME[] = u8"タマゴ";
 
@@ -516,9 +519,20 @@ spec_error_t spec_gba_pokemon_set_nickname(spec_gba_pokemon_t *pokemon, const ch
     if (pokemon->is_egg || pokemon->is_bad_egg) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "the games never name an egg");
     }
-    // TODO: Check the Japanese nickname length.
-    return spec_gba_text_from_utf8(pokemon->nickname, SPEC_GBA_NICKNAME_SIZE, nickname,
-                                   pokemon->language);
+    uint8_t encoded[SPEC_GBA_NICKNAME_SIZE];
+    spec_error_t error =
+        spec_gba_text_from_utf8(encoded, SPEC_GBA_NICKNAME_SIZE, nickname, pokemon->language);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    // TODO: Confirm on a verified Japanese save what follows a Japanese name.
+    if (pokemon->language == SPEC_LANGUAGE_JAPANESE
+        && encoded[JAPANESE_NICKNAME_LENGTH] != END_OF_TEXT) {
+        return spec_fail(SPEC_ERROR_NAME_TOO_LONG,
+                         "a Japanese nickname has at most five characters");
+    }
+    memcpy(pokemon->nickname, encoded, SPEC_GBA_NICKNAME_SIZE);
+    return SPEC_OK;
 }
 
 static bool is_gen3_game(spec_game_type_t type) {
