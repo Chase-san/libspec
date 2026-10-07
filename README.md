@@ -44,7 +44,7 @@ Its information comes from community sources, original research and decompilatio
   - einstein95 (pokered-fr, pokered-de, pokered-es)
   - Brianum (pokeyellow-de)
   - erosunica (pokecrystal-es)
-- PokéAPI, for the Chinese species names and what only Ultra Sun and Ultra Moon add
+- PokéAPI, for reading the glyphs the games write Chinese species names in
 - Project Pokémon, PKHeX's contributors and SciresM, whose research documented the Gen 6 and 7 saves and Gen 7's save signature.
 - Bulbapedia, Serebii.net and Pokémon Database.
 - The author's own cartridges and applications from which the Gen 5, Gen 6 and Gen 7 data is extracted.

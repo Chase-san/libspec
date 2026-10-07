@@ -1,305 +1,305 @@
-national	form	source	japanese	english	french	italian	german	spanish	korean	chinese_simplified	chinese_traditional
-3	1	sun_moon	メガフシギバナ	Mega Venusaur	Méga-Florizarre	MegaVenusaur	Mega-Bisaflor	Mega-Venusaur	메가이상해꽃	超级妙蛙花	超級妙蛙花
-6	1	sun_moon	メガリザードンＸ	Mega Charizard X	Méga-Dracaufeu X	MegaCharizard X	Mega-Glurak X	Mega-Charizard X	메가리자몽X	超级喷火龙Ｘ	超級噴火龍Ｘ
-6	2	sun_moon	メガリザードンＹ	Mega Charizard Y	Méga-Dracaufeu Y	MegaCharizard Y	Mega-Glurak Y	Mega-Charizard Y	메가리자몽Y	超级喷火龙Ｙ	超級噴火龍Ｙ
-9	1	sun_moon	メガカメックス	Mega Blastoise	Méga-Tortank	MegaBlastoise	Mega-Turtok	Mega-Blastoise	메가거북왕	超级水箭龟	超級水箭龜
-15	1	sun_moon	メガスピアー	Mega Beedrill	Méga-Dardargnan	MegaBeedrill	Mega-Bibor	Mega-Beedrill	메가독침붕	超级大针蜂	超級大針蜂
-18	1	sun_moon	メガピジョット	Mega Pidgeot	Méga-Roucarnage	MegaPidgeot	Mega-Tauboss	Mega-Pidgeot	메가피죤투	超级大比鸟	超級大比鳥
-19	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-20	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-25	1	sun_moon	オリジナルキャップ	Original Cap	Casquette Originale	Berretto Originale	Original-Kappe	Gorra Original	오리지널캡	初始帽子	初始帽子
+national	form	from_game	japanese	english	french	italian	german	spanish	korean	chinese_simplified	chinese_traditional
+3	1	-	メガフシギバナ	Mega Venusaur	Méga-Florizarre	MegaVenusaur	Mega-Bisaflor	Mega-Venusaur	메가이상해꽃	超级妙蛙花	超級妙蛙花
+6	1	-	メガリザードンＸ	Mega Charizard X	Méga-Dracaufeu X	MegaCharizard X	Mega-Glurak X	Mega-Charizard X	메가리자몽X	超级喷火龙Ｘ	超級噴火龍Ｘ
+6	2	-	メガリザードンＹ	Mega Charizard Y	Méga-Dracaufeu Y	MegaCharizard Y	Mega-Glurak Y	Mega-Charizard Y	메가리자몽Y	超级喷火龙Ｙ	超級噴火龍Ｙ
+9	1	-	メガカメックス	Mega Blastoise	Méga-Tortank	MegaBlastoise	Mega-Turtok	Mega-Blastoise	메가거북왕	超级水箭龟	超級水箭龜
+15	1	-	メガスピアー	Mega Beedrill	Méga-Dardargnan	MegaBeedrill	Mega-Bibor	Mega-Beedrill	메가독침붕	超级大针蜂	超級大針蜂
+18	1	-	メガピジョット	Mega Pidgeot	Méga-Roucarnage	MegaPidgeot	Mega-Tauboss	Mega-Pidgeot	메가피죤투	超级大比鸟	超級大比鳥
+19	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+20	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
 25	1	omega_ruby_alpha_sapphire	ハードロック・ピカチュウ	Pikachu Rock Star	Pikachu Rockeur	Pikachu rockstar	Rocker-Pikachu	Pikachu Roquera	하드록 피카츄	-	-
-25	2	sun_moon	ホウエンキャップ	Hoenn Cap	Casquette de Hoenn	Berretto Hoenn	Hoenn-Kappe	Gorra Hoenn	호연캡	丰缘帽子	豐緣帽子
+25	1	sun_moon	オリジナルキャップ	Original Cap	Casquette Originale	Berretto Originale	Original-Kappe	Gorra Original	오리지널캡	初始帽子	初始帽子
 25	2	omega_ruby_alpha_sapphire	マダム・ピカチュウ	Pikachu Belle	Pikachu Lady	Pikachu damigella	Damen-Pikachu	Pikachu Aristócrata	마담 피카츄	-	-
-25	3	sun_moon	シンオウキャップ	Sinnoh Cap	Casquette de Sinnoh	Berretto Sinnoh	Sinnoh-Kappe	Gorra Sinnoh	신오캡	神奥帽子	神奧帽子
+25	2	sun_moon	ホウエンキャップ	Hoenn Cap	Casquette de Hoenn	Berretto Hoenn	Hoenn-Kappe	Gorra Hoenn	호연캡	丰缘帽子	豐緣帽子
 25	3	omega_ruby_alpha_sapphire	アイドル・ピカチュウ	Pikachu Pop Star	Pikachu Star	Pikachu confetto	Star-Pikachu	Pikachu Superstar	아이돌 피카츄	-	-
-25	4	sun_moon	イッシュキャップ	Unova Cap	Casquette d’Unys	Berretto Unima	Einall-Kappe	Gorra Teselia	하나캡	合众帽子	合眾帽子
+25	3	sun_moon	シンオウキャップ	Sinnoh Cap	Casquette de Sinnoh	Berretto Sinnoh	Sinnoh-Kappe	Gorra Sinnoh	신오캡	神奥帽子	神奧帽子
 25	4	omega_ruby_alpha_sapphire	ドクター・ピカチュウ	Pikachu, Ph.D.	Pikachu Docteur	Pikachu scienziata	Professoren-Pikachu	Pikachu Erudita	닥터 피카츄	-	-
-25	5	sun_moon	カロスキャップ	Kalos Cap	Casquette de Kalos	Berretto Kalos	Kalos-Kappe	Gorra Kalos	칼로스캡	卡洛斯帽子	卡洛斯帽子
+25	4	sun_moon	イッシュキャップ	Unova Cap	Casquette d’Unys	Berretto Unima	Einall-Kappe	Gorra Teselia	하나캡	合众帽子	合眾帽子
 25	5	omega_ruby_alpha_sapphire	マスク・ド・ピカチュウ	Pikachu Libre	Pikachu Catcheur	Pikachu wrestler	Wrestler-Pikachu	Pikachu Enmascarada	마스크드 피카츄	-	-
-25	6	sun_moon	アローラキャップ	Alola Cap	Casquette d’Alola	Berretto Alola	Alola-Kappe	Gorra Alola	알로라캡	阿罗拉帽子	阿羅拉帽子
+25	5	sun_moon	カロスキャップ	Kalos Cap	Casquette de Kalos	Berretto Kalos	Kalos-Kappe	Gorra Kalos	칼로스캡	卡洛斯帽子	卡洛斯帽子
 25	6	omega_ruby_alpha_sapphire	おきがえピカチュウ	Cosplay Pikachu	Pikachu Cosplayeur	Pikachu Cosplay	Cosplay-Pikachu	Pikachu Coqueta	옷갈아입기 피카츄	-	-
-25	7	pokeapi	キミにきめたキャップ	Partner Cap	Casquette Partenaire	Berretto Compagni	Partner-Kappe	Gorra Compañero	너로정했다캡	就决定是你了之帽子	就決定是你了之帽子
-26	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-27	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-28	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-37	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-38	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-50	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-51	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-52	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-53	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-65	1	sun_moon	メガフーディン	Mega Alakazam	Méga-Alakazam	MegaAlakazam	Mega-Simsala	Mega-Alakazam	메가후딘	超级胡地	超級胡地
-74	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-75	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-76	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-80	1	sun_moon	メガヤドラン	Mega Slowbro	Méga-Flagadoss	MegaSlowbro	Mega-Lahmus	Mega-Slowbro	메가야도란	超级呆壳兽	超級呆殼獸
-88	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-89	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-94	1	sun_moon	メガゲンガー	Mega Gengar	Méga-Ectoplasma	MegaGengar	Mega-Gengar	Mega-Gengar	메가팬텀	超级耿鬼	超級耿鬼
-103	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-105	1	sun_moon	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
-115	1	sun_moon	メガガルーラ	Mega Kangaskhan	Méga-Kangourex	MegaKangaskhan	Mega-Kangama	Mega-Kangaskhan	메가캥카	超级袋兽	超級袋獸
-127	1	sun_moon	メガカイロス	Mega Pinsir	Méga-Scarabrute	MegaPinsir	Mega-Pinsir	Mega-Pinsir	메가쁘사이저	超级凯罗斯	超級凱羅斯
-130	1	sun_moon	メガギャラドス	Mega Gyarados	Méga-Léviator	MegaGyarados	Mega-Garados	Mega-Gyarados	메가갸라도스	超级暴鲤龙	超級暴鯉龍
-142	1	sun_moon	メガプテラ	Mega Aerodactyl	Méga-Ptéra	MegaAerodactyl	Mega-Aerodactyl	Mega-Aerodactyl	메가프테라	超级化石翼龙	超級化石翼龍
-150	1	sun_moon	メガミュウツーＸ	Mega Mewtwo X	Méga-Mewtwo X	MegaMewtwo X	Mega-Mewtu X	Mega-Mewtwo X	메가뮤츠X	超级超梦Ｘ	超級超夢Ｘ
-150	2	sun_moon	メガミュウツーＹ	Mega Mewtwo Y	Méga-Mewtwo Y	MegaMewtwo Y	Mega-Mewtu Y	Mega-Mewtwo Y	메가뮤츠Y	超级超梦Ｙ	超級超夢Ｙ
-181	1	sun_moon	メガデンリュウ	Mega Ampharos	Méga-Pharamp	MegaAmpharos	Mega-Ampharos	Mega-Ampharos	메가전룡	超级电龙	超級電龍
-201	0	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	1	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	2	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	3	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	4	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	5	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	6	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	7	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	8	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	9	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	10	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	11	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	12	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	13	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	14	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	15	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	16	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	17	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	18	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	19	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	20	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	21	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	22	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	23	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	24	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	25	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	26	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-201	27	sun_moon	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
-208	1	sun_moon	メガハガネール	Mega Steelix	Méga-Steelix	MegaSteelix	Mega-Stahlos	Mega-Steelix	메가강철톤	超级大钢蛇	超級大鋼蛇
-212	1	sun_moon	メガハッサム	Mega Scizor	Méga-Cizayox	MegaScizor	Mega-Scherox	Mega-Scizor	메가핫삼	超级巨钳螳螂	超級巨鉗螳螂
-214	1	sun_moon	メガヘラクロス	Mega Heracross	Méga-Scarhino	MegaHeracross	Mega-Skaraborn	Mega-Heracross	메가헤라크로스	超级赫拉克罗斯	超級赫拉克羅斯
-229	1	sun_moon	メガヘルガー	Mega Houndoom	Méga-Démolosse	MegaHoundoom	Mega-Hundemon	Mega-Houndoom	메가헬가	超级黑鲁加	超級黑魯加
-248	1	sun_moon	メガバンギラス	Mega Tyranitar	Méga-Tyranocif	MegaTyranitar	Mega-Despotar	Mega-Tyranitar	메가마기라스	超级班基拉斯	超級班基拉斯
-254	1	sun_moon	メガジュカイン	Mega Sceptile	Méga-Jungko	MegaSceptile	Mega-Gewaldro	Mega-Sceptile	메가나무킹	超级蜥蜴王	超級蜥蜴王
-257	1	sun_moon	メガバシャーモ	Mega Blaziken	Méga-Braségali	MegaBlaziken	Mega-Lohgock	Mega-Blaziken	메가번치코	超级火焰鸡	超級火焰雞
-260	1	sun_moon	メガラグラージ	Mega Swampert	Méga-Laggron	MegaSwampert	Mega-Sumpex	Mega-Swampert	메가대짱이	超级巨沼怪	超級巨沼怪
-282	1	sun_moon	メガサーナイト	Mega Gardevoir	Méga-Gardevoir	MegaGardevoir	Mega-Guardevoir	Mega-Gardevoir	메가가디안	超级沙奈朵	超級沙奈朵
-302	1	sun_moon	メガヤミラミ	Mega Sableye	Méga-Ténéfix	MegaSableye	Mega-Zobiris	Mega-Sableye	메가깜까미	超级勾魂眼	超級勾魂眼
-303	1	sun_moon	メガクチート	Mega Mawile	Méga-Mysdibule	MegaMawile	Mega-Flunkifer	Mega-Mawile	메가입치트	超级大嘴娃	超級大嘴娃
-306	1	sun_moon	メガボスゴドラ	Mega Aggron	Méga-Galeking	MegaAggron	Mega-Stolloss	Mega-Aggron	메가보스로라	超级波士可多拉	超級波士可多拉
-308	1	sun_moon	メガチャーレム	Mega Medicham	Méga-Charmina	MegaMedicham	Mega-Meditalis	Mega-Medicham	메가요가램	超级恰雷姆	超級恰雷姆
-310	1	sun_moon	メガライボルト	Mega Manectric	Méga-Élecsprint	MegaManectric	Mega-Voltenso	Mega-Manectric	메가썬더볼트	超级雷电兽	超級雷電獸
-319	1	sun_moon	メガサメハダー	Mega Sharpedo	Méga-Sharpedo	MegaSharpedo	Mega-Tohaido	Mega-Sharpedo	메가샤크니아	超级巨牙鲨	超級巨牙鯊
-323	1	sun_moon	メガバクーダ	Mega Camerupt	Méga-Camérupt	MegaCamerupt	Mega-Camerupt	Mega-Camerupt	메가폭타	超级喷火驼	超級噴火駝
-334	1	sun_moon	メガチルタリス	Mega Altaria	Méga-Altaria	MegaAltaria	Mega-Altaria	Mega-Altaria	메가파비코리	超级七夕青鸟	超級七夕青鳥
-351	0	sun_moon	ポワルンのすがた	Normal	Forme de Morphéo	Forma Castform	Formeo	Forma de Castform	캐스퐁의 모습	飘浮泡泡的样子	飄浮泡泡的樣子
-351	1	sun_moon	たいようのすがた	Sunny Form	Forme Solaire	Forma Sole	Sonnenform	Forma Sol	태양의 모습	太阳的样子	太陽的樣子
-351	2	sun_moon	あまみずのすがた	Rainy Form	Forme Eau de Pluie	Forma Pioggia	Regenform	Forma Lluvia	빗방울의 모습	雨水的样子	雨水的樣子
-351	3	sun_moon	ゆきぐものすがた	Snowy Form	Forme Blizzard	Forma Nuvola di Neve	Schneeform	Forma Nieve	설운의 모습	雪云的样子	雪雲的樣子
-354	1	sun_moon	メガジュペッタ	Mega Banette	Méga-Branette	MegaBanette	Mega-Banette	Mega-Banette	메가다크펫	超级诅咒娃娃	超級詛咒娃娃
-359	1	sun_moon	メガアブソル	Mega Absol	Méga-Absol	MegaAbsol	Mega-Absol	Mega-Absol	메가앱솔	超级阿勃梭鲁	超級阿勃梭魯
-362	1	sun_moon	メガオニゴーリ	Mega Glalie	Méga-Oniglali	MegaGlalie	Mega-Firnontor	Mega-Glalie	메가얼음귀신	超级冰鬼护	超級冰鬼護
-373	1	sun_moon	メガボーマンダ	Mega Salamence	Méga-Drattak	MegaSalamence	Mega-Brutalanda	Mega-Salamence	메가보만다	超级暴飞龙	超級暴飛龍
-376	1	sun_moon	メガメタグロス	Mega Metagross	Méga-Métalosse	MegaMetagross	Mega-Metagross	Mega-Metagross	메가메타그로스	超级巨金怪	超級巨金怪
-380	1	sun_moon	メガラティアス	Mega Latias	Méga-Latias	MegaLatias	Mega-Latias	Mega-Latias	메가라티아스	超级拉帝亚斯	超級拉帝亞斯
-381	1	sun_moon	メガラティオス	Mega Latios	Méga-Latios	MegaLatios	Mega-Latios	Mega-Latios	메가라티오스	超级拉帝欧斯	超級拉帝歐斯
-382	0	sun_moon	カイオーガのすがた	Kyogre	Kyogre		Kyogre	Kyogre	가이오가의 모습	盖欧卡的样子	蓋歐卡的樣子
-382	1	sun_moon	ゲンシカイキのすがた	Primal Reversion	Primo-Résurgence	Archeorisveglio	Protomorphose	Regresión Primigenia	원시회귀의 모습	原始回归的样子	原始回歸的樣子
-383	0	sun_moon	グラードンのすがた	Groudon	Groudon		Groudon	Groudon	그란돈의 모습	固拉多的样子	固拉多的樣子
-383	1	sun_moon	ゲンシカイキのすがた	Primal Reversion	Primo-Résurgence	Archeorisveglio	Protomorphose	Regresión Primigenia	원시회귀의 모습	原始回归的样子	原始回歸的樣子
-384	1	sun_moon	メガレックウザ	Mega Rayquaza	Méga-Rayquaza	MegaRayquaza	Mega-Rayquaza	Mega-Rayquaza	메가레쿠쟈	超级烈空坐	超級烈空坐
-386	0	sun_moon	ノーマルフォルム	Normal Forme	Forme Normale	Forma Normale	Normalform	Forma Normal	노말폼	普通形态	普通形態
-386	1	sun_moon	アタックフォルム	Attack Forme	Forme Attaque	Forma Attacco	Angriffsform	Forma Ataque	어택폼	攻击形态	攻擊形態
-386	2	sun_moon	ディフェンスフォルム	Defense Forme	Forme Défense	Forma Difesa	Verteidigungsform	Forma Defensa	디펜스폼	防御形态	防禦形態
-386	3	sun_moon	スピードフォルム	Speed Forme	Forme Vitesse	Forma Velocità	Initiativeform	Forma Velocidad	스피드폼	速度形态	速度形態
-412	0	sun_moon	くさきのミノ	Plant Cloak	Cape Plante	Manto Pianta	Pflanzenumhang	Tronco Planta	초목도롱	草木蓑衣	草木蓑衣
-412	1	sun_moon	すなちのミノ	Sandy Cloak	Cape Sable	Manto Sabbia	Sandumhang	Tronco Arena	모래땅도롱	砂土蓑衣	砂土蓑衣
-412	2	sun_moon	ゴミのミノ	Trash Cloak	Cape Déchet	Manto Scarti	Lumpenumhang	Tronco Basura	슈레도롱	垃圾蓑衣	垃圾蓑衣
-413	0	sun_moon	くさきのミノ	Plant Cloak	Cape Plante	Manto Pianta	Pflanzenumhang	Tronco Planta	초목도롱	草木蓑衣	草木蓑衣
-413	1	sun_moon	すなちのミノ	Sandy Cloak	Cape Sable	Manto Sabbia	Sandumhang	Tronco Arena	모래땅도롱	砂土蓑衣	砂土蓑衣
-413	2	sun_moon	ゴミのミノ	Trash Cloak	Cape Déchet	Manto Scarti	Lumpenumhang	Tronco Basura	슈레도롱	垃圾蓑衣	垃圾蓑衣
-421	0	sun_moon	ネガフォルム	Overcast Form	Temps Couvert	Forma Nuvola	Wolkenform	Forma Encapotado	네거폼	阴天形态	陰天形態
-421	1	sun_moon	ポジフォルム	Sunshine Form	Temps Ensoleillé	Forma Splendore	Sonnenform	Forma Soleado	포지폼	晴天形态	晴天形態
-422	0	sun_moon	にしのうみ	West Sea	Mer Occident	Mare Ovest	Westliches Meer	Mar Oeste	서쪽바다	西海	西海
-422	1	sun_moon	ひがしのうみ	East Sea	Mer Orient	Mare Est	Östliches Meer	Mar Este	동쪽바다	东海	東海
-423	0	sun_moon	にしのうみ	West Sea	Mer Occident	Mare Ovest	Westliches Meer	Mar Oeste	서쪽바다	西海	西海
-423	1	sun_moon	ひがしのうみ	East Sea	Mer Orient	Mare Est	Östliches Meer	Mar Este	동쪽바다	东海	東海
-428	1	sun_moon	メガミミロップ	Mega Lopunny	Méga-Lockpin	MegaLopunny	Mega-Schlapor	Mega-Lopunny	메가이어롭	超级长耳兔	超級長耳兔
-445	1	sun_moon	メガガブリアス	Mega Garchomp	Méga-Carchacrok	MegaGarchomp	Mega-Knakrack	Mega-Garchomp	메가한카리아스	超级烈咬陆鲨	超級烈咬陸鯊
-448	1	sun_moon	メガルカリオ	Mega Lucario	Méga-Lucario	MegaLucario	Mega-Lucario	Mega-Lucario	메가루카리오	超级路卡利欧	超級路卡利歐
-460	1	sun_moon	メガユキノオー	Mega Abomasnow	Méga-Blizzaroi	MegaAbomasnow	Mega-Rexblisar	Mega-Abomasnow	메가눈설왕	超级暴雪王	超級暴雪王
-475	1	sun_moon	メガエルレイド	Mega Gallade	Méga-Gallame	MegaGallade	Mega-Galagladi	Mega-Gallade	메가엘레이드	超级艾路雷朵	超級艾路雷朵
-479	0	sun_moon	ロトムのすがた	Rotom	Forme de Motisma	Forma Rotom	Rotom	Forma de Rotom	로토무의 모습	洛托姆的样子	洛托姆的樣子
-479	1	sun_moon	ヒートロトム	Heat Rotom	Motisma Chaleur	Rotom Calore	Hitze-Rotom	Rotom Calor	히트로토무	加热洛托姆	加熱洛托姆
-479	2	sun_moon	ウォッシュロトム	Wash Rotom	Motisma Lavage	Rotom Lavaggio	Wasch-Rotom	Rotom Lavado	워시로토무	清洗洛托姆	清洗洛托姆
-479	3	sun_moon	フロストロトム	Frost Rotom	Motisma Froid	Rotom Gelo	Frost-Rotom	Rotom Frío	프로스트로토무	结冰洛托姆	結冰洛托姆
-479	4	sun_moon	スピンロトム	Fan Rotom	Motisma Hélice	Rotom Vortice	Wirbel-Rotom	Rotom Ventilador	스핀로토무	旋转洛托姆	旋轉洛托姆
-479	5	sun_moon	カットロトム	Mow Rotom	Motisma Tonte	Rotom Taglio	Schneid-Rotom	Rotom Corte	커트로토무	切割洛托姆	切割洛托姆
-487	0	sun_moon	アナザーフォルム	Altered Forme	Forme Alternative	Forma Alterata	Wandelform	Forma Modificada	어나더폼	别种形态	別種形態
-487	1	sun_moon	オリジンフォルム	Origin Forme	Forme Originelle	Forma Originale	Urform	Forma Origen	오리진폼	起源形态	起源形態
-492	0	sun_moon	ランドフォルム	Land Forme	Forme Terrestre	Forma Terra	Landform	Forma Tierra	랜드폼	陆上形态	陸上形態
-492	1	sun_moon	スカイフォルム	Sky Forme	Forme Céleste	Forma Cielo	Zenitform	Forma Cielo	스카이폼	天空形态	天空形態
-493	0	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	1	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	2	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	3	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	4	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	5	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	6	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	7	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	8	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	9	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	10	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	11	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	12	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	13	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	14	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	15	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	16	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-493	17	sun_moon	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
-531	1	sun_moon	メガタブンネ	Mega Audino	Méga-Nanméouïe	MegaAudino	Mega-Ohrdoch	Mega-Audino	메가다부니	超级差不多娃娃	超級差不多娃娃
-550	0	sun_moon	あかすじのすがた	Red-Striped Form	Motif Rouge	Forma Linearossa	Rotlinige Form	Forma Raya Roja	적색근의 모습	红条纹的样子	紅條紋的樣子
-550	1	sun_moon	あおすじのすがた	Blue-Striped Form	Motif Bleu	Forma Lineablu	Blaulinige Form	Forma Raya Azul	청색근의 모습	蓝条纹的样子	藍條紋的樣子
-555	0	sun_moon	ノーマルモード	Standard Mode	Mode Normal	Stato Normale	Normalmodus	Modo Normal	노말모드	普通模式	普通模式
-555	1	sun_moon	ダルマモード	Zen Mode	Mode Transe	Stato Zen	Trance-Modus	Modo Daruma	달마모드	达摩模式	達摩模式
-585	0	sun_moon	はるのすがた	Spring Form	Forme Printemps	Forma Primavera	Frühlingsform	Forma Primavera	봄의 모습	春天的样子	春天的樣子
-585	1	sun_moon	なつのすがた	Summer Form	Forme Été	Forma Estate	Sommerform	Forma Verano	여름의 모습	夏天的样子	夏天的樣子
-585	2	sun_moon	あきのすがた	Autumn Form	Forme Automne	Forma Autunno	Herbstform	Forma Otoño	가을의 모습	秋天的样子	秋天的樣子
-585	3	sun_moon	ふゆのすがた	Winter Form	Forme Hiver	Forma Inverno	Winterform	Forma Invierno	겨울의 모습	冬天的样子	冬天的樣子
-586	0	sun_moon	はるのすがた	Spring Form	Forme Printemps	Forma Primavera	Frühlingsform	Forma Primavera	봄의 모습	春天的样子	春天的樣子
-586	1	sun_moon	なつのすがた	Summer Form	Forme Été	Forma Estate	Sommerform	Forma Verano	여름의 모습	夏天的样子	夏天的樣子
-586	2	sun_moon	あきのすがた	Autumn Form	Forme Automne	Forma Autunno	Herbstform	Forma Otoño	가을의 모습	秋天的样子	秋天的樣子
-586	3	sun_moon	ふゆのすがた	Winter Form	Forme Hiver	Forma Inverno	Winterform	Forma Invierno	겨울의 모습	冬天的样子	冬天的樣子
-641	0	sun_moon	けしんフォルム	Incarnate Forme	Forme Avatar	Forma Incarnazione	Inkarnationsform	Forma Avatar	화신폼	化身形态	化身形態
-641	1	sun_moon	れいじゅうフォルム	Therian Forme	Forme Totémique	Forma Totem	Tiergeistform	Forma Tótem	영물폼	灵兽形态	靈獸形態
-642	0	sun_moon	けしんフォルム	Incarnate Forme	Forme Avatar	Forma Incarnazione	Inkarnationsform	Forma Avatar	화신폼	化身形态	化身形態
-642	1	sun_moon	れいじゅうフォルム	Therian Forme	Forme Totémique	Forma Totem	Tiergeistform	Forma Tótem	영물폼	灵兽形态	靈獸形態
-645	0	sun_moon	けしんフォルム	Incarnate Forme	Forme Avatar	Forma Incarnazione	Inkarnationsform	Forma Avatar	화신폼	化身形态	化身形態
-645	1	sun_moon	れいじゅうフォルム	Therian Forme	Forme Totémique	Forma Totem	Tiergeistform	Forma Tótem	영물폼	灵兽形态	靈獸形態
-646	0	sun_moon	キュレムのすがた	Kyurem	Forme de Kyurem	Forma di Kyurem	Kyurem	Forma Kyurem	큐레무의 모습	酋雷姆的样子	酋雷姆的樣子
-646	1	sun_moon	ホワイトキュレム	White Kyurem	Kyurem Blanc	Kyurem Bianco	Weißes Kyurem	Kyurem Blanco	화이트큐레무	焰白酋雷姆	焰白酋雷姆
-646	2	sun_moon	ブラックキュレム	Black Kyurem	Kyurem Noir	Kyurem Nero	Schwarzes Kyurem	Kyurem Negro	블랙큐레무	暗黑酋雷姆	闇黑酋雷姆
-647	0	sun_moon	いつものすがた	Ordinary Form	Aspect Normal	Forma Normale	Standardform	Forma Habitual	평상시 모습	平常的样子	平常的樣子
-647	1	sun_moon	かくごのすがた	Resolute Form	Aspect Décidé	Forma Risoluta	Resolutform	Forma Brío	각오의 모습	觉悟的样子	覺悟的樣子
-648	0	sun_moon	ボイスフォルム	Aria Forme	Forme Chant	Forma Canto	Gesangsform	Forma Lírica	보이스폼	歌声形态	歌聲形態
-648	1	sun_moon	ステップフォルム	Pirouette Forme	Forme Danse	Forma Danza	Tanzform	Forma Danza	스텝폼	舞步形态	舞步形態
-649	0	sun_moon	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
-649	1	sun_moon	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
-649	2	sun_moon	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
-649	3	sun_moon	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
-649	4	sun_moon	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
-658	2	sun_moon	サトシゲッコウガ	Ash-Greninja	Forme Sacha	Forma Ash	Ash-Form	Forma Ash	지우개굴닌자	小智版甲贺忍蛙	小智版甲賀忍蛙
-666	0	sun_moon	ひょうせつのもよう	Icy Snow Pattern	Motif Blizzard	Motivo Nevi Perenni	Frostmuster	Motivo Polar	빙설의 모양	冰雪花纹	冰雪花紋
-666	1	sun_moon	ゆきぐにのもよう	Polar Pattern	Motif Banquise	Motivo Nordico	Schneefeldmuster	Motivo Taiga	설국의 모양	雪国花纹	雪國花紋
-666	2	sun_moon	せつげんのもよう	Tundra Pattern	Motif Glace	Motivo Manto di Neve	Flockenmuster	Motivo Tundra	설원의 모양	雪原花纹	雪原花紋
-666	3	sun_moon	たいりくのもよう	Continental Pattern	Motif Continent	Motivo Continentale	Kontinentalmuster	Motivo Continental	대륙의 모양	大陆花纹	大陸花紋
-666	4	sun_moon	ていえんのもよう	Garden Pattern	Motif Verdure	Motivo Prato	Ziergartenmuster	Motivo Vergel	정원의 모양	庭园花纹	庭園花紋
-666	5	sun_moon	みやびなもよう	Elegant Pattern	Motif Monarchie	Motivo Eleganza	Prunkmuster	Motivo Oriental	우아한 모양	高雅花纹	高雅花紋
-666	6	sun_moon	はなぞののもよう	Meadow Pattern	Motif Floraison	Motivo Giardinfiore	Blumenmeermuster	Motivo Floral	화원의 모양	花园花纹	花園花紋
-666	7	sun_moon	モダンなもよう	Modern Pattern	Motif Métropole	Motivo Trendy	Innovationsmuster	Motivo Moderno	모던한 모양	摩登花纹	摩登花紋
-666	8	sun_moon	マリンのもよう	Marine Pattern	Motif Rivage	Motivo Marino	Aquamarinmuster	Motivo Marino	마린의 모양	大海花纹	大海花紋
-666	9	sun_moon	ぐんとうのもよう	Archipelago Pattern	Motif Archipel	Motivo Arcipelago	Archipelmuster	Motivo Isleño	군도의 모양	群岛花纹	群島花紋
-666	10	sun_moon	こうやのもよう	High Plains Pattern	Motif Sécheresse	Motivo Deserto	Dürremuster	Motivo Estepa	황야의 모양	荒野花纹	荒野花紋
-666	11	sun_moon	さじんのもよう	Sandstorm Pattern	Motif Sable	Motivo Sabbia	Sandmuster	Motivo Desierto	사진의 모양	沙尘花纹	沙塵花紋
-666	12	sun_moon	たいがのもよう	River Pattern	Motif Delta	Motivo Fluviale	Flussdeltamuster	Motivo Oasis	대하의 모양	大河花纹	大河花紋
-666	13	sun_moon	スコールのもよう	Monsoon Pattern	Motif Cyclone	Motivo Pluviale	Monsunmuster	Motivo Monzón	스콜의 모양	骤雨花纹	驟雨花紋
-666	14	sun_moon	サバンナのもよう	Savanna Pattern	Motif Mangrove	Motivo Savana	Savannenmuster	Motivo Pantano	사바나의 모양	热带草原花纹	熱帶草原花紋
-666	15	sun_moon	たいようのもよう	Sun Pattern	Motif Zénith	Motivo Solare	Sonnenmuster	Motivo Solar	태양의 모양	太阳花纹	太陽花紋
-666	16	sun_moon	オーシャンのもよう	Ocean Pattern	Motif Soleil Levant	Motivo Oceanico	Ozeanmuster	Motivo Océano	오션의 모양	大洋花纹	大洋花紋
-666	17	sun_moon	ジャングルのもよう	Jungle Pattern	Motif Jungle	Motivo Giungla	Dschungelmuster	Motivo Jungla	정글의 모양	热带雨林花纹	熱帶雨林花紋
-666	18	sun_moon	ファンシーなもよう	Fancy Pattern	Motif Fantaisie	Motivo Sbarazzino	Fantasiemuster	Motivo Fantasía	팬시한 모양	幻彩花纹	幻彩花紋
-666	19	sun_moon	ボールのもよう	Poké Ball Pattern	Motif Poké Ball	Motivo Poké Ball	Pokéball-Muster	Motivo Poké Ball	볼의 모양	球球花纹	球球花紋
-669	0	sun_moon	あかいはな	Red Flower	Fleur Rouge	Fiore Rosso	Rotblütler	Flor Roja	빨간 꽃	红花	紅花
-669	1	sun_moon	きいろのはな	Yellow Flower	Fleur Jaune	Fiore Giallo	Gelbblütler	Flor Amarilla	노란 꽃	黄花	黃花
-669	2	sun_moon	オレンジいろのはな	Orange Flower	Fleur Orange	Fiore Arancione	Orangeblütler	Flor Naranja	오렌지색 꽃	橙花	橙花
-669	3	sun_moon	あおいはな	Blue Flower	Fleur Bleue	Fiore Blu	Blaublütler	Flor Azul	파란 꽃	蓝花	藍花
-669	4	sun_moon	しろいはな	White Flower	Fleur Blanche	Fiore Bianco	Weißblütler	Flor Blanca	하얀 꽃	白花	白花
-670	0	sun_moon	あかいはな	Red Flower	Fleur Rouge	Fiore Rosso	Rotblütler	Flor Roja	빨간 꽃	红花	紅花
-670	1	sun_moon	きいろのはな	Yellow Flower	Fleur Jaune	Fiore Giallo	Gelbblütler	Flor Amarilla	노란 꽃	黄花	黃花
-670	2	sun_moon	オレンジいろのはな	Orange Flower	Fleur Orange	Fiore Arancione	Orangeblütler	Flor Naranja	오렌지색 꽃	橙花	橙花
-670	3	sun_moon	あおいはな	Blue Flower	Fleur Bleue	Fiore Blu	Blaublütler	Flor Azul	파란 꽃	蓝花	藍花
-670	4	sun_moon	しろいはな	White Flower	Fleur Blanche	Fiore Bianco	Weißblütler	Flor Blanca	하얀 꽃	白花	白花
-670	5	sun_moon	えいえんのはな	Eternal Flower	Éternelle	Fiore Eterno	Ewigblütler	Flor Eterna	영원의 꽃	永恒之花	永恆之花
-671	0	sun_moon	あかいはな	Red Flower	Fleur Rouge	Fiore Rosso	Rotblütler	Flor Roja	빨간 꽃	红花	紅花
-671	1	sun_moon	きいろのはな	Yellow Flower	Fleur Jaune	Fiore Giallo	Gelbblütler	Flor Amarilla	노란 꽃	黄花	黃花
-671	2	sun_moon	オレンジいろのはな	Orange Flower	Fleur Orange	Fiore Arancione	Orangeblütler	Flor Naranja	오렌지색 꽃	橙花	橙花
-671	3	sun_moon	あおいはな	Blue Flower	Fleur Bleue	Fiore Blu	Blaublütler	Flor Azul	파란 꽃	蓝花	藍花
-671	4	sun_moon	しろいはな	White Flower	Fleur Blanche	Fiore Bianco	Weißblütler	Flor Blanca	하얀 꽃	白花	白花
-676	0	sun_moon	やせいのすがた	Natural Form	Forme Sauvage	Forma Selvatica	Zottelform	Forma Salvaje	야생의 모습	野生的样子	野生的樣子
-676	1	sun_moon	ハートカット	Heart Trim	Coupe Cœur	Taglio Cuore	Herzchenschnitt	Corte Corazón	하트컷	心形造型	心形造型
-676	2	sun_moon	スターカット	Star Trim	Coupe Étoile	Taglio Stella	Sternchenschnitt	Corte Estrella	스타컷	星形造型	星形造型
-676	3	sun_moon	ダイヤカット	Diamond Trim	Coupe Diamant	Taglio Diamante	Diamantenschnitt	Corte Rombo	다이아컷	菱形造型	菱形造型
-676	4	sun_moon	レディカット	Debutante Trim	Coupe Demoiselle	Taglio Signorina	Fräuleinschnitt	Corte Señorita	레이디컷	淑女造型	淑女造型
-676	5	sun_moon	マダムカット	Matron Trim	Coupe Madame	Taglio Gentildonna	Damenschnitt	Corte Dama	마담컷	贵妇造型	貴婦造型
-676	6	sun_moon	ジェントルカット	Dandy Trim	Coupe Monsieur	Taglio Gentiluomo	Kavaliersschnitt	Corte Caballero	젠틀컷	绅士造型	紳士造型
-676	7	sun_moon	クイーンカット	La Reine Trim	Coupe Reine	Taglio Regina	Königinnenschnitt	Corte Aristocrático	퀸컷	女王造型	女王造型
-676	8	sun_moon	カブキカット	Kabuki Trim	Coupe Kabuki	Taglio Kabuki	Kabuki-Schnitt	Corte Kabuki	가부키컷	歌舞伎造型	歌舞伎造型
-676	9	sun_moon	キングダムカット	Pharaoh Trim	Coupe Pharaon	Taglio Faraone	Herrscherschnitt	Corte Faraónico	킹덤컷	国王造型	國王造型
-678	0	sun_moon	オスのすがた	Male	Mâle	Maschio	Männlich	Macho	수컷의 모습	雄性的样子	雄性的樣子
-678	1	sun_moon	メスのすがた	Female	Femelle	Femmina	Weiblich	Hembra	암컷의 모습	雌性的样子	雌性的樣子
-681	0	sun_moon	シールドフォルム	Shield Forme	Forme Parade	Forma Scudo	Schildform	Forma Escudo	실드폼	盾牌形态	盾牌形態
-681	1	sun_moon	ブレードフォルム	Blade Forme	Forme Assaut	Forma Spada	Klingenform	Forma Filo	블레이드폼	刀剑形态	刀劍形態
-710	0	sun_moon	ふつうのサイズ	Average Size	Taille Normale	Normale	Größe M	Tamaño Normal	보통 사이즈	普通尺寸	普通尺寸
-710	1	sun_moon	ちいさいサイズ	Small Size	Taille Mini	Mini	Größe S	Tamaño Pequeño	작은 사이즈	小尺寸	小尺寸
-710	2	sun_moon	おおきいサイズ	Large Size	Taille Maxi	Grande	Größe L	Tamaño Grande	큰 사이즈	大尺寸	大尺寸
-710	3	sun_moon	とくだいサイズ	Super Size	Taille Ultra	Maxi	Größe XL	Tamaño Extragrande	특대 사이즈	特大尺寸	特大尺寸
-711	0	sun_moon	ふつうのサイズ	Average Size	Taille Normale	Normale	Größe M	Tamaño Normal	보통 사이즈	普通尺寸	普通尺寸
-711	1	sun_moon	ちいさいサイズ	Small Size	Taille Mini	Mini	Größe S	Tamaño Pequeño	작은 사이즈	小尺寸	小尺寸
-711	2	sun_moon	おおきいサイズ	Large Size	Taille Maxi	Grande	Größe L	Tamaño Grande	큰 사이즈	大尺寸	大尺寸
-711	3	sun_moon	とくだいサイズ	Super Size	Taille Ultra	Maxi	Größe XL	Tamaño Extragrande	특대 사이즈	特大尺寸	特大尺寸
-716	0	sun_moon	リラックスモード	Neutral Mode	Mode Paisible	Modo Relax	Ruhe-Modus	Modo Relajado	릴랙스모드	放松模式	放鬆模式
-716	1	sun_moon	アクティブモード	Active Mode	Mode Déchaîné	Modo Attivo	Aktiv-Modus	Modo Activo	액티브모드	活跃模式	活躍模式
-718	0	sun_moon	５０％フォルム	50% Forme	Forme 50 %	Forma 50%	50%-Form	Forma 50%	50%폼	５０％形态	５０％形態
-718	1	sun_moon	１０％フォルム	10% Forme	Forme 10 %	Forma 10%	10%-Form	Forma 10%	10%폼	１０％形态	１０％形態
-718	2	sun_moon	１０％フォルム	10% Forme	Forme 10 %	Forma 10%	10%-Form	Forma 10%	10%폼	１０％形态	１０％形態
-718	3	sun_moon	５０％フォルム	50% Forme	Forme 50 %	Forma 50%	50%-Form	Forma 50%	50%폼	５０％形态	５０％形態
-718	4	sun_moon	パーフェクトフォルム	Complete Forme	Forme Parfaite	Forma Perfetta	Optimumform	Forma Completa	퍼펙트폼	完全体形态	完全體形態
-719	1	sun_moon	メガディアンシー	Mega Diancie	Méga-Diancie	MegaDiancie	Mega-Diancie	Mega-Diancie	메가디안시	超级蒂安希	超級蒂安希
-720	0	sun_moon	いましめられしフーパ	Hoopa Confined	Hoopa Enchaîné	Hoopa Vincolato	Gebanntes Hoopa	Hoopa Contenido	굴레에 빠진 후파	惩戒胡帕	懲戒胡帕
-720	1	sun_moon	ときはなたれしフーパ	Hoopa Unbound	Hoopa Déchaîné	Hoopa Libero	Entfesseltes Hoopa	Hoopa Desatado	굴레를 벗어난 후파	解放胡帕	解放胡帕
-741	0	sun_moon	めらめらスタイル	Baile Style	Style Flamenco	Stile Flamenco	Flamenco-Stil	Estilo Apasionado	이글이글스타일	热辣热辣风格	熱辣熱辣風格
-741	1	sun_moon	ぱちぱちスタイル	Pom-Pom Style	Style Pom-Pom	Stile Cheerdance	Cheerleading-Stil	Estilo Animado	파칙파칙스타일	啪滋啪滋风格	啪滋啪滋風格
-741	2	sun_moon	ふらふらスタイル	Pa’u Style	Style Hula	Stile Hula	Hula-Stil	Estilo Plácido	훌라훌라스타일	呼拉呼拉风格	呼拉呼拉風格
-741	3	sun_moon	まいまいスタイル	Sensu Style	Style Buyō	Stile Buyō	Buyo-Stil	Estilo Refinado	하늘하늘스타일	轻盈轻盈风格	輕盈輕盈風格
-745	0	sun_moon	まひるのすがた	Midday Form	Forme Diurne	Forma Giorno	Tagform	Forma Diurna	한낮의 모습	白昼的样子	白晝的樣子
-745	1	sun_moon	まよなかのすがた	Midnight Form	Forme Nocturne	Forma Notte	Nachtform	Forma Nocturna	한밤중의 모습	黑夜的样子	黑夜的樣子
-745	2	pokeapi	たそがれのすがた	Dusk Form	Forme Crépusculaire	Forma Crepuscolo	Zwielichtform	Forma Crepuscular	황혼의 모습	黄昏的样子	黃昏的樣子
-746	0	sun_moon	たんどくのすがた	Solo Form	Forme Solitaire	Forma Individuale	Einzelform	Forma Individual	단독의 모습	单独的样子	單獨的樣子
-746	1	sun_moon	むれたすがた	School Form	Forme Banc	Forma Banco	Schwarmform	Forma Banco	군집의 모습	鱼群的样子	魚群的樣子
-773	0	sun_moon	タイプ：ノーマル	Type: Normal	Type : Normal	Tipo Normale	Typ:Normal	Tipo: Normal	타입:노말	属性：一般	屬性：一般
-773	1	sun_moon	タイプ：ファイト	Type: Fighting	Type : Combat	Tipo Lotta	Typ:Kampf	Tipo: Lucha	타입:파이팅	属性：战斗	屬性：戰鬥
-773	2	sun_moon	タイプ：フライング	Type: Flying	Type : Vol	Tipo Volante	Typ:Flug	Tipo: Volador	타입:플라잉	属性：飞翔	屬性：飛翔
-773	3	sun_moon	タイプ：ポイズン	Type: Poison	Type : Poison	Tipo Veleno	Typ:Gift	Tipo: Veneno	타입:포이즌	属性：毒	屬性：毒
-773	4	sun_moon	タイプ：グラウンド	Type: Ground	Type : Sol	Tipo Terra	Typ:Boden	Tipo: Tierra	타입:그라운드	属性：大地	屬性：大地
-773	5	sun_moon	タイプ：ロック	Type: Rock	Type : Roche	Tipo Roccia	Typ:Gestein	Tipo: Roca	타입:락	属性：岩石	屬性：岩石
-773	6	sun_moon	タイプ：バグ	Type: Bug	Type : Insecte	Tipo Coleottero	Typ:Käfer	Tipo: Bicho	타입:버그	属性：虫子	屬性：蟲子
-773	7	sun_moon	タイプ：ゴースト	Type: Ghost	Type : Spectre	Tipo Spettro	Typ:Geist	Tipo: Fantasma	타입:고스트	属性：幽灵	屬性：幽靈
-773	8	sun_moon	タイプ：スチール	Type: Steel	Type : Acier	Tipo Acciaio	Typ:Stahl	Tipo: Acero	타입:스틸	属性：钢铁	屬性：鋼鐵
-773	9	sun_moon	タイプ：ファイヤー	Type: Fire	Type : Feu	Tipo Fuoco	Typ:Feuer	Tipo: Fuego	타입:파이어	属性：火焰	屬性：火焰
-773	10	sun_moon	タイプ：ウオーター	Type: Water	Type : Eau	Tipo Acqua	Typ:Wasser	Tipo: Agua	타입:워터	属性：清水	屬性：清水
-773	11	sun_moon	タイプ：グラス	Type: Grass	Type : Plante	Tipo Erba	Typ:Pflanze	Tipo: Planta	타입:그래스	属性：青草	屬性：青草
-773	12	sun_moon	タイプ：エレクトロ	Type: Electric	Type : Électrik	Tipo Elettro	Typ:Elektro	Tipo: Eléctrico	타입:일렉트릭	属性：电子	屬性：電子
-773	13	sun_moon	タイプ：サイキック	Type: Psychic	Type : Psy	Tipo Psico	Typ:Psycho	Tipo: Psíquico	타입:사이킥	属性：精神	屬性：精神
-773	14	sun_moon	タイプ：アイス	Type: Ice	Type : Glace	Tipo Ghiaccio	Typ:Eis	Tipo: Hielo	타입:아이스	属性：冰雪	屬性：冰雪
-773	15	sun_moon	タイプ：ドラゴン	Type: Dragon	Type : Dragon	Tipo Drago	Typ:Drache	Tipo: Dragón	타입:드래곤	属性：龙	屬性：龍
-773	16	sun_moon	タイプ：ダーク	Type: Dark	Type : Ténèbres	Tipo Buio	Typ:Unlicht	Tipo: Siniestro	타입:다크	属性：黑暗	屬性：黑暗
-773	17	sun_moon	タイプ：フェアリー	Type: Fairy	Type : Fée	Tipo Folletto	Typ:Fee	Tipo: Hada	타입:페어리	属性：妖精	屬性：妖精
-774	0	sun_moon	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
-774	1	sun_moon	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
-774	2	sun_moon	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
-774	3	sun_moon	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
-774	4	sun_moon	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
-774	5	sun_moon	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
-774	6	sun_moon	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
-774	7	sun_moon	あかいろのコア	Red Core	Noyau Rouge	Nucleo Rosso	Roter Kern	Núcleo Rojo	빨간색 코어	红色核心	紅色核心
-774	8	sun_moon	だいだいいろのコア	Orange Core	Noyau Orange	Nucleo Arancione	Oranger Kern	Núcleo Naranja	주황색 코어	橙色核心	橙色核心
-774	9	sun_moon	きいろのコア	Yellow Core	Noyau Jaune	Nucleo Giallo	Gelber Kern	Núcleo Amarillo	노란색 코어	黄色核心	黃色核心
-774	10	sun_moon	みどりいろのコア	Green Core	Noyau Vert	Nucleo Verde	Grüner Kern	Núcleo Verde	초록색 코어	绿色核心	綠色核心
-774	11	sun_moon	みずいろのコア	Blue Core	Noyau Bleu	Nucleo Azzurro	Hellblauer Kern	Núcleo Azul	옥색 코어	浅蓝色核心	淺藍色核心
-774	12	sun_moon	あおいろのコア	Indigo Core	Noyau Indigo	Nucleo Indaco	Blauer Kern	Núcleo Añil	파란색 코어	蓝色核心	藍色核心
-774	13	sun_moon	むらさきいろのコア	Violet Core	Noyau Violet	Nucleo Violetto	Violetter Kern	Núcleo Violeta	보라색 코어	紫色核心	紫色核心
-778	0	sun_moon	ばけたすがた	Disguised Form	Forme Déguisée	Forma Mascherata	Verkleidete Form	Forma Encubierta	둔갑한 모습	化形的样子	化形的樣子
-778	1	sun_moon	ばれたすがた	Busted Form	Forme Démasquée	Forma Smascherata	Entlarvte Form	Forma Descubierta	들킨 모습	现形的样子	現形的樣子
-800	1	pokeapi	たそがれのたてがみ	Dusk Mane	Crinière du Couchant	Criniera del Vespro	Abendmähne	Melena Crepuscular	황혼의 갈기	黄昏之鬃	黃昏之鬃
-800	2	pokeapi	あかつきのつばさ	Dawn Wings	Ailes de l’Aurore	Ali dell’Aurora	Morgenschwingen	Alas del Alba	새벽의 날개	拂晓之翼	拂曉之翼
-800	3	pokeapi	ウルトラネクロズマ	Ultra Necrozma	Ultra-Necrozma	UltraNecrozma	Ultra	Ultra-Necrozma	울트라네크로즈마	究极奈克洛兹玛	究極奈克洛茲瑪
-801	1	sun_moon	５００ねんまえのいろ	Original Color	Couleur du Passé	Colore Antico	Originalfarbe	Color Vetusto	500년 전의 색	５００年前的颜色	５００年前的顏色
+25	6	sun_moon	アローラキャップ	Alola Cap	Casquette d’Alola	Berretto Alola	Alola-Kappe	Gorra Alola	알로라캡	阿罗拉帽子	阿羅拉帽子
+25	7	-	キミにきめたキャップ	Partner Cap	Casquette Partenaire	Berretto Compagni	Partner-Kappe	Gorra Compañero	너로정했다캡	就决定是你了之帽子	就決定是你了之帽子
+26	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+27	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+28	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+37	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+38	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+50	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+51	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+52	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+53	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+65	1	-	メガフーディン	Mega Alakazam	Méga-Alakazam	MegaAlakazam	Mega-Simsala	Mega-Alakazam	메가후딘	超级胡地	超級胡地
+74	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+75	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+76	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+80	1	-	メガヤドラン	Mega Slowbro	Méga-Flagadoss	MegaSlowbro	Mega-Lahmus	Mega-Slowbro	메가야도란	超级呆壳兽	超級呆殼獸
+88	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+89	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+94	1	-	メガゲンガー	Mega Gengar	Méga-Ectoplasma	MegaGengar	Mega-Gengar	Mega-Gengar	메가팬텀	超级耿鬼	超級耿鬼
+103	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+105	1	-	アローラのすがた	Alola Form	Forme d’Alola	Forma di Alola	Alola-Form	Forma de Alola	알로라의 모습	阿罗拉的样子	阿羅拉的樣子
+115	1	-	メガガルーラ	Mega Kangaskhan	Méga-Kangourex	MegaKangaskhan	Mega-Kangama	Mega-Kangaskhan	메가캥카	超级袋兽	超級袋獸
+127	1	-	メガカイロス	Mega Pinsir	Méga-Scarabrute	MegaPinsir	Mega-Pinsir	Mega-Pinsir	메가쁘사이저	超级凯罗斯	超級凱羅斯
+130	1	-	メガギャラドス	Mega Gyarados	Méga-Léviator	MegaGyarados	Mega-Garados	Mega-Gyarados	메가갸라도스	超级暴鲤龙	超級暴鯉龍
+142	1	-	メガプテラ	Mega Aerodactyl	Méga-Ptéra	MegaAerodactyl	Mega-Aerodactyl	Mega-Aerodactyl	메가프테라	超级化石翼龙	超級化石翼龍
+150	1	-	メガミュウツーＸ	Mega Mewtwo X	Méga-Mewtwo X	MegaMewtwo X	Mega-Mewtu X	Mega-Mewtwo X	메가뮤츠X	超级超梦Ｘ	超級超夢Ｘ
+150	2	-	メガミュウツーＹ	Mega Mewtwo Y	Méga-Mewtwo Y	MegaMewtwo Y	Mega-Mewtu Y	Mega-Mewtwo Y	메가뮤츠Y	超级超梦Ｙ	超級超夢Ｙ
+181	1	-	メガデンリュウ	Mega Ampharos	Méga-Pharamp	MegaAmpharos	Mega-Ampharos	Mega-Ampharos	메가전룡	超级电龙	超級電龍
+201	0	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	1	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	2	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	3	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	4	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	5	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	6	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	7	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	8	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	9	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	10	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	11	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	12	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	13	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	14	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	15	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	16	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	17	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	18	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	19	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	20	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	21	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	22	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	23	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	24	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	25	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	26	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+201	27	-	あるすがた	One form	Forme Unique	Forma Vaga	Eine Form	Una forma	형태별 모습	某种样子	某種樣子
+208	1	-	メガハガネール	Mega Steelix	Méga-Steelix	MegaSteelix	Mega-Stahlos	Mega-Steelix	메가강철톤	超级大钢蛇	超級大鋼蛇
+212	1	-	メガハッサム	Mega Scizor	Méga-Cizayox	MegaScizor	Mega-Scherox	Mega-Scizor	메가핫삼	超级巨钳螳螂	超級巨鉗螳螂
+214	1	-	メガヘラクロス	Mega Heracross	Méga-Scarhino	MegaHeracross	Mega-Skaraborn	Mega-Heracross	메가헤라크로스	超级赫拉克罗斯	超級赫拉克羅斯
+229	1	-	メガヘルガー	Mega Houndoom	Méga-Démolosse	MegaHoundoom	Mega-Hundemon	Mega-Houndoom	메가헬가	超级黑鲁加	超級黑魯加
+248	1	-	メガバンギラス	Mega Tyranitar	Méga-Tyranocif	MegaTyranitar	Mega-Despotar	Mega-Tyranitar	메가마기라스	超级班基拉斯	超級班基拉斯
+254	1	-	メガジュカイン	Mega Sceptile	Méga-Jungko	MegaSceptile	Mega-Gewaldro	Mega-Sceptile	메가나무킹	超级蜥蜴王	超級蜥蜴王
+257	1	-	メガバシャーモ	Mega Blaziken	Méga-Braségali	MegaBlaziken	Mega-Lohgock	Mega-Blaziken	메가번치코	超级火焰鸡	超級火焰雞
+260	1	-	メガラグラージ	Mega Swampert	Méga-Laggron	MegaSwampert	Mega-Sumpex	Mega-Swampert	메가대짱이	超级巨沼怪	超級巨沼怪
+282	1	-	メガサーナイト	Mega Gardevoir	Méga-Gardevoir	MegaGardevoir	Mega-Guardevoir	Mega-Gardevoir	메가가디안	超级沙奈朵	超級沙奈朵
+302	1	-	メガヤミラミ	Mega Sableye	Méga-Ténéfix	MegaSableye	Mega-Zobiris	Mega-Sableye	메가깜까미	超级勾魂眼	超級勾魂眼
+303	1	-	メガクチート	Mega Mawile	Méga-Mysdibule	MegaMawile	Mega-Flunkifer	Mega-Mawile	메가입치트	超级大嘴娃	超級大嘴娃
+306	1	-	メガボスゴドラ	Mega Aggron	Méga-Galeking	MegaAggron	Mega-Stolloss	Mega-Aggron	메가보스로라	超级波士可多拉	超級波士可多拉
+308	1	-	メガチャーレム	Mega Medicham	Méga-Charmina	MegaMedicham	Mega-Meditalis	Mega-Medicham	메가요가램	超级恰雷姆	超級恰雷姆
+310	1	-	メガライボルト	Mega Manectric	Méga-Élecsprint	MegaManectric	Mega-Voltenso	Mega-Manectric	메가썬더볼트	超级雷电兽	超級雷電獸
+319	1	-	メガサメハダー	Mega Sharpedo	Méga-Sharpedo	MegaSharpedo	Mega-Tohaido	Mega-Sharpedo	메가샤크니아	超级巨牙鲨	超級巨牙鯊
+323	1	-	メガバクーダ	Mega Camerupt	Méga-Camérupt	MegaCamerupt	Mega-Camerupt	Mega-Camerupt	메가폭타	超级喷火驼	超級噴火駝
+334	1	-	メガチルタリス	Mega Altaria	Méga-Altaria	MegaAltaria	Mega-Altaria	Mega-Altaria	메가파비코리	超级七夕青鸟	超級七夕青鳥
+351	0	-	ポワルンのすがた	Normal	Forme de Morphéo	Forma Castform	Formeo	Forma de Castform	캐스퐁의 모습	飘浮泡泡的样子	飄浮泡泡的樣子
+351	1	-	たいようのすがた	Sunny Form	Forme Solaire	Forma Sole	Sonnenform	Forma Sol	태양의 모습	太阳的样子	太陽的樣子
+351	2	-	あまみずのすがた	Rainy Form	Forme Eau de Pluie	Forma Pioggia	Regenform	Forma Lluvia	빗방울의 모습	雨水的样子	雨水的樣子
+351	3	-	ゆきぐものすがた	Snowy Form	Forme Blizzard	Forma Nuvola di Neve	Schneeform	Forma Nieve	설운의 모습	雪云的样子	雪雲的樣子
+354	1	-	メガジュペッタ	Mega Banette	Méga-Branette	MegaBanette	Mega-Banette	Mega-Banette	메가다크펫	超级诅咒娃娃	超級詛咒娃娃
+359	1	-	メガアブソル	Mega Absol	Méga-Absol	MegaAbsol	Mega-Absol	Mega-Absol	메가앱솔	超级阿勃梭鲁	超級阿勃梭魯
+362	1	-	メガオニゴーリ	Mega Glalie	Méga-Oniglali	MegaGlalie	Mega-Firnontor	Mega-Glalie	메가얼음귀신	超级冰鬼护	超級冰鬼護
+373	1	-	メガボーマンダ	Mega Salamence	Méga-Drattak	MegaSalamence	Mega-Brutalanda	Mega-Salamence	메가보만다	超级暴飞龙	超級暴飛龍
+376	1	-	メガメタグロス	Mega Metagross	Méga-Métalosse	MegaMetagross	Mega-Metagross	Mega-Metagross	메가메타그로스	超级巨金怪	超級巨金怪
+380	1	-	メガラティアス	Mega Latias	Méga-Latias	MegaLatias	Mega-Latias	Mega-Latias	메가라티아스	超级拉帝亚斯	超級拉帝亞斯
+381	1	-	メガラティオス	Mega Latios	Méga-Latios	MegaLatios	Mega-Latios	Mega-Latios	메가라티오스	超级拉帝欧斯	超級拉帝歐斯
+382	0	-	カイオーガのすがた	Kyogre	Kyogre	-	Kyogre	Kyogre	가이오가의 모습	盖欧卡的样子	蓋歐卡的樣子
+382	1	-	ゲンシカイキのすがた	Primal Reversion	Primo-Résurgence	Archeorisveglio	Protomorphose	Regresión Primigenia	원시회귀의 모습	原始回归的样子	原始回歸的樣子
+383	0	-	グラードンのすがた	Groudon	Groudon	-	Groudon	Groudon	그란돈의 모습	固拉多的样子	固拉多的樣子
+383	1	-	ゲンシカイキのすがた	Primal Reversion	Primo-Résurgence	Archeorisveglio	Protomorphose	Regresión Primigenia	원시회귀의 모습	原始回归的样子	原始回歸的樣子
+384	1	-	メガレックウザ	Mega Rayquaza	Méga-Rayquaza	MegaRayquaza	Mega-Rayquaza	Mega-Rayquaza	메가레쿠쟈	超级烈空坐	超級烈空坐
+386	0	-	ノーマルフォルム	Normal Forme	Forme Normale	Forma Normale	Normalform	Forma Normal	노말폼	普通形态	普通形態
+386	1	-	アタックフォルム	Attack Forme	Forme Attaque	Forma Attacco	Angriffsform	Forma Ataque	어택폼	攻击形态	攻擊形態
+386	2	-	ディフェンスフォルム	Defense Forme	Forme Défense	Forma Difesa	Verteidigungsform	Forma Defensa	디펜스폼	防御形态	防禦形態
+386	3	-	スピードフォルム	Speed Forme	Forme Vitesse	Forma Velocità	Initiativeform	Forma Velocidad	스피드폼	速度形态	速度形態
+412	0	-	くさきのミノ	Plant Cloak	Cape Plante	Manto Pianta	Pflanzenumhang	Tronco Planta	초목도롱	草木蓑衣	草木蓑衣
+412	1	-	すなちのミノ	Sandy Cloak	Cape Sable	Manto Sabbia	Sandumhang	Tronco Arena	모래땅도롱	砂土蓑衣	砂土蓑衣
+412	2	-	ゴミのミノ	Trash Cloak	Cape Déchet	Manto Scarti	Lumpenumhang	Tronco Basura	슈레도롱	垃圾蓑衣	垃圾蓑衣
+413	0	-	くさきのミノ	Plant Cloak	Cape Plante	Manto Pianta	Pflanzenumhang	Tronco Planta	초목도롱	草木蓑衣	草木蓑衣
+413	1	-	すなちのミノ	Sandy Cloak	Cape Sable	Manto Sabbia	Sandumhang	Tronco Arena	모래땅도롱	砂土蓑衣	砂土蓑衣
+413	2	-	ゴミのミノ	Trash Cloak	Cape Déchet	Manto Scarti	Lumpenumhang	Tronco Basura	슈레도롱	垃圾蓑衣	垃圾蓑衣
+421	0	-	ネガフォルム	Overcast Form	Temps Couvert	Forma Nuvola	Wolkenform	Forma Encapotado	네거폼	阴天形态	陰天形態
+421	1	-	ポジフォルム	Sunshine Form	Temps Ensoleillé	Forma Splendore	Sonnenform	Forma Soleado	포지폼	晴天形态	晴天形態
+422	0	-	にしのうみ	West Sea	Mer Occident	Mare Ovest	Westliches Meer	Mar Oeste	서쪽바다	西海	西海
+422	1	-	ひがしのうみ	East Sea	Mer Orient	Mare Est	Östliches Meer	Mar Este	동쪽바다	东海	東海
+423	0	-	にしのうみ	West Sea	Mer Occident	Mare Ovest	Westliches Meer	Mar Oeste	서쪽바다	西海	西海
+423	1	-	ひがしのうみ	East Sea	Mer Orient	Mare Est	Östliches Meer	Mar Este	동쪽바다	东海	東海
+428	1	-	メガミミロップ	Mega Lopunny	Méga-Lockpin	MegaLopunny	Mega-Schlapor	Mega-Lopunny	메가이어롭	超级长耳兔	超級長耳兔
+445	1	-	メガガブリアス	Mega Garchomp	Méga-Carchacrok	MegaGarchomp	Mega-Knakrack	Mega-Garchomp	메가한카리아스	超级烈咬陆鲨	超級烈咬陸鯊
+448	1	-	メガルカリオ	Mega Lucario	Méga-Lucario	MegaLucario	Mega-Lucario	Mega-Lucario	메가루카리오	超级路卡利欧	超級路卡利歐
+460	1	-	メガユキノオー	Mega Abomasnow	Méga-Blizzaroi	MegaAbomasnow	Mega-Rexblisar	Mega-Abomasnow	메가눈설왕	超级暴雪王	超級暴雪王
+475	1	-	メガエルレイド	Mega Gallade	Méga-Gallame	MegaGallade	Mega-Galagladi	Mega-Gallade	메가엘레이드	超级艾路雷朵	超級艾路雷朵
+479	0	-	ロトムのすがた	Rotom	Forme de Motisma	Forma Rotom	Rotom	Forma de Rotom	로토무의 모습	洛托姆的样子	洛托姆的樣子
+479	1	-	ヒートロトム	Heat Rotom	Motisma Chaleur	Rotom Calore	Hitze-Rotom	Rotom Calor	히트로토무	加热洛托姆	加熱洛托姆
+479	2	-	ウォッシュロトム	Wash Rotom	Motisma Lavage	Rotom Lavaggio	Wasch-Rotom	Rotom Lavado	워시로토무	清洗洛托姆	清洗洛托姆
+479	3	-	フロストロトム	Frost Rotom	Motisma Froid	Rotom Gelo	Frost-Rotom	Rotom Frío	프로스트로토무	结冰洛托姆	結冰洛托姆
+479	4	-	スピンロトム	Fan Rotom	Motisma Hélice	Rotom Vortice	Wirbel-Rotom	Rotom Ventilador	스핀로토무	旋转洛托姆	旋轉洛托姆
+479	5	-	カットロトム	Mow Rotom	Motisma Tonte	Rotom Taglio	Schneid-Rotom	Rotom Corte	커트로토무	切割洛托姆	切割洛托姆
+487	0	-	アナザーフォルム	Altered Forme	Forme Alternative	Forma Alterata	Wandelform	Forma Modificada	어나더폼	别种形态	別種形態
+487	1	-	オリジンフォルム	Origin Forme	Forme Originelle	Forma Originale	Urform	Forma Origen	오리진폼	起源形态	起源形態
+492	0	-	ランドフォルム	Land Forme	Forme Terrestre	Forma Terra	Landform	Forma Tierra	랜드폼	陆上形态	陸上形態
+492	1	-	スカイフォルム	Sky Forme	Forme Céleste	Forma Cielo	Zenitform	Forma Cielo	스카이폼	天空形态	天空形態
+493	0	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	1	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	2	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	3	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	4	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	5	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	6	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	7	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	8	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	9	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	10	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	11	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	12	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	13	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	14	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	15	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	16	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+493	17	-	アルセウスのすがた	Arceus	Forme de Arceus	Forma di Arceus	Arceus	Forma de Arceus	아르세우스의 모습	阿尔宙斯的样子	阿爾宙斯的樣子
+531	1	-	メガタブンネ	Mega Audino	Méga-Nanméouïe	MegaAudino	Mega-Ohrdoch	Mega-Audino	메가다부니	超级差不多娃娃	超級差不多娃娃
+550	0	-	あかすじのすがた	Red-Striped Form	Motif Rouge	Forma Linearossa	Rotlinige Form	Forma Raya Roja	적색근의 모습	红条纹的样子	紅條紋的樣子
+550	1	-	あおすじのすがた	Blue-Striped Form	Motif Bleu	Forma Lineablu	Blaulinige Form	Forma Raya Azul	청색근의 모습	蓝条纹的样子	藍條紋的樣子
+555	0	-	ノーマルモード	Standard Mode	Mode Normal	Stato Normale	Normalmodus	Modo Normal	노말모드	普通模式	普通模式
+555	1	-	ダルマモード	Zen Mode	Mode Transe	Stato Zen	Trance-Modus	Modo Daruma	달마모드	达摩模式	達摩模式
+585	0	-	はるのすがた	Spring Form	Forme Printemps	Forma Primavera	Frühlingsform	Forma Primavera	봄의 모습	春天的样子	春天的樣子
+585	1	-	なつのすがた	Summer Form	Forme Été	Forma Estate	Sommerform	Forma Verano	여름의 모습	夏天的样子	夏天的樣子
+585	2	-	あきのすがた	Autumn Form	Forme Automne	Forma Autunno	Herbstform	Forma Otoño	가을의 모습	秋天的样子	秋天的樣子
+585	3	-	ふゆのすがた	Winter Form	Forme Hiver	Forma Inverno	Winterform	Forma Invierno	겨울의 모습	冬天的样子	冬天的樣子
+586	0	-	はるのすがた	Spring Form	Forme Printemps	Forma Primavera	Frühlingsform	Forma Primavera	봄의 모습	春天的样子	春天的樣子
+586	1	-	なつのすがた	Summer Form	Forme Été	Forma Estate	Sommerform	Forma Verano	여름의 모습	夏天的样子	夏天的樣子
+586	2	-	あきのすがた	Autumn Form	Forme Automne	Forma Autunno	Herbstform	Forma Otoño	가을의 모습	秋天的样子	秋天的樣子
+586	3	-	ふゆのすがた	Winter Form	Forme Hiver	Forma Inverno	Winterform	Forma Invierno	겨울의 모습	冬天的样子	冬天的樣子
+641	0	-	けしんフォルム	Incarnate Forme	Forme Avatar	Forma Incarnazione	Inkarnationsform	Forma Avatar	화신폼	化身形态	化身形態
+641	1	-	れいじゅうフォルム	Therian Forme	Forme Totémique	Forma Totem	Tiergeistform	Forma Tótem	영물폼	灵兽形态	靈獸形態
+642	0	-	けしんフォルム	Incarnate Forme	Forme Avatar	Forma Incarnazione	Inkarnationsform	Forma Avatar	화신폼	化身形态	化身形態
+642	1	-	れいじゅうフォルム	Therian Forme	Forme Totémique	Forma Totem	Tiergeistform	Forma Tótem	영물폼	灵兽形态	靈獸形態
+645	0	-	けしんフォルム	Incarnate Forme	Forme Avatar	Forma Incarnazione	Inkarnationsform	Forma Avatar	화신폼	化身形态	化身形態
+645	1	-	れいじゅうフォルム	Therian Forme	Forme Totémique	Forma Totem	Tiergeistform	Forma Tótem	영물폼	灵兽形态	靈獸形態
+646	0	-	キュレムのすがた	Kyurem	Forme de Kyurem	Forma di Kyurem	Kyurem	Forma Kyurem	큐레무의 모습	酋雷姆的样子	酋雷姆的樣子
+646	1	-	ホワイトキュレム	White Kyurem	Kyurem Blanc	Kyurem Bianco	Weißes Kyurem	Kyurem Blanco	화이트큐레무	焰白酋雷姆	焰白酋雷姆
+646	2	-	ブラックキュレム	Black Kyurem	Kyurem Noir	Kyurem Nero	Schwarzes Kyurem	Kyurem Negro	블랙큐레무	暗黑酋雷姆	闇黑酋雷姆
+647	0	-	いつものすがた	Ordinary Form	Aspect Normal	Forma Normale	Standardform	Forma Habitual	평상시 모습	平常的样子	平常的樣子
+647	1	-	かくごのすがた	Resolute Form	Aspect Décidé	Forma Risoluta	Resolutform	Forma Brío	각오의 모습	觉悟的样子	覺悟的樣子
+648	0	-	ボイスフォルム	Aria Forme	Forme Chant	Forma Canto	Gesangsform	Forma Lírica	보이스폼	歌声形态	歌聲形態
+648	1	-	ステップフォルム	Pirouette Forme	Forme Danse	Forma Danza	Tanzform	Forma Danza	스텝폼	舞步形态	舞步形態
+649	0	-	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
+649	1	-	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
+649	2	-	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
+649	3	-	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
+649	4	-	ゲノセクトのすがた	Genesect	Forme de Genesect	Forma di Genesect	Genesect	Forma de Genesect	게노세크트의 모습	盖诺赛克特的样子	蓋諾賽克特的樣子
+658	2	-	サトシゲッコウガ	Ash-Greninja	Forme Sacha	Forma Ash	Ash-Form	Forma Ash	지우개굴닌자	小智版甲贺忍蛙	小智版甲賀忍蛙
+666	0	-	ひょうせつのもよう	Icy Snow Pattern	Motif Blizzard	Motivo Nevi Perenni	Frostmuster	Motivo Polar	빙설의 모양	冰雪花纹	冰雪花紋
+666	1	-	ゆきぐにのもよう	Polar Pattern	Motif Banquise	Motivo Nordico	Schneefeldmuster	Motivo Taiga	설국의 모양	雪国花纹	雪國花紋
+666	2	-	せつげんのもよう	Tundra Pattern	Motif Glace	Motivo Manto di Neve	Flockenmuster	Motivo Tundra	설원의 모양	雪原花纹	雪原花紋
+666	3	-	たいりくのもよう	Continental Pattern	Motif Continent	Motivo Continentale	Kontinentalmuster	Motivo Continental	대륙의 모양	大陆花纹	大陸花紋
+666	4	-	ていえんのもよう	Garden Pattern	Motif Verdure	Motivo Prato	Ziergartenmuster	Motivo Vergel	정원의 모양	庭园花纹	庭園花紋
+666	5	-	みやびなもよう	Elegant Pattern	Motif Monarchie	Motivo Eleganza	Prunkmuster	Motivo Oriental	우아한 모양	高雅花纹	高雅花紋
+666	6	-	はなぞののもよう	Meadow Pattern	Motif Floraison	Motivo Giardinfiore	Blumenmeermuster	Motivo Floral	화원의 모양	花园花纹	花園花紋
+666	7	-	モダンなもよう	Modern Pattern	Motif Métropole	Motivo Trendy	Innovationsmuster	Motivo Moderno	모던한 모양	摩登花纹	摩登花紋
+666	8	-	マリンのもよう	Marine Pattern	Motif Rivage	Motivo Marino	Aquamarinmuster	Motivo Marino	마린의 모양	大海花纹	大海花紋
+666	9	-	ぐんとうのもよう	Archipelago Pattern	Motif Archipel	Motivo Arcipelago	Archipelmuster	Motivo Isleño	군도의 모양	群岛花纹	群島花紋
+666	10	-	こうやのもよう	High Plains Pattern	Motif Sécheresse	Motivo Deserto	Dürremuster	Motivo Estepa	황야의 모양	荒野花纹	荒野花紋
+666	11	-	さじんのもよう	Sandstorm Pattern	Motif Sable	Motivo Sabbia	Sandmuster	Motivo Desierto	사진의 모양	沙尘花纹	沙塵花紋
+666	12	-	たいがのもよう	River Pattern	Motif Delta	Motivo Fluviale	Flussdeltamuster	Motivo Oasis	대하의 모양	大河花纹	大河花紋
+666	13	-	スコールのもよう	Monsoon Pattern	Motif Cyclone	Motivo Pluviale	Monsunmuster	Motivo Monzón	스콜의 모양	骤雨花纹	驟雨花紋
+666	14	-	サバンナのもよう	Savanna Pattern	Motif Mangrove	Motivo Savana	Savannenmuster	Motivo Pantano	사바나의 모양	热带草原花纹	熱帶草原花紋
+666	15	-	たいようのもよう	Sun Pattern	Motif Zénith	Motivo Solare	Sonnenmuster	Motivo Solar	태양의 모양	太阳花纹	太陽花紋
+666	16	-	オーシャンのもよう	Ocean Pattern	Motif Soleil Levant	Motivo Oceanico	Ozeanmuster	Motivo Océano	오션의 모양	大洋花纹	大洋花紋
+666	17	-	ジャングルのもよう	Jungle Pattern	Motif Jungle	Motivo Giungla	Dschungelmuster	Motivo Jungla	정글의 모양	热带雨林花纹	熱帶雨林花紋
+666	18	-	ファンシーなもよう	Fancy Pattern	Motif Fantaisie	Motivo Sbarazzino	Fantasiemuster	Motivo Fantasía	팬시한 모양	幻彩花纹	幻彩花紋
+666	19	-	ボールのもよう	Poké Ball Pattern	Motif Poké Ball	Motivo Poké Ball	Pokéball-Muster	Motivo Poké Ball	볼의 모양	球球花纹	球球花紋
+669	0	-	あかいはな	Red Flower	Fleur Rouge	Fiore Rosso	Rotblütler	Flor Roja	빨간 꽃	红花	紅花
+669	1	-	きいろのはな	Yellow Flower	Fleur Jaune	Fiore Giallo	Gelbblütler	Flor Amarilla	노란 꽃	黄花	黃花
+669	2	-	オレンジいろのはな	Orange Flower	Fleur Orange	Fiore Arancione	Orangeblütler	Flor Naranja	오렌지색 꽃	橙花	橙花
+669	3	-	あおいはな	Blue Flower	Fleur Bleue	Fiore Blu	Blaublütler	Flor Azul	파란 꽃	蓝花	藍花
+669	4	-	しろいはな	White Flower	Fleur Blanche	Fiore Bianco	Weißblütler	Flor Blanca	하얀 꽃	白花	白花
+670	0	-	あかいはな	Red Flower	Fleur Rouge	Fiore Rosso	Rotblütler	Flor Roja	빨간 꽃	红花	紅花
+670	1	-	きいろのはな	Yellow Flower	Fleur Jaune	Fiore Giallo	Gelbblütler	Flor Amarilla	노란 꽃	黄花	黃花
+670	2	-	オレンジいろのはな	Orange Flower	Fleur Orange	Fiore Arancione	Orangeblütler	Flor Naranja	오렌지색 꽃	橙花	橙花
+670	3	-	あおいはな	Blue Flower	Fleur Bleue	Fiore Blu	Blaublütler	Flor Azul	파란 꽃	蓝花	藍花
+670	4	-	しろいはな	White Flower	Fleur Blanche	Fiore Bianco	Weißblütler	Flor Blanca	하얀 꽃	白花	白花
+670	5	-	えいえんのはな	Eternal Flower	Éternelle	Fiore Eterno	Ewigblütler	Flor Eterna	영원의 꽃	永恒之花	永恆之花
+671	0	-	あかいはな	Red Flower	Fleur Rouge	Fiore Rosso	Rotblütler	Flor Roja	빨간 꽃	红花	紅花
+671	1	-	きいろのはな	Yellow Flower	Fleur Jaune	Fiore Giallo	Gelbblütler	Flor Amarilla	노란 꽃	黄花	黃花
+671	2	-	オレンジいろのはな	Orange Flower	Fleur Orange	Fiore Arancione	Orangeblütler	Flor Naranja	오렌지색 꽃	橙花	橙花
+671	3	-	あおいはな	Blue Flower	Fleur Bleue	Fiore Blu	Blaublütler	Flor Azul	파란 꽃	蓝花	藍花
+671	4	-	しろいはな	White Flower	Fleur Blanche	Fiore Bianco	Weißblütler	Flor Blanca	하얀 꽃	白花	白花
+676	0	-	やせいのすがた	Natural Form	Forme Sauvage	Forma Selvatica	Zottelform	Forma Salvaje	야생의 모습	野生的样子	野生的樣子
+676	1	-	ハートカット	Heart Trim	Coupe Cœur	Taglio Cuore	Herzchenschnitt	Corte Corazón	하트컷	心形造型	心形造型
+676	2	-	スターカット	Star Trim	Coupe Étoile	Taglio Stella	Sternchenschnitt	Corte Estrella	스타컷	星形造型	星形造型
+676	3	-	ダイヤカット	Diamond Trim	Coupe Diamant	Taglio Diamante	Diamantenschnitt	Corte Rombo	다이아컷	菱形造型	菱形造型
+676	4	-	レディカット	Debutante Trim	Coupe Demoiselle	Taglio Signorina	Fräuleinschnitt	Corte Señorita	레이디컷	淑女造型	淑女造型
+676	5	-	マダムカット	Matron Trim	Coupe Madame	Taglio Gentildonna	Damenschnitt	Corte Dama	마담컷	贵妇造型	貴婦造型
+676	6	-	ジェントルカット	Dandy Trim	Coupe Monsieur	Taglio Gentiluomo	Kavaliersschnitt	Corte Caballero	젠틀컷	绅士造型	紳士造型
+676	7	-	クイーンカット	La Reine Trim	Coupe Reine	Taglio Regina	Königinnenschnitt	Corte Aristocrático	퀸컷	女王造型	女王造型
+676	8	-	カブキカット	Kabuki Trim	Coupe Kabuki	Taglio Kabuki	Kabuki-Schnitt	Corte Kabuki	가부키컷	歌舞伎造型	歌舞伎造型
+676	9	-	キングダムカット	Pharaoh Trim	Coupe Pharaon	Taglio Faraone	Herrscherschnitt	Corte Faraónico	킹덤컷	国王造型	國王造型
+678	0	-	オスのすがた	Male	Mâle	Maschio	Männlich	Macho	수컷의 모습	雄性的样子	雄性的樣子
+678	1	-	メスのすがた	Female	Femelle	Femmina	Weiblich	Hembra	암컷의 모습	雌性的样子	雌性的樣子
+681	0	-	シールドフォルム	Shield Forme	Forme Parade	Forma Scudo	Schildform	Forma Escudo	실드폼	盾牌形态	盾牌形態
+681	1	-	ブレードフォルム	Blade Forme	Forme Assaut	Forma Spada	Klingenform	Forma Filo	블레이드폼	刀剑形态	刀劍形態
+710	0	-	ふつうのサイズ	Average Size	Taille Normale	Normale	Größe M	Tamaño Normal	보통 사이즈	普通尺寸	普通尺寸
+710	1	-	ちいさいサイズ	Small Size	Taille Mini	Mini	Größe S	Tamaño Pequeño	작은 사이즈	小尺寸	小尺寸
+710	2	-	おおきいサイズ	Large Size	Taille Maxi	Grande	Größe L	Tamaño Grande	큰 사이즈	大尺寸	大尺寸
+710	3	-	とくだいサイズ	Super Size	Taille Ultra	Maxi	Größe XL	Tamaño Extragrande	특대 사이즈	特大尺寸	特大尺寸
+711	0	-	ふつうのサイズ	Average Size	Taille Normale	Normale	Größe M	Tamaño Normal	보통 사이즈	普通尺寸	普通尺寸
+711	1	-	ちいさいサイズ	Small Size	Taille Mini	Mini	Größe S	Tamaño Pequeño	작은 사이즈	小尺寸	小尺寸
+711	2	-	おおきいサイズ	Large Size	Taille Maxi	Grande	Größe L	Tamaño Grande	큰 사이즈	大尺寸	大尺寸
+711	3	-	とくだいサイズ	Super Size	Taille Ultra	Maxi	Größe XL	Tamaño Extragrande	특대 사이즈	特大尺寸	特大尺寸
+716	0	-	リラックスモード	Neutral Mode	Mode Paisible	Modo Relax	Ruhe-Modus	Modo Relajado	릴랙스모드	放松模式	放鬆模式
+716	1	-	アクティブモード	Active Mode	Mode Déchaîné	Modo Attivo	Aktiv-Modus	Modo Activo	액티브모드	活跃模式	活躍模式
+718	0	-	５０％フォルム	50% Forme	Forme 50 %	Forma 50%	50%-Form	Forma 50%	50%폼	５０％形态	５０％形態
+718	1	-	１０％フォルム	10% Forme	Forme 10 %	Forma 10%	10%-Form	Forma 10%	10%폼	１０％形态	１０％形態
+718	2	-	１０％フォルム	10% Forme	Forme 10 %	Forma 10%	10%-Form	Forma 10%	10%폼	１０％形态	１０％形態
+718	3	-	５０％フォルム	50% Forme	Forme 50 %	Forma 50%	50%-Form	Forma 50%	50%폼	５０％形态	５０％形態
+718	4	-	パーフェクトフォルム	Complete Forme	Forme Parfaite	Forma Perfetta	Optimumform	Forma Completa	퍼펙트폼	完全体形态	完全體形態
+719	1	-	メガディアンシー	Mega Diancie	Méga-Diancie	MegaDiancie	Mega-Diancie	Mega-Diancie	메가디안시	超级蒂安希	超級蒂安希
+720	0	-	いましめられしフーパ	Hoopa Confined	Hoopa Enchaîné	Hoopa Vincolato	Gebanntes Hoopa	Hoopa Contenido	굴레에 빠진 후파	惩戒胡帕	懲戒胡帕
+720	1	-	ときはなたれしフーパ	Hoopa Unbound	Hoopa Déchaîné	Hoopa Libero	Entfesseltes Hoopa	Hoopa Desatado	굴레를 벗어난 후파	解放胡帕	解放胡帕
+741	0	-	めらめらスタイル	Baile Style	Style Flamenco	Stile Flamenco	Flamenco-Stil	Estilo Apasionado	이글이글스타일	热辣热辣风格	熱辣熱辣風格
+741	1	-	ぱちぱちスタイル	Pom-Pom Style	Style Pom-Pom	Stile Cheerdance	Cheerleading-Stil	Estilo Animado	파칙파칙스타일	啪滋啪滋风格	啪滋啪滋風格
+741	2	-	ふらふらスタイル	Pa’u Style	Style Hula	Stile Hula	Hula-Stil	Estilo Plácido	훌라훌라스타일	呼拉呼拉风格	呼拉呼拉風格
+741	3	-	まいまいスタイル	Sensu Style	Style Buyō	Stile Buyō	Buyo-Stil	Estilo Refinado	하늘하늘스타일	轻盈轻盈风格	輕盈輕盈風格
+745	0	-	まひるのすがた	Midday Form	Forme Diurne	Forma Giorno	Tagform	Forma Diurna	한낮의 모습	白昼的样子	白晝的樣子
+745	1	-	まよなかのすがた	Midnight Form	Forme Nocturne	Forma Notte	Nachtform	Forma Nocturna	한밤중의 모습	黑夜的样子	黑夜的樣子
+745	2	-	たそがれのすがた	Dusk Form	Forme Crépusculaire	Forma Crepuscolo	Zwielichtform	Forma Crepuscular	황혼의 모습	黄昏的样子	黃昏的樣子
+746	0	-	たんどくのすがた	Solo Form	Forme Solitaire	Forma Individuale	Einzelform	Forma Individual	단독의 모습	单独的样子	單獨的樣子
+746	1	-	むれたすがた	School Form	Forme Banc	Forma Banco	Schwarmform	Forma Banco	군집의 모습	鱼群的样子	魚群的樣子
+773	0	-	タイプ：ノーマル	Type: Normal	Type : Normal	Tipo Normale	Typ:Normal	Tipo: Normal	타입:노말	属性：一般	屬性：一般
+773	1	-	タイプ：ファイト	Type: Fighting	Type : Combat	Tipo Lotta	Typ:Kampf	Tipo: Lucha	타입:파이팅	属性：战斗	屬性：戰鬥
+773	2	-	タイプ：フライング	Type: Flying	Type : Vol	Tipo Volante	Typ:Flug	Tipo: Volador	타입:플라잉	属性：飞翔	屬性：飛翔
+773	3	-	タイプ：ポイズン	Type: Poison	Type : Poison	Tipo Veleno	Typ:Gift	Tipo: Veneno	타입:포이즌	属性：毒	屬性：毒
+773	4	-	タイプ：グラウンド	Type: Ground	Type : Sol	Tipo Terra	Typ:Boden	Tipo: Tierra	타입:그라운드	属性：大地	屬性：大地
+773	5	-	タイプ：ロック	Type: Rock	Type : Roche	Tipo Roccia	Typ:Gestein	Tipo: Roca	타입:락	属性：岩石	屬性：岩石
+773	6	-	タイプ：バグ	Type: Bug	Type : Insecte	Tipo Coleottero	Typ:Käfer	Tipo: Bicho	타입:버그	属性：虫子	屬性：蟲子
+773	7	-	タイプ：ゴースト	Type: Ghost	Type : Spectre	Tipo Spettro	Typ:Geist	Tipo: Fantasma	타입:고스트	属性：幽灵	屬性：幽靈
+773	8	-	タイプ：スチール	Type: Steel	Type : Acier	Tipo Acciaio	Typ:Stahl	Tipo: Acero	타입:스틸	属性：钢铁	屬性：鋼鐵
+773	9	-	タイプ：ファイヤー	Type: Fire	Type : Feu	Tipo Fuoco	Typ:Feuer	Tipo: Fuego	타입:파이어	属性：火焰	屬性：火焰
+773	10	-	タイプ：ウオーター	Type: Water	Type : Eau	Tipo Acqua	Typ:Wasser	Tipo: Agua	타입:워터	属性：清水	屬性：清水
+773	11	-	タイプ：グラス	Type: Grass	Type : Plante	Tipo Erba	Typ:Pflanze	Tipo: Planta	타입:그래스	属性：青草	屬性：青草
+773	12	-	タイプ：エレクトロ	Type: Electric	Type : Électrik	Tipo Elettro	Typ:Elektro	Tipo: Eléctrico	타입:일렉트릭	属性：电子	屬性：電子
+773	13	-	タイプ：サイキック	Type: Psychic	Type : Psy	Tipo Psico	Typ:Psycho	Tipo: Psíquico	타입:사이킥	属性：精神	屬性：精神
+773	14	-	タイプ：アイス	Type: Ice	Type : Glace	Tipo Ghiaccio	Typ:Eis	Tipo: Hielo	타입:아이스	属性：冰雪	屬性：冰雪
+773	15	-	タイプ：ドラゴン	Type: Dragon	Type : Dragon	Tipo Drago	Typ:Drache	Tipo: Dragón	타입:드래곤	属性：龙	屬性：龍
+773	16	-	タイプ：ダーク	Type: Dark	Type : Ténèbres	Tipo Buio	Typ:Unlicht	Tipo: Siniestro	타입:다크	属性：黑暗	屬性：黑暗
+773	17	-	タイプ：フェアリー	Type: Fairy	Type : Fée	Tipo Folletto	Typ:Fee	Tipo: Hada	타입:페어리	属性：妖精	屬性：妖精
+774	0	-	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
+774	1	-	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
+774	2	-	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
+774	3	-	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
+774	4	-	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
+774	5	-	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
+774	6	-	りゅうせいのすがた	Meteor Form	Forme Météore	Forma Meteora	Meteorform	Forma Meteorito	유성의 모습	流星的样子	流星的樣子
+774	7	-	あかいろのコア	Red Core	Noyau Rouge	Nucleo Rosso	Roter Kern	Núcleo Rojo	빨간색 코어	红色核心	紅色核心
+774	8	-	だいだいいろのコア	Orange Core	Noyau Orange	Nucleo Arancione	Oranger Kern	Núcleo Naranja	주황색 코어	橙色核心	橙色核心
+774	9	-	きいろのコア	Yellow Core	Noyau Jaune	Nucleo Giallo	Gelber Kern	Núcleo Amarillo	노란색 코어	黄色核心	黃色核心
+774	10	-	みどりいろのコア	Green Core	Noyau Vert	Nucleo Verde	Grüner Kern	Núcleo Verde	초록색 코어	绿色核心	綠色核心
+774	11	-	みずいろのコア	Blue Core	Noyau Bleu	Nucleo Azzurro	Hellblauer Kern	Núcleo Azul	옥색 코어	浅蓝色核心	淺藍色核心
+774	12	-	あおいろのコア	Indigo Core	Noyau Indigo	Nucleo Indaco	Blauer Kern	Núcleo Añil	파란색 코어	蓝色核心	藍色核心
+774	13	-	むらさきいろのコア	Violet Core	Noyau Violet	Nucleo Violetto	Violetter Kern	Núcleo Violeta	보라색 코어	紫色核心	紫色核心
+778	0	-	ばけたすがた	Disguised Form	Forme Déguisée	Forma Mascherata	Verkleidete Form	Forma Encubierta	둔갑한 모습	化形的样子	化形的樣子
+778	1	-	ばれたすがた	Busted Form	Forme Démasquée	Forma Smascherata	Entlarvte Form	Forma Descubierta	들킨 모습	现形的样子	現形的樣子
+800	1	-	たそがれのたてがみ	Dusk Mane	Crinière du Couchant	Criniera del Vespro	Abendmähne	Melena Crepuscular	황혼의 갈기	黄昏之鬃	黃昏之鬃
+800	2	-	あかつきのつばさ	Dawn Wings	Ailes de l’Aurore	Ali dell’Aurora	Morgenschwingen	Alas del Alba	새벽의 날개	拂晓之翼	拂曉之翼
+800	3	-	ウルトラネクロズマ	Ultra Necrozma	Ultra-Necrozma	UltraNecrozma	Ultra-Necrozma	Ultra-Necrozma	울트라네크로즈마	究极奈克洛兹玛	究極奈克洛茲瑪
+801	1	-	５００ねんまえのいろ	Original Color	Couleur du Passé	Colore Antico	Originalfarbe	Color Vetusto	500년 전의 색	５００年前的颜色	５００年前的顏色

@@ -94,16 +94,15 @@ def names_body(rows, number_column, table_name, count_name):
     return "\n".join(lines) + "\n"
 
 
-def form_numbering_enum(source):
-    if source == "omega_ruby_alpha_sapphire":
-        return "SPEC_FORM_NUMBERING_OMEGA_RUBY_ALPHA_SAPPHIRE"
-    return "SPEC_FORM_NUMBERING_GEN7"
+# "-" is every game, which the first game type stands for.
+def from_game_enum(from_game):
+    return "SPEC_GAME_TYPE_" + ("red_blue" if from_game == "-" else from_game).upper()
 
 
 def form_names_body(rows):
     lines = ["const spec_form_names_t spec_form_names[] = {"]
     for row in rows:
-        lines.append(f"    {{{row['national']}, {row['form']}, {form_numbering_enum(row['source'])}, {{")
+        lines.append(f"    {{{row['national']}, {row['form']}, {from_game_enum(row['from_game'])}, {{")
         for language in LANGUAGE_COLUMNS:
             if row[language] != "-":
                 lines.append(f"        [SPEC_LANGUAGE_{language.upper()}] = {c_string(row[language])},")

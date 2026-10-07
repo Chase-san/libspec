@@ -252,7 +252,7 @@ typedef struct spec_3ds_daycare spec_3ds_daycare_t;
 
 // Items
 
-// In the games' bag order; Z-Crystals are Gen 7's, and Battle Items Ultra Sun and Ultra Moon's.
+// In the games' bag order; Z-Crystals are Gen 7's, and Rotom Powers Ultra Sun and Ultra Moon's.
 enum spec_3ds_pocket {
     SPEC_3DS_POCKET_ITEMS,
     SPEC_3DS_POCKET_KEY_ITEMS,
@@ -260,7 +260,7 @@ enum spec_3ds_pocket {
     SPEC_3DS_POCKET_MEDICINE,
     SPEC_3DS_POCKET_BERRIES,
     SPEC_3DS_POCKET_Z_CRYSTALS,
-    SPEC_3DS_POCKET_BATTLE_ITEMS,
+    SPEC_3DS_POCKET_ROTOM_POWERS,
     SPEC_3DS_POCKET_COUNT,
 };
 typedef enum spec_3ds_pocket spec_3ds_pocket_t;

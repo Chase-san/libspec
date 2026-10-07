@@ -4,7 +4,6 @@
 #include "spec_internal.h"
 #include "spec_tables.h"
 
-constexpr uint16_t PIKACHU = 25;
 constexpr uint16_t ARCEUS = 493;
 // Gen 4 numbered Arceus's forms by its own type order, which held ??? (pret TYPE_MYSTERY).
 constexpr uint8_t GEN4_ARCEUS_MYSTERY_FORM = 9;
@@ -57,16 +56,19 @@ static bool is_gen4(spec_game_type_t type) {
            || type == SPEC_GAME_TYPE_HEARTGOLD_SOULSILVER;
 }
 
-static const char *find_form_name(uint16_t national_number, uint8_t form,
-                                  spec_form_numbering_t numbering, spec_language_t language) {
+// Game types count up generation by generation, so the latest row begun by the type is in force.
+static const spec_form_names_t *form_names_in(spec_game_type_t type, uint16_t national_number,
+                                              uint8_t form) {
+    const spec_form_names_t *latest = nullptr;
     for (size_t index = 0; index < spec_form_names_count; ++index) {
         const spec_form_names_t *form_names = &spec_form_names[index];
-        if (form_names->national_number == national_number && form_names->form == form
-            && form_names->numbering == numbering) {
-            return form_names->names[language];
+        bool applies = form_names->national_number == national_number && form_names->form == form
+                       && form_names->from_game <= type;
+        if (applies && (latest == nullptr || form_names->from_game >= latest->from_game)) {
+            latest = form_names;
         }
     }
-    return nullptr;
+    return latest;
 }
 
 const char *spec_form_name(spec_game_type_t type, uint16_t national_number, uint8_t form,
@@ -80,11 +82,8 @@ const char *spec_form_name(spec_game_type_t type, uint16_t national_number, uint
         }
         --form;
     }
-    spec_form_numbering_t numbering = SPEC_FORM_NUMBERING_GEN7;
-    if (type == SPEC_GAME_TYPE_OMEGA_RUBY_ALPHA_SAPPHIRE && national_number == PIKACHU) {
-        numbering = SPEC_FORM_NUMBERING_OMEGA_RUBY_ALPHA_SAPPHIRE;
-    }
-    return find_form_name(national_number, form, numbering, language);
+    const spec_form_names_t *form_names = form_names_in(type, national_number, form);
+    return form_names == nullptr ? nullptr : form_names->names[language];
 }
 
 const char *spec_move_name(uint16_t move, spec_language_t language) {

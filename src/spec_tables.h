@@ -27,17 +27,11 @@ extern const char *const spec_gen5_species_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_
 
 // Form names
 
-// Gen 7's numbering, or Omega Ruby and Alpha Sapphire's own for the Pikachu they dress up.
-enum spec_form_numbering : uint8_t {
-    SPEC_FORM_NUMBERING_GEN7,
-    SPEC_FORM_NUMBERING_OMEGA_RUBY_ALPHA_SAPPHIRE,
-};
-typedef enum spec_form_numbering spec_form_numbering_t;
-
+// A row names its form from from_game on, until a later row for the same form takes over.
 struct spec_form_names {
     uint16_t national_number;
     uint8_t form;
-    spec_form_numbering_t numbering;
+    spec_game_type_t from_game;
     const char *names[SPEC_NAME_LANGUAGE_COUNT];
 };
 typedef struct spec_form_names spec_form_names_t;

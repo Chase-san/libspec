@@ -53,8 +53,6 @@ Sources are named precisely enough to find again:
   `pokecrystal data/items/names.asm`.
 - Cartridge data is cited by its place on the cart, as the next section explains. The carts are
   the author's own US carts.
-- Ultra Sun and Ultra Moon are not dumped yet. Their additions come from Pokémon Bank 6.8, whose
-  text matches Sun and Moon's line for line wherever both have a line.
 
 ## Where cartridge data lives
 
@@ -65,8 +63,7 @@ it says nothing about what the file holds, and each game puts the same kind of d
 slot.
 
 - On a DS cart the file system is the ROM's own, and each of these files is a NARC archive. On a
-  3DS cart it is the RomFS, and each file is a GARC archive. Pokémon Bank's RomFS works the same
-  way.
+  3DS cart it is the RomFS, and each file is a GARC archive.
 - An archive holds numbered members, counted from 0: "member 55 of `a/0/3/2`" is the 56th file in
   that archive.
 - A text archive's members are message files. Each holds one list of lines, such as every move's
@@ -89,30 +86,30 @@ The archives these tables cite:
 | Omega Ruby and Alpha Sapphire | `a/0/7/1` to `a/0/7/8` | Text, in X and Y's language order |
 | | `a/1/9/5` | Personal data |
 | | `a/1/9/7` | Item data |
-| Sun and Moon | `a/0/3/0` to `a/0/3/9` | Text, in X and Y's order, then Simplified and Traditional Chinese |
+| Sun and Moon | `a/0/1/9` | Item data |
+| Ultra Sun and Ultra Moon | `a/0/3/0` to `a/0/3/9` | Text, in X and Y's order, then Simplified and Traditional Chinese |
 | | `a/0/1/7` | Personal data |
 | | `a/0/1/9` | Item data |
-| Pokémon Bank 6.8 | `a/0/0/4` to `a/0/1/3` | Text, in Sun and Moon's language order |
 
 ## The name tables
 
-Each name list is one member of the text archives: the Sun and Moon member below in each of
-`a/0/3/0` to `a/0/3/9`, and the Pokémon Bank member in each of `a/0/0/4` to `a/0/1/3`.
+The names are Ultra Sun and Ultra Moon's, the last 3DS games, which have every name the others have.
+Each name list is the member below in each of their text archives, `a/0/3/0` to `a/0/3/9`. The two
+carts' lists are identical, and Sun and Moon's agree with them wherever both have a line.
 
-| File | Numbered by | Sun and Moon member | Pokémon Bank member |
-|---|---|---|---|
-| `species_names.tsv` | National Dex number, 1–807 | 55 | 12, for 803–807 |
-| `form_names.tsv` | National Dex number and form | 114 | none |
-| `move_names.tsv` | Move number, 1–728 | 113 | 52, for 720–728 |
-| `ability_names.tsv` | Ability number, 1–233 | 96 | 27, for 233 |
-| `item_names.tsv` | Gen 4–7 item number, 1–959 | 36 | 8, for 921–959 |
-| `nature_names.tsv` | `spec_nature_t`, 0–24 | 87 | none |
-| `type_names.tsv` | `spec_type_t`, 0–17 | 107 | none |
+| File | Numbered by | Member |
+|---|---|---|
+| `species_names.tsv` | National Dex number, 1–807 | 60 |
+| `form_names.tsv` | National Dex number and form | 119 |
+| `move_names.tsv` | Move number, 1–728 | 118 |
+| `ability_names.tsv` | Ability number, 1–233 | 101 |
+| `item_names.tsv` | Gen 4–7 item number, 1–959 | 40 |
+| `nature_names.tsv` | `spec_nature_t`, 0–24 | 92 |
+| `type_names.tsv` | `spec_type_t`, 0–17 | 112 |
 
 ### `species_names.tsv`
 
-- The names as the 3DS games show them. X, Y, Omega Ruby, Alpha Sapphire, Sun and Moon agree on
-  every species they share.
+- The names as the 3DS games show them. Every 3DS game agrees on every species it has.
 - Italian and Spanish games use the English names, except Type: Null.
 - The carts store Chinese species names in glyphs of their own, not as characters. Each glyph is
   read as the character PokeAPI's names put in the same place, by majority over every species
@@ -125,16 +122,26 @@ Each name list is one member of the text archives: the Sun and Moon member below
 
 ### `form_names.tsv`
 
-Forms are numbered as Gen 7 numbers them. The `source` column says where each row comes from:
+Most games number a species' forms the same way, but a few numbers mean different forms in
+different games. The `from_game` column says which games a row is for:
 
-- `sun_moon`: Sun and Moon's form list. A species' own line names its first form; the lines after
-  the last species name the other forms, species by species. Each species' form count, in its
-  member of the personal archive (`a/0/1/7`), says how many lines it takes.
-- `pokeapi`: the five forms only Ultra Sun and Ultra Moon have (Partner Cap Pikachu, Dusk Form
-  Lycanroc and Necrozma's three), from PokeAPI at the commit above.
-- `omega_ruby_alpha_sapphire`: the dressed-up Pikachu, which those games number their own way, from
-  their form list, member 5 of their text archives (`a/0/7/1` to `a/0/7/8`). Those games have no
-  Chinese.
+- `-`: every game that has the form. Nearly every row is this.
+- A game type, such as `sun_moon`: that game type and every later one, until a later row for the
+  same species and form takes over. Game types are `spec_game_type_t`'s, which count up generation
+  by generation.
+
+For a game type, a form's name is the row with the latest `from_game` that isn't after it. Today
+only Pikachu needs this: in Omega Ruby and Alpha Sapphire, forms 1 to 6 are the dressed-up Pikachu,
+and from Sun and Moon on the same numbers are the caps. X and Y get neither.
+
+Where the rows come from:
+
+- Ultra Sun and Ultra Moon's form list, for every row but the dressed-up Pikachu. A species' own line
+  names its first form; the lines after the last species name the other forms, species by species.
+  Each species' form count, in its member of the personal archive (`a/0/1/7`), says how many lines
+  it takes. Sun and Moon's list names every form it has the same way.
+- Omega Ruby and Alpha Sapphire's form list, member 5 of their text archives (`a/0/7/1` to
+  `a/0/7/8`), for the dressed-up Pikachu. Those games have no Chinese.
 
 Also:
 

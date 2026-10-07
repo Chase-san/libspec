@@ -40,6 +40,7 @@ static void check_name_tables(void) {
               && is_name(spec_form_name(SPEC_GAME_TYPE_OMEGA_RUBY_ALPHA_SAPPHIRE, 25, 1,
                                         SPEC_LANGUAGE_ENGLISH),
                          "Pikachu Rock Star")
+              && spec_form_name(SPEC_GAME_TYPE_X_Y, 25, 1, SPEC_LANGUAGE_ENGLISH) == nullptr
               && is_name(spec_form_name(SPEC_GAME_TYPE_PLATINUM, 479, 1, SPEC_LANGUAGE_ENGLISH),
                          "Heat Rotom")
               && is_name(spec_form_name(SPEC_GAME_TYPE_ULTRA_SUN_ULTRA_MOON, 800, 3,

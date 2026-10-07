@@ -357,7 +357,7 @@ constexpr spec_3ds_layout_t ULTRA_SUN_ULTRA_MOON_LAYOUT = {
             [SPEC_3DS_POCKET_MEDICINE] = 0xB74,
             [SPEC_3DS_POCKET_BERRIES] = 0xC64,
             [SPEC_3DS_POCKET_Z_CRYSTALS] = 0xD70,
-            [SPEC_3DS_POCKET_BATTLE_ITEMS] = 0xDFC,
+            [SPEC_3DS_POCKET_ROTOM_POWERS] = 0xDFC,
         },
     .pocket_capacities =
         {
@@ -367,7 +367,7 @@ constexpr spec_3ds_layout_t ULTRA_SUN_ULTRA_MOON_LAYOUT = {
             [SPEC_3DS_POCKET_MEDICINE] = 60,
             [SPEC_3DS_POCKET_BERRIES] = 67,
             [SPEC_3DS_POCKET_Z_CRYSTALS] = 35,
-            [SPEC_3DS_POCKET_BATTLE_ITEMS] = 11,
+            [SPEC_3DS_POCKET_ROTOM_POWERS] = 11,
         },
 };
 

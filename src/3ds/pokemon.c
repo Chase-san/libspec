@@ -132,8 +132,8 @@ constexpr uint16_t GEN6_SPECIES_COUNT = 721;
 constexpr uint16_t GEN7_SPECIES_COUNT = 807;
 constexpr uint16_t SHEDINJA = 292;
 constexpr uint16_t END_OF_TEXT = 0x0000;
-// Line 0 of each language's species-name list on the carts (X and Y's member 80, Sun and Moon's
-// 55); Chinese is Gen 7's glyphs, with the species names.
+// Line 0 of each language's species-name list on the carts (X and Y's member 80, Sun and Moon's 55,
+// Ultra Sun and Ultra Moon's 60); Chinese is Gen 7's glyphs, with the species names.
 static const char8_t *const EGG_NAMES[SPEC_NAME_LANGUAGE_COUNT] = {
     [SPEC_LANGUAGE_JAPANESE] = u8"タマゴ", [SPEC_LANGUAGE_ENGLISH] = u8"Egg",
     [SPEC_LANGUAGE_FRENCH] = u8"Œuf",      [SPEC_LANGUAGE_ITALIAN] = u8"Uovo",
