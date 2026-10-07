@@ -110,11 +110,11 @@ static bool find_character(const spec_gb_character_t *charmap, char32_t code_poi
 // Ligatures match first; the name is padded with terminators, as the games pad species names.
 spec_error_t spec_gb_encode_text(uint8_t *text, size_t text_size, const char8_t *utf8,
                                  const spec_gb_character_t *charmap) {
-    if (text_size == 0 || text_size > SPEC_GB_TEXT_MAX_SIZE) {
+    if (text_size == 0 || text_size > SPEC_GB_ITEM_NAME_SIZE) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE,
-                         "text_size is not the size of a Game Boy name field");
+                         "text_size is longer than any Game Boy text");
     }
-    uint8_t encoded[SPEC_GB_TEXT_MAX_SIZE];
+    uint8_t encoded[SPEC_GB_ITEM_NAME_SIZE];
     size_t length = 0;
     size_t position = 0;
     while (utf8[position] != '\0') {

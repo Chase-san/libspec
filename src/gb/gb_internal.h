@@ -17,6 +17,8 @@ constexpr size_t SPEC_GB_BOX_BANK_COUNT = 2;
 constexpr size_t SPEC_GB_GAME_DATA_OFFSET = 0x2598;
 constexpr uint8_t SPEC_GB_END_OF_TEXT = 0x50;
 constexpr uint8_t SPEC_GB_END_OF_LIST = 0xFF;
+// The longest text the games encode: 12 characters and the terminator (pret ITEM_NAME_LENGTH).
+constexpr size_t SPEC_GB_ITEM_NAME_SIZE = 13;
 // The languages the language vote chooses between; Japanese saves have a layout of their own.
 constexpr spec_language_t SPEC_GB_VOTE_LANGUAGES[] = {
     SPEC_LANGUAGE_ENGLISH, SPEC_LANGUAGE_FRENCH,  SPEC_LANGUAGE_ITALIAN,

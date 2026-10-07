@@ -94,6 +94,40 @@ static void check_gen1(void) {
                             "フシギダネ")
               && bulbasaur.nickname[5] == 0x50,
           "a Japanese Gen 1 name fills 6 bytes");
+    // As the verified Japanese Green save holds a nickname typed in full.
+    constexpr uint8_t PIPIPIPIPI[] = {0x41, 0x41, 0x41, 0x41, 0x41, 0x50};
+    check(spec_gb_pokemon_set_nickname(&bulbasaur, u8"ピピピピピ", SPEC_LANGUAGE_JAPANESE)
+                  == SPEC_OK
+              && memcmp(bulbasaur.nickname, PIPIPIPIPI, sizeof PIPIPIPIPI) == 0
+              && spec_gb_pokemon_set_nickname(&bulbasaur, u8"ピピピピピピ", SPEC_LANGUAGE_JAPANESE)
+                     == SPEC_ERROR_NAME_TOO_LONG,
+          "a Japanese Gen 1 name holds 5 characters, then the terminator");
+    constexpr uint16_t POKE_BALL = 4;
+    // As the verified Red and Green saves hold Pokémon named on being caught.
+    constexpr uint8_t JET[SPEC_GB_NAME_SIZE] = {
+        0x89, 0x84, 0x93, 0x50, 0x7F, 0x81, 0x80, 0x8B, 0x8B, 0x50, 0x00,
+    };
+    constexpr uint8_t A_IN_KATAKANA[SPEC_GB_JAPANESE_NAME_SIZE] = {0x80, 0x50, 0x8C,
+                                                                   0x8F, 0xE3, 0x1C};
+    spec_gb_pokemon_t caught = {};
+    spec_gb_pokemon_t caught_in_japan = {};
+    check(spec_gb_pokemon_set_nickname_ext(&caught, u8"JET", POKE_BALL, SPEC_LANGUAGE_ENGLISH)
+                  == SPEC_OK
+              && memcmp(caught.nickname, JET, sizeof JET) == 0
+              && spec_gb_pokemon_set_nickname_ext(&caught_in_japan, u8"ア", POKE_BALL,
+                                                  SPEC_LANGUAGE_JAPANESE)
+                     == SPEC_OK
+              && memcmp(caught_in_japan.nickname, A_IN_KATAKANA, sizeof A_IN_KATAKANA) == 0,
+          "a Gen 1 name typed when caught leaves the ball's name after it");
+    constexpr uint8_t BO_OVER_JET[SPEC_GB_NAME_SIZE] = {
+        0x81, 0x8E, 0x50, 0x50, 0x7F, 0x81, 0x80, 0x8B, 0x8B, 0x50, 0x00,
+    };
+    check(spec_gb_pokemon_set_nickname(&caught, u8"BO", SPEC_LANGUAGE_ENGLISH) == SPEC_OK
+              && memcmp(caught.nickname, BO_OVER_JET, sizeof BO_OVER_JET) == 0
+              && spec_gb_pokemon_set_nickname_ext(&caught, u8"X", 0xFF, SPEC_LANGUAGE_ENGLISH)
+                     == SPEC_ERROR_INVALID_ITEM
+              && memcmp(caught.nickname, BO_OVER_JET, sizeof BO_OVER_JET) == 0,
+          "a Gen 1 name is typed over the old one, and a refused name changes nothing");
     constexpr uint8_t HEBI[] = {0xCD, 0x3B, 0x50};
     constexpr uint8_t HEBI_IN_KATAKANA[] = {0xCD, 0x1A, 0x50};
     check(is_gb_text(HEBI, sizeof HEBI, SPEC_LANGUAGE_JAPANESE, "へび")

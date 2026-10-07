@@ -15,7 +15,8 @@ constexpr size_t SPEC_GBC_JAPANESE_CRYSTAL_SAVE_SIZE = 0x10000;
 // Gold and Silver, and Crystal, each in Japan's layout and in everyone else's.
 constexpr size_t SPEC_GBC_IDENTITY_MAX_COUNT = 4;
 constexpr size_t SPEC_GBC_BADGE_COUNT = 8;
-// Name sizes count the terminator; Japanese names use the first 6 bytes.
+// Name sizes count the terminator, so names hold 10 characters; Japanese names use the first 6
+// bytes, so 5.
 constexpr size_t SPEC_GBC_NAME_SIZE = SPEC_GB_NAME_SIZE;
 constexpr size_t SPEC_GBC_BOX_NAME_SIZE = 9;
 constexpr size_t SPEC_GBC_MOVE_COUNT = 4;

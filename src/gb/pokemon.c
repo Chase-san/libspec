@@ -70,6 +70,14 @@ static uint8_t number_of_type(spec_type_t type) {
     return NO_TYPE_NUMBER;
 }
 
+static size_t text_length(const uint8_t *text, size_t text_size) {
+    size_t length = 0;
+    while (length < text_size && text[length] != SPEC_GB_END_OF_TEXT) {
+        ++length;
+    }
+    return length;
+}
+
 // The HP DV comes from the others, since dvs[SPEC_GB_STAT_HP] is ignored on write.
 static void set_level_and_stats(spec_gb_pokemon_t *pokemon,
                                 const spec_gb_species_data_t *species_data) {
@@ -312,6 +320,33 @@ spec_error_t spec_gb_pokemon_set_level(spec_gb_pokemon_t *pokemon, uint8_t level
     return spec_gb_pokemon_calculate_stats(pokemon);
 }
 
+spec_error_t spec_gb_pokemon_set_nickname(spec_gb_pokemon_t *pokemon, const char8_t *nickname,
+                                          spec_language_t language) {
+    return spec_gb_pokemon_set_nickname_ext(pokemon, nickname, 0, language);
+}
+
+// As the bag leaves a chosen item's name in the text buffer (pret CopyToStringBuffer): up to its
+// terminator, which a long name puts past the field.
+static spec_error_t write_item_name(uint8_t *name, size_t name_size, uint16_t item,
+                                    spec_language_t language) {
+    const char *item_name = spec_gb_item_name(item, language);
+    if (item_name == nullptr) {
+        return spec_fail(SPEC_ERROR_INVALID_ITEM, "the item has no name in that language");
+    }
+    uint8_t encoded[SPEC_GB_ITEM_NAME_SIZE];
+    spec_error_t error =
+        spec_gb_text_from_utf8(encoded, sizeof encoded, (const char8_t *)item_name, language);
+    if (error != SPEC_OK) {
+        return error;
+    }
+    size_t written_size = text_length(encoded, sizeof encoded) + 1;
+    if (written_size > name_size) {
+        written_size = name_size;
+    }
+    memcpy(name, encoded, written_size);
+    return SPEC_OK;
+}
+
 // The naming keyboard types '.' as the decimal point, where species names use the period.
 static void type_periods_as_decimal_points(uint8_t *text, size_t text_size) {
     for (size_t index = 0; index < text_size; ++index) {
@@ -321,20 +356,26 @@ static void type_periods_as_decimal_points(uint8_t *text, size_t text_size) {
     }
 }
 
-// As the naming screen writes it, but for the bytes after the terminator.
-spec_error_t spec_gb_pokemon_set_nickname(spec_gb_pokemon_t *pokemon, const char8_t *nickname,
-                                          spec_language_t language) {
-    uint8_t text[SPEC_GB_NAME_SIZE] = {};
+// Each letter typed puts a terminator after it, and naming copies the whole text buffer (pret
+// DisplayNamingScreen), so what the buffer held before shows past the name.
+spec_error_t spec_gb_pokemon_set_nickname_ext(spec_gb_pokemon_t *pokemon, const char8_t *nickname,
+                                              uint16_t buffered_item, spec_language_t language) {
+    uint8_t typed[SPEC_GB_NAME_SIZE] = {};
     size_t name_size = spec_gb_name_size(language);
-    spec_error_t error = spec_gb_text_from_utf8(text, name_size, nickname, language);
+    spec_error_t error = spec_gb_text_from_utf8(typed, name_size, nickname, language);
     if (error != SPEC_OK) {
         return error;
     }
     if (language != SPEC_LANGUAGE_JAPANESE) {
-        type_periods_as_decimal_points(text, name_size);
+        type_periods_as_decimal_points(typed, name_size);
     }
-    // TODO: Check trash bytes on Gen 1 naming; the game copies its whole text buffer.
-    memcpy(pokemon->nickname, text, name_size);
+    if (buffered_item != 0) {
+        error = write_item_name(pokemon->nickname, name_size, buffered_item, language);
+        if (error != SPEC_OK) {
+            return error;
+        }
+    }
+    memcpy(pokemon->nickname, typed, text_length(typed, name_size) + 1);
     return SPEC_OK;
 }
 

@@ -12,7 +12,8 @@ constexpr size_t SPEC_GB_SAVE_SIZE = 0x8000;
 // Red and Blue, and Yellow, each in Japan's layout and in everyone else's.
 constexpr size_t SPEC_GB_IDENTITY_MAX_COUNT = 4;
 constexpr size_t SPEC_GB_BADGE_COUNT = 8;
-// Name sizes count the terminator; Japanese names use the first 6 bytes.
+// Name sizes count the terminator, so names hold 10 characters; Japanese names use the first 6
+// bytes, so 5.
 constexpr size_t SPEC_GB_NAME_SIZE = 11;
 constexpr size_t SPEC_GB_JAPANESE_NAME_SIZE = 6;
 constexpr size_t SPEC_GB_TYPE_COUNT = 2;
@@ -213,8 +214,15 @@ spec_error_t spec_gb_pokemon_get_name(const spec_gb_pokemon_t *pokemon,
 spec_error_t spec_gb_pokemon_calculate_stats(spec_gb_pokemon_t *pokemon);
 spec_error_t spec_gb_pokemon_remove_nickname(spec_gb_pokemon_t *pokemon, spec_language_t language);
 spec_error_t spec_gb_pokemon_set_level(spec_gb_pokemon_t *pokemon, uint8_t level);
+// As the naming screen types it: the name and its terminator over the start of the old one, the
+// rest left as it was.
 spec_error_t spec_gb_pokemon_set_nickname(spec_gb_pokemon_t *pokemon, const char8_t *nickname,
                                           spec_language_t language);
+// The same, typed over the name of the item the game's text buffer holds, as it holds the ball
+// when a Pokémon is named on being caught; 0 for none. Bytes past the item's name stay as they
+// were.
+spec_error_t spec_gb_pokemon_set_nickname_ext(spec_gb_pokemon_t *pokemon, const char8_t *nickname,
+                                              uint16_t buffered_item, spec_language_t language);
 // As evolving does: the types follow the species, and the catch rate stays.
 spec_error_t spec_gb_pokemon_set_species(spec_gb_pokemon_t *pokemon, spec_gb_species_t species);
 
