@@ -7,16 +7,16 @@
 
 constexpr size_t PARTITION_COUNT = 2;
 // TODO: Check the block magic on a Korean cart.
-constexpr uint32_t BLOCK_MAGIC = 0x20060623;
+constexpr uint32_t BLOCK_MAGIC = 0x20060623; // pret/pokeplatinum SECTOR_SIGNATURE
 
 // Counted back from the block's end, where both footer kinds keep them.
-constexpr size_t FOOTER_SIZE_FROM_END = 0xC;
-constexpr size_t FOOTER_MAGIC_FROM_END = 0x8;
-constexpr size_t FOOTER_ID_FROM_END = 0x4;
-constexpr size_t FOOTER_CRC_FROM_END = 0x2;
+constexpr size_t FOOTER_SIZE_FROM_END = 0xC;  // pret/pokeplatinum SaveBlockFooter size
+constexpr size_t FOOTER_MAGIC_FROM_END = 0x8; // pret/pokeplatinum SaveBlockFooter signature
+constexpr size_t FOOTER_ID_FROM_END = 0x4;    // pret/pokeplatinum SaveBlockFooter saveBlockID
+constexpr size_t FOOTER_CRC_FROM_END = 0x2;   // pret/pokeplatinum SaveBlockFooter checksum
 // Counted from the footer's start; HeartGold and SoulSilver have only the save counter.
-constexpr size_t FOOTER_SAVE_COUNTER = 0x0;
-constexpr size_t FOOTER_BLOCK_COUNTER = 0x4;
+constexpr size_t FOOTER_SAVE_COUNTER = 0x0;  // pret/pokeplatinum SaveBlockFooter saveCounter
+constexpr size_t FOOTER_BLOCK_COUNTER = 0x4; // pret/pokeplatinum SaveBlockFooter blockCounter
 
 enum block_id : uint8_t {
     GENERAL_BLOCK,

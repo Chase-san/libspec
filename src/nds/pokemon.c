@@ -7,62 +7,67 @@
 #include "nds/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t PERSONALITY_OFFSET = 0x00;
-constexpr size_t FLAGS_OFFSET = 0x04;
-constexpr size_t CHECKSUM_OFFSET = 0x06;
-constexpr size_t BLOCKS_OFFSET = 0x08;
-constexpr size_t BLOCK_SIZE = 0x20;
+constexpr size_t PERSONALITY_OFFSET = 0x00; // pret/pokeplatinum BoxPokemon personality
+constexpr size_t FLAGS_OFFSET = 0x04;       // pret/pokeplatinum BoxPokemon partyDecrypted
+constexpr size_t CHECKSUM_OFFSET = 0x06;    // pret/pokeplatinum BoxPokemon checksum
+constexpr size_t BLOCKS_OFFSET = 0x08;      // pret/pokeplatinum BoxPokemon dataBlocks
+constexpr size_t BLOCK_SIZE = 0x20;         // pret/pokeplatinum PokemonDataBlock
 constexpr size_t BLOCKS_SIZE = 4 * BLOCK_SIZE;
 
-constexpr size_t SPECIES_OFFSET = 0x08;
-constexpr size_t HELD_ITEM_OFFSET = 0x0A;
-constexpr size_t TRAINER_ID_OFFSET = 0x0C;
-constexpr size_t SECRET_ID_OFFSET = 0x0E;
-constexpr size_t EXPERIENCE_OFFSET = 0x10;
-constexpr size_t FRIENDSHIP_OFFSET = 0x14;
-constexpr size_t ABILITY_OFFSET = 0x15;
-constexpr size_t MARKINGS_OFFSET = 0x16;
-constexpr size_t LANGUAGE_OFFSET = 0x17;
-constexpr size_t EVS_OFFSET = 0x18;
-constexpr size_t CONTEST_STATS_OFFSET = 0x1E;
-constexpr size_t SHEEN_OFFSET = 0x23;
-constexpr size_t SINNOH_RIBBONS_OFFSET = 0x24;
+constexpr size_t SPECIES_OFFSET = 0x08;    // pret/pokeplatinum PokemonDataBlockA species
+constexpr size_t HELD_ITEM_OFFSET = 0x0A;  // pret/pokeplatinum PokemonDataBlockA heldItem
+constexpr size_t TRAINER_ID_OFFSET = 0x0C; // pret/pokeplatinum PokemonDataBlockA otID
+constexpr size_t SECRET_ID_OFFSET = 0x0E;  // pret/pokeplatinum PokemonDataBlockA otID, upper half
+constexpr size_t EXPERIENCE_OFFSET = 0x10; // pret/pokeplatinum PokemonDataBlockA exp
+constexpr size_t FRIENDSHIP_OFFSET = 0x14; // pret/pokeplatinum PokemonDataBlockA friendship
+constexpr size_t ABILITY_OFFSET = 0x15;    // pret/pokeplatinum PokemonDataBlockA ability
+constexpr size_t MARKINGS_OFFSET = 0x16;   // pret/pokeplatinum PokemonDataBlockA markings
+constexpr size_t LANGUAGE_OFFSET = 0x17;   // pret/pokeplatinum PokemonDataBlockA originLanguage
+constexpr size_t EVS_OFFSET = 0x18;        // pret/pokeplatinum PokemonDataBlockA hpEV
+constexpr size_t CONTEST_STATS_OFFSET = 0x1E;  // pret/pokeplatinum PokemonDataBlockA cool
+constexpr size_t SHEEN_OFFSET = 0x23;          // pret/pokeplatinum PokemonDataBlockA sheen
+constexpr size_t SINNOH_RIBBONS_OFFSET = 0x24; // pret/pokeplatinum PokemonDataBlockA ribbonsDS1
 
-constexpr size_t MOVES_OFFSET = 0x28;
-constexpr size_t MOVE_PP_OFFSET = 0x30;
-constexpr size_t PP_UPS_OFFSET = 0x34;
-constexpr size_t IVS_OFFSET = 0x38;
-constexpr size_t HOENN_RIBBONS_OFFSET = 0x3C;
-constexpr size_t FORM_OFFSET = 0x40;
+constexpr size_t MOVES_OFFSET = 0x28;         // pret/pokeplatinum PokemonDataBlockB moves
+constexpr size_t MOVE_PP_OFFSET = 0x30;       // pret/pokeplatinum PokemonDataBlockB moveCurrentPPs
+constexpr size_t PP_UPS_OFFSET = 0x34;        // pret/pokeplatinum PokemonDataBlockB movePPUps
+constexpr size_t IVS_OFFSET = 0x38;           // pret/pokeplatinum PokemonDataBlockB hpIV
+constexpr size_t HOENN_RIBBONS_OFFSET = 0x3C; // pret/pokeplatinum PokemonDataBlockB ribbonsGBA
+constexpr size_t FORM_OFFSET = 0x40; // pret/pokeplatinum PokemonDataBlockB fatefulEncounter
+// pret/pokeheartgold PokemonDataBlockB HGSS_shinyLeaves
 constexpr size_t SHINY_LEAVES_OFFSET = 0x41;
+// pret/pokeplatinum PokemonDataBlockB EggLocation_PtHGSS
 constexpr size_t PLATINUM_EGG_LOCATION_OFFSET = 0x44;
+// pret/pokeplatinum PokemonDataBlockB MetLocation_PtHGSS
 constexpr size_t PLATINUM_MET_LOCATION_OFFSET = 0x46;
 
-constexpr size_t NICKNAME_OFFSET = 0x48;
-constexpr size_t VERSION_OFFSET = 0x5F;
+constexpr size_t NICKNAME_OFFSET = 0x48; // pret/pokeplatinum PokemonDataBlockC nickname
+constexpr size_t VERSION_OFFSET = 0x5F;  // pret/pokeplatinum PokemonDataBlockC originGame
+// pret/pokeplatinum PokemonDataBlockC ribbonsDS2
 constexpr size_t SUPER_CONTEST_RIBBONS_OFFSET = 0x60;
 
-constexpr size_t TRAINER_NAME_OFFSET = 0x68;
-constexpr size_t EGG_DATE_OFFSET = 0x78;
-constexpr size_t MET_DATE_OFFSET = 0x7B;
-constexpr size_t EGG_LOCATION_OFFSET = 0x7E;
-constexpr size_t MET_LOCATION_OFFSET = 0x80;
-constexpr size_t POKERUS_OFFSET = 0x82;
-constexpr size_t BALL_OFFSET = 0x83;
-constexpr size_t MET_LEVEL_OFFSET = 0x84;
-constexpr size_t ENCOUNTER_TYPE_OFFSET = 0x85;
+constexpr size_t TRAINER_NAME_OFFSET = 0x68;   // pret/pokeplatinum PokemonDataBlockD otName
+constexpr size_t EGG_DATE_OFFSET = 0x78;       // pret/pokeplatinum PokemonDataBlockD eggYear
+constexpr size_t MET_DATE_OFFSET = 0x7B;       // pret/pokeplatinum PokemonDataBlockD metYear
+constexpr size_t EGG_LOCATION_OFFSET = 0x7E;   // pret/pokeplatinum PokemonDataBlockD EggLocation_DP
+constexpr size_t MET_LOCATION_OFFSET = 0x80;   // pret/pokeplatinum PokemonDataBlockD MetLocation_DP
+constexpr size_t POKERUS_OFFSET = 0x82;        // pret/pokeplatinum PokemonDataBlockD pokerus
+constexpr size_t BALL_OFFSET = 0x83;           // pret/pokeplatinum PokemonDataBlockD pokeball
+constexpr size_t MET_LEVEL_OFFSET = 0x84;      // pret/pokeplatinum PokemonDataBlockD metLevel
+constexpr size_t ENCOUNTER_TYPE_OFFSET = 0x85; // pret/pokeplatinum PokemonDataBlockD metTerrain
+// pret/pokeheartgold PokemonDataBlockD HGSS_Pokeball
 constexpr size_t HEARTGOLD_SOULSILVER_BALL_OFFSET = 0x86;
-constexpr size_t WALKING_MOOD_OFFSET = 0x87;
+constexpr size_t WALKING_MOOD_OFFSET = 0x87; // pret/pokeheartgold PokemonDataBlockD mood
 
-constexpr size_t PARTY_DATA_OFFSET = 0x88;
+constexpr size_t PARTY_DATA_OFFSET = 0x88; // pret/pokeplatinum Pokemon party
 constexpr size_t PARTY_DATA_SIZE = SPEC_NDS_PARTY_RECORD_SIZE - PARTY_DATA_OFFSET;
-constexpr size_t STATUS_OFFSET = 0x88;
-constexpr size_t LEVEL_OFFSET = 0x8C;
-constexpr size_t BALL_CAPSULE_OFFSET = 0x8D;
-constexpr size_t CURRENT_HP_OFFSET = 0x8E;
-constexpr size_t STATS_OFFSET = 0x90;
-constexpr size_t MAIL_OFFSET = 0x9C;
-constexpr size_t SEALS_OFFSET = 0xD4;
+constexpr size_t STATUS_OFFSET = 0x88;       // pret/pokeplatinum PartyPokemon status
+constexpr size_t LEVEL_OFFSET = 0x8C;        // pret/pokeplatinum PartyPokemon level
+constexpr size_t BALL_CAPSULE_OFFSET = 0x8D; // pret/pokeplatinum PartyPokemon ballCapsuleID
+constexpr size_t CURRENT_HP_OFFSET = 0x8E;   // pret/pokeplatinum PartyPokemon hp
+constexpr size_t STATS_OFFSET = 0x90;        // pret/pokeplatinum PartyPokemon maxHP
+constexpr size_t MAIL_OFFSET = 0x9C;         // pret/pokeplatinum PartyPokemon mail
+constexpr size_t SEALS_OFFSET = 0xD4;        // pret/pokeplatinum PartyPokemon ballCapsule.seals
 constexpr size_t SEAL_SIZE = 3;
 
 constexpr unsigned BAD_EGG_BIT = 2;

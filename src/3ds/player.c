@@ -5,15 +5,18 @@
 #include "nds/nds_internal.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t TRAINER_ID_OFFSET = 0x00;
 constexpr size_t SECRET_ID_OFFSET = 0x02;
 constexpr size_t VERSION_OFFSET = 0x04;
 constexpr size_t TRAINER_GENDER_OFFSET = 0x05;
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t PLAY_HOURS_OFFSET = 0x0;
 constexpr size_t PLAY_MINUTES_OFFSET = 0x2;
 constexpr size_t PLAY_SECONDS_OFFSET = 0x3;
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t GEN6_MONEY_OFFSET = 0x08;
 constexpr size_t GEN6_BADGES_OFFSET = 0x0C;
 constexpr size_t GEN7_MONEY_OFFSET = 0x04;

@@ -8,6 +8,9 @@
 #include "nds/nds_internal.h"
 #include "spec_internal.h"
 
+// Gen 6's offsets match Project Pokémon's PKM Structure (X/Y) but for the training bag, the form
+// argument and the form's days; those and Gen 7's are the community's. TODO: Verify against the
+// carts.
 constexpr size_t ENCRYPTION_CONSTANT_OFFSET = 0x00;
 constexpr size_t FLAGS_OFFSET = 0x04;
 constexpr size_t CHECKSUM_OFFSET = 0x06;

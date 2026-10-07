@@ -3,8 +3,9 @@
 
 #include "3ds/3ds_internal.h"
 
-// The block lists are the community's, which every footer of the 3DS saves in hand confirms, and
-// each block starts where the last one's length, rounded up to 0x200, ends; so are the labels.
+// Every footer of the 3DS saves in hand confirms the block lists, and each block starts where the
+// last one's length, rounded up to 0x200, ends. The labels are the community's, as are the numbers
+// inside blocks. TODO: Verify the labels and in-block numbers against the carts.
 constexpr spec_3ds_layout_t X_Y_LAYOUT = {
     .type = SPEC_GAME_TYPE_X_Y,
     .save_size = 0x65600,
@@ -68,22 +69,22 @@ constexpr spec_3ds_layout_t X_Y_LAYOUT = {
             {0x57200, 0x0E058}, // 54 JPEG
         },
 
-    .trainer_offset = 0x14000,
-    .misc_offset = 0x04200,
+    .trainer_offset = 0x14000, // MyStatus block
+    .misc_offset = 0x04200,    // Misc block
     .battle_points_offset = 0x3C,
-    .play_time_offset = 0x01800,
-    .options_offset = 0x16200,
-    .pokedex_offset = 0x15000,
+    .play_time_offset = 0x01800, // PlayTime block
+    .options_offset = 0x16200,   // ConfigSave block
+    .pokedex_offset = 0x15000,   // ZukanData block
     .has_bank_caught_flags = true,
 
-    .party_offset = 0x14200,
-    .box_info_offset = 0x04400,
-    .boxes_offset = 0x22600,
+    .party_offset = 0x14200,    // PokePartySave block
+    .box_info_offset = 0x04400, // BOX block
+    .boxes_offset = 0x22600,    // Box block
     .box_count = 31,
-    .daycare_offset = 0x1B200,
+    .daycare_offset = 0x1B200, // Sodateya block
     .daycare_count = 1,
 
-    .bag_offset = 0x00400,
+    .bag_offset = 0x00400, // MyItem block
     .pocket_offsets =
         {
             [SPEC_3DS_POCKET_ITEMS] = 0x000,
@@ -168,21 +169,21 @@ constexpr spec_3ds_layout_t OMEGA_RUBY_ALPHA_SAPPHIRE_LAYOUT = {
             {0x67C00, 0x0E058}, // 57 JPEG
         },
 
-    .trainer_offset = 0x14000,
-    .misc_offset = 0x04200,
+    .trainer_offset = 0x14000, // MyStatus block
+    .misc_offset = 0x04200,    // Misc block
     .battle_points_offset = 0x30,
-    .play_time_offset = 0x01800,
-    .options_offset = 0x16C00,
-    .pokedex_offset = 0x15000,
+    .play_time_offset = 0x01800, // PlayTime block
+    .options_offset = 0x16C00,   // ConfigSave block
+    .pokedex_offset = 0x15000,   // ZukanData block
 
-    .party_offset = 0x14200,
-    .box_info_offset = 0x04400,
-    .boxes_offset = 0x33000,
+    .party_offset = 0x14200,    // PokePartySave block
+    .box_info_offset = 0x04400, // BOX block
+    .boxes_offset = 0x33000,    // Box block
     .box_count = 31,
-    .daycare_offset = 0x1BC00,
+    .daycare_offset = 0x1BC00, // Sodateya block
     .daycare_count = 2,
 
-    .bag_offset = 0x00400,
+    .bag_offset = 0x00400, // MyItem block
     .pocket_offsets =
         {
             [SPEC_3DS_POCKET_ITEMS] = 0x000,
@@ -249,21 +250,21 @@ constexpr spec_3ds_layout_t SUN_MOON_LAYOUT = {
     .signed_block = 36,
     .hashed_footer_size = 0x140,
 
-    .trainer_offset = 0x01200,
-    .misc_offset = 0x04000,
+    .trainer_offset = 0x01200, // MyStatus block
+    .misc_offset = 0x04000,    // Misc block
     .battle_points_offset = 0x11C,
-    .play_time_offset = 0x40C00,
-    .options_offset = 0x04400,
-    .pokedex_offset = 0x02A00,
+    .play_time_offset = 0x40C00, // PlayTime block
+    .options_offset = 0x04400,   // ConfigSave block
+    .pokedex_offset = 0x02A00,   // ZukanData block
 
-    .party_offset = 0x01400,
-    .box_info_offset = 0x04800,
-    .boxes_offset = 0x04E00,
+    .party_offset = 0x01400,    // PokePartySave block
+    .box_info_offset = 0x04800, // BOX block
+    .boxes_offset = 0x04E00,    // BoxPokemon block
     .box_count = 32,
-    .daycare_offset = 0x6B400,
+    .daycare_offset = 0x6B400, // Sodateya block
     .daycare_count = 1,
 
-    .bag_offset = 0x00000,
+    .bag_offset = 0x00000, // MyItem block
     .pocket_offsets =
         {
             [SPEC_3DS_POCKET_ITEMS] = 0x000,
@@ -334,21 +335,21 @@ constexpr spec_3ds_layout_t ULTRA_SUN_ULTRA_MOON_LAYOUT = {
     .signed_block = 36,
     .hashed_footer_size = 0x150,
 
-    .trainer_offset = 0x01400,
-    .misc_offset = 0x04400,
+    .trainer_offset = 0x01400, // MyStatus block
+    .misc_offset = 0x04400,    // Misc block
     .battle_points_offset = 0x11C,
-    .play_time_offset = 0x41000,
-    .options_offset = 0x04800,
-    .pokedex_offset = 0x02C00,
+    .play_time_offset = 0x41000, // PlayTime block
+    .options_offset = 0x04800,   // ConfigSave block
+    .pokedex_offset = 0x02C00,   // ZukanData block
 
-    .party_offset = 0x01600,
-    .box_info_offset = 0x04C00,
-    .boxes_offset = 0x05200,
+    .party_offset = 0x01600,    // PokePartySave block
+    .box_info_offset = 0x04C00, // BOX block
+    .boxes_offset = 0x05200,    // BoxPokemon block
     .box_count = 32,
-    .daycare_offset = 0x6BA00,
+    .daycare_offset = 0x6BA00, // Sodateya block
     .daycare_count = 1,
 
-    .bag_offset = 0x00000,
+    .bag_offset = 0x00000, // MyItem block
     .pocket_offsets =
         {
             [SPEC_3DS_POCKET_ITEMS] = 0x000,

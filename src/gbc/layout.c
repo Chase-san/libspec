@@ -169,12 +169,12 @@ constexpr spec_gbc_layout_t JAPANESE_CRYSTAL_LAYOUT = {
     .party_shape = JAPANESE_PARTY_SHAPE,
     .box_shape = JAPANESE_BOX_SHAPE,
 
-    .game_data_size = 0xADA,             // Bulbapedia Checksums
-    .checksum_offset = 0x2D0D,           // Bulbapedia Checksums
+    .game_data_size = 0xADA,             // Bulbapedia Checksums; TODO: verify
+    .checksum_offset = 0x2D0D,           // Bulbapedia Checksums; TODO: verify
     .backup_check_value_offset = 0x7208, // cgb-bxtj-jpn.gbc
-    .backup_checksum_offset = 0x7F0D,    // Bulbapedia Checksums
+    .backup_checksum_offset = 0x7F0D,    // Bulbapedia Checksums; TODO: verify
     .backup_chunk_count = 1,
-    .backup_chunks = {{0x2009, 0xADA, 0x7209}}, // Bulbapedia Checksums
+    .backup_chunks = {{0x2009, 0xADA, 0x7209}}, // Bulbapedia Checksums; TODO: verify
 
     .mail_size = 0x2A, // cgb-bxtj-jpn.gbc BackupPartyMonMail (#0x47B49)
     .mail_author_size = 5,
@@ -185,27 +185,27 @@ constexpr spec_gbc_layout_t JAPANESE_CRYSTAL_LAYOUT = {
     .mailbox_backup_offset = 0x099D,    // cgb-bxtj-jpn.gbc BackupPartyMonMail (#0x47B49)
 
     .trainer_id_offset = 0x2009,     // cgb-bxtj-jpn.gbc SavePlayerData (#0x14DB9)
-    .rival_name_offset = 0x2017,     // Bulbapedia Rival name
+    .rival_name_offset = 0x2017,     // Bulbapedia Rival name; TODO: verify
     .play_time_offset = 0x2033,      // cgb-bxtj-jpn.gbc GameTimer (#0x207B)
     .status_flags_offset = 0x23BC,   // cgb-bxtj-jpn.gbc
-    .money_offset = 0x23BE,          // Bulbapedia Money
-    .coins_offset = 0x23C5,          // Bulbapedia Game Coins
-    .badges_offset = 0x23C7,         // Bulbapedia Johto Badges
-    .tms_hms_offset = 0x23C9,        // Bulbapedia TM pocket
-    .items_offset = 0x2402,          // Bulbapedia Item pocket item list
-    .key_items_offset = 0x242C,      // Bulbapedia Key item pocket item list
-    .balls_offset = 0x2447,          // Bulbapedia Ball pocket item list
-    .pc_items_offset = 0x2461,       // Bulbapedia PC item list
-    .current_box_offset = 0x26E2,    // Bulbapedia Current PC Box number
-    .box_names_offset = 0x26E5,      // Bulbapedia PC Box names
-    .party_offset = 0x281A,          // Bulbapedia Party Pokémon list
-    .pokedex_caught_offset = 0x29AA, // Bulbapedia Pokédex owned
-    .pokedex_seen_offset = 0x29CA,   // Bulbapedia Pokédex seen
+    .money_offset = 0x23BE,          // Bulbapedia Money; TODO: verify
+    .coins_offset = 0x23C5,          // Bulbapedia Game Coins; TODO: verify
+    .badges_offset = 0x23C7,         // Bulbapedia Johto Badges; TODO: verify
+    .tms_hms_offset = 0x23C9,        // Bulbapedia TM pocket; TODO: verify
+    .items_offset = 0x2402,          // Bulbapedia Item pocket item list; TODO: verify
+    .key_items_offset = 0x242C,      // Bulbapedia Key item pocket item list; TODO: verify
+    .balls_offset = 0x2447,          // Bulbapedia Ball pocket item list; TODO: verify
+    .pc_items_offset = 0x2461,       // Bulbapedia PC item list; TODO: verify
+    .current_box_offset = 0x26E2,    // Bulbapedia Current PC Box number; TODO: verify
+    .box_names_offset = 0x26E5,      // Bulbapedia PC Box names; TODO: verify
+    .party_offset = 0x281A,          // Bulbapedia Party Pokémon list; TODO: verify
+    .pokedex_caught_offset = 0x29AA, // Bulbapedia Pokédex owned; TODO: verify
+    .pokedex_seen_offset = 0x29CA,   // Bulbapedia Pokédex seen; TODO: verify
     .unown_dex_offset = 0x29EA,      // cgb-bxtj-jpn.gbc
     .daycare_offset = 0x2A06,        // cgb-bxtj-jpn.gbc
-    .active_box_offset = 0x2D10,     // Bulbapedia Current Box Pokémon list
+    .active_box_offset = 0x2D10,     // Bulbapedia Current Box Pokémon list; TODO: verify
     .has_player_gender = true,
-    .player_gender_offset = 0x8000, // Bulbapedia Player gender
+    .player_gender_offset = 0x8000, // Bulbapedia Player gender; TODO: verify
 };
 
 static bool is_international(spec_language_t language) {

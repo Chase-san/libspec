@@ -6,6 +6,7 @@
 #include "3ds/3ds_internal.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t GEN6_CAUGHT_OFFSET = 0x008;
 constexpr size_t GEN6_SEEN_OFFSET = 0x068;
 constexpr size_t GEN6_DISPLAYED_OFFSET = 0x1E8;

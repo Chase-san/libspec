@@ -7,6 +7,7 @@
 #include "nds/nds_internal.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t PARTY_COUNT_OFFSET = 0x618;
 
 constexpr size_t BOX_NAME_FIELD_SIZE = SPEC_3DS_BOX_NAME_SIZE * 2;
@@ -17,6 +18,7 @@ constexpr size_t GEN7_CURRENT_BOX_OFFSET = 0x5E3;
 constexpr size_t BOX_SIZE = SPEC_3DS_BOX_CAPACITY * SPEC_3DS_BOX_RECORD_SIZE;
 
 // Gen 6: an occupied word and the experience gained before each record; a second daycare follows.
+// The community's. TODO: Verify against the carts.
 constexpr size_t GEN6_DAYCARE_SIZE = 0x1F0;
 constexpr size_t GEN6_DAYCARE_SLOT_SIZE = 0xF0;
 constexpr size_t GEN6_DAYCARE_EXPERIENCE_OFFSET = 0x4;

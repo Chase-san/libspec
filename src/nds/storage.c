@@ -6,14 +6,15 @@
 #include "nds/nds_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t PARTY_COUNT_OFFSET = 0x4;
-constexpr size_t PARTY_RECORDS_OFFSET = 0x8;
+constexpr size_t PARTY_COUNT_OFFSET = 0x4;   // pret/pokeplatinum Party currentCount
+constexpr size_t PARTY_RECORDS_OFFSET = 0x8; // pret/pokeplatinum Party pokemon
 constexpr size_t BOX_NAME_FIELD_SIZE = SPEC_NDS_BOX_NAME_SIZE * 2;
 
-constexpr size_t DAYCARE_SLOT_SIZE = 0xEC;
-constexpr size_t DAYCARE_STEPS_OFFSET = 0xE8;
+constexpr size_t DAYCARE_SLOT_SIZE = 0xEC;    // pret/pokeplatinum Daycare mons[1]
+constexpr size_t DAYCARE_STEPS_OFFSET = 0xE8; // pret/pokeplatinum Daycare mons[0].steps
+// pret/pokeplatinum Daycare offspringPersonality
 constexpr size_t DAYCARE_EGG_PERSONALITY_OFFSET = 0x1D8;
-constexpr size_t DAYCARE_STEP_COUNTER_OFFSET = 0x1DC;
+constexpr size_t DAYCARE_STEP_COUNTER_OFFSET = 0x1DC; // pret/pokeplatinum Daycare stepCounter
 
 static size_t party_record_offset(const spec_nds_layout_t *layout, size_t index) {
     return layout->party_offset + PARTY_RECORDS_OFFSET + index * SPEC_NDS_PARTY_RECORD_SIZE;

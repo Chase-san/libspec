@@ -5,19 +5,20 @@
 #include "nds/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t CAUGHT_OFFSET = 0x04;
-constexpr size_t SEEN_OFFSET = 0x44;
-constexpr size_t FIRST_GENDERS_OFFSET = 0x84;
-constexpr size_t SECOND_GENDERS_OFFSET = 0xC4;
+constexpr size_t CAUGHT_OFFSET = 0x04;         // pret/pokeplatinum Pokedex caughtPokemon
+constexpr size_t SEEN_OFFSET = 0x44;           // pret/pokeplatinum Pokedex seenPokemon
+constexpr size_t FIRST_GENDERS_OFFSET = 0x84;  // pret/pokeplatinum Pokedex recordedGenders[0]
+constexpr size_t SECOND_GENDERS_OFFSET = 0xC4; // pret/pokeplatinum Pokedex recordedGenders[1]
 constexpr size_t FLAGS_SIZE = 0x40;
-constexpr size_t SPINDA_OFFSET = 0x104;
-constexpr size_t SHELLOS_OFFSET = 0x108;
-constexpr size_t GASTRODON_OFFSET = 0x109;
-constexpr size_t BURMY_OFFSET = 0x10A;
-constexpr size_t WORMADAM_OFFSET = 0x10B;
-constexpr size_t UNOWN_SEEN_OFFSET = 0x10C;
+constexpr size_t SPINDA_OFFSET = 0x104;     // pret/pokeplatinum Pokedex spindaForm
+constexpr size_t SHELLOS_OFFSET = 0x108;    // pret/pokeplatinum Pokedex shellosFormsSeen
+constexpr size_t GASTRODON_OFFSET = 0x109;  // pret/pokeplatinum Pokedex gastrodonFormsSeen
+constexpr size_t BURMY_OFFSET = 0x10A;      // pret/pokeplatinum Pokedex burmyFormsSeen
+constexpr size_t WORMADAM_OFFSET = 0x10B;   // pret/pokeplatinum Pokedex wormadamFormsSeen
+constexpr size_t UNOWN_SEEN_OFFSET = 0x10C; // pret/pokeplatinum Pokedex unownFormsSeen
 // Deoxys's first two forms sit in the caught flags' last byte, the other two in the seen flags'.
 constexpr size_t DEOXYS_FLAGS_BYTE = FLAGS_SIZE - 1;
+// pret/pokeplatinum PlayerSave info.hasNationalDex
 constexpr size_t PLAYER_NATIONAL_DEX_OFFSET = 0x21;
 constexpr unsigned PLAYER_NATIONAL_DEX_BIT = 1;
 

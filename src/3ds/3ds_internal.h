@@ -17,6 +17,7 @@ constexpr size_t SPEC_3DS_AES_ROUND_KEYS_SIZE = 176;
 // The save key's 768-bit modulus, and the numbers it works on.
 constexpr size_t SPEC_3DS_RSA_SIZE = 0x60;
 // Gen 7's signature, inside its signed block: the footer's SHA-256, then the RSA signature.
+// The community's. TODO: Verify against the carts.
 constexpr size_t SPEC_3DS_SIGNATURE_OFFSET = 0x100;
 constexpr size_t SPEC_3DS_SIGNATURE_SIZE = 0x80;
 

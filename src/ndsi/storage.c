@@ -9,9 +9,12 @@
 
 // The byte after the records does not follow the party count, so it stays as the game wrote it.
 // TODO: Determine what that byte holds.
+// ds-pokemon-hacking/swan PokeParty PokemonCount; TODO: verify
 constexpr size_t PARTY_COUNT_OFFSET = 0x4;
+// ds-pokemon-hacking/swan PokeParty Pokemon; TODO: verify
 constexpr size_t PARTY_RECORDS_OFFSET = 0x8;
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t CURRENT_BOX_OFFSET = 0x0;
 constexpr size_t BOX_NAMES_OFFSET = 0x4;
 constexpr size_t BOX_NAME_FIELD_SIZE = SPEC_NDSI_BOX_NAME_SIZE * 2;
@@ -20,6 +23,7 @@ constexpr size_t BOX_STRIDE = 0x1000;
 // Sixteen plain wallpapers, then eight special ones.
 constexpr uint8_t WALLPAPER_COUNT = 24;
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t DAYCARE_SLOT_SIZE = 0xE4;
 constexpr size_t DAYCARE_RECORD_OFFSET = 0x4;
 constexpr size_t DAYCARE_STEPS_OFFSET = 0xE0;

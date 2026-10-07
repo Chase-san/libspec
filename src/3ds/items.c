@@ -5,6 +5,7 @@
 #include "3ds/tables.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t ITEM_SLOT_SIZE = 4;
 constexpr size_t GEN6_QUANTITY_OFFSET = 2;
 // Gen 7 packs a slot into one word.

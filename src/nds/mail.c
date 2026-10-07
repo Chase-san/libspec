@@ -4,17 +4,17 @@
 #include "nds/nds_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t AUTHOR_ID_OFFSET = 0x00;
-constexpr size_t AUTHOR_SECRET_ID_OFFSET = 0x02;
-constexpr size_t AUTHOR_GENDER_OFFSET = 0x04;
-constexpr size_t LANGUAGE_OFFSET = 0x05;
-constexpr size_t VERSION_OFFSET = 0x06;
-constexpr size_t TYPE_OFFSET = 0x07;
-constexpr size_t AUTHOR_NAME_OFFSET = 0x08;
-constexpr size_t ICONS_OFFSET = 0x18;
-constexpr size_t ICON_FORMS_OFFSET = 0x1E;
-constexpr size_t SENTENCES_OFFSET = 0x20;
-constexpr size_t SENTENCE_SIZE = 8;
+constexpr size_t AUTHOR_ID_OFFSET = 0x00;        // pret/pokeplatinum Mail trainerID
+constexpr size_t AUTHOR_SECRET_ID_OFFSET = 0x02; // pret/pokeplatinum Mail trainerID, upper half
+constexpr size_t AUTHOR_GENDER_OFFSET = 0x04;    // pret/pokeplatinum Mail trainerGender
+constexpr size_t LANGUAGE_OFFSET = 0x05;         // pret/pokeplatinum Mail language
+constexpr size_t VERSION_OFFSET = 0x06;          // pret/pokeplatinum Mail gameVersion
+constexpr size_t TYPE_OFFSET = 0x07;             // pret/pokeplatinum Mail mailType
+constexpr size_t AUTHOR_NAME_OFFSET = 0x08;      // pret/pokeplatinum Mail trainerName
+constexpr size_t ICONS_OFFSET = 0x18;            // pret/pokeplatinum Mail iconData
+constexpr size_t ICON_FORMS_OFFSET = 0x1E;       // pret/pokeplatinum Mail platExclusiveFormIcons
+constexpr size_t SENTENCES_OFFSET = 0x20;        // pret/pokeplatinum Mail sentences
+constexpr size_t SENTENCE_SIZE = 8;              // pret/pokeplatinum EasyChatSentence
 
 constexpr unsigned ICON_SPRITE_BIT_COUNT = 12;
 constexpr unsigned ICON_PALETTE_BIT = 12;

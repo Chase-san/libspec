@@ -5,16 +5,20 @@
 #include "ndsi/ndsi_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t AUTHOR_ID_OFFSET = 0x00;
+constexpr size_t AUTHOR_ID_OFFSET = 0x00; // ds-pokemon-hacking/swan MailData TID; TODO: verify
+// ds-pokemon-hacking/swan MailData TID, upper half; TODO: verify
 constexpr size_t AUTHOR_SECRET_ID_OFFSET = 0x02;
+// ds-pokemon-hacking/swan MailData TrainerGender; TODO: verify
 constexpr size_t AUTHOR_GENDER_OFFSET = 0x04;
-constexpr size_t LANGUAGE_OFFSET = 0x05;
+constexpr size_t LANGUAGE_OFFSET = 0x05; // ds-pokemon-hacking/swan MailData Region; TODO: verify
+// ds-pokemon-hacking/swan MailData GameVersion; TODO: verify
 constexpr size_t VERSION_OFFSET = 0x06;
-constexpr size_t TYPE_OFFSET = 0x07;
+constexpr size_t TYPE_OFFSET = 0x07; // ds-pokemon-hacking/swan MailData byte7; TODO: verify
+// ds-pokemon-hacking/swan MailData StringContent; TODO: verify
 constexpr size_t AUTHOR_NAME_OFFSET = 0x08;
 // TODO: Determine what Gen 5 does with the icon words.
-constexpr size_t ICONS_OFFSET = 0x18;
-constexpr size_t SENTENCES_OFFSET = 0x20;
+constexpr size_t ICONS_OFFSET = 0x18;     // ds-pokemon-hacking/swan MailData field_18; TODO: verify
+constexpr size_t SENTENCES_OFFSET = 0x20; // ds-pokemon-hacking/swan MailData field_20; TODO: verify
 
 constexpr uint8_t NO_MAIL = 0xFF;
 constexpr uint16_t NO_ENTRY = 0xFFFF;

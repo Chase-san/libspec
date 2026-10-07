@@ -4,6 +4,7 @@
 #include "ndsi/ndsi_internal.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t CAUGHT_OFFSET = 0x008;
 constexpr size_t SEEN_OFFSET = 0x05C;
 constexpr size_t DISPLAYED_OFFSET = 0x1AC;

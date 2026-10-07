@@ -5,13 +5,16 @@
 #include "ndsi/ndsi_internal.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr uint32_t FOOTER_MAGIC = 0x31053527;
 constexpr size_t FOOTER_SAVE_COUNT_OFFSET = 0x0;
 constexpr size_t FOOTER_USED_SIZE_OFFSET = 0x4;
 constexpr size_t FOOTER_MAGIC_OFFSET = 0x8;
+// Project Pokémon BW Save Structure Checksum Block; TODO: verify
 constexpr size_t FOOTER_CRC_OFFSET = 0xE;
 constexpr size_t FOOTER_SIZE = 0x10;
 constexpr size_t TRAILER_COUNTER_OFFSET = 0x0;
+// Project Pokémon BW Save Structure Checksum; TODO: verify
 constexpr size_t TRAILER_CRC_OFFSET = 0x2;
 
 static size_t used_size_of(const spec_ndsi_layout_t *layout) {

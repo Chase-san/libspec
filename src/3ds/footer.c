@@ -5,6 +5,7 @@
 #include "3ds/3ds_internal.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t FOOTER_SIZE = 0x200;
 constexpr size_t FOOTER_MAGIC_OFFSET = 0x10;
 constexpr uint32_t FOOTER_MAGIC = 0x42454546;

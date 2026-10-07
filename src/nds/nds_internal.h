@@ -8,7 +8,7 @@
 
 #include "nds/nds.h"
 
-constexpr size_t SPEC_NDS_PARTITION_SIZE = 0x40000;
+constexpr size_t SPEC_NDS_PARTITION_SIZE = 0x40000; // pret/pokeplatinum BACKUP_SECTOR_START
 
 // Offsets are Pokédex-relative.
 struct spec_nds_pokedex_layout {

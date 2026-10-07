@@ -2,7 +2,8 @@
 
 #include "ndsi/ndsi_internal.h"
 
-// The block lists are the community's, which every Gen 5 save in hand confirms; so are the labels.
+// The block lists match Project Pokémon's BW and B2W2 Save Structure pages and every Gen 5 save in
+// hand; the labels are the community's. TODO: Verify the block lists against the carts.
 constexpr spec_ndsi_layout_t BLACK_WHITE_LAYOUT = {
     .type = SPEC_GAME_TYPE_BLACK_WHITE,
     .copy_size = 0x24000,
@@ -79,20 +80,20 @@ constexpr spec_ndsi_layout_t BLACK_WHITE_LAYOUT = {
             {0x23D00, 0x0040}, // Unknown
             {0x23E00, 0x00FC}, // Unknown
         },
-    .table_offset = 0x23F00,
-    .footer_offset = 0x23F8C,
+    .table_offset = 0x23F00,  // Project Pokémon BW Save Structure Checksum Block; TODO: verify
+    .footer_offset = 0x23F8C, // Project Pokémon BW Save Structure Checksum Block; TODO: verify
 
-    .trainer_offset = 0x19400,
-    .misc_offset = 0x21200,
+    .trainer_offset = 0x19400, // Trainer block
+    .misc_offset = 0x21200,    // Misc block
     .has_rival_name = false,
-    .pokedex_offset = 0x21600,
-    .spinda_offset = 0x4D0,
+    .pokedex_offset = 0x21600, // Pokédex block
+    .spinda_offset = 0x4D0,    // community; TODO: verify
 
-    .party_offset = 0x18E00,
-    .daycare_offset = 0x20E00,
-    .box_info_offset = 0x00000,
-    .first_box_offset = 0x00400,
-    .bag_offset = 0x18400,
+    .party_offset = 0x18E00,     // Party block
+    .daycare_offset = 0x20E00,   // Daycare block
+    .box_info_offset = 0x00000,  // Box Names block
+    .first_box_offset = 0x00400, // Box 1 block
+    .bag_offset = 0x18400,       // Bag block
 };
 
 constexpr spec_ndsi_layout_t BLACK2_WHITE2_LAYOUT = {
@@ -175,21 +176,21 @@ constexpr spec_ndsi_layout_t BLACK2_WHITE2_LAYOUT = {
             {0x25A00, 0x03E4}, // Pokéstar Studios
             {0x25E00, 0x00F0}, // Unknown
         },
-    .table_offset = 0x25F00,
-    .footer_offset = 0x25F94,
+    .table_offset = 0x25F00,  // Project Pokémon B2W2 Save Structure Mirror; TODO: verify
+    .footer_offset = 0x25F94, // community; TODO: verify
 
-    .trainer_offset = 0x19400,
-    .misc_offset = 0x21100,
+    .trainer_offset = 0x19400, // Trainer block
+    .misc_offset = 0x21100,    // Misc block
     .has_rival_name = true,
-    .rival_name_offset = 0x23BA4,
-    .pokedex_offset = 0x21400,
-    .spinda_offset = 0x4D8,
+    .rival_name_offset = 0x23BA4, // community; TODO: verify
+    .pokedex_offset = 0x21400,    // Pokédex block
+    .spinda_offset = 0x4D8,       // community; TODO: verify
 
-    .party_offset = 0x18E00,
-    .daycare_offset = 0x20D00,
-    .box_info_offset = 0x00000,
-    .first_box_offset = 0x00400,
-    .bag_offset = 0x18400,
+    .party_offset = 0x18E00,     // Party block
+    .daycare_offset = 0x20D00,   // Daycare block
+    .box_info_offset = 0x00000,  // Box Names block
+    .first_box_offset = 0x00400, // Box 1 block
+    .bag_offset = 0x18400,       // Bag block
 };
 
 const spec_ndsi_layout_t *spec_ndsi_get_layout(spec_game_type_t type) {

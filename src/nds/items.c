@@ -5,8 +5,8 @@
 #include "nds/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t ITEM_SLOT_SIZE = 4;
-constexpr size_t ITEM_QUANTITY_OFFSET = 2;
+constexpr size_t ITEM_SLOT_SIZE = 4;       // pret/pokeplatinum BagItem
+constexpr size_t ITEM_QUANTITY_OFFSET = 2; // pret/pokeplatinum BagItem quantity
 
 constexpr size_t DIAMOND_PEARL_PLATINUM_POCKET_CAPACITIES[SPEC_NDS_POCKET_COUNT] = {
     [SPEC_NDS_POCKET_ITEMS] = 165,       [SPEC_NDS_POCKET_MEDICINE] = 40,

@@ -5,16 +5,18 @@
 #include "ndsi/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t ITEM_SLOT_SIZE = 4;
-constexpr size_t ITEM_QUANTITY_OFFSET = 2;
+constexpr size_t ITEM_SLOT_SIZE = 4;       // ds-pokemon-hacking/swan BagItem; TODO: verify
+constexpr size_t ITEM_QUANTITY_OFFSET = 2; // ds-pokemon-hacking/swan BagItem Count; TODO: verify
 
-// Bag-relative, in the order the bag stores them.
+// Bag-relative, in the order the bag stores them (ds-pokemon-hacking/swan BagSaveData). TODO:
+// Verify.
 constexpr size_t POCKET_OFFSETS[SPEC_NDSI_POCKET_COUNT] = {
     [SPEC_NDSI_POCKET_ITEMS] = 0x000,   [SPEC_NDSI_POCKET_KEY_ITEMS] = 0x4D8,
     [SPEC_NDSI_POCKET_TMS_HMS] = 0x624, [SPEC_NDSI_POCKET_MEDICINE] = 0x7D8,
     [SPEC_NDSI_POCKET_BERRIES] = 0x898,
 };
 
+// ds-pokemon-hacking/swan BagSaveData. TODO: Verify.
 constexpr size_t POCKET_CAPACITIES[SPEC_NDSI_POCKET_COUNT] = {
     [SPEC_NDSI_POCKET_ITEMS] = 310,   [SPEC_NDSI_POCKET_KEY_ITEMS] = 83,
     [SPEC_NDSI_POCKET_TMS_HMS] = 109, [SPEC_NDSI_POCKET_MEDICINE] = 48,

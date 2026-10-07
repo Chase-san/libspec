@@ -5,6 +5,7 @@
 #include "3ds/3ds_internal.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t FOOTER_SIZE = 0x200;
 // The signed message: the hash, zeros, then the first bytes of a SHA-1 over the two.
 constexpr size_t MESSAGE_SIZE = 0x80;

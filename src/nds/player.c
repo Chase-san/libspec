@@ -4,19 +4,19 @@
 #include "nds/nds_internal.h"
 #include "spec_internal.h"
 
-constexpr size_t OPTIONS_OFFSET = 0x00;
-constexpr size_t TRAINER_NAME_OFFSET = 0x04;
-constexpr size_t TRAINER_ID_OFFSET = 0x14;
-constexpr size_t SECRET_ID_OFFSET = 0x16;
-constexpr size_t MONEY_OFFSET = 0x18;
-constexpr size_t TRAINER_GENDER_OFFSET = 0x1C;
-constexpr size_t LANGUAGE_OFFSET = 0x1D;
-constexpr size_t BADGES_OFFSET = 0x1E;
-constexpr size_t KANTO_BADGES_OFFSET = 0x23;
-constexpr size_t COINS_OFFSET = 0x24;
-constexpr size_t PLAY_HOURS_OFFSET = 0x26;
-constexpr size_t PLAY_MINUTES_OFFSET = 0x28;
-constexpr size_t PLAY_SECONDS_OFFSET = 0x29;
+constexpr size_t OPTIONS_OFFSET = 0x00;        // pret/pokeplatinum PlayerSave options
+constexpr size_t TRAINER_NAME_OFFSET = 0x04;   // pret/pokeplatinum PlayerSave info.name
+constexpr size_t TRAINER_ID_OFFSET = 0x14;     // pret/pokeplatinum PlayerSave info.id
+constexpr size_t SECRET_ID_OFFSET = 0x16;      // pret/pokeplatinum PlayerSave info.id, upper half
+constexpr size_t MONEY_OFFSET = 0x18;          // pret/pokeplatinum PlayerSave info.money
+constexpr size_t TRAINER_GENDER_OFFSET = 0x1C; // pret/pokeplatinum PlayerSave info.gender
+constexpr size_t LANGUAGE_OFFSET = 0x1D;       // pret/pokeplatinum PlayerSave info.language
+constexpr size_t BADGES_OFFSET = 0x1E;         // pret/pokeplatinum PlayerSave info.badgeMask
+constexpr size_t KANTO_BADGES_OFFSET = 0x23;   // pret/pokeheartgold PLAYERDATA profile.kantoBadges
+constexpr size_t COINS_OFFSET = 0x24;          // pret/pokeplatinum PlayerSave coins
+constexpr size_t PLAY_HOURS_OFFSET = 0x26;     // pret/pokeplatinum PlayerSave playTime.hours
+constexpr size_t PLAY_MINUTES_OFFSET = 0x28;   // pret/pokeplatinum PlayerSave playTime.minutes
+constexpr size_t PLAY_SECONDS_OFFSET = 0x29;   // pret/pokeplatinum PlayerSave playTime.seconds
 
 constexpr unsigned TEXT_SPEED_BIT = 0;
 constexpr unsigned TEXT_SPEED_BIT_COUNT = 4;

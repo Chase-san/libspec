@@ -5,6 +5,7 @@
 #include "ndsi/ndsi_internal.h"
 #include "spec_internal.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t TRAINER_NAME_OFFSET = 0x04;
 constexpr size_t TRAINER_ID_OFFSET = 0x14;
 constexpr size_t SECRET_ID_OFFSET = 0x16;
@@ -14,6 +15,7 @@ constexpr size_t PLAY_HOURS_OFFSET = 0x24;
 constexpr size_t PLAY_MINUTES_OFFSET = 0x26;
 constexpr size_t PLAY_SECONDS_OFFSET = 0x27;
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t MONEY_OFFSET = 0x00;
 constexpr size_t BADGES_OFFSET = 0x04;
 

@@ -8,6 +8,7 @@
 
 #include "ndsi/ndsi.h"
 
+// The community's. TODO: Verify against the carts.
 constexpr size_t SPEC_NDSI_BLOCK_TRAILER_SIZE = 4;
 constexpr size_t SPEC_NDSI_BLOCK_MAX_COUNT = 73;
 

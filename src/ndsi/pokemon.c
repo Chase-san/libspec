@@ -8,58 +8,88 @@
 #include "ndsi/tables.h"
 #include "spec_internal.h"
 
-constexpr size_t PERSONALITY_OFFSET = 0x00;
-constexpr size_t FLAGS_OFFSET = 0x04;
-constexpr size_t CHECKSUM_OFFSET = 0x06;
-constexpr size_t BLOCKS_OFFSET = 0x08;
+constexpr size_t PERSONALITY_OFFSET = 0x00; // ds-pokemon-hacking/swan BoxPkm pid; TODO: verify
+constexpr size_t FLAGS_OFFSET = 0x04;    // ds-pokemon-hacking/swan BoxPkm SanityFlags; TODO: verify
+constexpr size_t CHECKSUM_OFFSET = 0x06; // ds-pokemon-hacking/swan BoxPkm checksum; TODO: verify
+constexpr size_t BLOCKS_OFFSET = 0x08; // ds-pokemon-hacking/swan BoxPkm ContentBuffer; TODO: verify
 constexpr size_t BLOCK_SIZE = 0x20;
 constexpr size_t BLOCKS_SIZE = 4 * BLOCK_SIZE;
 
+// ds-pokemon-hacking/swan BoxPkmBlock0 Species; TODO: verify
 constexpr size_t SPECIES_OFFSET = 0x08;
+// ds-pokemon-hacking/swan BoxPkmBlock0 HeldItem; TODO: verify
 constexpr size_t HELD_ITEM_OFFSET = 0x0A;
+// ds-pokemon-hacking/swan BoxPkmBlock0 TIDSID; TODO: verify
 constexpr size_t TRAINER_ID_OFFSET = 0x0C;
+// ds-pokemon-hacking/swan BoxPkmBlock0 TIDSID, upper half; TODO: verify
 constexpr size_t SECRET_ID_OFFSET = 0x0E;
+// ds-pokemon-hacking/swan BoxPkmBlock0 Experience; TODO: verify
 constexpr size_t EXPERIENCE_OFFSET = 0x10;
+// ds-pokemon-hacking/swan BoxPkmBlock0 Happiness; TODO: verify
 constexpr size_t FRIENDSHIP_OFFSET = 0x14;
+// ds-pokemon-hacking/swan BoxPkmBlock0 Ability; TODO: verify
 constexpr size_t ABILITY_OFFSET = 0x15;
+// ds-pokemon-hacking/swan BoxPkmBlock0 Markings; TODO: verify
 constexpr size_t MARKINGS_OFFSET = 0x16;
+// ds-pokemon-hacking/swan BoxPkmBlock0 Region; TODO: verify
 constexpr size_t LANGUAGE_OFFSET = 0x17;
-constexpr size_t EVS_OFFSET = 0x18;
+constexpr size_t EVS_OFFSET = 0x18; // ds-pokemon-hacking/swan BoxPkmBlock0 EvHP; TODO: verify
+// ds-pokemon-hacking/swan BoxPkmBlock0 ContestCool; TODO: verify
 constexpr size_t CONTEST_STATS_OFFSET = 0x1E;
+// ds-pokemon-hacking/swan BoxPkmBlock0 ContestSheen; TODO: verify
 constexpr size_t SHEEN_OFFSET = 0x23;
+// ds-pokemon-hacking/swan BoxPkmBlock0 Ribbons1; TODO: verify
 constexpr size_t SINNOH_RIBBONS_OFFSET = 0x24;
 
-constexpr size_t MOVES_OFFSET = 0x28;
+constexpr size_t MOVES_OFFSET = 0x28; // ds-pokemon-hacking/swan BoxPkmBlock1 Moves; TODO: verify
+// ds-pokemon-hacking/swan BoxPkmBlock1 MovePPs; TODO: verify
 constexpr size_t MOVE_PP_OFFSET = 0x30;
+// ds-pokemon-hacking/swan BoxPkmBlock1 MovePPUpStages; TODO: verify
 constexpr size_t PP_UPS_OFFSET = 0x34;
-constexpr size_t IVS_OFFSET = 0x38;
+constexpr size_t IVS_OFFSET = 0x38; // ds-pokemon-hacking/swan BoxPkmBlock1 IVBits; TODO: verify
+// ds-pokemon-hacking/swan BoxPkmBlock1 Ribbons2; TODO: verify
 constexpr size_t HOENN_RIBBONS_OFFSET = 0x3C;
+// ds-pokemon-hacking/swan BoxPkmBlock1 GenderAndForme; TODO: verify
 constexpr size_t FORM_OFFSET = 0x40;
-constexpr size_t NATURE_OFFSET = 0x41;
+constexpr size_t NATURE_OFFSET = 0x41; // ds-pokemon-hacking/swan BoxPkmBlock1 Nature; TODO: verify
+// ds-pokemon-hacking/swan BoxPkmBlock1 HiddenAbilAndNPoke; TODO: verify
 constexpr size_t GEN5_FLAGS_OFFSET = 0x42;
 
+// ds-pokemon-hacking/swan BoxPkmBlock2 Nickname; TODO: verify
 constexpr size_t NICKNAME_OFFSET = 0x48;
+// ds-pokemon-hacking/swan BoxPkmBlock2 OriginGame; TODO: verify
 constexpr size_t VERSION_OFFSET = 0x5F;
+// ds-pokemon-hacking/swan BoxPkmBlock2 Ribbons3; TODO: verify
 constexpr size_t SUPER_CONTEST_RIBBONS_OFFSET = 0x60;
 
+// ds-pokemon-hacking/swan BoxPkmBlock3 OTName; TODO: verify
 constexpr size_t TRAINER_NAME_OFFSET = 0x68;
+// ds-pokemon-hacking/swan BoxPkmBlock3 HatchDateYear; TODO: verify
 constexpr size_t EGG_DATE_OFFSET = 0x78;
+// ds-pokemon-hacking/swan BoxPkmBlock3 MetYear; TODO: verify
 constexpr size_t MET_DATE_OFFSET = 0x7B;
+// ds-pokemon-hacking/swan BoxPkmBlock3 HatchLocation; TODO: verify
 constexpr size_t EGG_LOCATION_OFFSET = 0x7E;
+// ds-pokemon-hacking/swan BoxPkmBlock3 MetLocation; TODO: verify
 constexpr size_t MET_LOCATION_OFFSET = 0x80;
+// ds-pokemon-hacking/swan BoxPkmBlock3 Pokerus; TODO: verify
 constexpr size_t POKERUS_OFFSET = 0x82;
-constexpr size_t BALL_OFFSET = 0x83;
+constexpr size_t BALL_OFFSET = 0x83; // ds-pokemon-hacking/swan BoxPkmBlock3 Pokeball; TODO: verify
+// ds-pokemon-hacking/swan BoxPkmBlock3 MetLevelAndOTGender; TODO: verify
 constexpr size_t MET_LEVEL_OFFSET = 0x84;
+// ds-pokemon-hacking/swan BoxPkmBlock3 CatchTerrainTileType; TODO: verify
 constexpr size_t ENCOUNTER_TYPE_OFFSET = 0x85;
+// ds-pokemon-hacking/swan BoxPkmBlock3 PokeStarFame; TODO: verify
 constexpr size_t POKESTAR_FAME_OFFSET = 0x87;
 
+// ds-pokemon-hacking/swan PartyPkm StatusCond; TODO: verify
 constexpr size_t PARTY_DATA_OFFSET = 0x88;
 constexpr size_t PARTY_DATA_SIZE = SPEC_NDSI_PARTY_RECORD_SIZE - PARTY_DATA_OFFSET;
-constexpr size_t STATUS_OFFSET = 0x88;
-constexpr size_t LEVEL_OFFSET = 0x8C;
-constexpr size_t CURRENT_HP_OFFSET = 0x8E;
-constexpr size_t STATS_OFFSET = 0x90;
-constexpr size_t MAIL_OFFSET = 0x9C;
+constexpr size_t STATUS_OFFSET = 0x88; // ds-pokemon-hacking/swan PartyPkm StatusCond; TODO: verify
+constexpr size_t LEVEL_OFFSET = 0x8C;  // ds-pokemon-hacking/swan PartyPkm Level; TODO: verify
+constexpr size_t CURRENT_HP_OFFSET = 0x8E; // ds-pokemon-hacking/swan PartyPkm NowHP; TODO: verify
+constexpr size_t STATS_OFFSET = 0x90;      // ds-pokemon-hacking/swan PartyPkm MaxHP; TODO: verify
+constexpr size_t MAIL_OFFSET = 0x9C;       // ds-pokemon-hacking/swan PartyPkm Mail; TODO: verify
 
 constexpr unsigned BAD_EGG_BIT = 2;
 constexpr unsigned MARKINGS_BIT_COUNT = 6;
