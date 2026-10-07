@@ -85,7 +85,9 @@ static uint32_t encode_packed_forms(const spec_nds_form_order_t *order, unsigned
 
 // Genderless species are stored as male.
 static spec_gender_t first_seen_gender_of(size_t national_number, bool is_first_female) {
-    if (spec_nds_species_data[national_number].gender_ratio == GENDER_RATIO_GENDERLESS) {
+    const spec_nds_species_data_t *species_data = spec_nds_get_species_data(
+        SPEC_GAME_TYPE_HEARTGOLD_SOULSILVER, (uint16_t)national_number, 0);
+    if (species_data->gender_ratio == GENDER_RATIO_GENDERLESS) {
         return SPEC_GENDER_GENDERLESS;
     }
     return is_first_female ? SPEC_GENDER_FEMALE : SPEC_GENDER_MALE;

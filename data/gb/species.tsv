@@ -1,152 +1,154 @@
-index	national	hp	attack	defense	speed	special	growth_rate
-1	112	105	130	120	40	45	slow
-2	115	105	95	80	90	40	medium_fast
-3	32	46	57	40	50	40	medium_slow
-4	35	70	45	48	35	60	fast
-5	21	40	60	30	70	31	medium_fast
-6	100	40	30	50	100	55	medium_fast
-7	34	81	92	77	85	75	medium_slow
-8	80	95	75	110	30	80	medium_fast
-9	2	60	62	63	60	80	medium_slow
-10	103	95	95	85	55	125	slow
-11	108	90	55	75	30	60	medium_fast
-12	102	60	40	80	40	60	slow
-13	88	80	80	50	25	40	medium_fast
-14	94	60	65	60	110	130	medium_slow
-15	29	55	47	52	41	40	medium_slow
-16	31	90	82	87	76	75	medium_slow
-17	104	50	50	95	35	40	medium_fast
-18	111	80	85	95	25	30	slow
-19	131	130	85	80	60	95	slow
-20	59	90	110	80	95	80	slow
-21	151	100	100	100	100	100	medium_slow
-22	130	95	125	79	81	100	slow
-23	90	30	65	100	40	45	slow
-24	72	40	40	35	70	100	slow
-25	92	30	35	30	80	100	medium_slow
-26	123	70	110	80	105	55	medium_fast
-27	120	30	45	55	85	70	slow
-28	9	79	83	100	78	85	medium_slow
-29	127	65	125	100	85	55	slow
-30	114	65	55	115	60	100	medium_fast
-33	58	55	70	45	60	50	slow
-34	95	35	45	160	70	30	medium_fast
-35	22	65	90	65	100	61	medium_fast
-36	16	40	45	40	56	35	medium_slow
-37	79	90	65	65	15	40	medium_fast
-38	64	40	35	30	105	120	medium_slow
-39	75	55	95	115	35	45	medium_slow
-40	113	250	5	5	50	105	fast
-41	67	80	100	70	45	50	medium_slow
-42	122	40	45	65	90	100	medium_fast
-43	106	50	120	53	87	35	medium_fast
-44	107	50	105	79	76	35	medium_fast
-45	24	60	85	69	80	65	medium_fast
-46	47	60	95	80	30	80	medium_fast
-47	54	50	52	48	55	50	medium_fast
-48	96	60	48	45	42	90	medium_fast
-49	76	80	110	130	45	55	medium_slow
-51	126	65	95	57	93	85	medium_fast
-53	125	65	83	57	105	85	medium_fast
-54	82	50	60	95	70	120	medium_fast
-55	109	40	65	95	35	60	medium_fast
-57	56	40	80	35	70	35	medium_fast
-58	86	65	45	55	45	70	medium_fast
-59	50	10	55	25	95	45	medium_fast
-60	128	75	100	95	110	70	slow
-64	83	52	65	55	60	58	medium_fast
-65	48	60	55	50	45	40	medium_fast
-66	149	91	134	95	80	100	slow
-70	84	35	85	45	75	35	medium_fast
-71	60	40	50	40	90	40	medium_slow
-72	124	65	50	35	95	95	medium_fast
-73	146	90	100	90	90	125	slow
-74	144	90	85	100	85	125	slow
-75	145	90	90	85	100	125	slow
-76	132	48	48	48	48	48	medium_fast
-77	52	40	45	35	90	40	medium_fast
-78	98	30	105	90	50	25	medium_fast
-82	37	38	41	40	65	65	medium_fast
-83	38	73	76	75	100	100	medium_fast
-84	25	35	55	30	90	50	medium_fast
-85	26	60	90	55	100	90	medium_fast
-88	147	41	64	45	50	50	slow
-89	148	61	84	65	70	70	slow
-90	140	30	80	90	55	45	medium_fast
-91	141	60	115	105	80	70	medium_fast
-92	116	30	40	70	60	70	medium_fast
-93	117	55	65	95	85	95	medium_fast
-96	27	50	75	85	40	30	medium_fast
-97	28	75	100	110	65	55	medium_fast
-98	138	35	40	100	35	90	medium_fast
-99	139	70	60	125	55	115	medium_fast
-100	39	115	45	20	20	25	fast
-101	40	140	70	45	45	50	fast
-102	133	55	55	50	55	65	medium_fast
-103	136	65	130	60	65	110	medium_fast
-104	135	65	65	60	130	110	medium_fast
-105	134	130	65	60	65	110	medium_fast
-106	66	70	80	50	35	35	medium_slow
-107	41	40	45	35	55	40	medium_fast
-108	23	35	60	44	55	40	medium_fast
-109	46	35	70	55	25	55	medium_fast
-110	61	65	65	65	90	50	medium_slow
-111	62	90	85	95	70	70	medium_slow
-112	13	40	35	30	50	20	medium_fast
-113	14	45	25	50	35	25	medium_fast
-114	15	65	80	40	75	45	medium_fast
-116	85	60	110	70	100	60	medium_fast
-117	57	65	105	60	95	60	medium_fast
-118	51	35	80	50	120	70	medium_fast
-119	49	70	65	60	90	90	medium_fast
-120	87	90	70	80	70	95	medium_fast
-123	10	45	30	35	45	20	medium_fast
-124	11	50	20	55	30	25	medium_fast
-125	12	60	45	50	70	80	medium_fast
-126	68	90	130	80	55	65	medium_slow
-128	55	80	82	78	85	80	medium_fast
-129	97	85	73	70	67	115	medium_fast
-130	42	75	80	70	90	75	medium_fast
-131	150	106	110	90	130	154	slow
-132	143	160	110	65	30	65	slow
-133	129	20	10	55	80	20	slow
-136	89	105	105	75	50	65	medium_fast
-138	99	55	130	115	75	50	medium_fast
-139	91	50	95	180	70	85	slow
-141	101	60	50	70	140	80	medium_fast
-142	36	95	70	73	60	85	fast
-143	110	65	90	120	60	85	medium_fast
-144	53	65	70	60	115	65	medium_fast
-145	105	60	80	110	45	50	medium_fast
-147	93	45	50	45	95	115	medium_slow
-148	63	25	20	15	90	105	medium_slow
-149	65	55	50	45	120	135	medium_slow
-150	17	63	60	55	71	50	medium_slow
-151	18	83	80	75	91	70	medium_slow
-152	121	60	75	85	115	100	slow
-153	1	45	49	49	45	65	medium_slow
-154	3	80	82	83	80	100	medium_slow
-155	73	80	70	65	100	120	slow
-157	118	45	67	60	63	50	medium_fast
-158	119	80	92	65	68	80	medium_fast
-163	77	50	85	55	90	65	medium_fast
-164	78	65	100	70	105	80	medium_fast
-165	19	30	56	35	72	25	medium_fast
-166	20	55	81	60	97	50	medium_fast
-167	33	61	72	57	65	55	medium_slow
-168	30	70	62	67	56	55	medium_slow
-169	74	40	80	100	20	30	medium_slow
-170	137	65	60	70	40	75	medium_fast
-171	142	80	105	65	130	60	slow
-173	81	25	35	70	45	95	medium_fast
-176	4	39	52	43	65	50	medium_slow
-177	7	44	48	65	43	50	medium_slow
-178	5	58	64	58	80	65	medium_slow
-179	8	59	63	80	58	65	medium_slow
-180	6	78	84	78	100	85	medium_slow
-185	43	45	50	55	30	75	medium_slow
-186	44	60	65	70	40	85	medium_slow
-187	45	75	80	85	50	100	medium_slow
-188	69	50	75	35	40	70	medium_slow
-189	70	65	90	50	55	85	medium_slow
-190	71	80	105	65	70	100	medium_slow
+index	from_game	national	hp	attack	defense	speed	special	growth_rate	type_1	type_2	catch_rate
+1	-	112	105	130	120	40	45	slow	ground	rock	60
+2	-	115	105	95	80	90	40	medium_fast	normal	normal	45
+3	-	32	46	57	40	50	40	medium_slow	poison	poison	235
+4	-	35	70	45	48	35	60	fast	normal	normal	150
+5	-	21	40	60	30	70	31	medium_fast	normal	flying	255
+6	-	100	40	30	50	100	55	medium_fast	electric	electric	190
+7	-	34	81	92	77	85	75	medium_slow	poison	ground	45
+8	-	80	95	75	110	30	80	medium_fast	water	psychic	75
+9	-	2	60	62	63	60	80	medium_slow	grass	poison	45
+10	-	103	95	95	85	55	125	slow	grass	psychic	45
+11	-	108	90	55	75	30	60	medium_fast	normal	normal	45
+12	-	102	60	40	80	40	60	slow	grass	psychic	90
+13	-	88	80	80	50	25	40	medium_fast	poison	poison	190
+14	-	94	60	65	60	110	130	medium_slow	ghost	poison	45
+15	-	29	55	47	52	41	40	medium_slow	poison	poison	235
+16	-	31	90	82	87	76	75	medium_slow	poison	ground	45
+17	-	104	50	50	95	35	40	medium_fast	ground	ground	190
+18	-	111	80	85	95	25	30	slow	ground	rock	120
+19	-	131	130	85	80	60	95	slow	water	ice	45
+20	-	59	90	110	80	95	80	slow	fire	fire	75
+21	-	151	100	100	100	100	100	medium_slow	psychic	psychic	45
+22	-	130	95	125	79	81	100	slow	water	flying	45
+23	-	90	30	65	100	40	45	slow	water	water	190
+24	-	72	40	40	35	70	100	slow	water	poison	190
+25	-	92	30	35	30	80	100	medium_slow	ghost	poison	190
+26	-	123	70	110	80	105	55	medium_fast	bug	flying	45
+27	-	120	30	45	55	85	70	slow	water	water	225
+28	-	9	79	83	100	78	85	medium_slow	water	water	45
+29	-	127	65	125	100	85	55	slow	bug	bug	45
+30	-	114	65	55	115	60	100	medium_fast	grass	grass	45
+33	-	58	55	70	45	60	50	slow	fire	fire	190
+34	-	95	35	45	160	70	30	medium_fast	rock	ground	45
+35	-	22	65	90	65	100	61	medium_fast	normal	flying	90
+36	-	16	40	45	40	56	35	medium_slow	normal	flying	255
+37	-	79	90	65	65	15	40	medium_fast	water	psychic	190
+38	-	64	40	35	30	105	120	medium_slow	psychic	psychic	100
+39	-	75	55	95	115	35	45	medium_slow	rock	ground	120
+40	-	113	250	5	5	50	105	fast	normal	normal	30
+41	-	67	80	100	70	45	50	medium_slow	fighting	fighting	90
+42	-	122	40	45	65	90	100	medium_fast	psychic	psychic	45
+43	-	106	50	120	53	87	35	medium_fast	fighting	fighting	45
+44	-	107	50	105	79	76	35	medium_fast	fighting	fighting	45
+45	-	24	60	85	69	80	65	medium_fast	poison	poison	90
+46	-	47	60	95	80	30	80	medium_fast	bug	grass	75
+47	-	54	50	52	48	55	50	medium_fast	water	water	190
+48	-	96	60	48	45	42	90	medium_fast	psychic	psychic	190
+49	-	76	80	110	130	45	55	medium_slow	rock	ground	45
+51	-	126	65	95	57	93	85	medium_fast	fire	fire	45
+53	-	125	65	83	57	105	85	medium_fast	electric	electric	45
+54	-	82	50	60	95	70	120	medium_fast	electric	electric	60
+55	-	109	40	65	95	35	60	medium_fast	poison	poison	190
+57	-	56	40	80	35	70	35	medium_fast	fighting	fighting	190
+58	-	86	65	45	55	45	70	medium_fast	water	water	190
+59	-	50	10	55	25	95	45	medium_fast	ground	ground	255
+60	-	128	75	100	95	110	70	slow	normal	normal	45
+64	-	83	52	65	55	60	58	medium_fast	normal	flying	45
+65	-	48	60	55	50	45	40	medium_fast	bug	poison	190
+66	-	149	91	134	95	80	100	slow	dragon	flying	45
+66	yellow	149	91	134	95	80	100	slow	dragon	flying	9
+70	-	84	35	85	45	75	35	medium_fast	normal	flying	190
+71	-	60	40	50	40	90	40	medium_slow	water	water	255
+72	-	124	65	50	35	95	95	medium_fast	ice	psychic	45
+73	-	146	90	100	90	90	125	slow	fire	flying	3
+74	-	144	90	85	100	85	125	slow	ice	flying	3
+75	-	145	90	90	85	100	125	slow	electric	flying	3
+76	-	132	48	48	48	48	48	medium_fast	normal	normal	35
+77	-	52	40	45	35	90	40	medium_fast	normal	normal	255
+78	-	98	30	105	90	50	25	medium_fast	water	water	225
+82	-	37	38	41	40	65	65	medium_fast	fire	fire	190
+83	-	38	73	76	75	100	100	medium_fast	fire	fire	75
+84	-	25	35	55	30	90	50	medium_fast	electric	electric	190
+85	-	26	60	90	55	100	90	medium_fast	electric	electric	75
+88	-	147	41	64	45	50	50	slow	dragon	dragon	45
+89	-	148	61	84	65	70	70	slow	dragon	dragon	45
+89	yellow	148	61	84	65	70	70	slow	dragon	dragon	27
+90	-	140	30	80	90	55	45	medium_fast	rock	water	45
+91	-	141	60	115	105	80	70	medium_fast	rock	water	45
+92	-	116	30	40	70	60	70	medium_fast	water	water	225
+93	-	117	55	65	95	85	95	medium_fast	water	water	75
+96	-	27	50	75	85	40	30	medium_fast	ground	ground	255
+97	-	28	75	100	110	65	55	medium_fast	ground	ground	90
+98	-	138	35	40	100	35	90	medium_fast	rock	water	45
+99	-	139	70	60	125	55	115	medium_fast	rock	water	45
+100	-	39	115	45	20	20	25	fast	normal	normal	170
+101	-	40	140	70	45	45	50	fast	normal	normal	50
+102	-	133	55	55	50	55	65	medium_fast	normal	normal	45
+103	-	136	65	130	60	65	110	medium_fast	fire	fire	45
+104	-	135	65	65	60	130	110	medium_fast	electric	electric	45
+105	-	134	130	65	60	65	110	medium_fast	water	water	45
+106	-	66	70	80	50	35	35	medium_slow	fighting	fighting	180
+107	-	41	40	45	35	55	40	medium_fast	poison	flying	255
+108	-	23	35	60	44	55	40	medium_fast	poison	poison	255
+109	-	46	35	70	55	25	55	medium_fast	bug	grass	190
+110	-	61	65	65	65	90	50	medium_slow	water	water	120
+111	-	62	90	85	95	70	70	medium_slow	water	fighting	45
+112	-	13	40	35	30	50	20	medium_fast	bug	poison	255
+113	-	14	45	25	50	35	25	medium_fast	bug	poison	120
+114	-	15	65	80	40	75	45	medium_fast	bug	poison	45
+116	-	85	60	110	70	100	60	medium_fast	normal	flying	45
+117	-	57	65	105	60	95	60	medium_fast	fighting	fighting	75
+118	-	51	35	80	50	120	70	medium_fast	ground	ground	50
+119	-	49	70	65	60	90	90	medium_fast	bug	poison	75
+120	-	87	90	70	80	70	95	medium_fast	water	ice	75
+123	-	10	45	30	35	45	20	medium_fast	bug	bug	255
+124	-	11	50	20	55	30	25	medium_fast	bug	bug	120
+125	-	12	60	45	50	70	80	medium_fast	bug	flying	45
+126	-	68	90	130	80	55	65	medium_slow	fighting	fighting	45
+128	-	55	80	82	78	85	80	medium_fast	water	water	75
+129	-	97	85	73	70	67	115	medium_fast	psychic	psychic	75
+130	-	42	75	80	70	90	75	medium_fast	poison	flying	90
+131	-	150	106	110	90	130	154	slow	psychic	psychic	3
+132	-	143	160	110	65	30	65	slow	normal	normal	25
+133	-	129	20	10	55	80	20	slow	water	water	255
+136	-	89	105	105	75	50	65	medium_fast	poison	poison	75
+138	-	99	55	130	115	75	50	medium_fast	water	water	60
+139	-	91	50	95	180	70	85	slow	water	ice	60
+141	-	101	60	50	70	140	80	medium_fast	electric	electric	60
+142	-	36	95	70	73	60	85	fast	normal	normal	25
+143	-	110	65	90	120	60	85	medium_fast	poison	poison	60
+144	-	53	65	70	60	115	65	medium_fast	normal	normal	90
+145	-	105	60	80	110	45	50	medium_fast	ground	ground	75
+147	-	93	45	50	45	95	115	medium_slow	ghost	poison	90
+148	-	63	25	20	15	90	105	medium_slow	psychic	psychic	200
+149	-	65	55	50	45	120	135	medium_slow	psychic	psychic	50
+150	-	17	63	60	55	71	50	medium_slow	normal	flying	120
+151	-	18	83	80	75	91	70	medium_slow	normal	flying	45
+152	-	121	60	75	85	115	100	slow	water	psychic	60
+153	-	1	45	49	49	45	65	medium_slow	grass	poison	45
+154	-	3	80	82	83	80	100	medium_slow	grass	poison	45
+155	-	73	80	70	65	100	120	slow	water	poison	60
+157	-	118	45	67	60	63	50	medium_fast	water	water	225
+158	-	119	80	92	65	68	80	medium_fast	water	water	60
+163	-	77	50	85	55	90	65	medium_fast	fire	fire	190
+164	-	78	65	100	70	105	80	medium_fast	fire	fire	60
+165	-	19	30	56	35	72	25	medium_fast	normal	normal	255
+166	-	20	55	81	60	97	50	medium_fast	normal	normal	90
+167	-	33	61	72	57	65	55	medium_slow	poison	poison	120
+168	-	30	70	62	67	56	55	medium_slow	poison	poison	120
+169	-	74	40	80	100	20	30	medium_slow	rock	ground	255
+170	-	137	65	60	70	40	75	medium_fast	normal	normal	45
+171	-	142	80	105	65	130	60	slow	rock	flying	45
+173	-	81	25	35	70	45	95	medium_fast	electric	electric	190
+176	-	4	39	52	43	65	50	medium_slow	fire	fire	45
+177	-	7	44	48	65	43	50	medium_slow	water	water	45
+178	-	5	58	64	58	80	65	medium_slow	fire	fire	45
+179	-	8	59	63	80	58	65	medium_slow	water	water	45
+180	-	6	78	84	78	100	85	medium_slow	fire	flying	45
+185	-	43	45	50	55	30	75	medium_slow	grass	poison	255
+186	-	44	60	65	70	40	85	medium_slow	grass	poison	120
+187	-	45	75	80	85	50	100	medium_slow	grass	poison	45
+188	-	69	50	75	35	40	70	medium_slow	grass	poison	255
+189	-	70	65	90	50	55	85	medium_slow	grass	poison	120
+190	-	71	80	105	65	70	100	medium_slow	grass	poison	45

@@ -27,6 +27,10 @@ def growth_rate_enum(name):
     return "SPEC_GROWTH_RATE_" + name.upper()
 
 
+def type_enum(name):
+    return "SPEC_TYPE_" + name.upper()
+
+
 def species_national_body(species):
     lines = ["const uint16_t spec_gba_national_of_species[SPEC_GBA_SPECIES_INDEX_COUNT] = {"]
     for row in species:
@@ -43,9 +47,11 @@ def species_data_body(species):
     lines = ["const spec_gba_species_data_t spec_gba_species_data[SPEC_GBA_SPECIES_INDEX_COUNT] = {"]
     for row in species:
         stats = ", ".join(row[column] for column in STAT_COLUMNS)
-        growth_rate = growth_rate_enum(row["growth_rate"])
-        gender_ratio = row["gender_ratio"]
-        lines.append(f"    [{row['index']}] = {{{{{stats}}}, {growth_rate}, {gender_ratio}}},")
+        types = f"{type_enum(row['type_1'])}, {type_enum(row['type_2'])}"
+        abilities = f"{row['ability_1']}, {row['ability_2']}"
+        counts = f"{row['gender_ratio']}, {row['egg_cycles']}, {row['base_friendship']}"
+        data = f"{{{stats}}}, {{{types}}}, {{{abilities}}}, {counts}, {growth_rate_enum(row['growth_rate'])}"
+        lines.append(f"    [{row['index']}] = {{{data}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 
@@ -90,8 +96,8 @@ def items_body(items):
         pockets = ", ".join(pocket_value(row[column]) for column in POCKET_COLUMNS)
         is_important = "true" if row["is_important"] == "yes" else "false"
         names = ", ".join(c_string_or_null(row[column]) for column in ["english", "german"])
-        later_item = "0" if row["later_item"] == "-" else row["later_item"]
-        lines.append(f"    [{row['item']}] = {{{names}, {pockets}, {is_important}, {later_item}}},")
+        migration_id = "0" if row["migration_id"] == "-" else row["migration_id"]
+        lines.append(f"    [{row['item']}] = {{{names}, {pockets}, {is_important}, {migration_id}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 

@@ -5,7 +5,6 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 
 #include "spec.h"
 #include "spec_tables.h"

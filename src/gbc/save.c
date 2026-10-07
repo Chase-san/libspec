@@ -17,13 +17,25 @@ static spec_error_t find_layout(const spec_gbc_layout_t **layout, spec_game_type
     return SPEC_OK;
 }
 
+// Emulators and cart dumpers such as FlashGBX keep the cartridge clock's registers and a 32- or
+// 64-bit timestamp after the save.
+static bool is_save_size(size_t data_size, const spec_gbc_layout_t *layout) {
+    constexpr size_t CLOCK_DATA_SIZES[] = {0, 44, 48};
+    for (size_t index = 0; index < sizeof CLOCK_DATA_SIZES / sizeof CLOCK_DATA_SIZES[0]; ++index) {
+        if (data_size == layout->save_size + CLOCK_DATA_SIZES[index]) {
+            return true;
+        }
+    }
+    return false;
+}
+
 static spec_error_t find_sized_layout(const spec_gbc_layout_t **layout, spec_game_type_t type,
                                       spec_language_t language, size_t data_size) {
     spec_error_t error = find_layout(layout, type, language);
     if (error != SPEC_OK) {
         return error;
     }
-    if (data_size != (*layout)->save_size) {
+    if (!is_save_size(data_size, *layout)) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "data_size is not this game's save size");
     }
     return SPEC_OK;
@@ -71,7 +83,7 @@ spec_error_t spec_gbc_read_save(spec_gbc_save_t *save, const uint8_t *data, size
         return error;
     }
     uint8_t loaded[SPEC_GBC_JAPANESE_CRYSTAL_SAVE_SIZE];
-    memcpy(loaded, data, data_size);
+    memcpy(loaded, data, layout->save_size);
     if (!is_primary) {
         spec_gbc_restore_primary(loaded, layout);
     }

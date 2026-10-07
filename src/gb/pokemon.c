@@ -1,4 +1,4 @@
-// Gen 1 Pokémon records: the codec, stats, names and species numbering.
+// Gen 1 Pokémon records: the codec, stats, names, and species data and numbering.
 
 #include <string.h>
 
@@ -38,12 +38,36 @@ constexpr uint16_t MAX_STAT_VALUE = 999;
 constexpr unsigned MAX_STAT_EXPERIENCE_ROOT = 255;
 constexpr uint8_t PERIOD = 0xE8;
 constexpr uint8_t DECIMAL_POINT = 0xF2;
+constexpr uint8_t NO_TYPE_NUMBER = 0xFF;
 
+struct type_number {
+    spec_type_t type;
+    uint8_t number;
+};
+typedef struct type_number type_number_t;
+
+// The number a Gen 1 record holds each type as (pret pokered constants/type_constants.asm).
+constexpr type_number_t TYPE_NUMBERS[] = {
+    {SPEC_TYPE_NORMAL, 0x00},  {SPEC_TYPE_FIGHTING, 0x01}, {SPEC_TYPE_FLYING, 0x02},
+    {SPEC_TYPE_POISON, 0x03},  {SPEC_TYPE_GROUND, 0x04},   {SPEC_TYPE_ROCK, 0x05},
+    {SPEC_TYPE_BUG, 0x07},     {SPEC_TYPE_GHOST, 0x08},    {SPEC_TYPE_FIRE, 0x14},
+    {SPEC_TYPE_WATER, 0x15},   {SPEC_TYPE_GRASS, 0x16},    {SPEC_TYPE_ELECTRIC, 0x17},
+    {SPEC_TYPE_PSYCHIC, 0x18}, {SPEC_TYPE_ICE, 0x19},      {SPEC_TYPE_DRAGON, 0x1A},
+};
+constexpr size_t TYPE_NUMBER_COUNT = sizeof TYPE_NUMBERS / sizeof TYPE_NUMBERS[0];
+
+// Every Gen 1 game has the same base stats and growth rates.
 static const spec_gb_species_data_t *species_data_of(const spec_gb_pokemon_t *pokemon) {
-    if (spec_gb_species_to_national(pokemon->species) == 0) {
-        return nullptr;
+    return spec_gb_get_species_data(SPEC_GAME_TYPE_RED_BLUE, pokemon->species);
+}
+
+static uint8_t number_of_type(spec_type_t type) {
+    for (size_t index = 0; index < TYPE_NUMBER_COUNT; ++index) {
+        if (TYPE_NUMBERS[index].type == type) {
+            return TYPE_NUMBERS[index].number;
+        }
     }
-    return &spec_gb_species_data[pokemon->species];
+    return NO_TYPE_NUMBER;
 }
 
 // The HP DV comes from the others, since dvs[SPEC_GB_STAT_HP] is ignored on write.
@@ -83,12 +107,23 @@ static void decode_party_data(spec_gb_party_data_t *party_data, const uint8_t *r
     }
 }
 
+static spec_type_t type_of_number(uint8_t number) {
+    for (size_t index = 0; index < TYPE_NUMBER_COUNT; ++index) {
+        if (TYPE_NUMBERS[index].number == number) {
+            return TYPE_NUMBERS[index].type;
+        }
+    }
+    return SPEC_TYPE_COUNT;
+}
+
 void spec_gb_decode_pokemon(spec_gb_pokemon_t *pokemon, const uint8_t *record, size_t record_size) {
     pokemon->species = record[SPECIES_OFFSET];
     pokemon->current_hp = spec_read_u16_be(&record[CURRENT_HP_OFFSET]);
     pokemon->box_level = record[BOX_LEVEL_OFFSET];
     spec_gb_decode_status(&pokemon->status, record[STATUS_OFFSET]);
-    memcpy(pokemon->types, &record[TYPES_OFFSET], SPEC_GB_TYPE_COUNT);
+    for (size_t index = 0; index < SPEC_GB_TYPE_COUNT; ++index) {
+        pokemon->types[index] = type_of_number(record[TYPES_OFFSET + index]);
+    }
     pokemon->catch_rate = record[CATCH_RATE_OFFSET];
     spec_gb_decode_moves(pokemon->moves, &record[MOVES_OFFSET], &record[PP_OFFSET]);
     pokemon->trainer.id = spec_read_u16_be(&record[TRAINER_ID_OFFSET]);
@@ -137,6 +172,11 @@ static const char *unencodable_field_of(const spec_gb_pokemon_t *pokemon) {
     if (!spec_fits_in_bits(pokemon->status.sleep_turns, SLEEP_TURNS_BIT_COUNT)) {
         return "status.sleep_turns does not fit in 3 bits";
     }
+    for (size_t index = 0; index < SPEC_GB_TYPE_COUNT; ++index) {
+        if (number_of_type(pokemon->types[index]) == NO_TYPE_NUMBER) {
+            return "types hold a type Gen 1 lacks";
+        }
+    }
     for (size_t stat = SPEC_GB_STAT_ATTACK; stat < SPEC_GB_STAT_COUNT; ++stat) {
         if (!spec_fits_in_bits(pokemon->dvs[stat], DV_BIT_COUNT)) {
             return "dvs do not fit in 4 bits";
@@ -167,7 +207,9 @@ spec_error_t spec_gb_encode_pokemon(uint8_t *record, size_t record_size,
     spec_write_u16_be(&plain[CURRENT_HP_OFFSET], pokemon->current_hp);
     plain[BOX_LEVEL_OFFSET] = pokemon->box_level;
     plain[STATUS_OFFSET] = spec_gb_encode_status(&pokemon->status);
-    memcpy(&plain[TYPES_OFFSET], pokemon->types, SPEC_GB_TYPE_COUNT);
+    for (size_t index = 0; index < SPEC_GB_TYPE_COUNT; ++index) {
+        plain[TYPES_OFFSET + index] = number_of_type(pokemon->types[index]);
+    }
     plain[CATCH_RATE_OFFSET] = pokemon->catch_rate;
     spec_gb_encode_moves(&plain[MOVES_OFFSET], &plain[PP_OFFSET], pokemon->moves);
     spec_write_u16_be(&plain[TRAINER_ID_OFFSET], pokemon->trainer.id);
@@ -296,6 +338,42 @@ spec_error_t spec_gb_pokemon_set_nickname(spec_gb_pokemon_t *pokemon, const char
     return SPEC_OK;
 }
 
+// As evolving does (pret evos_moves.asm, SetPartyMonTypes). Every Gen 1 game types a species alike.
+spec_error_t spec_gb_pokemon_set_species(spec_gb_pokemon_t *pokemon, spec_gb_species_t species) {
+    const spec_gb_species_data_t *species_data =
+        spec_gb_get_species_data(SPEC_GAME_TYPE_RED_BLUE, species);
+    if (species_data == nullptr) {
+        return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "species is no Gen 1 species");
+    }
+    pokemon->species = species;
+    memcpy(pokemon->types, species_data->types, sizeof pokemon->types);
+    return SPEC_OK;
+}
+
+static bool is_gen1_game(spec_game_type_t type) {
+    return type == SPEC_GAME_TYPE_RED_BLUE || type == SPEC_GAME_TYPE_YELLOW;
+}
+
+// Game types count up generation by generation, so the latest row begun by the type is in force.
+const spec_gb_species_data_t *spec_gb_get_species_data(spec_game_type_t type,
+                                                       spec_gb_species_t species) {
+    if (!is_gen1_game(type)) {
+        return nullptr;
+    }
+    const spec_gb_species_row_t *latest = nullptr;
+    for (size_t index = 0; index < spec_gb_species_row_count; ++index) {
+        const spec_gb_species_row_t *row = &spec_gb_species_rows[index];
+        bool applies = row->species == species && row->from_game <= type;
+        if (applies && (latest == nullptr || row->from_game >= latest->from_game)) {
+            latest = row;
+        }
+    }
+    if (latest == nullptr) {
+        return nullptr;
+    }
+    return &latest->data;
+}
+
 spec_gb_species_t spec_gb_species_from_national(uint16_t national_number) {
     if (national_number >= SPEC_GB_POKEDEX_SIZE) {
         return 0;
@@ -308,42 +386,4 @@ uint16_t spec_gb_species_to_national(spec_gb_species_t species) {
         return 0;
     }
     return spec_gb_national_of_species[species];
-}
-
-// pret pokered constants/type_constants.asm.
-spec_type_t spec_gb_decode_type(uint8_t type) {
-    switch (type) {
-        case 0x00:
-            return SPEC_TYPE_NORMAL;
-        case 0x01:
-            return SPEC_TYPE_FIGHTING;
-        case 0x02:
-            return SPEC_TYPE_FLYING;
-        case 0x03:
-            return SPEC_TYPE_POISON;
-        case 0x04:
-            return SPEC_TYPE_GROUND;
-        case 0x05:
-            return SPEC_TYPE_ROCK;
-        case 0x07:
-            return SPEC_TYPE_BUG;
-        case 0x08:
-            return SPEC_TYPE_GHOST;
-        case 0x14:
-            return SPEC_TYPE_FIRE;
-        case 0x15:
-            return SPEC_TYPE_WATER;
-        case 0x16:
-            return SPEC_TYPE_GRASS;
-        case 0x17:
-            return SPEC_TYPE_ELECTRIC;
-        case 0x18:
-            return SPEC_TYPE_PSYCHIC;
-        case 0x19:
-            return SPEC_TYPE_ICE;
-        case 0x1A:
-            return SPEC_TYPE_DRAGON;
-        default:
-            return SPEC_TYPE_COUNT;
-    }
 }

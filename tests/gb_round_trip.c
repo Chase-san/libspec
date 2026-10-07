@@ -1,10 +1,11 @@
 // Writes a verified Gen 1 save back unedited and checks nothing changes, then checks edits and
-// refused writes.
+// refused writes and identification.
 
 #include <stdio.h>
 #include <string.h>
 
 #include "gb/gb.h"
+#include "gbc/gbc.h"
 
 static uint8_t original[SPEC_GB_SAVE_SIZE];
 static uint8_t written[SPEC_GB_SAVE_SIZE];
@@ -106,10 +107,114 @@ static bool check_failed_writes(const spec_gb_save_t *save) {
         return false;
     }
     broken = *save;
+    broken.boxes[3].count = 1;
+    broken.boxes[3].pokemon[0].types[0] = SPEC_TYPE_DARK;
+    if (!is_failed_write_reported(&broken, SPEC_ERROR_VALUE_OUT_OF_RANGE, SPEC_ERROR_LOCATION_BOX,
+                                  3, 0)) {
+        return false;
+    }
+    broken = *save;
     // Item 0x15 is the Boulder Badge, which no pocket holds.
     broken.items[SPEC_GB_POCKET_BAG][0] = (spec_gb_item_slot_t){.item = 0x15, .quantity = 1};
     return is_failed_write_reported(&broken, SPEC_ERROR_INVALID_ITEM, SPEC_ERROR_LOCATION_ITEMS,
                                     SPEC_GB_POCKET_BAG, 0);
+}
+
+// English, Italian and Spanish share species names, so an international save's language may be
+// UNKNOWN.
+static bool is_identity_of(const spec_gb_identity_t *identity, const spec_gb_save_t *save) {
+    bool is_language_unsettled =
+        save->language != SPEC_LANGUAGE_JAPANESE && identity->language == SPEC_LANGUAGE_UNKNOWN;
+    return identity->type == save->type
+           && (identity->language == save->language || is_language_unsettled);
+}
+
+static bool check_identify(const spec_gb_save_t *save) {
+    spec_gb_identity_t identities[SPEC_GB_IDENTITY_MAX_COUNT];
+    size_t identity_count = spec_gb_identify_save(identities, original);
+    bool is_found = false;
+    for (size_t index = 0; index < identity_count; ++index) {
+        if (is_identity_of(&identities[index], save)) {
+            is_found = true;
+        }
+    }
+    if (!is_found) {
+        printf("identify_save: the save's game and language are not among %zu\n", identity_count);
+        return false;
+    }
+    spec_gbc_identity_t gbc_identities[SPEC_GBC_IDENTITY_MAX_COUNT];
+    if (spec_gbc_identify_save(gbc_identities, original, sizeof original) != 0) {
+        printf("gbc_identify_save: a Gen 1 save fits Gen 2\n");
+        return false;
+    }
+    return true;
+}
+
+static bool is_players_own(const spec_gb_pokemon_t *pokemon, const spec_gb_save_t *save) {
+    char8_t trainer_name[SPEC_GB_TEXT_BUFFER_SIZE];
+    char8_t player_name[SPEC_GB_TEXT_BUFFER_SIZE];
+    bool are_names_read =
+        spec_gb_text_to_utf8(trainer_name, pokemon->trainer.name, SPEC_GB_NAME_SIZE, save->language)
+            == SPEC_OK
+        && spec_gb_text_to_utf8(player_name, save->trainer.name, SPEC_GB_NAME_SIZE, save->language)
+               == SPEC_OK;
+    return are_names_read && pokemon->trainer.id == save->trainer.id
+           && strcmp((const char *)trainer_name, (const char *)player_name) == 0;
+}
+
+// True when the French name differs from the English one, and so can settle the vote.
+static bool rename_in_french(spec_gb_pokemon_t *pokemon, const spec_gb_save_t *save) {
+    spec_gb_pokemon_t english = *pokemon;
+    if (!is_players_own(pokemon, save)
+        || spec_gb_pokemon_remove_nickname(&english, SPEC_LANGUAGE_ENGLISH) != SPEC_OK
+        || spec_gb_pokemon_remove_nickname(pokemon, SPEC_LANGUAGE_FRENCH) != SPEC_OK) {
+        return false;
+    }
+    return memcmp(english.nickname, pokemon->nickname, SPEC_GB_NAME_SIZE) != 0;
+}
+
+// The player's own Pokémon under their French species names make the save French.
+static bool check_language_vote(const spec_gb_save_t *save) {
+    if (save->language == SPEC_LANGUAGE_JAPANESE) {
+        return true;
+    }
+    static spec_gb_save_t edited;
+    edited = *save;
+    edited.language = SPEC_LANGUAGE_FRENCH;
+    bool has_french_name = false;
+    for (size_t index = 0; index < edited.party_count; ++index) {
+        if (rename_in_french(&edited.party[index], save)) {
+            has_french_name = true;
+        }
+    }
+    for (size_t box = 0; box < SPEC_GB_BOX_COUNT; ++box) {
+        for (size_t index = 0; index < edited.boxes[box].count; ++index) {
+            if (rename_in_french(&edited.boxes[box].pokemon[index], save)) {
+                has_french_name = true;
+            }
+        }
+    }
+    memcpy(written, original, sizeof written);
+    if (spec_gb_write_save(&edited, written) != SPEC_OK) {
+        printf("French names: %s\n", spec_last_error().message);
+        return false;
+    }
+    spec_gb_identity_t identities[SPEC_GB_IDENTITY_MAX_COUNT];
+    size_t identity_count = spec_gb_identify_save(identities, written);
+    spec_language_t expected = SPEC_LANGUAGE_UNKNOWN;
+    if (has_french_name) {
+        expected = SPEC_LANGUAGE_FRENCH;
+    }
+    if (identity_count == 0) {
+        printf("French names: identified as no game\n");
+        return false;
+    }
+    if (identities[0].language != expected) {
+        printf("French names: identified as language %d, not %d\n", identities[0].language,
+               expected);
+        return false;
+    }
+    return true;
 }
 
 int main(int argument_count, char **arguments) {
@@ -123,7 +228,8 @@ int main(int argument_count, char **arguments) {
         printf("read_save: %s\n", spec_last_error().message);
         return 1;
     }
-    if (!check_unedited_write(&save) || !check_box_edit(&save) || !check_failed_writes(&save)) {
+    if (!check_unedited_write(&save) || !check_box_edit(&save) || !check_failed_writes(&save)
+        || !check_identify(&save) || !check_language_vote(&save)) {
         return 1;
     }
     printf("type %d, language %d, party %d: ok\n", save.type, save.language, save.party_count);

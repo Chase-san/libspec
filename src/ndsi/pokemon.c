@@ -1,4 +1,4 @@
-// Gen 5 Pokémon records: the encrypted codec, stats and names.
+// Gen 5 Pokémon records: the encrypted codec, stats, names and species data.
 
 #include <string.h>
 
@@ -107,14 +107,10 @@ static bool has_species_data(uint16_t species) {
     return species != 0 && species < SPEC_NDSI_SPECIES_COUNT;
 }
 
-static const uint8_t *base_stats_of(uint16_t species, uint8_t form) {
-    for (size_t index = 0; index < SPEC_NDSI_FORM_DATA_COUNT; ++index) {
-        const spec_ndsi_form_data_t *form_data = &spec_ndsi_form_data[index];
-        if (form_data->species == species && form_data->form == form) {
-            return form_data->base_stats;
-        }
-    }
-    return spec_ndsi_species_data[species].base_stats;
+// The Gen 5 games agree on every species and form they share, and Black 2 and White 2 have them
+// all.
+static const spec_ndsi_species_data_t *species_data_of(uint16_t species, uint8_t form) {
+    return spec_ndsi_get_species_data(SPEC_GAME_TYPE_BLACK2_WHITE2, species, form);
 }
 
 static uint16_t stat_of(const spec_ndsi_pokemon_t *pokemon, const uint8_t *base_stats,
@@ -127,9 +123,9 @@ static uint16_t stat_of(const spec_ndsi_pokemon_t *pokemon, const uint8_t *base_
 }
 
 static void calculate_stats(spec_ndsi_pokemon_t *pokemon) {
-    const spec_ndsi_species_data_t *species_data = &spec_ndsi_species_data[pokemon->species];
-    const uint8_t *base_stats = base_stats_of(pokemon->species, pokemon->form);
-    uint8_t level = spec_level_for_experience(species_data->growth_rate, pokemon->experience);
+    const uint8_t *base_stats = species_data_of(pokemon->species, pokemon->form)->base_stats;
+    spec_growth_rate_t growth_rate = species_data_of(pokemon->species, 0)->growth_rate;
+    uint8_t level = spec_level_for_experience(growth_rate, pokemon->experience);
     uint16_t old_max_hp = pokemon->party_data.stats[SPEC_STAT_HP];
     uint16_t new_max_hp = stat_of(pokemon, base_stats, SPEC_STAT_HP, level);
     pokemon->party_data.current_hp = spec_nds_current_hp_after(
@@ -488,7 +484,7 @@ uint8_t spec_ndsi_pokemon_get_level(const spec_ndsi_pokemon_t *pokemon) {
     if (!has_species_data(pokemon->species)) {
         return 0;
     }
-    return spec_level_for_experience(spec_ndsi_species_data[pokemon->species].growth_rate,
+    return spec_level_for_experience(species_data_of(pokemon->species, 0)->growth_rate,
                                      pokemon->experience);
 }
 
@@ -559,7 +555,7 @@ spec_error_t spec_ndsi_pokemon_set_level(spec_ndsi_pokemon_t *pokemon, uint8_t l
     if (level == 0 || level >= SPEC_LEVEL_COUNT) {
         return spec_fail(SPEC_ERROR_VALUE_OUT_OF_RANGE, "level is not 1 to 100");
     }
-    spec_growth_rate_t growth_rate = spec_ndsi_species_data[pokemon->species].growth_rate;
+    spec_growth_rate_t growth_rate = species_data_of(pokemon->species, 0)->growth_rate;
     pokemon->experience = spec_experience_for_level(growth_rate, level);
     calculate_stats(pokemon);
     return SPEC_OK;
@@ -611,4 +607,37 @@ spec_error_t spec_ndsi_pokemon_set_nickname(spec_ndsi_pokemon_t *pokemon, const 
     }
     pokemon->is_nicknamed = !is_species_name(pokemon);
     return SPEC_OK;
+}
+
+static bool is_gen5_game(spec_game_type_t type) {
+    return type == SPEC_GAME_TYPE_BLACK_WHITE || type == SPEC_GAME_TYPE_BLACK2_WHITE2;
+}
+
+// Game types count up generation by generation, so the latest row begun by the type is in force.
+static const spec_ndsi_species_row_t *latest_row(spec_game_type_t type, uint16_t species,
+                                                 uint8_t form) {
+    const spec_ndsi_species_row_t *latest = nullptr;
+    for (size_t index = 0; index < spec_ndsi_species_row_count; ++index) {
+        const spec_ndsi_species_row_t *row = &spec_ndsi_species_rows[index];
+        bool applies = row->species == species && row->form == form && row->from_game <= type;
+        if (applies && (latest == nullptr || row->from_game >= latest->from_game)) {
+            latest = row;
+        }
+    }
+    return latest;
+}
+
+const spec_ndsi_species_data_t *spec_ndsi_get_species_data(spec_game_type_t type, uint16_t species,
+                                                           uint8_t form) {
+    if (!is_gen5_game(type)) {
+        return nullptr;
+    }
+    const spec_ndsi_species_row_t *row = latest_row(type, species, form);
+    if (row == nullptr) {
+        row = latest_row(type, species, 0);
+    }
+    if (row == nullptr) {
+        return nullptr;
+    }
+    return &row->data;
 }

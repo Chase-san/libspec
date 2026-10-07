@@ -1,17 +1,19 @@
-// The Gen 2 (Game Boy Color) API: saves, Pokémon, traits, items and text.
+// The Gen 2 (Game Boy Color) API: saves and identifying them, storage, Pokémon, species, traits,
+// items and text.
 
 #ifndef SPEC_GBC_H
 #define SPEC_GBC_H
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 
 #include "gb/gb.h"
 #include "spec.h"
 
 constexpr size_t SPEC_GBC_SAVE_SIZE = 0x8000;
 constexpr size_t SPEC_GBC_JAPANESE_CRYSTAL_SAVE_SIZE = 0x10000;
+// Gold and Silver, and Crystal, each in Japan's layout and in everyone else's.
+constexpr size_t SPEC_GBC_IDENTITY_MAX_COUNT = 4;
 constexpr size_t SPEC_GBC_BADGE_COUNT = 8;
 // Name sizes count the terminator; Japanese names use the first 6 bytes.
 constexpr size_t SPEC_GBC_NAME_SIZE = SPEC_GB_NAME_SIZE;
@@ -27,12 +29,16 @@ constexpr size_t SPEC_GBC_BOX_RECORD_SIZE = 32;
 constexpr size_t SPEC_GBC_POKEDEX_SIZE = 252;
 constexpr size_t SPEC_GBC_UNOWN_FORM_COUNT = 26;
 constexpr size_t SPEC_GBC_PARTY_CAPACITY = 6;
-// Japanese saves hold 9 boxes of 30, the others 14 of 20.
+// Japanese saves hold 9 boxes of 30, the others 14 of 20; these are the most either holds.
 constexpr size_t SPEC_GBC_BOX_COUNT = 14;
 constexpr size_t SPEC_GBC_BOX_CAPACITY = 30;
 constexpr size_t SPEC_GBC_DAYCARE_CAPACITY = 2;
 constexpr size_t SPEC_GBC_POCKET_MAX_CAPACITY = 57;
+// Item numbers run below this.
+constexpr size_t SPEC_GBC_ITEM_COUNT = 256;
 constexpr size_t SPEC_GBC_TEXT_BUFFER_SIZE = SPEC_GB_TEXT_BUFFER_SIZE;
+// Every species' (pret BASE_HAPPINESS), so the species data has none.
+constexpr uint8_t SPEC_GBC_BASE_FRIENDSHIP = 70;
 
 // The player
 
@@ -127,6 +133,18 @@ struct spec_gbc_pokemon {
 };
 typedef struct spec_gbc_pokemon spec_gbc_pokemon_t;
 
+// Species
+
+// A species of one type has it twice, as the games store it.
+struct spec_gbc_species_data {
+    uint8_t base_stats[SPEC_STAT_COUNT];
+    spec_type_t types[SPEC_SPECIES_TYPE_COUNT];
+    uint8_t gender_ratio;
+    uint8_t egg_cycles;
+    spec_growth_rate_t growth_rate;
+};
+typedef struct spec_gbc_species_data spec_gbc_species_data_t;
+
 // The Pokédex
 
 // Writing is_caught also marks the species seen. The Unown lists hold forms + 1: those caught,
@@ -180,6 +198,8 @@ typedef spec_item_slot_t spec_gbc_item_slot_t;
 
 // The save
 
+typedef spec_gb_identity_t spec_gbc_identity_t;
+
 // The save records neither its game nor its language, so reading takes both. Writing condenses
 // pockets; a slot with no item or zero quantity is empty, and a key item's quantity is 1.
 struct spec_gbc_save {
@@ -204,7 +224,8 @@ struct spec_gbc_save {
 typedef struct spec_gbc_save spec_gbc_save_t;
 
 // Save functions: data_size is SPEC_GBC_SAVE_SIZE, or SPEC_GBC_JAPANESE_CRYSTAL_SAVE_SIZE for
-// Japanese Crystal.
+// Japanese Crystal, plus the 44 or 48 bytes of clock data that emulators and cart dumpers such as
+// FlashGBX may keep after it, which writing leaves alone.
 
 spec_error_t spec_gbc_read_save(spec_gbc_save_t *save, const uint8_t *data, size_t data_size,
                                 spec_game_type_t type, spec_language_t language);
@@ -212,6 +233,17 @@ spec_error_t spec_gbc_write_save(const spec_gbc_save_t *save, uint8_t *data, siz
 
 // What writing checks, without writing.
 spec_error_t spec_gbc_check_save(const spec_gbc_save_t *save);
+
+// Identification functions
+
+// Every game and language whose layout the data fits.
+size_t spec_gbc_identify_save(spec_gbc_identity_t identities[static SPEC_GBC_IDENTITY_MAX_COUNT],
+                              const uint8_t *data, size_t data_size);
+
+// Storage functions: 0 for a language the games lack. Crystal's boxes are Gold and Silver's.
+
+size_t spec_gbc_box_capacity(spec_language_t language);
+size_t spec_gbc_box_count(spec_language_t language);
 
 // Pokémon functions: a Pokémon has no language of its own, so its names take the save's.
 
@@ -227,6 +259,11 @@ spec_error_t spec_gbc_pokemon_set_level(spec_gbc_pokemon_t *pokemon, uint8_t lev
 spec_error_t spec_gbc_pokemon_set_nickname(spec_gbc_pokemon_t *pokemon, const char8_t *nickname,
                                            spec_language_t language);
 
+// Species functions: species are National Dex numbers.
+
+// nullptr for a species or game type that is no Gen 2 game's.
+const spec_gbc_species_data_t *spec_gbc_get_species_data(spec_game_type_t type, uint8_t species);
+
 // Trait functions
 
 spec_gbc_traits_t spec_gbc_decode_traits(const uint8_t dvs[static SPEC_GB_STAT_COUNT],
@@ -239,6 +276,8 @@ spec_error_t spec_gbc_check_item_placement(spec_game_type_t type, spec_gbc_pocke
 spec_error_t spec_gbc_get_pocket_for_item(spec_gbc_pocket_t *pocket, spec_game_type_t type,
                                           uint16_t item);
 const char *spec_gbc_item_name(uint16_t item, spec_language_t language);
+// The item's number in Gen 4 to 7, which names it there; 0 for none, TMs and HMs among them.
+uint16_t spec_gbc_item_get_migration_id(uint16_t item);
 size_t spec_gbc_pocket_capacity(spec_gbc_pocket_t pocket);
 size_t spec_gbc_pocket_item_count(const spec_gbc_save_t *save, spec_gbc_pocket_t pocket);
 

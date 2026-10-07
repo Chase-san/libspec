@@ -1,4 +1,4 @@
-// Gen 6 and 7 Pokémon records, PK6 and PK7: the encrypted codec, stats and names.
+// Gen 6 and 7 Pokémon records, PK6 and PK7: the encrypted codec, stats, names and species data.
 
 #include <string.h>
 
@@ -155,20 +155,14 @@ static bool has_species_data(uint8_t generation, uint16_t species) {
     return (generation == 6 || generation == 7) && species != 0 && species <= species_count;
 }
 
+// A record's generation picks the data: Omega Ruby and Alpha Sapphire have every Gen 6 species and
+// form, and Ultra Sun and Ultra Moon every Gen 7 one.
 static const spec_3ds_species_data_t *species_data_of(uint8_t generation, uint16_t species,
                                                       uint8_t form) {
-    bool is_gen7_data = generation == 7;
-    const spec_3ds_form_data_t *forms =
-        is_gen7_data ? spec_3ds_gen7_form_data : spec_3ds_gen6_form_data;
-    size_t form_count =
-        is_gen7_data ? spec_3ds_gen7_form_data_count : spec_3ds_gen6_form_data_count;
-    for (size_t index = 0; index < form_count; ++index) {
-        if (forms[index].species == species && forms[index].form == form) {
-            return &forms[index].data;
-        }
+    if (generation == 7) {
+        return spec_3ds_get_species_data(SPEC_GAME_TYPE_ULTRA_SUN_ULTRA_MOON, species, form);
     }
-    return is_gen7_data ? &spec_3ds_gen7_species_data[species]
-                        : &spec_3ds_gen6_species_data[species];
+    return spec_3ds_get_species_data(SPEC_GAME_TYPE_OMEGA_RUBY_ALPHA_SAPPHIRE, species, form);
 }
 
 static uint16_t stat_of(const spec_3ds_pokemon_t *pokemon, const uint8_t *base_stats,
@@ -844,4 +838,37 @@ spec_error_t spec_3ds_pokemon_set_nickname(spec_3ds_pokemon_t *pokemon, const ch
     }
     pokemon->is_nicknamed = !is_species_name(pokemon);
     return SPEC_OK;
+}
+
+static bool is_3ds_game(spec_game_type_t type) {
+    return type >= SPEC_GAME_TYPE_X_Y && type <= SPEC_GAME_TYPE_ULTRA_SUN_ULTRA_MOON;
+}
+
+// Game types count up generation by generation, so the latest row begun by the type is in force.
+static const spec_3ds_species_row_t *latest_row(spec_game_type_t type, uint16_t species,
+                                                uint8_t form) {
+    const spec_3ds_species_row_t *latest = nullptr;
+    for (size_t index = 0; index < spec_3ds_species_row_count; ++index) {
+        const spec_3ds_species_row_t *row = &spec_3ds_species_rows[index];
+        bool applies = row->species == species && row->form == form && row->from_game <= type;
+        if (applies && (latest == nullptr || row->from_game >= latest->from_game)) {
+            latest = row;
+        }
+    }
+    return latest;
+}
+
+const spec_3ds_species_data_t *spec_3ds_get_species_data(spec_game_type_t type, uint16_t species,
+                                                         uint8_t form) {
+    if (!is_3ds_game(type)) {
+        return nullptr;
+    }
+    const spec_3ds_species_row_t *row = latest_row(type, species, form);
+    if (row == nullptr) {
+        row = latest_row(type, species, 0);
+    }
+    if (row == nullptr) {
+        return nullptr;
+    }
+    return &row->data;
 }

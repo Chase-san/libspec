@@ -9,13 +9,23 @@ These tables come from the author's US carts.
 
 ## `species.tsv`
 
-Base stats, gender ratio and growth rate. Rows are by generation, National Dex number and form.
+Base stats, gender ratio, growth rate, types, abilities (the first, the second and the hidden), egg
+cycles and base friendship. Rows are by National Dex number, form and `from_game`, as the
+[data README](../README.md#from_game) explains.
 
-- Generation 6: Omega Ruby's personal archive (`a/1/9/5`). X and Y's rows have the same values.
-- Generation 7: Ultra Sun's personal archive (`a/0/1/7`). Ultra Moon's is identical, and Sun's and
-  Moon's have the same values for every species and form they have.
-- A form has a row of its own only when its base stats differ from its species'.
-- The generations need separate rows because Gen 7 changed some species' base stats.
+- Sources: each pair's personal archive, which the two carts of the pair hold alike:
+  - X and Y: `a/2/1/8`.
+  - Omega Ruby and Alpha Sapphire: `a/1/9/5`. They change nothing X and Y have, and bring in forms
+    such as the Primal Reversions and more Mega Evolutions.
+  - Sun and Moon: `a/0/1/7`. They change some species' base stats and abilities, and make Pikachu's
+    forms the caps.
+  - Ultra Sun and Ultra Moon: `a/0/1/7`. They change nothing Sun and Moon have, and bring in the
+    species from Poipole on and more forms.
+- A form has a row of its own only when its data differs from its species'; otherwise it has its
+  species'.
+- Arceus and Silvally have no form rows: the games' code gives them the type of the item they hold.
+- A species of one type has it as both, and one with a single ability has it as both its first and
+  its second, as the games store them.
 
 ## `items.tsv`
 

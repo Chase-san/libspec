@@ -180,9 +180,19 @@ const char *spec_gba_item_name(uint16_t item, spec_language_t language) {
         case SPEC_LANGUAGE_GERMAN:
             return item_data->german_name;
         default:
-            return item_data->later_item == 0 ? nullptr
-                                              : spec_item_name(item_data->later_item, language);
+            if (item_data->migration_id == 0) {
+                return nullptr;
+            }
+            return spec_item_name(item_data->migration_id, language);
     }
+}
+
+uint16_t spec_gba_item_get_migration_id(uint16_t item) {
+    const spec_gba_item_data_t *item_data = item_data_of(item);
+    if (item_data == nullptr) {
+        return 0;
+    }
+    return item_data->migration_id;
 }
 
 static const size_t *pocket_capacities_of(spec_game_type_t type) {

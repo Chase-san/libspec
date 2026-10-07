@@ -112,6 +112,26 @@ def form_names_body(rows):
     return "\n".join(lines) + "\n"
 
 
+def game_limits_body(rows):
+    lines = ["const spec_game_limits_t spec_game_limits[SPEC_GAME_TYPE_COUNT] = {"]
+    for row in rows:
+        limits = f"{row['last_species']}, {row['last_move']}, {row['last_ability']}"
+        lines.append(f"    [SPEC_GAME_TYPE_{row['game'].upper()}] = {{{limits}}},")
+    lines.append("};")
+    return "\n".join(lines) + "\n"
+
+
+def move_data_body(rows):
+    lines = ["const spec_move_data_row_t spec_move_data_rows[] = {"]
+    for row in rows:
+        move_data = f"{{SPEC_TYPE_{row['type'].upper()}, {row['pp']}}}"
+        lines.append(f"    {{{row['move']}, {from_game_enum(row['from_game'])}, {move_data}}},")
+    lines.append("};\n")
+    lines.append("const size_t spec_move_data_row_count =")
+    lines.append("    sizeof spec_move_data_rows / sizeof spec_move_data_rows[0];")
+    return "\n".join(lines) + "\n"
+
+
 def growth_rate_enum(name):
     return "SPEC_GROWTH_RATE_" + name.upper()
 
@@ -174,6 +194,10 @@ def main():
         rows = read_tsv(data_directory / f"{kind}_names.tsv")
         body = names_body(rows, kind, f"spec_{kind}_names", count_name)
         write_c_file(output_directory / f"{kind}_names.c", f"data/{kind}_names.tsv", body)
+    limits = game_limits_body(read_tsv(data_directory / "game_limits.tsv"))
+    write_c_file(output_directory / "game_limits.c", "data/game_limits.tsv", limits)
+    moves = move_data_body(read_tsv(data_directory / "moves.tsv"))
+    write_c_file(output_directory / "move_data.c", "data/moves.tsv", moves)
     write_c_file(output_directory / "experience.c", "pret's growth-rate formulas", experience_body())
 
 

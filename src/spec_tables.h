@@ -47,18 +47,31 @@ extern const char *const spec_item_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_ITEM_NAM
 extern const char *const spec_nature_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_NATURE_COUNT];
 extern const char *const spec_type_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_TYPE_COUNT];
 
-// Experience
+// Games
 
-enum spec_growth_rate : uint8_t {
-    SPEC_GROWTH_RATE_MEDIUM_FAST,
-    SPEC_GROWTH_RATE_ERRATIC,
-    SPEC_GROWTH_RATE_FLUCTUATING,
-    SPEC_GROWTH_RATE_MEDIUM_SLOW,
-    SPEC_GROWTH_RATE_FAST,
-    SPEC_GROWTH_RATE_SLOW,
-    SPEC_GROWTH_RATE_COUNT,
+struct spec_game_limits {
+    uint16_t last_species;
+    uint16_t last_move;
+    uint16_t last_ability;
 };
-typedef enum spec_growth_rate spec_growth_rate_t;
+typedef struct spec_game_limits spec_game_limits_t;
+
+extern const spec_game_limits_t spec_game_limits[SPEC_GAME_TYPE_COUNT];
+
+// Moves
+
+// A row describes its move from from_game on, until a later row for the same move takes over.
+struct spec_move_data_row {
+    uint16_t move;
+    spec_game_type_t from_game;
+    spec_move_data_t data;
+};
+typedef struct spec_move_data_row spec_move_data_row_t;
+
+extern const spec_move_data_row_t spec_move_data_rows[];
+extern const size_t spec_move_data_row_count;
+
+// Experience
 
 extern const uint32_t spec_experience[SPEC_GROWTH_RATE_COUNT][SPEC_LEVEL_COUNT];
 

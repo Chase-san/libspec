@@ -1,11 +1,10 @@
-// The Gen 5 (Nintendo DSi) API: saves, Pokémon, personality, items and text.
+// The Gen 5 (Nintendo DSi) API: saves, Pokémon, species, personality, items and text.
 
 #ifndef SPEC_NDSI_H
 #define SPEC_NDSI_H
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 
 #include "nds/nds.h"
 #include "spec.h"
@@ -22,12 +21,16 @@ constexpr size_t SPEC_NDSI_TRAINER_NAME_SIZE = 8;
 constexpr size_t SPEC_NDSI_BOX_NAME_SIZE = 20;
 constexpr size_t SPEC_NDSI_DAYCARE_CAPACITY = 2;
 constexpr size_t SPEC_NDSI_MOVE_COUNT = 4;
+// The first, the second and the hidden.
+constexpr size_t SPEC_NDSI_SPECIES_ABILITY_COUNT = 3;
 constexpr size_t SPEC_NDSI_BADGE_COUNT = 8;
 constexpr size_t SPEC_NDSI_MAIL_ICON_COUNT = 4;
 constexpr size_t SPEC_NDSI_MAIL_SENTENCE_COUNT = 3;
 // Indexed by National Dex number.
 constexpr size_t SPEC_NDSI_POKEDEX_SIZE = 650;
 constexpr size_t SPEC_NDSI_POCKET_MAX_CAPACITY = 310;
+// Item numbers run below this.
+constexpr size_t SPEC_NDSI_ITEM_COUNT = 639;
 constexpr size_t SPEC_NDSI_TEXT_MAX_SIZE = SPEC_NDSI_BOX_NAME_SIZE;
 // Up to 3 UTF-8 bytes per character, plus NUL.
 constexpr size_t SPEC_NDSI_TEXT_BUFFER_SIZE = SPEC_NDSI_TEXT_MAX_SIZE * 3 + 1;
@@ -127,6 +130,20 @@ struct spec_ndsi_pokemon {
     spec_ndsi_party_data_t party_data;
 };
 typedef struct spec_ndsi_pokemon spec_ndsi_pokemon_t;
+
+// Species
+
+// Abilities are 0 for none; a species of one type has it twice, as the games store it.
+struct spec_ndsi_species_data {
+    uint8_t base_stats[SPEC_STAT_COUNT];
+    spec_type_t types[SPEC_SPECIES_TYPE_COUNT];
+    uint16_t abilities[SPEC_NDSI_SPECIES_ABILITY_COUNT];
+    uint8_t gender_ratio;
+    uint8_t egg_cycles;
+    uint8_t base_friendship;
+    spec_growth_rate_t growth_rate;
+};
+typedef struct spec_ndsi_species_data spec_ndsi_species_data_t;
 
 // The Pokédex
 
@@ -234,6 +251,13 @@ spec_error_t spec_ndsi_pokemon_remove_nickname(spec_ndsi_pokemon_t *pokemon);
 spec_error_t spec_ndsi_pokemon_set_level(spec_ndsi_pokemon_t *pokemon, uint8_t level);
 spec_error_t spec_ndsi_pokemon_set_nickname(spec_ndsi_pokemon_t *pokemon, const char8_t *nickname,
                                             spec_naming_t naming);
+
+// Species functions
+
+// nullptr for a species or game type that is no Gen 5 game's. A form with no data of its own has
+// its species', as do the forms Black and White lack.
+const spec_ndsi_species_data_t *spec_ndsi_get_species_data(spec_game_type_t type, uint16_t species,
+                                                           uint8_t form);
 
 // Personality functions
 

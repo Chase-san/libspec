@@ -33,6 +33,7 @@ static void check_name_tables(void) {
     check(is_name(spec_ability_name(1, SPEC_LANGUAGE_GERMAN), "Duftnote")
               && is_name(spec_nature_name(SPEC_NATURE_HARDY, SPEC_LANGUAGE_FRENCH), "Hardi")
               && is_name(spec_type_name(SPEC_TYPE_FAIRY, SPEC_LANGUAGE_KOREAN), "페어리")
+              && is_name(spec_type_name(SPEC_TYPE_MYSTERY, SPEC_LANGUAGE_SPANISH), "¿¿??")
               && is_name(spec_species_name(1, SPEC_LANGUAGE_CHINESE_SIMPLIFIED), "妙蛙种子"),
           "abilities, natures, types and species are named in every language");
     check(is_name(spec_form_name(SPEC_GAME_TYPE_SUN_MOON, 25, 1, SPEC_LANGUAGE_ENGLISH),
@@ -57,9 +58,6 @@ static void check_name_tables(void) {
               && is_name(spec_nds_item_name(1, SPEC_LANGUAGE_JAPANESE), "マスターボール")
               && is_name(spec_ndsi_item_name(1, SPEC_LANGUAGE_ENGLISH), "Master Ball"),
           "each console names its own items");
-    check(spec_gb_decode_type(0x14) == SPEC_TYPE_FIRE
-              && spec_gb_decode_type(0x06) == SPEC_TYPE_COUNT,
-          "Gen 1 types decode to the shared order");
 }
 
 static bool is_nds_name(const spec_nds_pokemon_t *pokemon, const char *expected) {

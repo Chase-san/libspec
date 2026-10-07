@@ -1,12 +1,18 @@
-// What every console shares: errors, common enums, names and the Gen 3-4 RNG.
+// What every console shares: errors, common enums, names, game and move data, and the Gen 3-4
+// RNG.
 
 #ifndef SPEC_H
 #define SPEC_H
 
 #include <stddef.h>
 #include <stdint.h>
+#include <uchar.h>
+
+// MinGW's <uchar.h> lacks C23's char8_t; repeating the standard's typedef is harmless.
+typedef unsigned char char8_t;
 
 constexpr size_t SPEC_EXPECTED_IV_SETS_MAX = 3;
+constexpr size_t SPEC_SPECIES_TYPE_COUNT = 2;
 
 // Errors
 
@@ -78,6 +84,7 @@ enum spec_game_type : uint8_t {
     SPEC_GAME_TYPE_OMEGA_RUBY_ALPHA_SAPPHIRE,
     SPEC_GAME_TYPE_SUN_MOON,
     SPEC_GAME_TYPE_ULTRA_SUN_ULTRA_MOON,
+    SPEC_GAME_TYPE_COUNT,
 };
 typedef enum spec_game_type spec_game_type_t;
 
@@ -197,7 +204,7 @@ enum spec_stat {
 };
 typedef enum spec_stat spec_stat_t;
 
-// In Gen 4 to 7's order; Gen 1 to 3 number types their own way.
+// In Gen 5 to 7's order, then ???; Gen 1 to 4 number types their own way.
 enum spec_type : uint8_t {
     SPEC_TYPE_NORMAL,
     SPEC_TYPE_FIGHTING,
@@ -217,9 +224,21 @@ enum spec_type : uint8_t {
     SPEC_TYPE_DRAGON,
     SPEC_TYPE_DARK,
     SPEC_TYPE_FAIRY,
+    SPEC_TYPE_MYSTERY, // aka ???, Curse's in Gen 2 to 4
     SPEC_TYPE_COUNT,
 };
 typedef enum spec_type spec_type_t;
+
+enum spec_growth_rate : uint8_t {
+    SPEC_GROWTH_RATE_MEDIUM_FAST,
+    SPEC_GROWTH_RATE_ERRATIC,
+    SPEC_GROWTH_RATE_FLUCTUATING,
+    SPEC_GROWTH_RATE_MEDIUM_SLOW,
+    SPEC_GROWTH_RATE_FAST,
+    SPEC_GROWTH_RATE_SLOW,
+    SPEC_GROWTH_RATE_COUNT,
+};
+typedef enum spec_growth_rate spec_growth_rate_t;
 
 typedef uint32_t spec_pid_t;
 
@@ -238,6 +257,14 @@ enum spec_naming : uint8_t {
     SPEC_NAMING_NAME_RATER,        // the field naming screen: the Name Rater and gifts
 };
 typedef enum spec_naming spec_naming_t;
+
+// Moves
+
+struct spec_move_data {
+    spec_type_t type;
+    uint8_t pp;
+};
+typedef struct spec_move_data spec_move_data_t;
 
 // Items
 
@@ -263,6 +290,18 @@ const char *spec_move_name(uint16_t move, spec_language_t language);
 const char *spec_nature_name(spec_nature_t nature, spec_language_t language);
 const char *spec_species_name(uint16_t national_number, spec_language_t language);
 const char *spec_type_name(spec_type_t type, spec_language_t language);
+
+// Game functions: the highest number each type's games use, 0 for none.
+
+uint16_t spec_last_ability(spec_game_type_t type);
+uint16_t spec_last_move(spec_game_type_t type);
+uint16_t spec_last_species(spec_game_type_t type);
+
+// Move functions: nullptr or 0 for a move the type's games lack.
+
+const spec_move_data_t *spec_get_move_data(spec_game_type_t type, uint16_t move);
+// With pp_ups PP Ups, 0 to 3.
+uint8_t spec_move_max_pp(spec_game_type_t type, uint16_t move, uint8_t pp_ups);
 
 // Gen 3-4 RNG functions
 

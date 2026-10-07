@@ -25,7 +25,8 @@ This library has the following capabilities.
   - Daycare
 - Pokédex Editing
 - Trainer Editing
-- Names in every language the games use: species, forms, moves, abilities, items, natures and types
+- Species and Move data
+- Support for every game language
 
 ## Data
 
@@ -47,8 +48,7 @@ Its information comes from community sources, original research and decompilatio
 - PokéAPI, for reading the glyphs the games write Chinese species names in
 - Project Pokémon, PKHeX's contributors and SciresM, whose research documented the Gen 6 and 7 saves and Gen 7's save signature.
 - Bulbapedia, Serebii.net and Pokémon Database.
-- The author's own cartridges and applications from which the Gen 5, Gen 6 and Gen 7 data is extracted.
-  - This includes all English games from owned cartridges and a number of foreign language games across various platforms.
+- The author's own cartridges and applications, including all English games from owned cartridges and a number of foreign language games across various platforms.
 - The author's own older programs and libraries such as PPSE-DS, libspec (old), and PokeLib.
 
 PokéAPI data is used under its BSD 3-Clause licence: Copyright (c) 2013–2023 Paul Hallett and PokéAPI contributors.

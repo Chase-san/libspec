@@ -204,7 +204,7 @@ constexpr spec_gbc_layout_t JAPANESE_CRYSTAL_LAYOUT = {
     .player_gender_offset = 0x8000,
 };
 
-static bool is_western(spec_language_t language) {
+static bool is_international(spec_language_t language) {
     return language == SPEC_LANGUAGE_ENGLISH || language == SPEC_LANGUAGE_FRENCH
            || language == SPEC_LANGUAGE_ITALIAN || language == SPEC_LANGUAGE_GERMAN
            || language == SPEC_LANGUAGE_SPANISH;
@@ -212,7 +212,7 @@ static bool is_western(spec_language_t language) {
 
 const spec_gbc_layout_t *spec_gbc_get_layout(spec_game_type_t type, spec_language_t language) {
     bool is_japanese = language == SPEC_LANGUAGE_JAPANESE;
-    if (!is_japanese && !is_western(language)) {
+    if (!is_japanese && !is_international(language)) {
         return nullptr;
     }
     switch (type) {

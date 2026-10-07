@@ -1,11 +1,10 @@
-// The Gen 6 and 7 (3DS) API: saves, Pokémon, personality, items and text.
+// The Gen 6 and 7 (3DS) API: saves, storage, Pokémon, species, personality, items and text.
 
 #ifndef SPEC_3DS_H
 #define SPEC_3DS_H
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 
 #include "nds/nds.h"
 #include "spec.h"
@@ -22,6 +21,8 @@ constexpr size_t SPEC_3DS_BOX_RECORD_SIZE = 0xE8;
 constexpr size_t SPEC_3DS_NAME_SIZE = 13;
 constexpr size_t SPEC_3DS_BOX_NAME_SIZE = 17;
 constexpr size_t SPEC_3DS_MOVE_COUNT = 4;
+// The first, the second and the hidden, which ability numbers 1, 2 and 4 choose.
+constexpr size_t SPEC_3DS_SPECIES_ABILITY_COUNT = 3;
 constexpr size_t SPEC_3DS_BADGE_COUNT = 8;
 // The trainer passport's stamps, which stand in for Gen 7's badges.
 constexpr size_t SPEC_3DS_STAMP_COUNT = 15;
@@ -33,6 +34,8 @@ constexpr size_t SPEC_3DS_DAYCARE_MAX_COUNT = 2;
 // Indexed by National Dex number.
 constexpr size_t SPEC_3DS_POKEDEX_SIZE = 808;
 constexpr size_t SPEC_3DS_POCKET_MAX_CAPACITY = 430;
+// Item numbers run below this.
+constexpr size_t SPEC_3DS_ITEM_COUNT = 960;
 constexpr size_t SPEC_3DS_TEXT_MAX_SIZE = SPEC_3DS_BOX_NAME_SIZE;
 // Up to 3 UTF-8 bytes per character, plus NUL.
 constexpr size_t SPEC_3DS_TEXT_BUFFER_SIZE = SPEC_3DS_TEXT_MAX_SIZE * 3 + 1;
@@ -209,6 +212,21 @@ struct spec_3ds_pokemon {
 };
 typedef struct spec_3ds_pokemon spec_3ds_pokemon_t;
 
+// Species
+
+// A species of one type has it twice, and of one ability has it as the first and second, as the
+// games store them.
+struct spec_3ds_species_data {
+    uint8_t base_stats[SPEC_STAT_COUNT];
+    spec_type_t types[SPEC_SPECIES_TYPE_COUNT];
+    uint16_t abilities[SPEC_3DS_SPECIES_ABILITY_COUNT];
+    uint8_t gender_ratio;
+    uint8_t egg_cycles;
+    uint8_t base_friendship;
+    spec_growth_rate_t growth_rate;
+};
+typedef struct spec_3ds_species_data spec_3ds_species_data_t;
+
 // The Pokédex
 
 enum spec_3ds_pokedex_look : uint8_t {
@@ -312,6 +330,11 @@ spec_error_t spec_3ds_check_save(const spec_3ds_save_t *save);
 // 0 for a type that is not a 3DS game's.
 size_t spec_3ds_save_size(spec_game_type_t type);
 
+// Storage functions: 0 for a type that is not a 3DS game's.
+
+size_t spec_3ds_box_count(spec_game_type_t type);
+size_t spec_3ds_daycare_count(spec_game_type_t type);
+
 // Pokémon functions
 
 // raw is the encrypted record as the save stores it; generation is its format, 6 or 7.
@@ -330,6 +353,13 @@ spec_error_t spec_3ds_pokemon_remove_nickname(spec_3ds_pokemon_t *pokemon);
 spec_error_t spec_3ds_pokemon_set_level(spec_3ds_pokemon_t *pokemon, uint8_t level);
 spec_error_t spec_3ds_pokemon_set_nickname(spec_3ds_pokemon_t *pokemon, const char8_t *nickname,
                                            spec_naming_t naming);
+
+// Species functions
+
+// nullptr for a species or game type that is no 3DS game's. A form with no data of its own has its
+// species', as do the forms a game lacks.
+const spec_3ds_species_data_t *spec_3ds_get_species_data(spec_game_type_t type, uint16_t species,
+                                                         uint8_t form);
 
 // Personality functions
 

@@ -1,4 +1,4 @@
-// Gen 3 Pokémon records: the encrypted codec, stats, names and species numbering.
+// Gen 3 Pokémon records: the encrypted codec, stats, names, species data and numbering.
 
 #include <string.h>
 
@@ -519,6 +519,19 @@ spec_error_t spec_gba_pokemon_set_nickname(spec_gba_pokemon_t *pokemon, const ch
     // TODO: Check the Japanese nickname length.
     return spec_gba_text_from_utf8(pokemon->nickname, SPEC_GBA_NICKNAME_SIZE, nickname,
                                    pokemon->language);
+}
+
+static bool is_gen3_game(spec_game_type_t type) {
+    return type == SPEC_GAME_TYPE_RUBY_SAPPHIRE || type == SPEC_GAME_TYPE_EMERALD
+           || type == SPEC_GAME_TYPE_FIRERED_LEAFGREEN;
+}
+
+const spec_gba_species_data_t *spec_gba_get_species_data(spec_game_type_t type,
+                                                         spec_gba_species_t species) {
+    if (!is_gen3_game(type) || spec_gba_species_to_national(species) == 0) {
+        return nullptr;
+    }
+    return &spec_gba_species_data[species];
 }
 
 spec_gba_species_t spec_gba_species_from_national(uint16_t national_number) {

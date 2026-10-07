@@ -1,4 +1,4 @@
-// Gen 2 Pokémon records: the codec, stats and names.
+// Gen 2 Pokémon records: the codec, stats, names and species data.
 
 #include <string.h>
 
@@ -296,4 +296,15 @@ spec_error_t spec_gbc_pokemon_set_nickname(spec_gbc_pokemon_t *pokemon, const ch
     }
     return spec_gbc_text_from_utf8(pokemon->nickname, spec_gb_name_size(language), nickname,
                                    language);
+}
+
+static bool is_gen2_game(spec_game_type_t type) {
+    return type == SPEC_GAME_TYPE_GOLD_SILVER || type == SPEC_GAME_TYPE_CRYSTAL;
+}
+
+const spec_gbc_species_data_t *spec_gbc_get_species_data(spec_game_type_t type, uint8_t species) {
+    if (!is_gen2_game(type) || species == 0 || species >= SPEC_GBC_POKEDEX_SIZE) {
+        return nullptr;
+    }
+    return &spec_gbc_species_data[species];
 }

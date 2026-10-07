@@ -5,7 +5,6 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 
 #include "spec.h"
 
@@ -14,6 +13,8 @@ constexpr size_t SPEC_GBA_TRAINER_NAME_SIZE = 7;
 constexpr size_t SPEC_GBA_BADGE_COUNT = 8;
 constexpr size_t SPEC_GBA_NICKNAME_SIZE = 10;
 constexpr size_t SPEC_GBA_MOVE_COUNT = 4;
+// The abilities ability_number chooses between.
+constexpr size_t SPEC_GBA_SPECIES_ABILITY_COUNT = 2;
 constexpr size_t SPEC_GBA_PARTY_RECORD_SIZE = 100;
 constexpr size_t SPEC_GBA_BOX_RECORD_SIZE = 80;
 // Indexed by National Dex number.
@@ -24,6 +25,8 @@ constexpr size_t SPEC_GBA_BOX_CAPACITY = 30;
 constexpr size_t SPEC_GBA_BOX_NAME_SIZE = 8;
 constexpr size_t SPEC_GBA_DAYCARE_CAPACITY = 3;
 constexpr size_t SPEC_GBA_POCKET_MAX_CAPACITY = 64;
+// Item numbers run below this.
+constexpr size_t SPEC_GBA_ITEM_COUNT = 377;
 constexpr size_t SPEC_GBA_TEXT_MAX_SIZE = SPEC_GBA_NICKNAME_SIZE;
 // Up to 3 UTF-8 bytes per character, plus NUL.
 constexpr size_t SPEC_GBA_TEXT_BUFFER_SIZE = SPEC_GBA_TEXT_MAX_SIZE * 3 + 1;
@@ -211,6 +214,21 @@ struct spec_gba_pokemon {
 };
 typedef struct spec_gba_pokemon spec_gba_pokemon_t;
 
+// Species
+
+// Abilities are by ability_number, 0 for none, and numbered as Gen 4 on number them; a species of
+// one type has it twice, as the games store it.
+struct spec_gba_species_data {
+    uint8_t base_stats[SPEC_STAT_COUNT];
+    spec_type_t types[SPEC_SPECIES_TYPE_COUNT];
+    uint16_t abilities[SPEC_GBA_SPECIES_ABILITY_COUNT];
+    uint8_t gender_ratio;
+    uint8_t egg_cycles;
+    uint8_t base_friendship;
+    spec_growth_rate_t growth_rate;
+};
+typedef struct spec_gba_species_data spec_gba_species_data_t;
+
 // The Pokédex
 
 // Writing is_caught also marks the species seen.
@@ -318,6 +336,9 @@ spec_error_t spec_gba_pokemon_set_nickname(spec_gba_pokemon_t *pokemon, const ch
 
 // Species functions
 
+// nullptr for a species or game type that is no Gen 3 game's.
+const spec_gba_species_data_t *spec_gba_get_species_data(spec_game_type_t type,
+                                                         spec_gba_species_t species);
 spec_gba_species_t spec_gba_species_from_national(uint16_t national_number);
 uint16_t spec_gba_species_to_national(spec_gba_species_t species);
 
@@ -333,6 +354,8 @@ spec_error_t spec_gba_check_item_placement(spec_game_type_t type, spec_gba_pocke
 spec_error_t spec_gba_get_pocket_for_item(spec_gba_pocket_t *pocket, spec_game_type_t type,
                                           uint16_t item);
 const char *spec_gba_item_name(uint16_t item, spec_language_t language);
+// The item's number in Gen 4 to 7, which names it there; 0 for none.
+uint16_t spec_gba_item_get_migration_id(uint16_t item);
 size_t spec_gba_pocket_capacity(spec_game_type_t type, spec_gba_pocket_t pocket);
 size_t spec_gba_pocket_item_count(const spec_gba_save_t *save, spec_gba_pocket_t pocket);
 

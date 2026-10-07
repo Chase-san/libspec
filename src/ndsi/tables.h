@@ -12,17 +12,22 @@
 #include "spec_tables.h"
 
 constexpr size_t SPEC_NDSI_SPECIES_COUNT = 650;
-constexpr size_t SPEC_NDSI_FORM_DATA_COUNT = 24;
-constexpr size_t SPEC_NDSI_ITEM_COUNT = 639;
 constexpr uint8_t SPEC_NDSI_NO_POCKET = 0xFF;
 
 // Species
 
-typedef spec_nds_species_data_t spec_ndsi_species_data_t;
-typedef spec_nds_form_data_t spec_ndsi_form_data_t;
+// A row describes its species or form from from_game on, until a later row for the same one takes
+// over.
+struct spec_ndsi_species_row {
+    uint16_t species;
+    uint8_t form;
+    spec_game_type_t from_game;
+    spec_ndsi_species_data_t data;
+};
+typedef struct spec_ndsi_species_row spec_ndsi_species_row_t;
 
-extern const spec_ndsi_species_data_t spec_ndsi_species_data[SPEC_NDSI_SPECIES_COUNT];
-extern const spec_ndsi_form_data_t spec_ndsi_form_data[SPEC_NDSI_FORM_DATA_COUNT];
+extern const spec_ndsi_species_row_t spec_ndsi_species_rows[];
+extern const size_t spec_ndsi_species_row_count;
 
 // Items
 

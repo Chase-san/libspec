@@ -1,15 +1,16 @@
-// The Gen 1 (Game Boy) API: saves, Pokémon, species, items and text.
+// The Gen 1 (Game Boy) API: saves and identifying them, storage, Pokémon, species, items and text.
 
 #ifndef SPEC_GB_H
 #define SPEC_GB_H
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 
 #include "spec.h"
 
 constexpr size_t SPEC_GB_SAVE_SIZE = 0x8000;
+// Red and Blue, and Yellow, each in Japan's layout and in everyone else's.
+constexpr size_t SPEC_GB_IDENTITY_MAX_COUNT = 4;
 constexpr size_t SPEC_GB_BADGE_COUNT = 8;
 // Name sizes count the terminator; Japanese names use the first 6 bytes.
 constexpr size_t SPEC_GB_NAME_SIZE = 11;
@@ -21,10 +22,12 @@ constexpr size_t SPEC_GB_BOX_RECORD_SIZE = 33;
 // Indexed by National Dex number.
 constexpr size_t SPEC_GB_POKEDEX_SIZE = 152;
 constexpr size_t SPEC_GB_PARTY_CAPACITY = 6;
-// Japanese saves hold 8 boxes of 30, the others 12 of 20.
+// Japanese saves hold 8 boxes of 30, the others 12 of 20; these are the most either holds.
 constexpr size_t SPEC_GB_BOX_COUNT = 12;
 constexpr size_t SPEC_GB_BOX_CAPACITY = 30;
 constexpr size_t SPEC_GB_POCKET_MAX_CAPACITY = 50;
+// Item numbers run below this.
+constexpr size_t SPEC_GB_ITEM_COUNT = 256;
 constexpr size_t SPEC_GB_TEXT_MAX_SIZE = SPEC_GB_NAME_SIZE;
 // Up to 4 UTF-8 bytes per byte, a ligature being two characters, plus NUL.
 constexpr size_t SPEC_GB_TEXT_BUFFER_SIZE = SPEC_GB_TEXT_MAX_SIZE * 4 + 1;
@@ -95,7 +98,9 @@ struct spec_gb_pokemon {
     uint8_t box_level;
     uint16_t current_hp;
     spec_gb_status_t status;
-    uint8_t types[SPEC_GB_TYPE_COUNT];
+    // SPEC_TYPE_COUNT for a number that names no type, as a glitch Pokémon's Bird; writing refuses
+    // it.
+    spec_type_t types[SPEC_GB_TYPE_COUNT];
     uint8_t catch_rate;
     // HP's is derived from the others on read and ignored on write.
     uint8_t dvs[SPEC_GB_STAT_COUNT];
@@ -105,6 +110,17 @@ struct spec_gb_pokemon {
     spec_gb_party_data_t party_data;
 };
 typedef struct spec_gb_pokemon spec_gb_pokemon_t;
+
+// Species
+
+// A species of one type has it twice, as the games store it.
+struct spec_gb_species_data {
+    uint8_t base_stats[SPEC_GB_STAT_COUNT];
+    spec_type_t types[SPEC_GB_TYPE_COUNT];
+    uint8_t catch_rate;
+    spec_growth_rate_t growth_rate;
+};
+typedef struct spec_gb_species_data spec_gb_species_data_t;
 
 // The Pokédex
 
@@ -138,6 +154,13 @@ typedef spec_item_slot_t spec_gb_item_slot_t;
 
 // The save
 
+// language is UNKNOWN for an international save whose Pokémon don't settle which language it is in.
+struct spec_gb_identity {
+    spec_game_type_t type;
+    spec_language_t language;
+};
+typedef struct spec_gb_identity spec_gb_identity_t;
+
 // The save records neither its game nor its language, so reading takes both. Writing condenses
 // pockets; a slot with no item or zero quantity is empty.
 struct spec_gb_save {
@@ -169,6 +192,18 @@ spec_error_t spec_gb_write_save(const spec_gb_save_t *save, uint8_t data[static 
 // What writing checks, without writing.
 spec_error_t spec_gb_check_save(const spec_gb_save_t *save);
 
+// Identification functions
+
+// Every game and language whose layout the data fits. Red and Blue are told from Yellow by the
+// player's starter, so a save from before Oak's lab fits both.
+size_t spec_gb_identify_save(spec_gb_identity_t identities[static SPEC_GB_IDENTITY_MAX_COUNT],
+                             const uint8_t data[static SPEC_GB_SAVE_SIZE]);
+
+// Storage functions: 0 for a language the games lack.
+
+size_t spec_gb_box_capacity(spec_language_t language);
+size_t spec_gb_box_count(spec_language_t language);
+
 // Pokémon functions: a Pokémon has no language of its own, so its names take the save's.
 
 spec_error_t spec_gb_pokemon_get_name(const spec_gb_pokemon_t *pokemon,
@@ -180,21 +215,23 @@ spec_error_t spec_gb_pokemon_remove_nickname(spec_gb_pokemon_t *pokemon, spec_la
 spec_error_t spec_gb_pokemon_set_level(spec_gb_pokemon_t *pokemon, uint8_t level);
 spec_error_t spec_gb_pokemon_set_nickname(spec_gb_pokemon_t *pokemon, const char8_t *nickname,
                                           spec_language_t language);
+// As evolving does: the types follow the species, and the catch rate stays.
+spec_error_t spec_gb_pokemon_set_species(spec_gb_pokemon_t *pokemon, spec_gb_species_t species);
 
 // Species functions
 
+// nullptr for a species or game type that is no Gen 1 game's.
+const spec_gb_species_data_t *spec_gb_get_species_data(spec_game_type_t type,
+                                                       spec_gb_species_t species);
 spec_gb_species_t spec_gb_species_from_national(uint16_t national_number);
 uint16_t spec_gb_species_to_national(spec_gb_species_t species);
-
-// Type functions
-
-// A Pokémon's stored type; SPEC_TYPE_COUNT for a number that names none, Bird's among them.
-spec_type_t spec_gb_decode_type(uint8_t type);
 
 // Item functions
 
 spec_error_t spec_gb_check_item_placement(spec_gb_pocket_t pocket, uint16_t item);
 const char *spec_gb_item_name(uint16_t item, spec_language_t language);
+// The item's number in Gen 4 to 7, which names it there; 0 for none, TMs and HMs among them.
+uint16_t spec_gb_item_get_migration_id(uint16_t item);
 size_t spec_gb_pocket_capacity(spec_gb_pocket_t pocket);
 size_t spec_gb_pocket_item_count(const spec_gb_save_t *save, spec_gb_pocket_t pocket);
 

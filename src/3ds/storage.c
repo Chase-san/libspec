@@ -1,4 +1,4 @@
-// Gen 6 and 7 Pokémon storage: the party, the PC boxes and the daycares.
+// Gen 6 and 7 Pokémon storage: the party, the PC boxes and the daycares, and how many of each.
 
 #include <string.h>
 
@@ -305,4 +305,20 @@ spec_error_t spec_3ds_check_storage(const spec_3ds_save_t *save, const spec_3ds_
         return error;
     }
     return check_daycares(save, layout);
+}
+
+size_t spec_3ds_box_count(spec_game_type_t type) {
+    const spec_3ds_layout_t *layout = spec_3ds_get_layout(type);
+    if (layout == nullptr) {
+        return 0;
+    }
+    return layout->box_count;
+}
+
+size_t spec_3ds_daycare_count(spec_game_type_t type) {
+    const spec_3ds_layout_t *layout = spec_3ds_get_layout(type);
+    if (layout == nullptr) {
+        return 0;
+    }
+    return layout->daycare_count;
 }

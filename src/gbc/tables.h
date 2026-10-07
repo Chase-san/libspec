@@ -11,20 +11,13 @@
 #include "spec.h"
 #include "spec_tables.h"
 
-constexpr size_t SPEC_GBC_ITEM_COUNT = 256;
 constexpr uint8_t SPEC_GBC_NO_POCKET = 0xFF;
 // TMs 1-50, then HMs as 51-57.
 constexpr size_t SPEC_GBC_MACHINE_COUNT = 57;
 
 // Species
 
-struct spec_gbc_species_data {
-    uint8_t base_stats[SPEC_STAT_COUNT];
-    spec_growth_rate_t growth_rate;
-    uint8_t gender_ratio;
-};
-typedef struct spec_gbc_species_data spec_gbc_species_data_t;
-
+// Gold, Silver and Crystal have the same species data.
 extern const spec_gbc_species_data_t spec_gbc_species_data[SPEC_GBC_POKEDEX_SIZE];
 
 // Text
@@ -36,12 +29,13 @@ extern const spec_gb_character_t spec_gbc_charmap_japanese[SPEC_GB_CHARMAP_SIZE]
 
 // Items
 
-// machine is 0 for an item that is no TM or HM.
+// machine is 0 for an item that is no TM or HM, and migration_id for one with no Gen 4 to 7 number.
 struct spec_gbc_item_data {
     uint8_t gold_silver_pocket;
     uint8_t crystal_pocket;
     uint8_t machine;
     bool is_mail;
+    uint16_t migration_id;
 };
 typedef struct spec_gbc_item_data spec_gbc_item_data_t;
 

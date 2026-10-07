@@ -8,6 +8,8 @@ from pathlib import Path
 
 STAT_COLUMNS = ["hp", "attack", "defense", "speed", "special_attack", "special_defense"]
 POCKET_COLUMNS = ["black_white", "black2_white2"]
+TYPE_COLUMNS = ["type_1", "type_2"]
+ABILITY_COLUMNS = ["ability_1", "ability_2", "hidden_ability"]
 
 
 def read_tsv(path):
@@ -30,20 +32,27 @@ def stats_of(row):
     return ", ".join(row[column] for column in STAT_COLUMNS)
 
 
+# "-" is every game, which the first game type stands for.
+def from_game_enum(from_game):
+    return "SPEC_GAME_TYPE_" + ("red_blue" if from_game == "-" else from_game).upper()
+
+
+def species_data_of(row):
+    types = ", ".join("SPEC_TYPE_" + row[column].upper() for column in TYPE_COLUMNS)
+    abilities = ", ".join(row[column] for column in ABILITY_COLUMNS)
+    counts = f"{row['gender_ratio']}, {row['egg_cycles']}, {row['base_friendship']}"
+    growth_rate = "SPEC_GROWTH_RATE_" + row["growth_rate"].upper()
+    return f"{{{stats_of(row)}}}, {{{types}}}, {{{abilities}}}, {counts}, {growth_rate}"
+
+
 def species_data_body(species):
-    lines = ["const spec_ndsi_species_data_t spec_ndsi_species_data[SPEC_NDSI_SPECIES_COUNT] = {"]
+    lines = ["const spec_ndsi_species_row_t spec_ndsi_species_rows[] = {"]
     for row in species:
-        if row["form"] != "0":
-            continue
-        growth_rate = "SPEC_GROWTH_RATE_" + row["growth_rate"].upper()
-        lines.append(f"    [{row['national']}] = {{{{{stats_of(row)}}}, {growth_rate}, {row['gender_ratio']}}},")
+        key = f"{row['national']}, {row['form']}, {from_game_enum(row['from_game'])}"
+        lines.append(f"    {{{key}, {{{species_data_of(row)}}}}},")
     lines.append("};\n")
-    lines.append("const spec_ndsi_form_data_t spec_ndsi_form_data[SPEC_NDSI_FORM_DATA_COUNT] = {")
-    for row in species:
-        if row["form"] == "0":
-            continue
-        lines.append(f"    {{{row['national']}, {row['form']}, {{{stats_of(row)}}}}},")
-    lines.append("};")
+    lines.append("const size_t spec_ndsi_species_row_count =")
+    lines.append("    sizeof spec_ndsi_species_rows / sizeof spec_ndsi_species_rows[0];")
     return "\n".join(lines) + "\n"
 
 

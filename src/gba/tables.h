@@ -13,7 +13,6 @@
 constexpr size_t SPEC_GBA_SPECIES_INDEX_COUNT = 412;
 constexpr size_t SPEC_GBA_NATIONAL_COUNT = 387;
 constexpr size_t SPEC_GBA_CHARMAP_SIZE = 0xF7;
-constexpr size_t SPEC_GBA_ITEM_COUNT = 377;
 constexpr uint8_t SPEC_GBA_NO_POCKET = 0xFF;
 
 // Species
@@ -21,13 +20,7 @@ constexpr uint8_t SPEC_GBA_NO_POCKET = 0xFF;
 extern const uint16_t spec_gba_national_of_species[SPEC_GBA_SPECIES_INDEX_COUNT];
 extern const spec_gba_species_t spec_gba_species_of_national[SPEC_GBA_NATIONAL_COUNT];
 
-struct spec_gba_species_data {
-    uint8_t base_stats[SPEC_STAT_COUNT];
-    spec_growth_rate_t growth_rate;
-    uint8_t gender_ratio;
-};
-typedef struct spec_gba_species_data spec_gba_species_data_t;
-
+// Every Gen 3 game has the same species data.
 extern const spec_gba_species_data_t spec_gba_species_data[SPEC_GBA_SPECIES_INDEX_COUNT];
 
 // Text
@@ -47,7 +40,7 @@ struct spec_gba_item_data {
     uint8_t firered_leafgreen_pocket;
     bool is_important;
     // The item's number from Gen 4 on, which names it in the other languages; 0 for none.
-    uint16_t later_item;
+    uint16_t migration_id;
 };
 typedef struct spec_gba_item_data spec_gba_item_data_t;
 

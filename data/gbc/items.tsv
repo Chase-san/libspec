@@ -1,223 +1,223 @@
-item	gold_silver_pocket	crystal_pocket	machine	is_mail	japanese	english	spanish	korean
-1	balls	balls	-	no	マスターボール	MASTER BALL	MASTER BALL	마스터볼
-2	balls	balls	-	no	ハイパーボール	ULTRA BALL	ULTRA BALL	하이퍼볼
-3	items	items	-	no	ひかりのこな	BRIGHTPOWDER	POLVO BRILLO	반짝가루
-4	balls	balls	-	no	スーパーボール	GREAT BALL	SÚPER BALL	수퍼볼
-5	balls	balls	-	no	モンスターボール	POKé BALL	POKé BALL	몬스터볼
-7	key_items	key_items	-	no	じてんしゃ	BICYCLE	BICICLETA	자전거
-8	items	items	-	no	つきのいし	MOON STONE	PIEDRA LUNAR	달맞이 돌
-9	items	items	-	no	どくけし	ANTIDOTE	ANTÍDOTO	해독제
-10	items	items	-	no	やけどなおし	BURN HEAL	ANTIQUEMAR	화상 치료제
-11	items	items	-	no	こおりなおし	ICE HEAL	ANTIHIELO	얼음상태 치료제
-12	items	items	-	no	ねむけざまし	AWAKENING	DESPERTAR	잠깨는 약
-13	items	items	-	no	まひなおし	PARLYZ HEAL	ANTIPARALIZ	마비 치료제
-14	items	items	-	no	かいふくのくすり	FULL RESTORE	RESTAU. TODO	회복약
-15	items	items	-	no	まんたんのくすり	MAX POTION	MÁX. POCIÓN	풀 회복약
-16	items	items	-	no	すごいキズぐすり	HYPER POTION	HÍPER POCIÓN	고급 상처약
-17	items	items	-	no	いいキズぐすり	SUPER POTION	SÚPER POCIÓN	좋은 상처약
-18	items	items	-	no	キズぐすリ	POTION	POCIÓN	상처약
-19	items	items	-	no	あなぬけのヒモ	ESCAPE ROPE	CUERDA HUIDA	동굴탈출 로프
-20	items	items	-	no	むしよけスプレー	REPEL	REPELENTE	벌레회피스프레이
-21	items	items	-	no	ピーピーマックス	MAX ELIXER	ELIXIR MÁX	PP 맥스
-22	items	items	-	no	ほのおのいし	FIRE STONE	PIEDRA FUEGO	불꽃의 돌
-23	items	items	-	no	かみなりのいし	THUNDERSTONE	PIEDRATRUENO	천둥의 돌
-24	items	items	-	no	みずのいし	WATER STONE	PIEDRA AGUA	물의 돌
-26	items	items	-	no	マックスアップ	HP UP	MÁS PS	맥스 업
-27	items	items	-	no	タウリン	PROTEIN	PROTEÍNAS	타우린
-28	items	items	-	no	ブロムヘキシン	IRON	HIERRO	사포닌
-29	items	items	-	no	インドメタシン	CARBOS	CARBURANTE	알칼로이드
-30	items	items	-	no	ラッキーパンチ	LUCKY PUNCH	PUÑO SUERTE	럭키 펀치
-31	items	items	-	no	リゾチウム	CALCIUM	CALCIO	리보플라빈
-32	items	items	-	no	ふしぎなアメ	RARE CANDY	CARAMELORARO	이상한 사탕
-33	items	items	-	no	ヨクアタール	X ACCURACY	PRECISIÓN X	잘－맞히기
-34	items	items	-	no	リーフのいし	LEAF STONE	PIEDRA HOJA	잎사귀 돌
-35	items	items	-	no	メタルパウダー	METAL POWDER	POL.METÁLICO	금속 파우더
-36	items	items	-	no	きんのたま	NUGGET	PEPITA	금구슬
-37	items	items	-	no	ピッピにんぎょう	POKé DOLL	POKé MUÑECO	삐삐인형
-38	items	items	-	no	なんでもなおし	FULL HEAL	CURA TOTAL	만병통치제
-39	items	items	-	no	げんきのかけら	REVIVE	REVIVIR	기력의 조각
-40	items	items	-	no	げんきのかたまり	MAX REVIVE	MÁX. REVIVIR	기력의 덩어리
-41	items	items	-	no	エフェクトガード	GUARD SPEC.	PROTEC. ESP	이펙트 가드
-42	items	items	-	no	シルバースプレー	SUPER REPEL	SÚPER REPEL	실버 스프레이
-43	items	items	-	no	ゴールドスプレー	MAX REPEL	MÁX. REPEL	골드 스프레이
-44	items	items	-	no	クリティカッター	DIRE HIT	DIRECTO	크리티컬 커터
-46	items	items	-	no	おいしいみず	FRESH WATER	AGUA FRESCA	맛있는 물
-47	items	items	-	no	サイコソーダ	SODA POP	REFRESCO	미네랄 사이다
-48	items	items	-	no	ミックスオレ	LEMONADE	LIMONADA	후르츠 밀크
-49	items	items	-	no	プラスパワー	X ATTACK	ATAQUE X	플러스파워
-51	items	items	-	no	ディフェンダー	X DEFEND	DEFENSA X	디펜드 업
-52	items	items	-	no	スピーダー	X SPEED	VELOCIDAD X	스피드 업
-53	items	items	-	no	スペシャルアップ	X SPECIAL	ESPECIAL X	스페셜 업
-54	key_items	key_items	-	no	コインケース	COIN CASE	MONEDERO	동전 케이스
-55	key_items	key_items	-	no	ダウジングマシン	ITEMFINDER	BUSCAOBJETOS	다우징 머신
-57	items	items	-	no	がくしゅうそうち	EXP.SHARE	REPARTIR EXP	학습장치
-58	key_items	key_items	-	no	ボロのつリざお	OLD ROD	CAÑA VIEJA	낡은 낚싯대
-59	key_items	key_items	-	no	いいつりざお	GOOD ROD	CAÑA BUENA	좋은 낚싯대
-60	items	items	-	no	ぎんのはっぱ	SILVER LEAF	HOJA PLATA	은빛 나뭇잎
-61	key_items	key_items	-	no	すごいつりざお	SUPER ROD	SÚPER CAÑA	대단한 낚싯대
-62	items	items	-	no	ポイントアップ	PP UP	MÁS PP	포인트 업
-63	items	items	-	no	ピーピーエイド	ETHER	ÉTER	PP 에이드
-64	items	items	-	no	ピーピーリカバー	MAX ETHER	ÉTER MÁX	PP 회복
-65	items	items	-	no	ピーピーエイダー	ELIXER	ELIXIR	PP 에이더
-66	key_items	key_items	-	no	あかいウロコ	RED SCALE	ESCAMA ROJA	빨간 비늘
-67	key_items	key_items	-	no	ひでんのくすり	SECRETPOTION	POC. SECRETA	비전 신약
-68	key_items	key_items	-	no	ふねのチケット	S.S.TICKET	TICKET BARCO	승선 티켓
-69	key_items	key_items	-	no	ふしぎなタマゴ	MYSTERY EGG	HUEVO MIST	이상한 알
-70	-	key_items	-	no	とうめいなスズ	CLEAR BELL	CAMP. CLARA	크리스탈 방울
-71	key_items	key_items	-	no	ぎんいろのはね	SILVER WING	ALA PLATEADA	은빛 날개
-72	items	items	-	no	モーモーミルク	MOOMOO MILK	LECHE MU-MU	튼튼 밀크
-73	items	items	-	no	せんせいのツメ	QUICK CLAW	GARRA RÁPIDA	선제공격 손톱
-74	items	items	-	no	どくけしのみ	PSNCUREBERRY	BAYANTÍDOTO	해독열매
-75	items	items	-	no	きんのはっぱ	GOLD LEAF	HOJA DORADA	금빛 나뭇잎
-76	items	items	-	no	やわらかいすな	SOFT SAND	ARENA FINA	부드러운 모래
-77	items	items	-	no	するどいくちばし	SHARP BEAK	PICO AFILADO	예리한 부리
-78	items	items	-	no	まひなおしのみ	PRZCUREBERRY	ANTIPARABAYA	마비치료열매
-79	items	items	-	no	やけたきのみ	BURNT BERRY	ANTIQUEMBAYA	불탄 나무열매
-80	items	items	-	no	こおったきのみ	ICE BERRY	BAYA HIELO	얼은 나무열매
-81	items	items	-	no	どくバり	POISON BARB	FLECHA VEN	독바늘
-82	items	items	-	no	おうじゃのしるし	KING'S ROCK	ROCA DEL REY	왕의 징표석
-83	items	items	-	no	にがいきのみ	BITTER BERRY	BAYAMARGA	쓴맛 나무열매
-84	items	items	-	no	はっかのみ	MINT BERRY	BAYA MENTA	박하열매
-85	items	items	-	no	あかぼんぐり	RED APRICORN	BONGURI ROJ	빨간 규토리
-86	items	items	-	no	ちいさなキノコ	TINYMUSHROOM	MINI SETA	작은 버섯
-87	items	items	-	no	おおきなキノコ	BIG MUSHROOM	SETA GRANDE	큰 버섯
-88	items	items	-	no	ぎんのこな	SILVERPOWDER	POLVO PLATA	은빛 가루
-89	items	items	-	no	あおぼんぐり	BLU APRICORN	BONGURI AZU	파란 규토리
-91	items	items	-	no	おまもりこばん	AMULET COIN	MON. AMULETO	부적 금화
-92	items	items	-	no	きぼんぐり	YLW APRICORN	BONGURI AMA	노랑 규토리
-93	items	items	-	no	みどぼんぐり	GRN APRICORN	BONGURI VER	초록 규토리
-94	items	items	-	no	きよめのおふだ	CLEANSE TAG	AMULETO	순결의 부적
-95	items	items	-	no	しんぴのしずく	MYSTIC WATER	AGUA MÍSTICA	신비의 물방울
-96	items	items	-	no	まがったスプーン	TWISTEDSPOON	CUCHARA TOR	휘어진 스푼
-97	items	items	-	no	しろぼんぐり	WHT APRICORN	BONGURI BLA	하얀 규토리
-98	items	items	-	no	くろおび	BLACKBELT	CINT. NEGRO	검은띠
-99	items	items	-	no	くろぼんぐり	BLK APRICORN	BONGURI NEG	검은 규토리
-101	items	items	-	no	ももぼんぐり	PNK APRICORN	BONGURI ROS	담홍 규토리
-102	items	items	-	no	くろいメガネ	BLACKGLASSES	GAFAS DE SOL	검은 안경
-103	items	items	-	no	おいしいシッポ	SLOWPOKETAIL	COLASLOWPOKE	맛있는 꼬리
-104	items	items	-	no	ピンクのリボン	PINK BOW	LAZO ROSA	핑크빛 리본
-105	items	items	-	no	ながねぎ	STICK	PALO	대파
-106	items	items	-	no	けむりだま	SMOKE BALL	BOLA HUMO	연막탄
-107	items	items	-	no	とけないこおり	NEVERMELTICE	ANTIDERRETIR	녹지않는 얼음
-108	items	items	-	no	じしゃく	MAGNET	IMÁN	자석
-109	items	items	-	no	きせきのみ	MIRACLEBERRY	BAYA MILAGRO	기적의 열매
-110	items	items	-	no	しんじゅ	PEARL	PERLA	진주
-111	items	items	-	no	おおきなしんじゅ	BIG PEARL	PERLA GRANDE	큰 진주
-112	items	items	-	no	かわらずのいし	EVERSTONE	PIEDRAETERNA	변함없는 돌
-113	items	items	-	no	のろいのおふだ	SPELL TAG	HECHIZO	저주의 부적
-114	items	items	-	no	いかりまんじゅう	RAGECANDYBAR	CARAM. FURIA	분노의 호두과자
-115	-	key_items	-	no	ジーエスボール	GS BALL	GS BALL	GS볼
-116	-	key_items	-	no	ブルーカード	BLUE CARD	TARJETA AZUL	블루카드
-117	items	items	-	no	きせきのタネ	MIRACLE SEED	SEM. MILAGRO	기적의 씨
-118	items	items	-	no	ふといホネ	THICK CLUB	HUESO GRUESO	굵은 뼈
-119	items	items	-	no	きあいのハチマキ	FOCUS BAND	CINTA-FOCUS	기합의 머리띠
-121	items	items	-	no	ちからのこな	ENERGYPOWDER	POLVOENERGÍA	힘의 가루
-122	items	items	-	no	ちからのねっこ	ENERGY ROOT	RAÍZ ENERGÍA	힘의 뿌리
-123	items	items	-	no	ばんのうごな	HEAL POWDER	POL.CURACIÓN	만능가루
-124	items	items	-	no	ふっかつそう	REVIVAL HERB	HIERBA-REV	부활초
-125	items	items	-	no	かたいいし	HARD STONE	PIEDRA DURA	딱딱한 돌
-126	items	items	-	no	しあわせタマゴ	LUCKY EGG	HUEVO SUERTE	행복의 알
-127	key_items	key_items	-	no	カードキー	CARD KEY	LL.MAGNÉTICA	카드키
-128	key_items	key_items	-	no	きかいのぶひん	MACHINE PART	MAQUINARIA	기계부품
-129	-	key_items	-	no	タマゴけん	EGG TICKET	TICKET HUEVO	-
-130	key_items	key_items	-	no	おとしもの	LOST ITEM	OBJ. PERDIDO	분실물
-131	items	items	-	no	ほしのすな	STARDUST	POLVOESTELAR	별의 모래
-132	items	items	-	no	ほしのかけら	STAR PIECE	TR. ESTRELLA	별의 조각
-133	key_items	key_items	-	no	ちかのカギ	BASEMENT KEY	LL. SÓTANO	지하의 열쇠
-134	key_items	key_items	-	no	ていきけん	PASS	PASE	정기권
-138	items	items	-	no	もくたん	CHARCOAL	CARBÓN	목탄
-139	items	items	-	no	きのみジュース	BERRY JUICE	ZUMO DE BAYA	나무열매쥬스
-140	items	items	-	no	ピントレンズ	SCOPE LENS	PERISCOPIO	초점 렌즈
-143	items	items	-	no	メタルコート	METAL COAT	REV.METÁLICO	금속코트
-144	items	items	-	no	りゅうのキバ	DRAGON FANG	COLMILLODRAG	용의 이빨
-146	items	items	-	no	たべのこし	LEFTOVERS	RESTOS	먹다 남은 음식
-150	items	items	-	no	ふしぎなきのみ	MYSTERYBERRY	BAYAMISTERIO	이상한 나무열매
-151	items	items	-	no	りゅうのウロコ	DRAGON SCALE	ESCAMADRAGÓN	용의 비늘
-152	items	items	-	no	はかいのいでんし	BERSERK GENE	GEN LOCO	파괴의 유전자
-156	items	items	-	no	せいなるはい	SACRED ASH	CEN. SAGRADA	성스러운 분말
-157	balls	balls	-	no	ヘビーボール	HEAVY BALL	PESO BALL	헤비볼
-158	items	items	-	yes	はながらメール	FLOWER MAIL	CARTA FLOR	꽃무늬 메일
-159	balls	balls	-	no	レベルボール	LEVEL BALL	NIVEL BALL	레벨볼
-160	balls	balls	-	no	ルアーボール	LURE BALL	CEBO BALL	루어볼
-161	balls	balls	-	no	スピードボール	FAST BALL	RAPID BALL	스피드볼
-163	items	items	-	no	でんきだま	LIGHT BALL	BOLALUMINOSA	전기구슬
-164	balls	balls	-	no	フレンドボール	FRIEND BALL	AMIGO BALL	프랜드볼
-165	balls	balls	-	no	ムーンボール	MOON BALL	LUNA BALL	문볼
-166	balls	balls	-	no	ラブラブボール	LOVE BALL	AMOR BALL	러브러브볼
-167	items	items	-	no	きのはこ	NORMAL BOX	CAJA NORMAL	나무상자
-168	items	items	-	no	きりのはこ	GORGEOUS BOX	CAJA GRANDE	오동나무상자
-169	items	items	-	no	たいようのいし	SUN STONE	PIEDRA SOLAR	태양의 돌
-170	items	items	-	no	みずたまりボン	POLKADOT BOW	CINTALUNARES	물방울 리본
-172	items	items	-	no	アップグレード	UP-GRADE	MEJORA	업그레이드
-173	items	items	-	no	きのみ	BERRY	BAYA	나무열매
-174	items	items	-	no	おうごんのみ	GOLD BERRY	BAYA DORADA	황금열매
-175	key_items	key_items	-	no	ゼニガメじょうろ	SQUIRTBOTTLE	REGADERA	꼬부기 물뿌리개
-177	balls	balls	-	no	パークボール	PARK BALL	PARQUE BALL	파크볼
-178	key_items	key_items	-	no	にじいろのはね	RAINBOW WING	ALA ARCOIRIS	무지개빛 날개
-180	items	items	-	no	かわらのかけら	BRICK PIECE	LADRILLO	기와조각
-181	items	items	-	yes	なみのりメール	SURF MAIL	CARTA SURF	파도타기 메일
-182	items	items	-	yes	みずいろメール	LITEBLUEMAIL	CARTA AZUL	옥빛 메일
-183	items	items	-	yes	にがおえメール	PORTRAITMAIL	CART-RETRATO	초상화 메일
-184	items	items	-	yes	ラブリーメール	LOVELY MAIL	CARTA AMOR	러브리 메일
-185	items	items	-	yes	ブイブイメール	EON MAIL	CARTA EÓN	브이브이 메일
-186	items	items	-	yes	へんしんメール	MORPH MAIL	CARTMORFOSIS	변신 메일
-187	items	items	-	yes	あおぞらメール	BLUESKY MAIL	CARTACELESTE	푸른하늘 메일
-188	items	items	-	yes	おんぷメール	MUSIC MAIL	CARTA MÚSICA	음표 메일
-189	items	items	-	yes	まぼろしメール	MIRAGE MAIL	C.ESPEJISMO	환상의 메일
-191	tms_hms	tms_hms	1	no	わざマシン０１	TM01	MT01	기술머신01
-192	tms_hms	tms_hms	2	no	わざマシン０２	TM02	MT02	기술머신02
-193	tms_hms	tms_hms	3	no	わざマシン０３	TM03	MT03	기술머신03
-194	tms_hms	tms_hms	4	no	わざマシン０４	TM04	MT04	기술머신04
-196	tms_hms	tms_hms	5	no	わざマシン０５	TM05	MT05	기술머신05
-197	tms_hms	tms_hms	6	no	わざマシン０６	TM06	MT06	기술머신06
-198	tms_hms	tms_hms	7	no	わざマシン０７	TM07	MT07	기술머신07
-199	tms_hms	tms_hms	8	no	わざマシン０８	TM08	MT08	기술머신08
-200	tms_hms	tms_hms	9	no	わざマシン０９	TM09	MT09	기술머신09
-201	tms_hms	tms_hms	10	no	わざマシン１０	TM10	MT10	기술머신10
-202	tms_hms	tms_hms	11	no	わざマシン１１	TM11	MT11	기술머신11
-203	tms_hms	tms_hms	12	no	わざマシン１２	TM12	MT12	기술머신12
-204	tms_hms	tms_hms	13	no	わざマシン１３	TM13	MT13	기술머신13
-205	tms_hms	tms_hms	14	no	わざマシン１４	TM14	MT14	기술머신14
-206	tms_hms	tms_hms	15	no	わざマシン１５	TM15	MT15	기술머신15
-207	tms_hms	tms_hms	16	no	わざマシン１６	TM16	MT16	기술머신16
-208	tms_hms	tms_hms	17	no	わざマシン１７	TM17	MT17	기술머신17
-209	tms_hms	tms_hms	18	no	わざマシン１８	TM18	MT18	기술머신18
-210	tms_hms	tms_hms	19	no	わざマシン１９	TM19	MT19	기술머신19
-211	tms_hms	tms_hms	20	no	わざマシン２０	TM20	MT20	기술머신20
-212	tms_hms	tms_hms	21	no	わざマシン２１	TM21	MT21	기술머신21
-213	tms_hms	tms_hms	22	no	わざマシン２２	TM22	MT22	기술머신22
-214	tms_hms	tms_hms	23	no	わざマシン２３	TM23	MT23	기술머신23
-215	tms_hms	tms_hms	24	no	わざマシン２４	TM24	MT24	기술머신24
-216	tms_hms	tms_hms	25	no	わざマシン２５	TM25	MT25	기술머신25
-217	tms_hms	tms_hms	26	no	わざマシン２６	TM26	MT26	기술머신26
-218	tms_hms	tms_hms	27	no	わざマシン２７	TM27	MT27	기술머신27
-219	tms_hms	tms_hms	28	no	わざマシン２８	TM28	MT28	기술머신28
-221	tms_hms	tms_hms	29	no	わざマシン２９	TM29	MT29	기술머신29
-222	tms_hms	tms_hms	30	no	わざマシン３０	TM30	MT30	기술머신30
-223	tms_hms	tms_hms	31	no	わざマシン３１	TM31	MT31	기술머신31
-224	tms_hms	tms_hms	32	no	わざマシン３２	TM32	MT32	기술머신32
-225	tms_hms	tms_hms	33	no	わざマシン３３	TM33	MT33	기술머신33
-226	tms_hms	tms_hms	34	no	わざマシン３４	TM34	MT34	기술머신34
-227	tms_hms	tms_hms	35	no	わざマシン３５	TM35	MT35	기술머신35
-228	tms_hms	tms_hms	36	no	わざマシン３６	TM36	MT36	기술머신36
-229	tms_hms	tms_hms	37	no	わざマシン３７	TM37	MT37	기술머신37
-230	tms_hms	tms_hms	38	no	わざマシン３８	TM38	MT38	기술머신38
-231	tms_hms	tms_hms	39	no	わざマシン３９	TM39	MT39	기술머신39
-232	tms_hms	tms_hms	40	no	わざマシン４０	TM40	MT40	기술머신40
-233	tms_hms	tms_hms	41	no	わざマシン４１	TM41	MT41	기술머신41
-234	tms_hms	tms_hms	42	no	わざマシン４２	TM42	MT42	기술머신42
-235	tms_hms	tms_hms	43	no	わざマシン４３	TM43	MT43	기술머신43
-236	tms_hms	tms_hms	44	no	わざマシン４４	TM44	MT44	기술머신44
-237	tms_hms	tms_hms	45	no	わざマシン４５	TM45	MT45	기술머신45
-238	tms_hms	tms_hms	46	no	わざマシン４６	TM46	MT46	기술머신46
-239	tms_hms	tms_hms	47	no	わざマシン４７	TM47	MT47	기술머신47
-240	tms_hms	tms_hms	48	no	わざマシン４８	TM48	MT48	기술머신48
-241	tms_hms	tms_hms	49	no	わざマシン４９	TM49	MT49	기술머신49
-242	tms_hms	tms_hms	50	no	わざマシン５０	TM50	MT50	기술머신50
-243	tms_hms	tms_hms	51	no	ひでんマシン０１	HM01	MO01	비전머신01
-244	tms_hms	tms_hms	52	no	ひでんマシン０２	HM02	MO02	비전머신02
-245	tms_hms	tms_hms	53	no	ひでんマシン０３	HM03	MO03	비전머신03
-246	tms_hms	tms_hms	54	no	ひでんマシン０４	HM04	MO04	비전머신04
-247	tms_hms	tms_hms	55	no	ひでんマシン０５	HM05	MO05	비전머신05
-248	tms_hms	tms_hms	56	no	ひでんマシン０６	HM06	MO06	비전머신06
-249	tms_hms	tms_hms	57	no	ひでんマシン０７	HM07	MO07	비전머신07
+item	gold_silver_pocket	crystal_pocket	machine	is_mail	migration_id	japanese	english	spanish	korean
+1	balls	balls	-	no	1	マスターボール	MASTER BALL	MASTER BALL	마스터볼
+2	balls	balls	-	no	2	ハイパーボール	ULTRA BALL	ULTRA BALL	하이퍼볼
+3	items	items	-	no	213	ひかりのこな	BRIGHTPOWDER	POLVO BRILLO	반짝가루
+4	balls	balls	-	no	3	スーパーボール	GREAT BALL	SÚPER BALL	수퍼볼
+5	balls	balls	-	no	4	モンスターボール	POKé BALL	POKé BALL	몬스터볼
+7	key_items	key_items	-	no	450	じてんしゃ	BICYCLE	BICICLETA	자전거
+8	items	items	-	no	81	つきのいし	MOON STONE	PIEDRA LUNAR	달맞이 돌
+9	items	items	-	no	18	どくけし	ANTIDOTE	ANTÍDOTO	해독제
+10	items	items	-	no	19	やけどなおし	BURN HEAL	ANTIQUEMAR	화상 치료제
+11	items	items	-	no	20	こおりなおし	ICE HEAL	ANTIHIELO	얼음상태 치료제
+12	items	items	-	no	21	ねむけざまし	AWAKENING	DESPERTAR	잠깨는 약
+13	items	items	-	no	22	まひなおし	PARLYZ HEAL	ANTIPARALIZ	마비 치료제
+14	items	items	-	no	23	かいふくのくすり	FULL RESTORE	RESTAU. TODO	회복약
+15	items	items	-	no	24	まんたんのくすり	MAX POTION	MÁX. POCIÓN	풀 회복약
+16	items	items	-	no	25	すごいキズぐすり	HYPER POTION	HÍPER POCIÓN	고급 상처약
+17	items	items	-	no	26	いいキズぐすり	SUPER POTION	SÚPER POCIÓN	좋은 상처약
+18	items	items	-	no	17	キズぐすリ	POTION	POCIÓN	상처약
+19	items	items	-	no	78	あなぬけのヒモ	ESCAPE ROPE	CUERDA HUIDA	동굴탈출 로프
+20	items	items	-	no	79	むしよけスプレー	REPEL	REPELENTE	벌레회피스프레이
+21	items	items	-	no	-	ピーピーマックス	MAX ELIXER	ELIXIR MÁX	PP 맥스
+22	items	items	-	no	82	ほのおのいし	FIRE STONE	PIEDRA FUEGO	불꽃의 돌
+23	items	items	-	no	83	かみなりのいし	THUNDERSTONE	PIEDRATRUENO	천둥의 돌
+24	items	items	-	no	84	みずのいし	WATER STONE	PIEDRA AGUA	물의 돌
+26	items	items	-	no	45	マックスアップ	HP UP	MÁS PS	맥스 업
+27	items	items	-	no	46	タウリン	PROTEIN	PROTEÍNAS	타우린
+28	items	items	-	no	47	ブロムヘキシン	IRON	HIERRO	사포닌
+29	items	items	-	no	48	インドメタシン	CARBOS	CARBURANTE	알칼로이드
+30	items	items	-	no	256	ラッキーパンチ	LUCKY PUNCH	PUÑO SUERTE	럭키 펀치
+31	items	items	-	no	49	リゾチウム	CALCIUM	CALCIO	리보플라빈
+32	items	items	-	no	50	ふしぎなアメ	RARE CANDY	CARAMELORARO	이상한 사탕
+33	items	items	-	no	60	ヨクアタール	X ACCURACY	PRECISIÓN X	잘－맞히기
+34	items	items	-	no	85	リーフのいし	LEAF STONE	PIEDRA HOJA	잎사귀 돌
+35	items	items	-	no	257	メタルパウダー	METAL POWDER	POL.METÁLICO	금속 파우더
+36	items	items	-	no	92	きんのたま	NUGGET	PEPITA	금구슬
+37	items	items	-	no	63	ピッピにんぎょう	POKé DOLL	POKé MUÑECO	삐삐인형
+38	items	items	-	no	27	なんでもなおし	FULL HEAL	CURA TOTAL	만병통치제
+39	items	items	-	no	28	げんきのかけら	REVIVE	REVIVIR	기력의 조각
+40	items	items	-	no	29	げんきのかたまり	MAX REVIVE	MÁX. REVIVIR	기력의 덩어리
+41	items	items	-	no	55	エフェクトガード	GUARD SPEC.	PROTEC. ESP	이펙트 가드
+42	items	items	-	no	76	シルバースプレー	SUPER REPEL	SÚPER REPEL	실버 스프레이
+43	items	items	-	no	77	ゴールドスプレー	MAX REPEL	MÁX. REPEL	골드 스프레이
+44	items	items	-	no	56	クリティカッター	DIRE HIT	DIRECTO	크리티컬 커터
+46	items	items	-	no	30	おいしいみず	FRESH WATER	AGUA FRESCA	맛있는 물
+47	items	items	-	no	31	サイコソーダ	SODA POP	REFRESCO	미네랄 사이다
+48	items	items	-	no	32	ミックスオレ	LEMONADE	LIMONADA	후르츠 밀크
+49	items	items	-	no	57	プラスパワー	X ATTACK	ATAQUE X	플러스파워
+51	items	items	-	no	58	ディフェンダー	X DEFEND	DEFENSA X	디펜드 업
+52	items	items	-	no	59	スピーダー	X SPEED	VELOCIDAD X	스피드 업
+53	items	items	-	no	61	スペシャルアップ	X SPECIAL	ESPECIAL X	스페셜 업
+54	key_items	key_items	-	no	444	コインケース	COIN CASE	MONEDERO	동전 케이스
+55	key_items	key_items	-	no	-	ダウジングマシン	ITEMFINDER	BUSCAOBJETOS	다우징 머신
+57	items	items	-	no	216	がくしゅうそうち	EXP.SHARE	REPARTIR EXP	학습장치
+58	key_items	key_items	-	no	445	ボロのつリざお	OLD ROD	CAÑA VIEJA	낡은 낚싯대
+59	key_items	key_items	-	no	446	いいつりざお	GOOD ROD	CAÑA BUENA	좋은 낚싯대
+60	items	items	-	no	-	ぎんのはっぱ	SILVER LEAF	HOJA PLATA	은빛 나뭇잎
+61	key_items	key_items	-	no	447	すごいつりざお	SUPER ROD	SÚPER CAÑA	대단한 낚싯대
+62	items	items	-	no	51	ポイントアップ	PP UP	MÁS PP	포인트 업
+63	items	items	-	no	38	ピーピーエイド	ETHER	ÉTER	PP 에이드
+64	items	items	-	no	39	ピーピーリカバー	MAX ETHER	ÉTER MÁX	PP 회복
+65	items	items	-	no	-	ピーピーエイダー	ELIXER	ELIXIR	PP 에이더
+66	key_items	key_items	-	no	478	あかいウロコ	RED SCALE	ESCAMA ROJA	빨간 비늘
+67	key_items	key_items	-	no	464	ひでんのくすり	SECRETPOTION	POC. SECRETA	비전 신약
+68	key_items	key_items	-	no	456	ふねのチケット	S.S.TICKET	TICKET BARCO	승선 티켓
+69	key_items	key_items	-	no	484	ふしぎなタマゴ	MYSTERY EGG	HUEVO MIST	이상한 알
+70	-	key_items	-	no	474	とうめいなスズ	CLEAR BELL	CAMP. CLARA	크리스탈 방울
+71	key_items	key_items	-	no	482	ぎんいろのはね	SILVER WING	ALA PLATEADA	은빛 날개
+72	items	items	-	no	33	モーモーミルク	MOOMOO MILK	LECHE MU-MU	튼튼 밀크
+73	items	items	-	no	217	せんせいのツメ	QUICK CLAW	GARRA RÁPIDA	선제공격 손톱
+74	items	items	-	no	-	どくけしのみ	PSNCUREBERRY	BAYANTÍDOTO	해독열매
+75	items	items	-	no	-	きんのはっぱ	GOLD LEAF	HOJA DORADA	금빛 나뭇잎
+76	items	items	-	no	237	やわらかいすな	SOFT SAND	ARENA FINA	부드러운 모래
+77	items	items	-	no	244	するどいくちばし	SHARP BEAK	PICO AFILADO	예리한 부리
+78	items	items	-	no	-	まひなおしのみ	PRZCUREBERRY	ANTIPARABAYA	마비치료열매
+79	items	items	-	no	-	やけたきのみ	BURNT BERRY	ANTIQUEMBAYA	불탄 나무열매
+80	items	items	-	no	-	こおったきのみ	ICE BERRY	BAYA HIELO	얼은 나무열매
+81	items	items	-	no	245	どくバり	POISON BARB	FLECHA VEN	독바늘
+82	items	items	-	no	221	おうじゃのしるし	KING'S ROCK	ROCA DEL REY	왕의 징표석
+83	items	items	-	no	-	にがいきのみ	BITTER BERRY	BAYAMARGA	쓴맛 나무열매
+84	items	items	-	no	-	はっかのみ	MINT BERRY	BAYA MENTA	박하열매
+85	items	items	-	no	485	あかぼんぐり	RED APRICORN	BONGURI ROJ	빨간 규토리
+86	items	items	-	no	86	ちいさなキノコ	TINYMUSHROOM	MINI SETA	작은 버섯
+87	items	items	-	no	87	おおきなキノコ	BIG MUSHROOM	SETA GRANDE	큰 버섯
+88	items	items	-	no	222	ぎんのこな	SILVERPOWDER	POLVO PLATA	은빛 가루
+89	items	items	-	no	-	あおぼんぐり	BLU APRICORN	BONGURI AZU	파란 규토리
+91	items	items	-	no	223	おまもりこばん	AMULET COIN	MON. AMULETO	부적 금화
+92	items	items	-	no	-	きぼんぐり	YLW APRICORN	BONGURI AMA	노랑 규토리
+93	items	items	-	no	-	みどぼんぐり	GRN APRICORN	BONGURI VER	초록 규토리
+94	items	items	-	no	224	きよめのおふだ	CLEANSE TAG	AMULETO	순결의 부적
+95	items	items	-	no	243	しんぴのしずく	MYSTIC WATER	AGUA MÍSTICA	신비의 물방울
+96	items	items	-	no	248	まがったスプーン	TWISTEDSPOON	CUCHARA TOR	휘어진 스푼
+97	items	items	-	no	-	しろぼんぐり	WHT APRICORN	BONGURI BLA	하얀 규토리
+98	items	items	-	no	241	くろおび	BLACKBELT	CINT. NEGRO	검은띠
+99	items	items	-	no	-	くろぼんぐり	BLK APRICORN	BONGURI NEG	검은 규토리
+101	items	items	-	no	-	ももぼんぐり	PNK APRICORN	BONGURI ROS	담홍 규토리
+102	items	items	-	no	240	くろいメガネ	BLACKGLASSES	GAFAS DE SOL	검은 안경
+103	items	items	-	no	473	おいしいシッポ	SLOWPOKETAIL	COLASLOWPOKE	맛있는 꼬리
+104	items	items	-	no	-	ピンクのリボン	PINK BOW	LAZO ROSA	핑크빛 리본
+105	items	items	-	no	259	ながねぎ	STICK	PALO	대파
+106	items	items	-	no	228	けむりだま	SMOKE BALL	BOLA HUMO	연막탄
+107	items	items	-	no	246	とけないこおり	NEVERMELTICE	ANTIDERRETIR	녹지않는 얼음
+108	items	items	-	no	242	じしゃく	MAGNET	IMÁN	자석
+109	items	items	-	no	-	きせきのみ	MIRACLEBERRY	BAYA MILAGRO	기적의 열매
+110	items	items	-	no	88	しんじゅ	PEARL	PERLA	진주
+111	items	items	-	no	89	おおきなしんじゅ	BIG PEARL	PERLA GRANDE	큰 진주
+112	items	items	-	no	229	かわらずのいし	EVERSTONE	PIEDRAETERNA	변함없는 돌
+113	items	items	-	no	247	のろいのおふだ	SPELL TAG	HECHIZO	저주의 부적
+114	items	items	-	no	504	いかりまんじゅう	RAGECANDYBAR	CARAM. FURIA	분노의 호두과자
+115	-	key_items	-	no	-	ジーエスボール	GS BALL	GS BALL	GS볼
+116	-	key_items	-	no	472	ブルーカード	BLUE CARD	TARJETA AZUL	블루카드
+117	items	items	-	no	239	きせきのタネ	MIRACLE SEED	SEM. MILAGRO	기적의 씨
+118	items	items	-	no	258	ふといホネ	THICK CLUB	HUESO GRUESO	굵은 뼈
+119	items	items	-	no	230	きあいのハチマキ	FOCUS BAND	CINTA-FOCUS	기합의 머리띠
+121	items	items	-	no	34	ちからのこな	ENERGYPOWDER	POLVOENERGÍA	힘의 가루
+122	items	items	-	no	35	ちからのねっこ	ENERGY ROOT	RAÍZ ENERGÍA	힘의 뿌리
+123	items	items	-	no	36	ばんのうごな	HEAL POWDER	POL.CURACIÓN	만능가루
+124	items	items	-	no	37	ふっかつそう	REVIVAL HERB	HIERBA-REV	부활초
+125	items	items	-	no	238	かたいいし	HARD STONE	PIEDRA DURA	딱딱한 돌
+126	items	items	-	no	231	しあわせタマゴ	LUCKY EGG	HUEVO SUERTE	행복의 알
+127	key_items	key_items	-	no	475	カードキー	CARD KEY	LL.MAGNÉTICA	카드키
+128	key_items	key_items	-	no	481	きかいのぶひん	MACHINE PART	MAQUINARIA	기계부품
+129	-	key_items	-	no	-	タマゴけん	EGG TICKET	TICKET HUEVO	-
+130	key_items	key_items	-	no	479	おとしもの	LOST ITEM	OBJ. PERDIDO	분실물
+131	items	items	-	no	90	ほしのすな	STARDUST	POLVOESTELAR	별의 모래
+132	items	items	-	no	91	ほしのかけら	STAR PIECE	TR. ESTRELLA	별의 조각
+133	key_items	key_items	-	no	476	ちかのカギ	BASEMENT KEY	LL. SÓTANO	지하의 열쇠
+134	key_items	key_items	-	no	480	ていきけん	PASS	PASE	정기권
+138	items	items	-	no	249	もくたん	CHARCOAL	CARBÓN	목탄
+139	items	items	-	no	43	きのみジュース	BERRY JUICE	ZUMO DE BAYA	나무열매쥬스
+140	items	items	-	no	232	ピントレンズ	SCOPE LENS	PERISCOPIO	초점 렌즈
+143	items	items	-	no	233	メタルコート	METAL COAT	REV.METÁLICO	금속코트
+144	items	items	-	no	250	りゅうのキバ	DRAGON FANG	COLMILLODRAG	용의 이빨
+146	items	items	-	no	234	たべのこし	LEFTOVERS	RESTOS	먹다 남은 음식
+150	items	items	-	no	-	ふしぎなきのみ	MYSTERYBERRY	BAYAMISTERIO	이상한 나무열매
+151	items	items	-	no	235	りゅうのウロコ	DRAGON SCALE	ESCAMADRAGÓN	용의 비늘
+152	items	items	-	no	-	はかいのいでんし	BERSERK GENE	GEN LOCO	파괴의 유전자
+156	items	items	-	no	44	せいなるはい	SACRED ASH	CEN. SAGRADA	성스러운 분말
+157	balls	balls	-	no	495	ヘビーボール	HEAVY BALL	PESO BALL	헤비볼
+158	items	items	-	yes	-	はながらメール	FLOWER MAIL	CARTA FLOR	꽃무늬 메일
+159	balls	balls	-	no	493	レベルボール	LEVEL BALL	NIVEL BALL	레벨볼
+160	balls	balls	-	no	494	ルアーボール	LURE BALL	CEBO BALL	루어볼
+161	balls	balls	-	no	492	スピードボール	FAST BALL	RAPID BALL	스피드볼
+163	items	items	-	no	236	でんきだま	LIGHT BALL	BOLALUMINOSA	전기구슬
+164	balls	balls	-	no	497	フレンドボール	FRIEND BALL	AMIGO BALL	프랜드볼
+165	balls	balls	-	no	498	ムーンボール	MOON BALL	LUNA BALL	문볼
+166	balls	balls	-	no	496	ラブラブボール	LOVE BALL	AMOR BALL	러브러브볼
+167	items	items	-	no	-	きのはこ	NORMAL BOX	CAJA NORMAL	나무상자
+168	items	items	-	no	-	きりのはこ	GORGEOUS BOX	CAJA GRANDE	오동나무상자
+169	items	items	-	no	80	たいようのいし	SUN STONE	PIEDRA SOLAR	태양의 돌
+170	items	items	-	no	-	みずたまりボン	POLKADOT BOW	CINTALUNARES	물방울 리본
+172	items	items	-	no	252	アップグレード	UP-GRADE	MEJORA	업그레이드
+173	items	items	-	no	-	きのみ	BERRY	BAYA	나무열매
+174	items	items	-	no	-	おうごんのみ	GOLD BERRY	BAYA DORADA	황금열매
+175	key_items	key_items	-	no	477	ゼニガメじょうろ	SQUIRTBOTTLE	REGADERA	꼬부기 물뿌리개
+177	balls	balls	-	no	500	パークボール	PARK BALL	PARQUE BALL	파크볼
+178	key_items	key_items	-	no	483	にじいろのはね	RAINBOW WING	ALA ARCOIRIS	무지개빛 날개
+180	items	items	-	no	-	かわらのかけら	BRICK PIECE	LADRILLO	기와조각
+181	items	items	-	yes	-	なみのりメール	SURF MAIL	CARTA SURF	파도타기 메일
+182	items	items	-	yes	-	みずいろメール	LITEBLUEMAIL	CARTA AZUL	옥빛 메일
+183	items	items	-	yes	-	にがおえメール	PORTRAITMAIL	CART-RETRATO	초상화 메일
+184	items	items	-	yes	-	ラブリーメール	LOVELY MAIL	CARTA AMOR	러브리 메일
+185	items	items	-	yes	-	ブイブイメール	EON MAIL	CARTA EÓN	브이브이 메일
+186	items	items	-	yes	-	へんしんメール	MORPH MAIL	CARTMORFOSIS	변신 메일
+187	items	items	-	yes	-	あおぞらメール	BLUESKY MAIL	CARTACELESTE	푸른하늘 메일
+188	items	items	-	yes	-	おんぷメール	MUSIC MAIL	CARTA MÚSICA	음표 메일
+189	items	items	-	yes	-	まぼろしメール	MIRAGE MAIL	C.ESPEJISMO	환상의 메일
+191	tms_hms	tms_hms	1	no	-	わざマシン０１	TM01	MT01	기술머신01
+192	tms_hms	tms_hms	2	no	-	わざマシン０２	TM02	MT02	기술머신02
+193	tms_hms	tms_hms	3	no	-	わざマシン０３	TM03	MT03	기술머신03
+194	tms_hms	tms_hms	4	no	-	わざマシン０４	TM04	MT04	기술머신04
+196	tms_hms	tms_hms	5	no	-	わざマシン０５	TM05	MT05	기술머신05
+197	tms_hms	tms_hms	6	no	-	わざマシン０６	TM06	MT06	기술머신06
+198	tms_hms	tms_hms	7	no	-	わざマシン０７	TM07	MT07	기술머신07
+199	tms_hms	tms_hms	8	no	-	わざマシン０８	TM08	MT08	기술머신08
+200	tms_hms	tms_hms	9	no	-	わざマシン０９	TM09	MT09	기술머신09
+201	tms_hms	tms_hms	10	no	-	わざマシン１０	TM10	MT10	기술머신10
+202	tms_hms	tms_hms	11	no	-	わざマシン１１	TM11	MT11	기술머신11
+203	tms_hms	tms_hms	12	no	-	わざマシン１２	TM12	MT12	기술머신12
+204	tms_hms	tms_hms	13	no	-	わざマシン１３	TM13	MT13	기술머신13
+205	tms_hms	tms_hms	14	no	-	わざマシン１４	TM14	MT14	기술머신14
+206	tms_hms	tms_hms	15	no	-	わざマシン１５	TM15	MT15	기술머신15
+207	tms_hms	tms_hms	16	no	-	わざマシン１６	TM16	MT16	기술머신16
+208	tms_hms	tms_hms	17	no	-	わざマシン１７	TM17	MT17	기술머신17
+209	tms_hms	tms_hms	18	no	-	わざマシン１８	TM18	MT18	기술머신18
+210	tms_hms	tms_hms	19	no	-	わざマシン１９	TM19	MT19	기술머신19
+211	tms_hms	tms_hms	20	no	-	わざマシン２０	TM20	MT20	기술머신20
+212	tms_hms	tms_hms	21	no	-	わざマシン２１	TM21	MT21	기술머신21
+213	tms_hms	tms_hms	22	no	-	わざマシン２２	TM22	MT22	기술머신22
+214	tms_hms	tms_hms	23	no	-	わざマシン２３	TM23	MT23	기술머신23
+215	tms_hms	tms_hms	24	no	-	わざマシン２４	TM24	MT24	기술머신24
+216	tms_hms	tms_hms	25	no	-	わざマシン２５	TM25	MT25	기술머신25
+217	tms_hms	tms_hms	26	no	-	わざマシン２６	TM26	MT26	기술머신26
+218	tms_hms	tms_hms	27	no	-	わざマシン２７	TM27	MT27	기술머신27
+219	tms_hms	tms_hms	28	no	-	わざマシン２８	TM28	MT28	기술머신28
+221	tms_hms	tms_hms	29	no	-	わざマシン２９	TM29	MT29	기술머신29
+222	tms_hms	tms_hms	30	no	-	わざマシン３０	TM30	MT30	기술머신30
+223	tms_hms	tms_hms	31	no	-	わざマシン３１	TM31	MT31	기술머신31
+224	tms_hms	tms_hms	32	no	-	わざマシン３２	TM32	MT32	기술머신32
+225	tms_hms	tms_hms	33	no	-	わざマシン３３	TM33	MT33	기술머신33
+226	tms_hms	tms_hms	34	no	-	わざマシン３４	TM34	MT34	기술머신34
+227	tms_hms	tms_hms	35	no	-	わざマシン３５	TM35	MT35	기술머신35
+228	tms_hms	tms_hms	36	no	-	わざマシン３６	TM36	MT36	기술머신36
+229	tms_hms	tms_hms	37	no	-	わざマシン３７	TM37	MT37	기술머신37
+230	tms_hms	tms_hms	38	no	-	わざマシン３８	TM38	MT38	기술머신38
+231	tms_hms	tms_hms	39	no	-	わざマシン３９	TM39	MT39	기술머신39
+232	tms_hms	tms_hms	40	no	-	わざマシン４０	TM40	MT40	기술머신40
+233	tms_hms	tms_hms	41	no	-	わざマシン４１	TM41	MT41	기술머신41
+234	tms_hms	tms_hms	42	no	-	わざマシン４２	TM42	MT42	기술머신42
+235	tms_hms	tms_hms	43	no	-	わざマシン４３	TM43	MT43	기술머신43
+236	tms_hms	tms_hms	44	no	-	わざマシン４４	TM44	MT44	기술머신44
+237	tms_hms	tms_hms	45	no	-	わざマシン４５	TM45	MT45	기술머신45
+238	tms_hms	tms_hms	46	no	-	わざマシン４６	TM46	MT46	기술머신46
+239	tms_hms	tms_hms	47	no	-	わざマシン４７	TM47	MT47	기술머신47
+240	tms_hms	tms_hms	48	no	-	わざマシン４８	TM48	MT48	기술머신48
+241	tms_hms	tms_hms	49	no	-	わざマシン４９	TM49	MT49	기술머신49
+242	tms_hms	tms_hms	50	no	-	わざマシン５０	TM50	MT50	기술머신50
+243	tms_hms	tms_hms	51	no	-	ひでんマシン０１	HM01	MO01	비전머신01
+244	tms_hms	tms_hms	52	no	-	ひでんマシン０２	HM02	MO02	비전머신02
+245	tms_hms	tms_hms	53	no	-	ひでんマシン０３	HM03	MO03	비전머신03
+246	tms_hms	tms_hms	54	no	-	ひでんマシン０４	HM04	MO04	비전머신04
+247	tms_hms	tms_hms	55	no	-	ひでんマシン０５	HM05	MO05	비전머신05
+248	tms_hms	tms_hms	56	no	-	ひでんマシン０６	HM06	MO06	비전머신06
+249	tms_hms	tms_hms	57	no	-	ひでんマシン０７	HM07	MO07	비전머신07

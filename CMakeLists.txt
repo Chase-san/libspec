@@ -11,17 +11,20 @@ find_package(Python3 REQUIRED COMPONENTS Interpreter)
 set(spec_data ${CMAKE_CURRENT_SOURCE_DIR}/data)
 set(spec_generated ${CMAKE_CURRENT_BINARY_DIR}/gen)
 set(spec_name_kinds species form move ability item nature type)
-set(spec_tables ${spec_generated}/experience.c)
-set(spec_name_data)
+set(spec_tables
+    ${spec_generated}/game_limits.c
+    ${spec_generated}/move_data.c
+    ${spec_generated}/experience.c)
+set(spec_shared_data ${spec_data}/game_limits.tsv ${spec_data}/moves.tsv)
 foreach(kind ${spec_name_kinds})
     list(APPEND spec_tables ${spec_generated}/${kind}_names.c)
-    list(APPEND spec_name_data ${spec_data}/${kind}_names.tsv)
+    list(APPEND spec_shared_data ${spec_data}/${kind}_names.tsv)
 endforeach()
 add_custom_command(
     OUTPUT ${spec_tables}
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tools/generate_spec_tables.py
             ${spec_data} ${spec_generated}
-    DEPENDS tools/generate_spec_tables.py ${spec_name_data}
+    DEPENDS tools/generate_spec_tables.py ${spec_shared_data}
     VERBATIM)
 
 set(gb_data ${CMAKE_CURRENT_SOURCE_DIR}/data/gb)
@@ -111,6 +114,8 @@ add_custom_command(
 add_library(spec STATIC
     src/spec.c
     src/names.c
+    src/games.c
+    src/moves.c
     src/bytes.c
     src/utf8.c
     src/crc16.c
@@ -119,6 +124,7 @@ add_library(spec STATIC
     src/record.c
     src/stats.c
     src/gb/save.c
+    src/gb/identify.c
     src/gb/layout.c
     src/gb/list.c
     src/gb/checksum.c
@@ -129,6 +135,7 @@ add_library(spec STATIC
     src/gb/items.c
     src/gb/text.c
     src/gbc/save.c
+    src/gbc/identify.c
     src/gbc/layout.c
     src/gbc/copy.c
     src/gbc/player.c
@@ -192,6 +199,8 @@ add_library(spec STATIC
     ${nds_tables}
     ${ndsi_tables}
     ${3ds_tables})
+add_library(spec::spec ALIAS spec)
+target_compile_features(spec PUBLIC c_std_23)
 target_include_directories(spec PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
     $<INSTALL_INTERFACE:include/spec>)
@@ -208,73 +217,74 @@ install(FILES src/nds/nds.h DESTINATION include/spec/nds)
 install(FILES src/ndsi/ndsi.h DESTINATION include/spec/ndsi)
 install(FILES src/3ds/3ds.h DESTINATION include/spec/3ds)
 
-enable_testing()
-add_executable(names_test tests/names_test.c)
-target_link_libraries(names_test PRIVATE spec)
-add_test(NAME names_test COMMAND names_test)
-
-if(SPEC_GB_TEST_SAVES)
+# A parent project's ctest would otherwise run these too.
+option(SPEC_BUILD_TESTS "Build libspec's tests" ${PROJECT_IS_TOP_LEVEL})
+if(SPEC_BUILD_TESTS)
     enable_testing()
-    add_executable(gb_round_trip tests/gb_round_trip.c)
-    target_link_libraries(gb_round_trip PRIVATE spec)
-    file(GLOB test_saves ${SPEC_GB_TEST_SAVES})
-    foreach(test_save IN LISTS test_saves)
-        get_filename_component(test_name ${test_save} NAME_WE)
-        add_test(NAME gb_round_trip_${test_name} COMMAND gb_round_trip ${test_save})
-    endforeach()
-endif()
+    add_executable(names_test tests/names_test.c)
+    target_link_libraries(names_test PRIVATE spec)
+    add_test(NAME names_test COMMAND names_test)
+    add_executable(lookup_test tests/lookup_test.c)
+    target_link_libraries(lookup_test PRIVATE spec)
+    add_test(NAME lookup_test COMMAND lookup_test)
 
-if(SPEC_GBC_TEST_SAVES)
-    enable_testing()
-    add_executable(gbc_round_trip tests/gbc_round_trip.c)
-    target_link_libraries(gbc_round_trip PRIVATE spec)
-    file(GLOB test_saves ${SPEC_GBC_TEST_SAVES})
-    foreach(test_save IN LISTS test_saves)
-        get_filename_component(test_name ${test_save} NAME_WE)
-        add_test(NAME gbc_round_trip_${test_name} COMMAND gbc_round_trip ${test_save})
-    endforeach()
-endif()
+    if(SPEC_GB_TEST_SAVES)
+        add_executable(gb_round_trip tests/gb_round_trip.c)
+        target_link_libraries(gb_round_trip PRIVATE spec)
+        file(GLOB test_saves ${SPEC_GB_TEST_SAVES})
+        foreach(test_save IN LISTS test_saves)
+            get_filename_component(test_name ${test_save} NAME_WE)
+            add_test(NAME gb_round_trip_${test_name} COMMAND gb_round_trip ${test_save})
+        endforeach()
+    endif()
 
-if(SPEC_GBA_TEST_SAVES)
-    enable_testing()
-    add_executable(gba_round_trip tests/gba_round_trip.c)
-    target_link_libraries(gba_round_trip PRIVATE spec)
-    file(GLOB test_saves ${SPEC_GBA_TEST_SAVES})
-    foreach(test_save IN LISTS test_saves)
-        get_filename_component(test_name ${test_save} NAME_WE)
-        add_test(NAME gba_round_trip_${test_name} COMMAND gba_round_trip ${test_save})
-    endforeach()
-endif()
+    if(SPEC_GBC_TEST_SAVES)
+        add_executable(gbc_round_trip tests/gbc_round_trip.c)
+        target_link_libraries(gbc_round_trip PRIVATE spec)
+        file(GLOB test_saves ${SPEC_GBC_TEST_SAVES})
+        foreach(test_save IN LISTS test_saves)
+            get_filename_component(test_name ${test_save} NAME_WE)
+            add_test(NAME gbc_round_trip_${test_name} COMMAND gbc_round_trip ${test_save})
+        endforeach()
+    endif()
 
-if(SPEC_NDS_TEST_SAVES)
-    enable_testing()
-    add_executable(nds_round_trip tests/nds_round_trip.c)
-    target_link_libraries(nds_round_trip PRIVATE spec)
-    file(GLOB test_saves ${SPEC_NDS_TEST_SAVES})
-    foreach(test_save IN LISTS test_saves)
-        get_filename_component(test_name ${test_save} NAME_WE)
-        add_test(NAME nds_round_trip_${test_name} COMMAND nds_round_trip ${test_save})
-    endforeach()
-endif()
+    if(SPEC_GBA_TEST_SAVES)
+        add_executable(gba_round_trip tests/gba_round_trip.c)
+        target_link_libraries(gba_round_trip PRIVATE spec)
+        file(GLOB test_saves ${SPEC_GBA_TEST_SAVES})
+        foreach(test_save IN LISTS test_saves)
+            get_filename_component(test_name ${test_save} NAME_WE)
+            add_test(NAME gba_round_trip_${test_name} COMMAND gba_round_trip ${test_save})
+        endforeach()
+    endif()
 
-if(SPEC_NDSI_TEST_SAVES)
-    enable_testing()
-    add_executable(ndsi_round_trip tests/ndsi_round_trip.c)
-    target_link_libraries(ndsi_round_trip PRIVATE spec)
-    file(GLOB test_saves ${SPEC_NDSI_TEST_SAVES})
-    foreach(test_save IN LISTS test_saves)
-        get_filename_component(test_name ${test_save} NAME_WE)
-        add_test(NAME ndsi_round_trip_${test_name} COMMAND ndsi_round_trip ${test_save})
-    endforeach()
-endif()
+    if(SPEC_NDS_TEST_SAVES)
+        add_executable(nds_round_trip tests/nds_round_trip.c)
+        target_link_libraries(nds_round_trip PRIVATE spec)
+        file(GLOB test_saves ${SPEC_NDS_TEST_SAVES})
+        foreach(test_save IN LISTS test_saves)
+            get_filename_component(test_name ${test_save} NAME_WE)
+            add_test(NAME nds_round_trip_${test_name} COMMAND nds_round_trip ${test_save})
+        endforeach()
+    endif()
 
-if(SPEC_3DS_TEST_SAVES)
-    enable_testing()
-    add_executable(3ds_round_trip tests/3ds_round_trip.c)
-    target_link_libraries(3ds_round_trip PRIVATE spec)
-    file(GLOB test_saves ${SPEC_3DS_TEST_SAVES})
-    foreach(test_save IN LISTS test_saves)
-        get_filename_component(test_name ${test_save} NAME_WE)
-        add_test(NAME 3ds_round_trip_${test_name} COMMAND 3ds_round_trip ${test_save})
-    endforeach()
+    if(SPEC_NDSI_TEST_SAVES)
+        add_executable(ndsi_round_trip tests/ndsi_round_trip.c)
+        target_link_libraries(ndsi_round_trip PRIVATE spec)
+        file(GLOB test_saves ${SPEC_NDSI_TEST_SAVES})
+        foreach(test_save IN LISTS test_saves)
+            get_filename_component(test_name ${test_save} NAME_WE)
+            add_test(NAME ndsi_round_trip_${test_name} COMMAND ndsi_round_trip ${test_save})
+        endforeach()
+    endif()
+
+    if(SPEC_3DS_TEST_SAVES)
+        add_executable(3ds_round_trip tests/3ds_round_trip.c)
+        target_link_libraries(3ds_round_trip PRIVATE spec)
+        file(GLOB test_saves ${SPEC_3DS_TEST_SAVES})
+        foreach(test_save IN LISTS test_saves)
+            get_filename_component(test_name ${test_save} NAME_WE)
+            add_test(NAME 3ds_round_trip_${test_name} COMMAND 3ds_round_trip ${test_save})
+        endforeach()
+    endif()
 endif()

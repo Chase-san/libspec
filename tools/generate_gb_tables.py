@@ -27,25 +27,39 @@ def growth_rate_enum(name):
     return "SPEC_GROWTH_RATE_" + name.upper()
 
 
+def type_enum(name):
+    return "SPEC_TYPE_" + name.upper()
+
+
+# "-" is every game, which the first game type stands for.
+def from_game_enum(from_game):
+    return "SPEC_GAME_TYPE_" + ("red_blue" if from_game == "-" else from_game).upper()
+
+
+# A species' first row is for every game, so it alone numbers the species.
 def species_national_body(species):
+    first_rows = [row for row in species if row["from_game"] == "-"]
     lines = ["const uint16_t spec_gb_national_of_species[SPEC_GB_SPECIES_INDEX_COUNT] = {"]
-    for row in species:
+    for row in first_rows:
         lines.append(f"    [{row['index']}] = {row['national']},")
     lines.append("};\n")
     lines.append("const spec_gb_species_t spec_gb_species_of_national[SPEC_GB_POKEDEX_SIZE] = {")
-    for row in sorted(species, key=lambda row: int(row["national"])):
+    for row in sorted(first_rows, key=lambda row: int(row["national"])):
         lines.append(f"    [{row['national']}] = {row['index']},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 
 
 def species_data_body(species):
-    lines = ["const spec_gb_species_data_t spec_gb_species_data[SPEC_GB_SPECIES_INDEX_COUNT] = {"]
+    lines = ["const spec_gb_species_row_t spec_gb_species_rows[] = {"]
     for row in species:
         stats = ", ".join(row[column] for column in STAT_COLUMNS)
-        growth_rate = growth_rate_enum(row["growth_rate"])
-        lines.append(f"    [{row['index']}] = {{{{{stats}}}, {growth_rate}}},")
-    lines.append("};")
+        types = f"{type_enum(row['type_1'])}, {type_enum(row['type_2'])}"
+        data = f"{{{stats}}}, {{{types}}}, {row['catch_rate']}, {growth_rate_enum(row['growth_rate'])}"
+        lines.append(f"    {{{row['index']}, {from_game_enum(row['from_game'])}, {{{data}}}}},")
+    lines.append("};\n")
+    lines.append("const size_t spec_gb_species_row_count =")
+    lines.append("    sizeof spec_gb_species_rows / sizeof spec_gb_species_rows[0];")
     return "\n".join(lines) + "\n"
 
 
@@ -101,6 +115,15 @@ def item_names_body(items, table_name, count_name, columns):
     return "\n".join(lines) + "\n"
 
 
+def migration_ids_body(items, table_name, count_name):
+    lines = [f"const uint16_t {table_name}[{count_name}] = {{"]
+    for row in items:
+        if row["migration_id"] != "-":
+            lines.append(f"    [{row['item']}] = {row['migration_id']},")
+    lines.append("};")
+    return "\n".join(lines) + "\n"
+
+
 def main():
     data_directory = Path(sys.argv[1])
     output_directory = Path(sys.argv[2])
@@ -112,6 +135,7 @@ def main():
     write_c_file(output_directory / "species_data.c", "data/gb/species.tsv", species_data_body(species))
     write_c_file(output_directory / "charmap.c", "data/gb/charmap.tsv", charmap_body(charmap, "spec_gb_charmap"))
     names = item_names_body(items, "spec_gb_item_names", "SPEC_GB_ITEM_COUNT", ITEM_NAME_COLUMNS)
+    names += "\n" + migration_ids_body(items, "spec_gb_migration_ids", "SPEC_GB_ITEM_COUNT")
     write_c_file(output_directory / "items.c", "data/gb/items.tsv", names)
 
 

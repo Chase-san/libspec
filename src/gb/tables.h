@@ -12,20 +12,22 @@
 
 constexpr size_t SPEC_GB_SPECIES_INDEX_COUNT = 191;
 constexpr size_t SPEC_GB_CHARMAP_SIZE = 256;
-constexpr size_t SPEC_GB_ITEM_COUNT = 256;
 
 // Species
 
 extern const uint16_t spec_gb_national_of_species[SPEC_GB_SPECIES_INDEX_COUNT];
 extern const spec_gb_species_t spec_gb_species_of_national[SPEC_GB_POKEDEX_SIZE];
 
-struct spec_gb_species_data {
-    uint8_t base_stats[SPEC_GB_STAT_COUNT];
-    spec_growth_rate_t growth_rate;
+// A row describes its species from from_game on, until a later row for the same species takes over.
+struct spec_gb_species_row {
+    spec_gb_species_t species;
+    spec_game_type_t from_game;
+    spec_gb_species_data_t data;
 };
-typedef struct spec_gb_species_data spec_gb_species_data_t;
+typedef struct spec_gb_species_row spec_gb_species_row_t;
 
-extern const spec_gb_species_data_t spec_gb_species_data[SPEC_GB_SPECIES_INDEX_COUNT];
+extern const spec_gb_species_row_t spec_gb_species_rows[];
+extern const size_t spec_gb_species_row_count;
 
 // Text
 
@@ -46,5 +48,6 @@ extern const spec_gb_character_t spec_gb_charmap_japanese[SPEC_GB_CHARMAP_SIZE];
 // Items
 
 extern const char *const spec_gb_item_names[SPEC_NAME_LANGUAGE_COUNT][SPEC_GB_ITEM_COUNT];
+extern const uint16_t spec_gb_migration_ids[SPEC_GB_ITEM_COUNT];
 
 #endif

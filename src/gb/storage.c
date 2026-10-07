@@ -1,4 +1,4 @@
-// Gen 1 Pokémon storage: the party, the PC boxes and the daycare.
+// Gen 1 Pokémon storage: the party, the PC boxes and the daycare, and each language's boxes.
 
 #include <string.h>
 
@@ -266,4 +266,20 @@ spec_error_t spec_gb_check_storage(const spec_gb_save_t *save, const spec_gb_lay
         return error;
     }
     return check_daycare(&save->daycare, layout);
+}
+
+size_t spec_gb_box_capacity(spec_language_t language) {
+    const spec_gb_layout_t *layout = spec_gb_get_layout(language);
+    if (layout == nullptr) {
+        return 0;
+    }
+    return layout->box_shape.capacity;
+}
+
+size_t spec_gb_box_count(spec_language_t language) {
+    const spec_gb_layout_t *layout = spec_gb_get_layout(language);
+    if (layout == nullptr) {
+        return 0;
+    }
+    return layout->box_count;
 }

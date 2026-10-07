@@ -1,14 +1,27 @@
 # Gen 4 data
 
 Diamond, Pearl, Platinum, HeartGold and SoulSilver. `tools/generate_nds_tables.py` turns these
-tables into C. The [data README](../README.md) explains the format and how sources are cited.
+tables into C. The [data README](../README.md) explains the format, how sources are cited and
+[what archive paths such as `a/0/0/2` mean](../README.md#where-cartridge-data-lives).
 
 ## `species.tsv`
 
-Species by National Dex number, then the forms whose base stats differ from their species'.
+Species by National Dex number, then the forms whose data differs from their species'.
 
-- Source: pret pokeplatinum `res/pokemon/<species>/data.json` and `forms/<form>/data.json`.
-- Gender ratio and growth rate always come from form 0.
+- Columns: base stats, growth rate, gender ratio, types, abilities, egg cycles and base friendship.
+- Sources:
+  - Diamond and Pearl: pret pokediamond `files/poketool/personal/personal.json`.
+  - Platinum: its personal archive, `poketool/personal/pl_personal.narc`. pret pokeplatinum's
+    `res/pokemon/<species>/data.json` and `forms/<form>/data.json` agree.
+  - HeartGold and SoulSilver: their personal archive, `a/0/0/2`. The two carts agree.
+- The games agree on every species and form they share. Platinum brings in Giratina's Origin Forme,
+  Shaymin's Sky Forme and Rotom's five forms, so their rows begin with `platinum`. `from_game` is as
+  the [data README](../README.md#from_game) explains.
+- A form with no row of its own has its species' data. Every form has its species' gender ratio and
+  growth rate.
+- Arceus has no form rows: the games' code gives it the type of the plate it holds.
+- A species of one type has it as both, and `ability_2` is 0 for a species with one ability, as the
+  games store them.
 - `gender_ratio` is the byte the game stores:
   - 0 means always male, 254 always female and 255 genderless.
   - Otherwise a Pokémon is female when its personality's low byte is below this value.

@@ -1,11 +1,11 @@
-// Gen 1 internals: layouts, Pokémon lists, checksums, the codecs save.c runs and the text engine.
+// Gen 1 internals: layouts, the language vote, Pokémon lists, checksums, the codecs save.c runs and
+// the text engine.
 
 #ifndef SPEC_GB_INTERNAL_H
 #define SPEC_GB_INTERNAL_H
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 
 #include "gb/gb.h"
 #include "gb/tables.h"
@@ -17,6 +17,13 @@ constexpr size_t SPEC_GB_BOX_BANK_COUNT = 2;
 constexpr size_t SPEC_GB_GAME_DATA_OFFSET = 0x2598;
 constexpr uint8_t SPEC_GB_END_OF_TEXT = 0x50;
 constexpr uint8_t SPEC_GB_END_OF_LIST = 0xFF;
+// The languages the language vote chooses between; Japanese saves have a layout of their own.
+constexpr spec_language_t SPEC_GB_VOTE_LANGUAGES[] = {
+    SPEC_LANGUAGE_ENGLISH, SPEC_LANGUAGE_FRENCH,  SPEC_LANGUAGE_ITALIAN,
+    SPEC_LANGUAGE_GERMAN,  SPEC_LANGUAGE_SPANISH,
+};
+constexpr size_t SPEC_GB_VOTE_LANGUAGE_COUNT =
+    sizeof SPEC_GB_VOTE_LANGUAGES / sizeof SPEC_GB_VOTE_LANGUAGES[0];
 
 // A Pokémon list: a count, the species bytes and their terminator, the records, the OT names,
 // then the nicknames.
@@ -48,6 +55,7 @@ struct spec_gb_layout {
     size_t pc_items_offset;
     size_t current_box_offset;
     size_t coins_offset;
+    size_t player_starter_offset;
     size_t event_flags_offset;
     size_t play_time_offset;
     size_t daycare_offset;
@@ -56,6 +64,20 @@ struct spec_gb_layout {
     size_t checksum_offset;
 };
 typedef struct spec_gb_layout spec_gb_layout_t;
+
+// Gen 1 and 2 saves record no language, so the player's own Pokémon that keep their species' name
+// vote for each language naming it so. The counts follow SPEC_GB_VOTE_LANGUAGES.
+struct spec_gb_language_vote {
+    size_t counts[SPEC_GB_VOTE_LANGUAGE_COUNT];
+};
+typedef struct spec_gb_language_vote spec_gb_language_vote_t;
+
+// Identification functions
+
+// The language with the most votes; UNKNOWN when none leads.
+spec_language_t spec_gb_elect_language(const spec_gb_language_vote_t *vote);
+// Compares up to the end of text.
+bool spec_gb_is_same_text(const uint8_t *text, const uint8_t *other_text, size_t text_size);
 
 // Layout functions
 

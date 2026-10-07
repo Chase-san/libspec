@@ -1,4 +1,4 @@
-// Gen 1 items: item names, and the bag and PC codec.
+// Gen 1 items: item names and later numbers, and the bag and PC codec.
 
 #include "gb/gb.h"
 #include "gb/gb_internal.h"
@@ -108,6 +108,13 @@ const char *spec_gb_item_name(uint16_t item, spec_language_t language) {
         return nullptr;
     }
     return spec_gb_item_names[language][item];
+}
+
+uint16_t spec_gb_item_get_migration_id(uint16_t item) {
+    if (!is_item(item)) {
+        return 0;
+    }
+    return spec_gb_migration_ids[item];
 }
 
 size_t spec_gb_pocket_capacity(spec_gb_pocket_t pocket) {

@@ -6,7 +6,7 @@ usage: generate_gbc_tables.py DATA_DIRECTORY OUTPUT_DIRECTORY
 import sys
 from pathlib import Path
 
-from generate_gb_tables import charmap_body, growth_rate_enum, item_names_body, read_tsv
+from generate_gb_tables import charmap_body, growth_rate_enum, item_names_body, read_tsv, type_enum
 
 STAT_COLUMNS = ["hp", "attack", "defense", "speed", "special_attack", "special_defense"]
 POCKET_COLUMNS = ["gold_silver_pocket", "crystal_pocket"]
@@ -23,8 +23,10 @@ def species_data_body(species):
     lines = ["const spec_gbc_species_data_t spec_gbc_species_data[SPEC_GBC_POKEDEX_SIZE] = {"]
     for row in species:
         stats = ", ".join(row[column] for column in STAT_COLUMNS)
+        types = f"{type_enum(row['type_1'])}, {type_enum(row['type_2'])}"
         growth_rate = growth_rate_enum(row["growth_rate"])
-        lines.append(f"    [{row['national']}] = {{{{{stats}}}, {growth_rate}, {row['gender_ratio']}}},")
+        data = f"{{{stats}}}, {{{types}}}, {row['gender_ratio']}, {row['egg_cycles']}, {growth_rate}"
+        lines.append(f"    [{row['national']}] = {{{data}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 
@@ -39,7 +41,8 @@ def items_body(items):
         pockets = ", ".join(pocket_value(row[column]) for column in POCKET_COLUMNS)
         machine = "0" if row["machine"] == "-" else row["machine"]
         is_mail = "true" if row["is_mail"] == "yes" else "false"
-        lines.append(f"    [{row['item']}] = {{{pockets}, {machine}, {is_mail}}},")
+        migration_id = "0" if row["migration_id"] == "-" else row["migration_id"]
+        lines.append(f"    [{row['item']}] = {{{pockets}, {machine}, {is_mail}, {migration_id}}},")
     lines.append("};")
     return "\n".join(lines) + "\n"
 

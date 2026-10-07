@@ -7,13 +7,21 @@ Red, Blue, Green and Yellow. `tools/generate_gb_tables.py` turns these tables in
 
 Species by the game's own index, which is not the National Dex number.
 
-- Columns: the National Dex number, the base stats (HP, Attack, Defense, Speed, Special) and the
-  growth rate.
+- Columns: the National Dex number, the base stats (HP, Attack, Defense, Speed, Special), the growth
+  rate, the types and the catch rate.
 - From pret pokered:
   - The index and National Dex number: `constants/pokemon_constants.asm` and
     `data/pokemon/dex_order.asm`.
   - The rest: `data/pokemon/base_stats/*.asm`; Mew's is `data/pokemon/mew.asm`.
+- Yellow's rows: pret pokeyellow. Yellow gives Dragonair and Dragonite catch rates of their own; in
+  everything else the games agree.
+- The carts agree with these: the author's US Red, Blue and Yellow, Italian Blue and Japanese Red,
+  Blue and Yellow.
+- A species of one type has it as both, as the games store it.
+- `from_game` is as the [data README](../README.md#from_game) explains.
 - Indices that name no species are left out.
+- A Pokémon keeps its catch rate when it evolves (pret `engine/pokemon/evos_moves.asm`), which Gen
+  2 reads as its held item.
 
 ## `charmap.tsv`
 
@@ -51,3 +59,10 @@ The items the bag and PC can hold, by item number, with a name in each language 
   - Italian: the Italian Blue cart.
 - Machines are named the way `GetMachineName` builds them (`home/names.asm`).
 - Left out: dummies (named "?????" or only an `ITEM_` constant), badges and elevator floors.
+- `migration_id`: the item's number in Gen 4 to 7, which names it there. The games carry no Gen 1
+  item forward, so this is by name, comparing letters and digits only:
+  - Gen 3's `migration_id` for the Gen 3 item of the same English name, if it has one. This catches
+    the items later games renamed, such as Bicycle, which the 3DS games call Bike.
+  - Otherwise the lowest-numbered later item of the same English name.
+  - `-` for none, and for every TM and HM, since later TMs and HMs of the same number teach other
+    moves.

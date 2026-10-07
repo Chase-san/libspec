@@ -5,14 +5,12 @@
 
 #include <stddef.h>
 #include <stdint.h>
-#include <uchar.h>
 
 #include "3ds/3ds.h"
 #include "spec.h"
 #include "spec_tables.h"
 
 constexpr size_t SPEC_3DS_SPECIES_COUNT = 808;
-constexpr size_t SPEC_3DS_ITEM_COUNT = 960;
 constexpr uint8_t SPEC_3DS_NO_POCKET = 0xFF;
 // The game types in spec_game_type_t's order: X and Y to Ultra Sun and Ultra Moon.
 constexpr size_t SPEC_3DS_GAME_TYPE_COUNT = 4;
@@ -24,27 +22,18 @@ constexpr size_t SPEC_3DS_CHINESE_NAME_SIZE = 6;
 
 // Species
 
-struct spec_3ds_species_data {
-    uint8_t base_stats[SPEC_STAT_COUNT];
-    uint8_t gender_ratio;
-    spec_growth_rate_t growth_rate;
-};
-typedef struct spec_3ds_species_data spec_3ds_species_data_t;
-
-// The forms whose base stats differ from their species'.
-struct spec_3ds_form_data {
+// A row describes its species or form from from_game on, until a later row for the same one takes
+// over.
+struct spec_3ds_species_row {
     uint16_t species;
     uint8_t form;
+    spec_game_type_t from_game;
     spec_3ds_species_data_t data;
 };
-typedef struct spec_3ds_form_data spec_3ds_form_data_t;
+typedef struct spec_3ds_species_row spec_3ds_species_row_t;
 
-extern const spec_3ds_species_data_t spec_3ds_gen6_species_data[SPEC_3DS_SPECIES_COUNT];
-extern const spec_3ds_form_data_t spec_3ds_gen6_form_data[];
-extern const size_t spec_3ds_gen6_form_data_count;
-extern const spec_3ds_species_data_t spec_3ds_gen7_species_data[SPEC_3DS_SPECIES_COUNT];
-extern const spec_3ds_form_data_t spec_3ds_gen7_form_data[];
-extern const size_t spec_3ds_gen7_form_data_count;
+extern const spec_3ds_species_row_t spec_3ds_species_rows[];
+extern const size_t spec_3ds_species_row_count;
 
 // Text
 

@@ -229,6 +229,14 @@ const char *spec_gbc_item_name(uint16_t item, spec_language_t language) {
     return spec_gbc_item_names[language][item];
 }
 
+uint16_t spec_gbc_item_get_migration_id(uint16_t item) {
+    const spec_gbc_item_data_t *item_data = item_data_of(item);
+    if (item_data == nullptr) {
+        return 0;
+    }
+    return item_data->migration_id;
+}
+
 size_t spec_gbc_pocket_capacity(spec_gbc_pocket_t pocket) {
     if (pocket >= SPEC_GBC_POCKET_COUNT) {
         return 0;

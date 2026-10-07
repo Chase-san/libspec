@@ -6,10 +6,15 @@ cited.
 
 ## `species.tsv`
 
-Species by National Dex number, with base stats, growth rate and gender ratio.
+Species by National Dex number, with base stats, growth rate, gender ratio, types and egg cycles.
 
 - Source: pret pokecrystal `data/pokemon/base_stats/*.asm`, in `BaseData`'s order. pokegold has
-  the same rows.
+  the same rows, and the author's Gold, Silver, Crystal (both revisions) and Japanese Crystal carts
+  agree.
+- A species of one type has it as both, as the games store it.
+- `egg_cycles` is the base data's step cycles to hatch, which an egg counts down in its friendship.
+- Every species' base friendship is 70 (`BASE_HAPPINESS`, `constants/pokemon_data_constants.asm`),
+  so the table has none.
 - `gender_ratio` is the byte the game stores:
   - 0 means always male, 254 always female and 255 genderless.
   - Otherwise a Pokémon is female when `Attack DV << 4 | Speed DV` is at most this value.
@@ -48,6 +53,8 @@ Items by item number: names, the pocket in each pair of games, machine numbers a
   - `-` is a dummy, such as Gold and Silver's TERU-SAMA.
 - `machine`: the TM or HM number under which the TM/HM pocket keeps the item's quantity.
 - `is_mail`: follows `data/items/mail_items.asm`.
+- `migration_id`: the item's number in Gen 4 to 7, found as Gen 1's is
+  ([`gb/README.md`](../gb/README.md#itemstsv)). Gen 2's berries, apricorns and mail have none.
 - The other languages:
   - Japanese: the Japanese Crystal cart.
   - Spanish: pokecrystal-es.

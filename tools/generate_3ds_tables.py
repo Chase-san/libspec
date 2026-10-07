@@ -9,7 +9,8 @@ from pathlib import Path
 STAT_COLUMNS = ["hp", "attack", "defense", "speed", "special_attack", "special_defense"]
 POCKET_COLUMNS = ["x_y", "omega_ruby_alpha_sapphire", "sun_moon", "ultra_sun_ultra_moon"]
 CHINESE_COLUMNS = ["chinese_simplified", "chinese_traditional"]
-GENERATIONS = {"6": "gen6", "7": "gen7"}
+TYPE_COLUMNS = ["type_1", "type_2"]
+ABILITY_COLUMNS = ["ability_1", "ability_2", "hidden_ability"]
 ITEM_COUNT = 960
 
 
@@ -29,28 +30,28 @@ def growth_rate_enum(name):
     return "SPEC_GROWTH_RATE_" + name.upper()
 
 
+# "-" is every game, which the first game type stands for.
+def from_game_enum(from_game):
+    return "SPEC_GAME_TYPE_" + ("red_blue" if from_game == "-" else from_game).upper()
+
+
 def species_data_of(row):
     stats = ", ".join(row[column] for column in STAT_COLUMNS)
-    return f"{{{{{stats}}}, {row['gender_ratio']}, {growth_rate_enum(row['growth_rate'])}}}"
+    types = ", ".join("SPEC_TYPE_" + row[column].upper() for column in TYPE_COLUMNS)
+    abilities = ", ".join(row[column] for column in ABILITY_COLUMNS)
+    counts = f"{row['gender_ratio']}, {row['egg_cycles']}, {row['base_friendship']}"
+    return f"{{{stats}}}, {{{types}}}, {{{abilities}}}, {counts}, {growth_rate_enum(row['growth_rate'])}"
 
 
 def species_body(species):
-    lines = []
-    for generation, prefix in GENERATIONS.items():
-        rows = [row for row in species if row["generation"] == generation]
-        lines.append(f"const spec_3ds_species_data_t spec_3ds_{prefix}_species_data[SPEC_3DS_SPECIES_COUNT] = {{")
-        for row in rows:
-            if row["form"] == "0":
-                lines.append(f"    [{row['national']}] = {species_data_of(row)},")
-        lines.append("};\n")
-        lines.append(f"const spec_3ds_form_data_t spec_3ds_{prefix}_form_data[] = {{")
-        for row in rows:
-            if row["form"] != "0":
-                lines.append(f"    {{{row['national']}, {row['form']}, {species_data_of(row)}}},")
-        lines.append("};")
-        lines.append(f"const size_t spec_3ds_{prefix}_form_data_count =")
-        lines.append(f"    sizeof spec_3ds_{prefix}_form_data / sizeof spec_3ds_{prefix}_form_data[0];\n")
-    return "\n".join(lines)
+    lines = ["const spec_3ds_species_row_t spec_3ds_species_rows[] = {"]
+    for row in species:
+        key = f"{row['national']}, {row['form']}, {from_game_enum(row['from_game'])}"
+        lines.append(f"    {{{key}, {{{species_data_of(row)}}}}},")
+    lines.append("};\n")
+    lines.append("const size_t spec_3ds_species_row_count =")
+    lines.append("    sizeof spec_3ds_species_rows / sizeof spec_3ds_species_rows[0];")
+    return "\n".join(lines) + "\n"
 
 
 def pocket_value(cell):
